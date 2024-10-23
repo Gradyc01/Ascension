@@ -1,0 +1,13 @@
+me\depickcator\ascensionBingo\listeners\InventoryClickListener.class
+me\depickcator\ascensionBingo\listeners\onInventoryChange.class
+me\depickcator\ascensionBingo\AscensionBingo.class
+me\depickcator\ascensionBingo\Player\scoreboards.class
+me\depickcator\ascensionBingo\mainMenu\GiveMainMenuItem.class
+me\depickcator\ascensionBingo\mainMenu\MainMenuListener.class
+me\depickcator\ascensionBingo\listeners\InventoryClose.class
+me\depickcator\ascensionBingo\General\commands\loadPluginCommand.class
+me\depickcator\ascensionBingo\General\commands\resetGameCommand.class
+me\depickcator\ascensionBingo\testingCommands\changeBingoScore.class
+me\depickcator\ascensionBingo\commands\OpenMainMenuCommand.class
+me\depickcator\ascensionBingo\commands\OpenMainMenuCommand$1.class
+me\depickcator\ascensionBingo\Player\BingoData.class

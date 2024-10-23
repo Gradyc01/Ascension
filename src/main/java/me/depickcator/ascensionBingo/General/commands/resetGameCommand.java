@@ -31,7 +31,7 @@ public class resetGameCommand implements CommandExecutor {
         } catch (Exception e) {
             return false;
         }
-
+        plugin.getBingoData().resetPlayers();
         p.sendMessage("Placeholder Message For Reset Game");
         return true;
 

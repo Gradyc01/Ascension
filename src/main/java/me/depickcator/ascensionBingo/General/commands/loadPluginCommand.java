@@ -21,7 +21,7 @@ public class loadPluginCommand implements CommandExecutor {
             return false;
         }
         Player p = ((Player) commandSender).getPlayer();
-        ab.setBingoData(new BingoData());
+        ab.setBingoData(new BingoData(ab));
         return true;
     }
 }
