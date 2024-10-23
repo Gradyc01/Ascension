@@ -1,0 +1,13 @@
+name: AscensionBingo
+version: '1.0'
+main: me.depickcator.ascensionBingo.AscensionBingo
+api-version: '1.21'
+commands:
+  open-main-menu:
+    description: This command open the main menu
+  give-main-menu:
+    description: This command gives the main menu item
+  resetgame:
+    description: resets the game
+  loadgame:
+    description: loads the lobby and initiates a reset
