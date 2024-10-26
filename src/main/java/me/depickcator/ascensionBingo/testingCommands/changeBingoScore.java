@@ -1,7 +1,7 @@
 package me.depickcator.ascensionBingo.testingCommands;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.Player.BingoData;
+import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

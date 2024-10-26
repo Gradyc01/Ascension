@@ -1,6 +1,7 @@
 package me.depickcator.ascensionBingo.commands;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import static io.papermc.paper.command.brigadier.argument.ArgumentTypes.itemStack;
 import static me.depickcator.ascensionBingo.AscensionBingo.guiMap;
 
-public class OpenMainMenuCommand implements CommandExecutor {
+public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
     public final static String menuName = "MAIN-MENU";
     private int GUISize = 6 * 9;
     private Inventory inventory;
@@ -37,11 +38,11 @@ public class OpenMainMenuCommand implements CommandExecutor {
         if (p != null) {
             p.openInventory(inventory);
         }
-        setItemBackground();
+        setItemBackground(inventory, GUISize);
         bingoBoardButton();
         viewCommandsButton();
         viewUnlocksButton();
-        closeGUIButton();
+        closeGUIButton(inventory, 49);
 
         if (p != null) {
 //            AscensionBingo.guiMap.put(p.getUniqueId(), inventory);
@@ -60,18 +61,8 @@ public class OpenMainMenuCommand implements CommandExecutor {
         buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         buttonMeta.displayName(title);
         buttonMeta.setCustomModelData(1);
-        setGUIItems(button, buttonMeta,22);
+        setGUIItems(inventory, button, buttonMeta,22);
         //stackItemMeta.lore();
-    }
-
-    private void closeGUIButton() {
-        ItemStack button = new ItemStack(Material.BARRIER);
-        ItemMeta buttonMeta = button.getItemMeta();
-        Component title = Component.text("Close").color(TextColor.color(255,0,0));
-        title = title.decoration(TextDecoration.ITALIC, false);
-        buttonMeta.displayName(title);
-        buttonMeta.setCustomModelData(2); // Use this when using the same item
-        setGUIItems(button, buttonMeta,49);
     }
 
     private void viewUnlocksButton() {
@@ -81,7 +72,7 @@ public class OpenMainMenuCommand implements CommandExecutor {
         title = title.decoration(TextDecoration.ITALIC, false);
         buttonMeta.displayName(title);
         buttonMeta.setCustomModelData(3); // Use this when using the same item
-        setGUIItems(button, buttonMeta,20);
+        setGUIItems(inventory, button, buttonMeta,20);
     }
 
     private void viewCommandsButton() {
@@ -91,13 +82,14 @@ public class OpenMainMenuCommand implements CommandExecutor {
         title = title.decoration(TextDecoration.ITALIC, false);
         buttonMeta.displayName(title);
         buttonMeta.setCustomModelData(4); // Use this when using the same item
-        setGUIItems(button, buttonMeta,24);
+        setGUIItems(inventory, button, buttonMeta,24);
     }
 
     public static void interactWithGUIButtons(ItemStack item, Player p, Inventory inv) {
         switch (item.getType()) {
             case Material.ENCHANTED_BOOK -> {
                 p.getInventory().setHelmet(new ItemStack(Material.BLACK_STAINED_GLASS));
+                p.performCommand("openmenu board");
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 0.0f);
             }
             case Material.REPEATING_COMMAND_BLOCK -> {
@@ -112,24 +104,6 @@ public class OpenMainMenuCommand implements CommandExecutor {
             default -> {
 
             }
-        }
-    }
-    //TODO: TURN INTO A INTERFACE METHOD
-    private void setGUIItems (ItemStack button, ItemMeta buttonMeta, int index) {
-        button.setItemMeta(buttonMeta); //Sets the Meta to Button Meta
-        button.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        inventory.setItem(index, button);
-    }
-
-    //TODO: TURN INTO A INTERFACE METHOD
-    private void setItemBackground () {
-        ItemStack button = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE);
-        ItemMeta buttonMeta = button.getItemMeta();
-        buttonMeta.displayName(Component.text(" ").color(TextColor.color(185, 185, 185)));
-        buttonMeta.setCustomModelData(0);
-        button.setItemMeta(buttonMeta); //Sets the Meta to Button Meta
-        for (int i = 0; i < GUISize; i++) {
-            inventory.setItem(i, button);
         }
     }
 }

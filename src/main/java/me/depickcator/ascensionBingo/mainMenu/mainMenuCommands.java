@@ -1,20 +1,18 @@
-package me.depickcator.ascensionBingo.General.commands;
+package me.depickcator.ascensionBingo.mainMenu;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
-import org.bukkit.Bukkit;
+import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoBoardGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
 import org.jetbrains.annotations.NotNull;
 
-public class loadPluginCommand implements CommandExecutor {
-    AscensionBingo ab;
+public class mainMenuCommands implements CommandExecutor {
+    private Object gui;
+    private AscensionBingo ab;
 
-    public loadPluginCommand(AscensionBingo ab) {
+    public mainMenuCommands(AscensionBingo ab) {
         this.ab = ab;
     }
 
@@ -23,9 +21,15 @@ public class loadPluginCommand implements CommandExecutor {
         if (!(commandSender instanceof Player)) {
             return false;
         }
-
         Player p = ((Player) commandSender).getPlayer();
-        ab.setBingoData(new BingoData(ab));
-        return true;
+        if (strings.length != 1) {
+            return false;
+        }
+        String guiBoardName = strings[0];
+        if (guiBoardName.equalsIgnoreCase("board")) {
+            gui = new BingoBoardGUI(ab, p);
+        }
+
+        return false;
     }
 }

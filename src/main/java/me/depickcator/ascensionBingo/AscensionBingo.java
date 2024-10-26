@@ -2,20 +2,20 @@ package me.depickcator.ascensionBingo;
 
 
 import me.depickcator.ascensionBingo.General.commands.loadPluginCommand;
-import me.depickcator.ascensionBingo.General.commands.resetGameCommand;
-import me.depickcator.ascensionBingo.Player.BingoData;
+import me.depickcator.ascensionBingo.General.commands.GameCommand;
+import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
 import me.depickcator.ascensionBingo.commands.OpenMainMenuCommand;
 import me.depickcator.ascensionBingo.listeners.InventoryClickListener;
 import me.depickcator.ascensionBingo.listeners.InventoryClose;
 import me.depickcator.ascensionBingo.listeners.onInventoryChange;
 import me.depickcator.ascensionBingo.mainMenu.GiveMainMenuItem;
+import me.depickcator.ascensionBingo.mainMenu.mainMenuCommands;
 import me.depickcator.ascensionBingo.testingCommands.changeBingoScore;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Server;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,9 +47,10 @@ public final class AscensionBingo extends JavaPlugin {
         PluginManager pluginManager = getServer().getPluginManager();
         Objects.requireNonNull(getCommand("open-main-menu")).setExecutor(new OpenMainMenuCommand());
         Objects.requireNonNull(getCommand("give-main-menu")).setExecutor(new GiveMainMenuItem(pluginManager, this));
-        Objects.requireNonNull(getCommand("resetgame")).setExecutor(new resetGameCommand(pluginManager,this));
+        Objects.requireNonNull(getCommand("game")).setExecutor(new GameCommand(pluginManager,this));
         Objects.requireNonNull(getCommand("loadgame")).setExecutor(new loadPluginCommand(this));
         Objects.requireNonNull(getCommand("changeBingoScore")).setExecutor(new changeBingoScore(this));
+        Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands(this));
     }
 
     private void registerListeners() {
@@ -64,10 +65,10 @@ public final class AscensionBingo extends JavaPlugin {
         return bingoData;
     }
 
-    public @NotNull Logger getLogger() {
-        assert logger != null;
-        return logger;
-    }
+//    public @NotNull Logger getLogger() {
+//        assert logger != null;
+//        return logger;
+//    }
 
     public void setBingoData(BingoData bingoData) {
         this.bingoData = bingoData;

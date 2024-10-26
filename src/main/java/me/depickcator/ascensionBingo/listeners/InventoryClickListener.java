@@ -3,6 +3,7 @@ package me.depickcator.ascensionBingo.listeners;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.commands.OpenMainMenuCommand;
+import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoBoardGUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,8 +33,8 @@ public class InventoryClickListener implements Listener {
                 case OpenMainMenuCommand.menuName -> {
                     OpenMainMenuCommand.interactWithGUIButtons(e.getCurrentItem(), player, inventory);
                 }
-                case "TEMP SO NO ERROR" -> {
-                    System.out.println("TEMP SO NO ERROR");
+                case BingoBoardGUI.menuName  -> {
+                    BingoBoardGUI.interactWithGUIButtons(e.getCurrentItem(), player, inventory);
                 }
                 default -> {
 

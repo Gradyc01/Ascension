@@ -7,9 +7,11 @@ commands:
     description: This command open the main menu
   give-main-menu:
     description: This command gives the main menu item
-  resetgame:
-    description: resets the game
+  game:
+    description: Allows to access the main game states
   loadgame:
     description: loads the lobby and initiates a reset
   changeBingoScore:
     description: changes the bingo score for a certain player
+  openmenu:
+    description: opens all menu in the main menu via command

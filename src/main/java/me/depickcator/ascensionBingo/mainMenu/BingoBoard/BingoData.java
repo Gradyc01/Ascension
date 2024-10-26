@@ -1,15 +1,16 @@
-package me.depickcator.ascensionBingo.Player;
+package me.depickcator.ascensionBingo.mainMenu.BingoBoard;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.Items.ItemList;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scoreboard.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public class BingoData {
     private ScoreboardManager scoreboardManager;
@@ -17,7 +18,8 @@ public class BingoData {
     private Objective bingodata;
     private Objective bingoLines;
     private Objective bingoItemsObtained;
-    private final Logger logger;
+    private ArrayList<ItemStack> items;
+    private ItemList itemList;
     private AscensionBingo ab;
 
     public BingoData(AscensionBingo ab) {
@@ -25,7 +27,8 @@ public class BingoData {
         bingoScoreboard = scoreboardManager.getMainScoreboard();
         bingodata = bingoScoreboard.registerNewObjective("bingo", Criteria.DUMMY , Component.text("Ascension Bingo"), RenderType.INTEGER);
         this.ab = ab;
-        logger = ab.getLogger();
+        items = new ArrayList<>();
+        itemList = new ItemList(ab);
         resetPlayers();
     }
 
@@ -39,7 +42,7 @@ public class BingoData {
 //            player.setScoreboard(bingoScoreboard);
             Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).setDisplaySlot(DisplaySlot.SIDEBAR);
         }
-        logger.info("Reset Players in BingoData");
+//        logger.info("Reset Players in BingoData");
     }
     /*
     Bingo Board Index Array
@@ -62,11 +65,11 @@ public class BingoData {
         printArray(bingoArray, player);
         if (doesHaveThisItem(index, bingoArray)) {
             int ans = (int)Math.pow(2, index);
-            logger.info("Successfully Removed Score in BingoData");
+//            logger.info("Successfully Removed Score in BingoData");
 //            player.sendMessage("Successfully Removed Score");
             score.setScore(score.getScore() - ans);
         }
-        logger.info("Did not Remove Score in BingoData");
+//        logger.info("Did not Remove Score in BingoData");
     }
 
     public void addScore(int index, Player player) {
@@ -75,10 +78,10 @@ public class BingoData {
         printArray(bingoArray, player);
         if (!doesHaveThisItem(index, bingoArray)) {
             int ans = (int)Math.pow(2, index);
-            logger.info("Successfully Added Score in BingoData");
+//            logger.info("Successfully Added Score in BingoData");
             score.setScore(score.getScore() + ans);
         }
-        logger.info("Did not Added Score in BingoData");
+//        logger.info("Did not Added Score in BingoData");
     }
 
     private ArrayList<Boolean> setArray(Score score) {
@@ -113,6 +116,24 @@ public class BingoData {
     public Boolean doesHaveThisItem(int index, ArrayList<Boolean> arr) {
         return arr.get(24 - index);
     }
+
+    public ArrayList<ItemStack> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<ItemStack> items) {
+        this.items = items;
+    }
+
+    public ItemList getItemList() {
+        return itemList;
+    }
+
+    public ArrayList<Boolean> getItemsCompleted(Player player) {
+        return setArray(Objects.requireNonNull(player.getScoreboard().getObjective("bingo")).getScore(player.getName()));
+    }
+
+
 
 
 }
