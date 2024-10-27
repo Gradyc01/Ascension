@@ -15,6 +15,10 @@ import java.util.UUID;
 
 
 public class InventoryClickListener implements Listener {
+    AscensionBingo ab;
+    public InventoryClickListener(AscensionBingo ab) {
+        this.ab = ab;
+    }
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
         Player player = (Player) e.getWhoClicked();
@@ -34,7 +38,7 @@ public class InventoryClickListener implements Listener {
                     OpenMainMenuCommand.interactWithGUIButtons(e.getCurrentItem(), player, inventory);
                 }
                 case BingoBoardGUI.menuName  -> {
-                    BingoBoardGUI.interactWithGUIButtons(e.getCurrentItem(), player, inventory);
+                    BingoBoardGUI.interactWithGUIButtons(e.getCurrentItem(), player, inventory, ab);
                 }
                 default -> {
 

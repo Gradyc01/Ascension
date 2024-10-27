@@ -3,9 +3,13 @@ package me.depickcator.ascensionBingo.mainMenu.BingoBoard;
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Items.ItemList;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.*;
 
 import java.util.ArrayList;
@@ -44,6 +48,57 @@ public class BingoData {
         }
 //        logger.info("Reset Players in BingoData");
     }
+
+    private Boolean containsItem(ItemStack item1, ItemStack item2) {
+        ItemMeta item1Meta = item1.getItemMeta();
+        ItemMeta item2Meta = item2.getItemMeta();
+        Boolean modelData;
+        try {
+            modelData = item1Meta.getCustomModelData() == item2Meta.getCustomModelData();
+        } catch (Exception e) {
+            modelData =true;
+        }
+        return (item1.getType().equals(item2.getType()) &&
+                Objects.equals(item1Meta.lore(), item2Meta.lore()) &&
+                Objects.equals(item1Meta.getItemFlags(), item2Meta.getItemFlags()) &&
+                modelData &&
+                Objects.equals(item1Meta.getEnchants(), item2Meta.getEnchants()) &&
+                Objects.equals(item1Meta.getFood(), item2Meta.getFood()));
+    }
+
+
+    public void claimItem(Player p) {
+        Inventory inv = p.getInventory();
+        ArrayList<ItemStack> items = getItems();
+        ArrayList<Boolean> hasItems = getItemsCompleted(p);
+
+        if (items.size() != 25) {
+            p.sendMessage(Component.text("The board has not been initialized yet").color(TextColor.color(255,0,0)));
+            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_TELEPORT, 1.0f, 0f);
+            return;
+        }
+        for (int i = 0; i < items.size(); i++) {
+            if (hasItems.get(i)) {
+                continue;
+            }
+            ItemStack item = items.get(i);
+            for (ItemStack j : inv.getContents()) {
+                if (j != null && containsItem(j, item)) {
+                    j.setAmount(j.getAmount() - 1);
+                    addScore(24 - i, p);
+                    p.sendMessage(Component.text("You have obtained an Item!").color(TextColor.color(0, 170,0)));
+                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 2.0f);
+                    new BingoBoardGUI(ab, p);
+                    return;
+                }
+            }
+        }
+        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_TELEPORT, 1.0f, 0f);
+        p.sendMessage(Component.text("There were no items to claim").color(TextColor.color(255,0,0)));
+    }
+
+
+
     /*
     Bingo Board Index Array
      00 01 02 03 04
@@ -62,26 +117,21 @@ public class BingoData {
     public void removeScore(int index, Player player) {
         Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
         ArrayList<Boolean> bingoArray = setArray(score);
-        printArray(bingoArray, player);
+//        printArray(bingoArray, player);
         if (doesHaveThisItem(index, bingoArray)) {
             int ans = (int)Math.pow(2, index);
-//            logger.info("Successfully Removed Score in BingoData");
-//            player.sendMessage("Successfully Removed Score");
             score.setScore(score.getScore() - ans);
         }
-//        logger.info("Did not Remove Score in BingoData");
     }
 
     public void addScore(int index, Player player) {
         Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
         ArrayList<Boolean> bingoArray = setArray(score);
-        printArray(bingoArray, player);
+//        printArray(bingoArray, player);
         if (!doesHaveThisItem(index, bingoArray)) {
             int ans = (int)Math.pow(2, index);
-//            logger.info("Successfully Added Score in BingoData");
             score.setScore(score.getScore() + ans);
         }
-//        logger.info("Did not Added Score in BingoData");
     }
 
     private ArrayList<Boolean> setArray(Score score) {

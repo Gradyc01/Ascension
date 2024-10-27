@@ -45,8 +45,6 @@ public class BingoBoardGUI implements AscensionGUI {
     }
 
     private void boardItems() {
-
-
         BingoData bingoData = this.ab.getBingoData();
         ArrayList<ItemStack> items = bingoData.getItems();
         ArrayList<Boolean> hasItems = bingoData.getItemsCompleted(player);
@@ -90,10 +88,10 @@ public class BingoBoardGUI implements AscensionGUI {
         setGUIItems(inventory, button, buttonMeta,53);
     }
 
-    public static void interactWithGUIButtons(ItemStack item, Player p, Inventory inv) {
+    public static void interactWithGUIButtons(ItemStack item, Player p, Inventory inv, AscensionBingo ab) {
         switch (item.getType()) {
             case Material.EMERALD -> {
-                p.sendMessage("PLACEHOLDER MESSAGE FOR WHEN SOMEONE CLAIMS AN ITEM");
+                ab.getBingoData().claimItem(p);
             }
             case Material.BARRIER -> {
                 inv.close();

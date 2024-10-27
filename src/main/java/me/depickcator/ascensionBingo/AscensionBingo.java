@@ -48,7 +48,6 @@ public final class AscensionBingo extends JavaPlugin {
         Objects.requireNonNull(getCommand("open-main-menu")).setExecutor(new OpenMainMenuCommand());
         Objects.requireNonNull(getCommand("give-main-menu")).setExecutor(new GiveMainMenuItem(pluginManager, this));
         Objects.requireNonNull(getCommand("game")).setExecutor(new GameCommand(pluginManager,this));
-        Objects.requireNonNull(getCommand("loadgame")).setExecutor(new loadPluginCommand(this));
         Objects.requireNonNull(getCommand("changeBingoScore")).setExecutor(new changeBingoScore(this));
         Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands(this));
     }
@@ -58,7 +57,7 @@ public final class AscensionBingo extends JavaPlugin {
         PluginManager manager = server.getPluginManager();
         manager.registerEvents(new onInventoryChange(), this);
         manager.registerEvents(new InventoryClose(), this);
-        manager.registerEvents(new InventoryClickListener(), this);
+        manager.registerEvents(new InventoryClickListener(this), this);
     }
 
     public BingoData getBingoData() {
