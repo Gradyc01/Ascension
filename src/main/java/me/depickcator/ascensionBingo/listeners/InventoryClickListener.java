@@ -2,7 +2,8 @@ package me.depickcator.ascensionBingo.listeners;
 
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.commands.OpenMainMenuCommand;
+import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
+import me.depickcator.ascensionBingo.mainMenu.OpenMainMenuCommand;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoBoardGUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -44,6 +45,8 @@ public class InventoryClickListener implements Listener {
 
                 }
             }
+
+
             e.setCancelled(true);
         }
 

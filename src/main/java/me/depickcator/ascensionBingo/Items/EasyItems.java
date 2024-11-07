@@ -19,7 +19,7 @@ public class EasyItems {
         addItem(new ItemStack(Material.ANVIL));
         addItem(new ItemStack(Material.LECTERN));
         addItem(new ItemStack(Material.LAPIS_BLOCK));
-        addItem(new ItemStack(Material.ENCHANTED_BOOK));
+//        addItem(new ItemStack(Material.ENCHANTED_BOOK));
         addItem(new ItemStack(Material.REDSTONE_BLOCK));
         addItem(new ItemStack(Material.GOLD_BLOCK));
         addItem(new ItemStack(Material.JACK_O_LANTERN));

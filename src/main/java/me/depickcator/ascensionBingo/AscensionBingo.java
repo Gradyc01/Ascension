@@ -1,16 +1,20 @@
 package me.depickcator.ascensionBingo;
 
 
-import me.depickcator.ascensionBingo.General.commands.loadPluginCommand;
-import me.depickcator.ascensionBingo.General.commands.GameCommand;
+import me.depickcator.ascensionBingo.General.GameCommand;
+import me.depickcator.ascensionBingo.General.GameStates;
+import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Teams.TeamCommand;
+import me.depickcator.ascensionBingo.listeners.PlayerDeath;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
-import me.depickcator.ascensionBingo.commands.OpenMainMenuCommand;
+import me.depickcator.ascensionBingo.mainMenu.OpenMainMenuCommand;
 import me.depickcator.ascensionBingo.listeners.InventoryClickListener;
 import me.depickcator.ascensionBingo.listeners.InventoryClose;
 import me.depickcator.ascensionBingo.listeners.onInventoryChange;
 import me.depickcator.ascensionBingo.mainMenu.GiveMainMenuItem;
 import me.depickcator.ascensionBingo.mainMenu.mainMenuCommands;
 import me.depickcator.ascensionBingo.testingCommands.changeBingoScore;
+import me.depickcator.ascensionBingo.testingCommands.printPlayerDataCommand;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Server;
 import org.bukkit.inventory.Inventory;
@@ -26,6 +30,8 @@ import java.util.logging.Logger;
 public final class AscensionBingo extends JavaPlugin {
 
     public static Map<UUID, Pair<Inventory, String>>guiMap = new HashMap<>();
+    public static Map<UUID, PlayerData> playerDataMap = new HashMap<>();
+    GameStates gameState;
     BingoData bingoData;
     Logger logger = getLogger();
 
@@ -35,6 +41,7 @@ public final class AscensionBingo extends JavaPlugin {
         logger.info("AscensionBingo has been enabled!");
         registerListeners();
         registerCommands();
+        gameState = new GameStates(this);
     }
 
 
@@ -50,6 +57,8 @@ public final class AscensionBingo extends JavaPlugin {
         Objects.requireNonNull(getCommand("game")).setExecutor(new GameCommand(pluginManager,this));
         Objects.requireNonNull(getCommand("changeBingoScore")).setExecutor(new changeBingoScore(this));
         Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands(this));
+        Objects.requireNonNull(getCommand("party")).setExecutor(new TeamCommand(this));
+        Objects.requireNonNull(getCommand("printPlayerData")).setExecutor(new printPlayerDataCommand(this));
     }
 
     private void registerListeners() {
@@ -58,6 +67,7 @@ public final class AscensionBingo extends JavaPlugin {
         manager.registerEvents(new onInventoryChange(), this);
         manager.registerEvents(new InventoryClose(), this);
         manager.registerEvents(new InventoryClickListener(this), this);
+        manager.registerEvents(new PlayerDeath(this), this);
     }
 
     public BingoData getBingoData() {
@@ -73,5 +83,7 @@ public final class AscensionBingo extends JavaPlugin {
         this.bingoData = bingoData;
     }
 
-
+    public GameStates getGameState() {
+        return gameState;
+    }
 }

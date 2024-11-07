@@ -37,7 +37,8 @@ public class BingoBoardGUI implements AscensionGUI {
         setItemBackground(inventory,GUISize);
         boardItems();
         claimItemButton();
-        closeGUIButton(inventory, 49);
+        playerHeadButton(inventory, 49, p);
+//        closeGUIButton(inventory, 49);
         if (player != null) {
             Pair<Inventory, String> pair = new MutablePair<>(inventory, menuName);
             AscensionBingo.guiMap.put(p.getUniqueId(), pair);
@@ -94,7 +95,8 @@ public class BingoBoardGUI implements AscensionGUI {
                 ab.getBingoData().claimItem(p);
             }
             case Material.BARRIER -> {
-                inv.close();
+//                inv.close();
+//                inv.remove(AscensionGUI.getCloseButton());
             }
             default -> {
 

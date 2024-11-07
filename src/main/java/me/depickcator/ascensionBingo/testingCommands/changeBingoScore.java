@@ -23,13 +23,18 @@ public class changeBingoScore implements CommandExecutor {
         if (strings.length != 2) return false;
 
         Player p = ((Player) commandSender).getPlayer();
+        assert p != null;
+        if (p.hasPermission("ascensionbingo.command.changeBingoScore")) {
+            p.sendMessage("You do not have permission to use this command!");
+            return false;
+        }
         int index = findIndex(strings[1]);
         String operation = findOperation(strings[0]);
         if (index == -1 || operation == null) {
             return false;
         }
         BingoData bingoData = ab.getBingoData();
-        assert p != null;
+
         if (operation.equals("give")) {
             bingoData.addScore(index, p);
         } else {

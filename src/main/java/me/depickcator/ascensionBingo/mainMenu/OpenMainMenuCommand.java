@@ -1,4 +1,4 @@
-package me.depickcator.ascensionBingo.commands;
+package me.depickcator.ascensionBingo.mainMenu;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
@@ -20,9 +20,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
-import static io.papermc.paper.command.brigadier.argument.ArgumentTypes.itemStack;
-import static me.depickcator.ascensionBingo.AscensionBingo.guiMap;
-
 public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
     public final static String menuName = "MAIN-MENU";
     private int GUISize = 6 * 9;
@@ -35,21 +32,21 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
         Player p = ((Player) commandSender).getPlayer();
         inventory = Bukkit.createInventory(p,GUISize,Component.text("Ascension Bingo").color(TextColor.color(0,255,255)));
 
-        if (p != null) {
-            p.openInventory(inventory);
+        if (p == null) {
+            return false;
         }
+        p.openInventory(inventory);
         setItemBackground(inventory, GUISize);
         bingoBoardButton();
         viewCommandsButton();
         viewUnlocksButton();
-        closeGUIButton(inventory, 49);
+        playerHeadButton(inventory, 49, p);
+//        closeGUIButton(inventory, 49);
 
-        if (p != null) {
-//            AscensionBingo.guiMap.put(p.getUniqueId(), inventory);
-            Pair<Inventory, String> pair = new MutablePair<>(inventory, menuName);
 
-            AscensionBingo.guiMap.put(p.getUniqueId(), pair);
-        }
+        Pair<Inventory, String> pair = new MutablePair<>(inventory, menuName);
+        AscensionBingo.guiMap.put(p.getUniqueId(), pair);
+
         return false;
     }
 
@@ -98,9 +95,9 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
             case Material.DIAMOND_SWORD -> {
                 p.sendMessage(Component.text("PlaceHolder Text For Unlocks"));
             }
-            case Material.BARRIER -> {
-                inv.close();
-            }
+//            case Material.BARRIER -> {
+//                inv.close();
+//            }
             default -> {
 
             }

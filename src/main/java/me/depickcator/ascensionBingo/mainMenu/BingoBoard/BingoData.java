@@ -2,6 +2,9 @@ package me.depickcator.ascensionBingo.mainMenu.BingoBoard;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Items.ItemList;
+import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Teams.TeamUtil;
+import me.depickcator.ascensionBingo.Teams.Team;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -11,6 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.*;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,18 +31,40 @@ public class BingoData {
     private AscensionBingo ab;
 
     public BingoData(AscensionBingo ab) {
+
+
         scoreboardManager = Bukkit.getServer().getScoreboardManager();
         bingoScoreboard = scoreboardManager.getMainScoreboard();
-        bingodata = bingoScoreboard.registerNewObjective("bingo", Criteria.DUMMY , Component.text("Ascension Bingo"), RenderType.INTEGER);
+        try {
+            bingodata = bingoScoreboard.registerNewObjective("bingo", Criteria.DUMMY , Component.text("Ascension Bingo"), RenderType.INTEGER);
+        } catch (Exception e) {
+            bingodata = bingoScoreboard.getObjective("bingo");
+        }
+
         this.ab = ab;
         items = new ArrayList<>();
         itemList = new ItemList(ab);
         resetPlayers();
     }
 
+//    private void resetScoreboards() {
+//        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard objectives remove bingo");
+//    }
+
+    private void resetTeams() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            try {
+                TeamUtil.disbandTeam(p);
+            } catch (Exception ignored) {
+                continue;
+            }
+        }
+    }
+
     public void resetPlayers() {
         Collection<? extends Player> players = Bukkit.getOnlinePlayers();
         bingoScoreboard.resetScores("bingo");
+        resetTeams();
         for (Player player : players) {
             Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
             score.setScore(0);
@@ -49,10 +75,10 @@ public class BingoData {
 //        logger.info("Reset Players in BingoData");
     }
 
-    private Boolean containsItem(ItemStack item1, ItemStack item2) {
+    private boolean containsItem(ItemStack item1, ItemStack item2) {
         ItemMeta item1Meta = item1.getItemMeta();
         ItemMeta item2Meta = item2.getItemMeta();
-        Boolean modelData;
+        boolean modelData;
         try {
             modelData = item1Meta.getCustomModelData() == item2Meta.getCustomModelData();
         } catch (Exception e) {
@@ -129,8 +155,19 @@ public class BingoData {
         ArrayList<Boolean> bingoArray = setArray(score);
 //        printArray(bingoArray, player);
         if (!doesHaveThisItem(index, bingoArray)) {
-            int ans = (int)Math.pow(2, index);
-            score.setScore(score.getScore() + ans);
+            int ans = score.getScore() + (int)Math.pow(2, index);
+            score.setScore(ans);
+            changeTeamScore(player, ans);
+        }
+    }
+
+    private void changeTeamScore(Player player, int newScore) {
+        PlayerData playerData = AscensionBingo.playerDataMap.get(player.getUniqueId());
+        if (playerData != null) {
+            for (Player teamMember : playerData.getTeam().getTeamMembers()) {
+                Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(teamMember.getName());
+                score.setScore(newScore);
+            }
         }
     }
 

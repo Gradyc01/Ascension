@@ -13,3 +13,7 @@ commands:
     description: changes the bingo score for a certain player
   openmenu:
     description: opens all menu in the main menu via command
+  party:
+    description: team up with other players
+  printPlayerData:
+    description: prints the player Data

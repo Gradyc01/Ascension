@@ -1,7 +1,10 @@
-package me.depickcator.ascensionBingo.General.commands;
+package me.depickcator.ascensionBingo.General;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -37,6 +40,10 @@ public class GameCommand implements CommandExecutor {
         } catch (Exception e) {
             return false;
         }
+//        if (p.hasPermission("ascensionbingo.command.changeBingoScore")) {
+//            p.sendMessage("You do not have permission to use this command!");
+//            return false;
+//        }
 
         switch (strings[0].toLowerCase()) {
             case "start" -> {
@@ -46,17 +53,10 @@ public class GameCommand implements CommandExecutor {
                 resetGame(p);
             }
             case "forcestart" -> {
-                BingoData bingoData = ab.getBingoData();
-                bingoData.setItems(bingoData.getItemList().get25());
-                p.sendMessage("PLACEHOLDER MESSAGE FOR WHEN SOMEONE FORCESTARTS THE GAME");
-                ArrayList<ItemStack> item = bingoData.getItems();
-                for (ItemStack i : item) {
-                    p.sendMessage(i.toString());
-                }
+                forceStartGame(p);
             }
             case "load" -> {
-                ab.setBingoData(new BingoData(ab));
-                p.sendMessage("PLACEHOLDER MESSAGE FOR WHEN SOMEONE LOADS THE GAME");
+                loadGame(p);
             }
             default -> {
                 p.sendMessage("ERRORED");
@@ -71,6 +71,38 @@ public class GameCommand implements CommandExecutor {
 
     private void resetGame(Player p) {
         ab.getBingoData().resetPlayers();
+        PlayerUtil.assignNewPlayerData(ab);
+        System.out.println(AscensionBingo.playerDataMap);
+        ab.getGameState().setCurrentState(GameStates.LOBBY);
         p.sendMessage("Placeholder Message For Reset Game");
+    }
+
+    private void loadGame(Player p) {
+        ab.setBingoData(new BingoData(ab));
+        resetGame(p);
+        ab.getGameState().setCurrentState(GameStates.LOBBY);
+        p.sendMessage("Successfully loaded game");
+    }
+
+    private void forceStartGame(Player p) {
+        if (!ab.getGameState().checkState(GameStates.LOBBY)) return;
+        BingoData bingoData = ab.getBingoData();
+        bingoData.setItems(bingoData.getItemList().get25());
+        ArrayList<ItemStack> item = bingoData.getItems();
+        for (ItemStack i : item) {
+            p.sendMessage(i.toString());
+        }
+        createTeamsForEveryone();
+        ab.getGameState().setCurrentState(GameStates.GAME);
+        p.sendMessage("Successfully force started game!");
+    }
+
+    private void createTeamsForEveryone() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            PlayerData playerData = AscensionBingo.playerDataMap.get(p.getUniqueId());
+            if (playerData.getTeam() == null) {
+                playerData.createOrGetTeam();
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 public interface AscensionGUI {
 
@@ -30,12 +31,31 @@ public interface AscensionGUI {
     }
 
     default void closeGUIButton(Inventory inventory, int index) {
+        ItemStack button = getCloseButton();
+        button.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        inventory.setItem(index, button);
+    }
+
+    default void playerHeadButton(Inventory inventory, int index, Player player) {
+        ItemStack button = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta headMeta = (SkullMeta) button.getItemMeta();
+        headMeta.setPlayerProfile(player.getPlayerProfile());
+        Component title = Component.text("Your Stat's").color(TextColor.color(255, 170, 0));
+        title = title.decoration(TextDecoration.ITALIC, false);
+        headMeta.displayName(title);
+        headMeta.setCustomModelData(0);
+        setGUIItems(inventory, button, headMeta, index);
+
+    }
+
+    static ItemStack getCloseButton() {
         ItemStack button = new ItemStack(Material.BARRIER);
         ItemMeta buttonMeta = button.getItemMeta();
         Component title = Component.text("Close").color(TextColor.color(255,0,0));
         title = title.decoration(TextDecoration.ITALIC, false);
         buttonMeta.displayName(title);
-        buttonMeta.setCustomModelData(2); // Use this when using the same item
-        setGUIItems(inventory, button, buttonMeta,index);
+        buttonMeta.setCustomModelData(2);
+        button.setItemMeta(buttonMeta);
+        return button;
     }
 }
