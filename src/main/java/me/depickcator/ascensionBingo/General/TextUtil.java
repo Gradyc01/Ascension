@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class TextUtil {
@@ -23,6 +24,7 @@ public class TextUtil {
     public static TextColor DARK_GREEN = TextColor.color(0x00, 0xAA, 0x00);
     public static TextColor DARK_PURPLE = TextColor.color(0xAA, 0x00, 0xAA);
     public static TextColor PINK = TextColor.color(0xFF, 0x55, 0xFF);
+    public static TextColor GREEN = TextColor.color(0x55, 0xFF, 0x55);
     public static Component topBorder(TextColor color) {
         Component text =  Component.text("=====================================================\n").color(color);
         text = text.decoration(TextDecoration.ITALIC, false);
@@ -58,6 +60,12 @@ public class TextUtil {
     public static void broadcastTitle(Title title) {
         for (Player p: Bukkit.getOnlinePlayers()) {
             p.showTitle(title);
+        }
+    }
+
+    public static void broadcastMessage(Component text, ArrayList<Player> players) {
+        for (Player p: players) {
+            p.sendMessage(text);
         }
     }
 }

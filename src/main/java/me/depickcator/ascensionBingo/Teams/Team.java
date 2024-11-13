@@ -72,4 +72,10 @@ public class Team {
     public String getTeamKey() {
         return teamKey;
     }
+
+    public ArrayList<Player> getOtherTeamMembers(Player p) {
+        ArrayList<Player> otherTeamMembers = new ArrayList<>(teamMembers);
+        otherTeamMembers.remove(p);
+        return otherTeamMembers;
+    }
 }

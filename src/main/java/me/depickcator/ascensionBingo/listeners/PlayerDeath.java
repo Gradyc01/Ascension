@@ -51,8 +51,10 @@ public class PlayerDeath implements Listener {
             SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
             if (skullMeta != null) {
                 skullMeta.setOwningPlayer(victim);
-                skull.setItemMeta(skullMeta);
+                skullMeta.setCustomModelData(0);
+                skullMeta.setMaxStackSize(1);
             }
+            skull.setItemMeta(skullMeta);
             victim.getWorld().dropItem(victim.getLocation(), skull);
         }
 

@@ -84,6 +84,7 @@ public final class AscensionBingo extends JavaPlugin {
         manager.registerEvents(new InventoryClickListener(this), this);
         manager.registerEvents(new PlayerDeath(this), this);
         manager.registerEvents(new RecipeCrafted(this), this);
+        manager.registerEvents(new PlayerInteractListener(this), this);
     }
 
     private void registerCrafts() {

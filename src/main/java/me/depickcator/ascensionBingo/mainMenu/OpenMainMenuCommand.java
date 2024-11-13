@@ -97,7 +97,7 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
         }
         switch (item.getType()) {
             case Material.ENCHANTED_BOOK -> {
-                p.getInventory().setHelmet(new ItemStack(Material.BLACK_STAINED_GLASS));
+//                p.getInventory().setHelmet(new ItemStack(Material.BLACK_STAINED_GLASS));
                 p.performCommand("openmenu board");
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 0.0f);
             }

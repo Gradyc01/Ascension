@@ -3,23 +3,29 @@ package me.depickcator.ascensionBingo.Items.Unlocks;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.General.ItemClick;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
+import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Player.PlayerUtil;
+import me.depickcator.ascensionBingo.Teams.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
-import java.util.Base64;
+import java.util.ArrayList;
 import java.util.UUID;
 
-public class GoldenHead implements Crafts{
+public class GoldenHead implements Crafts, ItemClick {
     private final AscensionBingo plugin;
     private Recipe recipe;
     public static final int COST = 1;
@@ -29,6 +35,7 @@ public class GoldenHead implements Crafts{
     public GoldenHead(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
+        registerItem();
     }
 
     @Override
@@ -49,9 +56,7 @@ public class GoldenHead implements Crafts{
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
         if (skullMeta != null) {
-//            OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString("f0c2d405-6b58-42c3-8671-78e4b3b60870"));
-//            OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString("bffe33bf-c1c0-4ca9-af27-ca231909c097"));
-            PlayerProfile profile = Bukkit.createProfile(UUID.randomUUID(), null);
+            PlayerProfile profile = Bukkit.createProfile(UUID.fromString("5f856526-a7c6-4782-bcf9-803e02b08e1d"), null);
             profile.getProperties().add(new ProfileProperty("textures", goldenHeadTexture));
             skullMeta.setPlayerProfile(profile);
 
@@ -65,21 +70,6 @@ public class GoldenHead implements Crafts{
         item.setItemMeta(repairMeta);
         return item;
     }
-
-//    public static ItemStack createCustomHead() {
-//        // Create the player head item
-//        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
-//        SkullMeta meta = (SkullMeta) head.getItemMeta();
-//        if (meta != null) {
-//            String textureJson = "{\"textures\":{\"SKIN\":{\"url\":\"http://textures.minecraft.net/texture/fe1551b9434fae1e8e9327f7c1ceac7bcae3cf71fbd67e7942f0c2ce62805c18\"}}}";
-//            String base64Texture = Base64.getEncoder().encodeToString(textureJson.getBytes());
-//            meta.getPersistentDataContainer().set(new NamespacedKey("ascensionbingo", "custom_skin"), PersistentDataType.STRING, base64Texture);
-//
-//            head.setItemMeta(meta);
-//        }
-//
-//        return head;
-//    }
 
     @Override
     public String getKey() {
@@ -107,4 +97,41 @@ public class GoldenHead implements Crafts{
     }
 
 
+    @Override
+    public ItemStack getItem() {
+        return GoldenHead.result();
+    }
+
+    @Override
+    public boolean uponClick(PlayerInteractEvent e, Player p) {
+        if (isMainHandRightClick(e)) {
+            ItemStack item = e.getItem();
+            PlayerData pD = PlayerUtil.getPlayerData(p);
+            if (item == null || pD == null) return false;
+            item.setAmount(item.getAmount() - 1);
+            giveGoldenHeadEffects(p);
+            ArrayList<Player> teamMembers = pD.getTeam().getOtherTeamMembers(p);
+            p.sendMessage(TextUtil.makeText("You ate a golden head which grants you Regeneration III for 8 seconds, Resistance I for 15 seconds",
+                    TextUtil.GREEN));
+            for (Player player : teamMembers) {
+                p.sendMessage(TextUtil.makeText(
+                        p.getName() + " ate a golden head which grants you Regeneration II for 8 seconds",
+                        TextUtil.GREEN));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 8, 1));
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void giveGoldenHeadEffects(Player p) {
+        p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 7 * 20, 2));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 15 * 20, 0));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 30 * 20, 0));
+    }
+
+    @Override
+    public void registerItem() {
+        addItem(GoldenHead.result(), this);
+    }
 }

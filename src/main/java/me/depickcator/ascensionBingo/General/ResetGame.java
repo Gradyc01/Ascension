@@ -18,7 +18,6 @@ public class ResetGame implements Runnable {
         this.plugin = plugin;
         this.player = player;
         plugin.getGameState().setCurrentState(GameStates.LOBBY);
-        player.sendMessage("Placeholder Message For Reset Game");
         run();
     }
 

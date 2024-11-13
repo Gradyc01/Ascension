@@ -107,7 +107,7 @@ public class PlayerUnlocks {
 
     private boolean canBeUnlocked(Crafts craft, Integer tier) {
         String key = craft.getKey();
-        if (UnlockUtil.isAUnlock(key) && unlockTokens >= craft.getCraftCost()) {
+        if (UnlockUtil.isAUnlock(key) && unlockTokens >= craft.getCraftCost() && UnlocksMap.get(craft.getKey()) == null) {
             switch (tier) {
                 case -1, 1 -> {
                     return true;
@@ -155,5 +155,11 @@ public class PlayerUnlocks {
 
     public void setUnlockTokens(int unlockTokens) {
         this.unlockTokens = unlockTokens;
+    }
+
+    public void addUnlockTokens(int unlockTokens) {
+        player.sendMessage(TextUtil.makeText("You have earned " + unlockTokens + " Unlock Token", TextUtil.AQUA));
+        this.unlockTokens += unlockTokens;
+
     }
 }

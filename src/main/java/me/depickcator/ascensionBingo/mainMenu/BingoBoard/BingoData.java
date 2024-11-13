@@ -2,8 +2,10 @@ package me.depickcator.ascensionBingo.mainMenu.BingoBoard;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.SoundUtil;
+import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.ItemList;
 import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import me.depickcator.ascensionBingo.Teams.TeamUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -13,6 +15,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.*;
 
 
@@ -29,7 +33,7 @@ public class BingoData {
     // private Objective bingoItemsObtained;
     private ArrayList<ItemStack> items;
     private ItemList itemList;
-    private AscensionBingo ab;
+    private final AscensionBingo plugin;
 
     public BingoData(AscensionBingo ab) {
 
@@ -42,7 +46,7 @@ public class BingoData {
             bingodata = bingoScoreboard.getObjective("bingo");
         }
 
-        this.ab = ab;
+        this.plugin = ab;
         items = new ArrayList<>();
         itemList = new ItemList(ab);
         resetPlayers();
@@ -114,15 +118,48 @@ public class BingoData {
                 if (j != null && containsItem(j, item)) {
                     j.setAmount(j.getAmount() - 1);
                     addScore(24 - i, p);
-                    p.sendMessage(Component.text("You have obtained an Item!").color(TextColor.color(0, 170,0)));
-                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 2.0f);
-                    new BingoBoardGUI(ab, p);
+                    giveRewards(p, item);
+                    new BingoBoardGUI(plugin, p);
                     return;
                 }
             }
         }
         p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_TELEPORT, 1.0f, 0f);
         p.sendMessage(Component.text("There were no items to claim").color(TextColor.color(255,0,0)));
+    }
+
+    private void giveRewards(Player p, ItemStack item) {
+        Component obtainedItemTextSolo = TextUtil.makeText("You have obtained an Item! ", TextUtil.GREEN);
+        Component obtainedItemTextItem = item.displayName().color(TextUtil.GOLD);
+        Component obtainedItemTextTeam = TextUtil.makeText(p.getName() + " obtained an Item! ", TextUtil.GREEN);
+        PotionEffect rewardEffect = new PotionEffect(PotionEffectType.REGENERATION, 16 * 20, 0);
+        PlayerData pD = PlayerUtil.getPlayerData(p);
+        if (pD == null) {
+            plugin.getServer().broadcast(TextUtil.makeText("UNABLE TO FIND PLAYER DATA Bingo data::giveReward", TextUtil.RED));
+            return;
+        }
+        //Individual Rewards
+        soloRewards(obtainedItemTextSolo.append(obtainedItemTextItem), rewardEffect, p, pD);
+        //Other Teammates rewards
+        teamRewards(obtainedItemTextTeam.append(obtainedItemTextItem), rewardEffect, pD);
+    }
+
+    private void soloRewards(Component text, PotionEffect effect, Player p, PlayerData pD) {
+        p.sendMessage(text);
+        p.giveExp(7);
+        SoundUtil.playHighPitchPling(p);
+        pD.getPlayerUnlocks().addUnlockTokens(1);
+        p.addPotionEffect(effect);
+    }
+
+    private void teamRewards(Component text, PotionEffect effect, PlayerData pD) {
+        ArrayList<Player> otherTeamMembers = pD.getTeam().getOtherTeamMembers(pD.getPlayer());
+        for (Player p : otherTeamMembers) {
+            p.sendMessage(text);
+            SoundUtil.playHighPitchPling(p);
+            Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerUnlocks().addUnlockTokens(1);
+            p.addPotionEffect(effect);
+        }
     }
 
 

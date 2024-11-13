@@ -57,22 +57,23 @@ public class PlayerData {
 
     public void resetAfterStartGame() {
         clearInventoryAndEffects();
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120 * 20, 1, true, true));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2, true, true));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 30 * 60 * 20, 4, true, true));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120 * 20, 1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 30 * 60 * 20, 4, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
         Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
         getMainMenuItem();
         giveStartingFood();
     }
 
     private void giveStartingFood() {
-        ItemStack food = new ItemStack(Material.COOKED_BEEF);
-        food.add(63);
+        ItemStack food = new ItemStack(Material.COOKED_BEEF, 64);
         ItemMeta meta = food.getItemMeta();
         meta.addEnchant(Enchantment.INFINITY, 1, true);
         food.setItemMeta(meta);
         player.getInventory().addItem(food);
     }
+
     private void clearInventoryAndEffects() {
         player.getInventory().clear();
         player.clearActivePotionEffects();
@@ -80,7 +81,7 @@ public class PlayerData {
     }
 
     private void getMainMenuItem() {
-        player.getInventory().setItem(8, GiveMainMenuItem.getItem());
+        player.getInventory().setItem(8, GiveMainMenuItem.getMenuItem());
     }
 
     private void addLobbyPotionEffects() {

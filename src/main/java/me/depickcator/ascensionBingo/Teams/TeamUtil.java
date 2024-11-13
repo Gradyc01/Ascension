@@ -9,9 +9,11 @@ public class TeamUtil {
     public static void createTeam(Player p) {
         String teamName = p.getName();
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "team add " + teamName);
+
     }
 
     public static void joinTeam(Player team, Player p) {
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "team modify " + team.getName() + " friendlyFire false");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "team join " + team.getName() + " " + p.getName());
     }
 

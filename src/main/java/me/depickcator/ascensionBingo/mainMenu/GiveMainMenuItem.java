@@ -1,5 +1,6 @@
 package me.depickcator.ascensionBingo.mainMenu;
 
+import me.depickcator.ascensionBingo.General.ItemClick;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -8,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -15,10 +17,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
 
-public class GiveMainMenuItem implements CommandExecutor {
+public class GiveMainMenuItem implements CommandExecutor, ItemClick {
 
     public GiveMainMenuItem(PluginManager manager, Plugin plugin) {
-        manager.registerEvents(new MainMenuListener(), plugin);
+        registerItem();
     }
 
     @Override
@@ -29,10 +31,6 @@ public class GiveMainMenuItem implements CommandExecutor {
         ItemStack item = makeItem();
         p.getInventory().setItem(8, item);
         return true;
-    }
-
-    public static ItemStack getItem() {
-        return makeItem();
     }
 
     private static ItemStack makeItem() {
@@ -56,4 +54,27 @@ public class GiveMainMenuItem implements CommandExecutor {
         }
         return ((Player) commandSender).getPlayer();
     }
+
+    @Override
+    public ItemStack getItem() {
+        return makeItem();
+    }
+
+    public static ItemStack getMenuItem() {
+        return makeItem();
+    }
+
+    @Override
+    public boolean uponClick(PlayerInteractEvent e, Player p) {
+        if (!isMainHandRightClick(e)) return false;
+        p.performCommand("open-main-menu");
+        return true;
+    }
+
+    @Override
+    public void registerItem() {
+        addItem(makeItem(), this);
+    }
+
+
 }

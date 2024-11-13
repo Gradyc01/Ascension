@@ -10,6 +10,7 @@ me\depickcator\ascensionBingo\mainMenu\BingoBoard\BingoData.class
 me\depickcator\ascensionBingo\AscensionBingo.class
 me\depickcator\ascensionBingo\Items\Unlocks\Backpack.class
 me\depickcator\ascensionBingo\mainMenu\Unlocks\UnlocksGUI_1.class
+me\depickcator\ascensionBingo\General\ItemClick.class
 me\depickcator\ascensionBingo\Items\Unlocks\Crafts.class
 me\depickcator\ascensionBingo\General\GameStates.class
 me\depickcator\ascensionBingo\mainMenu\BingoBoard\BingoBoardGUI$1.class
@@ -41,11 +42,11 @@ me\depickcator\ascensionBingo\Items\UnlocksData.class
 me\depickcator\ascensionBingo\testingCommands\changeBingoScore.class
 me\depickcator\ascensionBingo\testingCommands\setUnlockToken.class
 me\depickcator\ascensionBingo\General\StartGame$2.class
+me\depickcator\ascensionBingo\listeners\PlayerInteractListener.class
 me\depickcator\ascensionBingo\listeners\InventoryClickListener.class
 me\depickcator\ascensionBingo\Items\ItemList.class
 me\depickcator\ascensionBingo\Items\Unlocks\EnlighteningPack.class
 me\depickcator\ascensionBingo\testingCommands\printPlayerDataCommand.class
-me\depickcator\ascensionBingo\mainMenu\MainMenuListener.class
 me\depickcator\ascensionBingo\listeners\InventoryClose.class
 me\depickcator\ascensionBingo\Items\Unlocks\FlintShovel.class
 me\depickcator\ascensionBingo\General\StartGame$3.class
@@ -54,7 +55,6 @@ me\depickcator\ascensionBingo\Items\Unlocks\QuickPick.class
 me\depickcator\ascensionBingo\Player\PlayerData.class
 me\depickcator\ascensionBingo\Items\Unlocks\IronPack.class
 me\depickcator\ascensionBingo\General\SoundUtil.class
-me\depickcator\ascensionBingo\listeners\onInventoryChange.class
 me\depickcator\ascensionBingo\mainMenu\Unlocks\ViewRecipeGUI.class
 me\depickcator\ascensionBingo\General\GameCommand.class
 me\depickcator\ascensionBingo\mainMenu\GiveMainMenuItem.class
