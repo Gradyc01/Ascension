@@ -9,16 +9,13 @@ import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-
-import static java.lang.foreign.MemorySegment.NULL;
 
 public class BingoBoardGUI implements AscensionGUI {
     public final static String menuName = "BINGO-BOARD";
@@ -40,8 +37,8 @@ public class BingoBoardGUI implements AscensionGUI {
         playerHeadButton(inventory, 49, p);
 //        closeGUIButton(inventory, 49);
         if (player != null) {
-            Pair<Inventory, String> pair = new MutablePair<>(inventory, menuName);
-            AscensionBingo.guiMap.put(p.getUniqueId(), pair);
+            Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
+            AscensionBingo.guiMap.put(p.getUniqueId(), pair2);
         }
     }
 
@@ -89,7 +86,17 @@ public class BingoBoardGUI implements AscensionGUI {
         setGUIItems(inventory, button, buttonMeta,53);
     }
 
-    public static void interactWithGUIButtons(ItemStack item, Player p, Inventory inv, AscensionBingo ab) {
+    @Override
+    public String getGUIName() {
+        return menuName;
+    }
+
+    @Override
+    public void interactWithGUIButtons(InventoryClickEvent event, Player p) {
+        ItemStack item = event.getCurrentItem();
+        if (item == null) {
+            return;
+        }
         switch (item.getType()) {
             case Material.EMERALD -> {
                 ab.getBingoData().claimItem(p);

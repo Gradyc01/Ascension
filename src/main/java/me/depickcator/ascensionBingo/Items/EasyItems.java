@@ -5,7 +5,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-import static java.lang.Integer.parseInt;
 
 public class EasyItems {
     private ArrayList<ItemStack> items;

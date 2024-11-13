@@ -2,9 +2,6 @@ package me.depickcator.ascensionBingo.listeners;
 
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
-import me.depickcator.ascensionBingo.mainMenu.OpenMainMenuCommand;
-import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoBoardGUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,17 +31,7 @@ public class InventoryClickListener implements Listener {
             if (e.getCurrentItem() == null) {
                 return;
             }
-            switch (AscensionBingo.guiMap.get(playerUUID).getRight()) {
-                case OpenMainMenuCommand.menuName -> {
-                    OpenMainMenuCommand.interactWithGUIButtons(e.getCurrentItem(), player, inventory);
-                }
-                case BingoBoardGUI.menuName  -> {
-                    BingoBoardGUI.interactWithGUIButtons(e.getCurrentItem(), player, inventory, ab);
-                }
-                default -> {
-
-                }
-            }
+            AscensionBingo.guiMap.get(playerUUID).getRight().interactWithGUIButtons(e, player);
 
 
             e.setCancelled(true);

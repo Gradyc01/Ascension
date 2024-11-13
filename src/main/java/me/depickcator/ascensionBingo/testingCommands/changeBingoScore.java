@@ -43,7 +43,6 @@ public class changeBingoScore implements CommandExecutor {
 
 
 
-        Score score;
 
         return false;
     }

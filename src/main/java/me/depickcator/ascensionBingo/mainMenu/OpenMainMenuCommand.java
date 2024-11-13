@@ -14,6 +14,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -44,8 +45,9 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
 //        closeGUIButton(inventory, 49);
 
 
-        Pair<Inventory, String> pair = new MutablePair<>(inventory, menuName);
-        AscensionBingo.guiMap.put(p.getUniqueId(), pair);
+
+        Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
+        AscensionBingo.guiMap.put(p.getUniqueId(), pair2);
 
         return false;
     }
@@ -82,7 +84,17 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
         setGUIItems(inventory, button, buttonMeta,24);
     }
 
-    public static void interactWithGUIButtons(ItemStack item, Player p, Inventory inv) {
+    @Override
+    public String getGUIName() {
+        return menuName;
+    }
+
+    @Override
+    public void interactWithGUIButtons(InventoryClickEvent event, Player p) {
+        ItemStack item = event.getCurrentItem();
+        if (item == null) {
+            return;
+        }
         switch (item.getType()) {
             case Material.ENCHANTED_BOOK -> {
                 p.getInventory().setHelmet(new ItemStack(Material.BLACK_STAINED_GLASS));
@@ -93,11 +105,9 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
                 p.sendMessage(Component.text("PlaceHolder Text For Commands"));
             }
             case Material.DIAMOND_SWORD -> {
-                p.sendMessage(Component.text("PlaceHolder Text For Unlocks"));
+                p.performCommand("openmenu unlocks-1");
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 0.0f);
             }
-//            case Material.BARRIER -> {
-//                inv.close();
-//            }
             default -> {
 
             }

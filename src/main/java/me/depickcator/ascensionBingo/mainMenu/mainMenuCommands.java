@@ -2,6 +2,8 @@ package me.depickcator.ascensionBingo.mainMenu;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoBoardGUI;
+import me.depickcator.ascensionBingo.mainMenu.Unlocks.UnlocksGUI_1;
+import me.depickcator.ascensionBingo.mainMenu.Unlocks.UnlocksGUI_2;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,8 +28,19 @@ public class mainMenuCommands implements CommandExecutor {
             return false;
         }
         String guiBoardName = strings[0];
-        if (guiBoardName.equalsIgnoreCase("board")) {
-            gui = new BingoBoardGUI(ab, p);
+        switch (guiBoardName.toLowerCase()) {
+            case "board" -> {
+                gui = new BingoBoardGUI(ab, p);
+            }
+            case "unlocks-1" -> {
+                gui = new UnlocksGUI_1(ab, p);
+            }
+            case "unlocks-2" -> {
+                gui = new UnlocksGUI_2(ab, p);
+            }
+            default -> {
+                return false;
+            }
         }
 
         return false;

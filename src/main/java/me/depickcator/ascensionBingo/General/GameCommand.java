@@ -70,39 +70,23 @@ public class GameCommand implements CommandExecutor {
     }
 
     private void resetGame(Player p) {
-        ab.getBingoData().resetPlayers();
-        PlayerUtil.assignNewPlayerData(ab);
-        System.out.println(AscensionBingo.playerDataMap);
-        ab.getGameState().setCurrentState(GameStates.LOBBY);
-        p.sendMessage("Placeholder Message For Reset Game");
+        new ResetGame(ab, p);
     }
 
     private void loadGame(Player p) {
-        ab.setBingoData(new BingoData(ab));
-        resetGame(p);
-        ab.getGameState().setCurrentState(GameStates.LOBBY);
+        // ab.setBingoData(new BingoData(ab));
+        new LoadGame(ab, p);
+//        resetGame(p);
+        // ab.getGameState().setCurrentState(GameStates.LOBBY);
         p.sendMessage("Successfully loaded game");
     }
 
     private void forceStartGame(Player p) {
         if (!ab.getGameState().checkState(GameStates.LOBBY)) return;
-        BingoData bingoData = ab.getBingoData();
-        bingoData.setItems(bingoData.getItemList().get25());
-        ArrayList<ItemStack> item = bingoData.getItems();
-        for (ItemStack i : item) {
-            p.sendMessage(i.toString());
-        }
-        createTeamsForEveryone();
-        ab.getGameState().setCurrentState(GameStates.GAME);
+
         p.sendMessage("Successfully force started game!");
+        new StartGame(ab, p);
     }
 
-    private void createTeamsForEveryone() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            PlayerData playerData = AscensionBingo.playerDataMap.get(p.getUniqueId());
-            if (playerData.getTeam() == null) {
-                playerData.createOrGetTeam();
-            }
-        }
-    }
+
 }

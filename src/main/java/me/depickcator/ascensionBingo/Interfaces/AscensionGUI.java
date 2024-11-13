@@ -1,21 +1,33 @@
 package me.depickcator.ascensionBingo.Interfaces;
 
+import me.depickcator.ascensionBingo.General.TextUtil;
+import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
+import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public interface AscensionGUI {
 
     default void setGUIItems(Inventory inventory, ItemStack button, ItemMeta buttonMeta, int index) {
         button.setItemMeta(buttonMeta); //Sets the Meta to Button Meta
         button.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        inventory.setItem(index, button);
+    }
+
+    default void setGUIItems(Inventory inventory, ItemStack button, int index) {
         inventory.setItem(index, button);
     }
 
@@ -40,9 +52,16 @@ public interface AscensionGUI {
         ItemStack button = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta headMeta = (SkullMeta) button.getItemMeta();
         headMeta.setPlayerProfile(player.getPlayerProfile());
-        Component title = Component.text("Your Stat's").color(TextColor.color(255, 170, 0));
+        Component title = Component.text("Your Stats").color(TextColor.color(TextUtil.GOLD));
         title = title.decoration(TextDecoration.ITALIC, false);
         headMeta.displayName(title);
+
+        List<Component> lore = new ArrayList<>();
+        int unlockTokens = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks().getUnlockTokens();
+        Component unlockTokensText = TextUtil.makeText("Unlock Tokens: " + unlockTokens, TextUtil.BLUE);
+        lore.add(unlockTokensText);
+
+        headMeta.lore(lore);
         headMeta.setCustomModelData(0);
         setGUIItems(inventory, button, headMeta, index);
 
@@ -58,4 +77,8 @@ public interface AscensionGUI {
         button.setItemMeta(buttonMeta);
         return button;
     }
+
+    String getGUIName();
+
+    void interactWithGUIButtons(InventoryClickEvent event, Player p);
 }

@@ -28,7 +28,7 @@ public class GiveMainMenuItem implements CommandExecutor {
 
         ItemStack item = makeItem();
         p.getInventory().setItem(8, item);
-        return false;
+        return true;
     }
 
     public static ItemStack getItem() {

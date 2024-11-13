@@ -1,10 +1,10 @@
 package me.depickcator.ascensionBingo.mainMenu.BingoBoard;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.General.SoundUtil;
 import me.depickcator.ascensionBingo.Items.ItemList;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Teams.TeamUtil;
-import me.depickcator.ascensionBingo.Teams.Team;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -23,9 +23,10 @@ import java.util.Objects;
 public class BingoData {
     private ScoreboardManager scoreboardManager;
     private Scoreboard bingoScoreboard;
+    @SuppressWarnings("unused")
     private Objective bingodata;
-    private Objective bingoLines;
-    private Objective bingoItemsObtained;
+    // private Objective bingoLines;
+    // private Objective bingoItemsObtained;
     private ArrayList<ItemStack> items;
     private ItemList itemList;
     private AscensionBingo ab;
@@ -100,7 +101,8 @@ public class BingoData {
 
         if (items.size() != 25) {
             p.sendMessage(Component.text("The board has not been initialized yet").color(TextColor.color(255,0,0)));
-            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_TELEPORT, 1.0f, 0f);
+//            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_TELEPORT, 1.0f, 0f);
+            SoundUtil.playErrorSoundEffect(p);
             return;
         }
         for (int i = 0; i < items.size(); i++) {
