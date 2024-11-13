@@ -24,6 +24,7 @@ public class UnlocksData {
         Tier1Unlocks();
         Tier2Unlocks();
         Tier3Unlocks();
+        Tier4Unlocks();
     }
 
 
@@ -53,7 +54,20 @@ public class UnlocksData {
     }
 
     private void Tier3Unlocks() {
+        tier3Unlocks.add(new Tarnhelm(plugin));
         tier3Unlocks.add(new DragonArmor(plugin));
+        tier3Unlocks.add(new BookOfPower(plugin));
+        tier3Unlocks.add(new BookOfProtection(plugin));
+        tier3Unlocks.add(new BookOfSharpness(plugin));
+        tier3Unlocks.add(new BookOfProjectileProtection(plugin));
+        tier3Unlocks.add(new AncientArtifact(plugin));
+        tier3Unlocks.add(new SoulArtifact(plugin));
+        tier3Unlocks.add(new Nectar(plugin));
+        tier3Unlocks.add(new PotionOfVelocity(plugin));
+    }
+
+    private void Tier4Unlocks() {
+        tier4Unlocks.add(new Cornucopia(plugin));
     }
 
     public Pair<Crafts, Integer> findUnlock(String displayName) {
