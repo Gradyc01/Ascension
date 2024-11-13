@@ -28,7 +28,7 @@ public class GoldenHead implements Crafts, ItemClick {
     private final AscensionBingo plugin;
     private Recipe recipe;
     public static final int COST = 1;
-    public static final int MAX_CRAFTS = 2;
+    public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Golden Head";
     public static final String KEY = "golden_head";
     public GoldenHead(AscensionBingo plugin) {
