@@ -8,7 +8,6 @@ import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
-import me.depickcator.ascensionBingo.Teams.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -55,16 +54,16 @@ public class GoldenHead implements Crafts, ItemClick {
         String goldenHeadTexture = "ewogICJ0aW1lc3RhbXAiIDogMTU4OTQ4Njc4OTg3MSwKICAicHJvZmlsZUlkIiA6ICI5MWZlMTk2ODdjOTA0NjU2YWExZmMwNTk4NmRkM2ZlNyIsCiAgInByb2ZpbGVOYW1lIiA6ICJoaGphYnJpcyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS81NjZhODc0NjAxNzNhZGYwNjdjYjM1NmFlMjAwZDAzMDUwNDM3OGM1NTJlMzQyOGI0Nzc0YzRjMTFhNTk5YzI0IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=";
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
-        if (skullMeta != null) {
-            PlayerProfile profile = Bukkit.createProfile(UUID.fromString("5f856526-a7c6-4782-bcf9-803e02b08e1d"), null);
-            profile.getProperties().add(new ProfileProperty("textures", goldenHeadTexture));
-            skullMeta.setPlayerProfile(profile);
+        if (skullMeta == null) throw new NullPointerException();
+        
+        PlayerProfile profile = Bukkit.createProfile(UUID.fromString("5f856526-a7c6-4782-bcf9-803e02b08e1d"), null);
+        profile.getProperties().add(new ProfileProperty("textures", goldenHeadTexture));
+        skullMeta.setPlayerProfile(profile);
 
-            skullMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
-            skullMeta.setCustomModelData(99);
-            skullMeta.setEnchantmentGlintOverride(true);
-            skullMeta.setMaxStackSize(1);
-        }
+        skullMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
+        skullMeta.setCustomModelData(99);
+        skullMeta.setEnchantmentGlintOverride(true);
+        skullMeta.setMaxStackSize(1);
         Repairable repairMeta = (Repairable) skullMeta;
         repairMeta.setRepairCost(999);
         item.setItemMeta(repairMeta);

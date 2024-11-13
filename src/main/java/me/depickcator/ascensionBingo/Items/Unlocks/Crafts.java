@@ -1,6 +1,5 @@
 package me.depickcator.ascensionBingo.Items.Unlocks;
 
-import me.depickcator.ascensionBingo.Items.UnlockUtil;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 

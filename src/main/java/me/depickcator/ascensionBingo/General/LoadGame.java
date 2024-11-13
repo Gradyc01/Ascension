@@ -74,7 +74,6 @@ public class LoadGame implements Runnable {
     }
 
     private void buildPlatform() {
-        World world = plugin.getWorld();
         String quartzBlock = "quartz_block";
         fillArea(2, 2, 2, -2, 2, -2, quartzBlock, spawnCoordsArmorStand);
         fillArea(1, 2, 3, -1, 2, 3, quartzBlock, spawnCoordsArmorStand);

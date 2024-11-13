@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class mainMenuCommands implements CommandExecutor {
-    private Object gui;
     private AscensionBingo ab;
 
     public mainMenuCommands(AscensionBingo ab) {
@@ -30,13 +29,13 @@ public class mainMenuCommands implements CommandExecutor {
         String guiBoardName = strings[0];
         switch (guiBoardName.toLowerCase()) {
             case "board" -> {
-                gui = new BingoBoardGUI(ab, p);
+                new BingoBoardGUI(ab, p);
             }
             case "unlocks-1" -> {
-                gui = new UnlocksGUI_1(ab, p);
+                new UnlocksGUI_1(ab, p);
             }
             case "unlocks-2" -> {
-                gui = new UnlocksGUI_2(ab, p);
+                new UnlocksGUI_2(ab, p);
             }
             default -> {
                 return false;

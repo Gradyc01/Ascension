@@ -1,15 +1,12 @@
 package me.depickcator.ascensionBingo.General;
 
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
-import java.util.Objects;
-
 public interface ItemClick {
     HashMap<String, ItemClick> items = new HashMap<>();
     ItemStack getItem();

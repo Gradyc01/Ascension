@@ -3,14 +3,12 @@ package me.depickcator.ascensionBingo.listeners;
 import me.depickcator.ascensionBingo.AscensionBingo;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.loot.LootTable;
 import org.bukkit.metadata.FixedMetadataValue;
 
 public class PlayerDeath implements Listener {

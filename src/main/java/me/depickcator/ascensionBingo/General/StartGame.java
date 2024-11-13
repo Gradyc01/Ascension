@@ -6,8 +6,6 @@ import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import me.depickcator.ascensionBingo.Teams.TeamUtil;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
 import org.bukkit.*;
