@@ -1,6 +1,7 @@
 package me.depickcator.ascensionBingo.Items.Unlocks;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -38,15 +39,17 @@ public class Cornucopia implements Crafts{
     }
 
     public static ItemStack result() {
-        ItemStack item = new ItemStack(Material.GOLDEN_CARROT);
+        ItemStack item = new ItemStack(Material.GOLDEN_CARROT, 3);
         ItemMeta meta = item.getItemMeta();
         FoodComponent foodComponent = meta.getFood();
         foodComponent.setCanAlwaysEat(true);
         foodComponent.setEatSeconds(0.2F);
         foodComponent.setNutrition(0);
         foodComponent.addEffect(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0), 1);
-//        meta.setFood();
         meta.setFood(foodComponent);
+
+        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
+        item.setItemMeta(meta);
         return item;
     }
 

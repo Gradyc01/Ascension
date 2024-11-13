@@ -33,7 +33,7 @@ public class Tarnhelm implements Crafts{
         NamespacedKey key = new NamespacedKey(plugin, KEY);
         ItemStack item = Tarnhelm.result();
         ShapedRecipe recipe = new ShapedRecipe(key, item);
-        recipe.shape("ACA", "ABA", "");
+        recipe.shape("ACA", "ABA");
         recipe.setIngredient('A', Material.DIAMOND);
         recipe.setIngredient('B', Material.REDSTONE_BLOCK);
         recipe.setIngredient('C', Material.IRON_INGOT);

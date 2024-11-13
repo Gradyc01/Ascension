@@ -31,7 +31,7 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
             return false;
         }
         Player p = ((Player) commandSender).getPlayer();
-        inventory = Bukkit.createInventory(p,GUISize,Component.text("Ascension Bingo").color(TextColor.color(0,255,255)));
+        inventory = Bukkit.createInventory(p,GUISize,Component.text("Ascension").color(TextColor.color(0,255,255)));
 
         if (p == null) {
             return false;
@@ -55,7 +55,7 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
     private void bingoBoardButton() {
         ItemStack button = new ItemStack(Material.ENCHANTED_BOOK);
         ItemMeta buttonMeta = button.getItemMeta();
-        Component title = Component.text("View Bingo Board").color(TextColor.color(0,255,255));
+        Component title = Component.text("View Board").color(TextColor.color(0,255,255));
         title = title.decoration(TextDecoration.ITALIC, false);
         buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         buttonMeta.displayName(title);

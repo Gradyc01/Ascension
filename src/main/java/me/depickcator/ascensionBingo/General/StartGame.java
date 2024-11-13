@@ -194,7 +194,7 @@ public class StartGame{
 
     private void text5() {
         plugin.getServer().broadcast(TextUtil.topBorder(TextUtil.GRAY));
-        plugin.getServer().broadcast(Component.text("\n\n               OPERATION: ASCENSION\n\n").color(TextUtil.BLACK).decoration(TextDecoration.BOLD, true));
+        plugin.getServer().broadcast(Component.text("\n\n               OPERATION: ASCENSION\n\n").color(TextUtil.WHITE).decoration(TextDecoration.BOLD, true));
         plugin.getServer().broadcast(TextUtil.bottomBorder(TextUtil.GRAY));
         SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 100, 0);
         SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 2);
