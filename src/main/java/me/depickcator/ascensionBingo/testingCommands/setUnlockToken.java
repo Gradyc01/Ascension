@@ -1,7 +1,6 @@
 package me.depickcator.ascensionBingo.testingCommands;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.Items.UnlockUtil;
 import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.command.Command;
@@ -35,10 +34,5 @@ public class setUnlockToken implements CommandExecutor {
         playerUnlocks.setUnlockTokens(tokens);
         p.sendMessage("Player unlocks failed");
         return false;
-    }
-
-    private boolean validRecipeName(String recipeName) {
-        if (recipeName == null) return false;
-        return UnlockUtil.isAUnlock(recipeName);
     }
 }

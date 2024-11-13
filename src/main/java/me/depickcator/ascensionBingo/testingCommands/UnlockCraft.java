@@ -2,15 +2,11 @@ package me.depickcator.ascensionBingo.testingCommands;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
-import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
-import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 
 public class UnlockCraft implements CommandExecutor {
     private AscensionBingo plugin;

@@ -1,7 +1,6 @@
 package me.depickcator.ascensionBingo.Interfaces;
 
 import me.depickcator.ascensionBingo.General.TextUtil;
-import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;

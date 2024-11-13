@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class TextUtil {
     public static TextColor YELLOW = TextColor.color(255, 255, 0);
