@@ -19,11 +19,6 @@ public interface ItemClick {
 
     static ItemClick findClickItem(ItemStack item) {
         if (item == null) return null;
-//        Bukkit.getServer().broadcast(Component.text(item.toString()));
-//        for (String i : items.keySet()) {
-//            Bukkit.getServer().broadcast(Component.text("\n\n" + i));
-//        }
-//        Bukkit.getServer().broadcast(Component.text(items.get(item).toString()).color(TextUtil.YELLOW));
         return items.get(item.toString().toLowerCase());
     }
 

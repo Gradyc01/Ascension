@@ -8,7 +8,6 @@ import me.depickcator.ascensionBingo.Items.Unlocks.Crafts;
 import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
