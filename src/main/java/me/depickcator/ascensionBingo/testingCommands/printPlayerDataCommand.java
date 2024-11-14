@@ -38,8 +38,8 @@ public class printPlayerDataCommand implements CommandExecutor {
         p.sendMessage("Player: " + playerData.getPlayer().getName());
 //        p.sendMessage("Player has pending Invite: " + playerData.getPendingTeamInvite().toString());
 //        p.sendMessage("Player has an invite from: " + playerData.getInviteFromWho().getPlayer().getName());
-        p.sendMessage("Player is on team" + playerData.getTeam().getTeamKey());
-        for (Player i : playerData.getTeam().getTeamMembers()) {
+        p.sendMessage("Player is on team" + playerData.getPlayerTeam().getTeam().getTeamKey());
+        for (Player i : playerData.getPlayerTeam().getTeam().getTeamMembers()) {
             p.sendMessage("Team: " + i.getName());
         }
         return true;

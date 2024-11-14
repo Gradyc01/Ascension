@@ -32,6 +32,7 @@ me\depickcator\ascensionBingo\Items\Unlocks\ArrowEconomy.class
 me\depickcator\ascensionBingo\Items\EasyItems.class
 me\depickcator\ascensionBingo\Items\Unlocks\DragonArmor.class
 me\depickcator\ascensionBingo\General\StartGame.class
+me\depickcator\ascensionBingo\Player\PlayerTeam.class
 me\depickcator\ascensionBingo\Items\Unlocks\LightApple.class
 me\depickcator\ascensionBingo\mainMenu\OpenMainMenuCommand$1.class
 me\depickcator\ascensionBingo\Items\Unlocks\LightAnvil.class

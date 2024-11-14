@@ -68,4 +68,8 @@ public class TextUtil {
             p.sendMessage(text);
         }
     }
+
+    public static void errorMessage(Player p, String msg) {
+        p.sendMessage(makeText(msg, RED));
+    }
 }

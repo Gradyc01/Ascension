@@ -28,9 +28,11 @@ public class TeamUtil {
     public static void createTeamsForEveryone() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             PlayerData playerData = AscensionBingo.playerDataMap.get(p.getUniqueId());
-            if (playerData.getTeam() == null) {
-                playerData.createOrGetTeam();
+            if (playerData.getPlayerTeam().getTeam() == null) {
+                playerData.getPlayerTeam().createOrGetTeam();
             }
         }
     }
+
+
 }

@@ -2,6 +2,7 @@ package me.depickcator.ascensionBingo.Teams;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.GameStates;
+import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.Bukkit;
@@ -53,9 +54,7 @@ public class TeamCommand implements CommandExecutor {
                     p.sendMessage("failed to playerData");
                     return;
                 }
-                pData.sendInvite(invited);
-
-                p.sendMessage("PLACEHOLDER MESSAGE FOR WHEN SOMEONE INVITES THE TEAM");
+                pData.getPlayerTeam().sendInvite(invited);
             }
             case "leave" -> {
                 PlayerData playerData = AscensionBingo.playerDataMap.get(p.getUniqueId());
@@ -63,7 +62,7 @@ public class TeamCommand implements CommandExecutor {
                     p.sendMessage("failed to playerData");
                     return;
                 }
-                playerData.leaveTeam();
+                playerData.getPlayerTeam().leaveTeam();
             }
             case "accept" -> {
                 PlayerData playerData = AscensionBingo.playerDataMap.get(p.getUniqueId());
@@ -71,7 +70,7 @@ public class TeamCommand implements CommandExecutor {
                     p.sendMessage("failed to playerData");
                     return;
                 }
-                playerData.acceptInvite();
+                playerData.getPlayerTeam().acceptInvite();
             }
             case "reject" -> {
                 PlayerData playerData = AscensionBingo.playerDataMap.get(p.getUniqueId());
@@ -79,8 +78,7 @@ public class TeamCommand implements CommandExecutor {
                     p.sendMessage("failed to playerData");
                     return;
                 }
-                playerData.rejectInvite();
-                p.sendMessage("PLACEHOLDER MESSAGE FOR WHEN SOMEONE REJECTS THE TEAM");
+                playerData.getPlayerTeam().rejectInvite();
             }
             case "list" -> {
                 PlayerData playerData = AscensionBingo.playerDataMap.get(p.getUniqueId());
@@ -88,10 +86,15 @@ public class TeamCommand implements CommandExecutor {
                     p.sendMessage("failed to playerData");
                     return;
                 }
-                playerData.getTeam().teamList(p);
+                try {
+                    playerData.getPlayerTeam().getTeam().teamList(p);
+                } catch (Exception e) {
+                    TextUtil.errorMessage(p, "You are currently not in a party");
+                }
+
             }
             default -> {
-                p.sendMessage("You did not use this command properly!");
+                TextUtil.errorMessage(p, "You did not use this command properly!");
             }
         }
     }
