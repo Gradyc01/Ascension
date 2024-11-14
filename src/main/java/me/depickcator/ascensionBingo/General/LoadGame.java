@@ -50,7 +50,7 @@ public class LoadGame implements Runnable {
         int x = spawnCoordsArmorStand.getLocation().getBlockX();
         int z = spawnCoordsArmorStand.getLocation().getBlockZ();
         border.setCenter(x, z);
-        world.setChunkForceLoaded(x, z, true);
+        world.setChunkForceLoaded((int) Math.floor((double) x /16), (int) Math.floor((double) z /16), true);
     }
 
     private ArmorStand setSpawnCoordsArmorStand() {

@@ -1,6 +1,7 @@
 package me.depickcator.ascensionBingo.Teams;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.entity.Player;
@@ -25,43 +26,48 @@ public class Team {
     }
 
     public void addPlayer(Player p) {
-        Objects.requireNonNull(PlayerUtil.getPlayerData(p)).setTeam(this);
+        Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerTeam().setTeam(this);
         teamMembers.add(p);
         TeamUtil.joinTeam(leader, p);
         announceToAllTeamMembers(p.getName() + " has joined the party!");
     }
 
     public void removePlayer(Player p) {
-        announceToAllTeamMembers(p.getName() + " has left the party");
         if (teamMembers.size() == 1 || leader.equals(p)) {
-            announceToAllTeamMembers("Party leader has left the party the party will now be disbanded");
             for (Player i: teamMembers) {
                 PlayerData playerData = PlayerUtil.getPlayerData(i);
                 assert playerData != null;
-                playerData.setTeam(null);
+                playerData.getPlayerTeam().setTeam(null);
             }
             TeamUtil.disbandTeam(leader);
+            for (Player pl : teamMembers) {
+                pl.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
+                pl.sendMessage(TextUtil.makeText("Party leader has left the party the party will now be disbanded", TextUtil.YELLOW));
+                pl.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
+            }
         } else {
-            Objects.requireNonNull(PlayerUtil.getPlayerData(p)).setTeam(null);
+            Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerTeam().setTeam(null);
             teamMembers.remove(p);
             TeamUtil.leaveTeam(p);
+            announceToAllTeamMembers(p.getName() + " has left the party");
         }
     }
 
     public void teamList(Player p) {
-        p.sendMessage("===================================================\n\n");
-        p.sendMessage("Current party members:");
+        p.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
+        p.sendMessage(TextUtil.makeText("Current party members:", TextUtil.YELLOW));
         for (Player player :teamMembers) {
-            p.sendMessage("  -" + player.getName());
+            p.sendMessage(TextUtil.makeText("  -" + player.getName(), TextUtil.YELLOW));
         }
-        p.sendMessage("\n\n===================================================");
+        p.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
     }
 
     public void announceToAllTeamMembers(String str) {
         for (Player p : teamMembers) {
-            p.sendMessage("===================================================\n\n");
-            p.sendMessage(str);
-            p.sendMessage("\n\n===================================================");
+            p.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
+            p.sendMessage(TextUtil.makeText(str, TextUtil.YELLOW));
+            p.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
+            teamList(p);
         }
     }
 

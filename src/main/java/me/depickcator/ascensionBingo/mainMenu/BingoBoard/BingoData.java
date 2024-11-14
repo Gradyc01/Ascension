@@ -153,7 +153,7 @@ public class BingoData {
     }
 
     private void teamRewards(Component text, PotionEffect effect, PlayerData pD) {
-        ArrayList<Player> otherTeamMembers = pD.getTeam().getOtherTeamMembers(pD.getPlayer());
+        ArrayList<Player> otherTeamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(pD.getPlayer());
         for (Player p : otherTeamMembers) {
             p.sendMessage(text);
             SoundUtil.playHighPitchPling(p);
@@ -203,7 +203,7 @@ public class BingoData {
     private void changeTeamScore(Player player, int newScore) {
         PlayerData playerData = AscensionBingo.playerDataMap.get(player.getUniqueId());
         if (playerData != null) {
-            for (Player teamMember : playerData.getTeam().getTeamMembers()) {
+            for (Player teamMember : playerData.getPlayerTeam().getTeam().getTeamMembers()) {
                 Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(teamMember.getName());
                 score.setScore(newScore);
             }

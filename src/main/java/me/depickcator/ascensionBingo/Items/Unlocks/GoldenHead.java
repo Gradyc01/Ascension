@@ -109,14 +109,12 @@ public class GoldenHead implements Crafts, ItemClick {
             if (item == null || pD == null) return false;
             item.setAmount(item.getAmount() - 1);
             giveGoldenHeadEffects(p);
-            ArrayList<Player> teamMembers = pD.getTeam().getOtherTeamMembers(p);
+            ArrayList<Player> teamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(p);
             p.sendMessage(TextUtil.makeText("You ate a golden head which grants you Regeneration III for 8 seconds, Resistance I for 15 seconds",
                     TextUtil.GREEN));
             for (Player player : teamMembers) {
-                p.sendMessage(TextUtil.makeText(
-                        p.getName() + " ate a golden head which grants you Regeneration II for 8 seconds",
-                        TextUtil.GREEN));
-                player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 8, 1));
+                player.sendMessage(TextUtil.makeText(p.getName() + " ate a golden head which grants you Regeneration II for 8 seconds", TextUtil.GREEN));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 8 * 20, 1));
             }
             return true;
         }

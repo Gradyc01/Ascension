@@ -24,6 +24,7 @@ public class TextUtil {
     public static TextColor DARK_PURPLE = TextColor.color(0xAA, 0x00, 0xAA);
     public static TextColor PINK = TextColor.color(0xFF, 0x55, 0xFF);
     public static TextColor GREEN = TextColor.color(0x55, 0xFF, 0x55);
+    public static TextColor WHITE = TextColor.color(0xFF, 0xFF, 0xFF);
     public static Component topBorder(TextColor color) {
         Component text =  Component.text("=====================================================\n").color(color);
         text = text.decoration(TextDecoration.ITALIC, false);
@@ -66,5 +67,9 @@ public class TextUtil {
         for (Player p: players) {
             p.sendMessage(text);
         }
+    }
+
+    public static void errorMessage(Player p, String msg) {
+        p.sendMessage(makeText(msg, RED));
     }
 }
