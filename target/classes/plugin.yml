@@ -21,3 +21,5 @@ commands:
     description: unlocks a craft for a certain player
   setUnlockTokens:
     description: testing purposes only
+  givePlayerExp:
+    description: testing purposes only

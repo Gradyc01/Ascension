@@ -5,6 +5,7 @@ import me.depickcator.ascensionBingo.General.GameCommand;
 import me.depickcator.ascensionBingo.General.GameStates;
 import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
 import me.depickcator.ascensionBingo.Items.UnlocksData;
+import me.depickcator.ascensionBingo.LootTables.Entities.EntityUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Teams.TeamCommand;
 import me.depickcator.ascensionBingo.listeners.*;
@@ -12,10 +13,7 @@ import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
 import me.depickcator.ascensionBingo.mainMenu.OpenMainMenuCommand;
 import me.depickcator.ascensionBingo.mainMenu.GiveMainMenuItem;
 import me.depickcator.ascensionBingo.mainMenu.mainMenuCommands;
-import me.depickcator.ascensionBingo.testingCommands.UnlockCraft;
-import me.depickcator.ascensionBingo.testingCommands.changeBingoScore;
-import me.depickcator.ascensionBingo.testingCommands.printPlayerDataCommand;
-import me.depickcator.ascensionBingo.testingCommands.setUnlockToken;
+import me.depickcator.ascensionBingo.testingCommands.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -52,6 +50,7 @@ public final class AscensionBingo extends JavaPlugin {
         registerListeners();
         registerCommands();
         registerCrafts();
+        new EntityUtil(this);
         scheduler = this.getServer().getScheduler();
         gameState = new GameStates(this);
         world = Bukkit.getWorld("world");
@@ -74,6 +73,7 @@ public final class AscensionBingo extends JavaPlugin {
         Objects.requireNonNull(getCommand("printPlayerData")).setExecutor(new printPlayerDataCommand(this));
         Objects.requireNonNull(getCommand("unlockCraft")).setExecutor(new UnlockCraft(this));
         Objects.requireNonNull(getCommand("setUnlockTokens")).setExecutor(new setUnlockToken(this));
+        Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp(this));
     }
 
     private void registerListeners() {
@@ -85,6 +85,7 @@ public final class AscensionBingo extends JavaPlugin {
         manager.registerEvents(new PlayerDeath(this), this);
         manager.registerEvents(new RecipeCrafted(this), this);
         manager.registerEvents(new PlayerInteractListener(this), this);
+        manager.registerEvents(new LootTableGeneration(this), this);
     }
 
     private void registerCrafts() {

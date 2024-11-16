@@ -23,6 +23,7 @@ public class PlayerData {
     private final PlayerUnlocks playerUnlocks;
 
     private final PlayerTeam playerTeam;
+    private final PlayerSkills playerSkills;
 
 
     public PlayerData(Player player, AscensionBingo plugin) {
@@ -30,6 +31,7 @@ public class PlayerData {
         this.plugin = plugin;
         playerUnlocks = new PlayerUnlocks(this.plugin, this.player);
         playerTeam = new PlayerTeam(this.plugin, this);
+        playerSkills = new PlayerSkills(this, plugin);
     }
 
     public void resetToLobby() {
@@ -95,5 +97,9 @@ public class PlayerData {
 
     public PlayerUnlocks getPlayerUnlocks() {
         return playerUnlocks;
+    }
+
+    public PlayerSkills getPlayerSkills() {
+        return playerSkills;
     }
 }

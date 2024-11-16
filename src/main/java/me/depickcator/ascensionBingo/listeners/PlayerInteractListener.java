@@ -28,9 +28,9 @@ public class PlayerInteractListener implements Listener {
     public void mainMenuClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         if (e.getItem() == null) return;
-        if (plugin.getGameState().checkState(GameStates.LOBBY)) {
+//        if (plugin.getGameState().checkState(GameStates.LOBBY)) {
 //            e.setCancelled(true);//TODO: Having this on turns off all interactions could be useful in the future
-        }
+//        }
 
 
 
