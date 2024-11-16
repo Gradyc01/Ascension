@@ -1,12 +1,14 @@
 package me.depickcator.ascensionBingo.General;
 
 
+import me.depickcator.ascensionBingo.AscensionBingo;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -67,6 +69,26 @@ public class TextUtil {
         for (Player p: players) {
             p.sendMessage(text);
         }
+    }
+
+    public static void sendActionBar(Player player, Component message, int duration, AscensionBingo plugin) {
+        // Duration is in ticks; 20 ticks = 1 second
+        int interval = 20; // Send message every second to ensure it's displayed
+        int repetitions = duration / interval;
+
+        new BukkitRunnable() {
+            int count = 0;
+
+            @Override
+            public void run() {
+                if (count >= repetitions || !player.isOnline()) {
+                    cancel(); // Stop when the duration ends or player logs out
+                    return;
+                }
+                player.sendActionBar(message); // Send the action bar message
+                count++;
+            }
+        }.runTaskTimer(plugin, 0, interval); // Schedule to run every second
     }
 
     public static void errorMessage(Player p, String msg) {
