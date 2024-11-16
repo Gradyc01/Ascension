@@ -11,8 +11,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import static org.bukkit.Bukkit.getPlayer;
-
 public class TeamCommand implements CommandExecutor {
     private AscensionBingo plugin;
     public TeamCommand(AscensionBingo plugin) {
