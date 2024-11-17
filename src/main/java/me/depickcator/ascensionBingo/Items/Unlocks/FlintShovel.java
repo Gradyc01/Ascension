@@ -2,16 +2,21 @@ package me.depickcator.ascensionBingo.Items.Unlocks;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.TextUtil;
+import me.depickcator.ascensionBingo.Interfaces.LootTableChanger;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
 
-public class FlintShovel implements Crafts{
+public class FlintShovel implements Crafts, LootTableChanger {
     private final AscensionBingo plugin;
     private Recipe recipe;
     public static final int COST = 1;
@@ -21,6 +26,7 @@ public class FlintShovel implements Crafts{
     public FlintShovel(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
+        registerItem();
     }
 
     @Override
@@ -46,6 +52,7 @@ public class FlintShovel implements Crafts{
             repairable.setRepairCost(999);
         }
         item.setItemMeta(meta);
+        LootTableChanger.addPersistentDataForItems(item, KEY);
         return item;
     }
 
@@ -75,4 +82,28 @@ public class FlintShovel implements Crafts{
     }
 
 
+    @Override
+    public ItemStack getItem() {
+        return FlintShovel.result();
+    }
+
+    @Override
+    public boolean uponEvent(Event event, Player p) {
+        if (!isEventBreakBlockEvent(event)) {
+            return false;
+        }
+        BlockBreakEvent e = (BlockBreakEvent) event;
+        Block b = e.getBlock();
+        if (b.getType() != Material.GRAVEL) {
+            return false;
+        }
+        e.setDropItems(false);
+        e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.FLINT));
+        return true;
+    }
+
+    @Override
+    public void registerItem() {
+        addItem(getItem(), this);
+    }
 }

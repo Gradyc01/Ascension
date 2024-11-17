@@ -18,4 +18,8 @@ public interface Skills {
         p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.6f);
     }
 
+    default void playLevelUpSound(Player p) {
+        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1f);
+    }
+
 }

@@ -14,8 +14,7 @@ public class PlayerSkills{
         combat = new Combat(this.plugin, this.playerData);
     }
 
-
-
-
-
+    public Combat getCombat() {
+        return combat;
+    }
 }
