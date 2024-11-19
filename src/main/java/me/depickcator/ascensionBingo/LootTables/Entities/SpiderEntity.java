@@ -1,12 +1,8 @@
 package me.depickcator.ascensionBingo.LootTables.Entities;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Interfaces.LootTableChanger;
-import me.depickcator.ascensionBingo.Player.PlayerData;
-import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

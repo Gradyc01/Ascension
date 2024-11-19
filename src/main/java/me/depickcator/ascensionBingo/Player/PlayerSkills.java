@@ -4,7 +4,6 @@ import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Skills.Combat;
 import me.depickcator.ascensionBingo.Skills.Foraging;
 import me.depickcator.ascensionBingo.Skills.Mining;
-import org.bukkit.entity.Player;
 
 public class PlayerSkills{
     private final AscensionBingo plugin;
