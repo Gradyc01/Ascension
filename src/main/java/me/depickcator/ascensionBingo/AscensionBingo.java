@@ -5,6 +5,7 @@ import me.depickcator.ascensionBingo.General.GameCommand;
 import me.depickcator.ascensionBingo.General.GameStates;
 import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
 import me.depickcator.ascensionBingo.Items.UnlocksData;
+import me.depickcator.ascensionBingo.LootTables.Blocks.BlockUtil;
 import me.depickcator.ascensionBingo.LootTables.Entities.EntityUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Teams.TeamCommand;
@@ -51,6 +52,7 @@ public final class AscensionBingo extends JavaPlugin {
         registerCommands();
         registerCrafts();
         new EntityUtil(this);
+        new BlockUtil(this);
         scheduler = this.getServer().getScheduler();
         gameState = new GameStates(this);
         world = Bukkit.getWorld("world");

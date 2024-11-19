@@ -1,12 +1,8 @@
 package me.depickcator.ascensionBingo.LootTables.Entities;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Interfaces.LootTableChanger;
-import me.depickcator.ascensionBingo.Player.PlayerData;
-import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -31,7 +27,7 @@ public class ZombieEntity implements LootTableChanger, EntityLootTable {
     public boolean uponEvent(Event event, Player p) {
         try {
             EntityDeathEvent e = getEntityDeathEvent(event);
-            giveCombatExp(p);
+            giveCombatExp(p, EntityUtil.COMBAT_COMMON);
             e.getDrops().clear();
 
             Random r = new Random();
@@ -74,16 +70,7 @@ public class ZombieEntity implements LootTableChanger, EntityLootTable {
 
     @Override
     public void registerItem() {
-        plugin.getServer().broadcast(TextUtil.makeText(KEY, TextUtil.WHITE));
         addEntity(KEY,this);
-    }
-
-    private int getLootingLevel(Player killer) {
-        if (killer != null) {
-            // killer.getInventory().getItemInMainHand().getEnchantments() != null
-            return killer.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOTING);
-        }
-        return 0;
     }
 
     private double calculateLootChance(int lootingLevel, double baseChance, double enchantedBase, double perLevel) {

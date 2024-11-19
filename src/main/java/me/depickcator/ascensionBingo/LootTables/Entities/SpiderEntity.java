@@ -31,7 +31,7 @@ public class SpiderEntity implements LootTableChanger, EntityLootTable {
     public boolean uponEvent(Event event, Player p) {
         try {
             EntityDeathEvent e = getEntityDeathEvent(event);
-            giveCombatExp(p);
+            giveCombatExp(p, EntityUtil.COMBAT_COMMON);
             e.getDrops().clear();
 
             Random r = new Random();
@@ -59,16 +59,7 @@ public class SpiderEntity implements LootTableChanger, EntityLootTable {
 
     @Override
     public void registerItem() {
-        plugin.getServer().broadcast(TextUtil.makeText(KEY, TextUtil.WHITE));
         addEntity(KEY,this);
-    }
-
-    private int getLootingLevel(Player killer) {
-        if (killer != null) {
-            // killer.getInventory().getItemInMainHand().getEnchantments() != null
-            return killer.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOTING);
-        }
-        return 0;
     }
 
     private int calculateUniformRandom(Random r, int min, int max) {
