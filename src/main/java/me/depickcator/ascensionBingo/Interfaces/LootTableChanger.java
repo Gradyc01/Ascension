@@ -1,11 +1,14 @@
 package me.depickcator.ascensionBingo.Interfaces;
 
+import me.depickcator.ascensionBingo.General.TextUtil;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -35,6 +38,12 @@ public interface LootTableChanger {
         items.put(entityString, lootTableChanger);
     }
 
+    default void addBlock(Material material, LootTableChanger lootTableChanger) {
+        if (material.isBlock()) {
+            items.put(material.getBlockTranslationKey(), lootTableChanger);
+        }
+    }
+
     static void addPersistentDataForItems(ItemStack item, String KEY) {
         ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
@@ -56,5 +65,9 @@ public interface LootTableChanger {
 
     static LootTableChanger findEntity(Entity entity) {
         return items.get(entity.getType().translationKey());
+    }
+
+    static LootTableChanger findBlock(Block block) {
+        return items.get(block.translationKey());
     }
 }

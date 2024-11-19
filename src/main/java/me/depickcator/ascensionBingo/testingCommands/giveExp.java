@@ -3,7 +3,6 @@ package me.depickcator.ascensionBingo.testingCommands;
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Player.PlayerSkills;
-import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,20 +33,24 @@ public class giveExp implements CommandExecutor {
             return false;
         }
         PlayerSkills playerSkills = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerSkills();
-        switch (skillName) {
-            case "combat": {
+        return switch (skillName) {
+            case "combat" -> {
                 playerSkills.getCombat().addExp(exp);
-                return true;
+                yield true;
             }
-            case "foraging": {
-//                playerSkills.getCombat().addExp(6);
-                return true;
+            case "mining" -> {
+                playerSkills.getMining().addExp(exp);
+                yield true;
             }
-            default: {
+            case "foraging" -> {
+                playerSkills.getForaging().addExp(exp);
+                yield true;
+            }
+            default -> {
                 p.sendMessage(TextUtil.makeText("ERROR", TextUtil.WHITE));
-                return false;
+                yield false;
             }
-        }
+        };
 //        playerSkills.
 //        p.sendMessage("Player unlocks failed");
 

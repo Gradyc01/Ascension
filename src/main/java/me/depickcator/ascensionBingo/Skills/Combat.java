@@ -1,10 +1,8 @@
 package me.depickcator.ascensionBingo.Skills;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascensionBingo.Player.PlayerData;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,6 +16,7 @@ public class Combat implements Skills {
     private final Player player;
     private int experience;
     private int level;
+    private final String NAME = "Combat";
     private final int MAXLEVEL = 5;
     private final static ArrayList<Integer> LEVELREQUIREMENTS= new ArrayList<>(
             Arrays.asList(25, 100, 250, 750, 1500));
@@ -46,10 +45,9 @@ public class Combat implements Skills {
         if (canLevelUp()) {
             levelUp(++level);
         }
-        playGainedExpSound(player);
-        Component message = TextUtil.makeText("+" + amount + " combat " + getExpOverTotalNeeded(), TextUtil.AQUA);
-        TextUtil.sendActionBar(player, message, 20, plugin);
+        playerGainedExpNotification(player, amount, NAME, plugin);
     }
+
 
     private boolean canLevelUp() {
         if (level >= MAXLEVEL) {
@@ -60,7 +58,7 @@ public class Combat implements Skills {
 
     private void levelUp(int newLevel) {
         SkillRewards reward = Combat.rewards.get(level-1);
-        levelUpMessage(newLevel, reward);
+        levelUpMessage(newLevel, reward, player, NAME);
         playLevelUpSound(player);
         reward.giveRewards(playerData);
         if (canLevelUp()) {
@@ -68,20 +66,6 @@ public class Combat implements Skills {
         }
     }
 
-    private void levelUpMessage(int newLevel, SkillRewards reward) {
-        Component spacing = TextUtil.makeText("      ", TextUtil.AQUA);
-        player.sendMessage(TextUtil.topBorder(TextUtil.GOLD));
-        player.sendMessage(TextUtil.makeText("                    LEVEL UP!!!!", TextUtil.AQUA, true, false));
-        player.sendMessage(TextUtil.makeText("                      Combat " + newLevel, TextUtil.GOLD, true, false));
-        player.sendMessage(TextUtil.makeText("\n\n   Rewards: ", TextUtil.GOLD, true, false));
-        for (ItemStack item : reward.getItems()) {
-            Component displayName = item.displayName().color(TextUtil.RED);
-            Component amount = TextUtil.makeText(" x" + item.getAmount(), TextUtil.RED);
-            player.sendMessage(spacing.append(displayName).append(amount));
-        }
-        player.sendMessage(spacing.append(TextUtil.makeText(reward.getUnlockTokens() + " Unlock Tokens", TextUtil.RED)));
-        player.sendMessage(TextUtil.bottomBorder(TextUtil.GOLD));
-    }
 
     @Override
     public String getExp() {
