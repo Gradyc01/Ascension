@@ -7,8 +7,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class BuildLobby implements Runnable {
-    ArmorStand armorStand;
-    AscensionBingo plugin;
+    private final ArmorStand armorStand;
+    private final AscensionBingo plugin;
     public BuildLobby(ArmorStand armor, AscensionBingo plugin) {
         armorStand = armor;
         this.plugin = plugin;

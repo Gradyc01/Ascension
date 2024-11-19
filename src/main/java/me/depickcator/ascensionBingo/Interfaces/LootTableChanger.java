@@ -1,7 +1,5 @@
 package me.depickcator.ascensionBingo.Interfaces;
 
-import me.depickcator.ascensionBingo.General.TextUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;

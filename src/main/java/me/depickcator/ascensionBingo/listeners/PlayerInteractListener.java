@@ -1,7 +1,6 @@
 package me.depickcator.ascensionBingo.listeners;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.General.GameStates;
 import me.depickcator.ascensionBingo.General.ItemClick;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
