@@ -1,7 +1,7 @@
 package me.depickcator.ascensionBingo.LootTables.Blocks.Ores;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.Interfaces.LootTableChanger;
+import me.depickcator.ascensionBingo.LootTables.LootTableChanger;
 import me.depickcator.ascensionBingo.LootTables.Blocks.BlockLootTable;
 import me.depickcator.ascensionBingo.LootTables.Blocks.BlockUtil;
 import org.bukkit.Material;

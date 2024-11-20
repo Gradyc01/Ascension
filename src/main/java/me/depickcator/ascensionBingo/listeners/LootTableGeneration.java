@@ -2,7 +2,7 @@ package me.depickcator.ascensionBingo.listeners;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.GameStates;
-import me.depickcator.ascensionBingo.Interfaces.LootTableChanger;
+import me.depickcator.ascensionBingo.LootTables.LootTableChanger;
 import me.depickcator.ascensionBingo.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;

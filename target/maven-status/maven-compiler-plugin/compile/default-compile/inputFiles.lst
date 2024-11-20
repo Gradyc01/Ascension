@@ -51,6 +51,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\InventoryClickListener.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\InventoryClose.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\LootTableGeneration.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\MobSpawning.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\onInventoryChange.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\PlayerDeath.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\PlayerInteractListener.java
@@ -74,8 +75,10 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\LootTables\Entities\EndermanEntity.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\LootTables\Entities\EntityLootTable.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\LootTables\Entities\EntityUtil.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\LootTables\Entities\NetherMobs.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\LootTables\Entities\SkeletonEntity.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\LootTables\Entities\SpiderEntity.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\LootTables\Entities\Superable.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\LootTables\Entities\ZombieEntity.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\mainMenu\BingoBoard\BingoBoardGUI.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\mainMenu\BingoBoard\BingoData.java
