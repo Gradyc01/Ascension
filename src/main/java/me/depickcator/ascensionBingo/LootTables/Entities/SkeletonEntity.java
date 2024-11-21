@@ -1,17 +1,23 @@
 package me.depickcator.ascensionBingo.LootTables.Entities;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.Interfaces.LootTableChanger;
+import me.depickcator.ascensionBingo.LootTables.LootTableChanger;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Random;
 
-public class SkeletonEntity implements LootTableChanger, EntityLootTable {
+public class SkeletonEntity implements LootTableChanger, EntityLootTable, Superable {
     private final AscensionBingo plugin;
     public static String KEY = EntityType.SKELETON.translationKey();
     public SkeletonEntity(AscensionBingo plugin) {
@@ -27,15 +33,20 @@ public class SkeletonEntity implements LootTableChanger, EntityLootTable {
     public boolean uponEvent(Event event, Player p) {
         try {
             EntityDeathEvent e = getEntityDeathEvent(event);
-            giveCombatExp(p, EntityUtil.COMBAT_COMMON);
             e.getDrops().clear();
 
-            Random r = new Random();
-            int lootingLevel = getLootingLevel(e.getEntity().getKiller());
-            if (e.getEntityType() == EntityType.SKELETON) {
-                lootPoolConstant(e, lootingLevel, r);
-                lootPoolBonus(e, lootingLevel, r);
+            if (isSuperEntity(e.getEntity())) {
+                lootFromSuperEntity(e.getEntity());
+                giveCombatExp(p, EntityUtil.COMBAT_VERY_RARE);
+                return true;
             }
+
+            Random r = new Random();
+            giveCombatExp(p, EntityUtil.COMBAT_COMMON);
+            int lootingLevel = getLootingLevel(e.getEntity().getKiller());
+            lootPoolConstant(e, lootingLevel, r);
+            lootPoolBonus(e, lootingLevel, r);
+
         } catch (Exception ignored) {
             return false;
         }
@@ -80,5 +91,30 @@ public class SkeletonEntity implements LootTableChanger, EntityLootTable {
             return enchantedBase + perLevel * (lootingLevel - 1);
         }
         return baseChance;
+    }
+
+    @Override
+    public void superEntity(Entity e) {
+        Skeleton skeleton = (Skeleton) e;
+        skeleton.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(30);
+        skeleton.getAttribute(Attribute.GENERIC_SCALE).setBaseValue(1.2);
+        EntityEquipment equipment = skeleton.getEquipment();
+        equipment.setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
+        equipment.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
+        equipment.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
+        equipment.setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
+        ItemStack bow = new ItemStack(Material.BOW);
+        ItemMeta bowMeta = bow.getItemMeta();
+        bowMeta.addEnchant(Enchantment.POWER, 16, true);
+        bowMeta.addEnchant(Enchantment.FLAME, 1, true);
+        bow.setItemMeta(bowMeta);
+        equipment.setItemInMainHand(bow);
+        setZeroDropChance(equipment);
+        tagSuperEntity(skeleton);
+    }
+
+    @Override
+    public void lootFromSuperEntity(Entity e) {
+        e.getWorld().dropItem(e.getLocation(), new ItemStack(Material.SKELETON_SKULL));
     }
 }

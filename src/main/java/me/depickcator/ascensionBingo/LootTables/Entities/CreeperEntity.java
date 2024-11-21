@@ -1,8 +1,11 @@
 package me.depickcator.ascensionBingo.LootTables.Entities;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.Interfaces.LootTableChanger;
+import me.depickcator.ascensionBingo.LootTables.LootTableChanger;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -11,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
-public class CreeperEntity implements LootTableChanger, EntityLootTable {
+public class CreeperEntity implements LootTableChanger, EntityLootTable, Superable {
     private final AscensionBingo plugin;
     public static String KEY = EntityType.CREEPER.translationKey();
     public CreeperEntity(AscensionBingo plugin) {
@@ -27,6 +30,14 @@ public class CreeperEntity implements LootTableChanger, EntityLootTable {
     public boolean uponEvent(Event event, Player p) {
         try {
             EntityDeathEvent e = getEntityDeathEvent(event);
+
+            if (isSuperEntity(e.getEntity())) {
+                e.getDrops().clear();
+                lootFromSuperEntity(e.getEntity());
+                giveCombatExp(p, EntityUtil.COMBAT_VERY_RARE);
+                return true;
+            }
+
             giveCombatExp(p, EntityUtil.COMBAT_COMMON);
             e.getDrops().clear();
 
@@ -73,5 +84,20 @@ public class CreeperEntity implements LootTableChanger, EntityLootTable {
             return enchantedBase + perLevel * (lootingLevel - 1);
         }
         return baseChance;
+    }
+
+    @Override
+    public void superEntity(Entity e) {
+        Creeper creeper = (Creeper) e;
+        creeper.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(30);
+        creeper.getAttribute(Attribute.GENERIC_SCALE).setBaseValue(1.2);
+        creeper.setPowered(true);
+        creeper.setExplosionRadius(20);
+        tagSuperEntity(creeper);
+    }
+
+    @Override
+    public void lootFromSuperEntity(Entity e) {
+        e.getWorld().dropItem(e.getLocation(), new ItemStack(Material.CREEPER_HEAD));
     }
 }

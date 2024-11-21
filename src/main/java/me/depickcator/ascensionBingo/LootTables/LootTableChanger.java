@@ -1,4 +1,4 @@
-package me.depickcator.ascensionBingo.Interfaces;
+package me.depickcator.ascensionBingo.LootTables;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

@@ -2,7 +2,7 @@ package me.depickcator.ascensionBingo.Items.Unlocks;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.TextUtil;
-import me.depickcator.ascensionBingo.Interfaces.LootTableChanger;
+import me.depickcator.ascensionBingo.LootTables.LootTableChanger;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

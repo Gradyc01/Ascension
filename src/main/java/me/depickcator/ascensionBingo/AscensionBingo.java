@@ -82,7 +82,7 @@ public final class AscensionBingo extends JavaPlugin {
         Server server = getServer();
         PluginManager manager = server.getPluginManager();
 //        manager.registerEvents(new onInventoryChange(), this);
-        // manager.registerEvents(new MobSpawning(this), this);
+        manager.registerEvents(new MobSpawning(this), this);
         manager.registerEvents(new InventoryClose(), this);
         manager.registerEvents(new InventoryClickListener(this), this);
         manager.registerEvents(new PlayerDeath(this), this);
