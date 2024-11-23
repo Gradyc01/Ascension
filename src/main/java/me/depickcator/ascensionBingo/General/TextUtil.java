@@ -94,4 +94,8 @@ public class TextUtil {
     public static void errorMessage(Player p, String msg) {
         p.sendMessage(makeText(msg, RED));
     }
+
+    public static Component rightClickText() {
+        return TextUtil.makeText(" [Right Click]", TextUtil.GRAY);
+    }
 }

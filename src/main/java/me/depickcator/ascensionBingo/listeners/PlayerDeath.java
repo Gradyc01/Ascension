@@ -1,7 +1,11 @@
 package me.depickcator.ascensionBingo.listeners;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.General.TextUtil;
+import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,12 +27,17 @@ public class PlayerDeath implements Listener {
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player) {
             Player victim = (Player) event.getEntity();
-            if (event.getDamager() instanceof Player) {
-                victim.setMetadata(damageSourceKey, new FixedMetadataValue(plugin, PLAYER_DAMAGE));
-            } else {
+            if (!(event.getDamager() instanceof Player)) {
                 victim.setMetadata(damageSourceKey, new FixedMetadataValue(plugin, event.getCause().toString()));
+                return;
             }
-
+            Player damager = (Player) event.getDamager();
+            PlayerData damagerData = PlayerUtil.getPlayerData(damager);
+            if (damagerData == null || damagerData.getPlayerTeam().getTeam().getOtherTeamMembers(damager).contains(victim)) {
+                event.setCancelled(true);
+                return;
+            }
+            victim.setMetadata(damageSourceKey, new FixedMetadataValue(plugin, PLAYER_DAMAGE));
         }
     }
 
@@ -38,22 +47,13 @@ public class PlayerDeath implements Listener {
         Player victim = e.getEntity();
         String cause = "Unknown";
 
-
         // Check the cause of damage when the player dies
         if (victim.hasMetadata(damageSourceKey)) {
             cause = victim.getMetadata(damageSourceKey).getFirst().asString();
         }
         if (cause.equals(PLAYER_DAMAGE)) {
-            // Optionally, drop the player's skull
-            ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
-            SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-            if (skullMeta != null) {
-                skullMeta.setOwningPlayer(victim);
-                skullMeta.setCustomModelData(0);
-                skullMeta.setMaxStackSize(1);
-            }
-            skull.setItemMeta(skullMeta);
-            victim.getWorld().dropItem(victim.getLocation(), skull);
+            dropHead(victim);
+            increaseKillCount(e);
         }
 
         // Log or handle the cause of death as needed
@@ -64,6 +64,27 @@ public class PlayerDeath implements Listener {
 
         // Remove the metadata after use
         victim.removeMetadata(damageSourceKey, plugin);
+    }
+
+    private void increaseKillCount(PlayerDeathEvent e) {
+        Entity entity = e.getDamageSource().getCausingEntity();
+        if (entity instanceof Player) {
+            PlayerData killer = PlayerUtil.getPlayerData((Player) entity);
+            killer.getPlayerStats().addKill();
+        }
+    }
+
+    private void dropHead(Player victim) {
+// Optionally, drop the player's skull
+        ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
+        SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
+        if (skullMeta != null) {
+            skullMeta.setOwningPlayer(victim);
+            skullMeta.setCustomModelData(0);
+            skullMeta.setMaxStackSize(1);
+        }
+        skull.setItemMeta(skullMeta);
+        victim.getWorld().dropItem(victim.getLocation(), skull);
     }
 }
 

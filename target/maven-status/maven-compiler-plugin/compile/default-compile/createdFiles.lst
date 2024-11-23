@@ -12,6 +12,7 @@ me\depickcator\ascensionBingo\LootTables\Blocks\Ores\DiamondOre.class
 me\depickcator\ascensionBingo\Skills\SkillRewards.class
 me\depickcator\ascensionBingo\Items\Unlocks\Nectar.class
 me\depickcator\ascensionBingo\mainMenu\Unlocks\UnlocksGUI.class
+me\depickcator\ascensionBingo\Items\Uncraftable\XPTome\XPTomeGUI.class
 me\depickcator\ascensionBingo\Player\PlayerUnlocks.class
 me\depickcator\ascensionBingo\LootTables\Blocks\Ores\GoldOre.class
 me\depickcator\ascensionBingo\LootTables\Blocks\Ores\IronOre.class
@@ -50,12 +51,14 @@ me\depickcator\ascensionBingo\Items\Unlocks\Cornucopia.class
 me\depickcator\ascensionBingo\Items\Uncraftable\ShardOfTheFallen.class
 me\depickcator\ascensionBingo\Player\PlayerData.class
 me\depickcator\ascensionBingo\Timeline\Timeline$2.class
+me\depickcator\ascensionBingo\Items\Uncraftable\XPTome\XPTome.class
 me\depickcator\ascensionBingo\General\SoundUtil.class
 me\depickcator\ascensionBingo\mainMenu\Unlocks\ViewRecipeGUI.class
 me\depickcator\ascensionBingo\General\GameCommand.class
 me\depickcator\ascensionBingo\Items\Unlocks\BookOfProtection.class
 me\depickcator\ascensionBingo\LootTables\Blocks\ForageBlocks\ForageBlocks.class
 me\depickcator\ascensionBingo\LootTables\Blocks\Ores\CopperOre.class
+me\depickcator\ascensionBingo\Player\PlayerStats.class
 me\depickcator\ascensionBingo\General\TextUtil.class
 me\depickcator\ascensionBingo\Items\Unlocks\PhilosopherPickaxe.class
 me\depickcator\ascensionBingo\General\BuildLobby.class
@@ -99,8 +102,10 @@ me\depickcator\ascensionBingo\Player\PlayerScoreboard.class
 me\depickcator\ascensionBingo\testingCommands\setUnlockToken.class
 me\depickcator\ascensionBingo\LootTables\Entities\ZombieEntity.class
 me\depickcator\ascensionBingo\Items\Unlocks\PotionOfVelocity.class
+me\depickcator\ascensionBingo\Items\Uncraftable\XPTome\XPTomeGUI$1.class
 me\depickcator\ascensionBingo\Items\ItemList.class
 me\depickcator\ascensionBingo\testingCommands\printPlayerDataCommand.class
+me\depickcator\ascensionBingo\Teams\TeamStats.class
 me\depickcator\ascensionBingo\LootTables\Entities\Superable.class
 me\depickcator\ascensionBingo\Items\Unlocks\Tarnhelm.class
 me\depickcator\ascensionBingo\LootTables\Blocks\Ores\RedstoneOre.class

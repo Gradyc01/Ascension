@@ -9,6 +9,7 @@ import me.depickcator.ascensionBingo.LootTables.Blocks.BlockUtil;
 import me.depickcator.ascensionBingo.LootTables.Entities.EntityUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Teams.TeamCommand;
+import me.depickcator.ascensionBingo.Timeline.Timeline;
 import me.depickcator.ascensionBingo.listeners.*;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
 import me.depickcator.ascensionBingo.mainMenu.OpenMainMenuCommand;
@@ -56,7 +57,7 @@ public final class AscensionBingo extends JavaPlugin {
         new BlockUtil(this);
         scheduler = this.getServer().getScheduler();
         gameState = new GameStates(this);
-        timeline = new me.depickcator.ascensionBingo.Timeline.Timeline(this);
+        timeline = new Timeline(this);
         world = Bukkit.getWorld("world");
         nether = Bukkit.getWorld("world_nether");
     }
@@ -134,7 +135,7 @@ public final class AscensionBingo extends JavaPlugin {
         AscensionBingo.spawn = spawn;
     }
 
-    public me.depickcator.ascensionBingo.Timeline.Timeline getTimeline() {
+    public Timeline getTimeline() {
         return timeline;
     }
 }

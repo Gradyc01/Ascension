@@ -3,6 +3,7 @@ package me.depickcator.ascensionBingo.Player;
 import me.depickcator.ascensionBingo.AscensionBingo;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,10 @@ public class PlayerUtil {
             return AscensionBingo.playerDataMap.get(p.getUniqueId());
         }
         return null;
+    }
+
+    public static void giveItem(Player p, ItemStack item) {
+        p.getWorld().dropItem(p.getLocation(), item);
     }
 
 

@@ -32,6 +32,7 @@ public class StartGame{
         new BukkitRunnable() {
             @Override
             public void run() {
+                TeamUtil.createTeamsForEveryone();
                 for (Player p: Bukkit.getOnlinePlayers()) {
                     PlayerData pD = PlayerUtil.getPlayerData(p);
                     if (pD == null) {
@@ -40,7 +41,6 @@ public class StartGame{
                     pD.resetBeforeStartGame();
                     pD.getPlayerScoreboard().makeGameBoard();
                 }
-
                 spreadAndSetWorldBorder();
             }
         }.runTask(plugin);
@@ -71,8 +71,6 @@ public class StartGame{
                 for (ItemStack i : item) {
                     player.sendMessage(i.toString());
                 }
-                TeamUtil.createTeamsForEveryone();
-
                 gameIntroduction();
             }
         }.runTaskLater(this.plugin, 20);
@@ -134,8 +132,8 @@ public class StartGame{
 //                        p.sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut)
                         assert pD != null;
                         pD.resetAfterStartGame();
-                        plugin.getTimeline().startTimeline();
                     }
+                    plugin.getTimeline().startTimeline();
                 }, 120);
             }
         }.runTaskLater(this.plugin, 20);

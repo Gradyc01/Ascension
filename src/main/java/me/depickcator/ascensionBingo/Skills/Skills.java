@@ -45,7 +45,7 @@ public interface Skills {
             Component amount = TextUtil.makeText(" x" + item.getAmount(), TextUtil.RED);
             player.sendMessage(spacing.append(displayName).append(amount));
         }
-        player.sendMessage(spacing.append(TextUtil.makeText(reward.getUnlockTokens() + " Unlock Tokens", TextUtil.RED)));
+        player.sendMessage(spacing.append(TextUtil.makeText(reward.getUnlockTokens() + " Souls", TextUtil.RED)));
         player.sendMessage(TextUtil.bottomBorder(TextUtil.GOLD));
     }
 

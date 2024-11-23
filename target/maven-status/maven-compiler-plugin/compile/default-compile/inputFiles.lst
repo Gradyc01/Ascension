@@ -13,6 +13,8 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\EasyItems.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\ItemList.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Uncraftable\ShardOfTheFallen.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Uncraftable\XPTome\XPTome.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Uncraftable\XPTome\XPTomeGUI.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Unlocks\AncientArtifact.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Unlocks\ArrowEconomy.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Unlocks\Backpack.java
@@ -93,6 +95,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerData.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerScoreboard.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerSkills.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerStats.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerTeam.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerUnlocks.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerUtil.java
@@ -103,6 +106,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Skills\Skills.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Teams\Team.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Teams\TeamCommand.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Teams\TeamStats.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Teams\TeamUtil.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\testingCommands\changeBingoScore.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\testingCommands\giveExp.java

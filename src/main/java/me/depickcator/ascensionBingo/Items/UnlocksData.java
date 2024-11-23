@@ -1,6 +1,8 @@
 package me.depickcator.ascensionBingo.Items;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.Items.Uncraftable.ShardOfTheFallen;
+import me.depickcator.ascensionBingo.Items.Uncraftable.XPTome.XPTome;
 import me.depickcator.ascensionBingo.Items.Unlocks.*;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -25,6 +27,7 @@ public class UnlocksData {
         Tier2Unlocks();
         Tier3Unlocks();
         Tier4Unlocks();
+        Uncraftable();
     }
 
 
@@ -68,6 +71,10 @@ public class UnlocksData {
 
     private void Tier4Unlocks() {
         tier4Unlocks.add(new Cornucopia(plugin));
+    }
+
+    private void Uncraftable() {
+        new XPTome(plugin);
     }
 
     public Pair<Crafts, Integer> findUnlock(String displayName) {

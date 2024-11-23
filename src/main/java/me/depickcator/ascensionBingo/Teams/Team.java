@@ -14,7 +14,8 @@ public class Team {
     private String teamKey;
     private ArrayList<Player> teamMembers;
     private Player leader;
-    AscensionBingo plugin;
+    private final AscensionBingo plugin;
+    private final TeamStats teamStats;
     public Team(AscensionBingo plugin, Player player) {
         this.plugin = plugin;
         this.teamKey = player.getUniqueId().toString();
@@ -23,6 +24,7 @@ public class Team {
         leader = player;
         TeamUtil.createTeam(player);
         TeamUtil.joinTeam(player, player);
+        teamStats = new TeamStats(plugin, this);
     }
 
     public void addPlayer(Player p) {
@@ -97,5 +99,9 @@ public class Team {
             }
             playerData.getPlayerScoreboard().updateLobbyBoard();
         }
+    }
+
+    public TeamStats getTeamStats() {
+        return teamStats;
     }
 }
