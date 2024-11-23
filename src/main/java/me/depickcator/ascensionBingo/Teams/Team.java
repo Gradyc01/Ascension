@@ -30,6 +30,7 @@ public class Team {
         teamMembers.add(p);
         TeamUtil.joinTeam(leader, p);
         announceToAllTeamMembers(p.getName() + " has joined the party!");
+        updateTeamScoreboards();
     }
 
     public void removePlayer(Player p) {
@@ -45,11 +46,13 @@ public class Team {
                 pl.sendMessage(TextUtil.makeText("Party leader has left the party the party will now be disbanded", TextUtil.YELLOW));
                 pl.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
             }
+            updateTeamScoreboards();
         } else {
             Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerTeam().setTeam(null);
             teamMembers.remove(p);
             TeamUtil.leaveTeam(p);
             announceToAllTeamMembers(p.getName() + " has left the party");
+            updateTeamScoreboards();
         }
     }
 
@@ -83,5 +86,16 @@ public class Team {
         ArrayList<Player> otherTeamMembers = new ArrayList<>(teamMembers);
         otherTeamMembers.remove(p);
         return otherTeamMembers;
+    }
+
+    private void updateTeamScoreboards() {
+        for (Player p : teamMembers) {
+            PlayerData playerData = PlayerUtil.getPlayerData(p);
+            if (playerData == null) {
+                plugin.getServer().broadcast(TextUtil.makeText("ERROR updateTeamScoreboards", TextUtil.RED));
+                continue;
+            }
+            playerData.getPlayerScoreboard().updateLobbyBoard();
+        }
     }
 }

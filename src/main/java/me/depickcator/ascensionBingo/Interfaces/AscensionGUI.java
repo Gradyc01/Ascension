@@ -57,7 +57,7 @@ public interface AscensionGUI {
 
         List<Component> lore = new ArrayList<>();
         int unlockTokens = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks().getUnlockTokens();
-        Component unlockTokensText = TextUtil.makeText("Unlock Tokens: " + unlockTokens, TextUtil.BLUE);
+        Component unlockTokensText = TextUtil.makeText("Souls: " + unlockTokens, TextUtil.BLUE);
         lore.add(unlockTokensText);
 
         headMeta.lore(lore);

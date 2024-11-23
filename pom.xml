@@ -40,6 +40,15 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <relocations>
+                        <!-- Relocate the fastboard package to avoid conflicts -->
+                        <relocation>
+                            <pattern>fr.mrmicky.fastboard</pattern>
+                            <shadedPattern>com.yourpackage.fastboard</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
             </plugin>
         </plugins>
         <resources>
@@ -67,6 +76,11 @@
             <artifactId>paper-api</artifactId>
             <version>1.21.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.mrmicky</groupId>
+            <artifactId>fastboard</artifactId>
+            <version>2.1.3</version>
         </dependency>
     </dependencies>
 </project>

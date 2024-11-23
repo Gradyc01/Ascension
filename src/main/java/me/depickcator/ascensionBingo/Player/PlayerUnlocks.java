@@ -12,12 +12,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerUnlocks {
+    public static int AMOUNT_COMMON = 25;
+    public static int AMOUNT_UNCOMMON = 50;
+    public static int AMOUNT_RARE = 75;
+    public static int AMOUNT_VERY_RARE = 125;
+    public static int AMOUNT_LEGENDARY = 250;
+
     private final int AMOUNT_NEEDED_1 = 7;
     private final int AMOUNT_NEEDED_2 = 7;
     private final int AMOUNT_NEEDED_3 = 7;
     private final int AMOUNT_NEEDED_4 = 7;
     private AscensionBingo plugin;
     private Player player;
+    private PlayerData playerData;
     private int tier1Unlocks;
     private int tier2Unlocks;
     private int tier3Unlocks;
@@ -26,9 +33,10 @@ public class PlayerUnlocks {
 
     private int unlockTokens;
     private Map<String, Integer> UnlocksMap;
-    public PlayerUnlocks(AscensionBingo plugin, Player player) {
+    public PlayerUnlocks(AscensionBingo plugin, PlayerData playerData) {
         this.plugin = plugin;
-        this.player = player;
+        this.player = playerData.getPlayer();
+        this.playerData = playerData;
         this.tier1Unlocks = 0;
         this.tier2Unlocks = 0;
         this.tier3Unlocks = 0;
@@ -158,8 +166,15 @@ public class PlayerUnlocks {
     }
 
     public void addUnlockTokens(int unlockTokens) {
-        player.sendMessage(TextUtil.makeText("You have earned " + unlockTokens + " Unlock Token", TextUtil.AQUA));
-        this.unlockTokens += unlockTokens;
+        addUnlockTokens(unlockTokens, false);
 
+    }
+
+    public void addUnlockTokens(int unlockTokens, boolean msg) {
+        if (msg) {
+            player.sendMessage(TextUtil.makeText("You have earned " + unlockTokens + " Souls", TextUtil.AQUA));
+        }
+        this.unlockTokens += unlockTokens;
+        playerData.getPlayerScoreboard().updateGameBoard();
     }
 }

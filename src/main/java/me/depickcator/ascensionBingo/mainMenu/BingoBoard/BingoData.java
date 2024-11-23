@@ -5,6 +5,7 @@ import me.depickcator.ascensionBingo.General.SoundUtil;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.ItemList;
 import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import me.depickcator.ascensionBingo.Teams.TeamUtil;
 import net.kyori.adventure.text.Component;
@@ -75,7 +76,7 @@ public class BingoData {
             score.setScore(0);
 
 //            player.setScoreboard(bingoScoreboard);
-            Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).setDisplaySlot(DisplaySlot.SIDEBAR);
+//            Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).setDisplaySlot(DisplaySlot.SIDEBAR);
         }
 //        logger.info("Reset Players in BingoData");
     }
@@ -148,7 +149,7 @@ public class BingoData {
         p.sendMessage(text);
         p.giveExp(7);
         SoundUtil.playHighPitchPling(p);
-        pD.getPlayerUnlocks().addUnlockTokens(1);
+        pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY);
         p.addPotionEffect(effect);
     }
 
@@ -157,7 +158,7 @@ public class BingoData {
         for (Player p : otherTeamMembers) {
             p.sendMessage(text);
             SoundUtil.playHighPitchPling(p);
-            Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerUnlocks().addUnlockTokens(1);
+            Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY, true);
             p.addPotionEffect(effect);
         }
     }
@@ -256,7 +257,7 @@ public class BingoData {
     }
 
     public ArrayList<Boolean> getItemsCompleted(Player player) {
-        return setArray(Objects.requireNonNull(player.getScoreboard().getObjective("bingo")).getScore(player.getName()));
+        return setArray(plugin.getServer().getScoreboardManager().getMainScoreboard().getObjective("bingo").getScore(player.getName()));
     }
 
 

@@ -19,9 +19,9 @@ public class PlayerData {
     private final Player player;
     private final AscensionBingo plugin;
 
-    //Unlocks
+    //Extra Player Data
     private final PlayerUnlocks playerUnlocks;
-
+    private final PlayerScoreboard playerScoreboard;
     private final PlayerTeam playerTeam;
     private final PlayerSkills playerSkills;
 
@@ -29,9 +29,10 @@ public class PlayerData {
     public PlayerData(Player player, AscensionBingo plugin) {
         this.player = player;
         this.plugin = plugin;
-        playerUnlocks = new PlayerUnlocks(this.plugin, this.player);
+        playerUnlocks = new PlayerUnlocks(this.plugin, this);
         playerTeam = new PlayerTeam(this.plugin, this);
         playerSkills = new PlayerSkills(this, plugin);
+        playerScoreboard = new PlayerScoreboard(this.plugin, this);
     }
 
     public void resetToLobby() {
@@ -59,6 +60,7 @@ public class PlayerData {
         player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 30 * 60 * 20, 4, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
         Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
         getMainMenuItem();
         giveStartingFood();
@@ -101,5 +103,9 @@ public class PlayerData {
 
     public PlayerSkills getPlayerSkills() {
         return playerSkills;
+    }
+
+    public PlayerScoreboard getPlayerScoreboard() {
+        return playerScoreboard;
     }
 }

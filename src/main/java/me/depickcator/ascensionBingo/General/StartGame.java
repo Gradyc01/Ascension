@@ -38,6 +38,7 @@ public class StartGame{
                         throw new NullPointerException("PlayerData is null");
                     }
                     pD.resetBeforeStartGame();
+                    pD.getPlayerScoreboard().makeGameBoard();
                 }
 
                 spreadAndSetWorldBorder();
@@ -133,6 +134,7 @@ public class StartGame{
 //                        p.sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut)
                         assert pD != null;
                         pD.resetAfterStartGame();
+                        plugin.getTimeline().startTimeline();
                     }
                 }, 120);
             }

@@ -27,6 +27,7 @@ public class ResetGame implements Runnable {
         WorldBorder border = plugin.getWorld().getWorldBorder();
         border.setSize(59999968, 0);
         resetPlayers();
+        plugin.getTimeline().resetTimeline();
         scheduler.runTaskLater(plugin, () -> {
             loadGameRules(plugin.getWorld());
             loadGameRules(plugin.getNether());

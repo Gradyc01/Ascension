@@ -70,6 +70,7 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
         Component title = Component.text("View Unlocks").color(TextColor.color(0,255,255));
         title = title.decoration(TextDecoration.ITALIC, false);
         buttonMeta.displayName(title);
+        buttonMeta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
         buttonMeta.setCustomModelData(3); // Use this when using the same item
         setGUIItems(inventory, button, buttonMeta,20);
     }
