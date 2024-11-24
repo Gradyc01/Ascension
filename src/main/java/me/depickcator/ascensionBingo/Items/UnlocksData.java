@@ -1,9 +1,11 @@
 package me.depickcator.ascensionBingo.Items;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.Items.Uncraftable.ShardOfTheFallen;
+import me.depickcator.ascensionBingo.Items.Craftable.Crafts;
+import me.depickcator.ascensionBingo.Items.Craftable.Vanilla.*;
+import me.depickcator.ascensionBingo.Items.Uncraftable.KitBook;
 import me.depickcator.ascensionBingo.Items.Uncraftable.XPTome.XPTome;
-import me.depickcator.ascensionBingo.Items.Unlocks.*;
+import me.depickcator.ascensionBingo.Items.Craftable.Unlocks.*;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class UnlocksData {
         Tier3Unlocks();
         Tier4Unlocks();
         Uncraftable();
+        Vanilla();
     }
 
 
@@ -71,10 +74,26 @@ public class UnlocksData {
 
     private void Tier4Unlocks() {
         tier4Unlocks.add(new Cornucopia(plugin));
+        tier4Unlocks.add(new KingsRod(plugin));
     }
 
     private void Uncraftable() {
         new XPTome(plugin);
+        new KitBook();
+    }
+
+    private void Vanilla() {
+        new WoodenSword(plugin);
+        new StoneSword(plugin);
+        new IronSword(plugin);
+        new DiamondSword(plugin);
+        new NetheriteSword(plugin);
+        new WoodenAxe(plugin);
+        new StoneAxe(plugin);
+        new IronAxe(plugin);
+        new DiamondAxe(plugin);
+        new NetheriteAxe(plugin);
+        new Shield(plugin);
     }
 
     public Pair<Crafts, Integer> findUnlock(String displayName) {

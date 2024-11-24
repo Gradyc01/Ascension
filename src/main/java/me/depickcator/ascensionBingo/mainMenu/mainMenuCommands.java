@@ -1,7 +1,9 @@
 package me.depickcator.ascensionBingo.mainMenu;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoBoardGUI;
+import me.depickcator.ascensionBingo.mainMenu.Command.CommandGUI;
 import me.depickcator.ascensionBingo.mainMenu.Unlocks.UnlocksGUI_1;
 import me.depickcator.ascensionBingo.mainMenu.Unlocks.UnlocksGUI_2;
 import org.bukkit.command.Command;
@@ -36,6 +38,9 @@ public class mainMenuCommands implements CommandExecutor {
             }
             case "unlocks-2" -> {
                 new UnlocksGUI_2(ab, p);
+            }
+            case "commands" -> {
+                new CommandGUI(ab, PlayerUtil.getPlayerData(p));
             }
             default -> {
                 return false;

@@ -1,6 +1,5 @@
 package me.depickcator.ascensionBingo.General;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -8,7 +7,6 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
-import org.bukkit.scoreboard.*;
 
 import static me.depickcator.ascensionBingo.General.BuildLobby.fillArea;
 
@@ -17,9 +15,11 @@ public class LoadGame implements Runnable {
     Player player;
     ArmorStand spawnCoordsArmorStand;
     public final static String spawnCoordsArmorStandName = "SpawnCoords";
-    public LoadGame(AscensionBingo plugin, Player player) {
+    private Location spawnCoordsLocation;
+    public LoadGame(AscensionBingo plugin, Player player, Location loc) {
         this.plugin = plugin;
         this.player = player;
+        this.spawnCoordsLocation = loc;
         plugin.setBingoData(new BingoData(plugin));
         plugin.getGameState().setCurrentState(GameStates.LOBBY);
 
@@ -44,7 +44,7 @@ public class LoadGame implements Runnable {
     }
 
     private ArmorStand setSpawnCoordsArmorStand() {
-        Location loc = player.getLocation();
+        Location loc = spawnCoordsLocation;
         return ArmorStandUtil.makeMarkerArmorStand(loc, plugin.getWorld(), spawnCoordsArmorStandName);
     }
 

@@ -1,14 +1,10 @@
 package me.depickcator.ascensionBingo.Skills;
 
-import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SkillRewards {
     private ArrayList<ItemStack> items;
@@ -45,7 +41,6 @@ public class SkillRewards {
 
     private void giveItems(PlayerData pD) {
         Player p = pD.getPlayer();
-        PlayerInventory inv = p.getInventory();
         for (ItemStack i : items) {
 //            HashMap<Integer, ItemStack> remain = inv.addItem(i);
 //            if (!remain.isEmpty()) {

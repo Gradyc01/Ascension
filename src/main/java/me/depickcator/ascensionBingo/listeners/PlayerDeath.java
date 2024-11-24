@@ -1,7 +1,6 @@
 package me.depickcator.ascensionBingo.listeners;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.Material;

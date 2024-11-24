@@ -2,7 +2,7 @@ package me.depickcator.ascensionBingo.mainMenu.Unlocks;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.TextUtil;
-import me.depickcator.ascensionBingo.Items.Unlocks.Crafts;
+import me.depickcator.ascensionBingo.Items.Craftable.Crafts;
 import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -64,7 +64,7 @@ public interface UnlocksGUI {
             purchaseLore = new ArrayList<>();
         }
 
-        Component costText = TextUtil.makeText("[" + craft.getCraftCost() + " Unlock Token]", TextUtil.GOLD);
+        Component costText = TextUtil.makeText("[" + craft.getCraftCost() + " Souls]", TextUtil.GOLD);
         purchaseLore.add(costText);
         return purchaseLore;
     }

@@ -1,6 +1,7 @@
 package me.depickcator.ascensionBingo.General;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,7 +27,7 @@ public class GameCommand implements CommandExecutor {
         if (!(commandSender instanceof Player)) {
             return false;
         }
-        if (strings.length != 1) return false;
+        if (strings.length != 1 && strings.length != 4) return false;
 
         Player p = ((Player) commandSender).getPlayer();
         try {
@@ -50,7 +51,12 @@ public class GameCommand implements CommandExecutor {
                 forceStartGame(p);
             }
             case "load" -> {
-                loadGame(p);
+                if (strings.length == 4) {
+                    loadGame(p, Integer.parseInt(strings[1]), Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));
+                } else {
+                    loadGame(p, p.getLocation());
+                }
+
             }
             default -> {
                 p.sendMessage("ERRORED");
@@ -67,11 +73,13 @@ public class GameCommand implements CommandExecutor {
         new ResetGame(ab, p);
     }
 
-    private void loadGame(Player p) {
-        // ab.setBingoData(new BingoData(ab));
-        new LoadGame(ab, p);
-//        resetGame(p);
-        // ab.getGameState().setCurrentState(GameStates.LOBBY);
+    private void loadGame(Player p, int x, int y, int z) {
+        Location loc = new Location(p.getWorld(), x + 0.5, y, z + 0.5);
+        loadGame(p, loc);
+    }
+
+    private void loadGame(Player p, Location loc) {
+        new LoadGame(ab, p, loc);
         p.sendMessage("Successfully loaded game");
     }
 

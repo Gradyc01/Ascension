@@ -78,10 +78,7 @@ public class BingoData {
             Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
             score.setScore(0);
 
-//            player.setScoreboard(bingoScoreboard);
-//            Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).setDisplaySlot(DisplaySlot.SIDEBAR);
         }
-//        logger.info("Reset Players in BingoData");
     }
 
     private boolean containsItem(ItemStack item1, ItemStack item2) {
@@ -144,6 +141,7 @@ public class BingoData {
         if (newLines > oldLines) {
             Team team = playerData.getPlayerTeam().getTeam();
             for (int i = 0; i < newLines - oldLines; i++) {
+                playerData.getPlayerTeam().getTeam().getTeamStats().addGameScore(3);
                 ArrayList<Player> teamMembers = team.getTeamMembers();
                 for (Player teamMember : teamMembers) {
                     teamMember.sendMessage(TextUtil.topBorder(TextUtil.YELLOW));
@@ -202,6 +200,7 @@ public class BingoData {
             plugin.getServer().broadcast(TextUtil.makeText("UNABLE TO FIND PLAYER DATA Bingo data::giveReward", TextUtil.RED));
             return;
         }
+        pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
         //Individual Rewards
         soloRewards(obtainedItemTextSolo.append(obtainedItemTextItem), rewardEffect, p, pD);
         //Other Teammates rewards
@@ -213,6 +212,7 @@ public class BingoData {
         p.giveExp(7);
         SoundUtil.playHighPitchPling(p);
         pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY, true);
+
         PlayerUtil.giveItem(p, XPTome.result());
         p.addPotionEffect(effect);
     }

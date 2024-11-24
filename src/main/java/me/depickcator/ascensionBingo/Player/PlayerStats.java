@@ -9,24 +9,42 @@ public class PlayerStats {
     private final PlayerData playerData;
 
     //Statistics
-    private int Kills;
+    private int kills;
+
+    //Settings
+    private boolean nightVision;
+    private boolean foodDrops;
     public PlayerStats(AscensionBingo plugin, PlayerData playerData) {
         this.plugin = plugin;
         this.player = playerData.getPlayer();
         this.playerData = playerData;
-        Kills = 0;
+        kills = 0;
+        nightVision = false;
+        foodDrops = false;
     }
 
     public void addKill() {
-        Kills++;
+        kills++;
         playerData.getPlayerScoreboard().updateGameBoard();
     }
 
     public int getKills() {
-        return Kills;
+        return kills;
     }
 
-//    public void setKills(int kills) {
-//        Kills = kills;
-//    }
+    public void nightVisionSwitch() {
+        nightVision = !nightVision;
+    }
+
+    public boolean isNightVision() {
+        return nightVision;
+    }
+
+    public void foodDropsSwitch() {
+        foodDrops = !foodDrops;
+    }
+
+    public boolean isFoodDrops() {
+        return foodDrops;
+    }
 }

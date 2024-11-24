@@ -9,12 +9,14 @@ public class TeamStats {
     //Statistics
     private int itemsObtained;
     private int linesObtained;
+    private int gameScore;
 
     public TeamStats(AscensionBingo plugin, Team team) {
         this.plugin = plugin;
         this.team = team;
         itemsObtained = 0;
         linesObtained = 0;
+        gameScore = 0;
     }
 
     public int getLinesObtained() {
@@ -29,14 +31,15 @@ public class TeamStats {
         return itemsObtained;
     }
 
-//    public void setItemsObtained(int itemsObtained) {
-//        this.itemsObtained = itemsObtained;
-//    }
-
     public void addItemObtained() {
         this.itemsObtained++;
     }
-//    public void addLinesObtained(int lines) {
-//        this.linesObtained+=lines;
-//    }
+
+    public int getGameScore() {
+        return gameScore;
+    }
+
+    public void addGameScore(int num) {
+        gameScore += num;
+    }
 }

@@ -103,7 +103,8 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 0.0f);
             }
             case Material.REPEATING_COMMAND_BLOCK -> {
-                p.sendMessage(Component.text("PlaceHolder Text For Commands"));
+                p.performCommand("openmenu commands");
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 0.0f);
             }
             case Material.DIAMOND_SWORD -> {
                 p.performCommand("openmenu unlocks-1");

@@ -1,6 +1,7 @@
 package me.depickcator.ascensionBingo.Interfaces;
 
 import me.depickcator.ascensionBingo.General.TextUtil;
+import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -16,7 +17,6 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public interface AscensionGUI {
 
@@ -48,6 +48,7 @@ public interface AscensionGUI {
     }
 
     default void playerHeadButton(Inventory inventory, int index, Player player) {
+        PlayerData playerData = PlayerUtil.getPlayerData(player);
         ItemStack button = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta headMeta = (SkullMeta) button.getItemMeta();
         headMeta.setPlayerProfile(player.getPlayerProfile());
@@ -56,9 +57,14 @@ public interface AscensionGUI {
         headMeta.displayName(title);
 
         List<Component> lore = new ArrayList<>();
-        int unlockTokens = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks().getUnlockTokens();
-        Component unlockTokensText = TextUtil.makeText("Souls: " + unlockTokens, TextUtil.BLUE);
+        Component unlockTokensText = TextUtil.makeText("Souls:    " + playerData.getPlayerUnlocks().getUnlockTokens(), TextUtil.BLUE);
+        Component combatText = TextUtil.makeText("Combat:   " + playerData.getPlayerSkills().getCombat().getExpOverTotalNeeded(), TextUtil.BLUE);
+        Component miningText = TextUtil.makeText("Mining:   " + playerData.getPlayerSkills().getMining().getExpOverTotalNeeded(), TextUtil.BLUE);
+        Component foragingText = TextUtil.makeText("Foraging: " + playerData.getPlayerSkills().getForaging().getExpOverTotalNeeded(), TextUtil.BLUE);
         lore.add(unlockTokensText);
+        lore.add(combatText);
+        lore.add(miningText);
+        lore.add(foragingText);
 
         headMeta.lore(lore);
         headMeta.setCustomModelData(0);
@@ -75,6 +81,15 @@ public interface AscensionGUI {
         buttonMeta.setCustomModelData(2);
         button.setItemMeta(buttonMeta);
         return button;
+    }
+
+    default ItemStack goBackItem() {
+        ItemStack item = new ItemStack(Material.ARROW);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText("Go Back", TextUtil.DARK_GRAY));
+        meta.setCustomModelData(999999);
+        item.setItemMeta(meta);
+        return item;
     }
 
     String getGUIName();

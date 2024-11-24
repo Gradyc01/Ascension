@@ -4,7 +4,7 @@ import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.SoundUtil;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
-import me.depickcator.ascensionBingo.Items.Unlocks.Crafts;
+import me.depickcator.ascensionBingo.Items.Craftable.Crafts;
 import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;

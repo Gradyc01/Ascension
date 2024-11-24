@@ -4,7 +4,7 @@ import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.SoundUtil;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
-import me.depickcator.ascensionBingo.Items.Unlocks.Crafts;
+import me.depickcator.ascensionBingo.Items.Craftable.Crafts;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 
@@ -22,7 +22,7 @@ public class PlayerUnlocks {
     private final int AMOUNT_NEEDED_2 = 7;
     private final int AMOUNT_NEEDED_3 = 7;
     private final int AMOUNT_NEEDED_4 = 7;
-    private AscensionBingo plugin;
+    private final AscensionBingo plugin;
     private Player player;
     private PlayerData playerData;
     private int tier1Unlocks;
