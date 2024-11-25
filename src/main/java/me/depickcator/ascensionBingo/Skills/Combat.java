@@ -3,6 +3,7 @@ package me.depickcator.ascensionBingo.Skills;
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -42,6 +43,7 @@ public class Combat implements Skills {
     @Override
     public void addExp(int amount) {
         experience+=amount;
+        playerData.getPlayerUnlocks().addUnlockTokens(amount);
         if (canLevelUp()) {
             levelUp(++level);
         }
@@ -99,7 +101,7 @@ public class Combat implements Skills {
                 )
         );
         skillRewards.setItems(rewards);
-        skillRewards.setUnlockTokens(1);
+        skillRewards.setUnlockTokens(PlayerUnlocks.AMOUNT_COMMON);
         return skillRewards;
     }
 
@@ -111,7 +113,7 @@ public class Combat implements Skills {
                 )
         );
         skillRewards.setItems(rewards);
-        skillRewards.setUnlockTokens(2);
+        skillRewards.setUnlockTokens(PlayerUnlocks.AMOUNT_UNCOMMON);
         return skillRewards;
     }
 
@@ -125,7 +127,7 @@ public class Combat implements Skills {
                 )
         );
         skillRewards.setItems(rewards);
-        skillRewards.setUnlockTokens(3);
+        skillRewards.setUnlockTokens(PlayerUnlocks.AMOUNT_RARE);
         return skillRewards;
     }
 
@@ -139,7 +141,7 @@ public class Combat implements Skills {
                 )
         );
         skillRewards.setItems(rewards);
-        skillRewards.setUnlockTokens(3);
+        skillRewards.setUnlockTokens(PlayerUnlocks.AMOUNT_VERY_RARE);
         return skillRewards;
     }
 
@@ -151,7 +153,7 @@ public class Combat implements Skills {
                 )
         );
         skillRewards.setItems(rewards);
-        skillRewards.setUnlockTokens(4);
+        skillRewards.setUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY);
         return skillRewards;
     }
 

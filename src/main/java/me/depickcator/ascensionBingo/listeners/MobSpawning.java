@@ -21,7 +21,7 @@ public class MobSpawning implements Listener {
             EntityType.ZOMBIE, EntityType.SKELETON, EntityType.CREEPER, EntityType.SPIDER, EntityType.ENDERMAN,
             EntityType.PILLAGER, EntityType.BLAZE, EntityType.GHAST, EntityType.MAGMA_CUBE, EntityType.WITHER_SKELETON,
             EntityType.VINDICATOR, EntityType.ZOMBIE_VILLAGER, EntityType.ZOMBIFIED_PIGLIN, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE,
-            EntityType.SLIME, EntityType.HUSK, EntityType.DROWNED
+            EntityType.SLIME, EntityType.HUSK, EntityType.DROWNED, EntityType.STRAY
     );
     public MobSpawning(AscensionBingo plugin) {
         superMobs = new ArrayList<>();

@@ -17,7 +17,7 @@ commands:
     description: team up with other players
   printPlayerData:
     description: prints the player Data
-  unlockCraft:
+  timeline:
     description: unlocks a craft for a certain player
   setUnlockTokens:
     description: testing purposes only

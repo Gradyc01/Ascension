@@ -3,7 +3,7 @@ package me.depickcator.ascensionBingo.mainMenu.Unlocks;
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
-import me.depickcator.ascensionBingo.Items.Unlocks.Crafts;
+import me.depickcator.ascensionBingo.Items.Craftable.Crafts;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;

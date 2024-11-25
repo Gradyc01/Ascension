@@ -27,6 +27,7 @@ public class ResetGame implements Runnable {
         WorldBorder border = plugin.getWorld().getWorldBorder();
         border.setSize(59999968, 0);
         resetPlayers();
+        plugin.getTimeline().resetTimeline();
         scheduler.runTaskLater(plugin, () -> {
             loadGameRules(plugin.getWorld());
             loadGameRules(plugin.getNether());
@@ -46,7 +47,6 @@ public class ResetGame implements Runnable {
         world.setGameRule(GameRule.SPAWN_RADIUS, 0);
         world.setGameRule(GameRule.KEEP_INVENTORY, true);
         world.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
-        // world.setGameRule(GameRule.DO_LIMITED_CRAFTING, true); //TODO: REMOVE WHEN DONE
         world.setGameRule(GameRule.NATURAL_REGENERATION, false);
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         // world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, true);

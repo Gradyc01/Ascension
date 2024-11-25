@@ -9,6 +9,7 @@ import me.depickcator.ascensionBingo.LootTables.Blocks.BlockUtil;
 import me.depickcator.ascensionBingo.LootTables.Entities.EntityUtil;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Teams.TeamCommand;
+import me.depickcator.ascensionBingo.Timeline.Timeline;
 import me.depickcator.ascensionBingo.listeners.*;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoData;
 import me.depickcator.ascensionBingo.mainMenu.OpenMainMenuCommand;
@@ -39,6 +40,7 @@ public final class AscensionBingo extends JavaPlugin {
     BingoData bingoData;
     UnlocksData unlocksData;
     BukkitScheduler scheduler;
+    me.depickcator.ascensionBingo.Timeline.Timeline timeline;
     World world;
     World nether;
     Logger logger = getLogger();
@@ -55,6 +57,7 @@ public final class AscensionBingo extends JavaPlugin {
         new BlockUtil(this);
         scheduler = this.getServer().getScheduler();
         gameState = new GameStates(this);
+        timeline = new Timeline(this);
         world = Bukkit.getWorld("world");
         nether = Bukkit.getWorld("world_nether");
     }
@@ -73,7 +76,7 @@ public final class AscensionBingo extends JavaPlugin {
         Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands(this));
         Objects.requireNonNull(getCommand("party")).setExecutor(new TeamCommand(this));
         Objects.requireNonNull(getCommand("printPlayerData")).setExecutor(new printPlayerDataCommand(this));
-        Objects.requireNonNull(getCommand("unlockCraft")).setExecutor(new UnlockCraft(this));
+        Objects.requireNonNull(getCommand("timeline")).setExecutor(new setTimeline(this));
         Objects.requireNonNull(getCommand("setUnlockTokens")).setExecutor(new setUnlockToken(this));
         Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp(this));
     }
@@ -82,6 +85,8 @@ public final class AscensionBingo extends JavaPlugin {
         Server server = getServer();
         PluginManager manager = server.getPluginManager();
 //        manager.registerEvents(new onInventoryChange(), this);
+        manager.registerEvents(new ProjectileAttacks(), this);
+        manager.registerEvents(new PlayerJoinLeave(this), this);
         manager.registerEvents(new MobSpawning(this), this);
         manager.registerEvents(new InventoryClose(), this);
         manager.registerEvents(new InventoryClickListener(this), this);
@@ -129,5 +134,9 @@ public final class AscensionBingo extends JavaPlugin {
 
     public static void setSpawn(Location spawn) {
         AscensionBingo.spawn = spawn;
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
     }
 }

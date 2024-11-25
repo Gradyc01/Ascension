@@ -1,18 +1,22 @@
 package me.depickcator.ascensionBingo.Items;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.Items.Unlocks.*;
+import me.depickcator.ascensionBingo.Items.Craftable.Crafts;
+import me.depickcator.ascensionBingo.Items.Craftable.Vanilla.*;
+import me.depickcator.ascensionBingo.Items.Uncraftable.KitBook;
+import me.depickcator.ascensionBingo.Items.Uncraftable.XPTome.XPTome;
+import me.depickcator.ascensionBingo.Items.Craftable.Unlocks.*;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 
 public class UnlocksData {
-    private AscensionBingo plugin;
-    private ArrayList<Crafts> tier1Unlocks;
-    private ArrayList<Crafts> tier2Unlocks;
-    private ArrayList<Crafts> tier3Unlocks;
-    private ArrayList<Crafts> tier4Unlocks;
-    private ArrayList<Crafts> tier5Unlocks;
+    private final AscensionBingo plugin;
+    private final ArrayList<Crafts> tier1Unlocks;
+    private final ArrayList<Crafts> tier2Unlocks;
+    private final ArrayList<Crafts> tier3Unlocks;
+    private final ArrayList<Crafts> tier4Unlocks;
+    private final ArrayList<Crafts> tier5Unlocks;
 
     public UnlocksData(AscensionBingo plugin) {
         this.plugin = plugin;
@@ -25,6 +29,8 @@ public class UnlocksData {
         Tier2Unlocks();
         Tier3Unlocks();
         Tier4Unlocks();
+        Uncraftable();
+        Vanilla();
     }
 
 
@@ -55,7 +61,7 @@ public class UnlocksData {
 
     private void Tier3Unlocks() {
         tier3Unlocks.add(new Tarnhelm(plugin));
-        tier3Unlocks.add(new DragonArmor(plugin));
+        tier3Unlocks.add(new KingsRod(plugin));
         tier3Unlocks.add(new BookOfPower(plugin));
         tier3Unlocks.add(new BookOfProtection(plugin));
         tier3Unlocks.add(new BookOfSharpness(plugin));
@@ -68,6 +74,31 @@ public class UnlocksData {
 
     private void Tier4Unlocks() {
         tier4Unlocks.add(new Cornucopia(plugin));
+        tier4Unlocks.add(new DragonArmor(plugin));
+        tier4Unlocks.add(new HideOfLeviathan(plugin));
+        tier4Unlocks.add(new SevenLeagueBoots(plugin));
+        tier4Unlocks.add(new Panacea(plugin));
+        tier4Unlocks.add(new Dread(plugin));
+        tier4Unlocks.add(new CubeConverter(plugin));
+    }
+
+    private void Uncraftable() {
+        new XPTome(plugin);
+        new KitBook();
+    }
+
+    private void Vanilla() {
+        new WoodenSword(plugin);
+        new StoneSword(plugin);
+        new IronSword(plugin);
+        new DiamondSword(plugin);
+        new NetheriteSword(plugin);
+        new WoodenAxe(plugin);
+        new StoneAxe(plugin);
+        new IronAxe(plugin);
+        new DiamondAxe(plugin);
+        new NetheriteAxe(plugin);
+        new Shield(plugin);
     }
 
     public Pair<Crafts, Integer> findUnlock(String displayName) {

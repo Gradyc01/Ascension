@@ -4,12 +4,16 @@ import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.SoundUtil;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.ItemList;
+import me.depickcator.ascensionBingo.Items.Uncraftable.XPTome.XPTome;
 import me.depickcator.ascensionBingo.Player.PlayerData;
+import me.depickcator.ascensionBingo.Player.PlayerUnlocks;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
+import me.depickcator.ascensionBingo.Teams.Team;
 import me.depickcator.ascensionBingo.Teams.TeamUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -74,10 +78,7 @@ public class BingoData {
             Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
             score.setScore(0);
 
-//            player.setScoreboard(bingoScoreboard);
-            Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).setDisplaySlot(DisplaySlot.SIDEBAR);
         }
-//        logger.info("Reset Players in BingoData");
     }
 
     private boolean containsItem(ItemStack item1, ItemStack item2) {
@@ -105,7 +106,6 @@ public class BingoData {
 
         if (items.size() != 25) {
             p.sendMessage(Component.text("The board has not been initialized yet").color(TextColor.color(255,0,0)));
-//            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_TELEPORT, 1.0f, 0f);
             SoundUtil.playErrorSoundEffect(p);
             return;
         }
@@ -119,14 +119,76 @@ public class BingoData {
                     j.setAmount(j.getAmount() - 1);
                     addScore(24 - i, p);
                     giveRewards(p, item);
+                    checkForLineCompletion(p); //Also adds a item obtained (idk where else to put it)
+                    updateScoreboard(p);
                     new BingoBoardGUI(plugin, p);
                     return;
                 }
             }
         }
-        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_TELEPORT, 1.0f, 0f);
+        SoundUtil.playErrorSoundEffect(p);
         p.sendMessage(Component.text("There were no items to claim").color(TextColor.color(255,0,0)));
     }
+
+    private void checkForLineCompletion(Player p) {
+        PlayerData playerData = PlayerUtil.getPlayerData(p);
+        playerData.getPlayerTeam().getTeam().getTeamStats().addItemObtained();
+        ArrayList<Boolean> hasItems = getItemsCompleted(playerData.getPlayer());
+
+        int oldLines = playerData.getPlayerTeam().getTeam().getTeamStats().getLinesObtained();
+        int newLines = calculateTotalLines(hasItems);
+        // plugin.getServer().broadcast(TextUtil.makeText(oldLines + "           " + newLines, TextUtil.BLUE));
+        if (newLines > oldLines) {
+            Team team = playerData.getPlayerTeam().getTeam();
+            for (int i = 0; i < newLines - oldLines; i++) {
+                playerData.getPlayerTeam().getTeam().getTeamStats().addGameScore(3);
+                ArrayList<Player> teamMembers = team.getTeamMembers();
+                for (Player teamMember : teamMembers) {
+                    teamMember.sendMessage(TextUtil.topBorder(TextUtil.YELLOW));
+                    teamMember.sendMessage(TextUtil.makeText("Your team has completed a line!", TextUtil.BLUE));
+                    teamMember.sendMessage(TextUtil.bottomBorder(TextUtil.YELLOW));
+                    teamMember.playSound(teamMember.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
+                    PlayerUtil.giveItem(teamMember, new ItemStack(Material.NETHER_STAR));
+                    updateScoreboard(teamMember);
+                }
+            }
+            team.getTeamStats().setLinesObtained(newLines);
+        }
+
+    }
+
+    private void updateScoreboard(Player p) {
+        PlayerData playerData = PlayerUtil.getPlayerData(p);
+        for (Player player : playerData.getPlayerTeam().getTeam().getTeamMembers()) {
+            Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerScoreboard().updateGameBoard();
+        }
+    }
+
+    private int calculateTotalLines(ArrayList<Boolean> hasItems) {
+        int lines = 0;
+        lines += checkLine(0, 1, 2, 3, 4, hasItems);
+        lines += checkLine(5, 6, 7, 8, 9, hasItems);
+        lines += checkLine(10, 11, 12, 13, 14, hasItems);
+        lines += checkLine(15, 16, 17, 18, 19, hasItems);
+        lines += checkLine(20, 21, 22, 23, 24, hasItems);
+        lines += checkLine(0, 5, 10, 15, 20, hasItems);
+        lines += checkLine(1, 6, 11, 16, 21, hasItems);
+        lines += checkLine(2, 7, 12, 17, 22, hasItems);
+        lines += checkLine(3, 8, 13, 18, 23, hasItems);
+        lines += checkLine(4, 9, 14, 19, 24, hasItems);
+        lines += checkLine(0, 6, 12, 18, 24, hasItems);
+        lines += checkLine(4, 8, 12, 16, 20, hasItems);
+        return lines;
+    }
+
+    private int checkLine(int one, int two, int three, int four, int five,ArrayList<Boolean> hasItems) {
+        if (hasItems.get(one) && hasItems.get(two) && hasItems.get(three) && hasItems.get(four) && hasItems.get(five)) {
+            return 1;
+        }
+        return 0;
+    }
+
+
 
     private void giveRewards(Player p, ItemStack item) {
         Component obtainedItemTextSolo = TextUtil.makeText("You have obtained an Item! ", TextUtil.GREEN);
@@ -138,6 +200,7 @@ public class BingoData {
             plugin.getServer().broadcast(TextUtil.makeText("UNABLE TO FIND PLAYER DATA Bingo data::giveReward", TextUtil.RED));
             return;
         }
+        pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
         //Individual Rewards
         soloRewards(obtainedItemTextSolo.append(obtainedItemTextItem), rewardEffect, p, pD);
         //Other Teammates rewards
@@ -148,7 +211,9 @@ public class BingoData {
         p.sendMessage(text);
         p.giveExp(7);
         SoundUtil.playHighPitchPling(p);
-        pD.getPlayerUnlocks().addUnlockTokens(1);
+        pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY, true);
+
+        PlayerUtil.giveItem(p, XPTome.result());
         p.addPotionEffect(effect);
     }
 
@@ -157,7 +222,8 @@ public class BingoData {
         for (Player p : otherTeamMembers) {
             p.sendMessage(text);
             SoundUtil.playHighPitchPling(p);
-            Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerUnlocks().addUnlockTokens(1);
+            PlayerUtil.giveItem(p, XPTome.result());
+            Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_VERY_RARE, true);
             p.addPotionEffect(effect);
         }
     }
@@ -256,7 +322,7 @@ public class BingoData {
     }
 
     public ArrayList<Boolean> getItemsCompleted(Player player) {
-        return setArray(Objects.requireNonNull(player.getScoreboard().getObjective("bingo")).getScore(player.getName()));
+        return setArray(plugin.getServer().getScoreboardManager().getMainScoreboard().getObjective("bingo").getScore(player.getName()));
     }
 
 

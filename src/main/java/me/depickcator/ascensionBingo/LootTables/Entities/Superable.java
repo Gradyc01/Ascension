@@ -1,6 +1,5 @@
 package me.depickcator.ascensionBingo.LootTables.Entities;
 
-import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.EntityEquipment;

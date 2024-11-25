@@ -1,6 +1,7 @@
 package me.depickcator.ascensionBingo.Player;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.Items.Uncraftable.KitBook;
 import me.depickcator.ascensionBingo.mainMenu.GiveMainMenuItem;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,19 +20,23 @@ public class PlayerData {
     private final Player player;
     private final AscensionBingo plugin;
 
-    //Unlocks
+    //Extra Player Data
     private final PlayerUnlocks playerUnlocks;
-
+    private final PlayerScoreboard playerScoreboard;
     private final PlayerTeam playerTeam;
     private final PlayerSkills playerSkills;
+    private final PlayerStats playerStats;
 
+    //Stats
 
     public PlayerData(Player player, AscensionBingo plugin) {
         this.player = player;
         this.plugin = plugin;
-        playerUnlocks = new PlayerUnlocks(this.plugin, this.player);
+        playerUnlocks = new PlayerUnlocks(this.plugin, this);
         playerTeam = new PlayerTeam(this.plugin, this);
         playerSkills = new PlayerSkills(this, plugin);
+        playerStats = new PlayerStats(this.plugin, this);
+        playerScoreboard = new PlayerScoreboard(this.plugin, this);
     }
 
     public void resetToLobby() {
@@ -48,19 +53,20 @@ public class PlayerData {
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 0, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, Integer.MAX_VALUE, 128, false, false));
         getMainMenuItem();
+        getKitBook();
         Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke @s everything");
     }
 
     public void resetAfterStartGame() {
-        clearInventoryAndEffects();
+        player.clearActivePotionEffects();
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120 * 20, 1));
         player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 30 * 60 * 20, 4, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
         Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
-        getMainMenuItem();
         giveStartingFood();
     }
 
@@ -82,6 +88,10 @@ public class PlayerData {
         player.getInventory().setItem(8, GiveMainMenuItem.getMenuItem());
     }
 
+    private void getKitBook() {
+        player.getInventory().setItem(7, KitBook.item());
+    }
+
     private void addLobbyPotionEffects() {
         player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, Integer.MAX_VALUE, 4, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, Integer.MAX_VALUE, 0, false, false));
@@ -101,5 +111,13 @@ public class PlayerData {
 
     public PlayerSkills getPlayerSkills() {
         return playerSkills;
+    }
+
+    public PlayerScoreboard getPlayerScoreboard() {
+        return playerScoreboard;
+    }
+
+    public PlayerStats getPlayerStats() {
+        return playerStats;
     }
 }

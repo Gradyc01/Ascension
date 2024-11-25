@@ -70,6 +70,7 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
         Component title = Component.text("View Unlocks").color(TextColor.color(0,255,255));
         title = title.decoration(TextDecoration.ITALIC, false);
         buttonMeta.displayName(title);
+        buttonMeta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
         buttonMeta.setCustomModelData(3); // Use this when using the same item
         setGUIItems(inventory, button, buttonMeta,20);
     }
@@ -102,7 +103,8 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 0.0f);
             }
             case Material.REPEATING_COMMAND_BLOCK -> {
-                p.sendMessage(Component.text("PlaceHolder Text For Commands"));
+                p.performCommand("openmenu commands");
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 0.0f);
             }
             case Material.DIAMOND_SWORD -> {
                 p.performCommand("openmenu unlocks-1");

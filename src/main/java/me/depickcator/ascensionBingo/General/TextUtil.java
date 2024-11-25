@@ -93,5 +93,14 @@ public class TextUtil {
 
     public static void errorMessage(Player p, String msg) {
         p.sendMessage(makeText(msg, RED));
+        SoundUtil.playErrorSoundEffect(p);
+    }
+
+    public static Component rightClickText() {
+        return TextUtil.makeText(" [Right Click]", TextUtil.GRAY);
+    }
+
+    public static void debugText(String text) {
+        Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, BLUE));
     }
 }
