@@ -11,12 +11,12 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.ArrayList;
 
 public class UnlocksData {
-    private AscensionBingo plugin;
-    private ArrayList<Crafts> tier1Unlocks;
-    private ArrayList<Crafts> tier2Unlocks;
-    private ArrayList<Crafts> tier3Unlocks;
-    private ArrayList<Crafts> tier4Unlocks;
-    private ArrayList<Crafts> tier5Unlocks;
+    private final AscensionBingo plugin;
+    private final ArrayList<Crafts> tier1Unlocks;
+    private final ArrayList<Crafts> tier2Unlocks;
+    private final ArrayList<Crafts> tier3Unlocks;
+    private final ArrayList<Crafts> tier4Unlocks;
+    private final ArrayList<Crafts> tier5Unlocks;
 
     public UnlocksData(AscensionBingo plugin) {
         this.plugin = plugin;
@@ -61,7 +61,7 @@ public class UnlocksData {
 
     private void Tier3Unlocks() {
         tier3Unlocks.add(new Tarnhelm(plugin));
-        tier3Unlocks.add(new DragonArmor(plugin));
+        tier3Unlocks.add(new KingsRod(plugin));
         tier3Unlocks.add(new BookOfPower(plugin));
         tier3Unlocks.add(new BookOfProtection(plugin));
         tier3Unlocks.add(new BookOfSharpness(plugin));
@@ -74,7 +74,12 @@ public class UnlocksData {
 
     private void Tier4Unlocks() {
         tier4Unlocks.add(new Cornucopia(plugin));
-        tier4Unlocks.add(new KingsRod(plugin));
+        tier4Unlocks.add(new DragonArmor(plugin));
+        tier4Unlocks.add(new HideOfLeviathan(plugin));
+        tier4Unlocks.add(new SevenLeagueBoots(plugin));
+        tier4Unlocks.add(new Panacea(plugin));
+        tier4Unlocks.add(new Dread(plugin));
+        tier4Unlocks.add(new CubeConverter(plugin));
     }
 
     private void Uncraftable() {

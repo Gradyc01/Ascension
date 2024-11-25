@@ -127,6 +127,7 @@ me\depickcator\ascensionBingo\LootTables\Entities\Superable.class
 me\depickcator\ascensionBingo\mainMenu\Command\Commands\FoodDrops.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\Nectar.class
 me\depickcator\ascensionBingo\LootTables\Blocks\Ores\RedstoneOre.class
+me\depickcator\ascensionBingo\listeners\ProjectileAttacks.class
 me\depickcator\ascensionBingo\Kits\ViewKitGUI.class
 me\depickcator\ascensionBingo\General\StartGame$6.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\DragonArmor.class
