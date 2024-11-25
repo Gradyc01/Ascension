@@ -14,11 +14,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 
-public class PlayerDeath implements Listener {
+public class PlayerCombat implements Listener {
     AscensionBingo plugin;
     private final String damageSourceKey = "lastDamageSource";
     private final String PLAYER_DAMAGE = "PLAYER_DAMAGE";
-    public PlayerDeath(AscensionBingo plugin) {
+    public PlayerCombat(AscensionBingo plugin) {
         this.plugin = plugin;
     }
 
@@ -55,11 +55,7 @@ public class PlayerDeath implements Listener {
             increaseKillCount(e);
         }
 
-        // Log or handle the cause of death as needed
         plugin.getLogger().info(victim.getName() + " died due to: " + cause);
-
-
-
 
         // Remove the metadata after use
         victim.removeMetadata(damageSourceKey, plugin);
@@ -74,7 +70,6 @@ public class PlayerDeath implements Listener {
     }
 
     private void dropHead(Player victim) {
-// Optionally, drop the player's skull
         ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         if (skullMeta != null) {

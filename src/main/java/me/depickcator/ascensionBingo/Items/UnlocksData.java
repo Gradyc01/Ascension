@@ -29,6 +29,7 @@ public class UnlocksData {
         Tier2Unlocks();
         Tier3Unlocks();
         Tier4Unlocks();
+        Tier5Unlocks();
         Uncraftable();
         Vanilla();
     }
@@ -80,6 +81,13 @@ public class UnlocksData {
         tier4Unlocks.add(new Panacea(plugin));
         tier4Unlocks.add(new Dread(plugin));
         tier4Unlocks.add(new CubeConverter(plugin));
+        tier4Unlocks.add(new ExplosivePropulsion(plugin));
+        tier4Unlocks.add(new Resurrection(plugin));
+        tier4Unlocks.add(new WeaverSilk(plugin));
+    }
+
+    private void Tier5Unlocks() {
+        tier5Unlocks.add(new CrimsonArtifact(plugin));
     }
 
     private void Uncraftable() {
