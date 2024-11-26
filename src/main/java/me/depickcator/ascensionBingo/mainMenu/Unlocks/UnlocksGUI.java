@@ -38,7 +38,7 @@ public interface UnlocksGUI {
                 meta = item.getItemMeta();
                 meta.displayName(Component.text(c.getDisplayName()).color(TextUtil.DARK_GREEN).decoration(TextDecoration.ITALIC, false));
             } else {
-                item = c.getResult();
+                item = c.getResult().clone();
                 meta = item.getItemMeta();
                 meta.displayName(Component.text(c.getDisplayName()).color(TextUtil.RED).decoration(TextDecoration.ITALIC, false));
                 meta.lore(addPurchaseLore(c, meta.lore()));

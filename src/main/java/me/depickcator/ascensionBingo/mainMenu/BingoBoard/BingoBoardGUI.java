@@ -2,6 +2,7 @@ package me.depickcator.ascensionBingo.mainMenu.BingoBoard;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
+import me.depickcator.ascensionBingo.mainMenu.OpenMainMenuCommand;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -35,6 +36,7 @@ public class BingoBoardGUI implements AscensionGUI {
         boardItems();
         claimItemButton();
         playerHeadButton(inventory, 49, p);
+        inventory.setItem(48, goBackItem());
 //        closeGUIButton(inventory, 49);
         if (player != null) {
             Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
@@ -101,9 +103,8 @@ public class BingoBoardGUI implements AscensionGUI {
             case Material.EMERALD -> {
                 ab.getBingoData().claimItem(p);
             }
-            case Material.BARRIER -> {
-//                inv.close();
-//                inv.remove(AscensionGUI.getCloseButton());
+            case Material.ARROW -> {
+                p.performCommand("open-main-menu");
             }
             default -> {
 

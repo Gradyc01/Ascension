@@ -12,6 +12,7 @@ import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -43,6 +44,7 @@ public class CommandGUI implements AscensionGUI {
         initializeButtons(new NightVision(), 16, true, playerData.getPlayerStats().isNightVision());
         initializeButtons(new FoodDrops(), 25, true, playerData.getPlayerStats().isFoodDrops());
         initializeButtons(new SendCoords(plugin), 10);
+        inventory.setItem(48, goBackItem());
         playerHeadButton(inventory, 49, player);
 
         Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
@@ -116,6 +118,10 @@ public class CommandGUI implements AscensionGUI {
             Commands c = map.get(item);
             c.uponEvent(event, playerData);
             new CommandGUI(plugin, playerData);
+            return;
+        }
+        if (item.equals(goBackItem())) {
+            p.performCommand("open-main-menu");
         }
 
 

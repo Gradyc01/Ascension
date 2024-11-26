@@ -1,5 +1,8 @@
 package me.depickcator.ascensionBingo.listeners;
 
+import me.depickcator.ascensionBingo.General.TextUtil;
+import me.depickcator.ascensionBingo.Interfaces.ShootsProjectiles;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,12 +16,16 @@ public class ProjectileAttacks implements Listener {
     }
 
     @EventHandler
-    public void onProjectileHit(EntityShootBowEvent event) {
+    public void onProjectileShot(EntityShootBowEvent event) {
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
         Player player = (Player) event.getEntity();
-
+        ShootsProjectiles shootsProjectiles = ShootsProjectiles.getProjectile(event.getBow());
+        if (shootsProjectiles != null) {
+            shootsProjectiles.applyKey(event);
+            return;
+        }
         if (event.getProjectile() instanceof Arrow) {
             setArrowDamage((Arrow) event.getProjectile(), player);
         }

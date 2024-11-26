@@ -27,7 +27,7 @@ public class LootTableGeneration implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (!plugin.getGameState().canBuild()) {
+        if (plugin.getGameState().canNotBuild()) {
             event.setCancelled(true);
             return;
         }

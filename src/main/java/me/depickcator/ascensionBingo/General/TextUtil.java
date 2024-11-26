@@ -48,6 +48,10 @@ public class TextUtil {
         return Title.title(title, subtitle, times);
     }
 
+    public static Component makeText(String text) {
+        return makeText(text, TextUtil.WHITE, false, false);
+    }
+
     public static Component makeText(String text, TextColor color) {
         return makeText(text, color, false, false);
     }

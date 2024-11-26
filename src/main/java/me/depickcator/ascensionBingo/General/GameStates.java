@@ -33,8 +33,8 @@ public class GameStates {
         this.currentState = currentState;
     }
 
-    public boolean canBuild() {
-        return currentState == GAME;
+    public boolean canNotBuild() {
+        return currentState == LOBBY || checkState(GAME_LOADING);
     }
 
     public boolean inGame() {

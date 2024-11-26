@@ -6,10 +6,8 @@ import me.depickcator.ascensionBingo.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 
 public class CrimsonArtifact implements Crafts {
@@ -30,7 +28,7 @@ public class CrimsonArtifact implements Crafts {
         ShapedRecipe recipe = new ShapedRecipe(key, CrimsonArtifact.result);
         recipe.shape("DAD", "DBD", "CCC");
         recipe.setIngredient('A', Material.NETHER_STAR);
-        recipe.setIngredient('B', new RecipeChoice.MaterialChoice(Tag.BANNERS));
+        recipe.setIngredient('B', Material.BLACK_BANNER);
         recipe.setIngredient('C', ShardOfTheFallen.result());
         recipe.setIngredient('D', Material.DIAMOND);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
