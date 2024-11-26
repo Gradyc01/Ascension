@@ -21,8 +21,6 @@ public class LoadGame implements Runnable {
         this.player = player;
         this.spawnCoordsLocation = loc;
         plugin.setBingoData(new BingoData(plugin));
-        plugin.getGameState().setCurrentState(GameStates.LOBBY);
-
         deletePreviousIterations();
 
         run();

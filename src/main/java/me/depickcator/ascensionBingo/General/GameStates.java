@@ -6,6 +6,8 @@ public class GameStates {
     public final static int UNLOADED = 0;
     public final static int LOBBY = 1;
     public final static int GAME = 2;
+    public final static int GAME_LOADING = 3;
+    public final static int GAME_ENDING = 4;
 
     private int currentState;
 
@@ -29,5 +31,13 @@ public class GameStates {
 
     public void setCurrentState(int currentState) {
         this.currentState = currentState;
+    }
+
+    public boolean canBuild() {
+        return currentState == GAME;
+    }
+
+    public boolean inGame() {
+        return checkState(GAME) || checkState(GAME_LOADING) || checkState(GAME_ENDING);
     }
 }
