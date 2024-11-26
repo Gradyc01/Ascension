@@ -23,7 +23,7 @@ public class SendCoords implements Commands {
     }
     @Override
     public void uponEvent(InventoryClickEvent event, PlayerData playerData) {
-        if (!plugin.getGameState().checkState(GameStates.GAME)) {
+        if (!plugin.getGameState().inGame()) {
             TextUtil.errorMessage(playerData.getPlayer(), "You can't currently use this command");
             return;
         }

@@ -56,7 +56,7 @@ public class PlayerData {
         getKitBook();
         Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke @s everything");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke @a everything");
     }
 
     public void resetAfterStartGame() {
