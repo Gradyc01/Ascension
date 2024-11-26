@@ -74,8 +74,8 @@ public class SpiderEntity implements LootTableChanger, EntityLootTable, Superabl
     @Override
     public void superEntity(Entity e) {
         Spider spider = (Spider) e;
-        spider.getAttribute(Attribute.GENERIC_SCALE).setBaseValue(1.2);
-        spider.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.5);
+        spider.getAttribute(Attribute.SCALE).setBaseValue(1.2);
+        spider.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.5);
         tagSuperEntity(spider);
     }
 

@@ -96,9 +96,9 @@ public class ZombieEntity implements LootTableChanger, EntityLootTable, Superabl
     @Override
     public void superEntity(Entity entity) {
         Zombie e = (Zombie) entity;
-        e.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(30);
-        e.getAttribute(Attribute.GENERIC_SCALE).setBaseValue(1.2);
-        e.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(30);
+        e.getAttribute(Attribute.ARMOR).setBaseValue(30);
+        e.getAttribute(Attribute.SCALE).setBaseValue(1.2);
+        e.getAttribute(Attribute.MAX_HEALTH).setBaseValue(30);
         e.setHealth(30);
         EntityEquipment equipment = e.getEquipment();
         equipment.setHelmet(new ItemStack(Material.NETHERITE_HELMET));

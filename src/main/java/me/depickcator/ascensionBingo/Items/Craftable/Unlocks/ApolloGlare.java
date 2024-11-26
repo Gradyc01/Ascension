@@ -104,9 +104,8 @@ public class ApolloGlare implements Crafts, ShootsProjectiles {
     @Override
     public void applyKey(EntityShootBowEvent event) {
         if (!(event.getProjectile() instanceof Arrow)) return;
-        ItemStack bow = event.getBow();
-        assert bow != null;
-//        bow.getItemMeta().
+//        ItemStack bow = event.getBow();
+//        assert bow != null;
         Arrow arrow = (Arrow) event.getProjectile();
         arrow.setMetadata(ShootsProjectiles.METADATA, new FixedMetadataValue(plugin, KEY));
         arrow.setDamage(0.5);

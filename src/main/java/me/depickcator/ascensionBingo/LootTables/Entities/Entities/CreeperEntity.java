@@ -90,8 +90,8 @@ public class CreeperEntity implements LootTableChanger, EntityLootTable, Superab
     @Override
     public void superEntity(Entity e) {
         Creeper creeper = (Creeper) e;
-        creeper.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(30);
-        creeper.getAttribute(Attribute.GENERIC_SCALE).setBaseValue(1.2);
+        creeper.getAttribute(Attribute.ARMOR).setBaseValue(30);
+        creeper.getAttribute(Attribute.SCALE).setBaseValue(1.2);
         creeper.setPowered(true);
         creeper.setExplosionRadius(20);
         tagSuperEntity(creeper);

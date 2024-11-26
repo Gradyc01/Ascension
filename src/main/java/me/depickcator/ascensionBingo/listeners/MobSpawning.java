@@ -35,7 +35,7 @@ public class MobSpawning implements Listener {
     @EventHandler
     public void onMobSpawn(CreatureSpawnEvent event) {
         if (hostileMobs.contains(event.getEntityType())) {
-            event.getEntity().getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(15);
+            event.getEntity().getAttribute(Attribute.ARMOR).setBaseValue(15);
         } else {
             return;
         }

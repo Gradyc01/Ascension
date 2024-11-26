@@ -15,8 +15,8 @@ import java.util.List;
 public interface Vanilla {
     void removeVanillaRecipe();
     static ItemMeta addModifiers(ItemMeta meta, double attackDamage, double attackSpeed, String KEY) {
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, Vanilla.makeAttackDamageModifier(KEY, attackDamage));
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, Vanilla.makeAttackSpeedModifier(KEY, attackSpeed));
+        meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, Vanilla.makeAttackDamageModifier(KEY, attackDamage));
+        meta.addAttributeModifier(Attribute.ATTACK_SPEED, Vanilla.makeAttackSpeedModifier(KEY, attackSpeed));
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.lore(Vanilla.makeFakeLore(attackDamage, attackSpeed));
         return meta;
