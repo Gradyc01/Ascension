@@ -1,5 +1,6 @@
 package me.depickcator.ascensionBingo.Items.Craftable.Unlocks;
 
+import io.papermc.paper.datacomponent.item.Consumable;
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.Craftable.Crafts;
@@ -11,8 +12,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import io.papermc.paper.datacomponent.item.consumable.*;
 
 public class Cornucopia implements Crafts {
     private final AscensionBingo plugin;
@@ -44,9 +44,9 @@ public class Cornucopia implements Crafts {
         ItemMeta meta = item.getItemMeta();
         FoodComponent foodComponent = meta.getFood();
         foodComponent.setCanAlwaysEat(true);
-        foodComponent.setEatSeconds(0.2F);
+//        foodComponent.setEatSeconds(0.2F);
         foodComponent.setNutrition(0);
-        foodComponent.addEffect(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0), 1);
+//        foodComponent.addEffect(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0), 1);
         meta.setFood(foodComponent);
 
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));

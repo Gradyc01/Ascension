@@ -57,9 +57,9 @@ public interface AscensionGUI {
         headMeta.displayName(title);
 
         List<Component> lore = new ArrayList<>();
-        Component unlockTokensText = TextUtil.makeText("Souls:    " + playerData.getPlayerUnlocks().getUnlockTokens(), TextUtil.BLUE);
+        Component unlockTokensText = TextUtil.makeText("Souls:         " + playerData.getPlayerUnlocks().getUnlockTokens(), TextUtil.BLUE);
         Component combatText = TextUtil.makeText("Combat:   " + playerData.getPlayerSkills().getCombat().getExpOverTotalNeeded(), TextUtil.BLUE);
-        Component miningText = TextUtil.makeText("Mining:   " + playerData.getPlayerSkills().getMining().getExpOverTotalNeeded(), TextUtil.BLUE);
+        Component miningText = TextUtil.makeText("Mining:     " + playerData.getPlayerSkills().getMining().getExpOverTotalNeeded(), TextUtil.BLUE);
         Component foragingText = TextUtil.makeText("Foraging: " + playerData.getPlayerSkills().getForaging().getExpOverTotalNeeded(), TextUtil.BLUE);
         lore.add(unlockTokensText);
         lore.add(combatText);

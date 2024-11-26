@@ -8,9 +8,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.inventory.meta.OminousBottleMeta;
 
 public class Dread implements Crafts {
     private final AscensionBingo plugin;
@@ -70,8 +68,8 @@ public class Dread implements Crafts {
 
     private static ItemStack makeItem() {
         ItemStack item = new ItemStack(Material.OMINOUS_BOTTLE);
-        PotionMeta potionMeta = (PotionMeta) item.getItemMeta();
-        potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.BAD_OMEN, 20 * 60 * 20, 4), true);
+        OminousBottleMeta potionMeta = (OminousBottleMeta) item.getItemMeta();
+        potionMeta.setAmplifier(4);
         return item;
     }
 }

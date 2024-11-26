@@ -54,7 +54,8 @@ public class PlayerData {
         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, Integer.MAX_VALUE, 128, false, false));
         getMainMenuItem();
         getKitBook();
-        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0);
+//        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0);
+        player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke @a everything");
     }
@@ -66,7 +67,7 @@ public class PlayerData {
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 30 * 60 * 20, 4, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
-        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
+        Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
         giveStartingFood();
     }
 
@@ -81,7 +82,7 @@ public class PlayerData {
     private void clearInventoryAndEffects() {
         player.getInventory().clear();
         player.clearActivePotionEffects();
-        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(20);
+        Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(20);
     }
 
     private void getMainMenuItem() {

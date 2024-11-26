@@ -39,6 +39,7 @@ public class UnlocksGUI_1 implements AscensionGUI, UnlocksGUI {
         setBuyBarriers();
         setGUIItems(inventory, nextPage(), 53);
         setGUIItems(inventory, explainerItem(), 50);
+        inventory.setItem(48, goBackItem());
         playerHeadButton(inventory, 49, p);
         if (player != null) {
             Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
@@ -89,18 +90,13 @@ public class UnlocksGUI_1 implements AscensionGUI, UnlocksGUI {
         }
         if (item.equals(nextPage())) {
             new UnlocksGUI_2(plugin, player);
+            return;
+        }
+        if (item.equals(goBackItem())) {
+            p.performCommand("open-main-menu");
+            return;
         }
         determineRecipeShape(event, p, item, plugin);
-//        String displayName = ((TextComponent) Objects.requireNonNull(item.getItemMeta().displayName())).content();
-//        Pair<Crafts, Integer> unlock = plugin.getUnlocksData().findUnlock(displayName);
-//        if (unlock == null) {
-//            return;
-//        }
-//        if (event.getClick().isLeftClick() && item.equals(unlockedItem())) {
-//            interactWithGUIButtonsUnlock(unlock, p);
-//        } else if (event.getClick().isRightClick()) {
-//            interactWithGUIButtonsViewRecipe(unlock, p);
-//        }
 
     }
 

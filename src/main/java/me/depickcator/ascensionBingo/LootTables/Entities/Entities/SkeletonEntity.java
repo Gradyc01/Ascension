@@ -99,8 +99,8 @@ public class SkeletonEntity implements LootTableChanger, EntityLootTable, Supera
     @Override
     public void superEntity(Entity e) {
         Skeleton skeleton = (Skeleton) e;
-        skeleton.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(30);
-        skeleton.getAttribute(Attribute.GENERIC_SCALE).setBaseValue(1.2);
+        skeleton.getAttribute(Attribute.ARMOR).setBaseValue(30);
+        skeleton.getAttribute(Attribute.SCALE).setBaseValue(1.2);
         EntityEquipment equipment = skeleton.getEquipment();
         equipment.setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
         equipment.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));

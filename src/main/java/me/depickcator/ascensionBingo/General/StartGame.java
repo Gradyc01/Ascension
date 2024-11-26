@@ -21,10 +21,12 @@ public class StartGame{
     AscensionBingo plugin;
     Player player;
     private final int second = 20;
+    private final GameStates gameState;
     public StartGame(AscensionBingo plugin, Player player) {
         this.plugin = plugin;
         this.player = player;
-        plugin.getGameState().setCurrentState(GameStates.GAME);
+        this.gameState = plugin.getGameState();
+        this.gameState.setCurrentState(GameStates.GAME_LOADING);
         resetPlayers();
     }
 
@@ -125,6 +127,7 @@ public class StartGame{
                     SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
                 }, 100);
                 scheduler.runTaskLater(plugin, () -> {
+                    gameState.setCurrentState(GameStates.GAME);
                     makeAndShowTitle("GO!!!!", " ", 0, 2, 3);
                     SoundUtil.broadcastSound(Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0f, 2.0f);
                     for (Player p : Bukkit.getOnlinePlayers()) {
