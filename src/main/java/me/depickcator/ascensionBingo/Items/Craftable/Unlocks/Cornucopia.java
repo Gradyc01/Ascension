@@ -13,6 +13,12 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import io.papermc.paper.datacomponent.item.consumable.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import io.papermc.paper.datacomponent.item.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cornucopia implements Crafts {
     private final AscensionBingo plugin;
@@ -48,9 +54,16 @@ public class Cornucopia implements Crafts {
         foodComponent.setNutrition(0);
 //        foodComponent.addEffect(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0), 1);
         meta.setFood(foodComponent);
-
+        // Consumable.consumable();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         item.setItemMeta(meta);
+        
+//        Consumable.Builder goldenCarrotConsumable = Consumable.consumable();
+//        goldenCarrotConsumable.consumeSeconds(0.2F);
+//        List<PotionEffect> list = new ArrayList<>(List.of(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0)));
+//        goldenCarrotConsumable.addEffect(ConsumeEffect.applyStatusEffects(list, 1));
+//        goldenCarrotConsumable.build();
+//        NamespacedKey key = new NamespacedKey("mc", "custom_golden_carrot");
         return item;
     }
 
