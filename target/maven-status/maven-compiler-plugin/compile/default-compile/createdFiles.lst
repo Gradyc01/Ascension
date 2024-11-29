@@ -80,6 +80,7 @@ me\depickcator\ascensionBingo\Interfaces\ShootsProjectiles.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\DiamondPack.class
 me\depickcator\ascensionBingo\LootTables\Entities\Entities\Cow.class
 me\depickcator\ascensionBingo\General\TextUtil.class
+me\depickcator\ascensionBingo\Items\Craftable\Unlocks\HeliosCurse.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\DiamondAxe.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\ExplosivePropulsion.class
 me\depickcator\ascensionBingo\LootTables\Entities\Entities\Sheep.class

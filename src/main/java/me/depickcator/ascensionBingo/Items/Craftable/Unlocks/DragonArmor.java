@@ -25,6 +25,7 @@ public class DragonArmor implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Dragon Armor";
     public static final String KEY = "dragonarmor";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public DragonArmor(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -78,7 +79,7 @@ public class DragonArmor implements Crafts {
         ItemStack item = new ItemStack(Material.DIAMOND_CHESTPLATE);
         ArmorMeta meta = (ArmorMeta) item.getItemMeta();
         meta.addEnchant(Enchantment.PROTECTION, 4, true);
-        meta.setCustomModelData(20);
+        meta.setCustomModelData(modelNumber);
         Component text = Component.text("Dragon Armor").color(TextUtil.AQUA).decoration(TextDecoration.ITALIC, false);
         meta.displayName(text);
         ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.NETHERITE, TrimPattern.DUNE);

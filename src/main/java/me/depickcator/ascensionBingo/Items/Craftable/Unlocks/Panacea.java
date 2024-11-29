@@ -22,6 +22,7 @@ public class Panacea implements Crafts {
     public static final String DISPLAY_NAME = "Panacea";
     public static final String KEY = "panacea";
     private static final ItemStack result = Panacea.makeItem();
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public Panacea(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -75,7 +76,7 @@ public class Panacea implements Crafts {
         potionMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.PINK));
         potionMeta.setColor(Color.fromRGB(0xFF, 0x55, 0xFF));
         potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.INSTANT_HEALTH, 20, 4), true);
-        potionMeta.setCustomModelData(29);
+        potionMeta.setCustomModelData(modelNumber);
         item.setItemMeta(potionMeta);
         return item;
     }

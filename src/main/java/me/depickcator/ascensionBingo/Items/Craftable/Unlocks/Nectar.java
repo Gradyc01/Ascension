@@ -21,6 +21,7 @@ public class Nectar implements Crafts {
     public static final int MAX_CRAFTS = 3;
     public static final String DISPLAY_NAME = "Nectar";
     public static final String KEY = "nectar";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public Nectar(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -47,7 +48,7 @@ public class Nectar implements Crafts {
         potionMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         potionMeta.setColor(Color.fromRGB(0xFF, 0x55, 0xFF));
         potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 2), true);
-        potionMeta.setCustomModelData(25);
+        potionMeta.setCustomModelData(modelNumber);
         item.setItemMeta(potionMeta);
         return item;
     }

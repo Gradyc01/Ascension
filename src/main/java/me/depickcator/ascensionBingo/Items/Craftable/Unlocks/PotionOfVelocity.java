@@ -21,6 +21,7 @@ public class PotionOfVelocity implements Crafts {
     public static final int MAX_CRAFTS = 3;
     public static final String DISPLAY_NAME = "Potion of Velocity";
     public static final String KEY = "potion_of_velocity";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public PotionOfVelocity(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -46,7 +47,7 @@ public class PotionOfVelocity implements Crafts {
         potionMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         potionMeta.setColor(Color.fromRGB(0x00, 0x00, 0x88));
         potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.SPEED, 15 * 20, 2), true);
-        potionMeta.setCustomModelData(24);
+        potionMeta.setCustomModelData(modelNumber);
         item.setItemMeta(potionMeta);
         return item;
     }

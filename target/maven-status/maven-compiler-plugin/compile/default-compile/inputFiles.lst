@@ -33,6 +33,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Craftable\Unlocks\FlintShovel.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Craftable\Unlocks\GoldenHead.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Craftable\Unlocks\GoldPack.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Craftable\Unlocks\HeliosCurse.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Craftable\Unlocks\HideOfLeviathan.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Craftable\Unlocks\IronPack.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Items\Craftable\Unlocks\KingsRod.java
@@ -86,6 +87,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\MobSpawning.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\onInventoryChange.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\PlayerCombat.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\PlayerConsumeItem.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\PlayerInteractListener.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\PlayerJoinLeave.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\listeners\ProjectileAttacks.java

@@ -21,6 +21,7 @@ public class QuickPick implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Quick Pick";
     public static final String KEY = "quick_pick";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public QuickPick(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -71,7 +72,7 @@ public class QuickPick implements Crafts {
         Component name = Component.text(DISPLAY_NAME).color(TextUtil.AQUA).decoration(TextDecoration.ITALIC, false);
         meta.displayName(name);
         meta.addEnchant(Enchantment.EFFICIENCY, 1, true);
-        meta.setCustomModelData(1);
+        meta.setCustomModelData(modelNumber);
         item.setItemMeta(meta);
         return item;
     }

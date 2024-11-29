@@ -34,7 +34,7 @@ public interface AscensionGUI {
         ItemStack button = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta buttonMeta = button.getItemMeta();
         buttonMeta.displayName(Component.text(" ").color(TextColor.color(185, 185, 185)));
-        buttonMeta.setCustomModelData(0);
+        buttonMeta.setCustomModelData(0x010000);
         button.setItemMeta(buttonMeta); //Sets the Meta to Button Meta
         for (int i = 0; i < GUISize; i++) {
             inventory.setItem(i, button);
@@ -67,7 +67,7 @@ public interface AscensionGUI {
         lore.add(foragingText);
 
         headMeta.lore(lore);
-        headMeta.setCustomModelData(0);
+        headMeta.setCustomModelData(0x020000);
         setGUIItems(inventory, button, headMeta, index);
 
     }
@@ -78,7 +78,7 @@ public interface AscensionGUI {
         Component title = Component.text("Close").color(TextColor.color(255,0,0));
         title = title.decoration(TextDecoration.ITALIC, false);
         buttonMeta.displayName(title);
-        buttonMeta.setCustomModelData(2);
+        buttonMeta.setCustomModelData(0x030000);
         button.setItemMeta(buttonMeta);
         return button;
     }
@@ -87,7 +87,7 @@ public interface AscensionGUI {
         ItemStack item = new ItemStack(Material.ARROW);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText("Go Back", TextUtil.DARK_GRAY));
-        meta.setCustomModelData(999999);
+        meta.setCustomModelData(0x040000);
         item.setItemMeta(meta);
         return item;
     }

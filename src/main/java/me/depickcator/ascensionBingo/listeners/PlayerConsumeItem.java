@@ -14,8 +14,8 @@ public class PlayerConsumeItem implements Listener {
 
     @EventHandler
     public void onPlayerConsume(PlayerItemConsumeEvent event) {
-        if (event.getItem().getType() == Material.GOLDEN_APPLE) {
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 0, true, true));
+        if (event.getItem().getType().equals(Material.GOLDEN_APPLE)) {
+            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 13 * 20, 1, true, true));
             return;
         }
     }

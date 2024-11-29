@@ -89,6 +89,7 @@ public class UnlocksData {
     private void Tier5Unlocks() {
         tier5Unlocks.add(new CrimsonArtifact(plugin));
         tier5Unlocks.add(new ApolloGlare(plugin));
+        tier5Unlocks.add(new HeliosCurse(plugin));
     }
 
     private void Uncraftable() {

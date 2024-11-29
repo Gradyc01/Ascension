@@ -23,6 +23,7 @@ public class Tarnhelm implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Tarnhelm";
     public static final String KEY = "tarnhelm";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public Tarnhelm(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -46,7 +47,7 @@ public class Tarnhelm implements Crafts {
         meta.addEnchant(Enchantment.PROTECTION, 1, true);
         meta.addEnchant(Enchantment.FIRE_PROTECTION, 1, true);
         meta.addEnchant(Enchantment.AQUA_AFFINITY, 3, true);
-        meta.setCustomModelData(21);
+        meta.setCustomModelData(modelNumber);
         Component text = TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA);
         meta.displayName(text);
         ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.REDSTONE, TrimPattern.SPIRE);

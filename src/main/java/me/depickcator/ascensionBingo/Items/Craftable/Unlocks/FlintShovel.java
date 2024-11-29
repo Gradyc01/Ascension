@@ -24,6 +24,7 @@ public class FlintShovel implements Crafts, LootTableChanger {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Flint Shovel";
     public static final String KEY = "flint_shovel";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public FlintShovel(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -47,7 +48,7 @@ public class FlintShovel implements Crafts, LootTableChanger {
         ItemStack item = new ItemStack(Material.IRON_SHOVEL);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
-        meta.setCustomModelData(16);
+        meta.setCustomModelData(modelNumber);
         meta.setEnchantmentGlintOverride(true);
         if (meta instanceof Repairable repairable) {
             repairable.setRepairCost(999);

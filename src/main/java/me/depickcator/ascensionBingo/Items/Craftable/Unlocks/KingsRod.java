@@ -20,7 +20,7 @@ public class KingsRod implements Crafts {
     public static final int MAX_CRAFTS = 1;
     public static final String DISPLAY_NAME = "Kings Rod";
     public static final String KEY = "kings_rod";
-    public static final int MODEL_NUMBER = 18;
+    public static final int MODEL_NUMBER = AscensionBingo.generateModelNumber();;
     public KingsRod(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();

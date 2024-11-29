@@ -36,14 +36,15 @@ public final class AscensionBingo extends JavaPlugin {
     public static Map<UUID, Pair<Inventory, AscensionGUI>> guiMap = new HashMap<>();
     public static Map<UUID, PlayerData> playerDataMap = new HashMap<>();
     private static Location spawn;
-    GameStates gameState;
-    BingoData bingoData;
-    UnlocksData unlocksData;
-    BukkitScheduler scheduler;
-    me.depickcator.ascensionBingo.Timeline.Timeline timeline;
-    World world;
-    World nether;
-    Logger logger = getLogger();
+    private GameStates gameState;
+    private BingoData bingoData;
+    private UnlocksData unlocksData;
+    private BukkitScheduler scheduler;
+    private me.depickcator.ascensionBingo.Timeline.Timeline timeline;
+    private World world;
+    private World nether;
+    private Logger logger = getLogger();
+    private static int uniqueModelNumber = 0;
 
 
     @Override
@@ -85,6 +86,7 @@ public final class AscensionBingo extends JavaPlugin {
         Server server = getServer();
         PluginManager manager = server.getPluginManager();
 //        manager.registerEvents(new onInventoryChange(), this);
+        manager.registerEvents(new PlayerConsumeItem(), this);
         manager.registerEvents(new ProjectileAttacks(), this);
         manager.registerEvents(new PlayerJoinLeave(this), this);
         manager.registerEvents(new MobSpawning(this), this);
@@ -138,5 +140,10 @@ public final class AscensionBingo extends JavaPlugin {
 
     public Timeline getTimeline() {
         return timeline;
+    }
+
+    public static int generateModelNumber() {
+        uniqueModelNumber++;
+        return uniqueModelNumber - 1;
     }
 }

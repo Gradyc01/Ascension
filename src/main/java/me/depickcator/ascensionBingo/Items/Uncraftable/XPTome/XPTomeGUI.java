@@ -49,7 +49,7 @@ public class XPTomeGUI implements AscensionGUI {
         ItemMeta buttonMeta = button.getItemMeta();
         buttonMeta.displayName(TextUtil.makeText("Combat", TextUtil.DARK_GREEN));
         buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        buttonMeta.setCustomModelData(35);
+        buttonMeta.setCustomModelData(0x040000);
         setGUIItems(inventory, button, buttonMeta,13);
     }
 
@@ -58,7 +58,7 @@ public class XPTomeGUI implements AscensionGUI {
         ItemMeta buttonMeta = button.getItemMeta();
         buttonMeta.displayName(TextUtil.makeText("Foraging", TextUtil.DARK_GREEN));
         buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        buttonMeta.setCustomModelData(36);
+        buttonMeta.setCustomModelData(0x050000);
         setGUIItems(inventory, button, buttonMeta,15);
     }
 
@@ -67,7 +67,7 @@ public class XPTomeGUI implements AscensionGUI {
         ItemMeta buttonMeta = button.getItemMeta();
         buttonMeta.displayName(TextUtil.makeText("Mining", TextUtil.DARK_GREEN));
         buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        buttonMeta.setCustomModelData(37);
+        buttonMeta.setCustomModelData(0x060000);
         setGUIItems(inventory, button, buttonMeta,11);
     }
 

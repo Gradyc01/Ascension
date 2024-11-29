@@ -21,6 +21,7 @@ public class PhilosopherPickaxe implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Philosopher’s Pickaxe";
     public static final String KEY = "philosopher_pickaxe";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public PhilosopherPickaxe(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -45,7 +46,7 @@ public class PhilosopherPickaxe implements Crafts {
         ItemStack item = new ItemStack(Material.DIAMOND_PICKAXE);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.PINK));
-        meta.setCustomModelData(16);
+        meta.setCustomModelData(modelNumber);
         meta.addEnchant(Enchantment.FORTUNE, 2, true);
         meta.addEnchant(Enchantment.EFFICIENCY, 3, true);
         if (meta instanceof Damageable damageMeta) {

@@ -1,35 +1,35 @@
 package me.depickcator.ascensionBingo.Items.Craftable.Unlocks;
 
-import io.papermc.paper.datacomponent.item.Consumable;
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.General.ItemClick;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Items.Craftable.Crafts;
 import me.depickcator.ascensionBingo.Items.UnlockUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
-import io.papermc.paper.datacomponent.item.consumable.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import io.papermc.paper.datacomponent.item.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Cornucopia implements Crafts {
+public class Cornucopia implements Crafts, ItemClick {
     private final AscensionBingo plugin;
     private Recipe recipe;
     public static final int COST = 1;
     public static final int MAX_CRAFTS = 1;
     public static final String DISPLAY_NAME = "Cornucopia";
     public static final String KEY = "cornucopia";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public Cornucopia(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
+        registerItem();
     }
 
     @Override
@@ -50,20 +50,11 @@ public class Cornucopia implements Crafts {
         ItemMeta meta = item.getItemMeta();
         FoodComponent foodComponent = meta.getFood();
         foodComponent.setCanAlwaysEat(true);
-//        foodComponent.setEatSeconds(0.2F);
         foodComponent.setNutrition(0);
-//        foodComponent.addEffect(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0), 1);
         meta.setFood(foodComponent);
-        // Consumable.consumable();
+        meta.setCustomModelData(modelNumber);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         item.setItemMeta(meta);
-        
-//        Consumable.Builder goldenCarrotConsumable = Consumable.consumable();
-//        goldenCarrotConsumable.consumeSeconds(0.2F);
-//        List<PotionEffect> list = new ArrayList<>(List.of(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0)));
-//        goldenCarrotConsumable.addEffect(ConsumeEffect.applyStatusEffects(list, 1));
-//        goldenCarrotConsumable.build();
-//        NamespacedKey key = new NamespacedKey("mc", "custom_golden_carrot");
         return item;
     }
 
@@ -93,4 +84,22 @@ public class Cornucopia implements Crafts {
     }
 
 
+    @Override
+    public ItemStack getItem() {
+        return getResult();
+    }
+
+    @Override
+    public boolean uponClick(PlayerInteractEvent e, Player p) {
+        ItemStack item = p.getInventory().getItemInMainHand();
+        item.setAmount(item.getAmount() - 1);
+        p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 15 * 20, 0));
+        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_BURP, 1f, 1f);
+        return true;
+    }
+
+    @Override
+    public void registerItem() {
+        addItem(getResult(), this);
+    }
 }

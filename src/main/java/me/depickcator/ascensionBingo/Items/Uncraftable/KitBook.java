@@ -1,5 +1,6 @@
 package me.depickcator.ascensionBingo.Items.Uncraftable;
 
+import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.General.ItemClick;
 import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Kits.KitBookGUI;
@@ -18,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class KitBook implements ItemClick {
     public static String DISPLAY_NAME = "Kit Book";
     private static ItemStack item = KitBook.makeItem();;
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public KitBook() {
         registerItem();
         registerKits();
@@ -37,7 +39,7 @@ public class KitBook implements ItemClick {
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.GOLD).append(TextUtil.rightClickText()));
         meta.setMaxStackSize(1);
-        meta.setCustomModelData(50);
+        meta.setCustomModelData(modelNumber);
         meta.setEnchantmentGlintOverride(true);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         item.setItemMeta(meta);

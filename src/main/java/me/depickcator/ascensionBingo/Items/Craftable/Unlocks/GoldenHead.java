@@ -32,6 +32,7 @@ public class GoldenHead implements Crafts, ItemClick {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Golden Head";
     public static final String KEY = "golden_head";
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public GoldenHead(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -62,7 +63,7 @@ public class GoldenHead implements Crafts, ItemClick {
         skullMeta.setPlayerProfile(profile);
 
         skullMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
-        skullMeta.setCustomModelData(99);
+        skullMeta.setCustomModelData(modelNumber);
         skullMeta.setEnchantmentGlintOverride(true);
         skullMeta.setMaxStackSize(1);
         Repairable repairMeta = (Repairable) skullMeta;

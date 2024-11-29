@@ -2,7 +2,6 @@ package me.depickcator.ascensionBingo.mainMenu.BingoBoard;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
-import me.depickcator.ascensionBingo.mainMenu.OpenMainMenuCommand;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;

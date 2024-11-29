@@ -1,8 +1,6 @@
 package me.depickcator.ascensionBingo.listeners;
 
-import me.depickcator.ascensionBingo.General.TextUtil;
 import me.depickcator.ascensionBingo.Interfaces.ShootsProjectiles;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,7 +30,7 @@ public class ProjectileAttacks implements Listener {
     }
 
     private void setArrowDamage(Arrow arrow, Player player) {
-        double arrowDamage = 2;
+        double arrowDamage = 4;
         if (player.hasPotionEffect(PotionEffectType.STRENGTH)) {
             arrowDamage *= 1.2;
         }

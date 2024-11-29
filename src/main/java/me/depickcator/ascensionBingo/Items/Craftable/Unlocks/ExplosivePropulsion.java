@@ -67,6 +67,7 @@ public class ExplosivePropulsion implements Crafts {
         ItemStack item = new ItemStack(Material.FIREWORK_ROCKET, 16);
         FireworkMeta itemMeta = (FireworkMeta) item.getItemMeta();
         itemMeta.setPower(3);
+        item.setItemMeta(itemMeta);
         return item;
     }
 }

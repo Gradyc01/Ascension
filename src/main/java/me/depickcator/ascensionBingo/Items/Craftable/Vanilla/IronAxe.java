@@ -51,7 +51,7 @@ public class IronAxe implements Crafts, Vanilla {
 
     private static ItemStack makeResult() {
         ItemStack item = new ItemStack(Material.IRON_AXE);
-        double attackDamage = 12; double attackSpeed = -2.4;
+        double attackDamage = 12; double attackSpeed = -3;
         item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), attackDamage, attackSpeed, KEY));
         return item;
     }

@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 
 public class ItemList {
-    private AscensionBingo ab;
+    private final AscensionBingo ab;
     private ArrayList<ItemStack> items;
     private EasyItems easyItems;
     public ItemList(AscensionBingo ab) {

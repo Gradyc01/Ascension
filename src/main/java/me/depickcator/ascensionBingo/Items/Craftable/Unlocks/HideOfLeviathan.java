@@ -24,6 +24,7 @@ public class HideOfLeviathan implements Crafts {
     public static final String DISPLAY_NAME = "Hide of Leviathan";
     public static final String KEY = "hide_of_leviathan";
     private static final ItemStack result = HideOfLeviathan.makeItem();
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public HideOfLeviathan(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -79,7 +80,7 @@ public class HideOfLeviathan implements Crafts {
         meta.addEnchant(Enchantment.PROTECTION, 4, true);
         meta.addEnchant(Enchantment.RESPIRATION, 3, true);
         meta.addEnchant(Enchantment.AQUA_AFFINITY, 1, true);
-        meta.setCustomModelData(26);
+        meta.setCustomModelData(modelNumber);
         Component text = TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA);
         meta.displayName(text);
         ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.EMERALD, TrimPattern.TIDE);

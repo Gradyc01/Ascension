@@ -4,7 +4,6 @@ import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Interfaces.ShootsProjectiles;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -29,20 +28,17 @@ public class PlayerCombat implements Listener {
     @EventHandler
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player) {
+            setShieldCooldown(event);
             Player victim = (Player) event.getEntity();
             if (event.getDamager() instanceof Player) {
                 setDamagerMetadataPlayer(victim, (Player) event.getDamager(), event);
                 return;
             }
             if (event.getDamager() instanceof Arrow) {
-                MetadataValue key = event.getDamager().getMetadata(ShootsProjectiles.METADATA).getFirst();
                 Arrow arrow = (Arrow) event.getDamager();
                 if (arrow.getShooter() instanceof Player) {
                     setDamagerMetadataPlayer(victim, (Player) arrow.getShooter(), event);
-                    ShootsProjectiles shootsProjectiles = ShootsProjectiles.getProjectile(key);
-                    if (shootsProjectiles != null) {
-                        shootsProjectiles.setProjectileComponent(event);
-                    }
+                    setSpecialArrowIfNecessary(event);
                 }
                 return;
             }
@@ -52,12 +48,20 @@ public class PlayerCombat implements Listener {
         }
     }
 
+    private void setShieldCooldown(EntityDamageByEntityEvent event) {
+        Player victim = (Player) event.getEntity();
+        if (victim.isBlocking() && event.getFinalDamage() == 0) {
+            victim.setCooldown(Material.SHIELD, 7 * 25);
+        }
+    }
+
     private void setDamagerMetadataPlayer(Player victim, Player damager, EntityDamageByEntityEvent event) {
         PlayerData damagerData = PlayerUtil.getPlayerData(damager);
         if (damagerData == null || damagerData.getPlayerTeam().getTeam().getOtherTeamMembers(damager).contains(victim)) {
             event.setCancelled(true);
             return;
         }
+
         victim.setMetadata(damageSourceKey, new FixedMetadataValue(plugin, PLAYER_DAMAGE));
     }
 
@@ -100,6 +104,18 @@ public class PlayerCombat implements Listener {
         }
         skull.setItemMeta(skullMeta);
         victim.getWorld().dropItem(victim.getLocation(), skull);
+    }
+
+    private void setSpecialArrowIfNecessary(EntityDamageByEntityEvent event) {
+        try {
+            MetadataValue key = event.getDamager().getMetadata(ShootsProjectiles.METADATA).getFirst();
+            ShootsProjectiles shootsProjectiles = ShootsProjectiles.getProjectile(key);
+            if (shootsProjectiles != null) {
+                shootsProjectiles.setProjectileComponent(event);
+            }
+        } catch (Exception ignored) {
+
+        }
     }
 }
 

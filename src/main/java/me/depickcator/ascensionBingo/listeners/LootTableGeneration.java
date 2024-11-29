@@ -1,7 +1,6 @@
 package me.depickcator.ascensionBingo.listeners;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
-import me.depickcator.ascensionBingo.General.GameStates;
 import me.depickcator.ascensionBingo.Items.Craftable.Unlocks.KingsRod;
 import me.depickcator.ascensionBingo.LootTables.LootTableChanger;
 import me.depickcator.ascensionBingo.LootTables.Blocks.ForageBlocks.ForageBlocks;

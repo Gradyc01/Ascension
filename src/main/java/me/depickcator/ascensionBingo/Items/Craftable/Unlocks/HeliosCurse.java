@@ -25,16 +25,16 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApolloGlare implements Crafts, ShootsProjectiles {
+public class HeliosCurse implements Crafts, ShootsProjectiles {
     private final AscensionBingo plugin;
     private Recipe recipe;
     public static final int COST = 1;
     public static final int MAX_CRAFTS = 1;
-    public static final String DISPLAY_NAME = "Apollo's Glare";
-    public static final String KEY = "apollo_glare";
+    public static final String DISPLAY_NAME = "Helios' Curse";
+    public static final String KEY = "helios_curse";
     private final ItemStack result;
     private static final int modelNumber = AscensionBingo.generateModelNumber();
-    public ApolloGlare(AscensionBingo plugin) {
+    public HeliosCurse(AscensionBingo plugin) {
         this.plugin = plugin;
         result = makeItem();
         recipe();
@@ -43,11 +43,10 @@ public class ApolloGlare implements Crafts, ShootsProjectiles {
 
     public void recipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = result;
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("A", "B", "C");
-        recipe.setIngredient('A', Material.INK_SAC);
+        recipe.setIngredient('A', Material.GLOWSTONE_DUST);
         recipe.setIngredient('B', Material.CROSSBOW);
         recipe.setIngredient('C', Material.NETHER_STAR);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
@@ -82,15 +81,15 @@ public class ApolloGlare implements Crafts, ShootsProjectiles {
     private ItemStack makeItem() {
         ItemStack item = new ItemStack(Material.CROSSBOW);
         Damageable meta = (Damageable) item.getItemMeta();
-        meta.setMaxDamage(24);
         meta.setCustomModelData(modelNumber);
+        meta.setMaxDamage(24);
         meta.setEnchantmentGlintOverride(true);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         meta.getPersistentDataContainer().set(ShootsProjectiles.key, PersistentDataType.STRING, KEY);
         ArrayList<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText(""),
                 TextUtil.makeText(""),
-                TextUtil.makeText("Nearsights players that are hit", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("Mark Players on Hit", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("[24 Uses]", TextUtil.GOLD)
         ));
         meta.lore(lore);
@@ -102,21 +101,16 @@ public class ApolloGlare implements Crafts, ShootsProjectiles {
     @Override
     public void applyKey(EntityShootBowEvent event) {
         if (!(event.getProjectile() instanceof Arrow)) return;
-//        ItemStack bow = event.getBow();
-//        assert bow != null;
         Arrow arrow = (Arrow) event.getProjectile();
         arrow.setMetadata(ShootsProjectiles.METADATA, new FixedMetadataValue(plugin, KEY));
-        arrow.setDamage(0.5);
-//        PersistentDataContainer container = arrow.getPersistentDataContainer();
-//        NamespacedKey key = new NamespacedKey(plugin, "arrow");
-//        container.set(key, PersistentDataType.STRING, KEY);
+        arrow.setDamage(0.2);
     }
 
     @Override
     public void setProjectileComponent(EntityDamageByEntityEvent event) {
         Player victim = (Player) event.getEntity();
-        victim.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 4 * 20, 0, true, true));
-        victim.sendMessage(TextUtil.makeText("BLINDED", TextUtil.DARK_GRAY, true, false));
+        victim.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 8 * 20, 0, true, true));
+        victim.sendMessage(TextUtil.makeText("MARKED", TextUtil.DARK_GRAY, true, false));
         victim.playSound(victim.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 2.0f);
     }
 }

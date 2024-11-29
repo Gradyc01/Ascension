@@ -24,6 +24,7 @@ public class SevenLeagueBoots implements Crafts {
     public static final String DISPLAY_NAME = "Seven League Boots";
     public static final String KEY = "seven_league_boots";
     private static final ItemStack result = SevenLeagueBoots.makeItem();
+    private static final int modelNumber = AscensionBingo.generateModelNumber();
     public SevenLeagueBoots(AscensionBingo plugin) {
         this.plugin = plugin;
         recipe();
@@ -77,7 +78,7 @@ public class SevenLeagueBoots implements Crafts {
         ArmorMeta meta = (ArmorMeta) item.getItemMeta();
         meta.addEnchant(Enchantment.PROTECTION, 3, true);
         meta.addEnchant(Enchantment.FEATHER_FALLING, 4, true);
-        meta.setCustomModelData(22);
+        meta.setCustomModelData(modelNumber);
         Component text = TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA);
         meta.displayName(text);
         ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.IRON, TrimPattern.SNOUT);
