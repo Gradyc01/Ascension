@@ -5,9 +5,12 @@ import me.depickcator.ascensionBingo.AscensionBingo;
 public class GameStates {
     public final static int UNLOADED = 0;
     public final static int LOBBY = 1;
-    public final static int GAME = 2;
+    public final static int GAME_BEFORE_GRACE = 2;
     public final static int GAME_LOADING = 3;
+
     public final static int GAME_ENDING = 4;
+    public final static int GAME_AFTER_GRACE = 5;
+    public final static int GAME_FINAL_ASCENSION = 6;
 
     private int currentState;
 
@@ -38,6 +41,10 @@ public class GameStates {
     }
 
     public boolean inGame() {
-        return checkState(GAME) || checkState(GAME_LOADING) || checkState(GAME_ENDING);
+        return checkState(GAME_BEFORE_GRACE) || checkState(GAME_LOADING) || checkState(GAME_ENDING) || checkState(GAME_AFTER_GRACE);
+    }
+
+    public boolean canNotPVP() {
+        return checkState(GAME_BEFORE_GRACE) || checkState(GAME_ENDING) || checkState(GAME_LOADING);
     }
 }

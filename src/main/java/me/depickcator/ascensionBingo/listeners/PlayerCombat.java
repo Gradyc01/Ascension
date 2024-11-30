@@ -27,6 +27,7 @@ public class PlayerCombat implements Listener {
 
     @EventHandler
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
+
         if (event.getEntity() instanceof Player) {
             setShieldCooldown(event);
             Player victim = (Player) event.getEntity();
@@ -57,7 +58,9 @@ public class PlayerCombat implements Listener {
 
     private void setDamagerMetadataPlayer(Player victim, Player damager, EntityDamageByEntityEvent event) {
         PlayerData damagerData = PlayerUtil.getPlayerData(damager);
-        if (damagerData == null || damagerData.getPlayerTeam().getTeam().getOtherTeamMembers(damager).contains(victim)) {
+        if (damagerData == null ||
+                damagerData.getPlayerTeam().getTeam().getOtherTeamMembers(damager).contains(victim) ||
+                plugin.getGameState().canNotPVP()) {
             event.setCancelled(true);
             return;
         }

@@ -23,3 +23,5 @@ commands:
     description: testing purposes only
   givePlayerExp:
     description: testing purposes only
+  startEvent:
+    description: testing purposes only

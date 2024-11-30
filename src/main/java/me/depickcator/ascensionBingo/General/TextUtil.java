@@ -12,6 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class TextUtil {
     public static TextColor YELLOW = TextColor.color(255, 255, 0);

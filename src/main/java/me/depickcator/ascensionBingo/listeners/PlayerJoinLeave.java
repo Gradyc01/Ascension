@@ -23,7 +23,7 @@ public class PlayerJoinLeave implements Listener {
             case GameStates.LOBBY -> {
                 onPlayerJoinLobby(event);
             }
-            case GameStates.GAME -> {
+            case GameStates.GAME_BEFORE_GRACE -> {
 
             }
             default -> {
@@ -43,7 +43,7 @@ public class PlayerJoinLeave implements Listener {
                     playerData.getPlayerTeam().leaveTeam();
                 }
             }
-            case GameStates.GAME -> {
+            case GameStates.GAME_BEFORE_GRACE -> {
 
             }
             default -> {

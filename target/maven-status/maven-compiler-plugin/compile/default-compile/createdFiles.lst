@@ -8,6 +8,7 @@ me\depickcator\ascensionBingo\LootTables\Blocks\Ores\QuartzOre.class
 me\depickcator\ascensionBingo\mainMenu\Unlocks\UnlocksGUI_1.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\VorpalSword.class
 me\depickcator\ascensionBingo\mainMenu\BingoBoard\BingoBoardGUI$1.class
+me\depickcator\ascensionBingo\testingCommands\startEvents.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\HideOfLeviathan.class
 me\depickcator\ascensionBingo\Kits\Kits\Looter.class
 me\depickcator\ascensionBingo\Interfaces\AscensionGUI.class
@@ -53,6 +54,7 @@ me\depickcator\ascensionBingo\LootTables\Entities\Enums\NetherMobs.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\Backpack.class
 me\depickcator\ascensionBingo\Items\Craftable\Crafts.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\QuickBow.class
+me\depickcator\ascensionBingo\Timeline\Events\CarePackage\CarePackageLoot.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\QuickPick.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\IronSword.class
 me\depickcator\ascensionBingo\LootTables\Blocks\BlockLootTable.class
@@ -69,6 +71,7 @@ me\depickcator\ascensionBingo\Player\PlayerData.class
 me\depickcator\ascensionBingo\Timeline\Timeline$2.class
 me\depickcator\ascensionBingo\LootTables\Entities\Entities\ZombieEntity.class
 me\depickcator\ascensionBingo\Items\Uncraftable\XPTome\XPTome.class
+me\depickcator\ascensionBingo\Interfaces\CustomChestLoot.class
 me\depickcator\ascensionBingo\General\SoundUtil.class
 me\depickcator\ascensionBingo\mainMenu\Unlocks\ViewRecipeGUI.class
 me\depickcator\ascensionBingo\General\GameCommand.class
@@ -90,6 +93,7 @@ me\depickcator\ascensionBingo\Items\Craftable\Unlocks\EnlighteningPack.class
 me\depickcator\ascensionBingo\General\StartGame$4.class
 me\depickcator\ascensionBingo\mainMenu\mainMenuCommands.class
 me\depickcator\ascensionBingo\listeners\RecipeCrafted.class
+me\depickcator\ascensionBingo\Timeline\Events\CarePackage\CarePackage$1.class
 me\depickcator\ascensionBingo\mainMenu\BingoBoard\BingoData.class
 me\depickcator\ascensionBingo\AscensionBingo.class
 me\depickcator\ascensionBingo\listeners\LootTableGeneration.class
@@ -127,6 +131,7 @@ me\depickcator\ascensionBingo\General\ArmorStandUtil.class
 me\depickcator\ascensionBingo\Player\PlayerScoreboard.class
 me\depickcator\ascensionBingo\testingCommands\setUnlockToken.class
 me\depickcator\ascensionBingo\LootTables\Entities\Enums\OverworldPassive.class
+me\depickcator\ascensionBingo\Timeline\Events\CarePackage\CarePackage.class
 me\depickcator\ascensionBingo\Items\Uncraftable\XPTome\XPTomeGUI$1.class
 me\depickcator\ascensionBingo\Items\ItemList.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\NetheriteAxe.class

@@ -80,6 +80,7 @@ public final class AscensionBingo extends JavaPlugin {
         Objects.requireNonNull(getCommand("timeline")).setExecutor(new setTimeline(this));
         Objects.requireNonNull(getCommand("setUnlockTokens")).setExecutor(new setUnlockToken(this));
         Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp(this));
+        Objects.requireNonNull(getCommand("startEvent")).setExecutor(new startEvents(this));
     }
 
     private void registerListeners() {

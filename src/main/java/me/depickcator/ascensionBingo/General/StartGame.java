@@ -127,7 +127,7 @@ public class StartGame{
                     SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
                 }, 100);
                 scheduler.runTaskLater(plugin, () -> {
-                    gameState.setCurrentState(GameStates.GAME);
+                    gameState.setCurrentState(GameStates.GAME_BEFORE_GRACE);
                     makeAndShowTitle("GO!!!!", " ", 0, 2, 3);
                     SoundUtil.broadcastSound(Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0f, 2.0f);
                     for (Player p : Bukkit.getOnlinePlayers()) {
