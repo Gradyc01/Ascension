@@ -5,6 +5,7 @@ import com.destroystokyo.paper.profile.ProfileProperty;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Player.PlayerData;
@@ -25,39 +26,33 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class GoldenHead implements Crafts, ItemClick {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 4;
-    public static final String DISPLAY_NAME = "Golden Head";
-    public static final String KEY = "golden_head";
-    private static final int modelNumber = Ascension.generateModelNumber();
-    public GoldenHead() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class GoldenHead extends Craft implements ItemClick {
+    private static GoldenHead instance;
+    private final int modelNumber = Ascension.generateModelNumber();
+    private GoldenHead() {
+        super(1, 4, "Golden Head", "golden_head");
         registerItem();
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = GoldenHead.result();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("AAA", "ABA", "AAA");
         recipe.setIngredient('A', Material.GOLD_INGOT);
         recipe.setIngredient('B', Material.PLAYER_HEAD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
+        return recipe;
     }
 
-    public static ItemStack result() {
+    @Override
+    protected ItemStack initResult() {
         String goldenHeadTexture = "ewogICJ0aW1lc3RhbXAiIDogMTU4OTQ4Njc4OTg3MSwKICAicHJvZmlsZUlkIiA6ICI5MWZlMTk2ODdjOTA0NjU2YWExZmMwNTk4NmRkM2ZlNyIsCiAgInByb2ZpbGVOYW1lIiA6ICJoaGphYnJpcyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS81NjZhODc0NjAxNzNhZGYwNjdjYjM1NmFlMjAwZDAzMDUwNDM3OGM1NTJlMzQyOGI0Nzc0YzRjMTFhNTk5YzI0IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=";
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
         if (skullMeta == null) throw new NullPointerException();
-        
+
         PlayerProfile profile = Bukkit.createProfile(UUID.fromString("5f856526-a7c6-4782-bcf9-803e02b08e1d"), null);
         profile.getProperties().add(new ProfileProperty("textures", goldenHeadTexture));
         skullMeta.setPlayerProfile(profile);
@@ -72,35 +67,10 @@ public class GoldenHead implements Crafts, ItemClick {
         return item;
     }
 
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return GoldenHead.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
 
     @Override
     public ItemStack getItem() {
-        return GoldenHead.result();
+        return result;
     }
 
     @Override
@@ -131,6 +101,11 @@ public class GoldenHead implements Crafts, ItemClick {
 
     @Override
     public void registerItem() {
-        addItem(GoldenHead.result(), this);
+        addItem(result, this);
+    }
+
+    public static GoldenHead getInstance() {
+        if (instance == null) instance = new GoldenHead();
+        return instance;
     }
 }

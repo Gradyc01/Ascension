@@ -3,7 +3,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ShootsProjectiles;
-import me.depickcator.ascension.Items.Craftable.Crafts;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -25,23 +25,16 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeliosCurse implements Crafts, ShootsProjectiles {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 1;
-    public static final String DISPLAY_NAME = "Helios' Curse";
-    public static final String KEY = "helios_curse";
-    private final ItemStack result;
-    private static final int modelNumber = Ascension.generateModelNumber();
-    public HeliosCurse() {
-        this.plugin = Ascension.getInstance();
-        result = makeItem();
-        recipe();
+public class HeliosCurse extends Craft implements ShootsProjectiles {
+    private static HeliosCurse instance;
+    private final int modelNumber = Ascension.generateModelNumber();
+    private HeliosCurse() {
+        super(1, 1, "Helios' Curse" ,"helios_curse");
         addProjectile(KEY, this);
     }
 
-    public void recipe() {
+    @Override
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
 
         ShapedRecipe recipe = new ShapedRecipe(key, result);
@@ -50,35 +43,11 @@ public class HeliosCurse implements Crafts, ShootsProjectiles {
         recipe.setIngredient('B', Material.CROSSBOW);
         recipe.setIngredient('C', Material.NETHER_STAR);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return result;
-    }
-
-    @Override
-    public Recipe getRecipe() {
         return recipe;
     }
 
     @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
-    private ItemStack makeItem() {
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.CROSSBOW);
         Damageable meta = (Damageable) item.getItemMeta();
         meta.setCustomModelData(modelNumber);
@@ -97,7 +66,6 @@ public class HeliosCurse implements Crafts, ShootsProjectiles {
         return item;
     }
 
-
     @Override
     public void applyKey(EntityShootBowEvent event) {
         if (!(event.getProjectile() instanceof Arrow)) return;
@@ -112,5 +80,10 @@ public class HeliosCurse implements Crafts, ShootsProjectiles {
         victim.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 8 * 20, 0, true, true));
         victim.sendMessage(TextUtil.makeText("MARKED", TextUtil.DARK_GRAY, true, false));
         victim.playSound(victim.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 2.0f);
+    }
+
+    public static HeliosCurse getInstance() {
+        if (instance == null) instance = new HeliosCurse();
+        return instance;
     }
 }

@@ -12,7 +12,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Interfaces\AscensionGUI.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Interfaces\CustomChestLoot.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Interfaces\ShootsProjectiles.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\CombatItems.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Craft.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Crafts.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\AncientArtifact.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\ApolloGlare.java
@@ -68,11 +68,12 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\Vanilla.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\WoodenAxe.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\WoodenSword.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\CustomItems.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\EasyItems.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Harditems.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\ItemList.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\MediumItems.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\ItemLists\CombatItems.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\ItemLists\CustomItems.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\ItemLists\EasyItems.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\ItemLists\Harditems.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\ItemLists\MediumItems.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Uncraftable\KitBook.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Uncraftable\ShardOfTheFallen.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Uncraftable\XPTome\XPTome.java

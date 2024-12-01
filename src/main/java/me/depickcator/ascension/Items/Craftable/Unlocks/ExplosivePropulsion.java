@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -10,64 +11,36 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.FireworkMeta;
 
-public class ExplosivePropulsion implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 2;
-    public static final String DISPLAY_NAME = "Explosive Propulsion";
-    public static final String KEY = "explosive_propulsion";
-    private static final ItemStack result = ExplosivePropulsion.makeItem();
-    public ExplosivePropulsion() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class ExplosivePropulsion extends Craft {
+    private static ExplosivePropulsion instance;
+    private ExplosivePropulsion() {
+        super(1, 2, "Explosive Propulsion", "explosive_propulsion");
     }
 
-    public void recipe() {
+    @Override
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ShapedRecipe recipe = new ShapedRecipe(key, ExplosivePropulsion.result);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("ABA", "ACA", "ABA");
         recipe.setIngredient('A', Material.PAPER);
         recipe.setIngredient('B', Material.GUNPOWDER);
         recipe.setIngredient('C', Material.NETHER_STAR);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return ExplosivePropulsion.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
         return recipe;
     }
 
     @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
-    public static ItemStack result() {
-        return result;
-    }
-
-    private static ItemStack makeItem() {
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.FIREWORK_ROCKET, 16);
         FireworkMeta itemMeta = (FireworkMeta) item.getItemMeta();
         itemMeta.setPower(3);
         item.setItemMeta(itemMeta);
         return item;
     }
+
+    public static ExplosivePropulsion getInstance() {
+        if (instance == null) instance = new ExplosivePropulsion();
+        return instance;
+    }
+
 }

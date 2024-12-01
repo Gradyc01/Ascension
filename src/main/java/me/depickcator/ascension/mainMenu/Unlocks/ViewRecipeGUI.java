@@ -3,6 +3,7 @@ package me.depickcator.ascension.mainMenu.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.MutablePair;
@@ -30,7 +31,7 @@ public class ViewRecipeGUI implements AscensionGUI {
     private Player player;
     private Ascension plugin;
     private UnlocksGUI goBackGUI;
-    public ViewRecipeGUI(Player player, Ascension plugin, Crafts craft, UnlocksGUI goBackGUI) {
+    public ViewRecipeGUI(Player player, Ascension plugin, Craft craft, UnlocksGUI goBackGUI) {
         this.player = player;
         this.plugin = plugin;
         this.goBackGUI = goBackGUI;
@@ -49,7 +50,7 @@ public class ViewRecipeGUI implements AscensionGUI {
 
     }
 
-    private void makeRecipeGUI(Crafts craft) {
+    private void makeRecipeGUI(Craft craft) {
         Recipe recipe = craft.getRecipe();
         if (recipe instanceof ShapedRecipe shapedRecipe) {
             shapedRecipeGUI(shapedRecipe);

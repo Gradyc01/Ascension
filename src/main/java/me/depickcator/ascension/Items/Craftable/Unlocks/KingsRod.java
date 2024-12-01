@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -13,35 +14,34 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
 
-public class KingsRod implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 1;
-    public static final String DISPLAY_NAME = "Kings Rod";
-    public static final String KEY = "kings_rod";
-    public static final int MODEL_NUMBER = Ascension.generateModelNumber();;
-    public KingsRod() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class KingsRod extends Craft {
+    private static KingsRod instance;
+    private final int MODEL_NUMBER = Ascension.generateModelNumber();;
+    private KingsRod() {
+        super(1, 1, "Kings Rod", "kings_rod");
+    }
+
+    public static KingsRod getInstance() {
+        if (instance == null) instance = new KingsRod();
+        return instance;
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = KingsRod.result();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape(" B ", "ACA", " D ");
         recipe.setIngredient('A', Material.LILY_PAD);
         recipe.setIngredient('B', Material.FISHING_ROD);
         recipe.setIngredient('C', Material.COMPASS);
         recipe.setIngredient('D', Material.WATER_BUCKET);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
+        return recipe;
     }
 
-    public static ItemStack result() {
+    @Override
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.FISHING_ROD);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
@@ -55,31 +55,5 @@ public class KingsRod implements Crafts {
         item.setItemMeta(meta);
         return item;
     }
-
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return KingsRod.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
 
 }

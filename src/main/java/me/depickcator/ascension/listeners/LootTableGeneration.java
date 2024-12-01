@@ -75,7 +75,7 @@ public class LootTableGeneration implements Listener {
             return;
         }
         if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.FISHING_ROD) {
-            if (event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getCustomModelData() == KingsRod.MODEL_NUMBER) {
+            if (event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getCustomModelData() == KingsRod.getInstance().getResult().getItemMeta().getCustomModelData()) {
                 plugin.getWorld().dropItemNaturally(event.getPlayer().getLocation(), new ItemStack(Material.GOLD_NUGGET, 12));
             }
         }

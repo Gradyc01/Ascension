@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Color;
@@ -14,63 +15,33 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Panacea implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 1;
-    public static final String DISPLAY_NAME = "Panacea";
-    public static final String KEY = "panacea";
-    private static final ItemStack result = Panacea.makeItem();
-    private static final int modelNumber = Ascension.generateModelNumber();
-    public Panacea() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class Panacea extends Craft {
+    private static Panacea instance;
+    private final int modelNumber = Ascension.generateModelNumber();
+    private Panacea() {
+        super(1, 1, "Panacea", "panacea");
     }
 
-    public void recipe() {
-        NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = Panacea.result();
+    public static Panacea getInstance() {
+        if (instance == null) instance = new Panacea();
+        return instance;
+    }
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+    @Override
+    protected Recipe initRecipe() {
+        NamespacedKey key = new NamespacedKey(plugin, KEY);
+
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("BAB", " C ");
         recipe.setIngredient('A', Material.GLISTERING_MELON_SLICE);
         recipe.setIngredient('B', Material.PLAYER_HEAD);
         recipe.setIngredient('C', Material.GLASS_BOTTLE);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return Panacea.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
         return recipe;
     }
 
     @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
-    public static ItemStack result() {
-        return result;
-    }
-
-    private static ItemStack makeItem() {
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.POTION);
         PotionMeta potionMeta = (PotionMeta) item.getItemMeta();
         potionMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.PINK));
@@ -80,4 +51,5 @@ public class Panacea implements Crafts {
         item.setItemMeta(potionMeta);
         return item;
     }
+
 }

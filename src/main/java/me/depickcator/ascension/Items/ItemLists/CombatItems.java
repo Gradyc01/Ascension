@@ -1,8 +1,5 @@
-package me.depickcator.ascension.Items;
+package me.depickcator.ascension.Items.ItemLists;
 
-import me.depickcator.ascension.Items.Craftable.Unlocks.*;
-import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;

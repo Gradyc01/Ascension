@@ -1,8 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
 
-import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Items.Craftable.Crafts;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
@@ -12,70 +11,36 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 
 
-public class WoodenSword implements Crafts, Vanilla {
-    private Recipe recipe;
-    private final Ascension plugin;
-    public static final String DISPLAY_NAME = "Wood Sword";
-    public static final String KEY = "wooden_sword";
-    private static final ItemStack result = WoodenSword.makeResult();
-    public WoodenSword() {
-        this.plugin = Ascension.getInstance();
-        removeVanillaRecipe();
-        recipe();
+public class WoodenSword extends Craft implements Vanilla {
+    private static WoodenSword instance;
+    private WoodenSword() {
+        super("Wood Sword", "wooden_sword");
+    }
+
+    public static WoodenSword getInstance() {
+        if (instance == null) instance = new WoodenSword();
+        return instance;
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = NamespacedKey.minecraft(KEY);
-        ItemStack item = getResult();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("A", "A", "B");
         RecipeChoice.MaterialChoice planks = new RecipeChoice.MaterialChoice(Tag.PLANKS);
-        recipe.setIngredient('A', planks);
+        recipe.setIngredient('A', planks);;
         recipe.setIngredient('B', Material.STICK);
-        this.recipe = recipe;
         plugin.getServer().addRecipe(recipe);
+        return recipe;
     }
 
     @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return result;
-    }
-
-    public static ItemStack item() {
-        return result;
-    }
-
-    private static ItemStack makeResult() {
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.WOODEN_SWORD);
         double attackDamage = 4; double attackSpeed = -2.4;
         item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), attackDamage, attackSpeed, KEY));
         return item;
     }
 
-    @Override
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return 0;
-    }
-
-    @Override
-    public void removeVanillaRecipe() {
-        plugin.getServer().removeRecipe(NamespacedKey.minecraft(KEY));
-    }
 }

@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -11,33 +12,27 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
-public class BookOfSharpness implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 4;
-    public static final String DISPLAY_NAME = "Book of Sharpness";
-    public static final String KEY = "book_of_sharpness";
-    public BookOfSharpness() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class BookOfSharpness extends Craft {
+    private static BookOfSharpness instance;
+    private BookOfSharpness() {
+        super(1, 4, "Book of Sharpness", "book_of_sharpness");
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = BookOfSharpness.result();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("A  ", " BB", " BC");
         recipe.setIngredient('A', Material.FLINT);
         recipe.setIngredient('B', Material.PAPER);
         recipe.setIngredient('C', Material.IRON_SWORD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
+        return recipe;
     }
 
-    public static ItemStack result() {
+    @Override
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
         EnchantmentStorageMeta storageMeta = (EnchantmentStorageMeta) item.getItemMeta();
         storageMeta.addStoredEnchant(Enchantment.SHARPNESS, 1, true);
@@ -45,30 +40,9 @@ public class BookOfSharpness implements Crafts {
         return item;
     }
 
-    @Override
-    public String getKey() {
-        return KEY;
+    public static BookOfSharpness getInstance() {
+        if (instance == null) instance = new BookOfSharpness();
+        return instance;
     }
-
-    @Override
-    public ItemStack getResult() {
-        return BookOfSharpness.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
 
 }

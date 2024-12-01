@@ -3,6 +3,7 @@ package me.depickcator.ascension.Player;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import net.kyori.adventure.text.Component;
@@ -46,7 +47,7 @@ public class PlayerUnlocks {
         UnlocksMap = new HashMap<>();
     }
 
-    public boolean unlockUnlock(Crafts craft, Integer tier) {
+    public boolean unlockUnlock(Craft craft, Integer tier) {
         if (canBeUnlocked(craft, tier)) {
             Component unlockedText = TextUtil.makeText("You have unlocked ", TextUtil.AQUA);
             Component craftName = TextUtil.makeText(craft.getDisplayName(), TextUtil.GOLD);
@@ -113,7 +114,7 @@ public class PlayerUnlocks {
         }
     }
 
-    private boolean canBeUnlocked(Crafts craft, Integer tier) {
+    private boolean canBeUnlocked(Craft craft, Integer tier) {
         String key = craft.getKey();
         if (UnlockUtil.isAUnlock(key) && unlockTokens >= craft.getCraftCost() && UnlocksMap.get(craft.getKey()) == null) {
             switch (tier) {

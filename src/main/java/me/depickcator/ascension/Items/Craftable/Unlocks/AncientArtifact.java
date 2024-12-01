@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -9,61 +10,35 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class AncientArtifact implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 2;
-    public static final String DISPLAY_NAME = "Ancient Artifact";
-    public static final String KEY = "ancient_artifact";
-    public AncientArtifact() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class AncientArtifact extends Craft {
+    private static AncientArtifact instance;
+    private AncientArtifact() {
+        super(1, 2, "Ancient Artifact", "ancient_artifact");
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = AncientArtifact.result();
-
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape(" A ", "BCB", " D ");
         recipe.setIngredient('A', Material.MAGMA_CREAM);
         recipe.setIngredient('B', Material.BLAZE_POWDER);
         recipe.setIngredient('C', Material.NETHER_STAR);
         recipe.setIngredient('D', Material.GOLD_BLOCK);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
-    }
-
-    public static ItemStack result() {
-        return new ItemStack(Material.ANCIENT_DEBRIS, 3);
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return AncientArtifact.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
         return recipe;
     }
 
     @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
+    protected ItemStack initResult() {
+        return new ItemStack(Material.ANCIENT_DEBRIS, 3);
     }
 
-    @Override
-    public int getCraftCost() {
-        return COST;
+    public static AncientArtifact getInstance() {
+        if (instance == null) instance = new AncientArtifact();
+        return instance;
     }
+
 
 
 }

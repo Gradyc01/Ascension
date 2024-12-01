@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Player.PlayerUnlocks;
 import me.depickcator.ascension.Player.PlayerUtil;
@@ -90,12 +91,12 @@ public class UnlocksGUI_2 implements AscensionGUI, UnlocksGUI {
     }
 
     @Override
-    public void interactWithGUIButtonsViewRecipe(Pair<Crafts, Integer> unlock, Player p) {
+    public void interactWithGUIButtonsViewRecipe(Pair<Craft, Integer> unlock, Player p) {
         new ViewRecipeGUI(p, plugin, unlock.getLeft(), this);
     }
 
     @Override
-    public void interactWithGUIButtonsUnlock(Pair<Crafts, Integer> unlock, Player p) {
+    public void interactWithGUIButtonsUnlock(Pair<Craft, Integer> unlock, Player p) {
         PlayerUnlocks playerUnlocks = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks();
         if (playerUnlocks.unlockUnlock(unlock.getLeft(), unlock.getRight())) {
             new UnlocksGUI_2(plugin, p);

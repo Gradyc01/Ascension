@@ -1,8 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
 
-import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Items.Craftable.Crafts;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -10,69 +9,35 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
 
-public class DiamondSword implements Crafts, Vanilla {
-    private Recipe recipe;
-    private final Ascension plugin;
-    public static final String DISPLAY_NAME = "Diamond Sword";
-    public static final String KEY = "diamond_sword";
-    private static final ItemStack result = DiamondSword.makeResult();
-    public DiamondSword() {
-        this.plugin = Ascension.getInstance();
-        removeVanillaRecipe();
-        recipe();
+public class DiamondSword extends Craft implements Vanilla {
+    private static DiamondSword instance;
+    private DiamondSword() {
+        super("Diamond Sword", "diamond_sword");
+    }
+
+    public static DiamondSword getInstance() {
+        if (instance == null) instance = new DiamondSword();
+        return instance;
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = NamespacedKey.minecraft(KEY);
-        ItemStack item = getResult();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("A", "A", "B");
         recipe.setIngredient('A', Material.DIAMOND);
         recipe.setIngredient('B', Material.STICK);
-        this.recipe = recipe;
         plugin.getServer().addRecipe(recipe);
+        return recipe;
     }
 
     @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return result;
-    }
-
-    public static ItemStack item() {
-        return result;
-    }
-
-    private static ItemStack makeResult() {
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
         double attackDamage = 13; double attackSpeed = -2.4;
         item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), attackDamage, attackSpeed, KEY));
         return item;
     }
 
-    @Override
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return 0;
-    }
-
-    @Override
-    public void removeVanillaRecipe() {
-        plugin.getServer().removeRecipe(NamespacedKey.minecraft(KEY));
-    }
 }

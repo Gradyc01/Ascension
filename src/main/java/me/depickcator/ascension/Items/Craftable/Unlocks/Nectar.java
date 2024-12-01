@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Color;
@@ -14,35 +15,29 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Nectar implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 3;
-    public static final String DISPLAY_NAME = "Nectar";
-    public static final String KEY = "nectar";
-    private static final int modelNumber = Ascension.generateModelNumber();
+public class Nectar extends Craft {
+    private static Nectar instance;
+    private final int modelNumber = Ascension.generateModelNumber();
     public Nectar() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+        super(1, 3,  "Nectar", "nectar");
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = Nectar.result();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape(" A ", "BCB", " D ");
         recipe.setIngredient('A', Material.EMERALD);
         recipe.setIngredient('B', Material.GOLD_INGOT);
         recipe.setIngredient('C', Material.MELON_SLICE);
         recipe.setIngredient('D', Material.GLASS_BOTTLE);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
+        return recipe;
     }
 
-    public static ItemStack result() {
+    @Override
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.POTION);
         PotionMeta potionMeta = (PotionMeta) item.getItemMeta();
         potionMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
@@ -53,30 +48,11 @@ public class Nectar implements Crafts {
         return item;
     }
 
-    @Override
-    public String getKey() {
-        return KEY;
+    public static Nectar getInstance() {
+        if (instance == null) instance = new Nectar();
+        return instance;
     }
 
-    @Override
-    public ItemStack getResult() {
-        return Nectar.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
 
 
 }

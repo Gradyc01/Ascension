@@ -3,6 +3,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ShootsProjectiles;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import net.kyori.adventure.text.Component;
@@ -25,61 +26,28 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApolloGlare implements Crafts, ShootsProjectiles {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 1;
-    public static final String DISPLAY_NAME = "Apollo's Glare";
-    public static final String KEY = "apollo_glare";
-    private final ItemStack result;
+public class ApolloGlare extends Craft implements ShootsProjectiles  {
+    private static ApolloGlare instance;
     private static final int modelNumber = Ascension.generateModelNumber();
-    public ApolloGlare() {
-        this.plugin = Ascension.getInstance();
-        result = makeItem();
-        recipe();
+    private ApolloGlare() {
+        super(1, 1, "Apollo's Glare", "apollo_glare");
         addProjectile(KEY, this);
     }
 
-    public void recipe() {
+    @Override
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = result;
-
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("A", "B", "C");
         recipe.setIngredient('A', Material.INK_SAC);
         recipe.setIngredient('B', Material.CROSSBOW);
         recipe.setIngredient('C', Material.NETHER_STAR);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return result;
-    }
-
-    @Override
-    public Recipe getRecipe() {
         return recipe;
     }
 
     @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
-    private ItemStack makeItem() {
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.CROSSBOW);
         Damageable meta = (Damageable) item.getItemMeta();
         meta.setMaxDamage(24);
@@ -96,6 +64,11 @@ public class ApolloGlare implements Crafts, ShootsProjectiles {
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;
+    }
+
+    public static ApolloGlare getInstance() {
+        if (instance == null) instance = new ApolloGlare();
+        return instance;
     }
 
 

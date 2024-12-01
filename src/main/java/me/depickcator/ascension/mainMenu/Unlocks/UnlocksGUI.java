@@ -2,6 +2,7 @@ package me.depickcator.ascension.mainMenu.Unlocks;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Player.PlayerUnlocks;
 import net.kyori.adventure.text.Component;
@@ -26,23 +27,23 @@ public interface UnlocksGUI {
         }
     }
 
-    default void placeUnlockInGUI(ArrayList<Crafts> arr, int startingIndex, PlayerUnlocks playerUnlocks, Inventory inventory) {
+    default void placeUnlockInGUI(ArrayList<Craft> arr, int startingIndex, PlayerUnlocks playerUnlocks, Inventory inventory) {
         int i = 0;
         int index = startingIndex;
 
-        for (Crafts c : arr) {
+        for (Craft c : arr) {
             ItemStack item;
             ItemMeta meta;
+            item = c.getResult().clone();
+            meta = item.getItemMeta();
+            item.setAmount(1);
+            meta.lore(addPurchaseLore(c, meta.lore(), playerUnlocks));
             if (playerUnlocks.hasUnlock(c.getKey())) {
-                item = unlockedItem();
-                meta = item.getItemMeta();
                 meta.displayName(Component.text(c.getDisplayName()).color(TextUtil.DARK_GREEN).decoration(TextDecoration.ITALIC, false));
+                meta.setEnchantmentGlintOverride(true);
             } else {
-                item = c.getResult().clone();
-                meta = item.getItemMeta();
                 meta.displayName(Component.text(c.getDisplayName()).color(TextUtil.RED).decoration(TextDecoration.ITALIC, false));
-                meta.lore(addPurchaseLore(c, meta.lore()));
-                item.setAmount(1);
+                meta.setEnchantmentGlintOverride(false);
             }
             item.setItemMeta(meta); //Sets the Meta to Button Meta
             inventory.setItem(index, item);
@@ -56,7 +57,7 @@ public interface UnlocksGUI {
         }
     }
 
-    default List<Component> addPurchaseLore(Crafts craft, List<Component> lore) {
+    default List<Component> addPurchaseLore(Craft craft, List<Component> lore, PlayerUnlocks playerUnlocks) {
         List<Component> purchaseLore;
         if (lore != null) {
             purchaseLore = new ArrayList<>(lore);
@@ -64,8 +65,14 @@ public interface UnlocksGUI {
             purchaseLore = new ArrayList<>();
         }
 
-        Component costText = TextUtil.makeText("[" + craft.getCraftCost() + " Souls]", TextUtil.GOLD);
-        purchaseLore.add(costText);
+        if (!playerUnlocks.hasUnlock(craft.getKey())) {
+            Component costText = TextUtil.makeText("[" + craft.getCraftCost() + " Souls]", TextUtil.GOLD);
+            purchaseLore.add(costText);
+        } else {
+            Component costText = TextUtil.makeText("[Unlocked]", TextUtil.GREEN);
+            purchaseLore.add(costText);
+        }
+
         return purchaseLore;
     }
 
@@ -106,18 +113,18 @@ public interface UnlocksGUI {
 
     default void determineRecipeShape(InventoryClickEvent event, Player p, ItemStack item, Ascension plugin) {
         String displayName = ((TextComponent) Objects.requireNonNull(item.getItemMeta().displayName())).content();
-        Pair<Crafts, Integer> unlock = plugin.getUnlocksData().findUnlock(displayName);
+        Pair<Craft, Integer> unlock = plugin.getUnlocksData().findUnlock(displayName);
         if (unlock == null) return;
-        if (event.getClick().isLeftClick() && !item.equals(unlockedItem())) {
+        if (event.getClick().isLeftClick()/* && !item.equals(unlockedItem())*/) {
             interactWithGUIButtonsUnlock(unlock, p);
         } else if (event.getClick().isRightClick()) {
             interactWithGUIButtonsViewRecipe(unlock, p);
         }
     }
 
-    void interactWithGUIButtonsViewRecipe(Pair<Crafts, Integer> unlock, Player p);
+    void interactWithGUIButtonsViewRecipe(Pair<Craft, Integer> unlock, Player p);
 
-    void interactWithGUIButtonsUnlock(Pair<Crafts, Integer> unlock, Player p);
+    void interactWithGUIButtonsUnlock(Pair<Craft, Integer> unlock, Player p);
 
     
 

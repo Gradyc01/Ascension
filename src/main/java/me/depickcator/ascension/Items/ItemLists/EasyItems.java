@@ -1,4 +1,4 @@
-package me.depickcator.ascension.Items;
+package me.depickcator.ascension.Items.ItemLists;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

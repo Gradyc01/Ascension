@@ -25,7 +25,7 @@ public class IronTools implements Kit{
     private List<ItemStack> ironTools() {
         ItemStack pickaxe = new ItemStack(Material.IRON_PICKAXE);
         pickaxe.setItemMeta(setMeta(pickaxe));
-        ItemStack axe = IronAxe.item().clone();
+        ItemStack axe = IronAxe.getInstance().getResult().clone();
         axe.setItemMeta(setMeta(axe));
         ItemStack shovel = new ItemStack(Material.IRON_SHOVEL);
         shovel.setItemMeta(setMeta(shovel));
@@ -47,7 +47,7 @@ public class IronTools implements Kit{
         return meta;
     }
     private ItemStack ironSword() {
-        ItemStack sword = IronSword.item().clone();
+        ItemStack sword = IronSword.getInstance().getResult().clone();
         Repairable meta = (Repairable) sword.getItemMeta();
         meta.addEnchant(Enchantment.UNBREAKING, 1, true);
         meta.addEnchant(Enchantment.LOOTING, 1, true);

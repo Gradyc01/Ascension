@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -9,58 +10,32 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class SugarRush implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 4;
-    public static final String DISPLAY_NAME = "Sugar Rush";
-    public static final String KEY = "sugar_rush";
-    public SugarRush() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class SugarRush extends Craft {
+    private static SugarRush instance;
+    private SugarRush() {
+        super(1, 4, "Sugar Rush", "sugar_rush");
+    }
+
+    public static SugarRush getInstance() {
+        if (instance == null) instance = new SugarRush();
+        return instance;
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = SugarRush.result();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape(" C ", "ABA", "   ");
         recipe.setIngredient('A', Material.WHEAT_SEEDS);
         recipe.setIngredient('B', Material.SUGAR);
         recipe.setIngredient('C', UnlockUtil.SAPLINGS);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return SugarRush.result();
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public Recipe getRecipe() {
         return recipe;
     }
 
     @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
-    public static ItemStack result() {
+    protected ItemStack initResult() {
         return new ItemStack(Material.SUGAR_CANE, 4);
     }
 }

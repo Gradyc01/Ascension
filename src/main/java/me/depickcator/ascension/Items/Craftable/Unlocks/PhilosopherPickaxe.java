@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -14,35 +15,34 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
 
-public class PhilosopherPickaxe implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 2;
-    public static final int MAX_CRAFTS = 4;
-    public static final String DISPLAY_NAME = "Philosopher’s Pickaxe";
-    public static final String KEY = "philosopher_pickaxe";
-    private static final int modelNumber = Ascension.generateModelNumber();
-    public PhilosopherPickaxe() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class PhilosopherPickaxe extends Craft {
+    private static PhilosopherPickaxe instance;
+    private final int modelNumber = Ascension.generateModelNumber();
+    private PhilosopherPickaxe() {
+        super(2, 4, "Philosopher’s Pickaxe", "philosopher_pickaxe");
+    }
+
+    public static PhilosopherPickaxe getInstance() {
+        if (instance == null) instance = new PhilosopherPickaxe();
+        return instance;
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = PhilosopherPickaxe.result();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("ABA", "CDC", " D ");
         recipe.setIngredient('A', Material.IRON_INGOT);
         recipe.setIngredient('B', Material.GOLD_INGOT);
         recipe.setIngredient('C', Material.LAPIS_BLOCK);
         recipe.setIngredient('D', Material.STICK);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
+        return recipe;
     }
 
-    public static ItemStack result() {
+    @Override
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.DIAMOND_PICKAXE);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.PINK));
@@ -59,30 +59,6 @@ public class PhilosopherPickaxe implements Crafts {
         return item;
     }
 
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return PhilosopherPickaxe.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
 
 
 }

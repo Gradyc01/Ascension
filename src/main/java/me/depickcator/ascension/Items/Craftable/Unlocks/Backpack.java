@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -9,58 +10,32 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class Backpack implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 2;
-    public static final String DISPLAY_NAME = "Backpack";
-    public static final String KEY = "backpack";
-    public Backpack() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class Backpack extends Craft {
+    private static Backpack instance;
+    private Backpack() {
+        super(1, 2, "Backpack", "backpack");
     }
 
     @Override
-    public void recipe() {
+    protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = Backpack.result();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("ABA", "ACA", "ABA");
         recipe.setIngredient('A', Material.STICK);
         recipe.setIngredient('B', Material.LEATHER);
         recipe.setIngredient('C', Material.CHEST);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return Backpack.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
         return recipe;
     }
 
     @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
-    }
-
-    public static ItemStack result() {
+    protected ItemStack initResult() {
         return new ItemStack(Material.SHULKER_BOX, 1);
+    }
+
+    public static Backpack getInstance() {
+        if (instance == null) instance = new Backpack();
+        return instance;
     }
 }

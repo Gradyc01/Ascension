@@ -40,7 +40,7 @@ public class Hunter implements Kit{
     }
 
     private ItemStack hunterAxe() {
-        ItemStack item = IronAxe.item().clone();
+        ItemStack item = IronAxe.getInstance().getResult().clone();
         Repairable meta = (Repairable) item.getItemMeta();
         meta.displayName(TextUtil.makeText("Hunter's Axe", TextUtil.AQUA));
         meta.addEnchant(Enchantment.SHARPNESS, 2, true);

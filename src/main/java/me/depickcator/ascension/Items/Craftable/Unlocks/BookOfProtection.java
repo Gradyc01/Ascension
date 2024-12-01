@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -11,33 +12,27 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
-public class BookOfProtection implements Crafts {
-    private final Ascension plugin;
-    private Recipe recipe;
-    public static final int COST = 1;
-    public static final int MAX_CRAFTS = 4;
-    public static final String DISPLAY_NAME = "Book of Protection";
-    public static final String KEY = "book_of_protection";
-    public BookOfProtection() {
-        this.plugin = Ascension.getInstance();
-        recipe();
+public class BookOfProtection extends Craft {
+    private static BookOfProtection instance;
+    private BookOfProtection() {
+        super(1, 4, "Book of Protection", "book_of_protection");
     }
 
-    @Override
-    public void recipe() {
-        NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ItemStack item = BookOfProtection.result();
 
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
+    @Override
+    protected Recipe initRecipe() {
+        NamespacedKey key = new NamespacedKey(plugin, KEY);
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("A  ", " BB", " BC");
         recipe.setIngredient('A', Material.ROTTEN_FLESH);
         recipe.setIngredient('B', Material.PAPER);
         recipe.setIngredient('C', Material.IRON_INGOT);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
-        this.recipe = recipe;
+        return recipe;
     }
 
-    public static ItemStack result() {
+    @Override
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
         EnchantmentStorageMeta storageMeta = (EnchantmentStorageMeta) item.getItemMeta();
         storageMeta.addStoredEnchant(Enchantment.PROTECTION, 1, true);
@@ -45,29 +40,9 @@ public class BookOfProtection implements Crafts {
         return item;
     }
 
-    @Override
-    public String getKey() {
-        return KEY;
-    }
-
-    @Override
-    public ItemStack getResult() {
-        return BookOfProtection.result();
-    }
-
-    @Override
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
-    }
-
-    @Override
-    public int getCraftCost() {
-        return COST;
+    public static BookOfProtection getInstance() {
+        if (instance == null) instance = new BookOfProtection();
+        return instance;
     }
 
 

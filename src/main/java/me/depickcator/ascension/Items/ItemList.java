@@ -1,9 +1,11 @@
 package me.depickcator.ascension.Items;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.ItemLists.*;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -36,7 +38,9 @@ public class ItemList {
         ArrayList<ItemStack> arr = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             int index = r.nextInt(0, itemList.size());
-            arr.add(itemList.get(index));
+            ItemStack item = itemList.get(index).clone();
+            item.setAmount(1);
+            arr.add(item);
             itemList.remove(index);
         }
         return arr;
@@ -45,26 +49,17 @@ public class ItemList {
     public ArrayList<ItemStack> get25() {
         ArrayList<ItemStack> items = new ArrayList<>();
         items.addAll(grabItemsFromList(easyItems.getItems(), 5));
-        items.addAll(grabItemsFromList(mediumItems.getItems(), 8));
+        items.addAll(grabItemsFromList(mediumItems.getItems(), 10));
         items.addAll(grabItemsFromList(harditems.getItems(), 5));
-        items.addAll(grabItemsFromList(customItems.getItems(), 7));
+        items.addAll(grabItemsFromList(customItems.getItems(), 5));
 //        items.addAll(grabItemsFromList(combatItems.getItems(), 5));
         return items;
     }
 
     public ArrayList<ItemStack> getItemsForBoard() {
         Random r = new Random();
-        ArrayList<ItemStack> items = new ArrayList<>();
-        for (ItemStack item : get25()) {
-            ItemStack i = item.clone();
-            i.setAmount(1);
-            int size = items.size();
-            if (items.isEmpty()) {
-                items.add(i);
-            } else {
-                items.add(r.nextInt(0, size), i);
-            }
-        }
+        ArrayList<ItemStack> items = new ArrayList<>(get25());
+        Collections.shuffle(items);
         return items;
     }
 }

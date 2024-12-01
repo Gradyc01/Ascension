@@ -1,4 +1,4 @@
-package me.depickcator.ascension.Items;
+package me.depickcator.ascension.Items.ItemLists;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -40,6 +40,8 @@ public class Harditems {
         items.add(new ItemStack(Material.WAXED_COPPER_GRATE)); //Change to a list later
         items.add(new ItemStack(Material.CONDUIT));
         items.add(new ItemStack(Material.HONEYCOMB_BLOCK));
+        items.add(new ItemStack(Material.MACE));//TODO: Maybe Change Later to Custom
+        items.add(new ItemStack(Material.TRIDENT)); //TODO: Maybe Change Later to Custom
 
 
         items.add(getRandomHorseArmor());
