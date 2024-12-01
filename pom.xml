@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.depickcator</groupId>
-    <artifactId>ascensionbingo</artifactId>
+    <artifactId>ascension</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>ascensionbingo</name>
+    <name>ascension</name>
 
     <properties>
         <java.version>21</java.version>

@@ -1,6 +1,6 @@
-name: AscensionBingo
+name: Ascension
 version: '1.0'
-main: me.depickcator.ascensionBingo.AscensionBingo
+main: me.depickcator.ascension.Ascension
 api-version: '1.21'
 commands:
   open-main-menu:
