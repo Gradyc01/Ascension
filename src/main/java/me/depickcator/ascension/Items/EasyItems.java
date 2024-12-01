@@ -53,8 +53,11 @@ public class EasyItems {
         addItem(new ItemStack(Material.CLOCK));
         addItem(new ItemStack(Material.BROWN_BANNER));
         addItem(new ItemStack(Material.BRUSH));
+        addItem(new ItemStack(Material.ITEM_FRAME));
         addItem(getRandomGlass());
         addItem(getRandomBanner());
+        addItem(getRandomConcrete());
+        addItem(getRandomWool());
     }
 
     private void addItem(ItemStack item) {
@@ -107,6 +110,54 @@ public class EasyItems {
         items.add(new ItemStack(Material.PURPLE_BANNER));
         items.add(new ItemStack(Material.MAGENTA_BANNER));
         items.add(new ItemStack(Material.PINK_BANNER));
+
+        int pick = (int) Math.round(Math.random() * items.size());
+
+        return items.get(pick);
+    }
+
+    private ItemStack getRandomConcrete() {
+        ArrayList<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Material.WHITE_CONCRETE));
+        items.add(new ItemStack(Material.GRAY_CONCRETE));
+        items.add(new ItemStack(Material.LIGHT_GRAY_CONCRETE));
+        items.add(new ItemStack(Material.BLACK_CONCRETE));
+        items.add(new ItemStack(Material.BROWN_CONCRETE));
+        items.add(new ItemStack(Material.RED_CONCRETE));
+        items.add(new ItemStack(Material.ORANGE_CONCRETE));
+        items.add(new ItemStack(Material.YELLOW_CONCRETE));
+        items.add(new ItemStack(Material.LIME_CONCRETE));
+        items.add(new ItemStack(Material.GREEN_CONCRETE));
+        items.add(new ItemStack(Material.CYAN_CONCRETE));
+        items.add(new ItemStack(Material.LIGHT_BLUE_CONCRETE));
+        items.add(new ItemStack(Material.BLUE_CONCRETE));
+        items.add(new ItemStack(Material.PURPLE_CONCRETE));
+        items.add(new ItemStack(Material.MAGENTA_CONCRETE));
+        items.add(new ItemStack(Material.PINK_CONCRETE));
+
+        int pick = (int) Math.round(Math.random() * items.size());
+
+        return items.get(pick);
+    }
+
+    private ItemStack getRandomWool() {
+        ArrayList<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Material.WHITE_WOOL));
+        items.add(new ItemStack(Material.GRAY_WOOL));
+        items.add(new ItemStack(Material.LIGHT_GRAY_WOOL));
+        items.add(new ItemStack(Material.BLACK_WOOL));
+        items.add(new ItemStack(Material.BROWN_WOOL));
+        items.add(new ItemStack(Material.RED_WOOL));
+        items.add(new ItemStack(Material.ORANGE_WOOL));
+        items.add(new ItemStack(Material.YELLOW_WOOL));
+        items.add(new ItemStack(Material.LIME_WOOL));
+        items.add(new ItemStack(Material.GREEN_WOOL));
+        items.add(new ItemStack(Material.CYAN_WOOL));
+        items.add(new ItemStack(Material.LIGHT_BLUE_WOOL));
+        items.add(new ItemStack(Material.BLUE_WOOL));
+        items.add(new ItemStack(Material.PURPLE_WOOL));
+        items.add(new ItemStack(Material.MAGENTA_WOOL));
+        items.add(new ItemStack(Material.PINK_WOOL));
 
         int pick = (int) Math.round(Math.random() * items.size());
 

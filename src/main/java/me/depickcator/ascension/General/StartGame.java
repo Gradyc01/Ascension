@@ -75,7 +75,7 @@ public class StartGame{
             @Override
             public void run() {
                 BingoData bingoData = plugin.getBingoData();
-                bingoData.setItems(bingoData.getItemList().get25());
+                bingoData.setItems(bingoData.getItemList().getItemsForBoard());
                 ArrayList<ItemStack> item = bingoData.getItems();
                 for (ItemStack i : item) {
                     player.sendMessage(i.toString());

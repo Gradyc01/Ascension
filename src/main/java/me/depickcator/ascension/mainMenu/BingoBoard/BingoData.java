@@ -19,6 +19,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.*;
@@ -45,7 +46,7 @@ public class BingoData {
         scoreboardManager = Bukkit.getServer().getScoreboardManager();
         bingoScoreboard = scoreboardManager.getMainScoreboard();
         try {
-            bingodata = bingoScoreboard.registerNewObjective("bingo", Criteria.DUMMY , Component.text("Ascension Bingo"), RenderType.INTEGER);
+            bingodata = bingoScoreboard.registerNewObjective("bingo", Criteria.DUMMY , Component.text("Ascension"), RenderType.INTEGER);
         } catch (Exception e) {
             bingodata = bingoScoreboard.getObjective("bingo");
         }
@@ -77,25 +78,51 @@ public class BingoData {
         for (Player player : players) {
             Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
             score.setScore(0);
-
         }
     }
 
-    private boolean containsItem(ItemStack item1, ItemStack item2) {
-        ItemMeta item1Meta = item1.getItemMeta();
-        ItemMeta item2Meta = item2.getItemMeta();
-        boolean modelData;
-        try {
-            modelData = item1Meta.getCustomModelData() == item2Meta.getCustomModelData();
-        } catch (Exception e) {
-            modelData =true;
+    private boolean containsItem(ItemStack inv, ItemStack board) {
+//        ItemMeta item1Meta = inv.getItemMeta();
+//        ItemMeta item2Meta = board.getItemMeta();
+//        boolean modelData;
+//        try {
+//            modelData = item1Meta.getCustomModelData() == item2Meta.getCustomModelData();
+//        } catch (Exception e) {
+//            modelData =true;
+//        }
+//        return (inv.getType().equals(board.getType()) &&
+//                Objects.equals(item1Meta.lore(), item2Meta.lore()) &&
+//                Objects.equals(item1Meta.getItemFlags(), item2Meta.getItemFlags()) &&
+//                modelData &&
+//                Objects.equals(item1Meta.getEnchants(), item2Meta.getEnchants()) &&
+//                Objects.equals(item1Meta.getFood(), item2Meta.getFood()));
+        return itemParser(inv).equals(itemParser(board));
+    }
+
+    private String itemParser(ItemStack item) {
+        int customModelNumber = getItemModelNumber(item);
+
+        if (item.getType().equals(Material.ENCHANTED_BOOK) && customModelNumber == 0) {
+            return item.getType() + item.getItemMeta().getEnchants().toString();
         }
-        return (item1.getType().equals(item2.getType()) &&
-                Objects.equals(item1Meta.lore(), item2Meta.lore()) &&
-                Objects.equals(item1Meta.getItemFlags(), item2Meta.getItemFlags()) &&
-                modelData &&
-                Objects.equals(item1Meta.getEnchants(), item2Meta.getEnchants()) &&
-                Objects.equals(item1Meta.getFood(), item2Meta.getFood()));
+
+        if (item.getType().equals(Material.POTION) && customModelNumber == 0) {
+            PotionMeta meta = (PotionMeta) item.getItemMeta();
+            return item.getType() + meta.getCustomEffects().toString();
+        }
+
+        return item.getType().toString() + customModelNumber;
+    }
+
+    private int getItemModelNumber(ItemStack item) {
+        int customModelNumber;
+        ItemMeta meta = item.getItemMeta();
+        try {
+            customModelNumber = meta.getCustomModelData();
+        } catch (Exception ignored) {
+            customModelNumber = 0;
+        }
+        return customModelNumber;
     }
 
 
@@ -119,7 +146,7 @@ public class BingoData {
                     j.setAmount(j.getAmount() - 1);
                     addScore(24 - i, p);
                     giveRewards(p, item);
-                    checkForLineCompletion(p); //Also adds a item obtained (idk where else to put it)
+                    checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)
                     updateScoreboard(p);
                     new BingoBoardGUI(plugin, p);
                     return;
