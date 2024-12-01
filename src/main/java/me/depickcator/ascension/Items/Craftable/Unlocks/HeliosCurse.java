@@ -34,8 +34,8 @@ public class HeliosCurse implements Crafts, ShootsProjectiles {
     public static final String KEY = "helios_curse";
     private final ItemStack result;
     private static final int modelNumber = Ascension.generateModelNumber();
-    public HeliosCurse(Ascension plugin) {
-        this.plugin = plugin;
+    public HeliosCurse() {
+        this.plugin = Ascension.getInstance();
         result = makeItem();
         recipe();
         addProjectile(KEY, this);

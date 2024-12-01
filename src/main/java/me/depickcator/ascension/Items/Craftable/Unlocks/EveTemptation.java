@@ -16,8 +16,8 @@ public class EveTemptation implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Eve's Temptation";
     public static final String KEY = "eve_temptation";
-    public EveTemptation(Ascension plugin) {
-        this.plugin = plugin;
+    public EveTemptation() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

@@ -18,8 +18,8 @@ public class BookOfSharpness implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Book of Sharpness";
     public static final String KEY = "book_of_sharpness";
-    public BookOfSharpness(Ascension plugin) {
-        this.plugin = plugin;
+    public BookOfSharpness() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

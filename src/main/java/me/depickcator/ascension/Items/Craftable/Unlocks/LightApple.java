@@ -16,8 +16,8 @@ public class LightApple implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Light Apple";
     public static final String KEY = "light_apple";
-    public LightApple(Ascension plugin) {
-        this.plugin = plugin;
+    public LightApple() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

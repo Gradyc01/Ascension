@@ -14,8 +14,8 @@ public class XPTome implements ItemClick {
     private final ItemStack item;
     private final Ascension plugin;
     private static final int modelNumber = Ascension.generateModelNumber();
-    public XPTome(Ascension plugin) {
-        this.plugin = plugin;
+    public XPTome() {
+        this.plugin = Ascension.getInstance();
         this.item = result();
         registerItem();
     }

@@ -22,8 +22,8 @@ public class StartGame{
     Player player;
     private final int second = 20;
     private final GameStates gameState;
-    public StartGame(Ascension plugin, Player player) {
-        this.plugin = plugin;
+    public StartGame(Player player) {
+        this.plugin = Ascension.getInstance();
         this.player = player;
         this.gameState = plugin.getGameState();
         this.gameState.setCurrentState(GameStates.GAME_LOADING);

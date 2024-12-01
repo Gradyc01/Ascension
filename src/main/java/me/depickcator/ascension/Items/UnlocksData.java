@@ -11,15 +11,13 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.ArrayList;
 
 public class UnlocksData {
-    private final Ascension plugin;
     private final ArrayList<Crafts> tier1Unlocks;
     private final ArrayList<Crafts> tier2Unlocks;
     private final ArrayList<Crafts> tier3Unlocks;
     private final ArrayList<Crafts> tier4Unlocks;
     private final ArrayList<Crafts> tier5Unlocks;
 
-    public UnlocksData(Ascension plugin) {
-        this.plugin = plugin;
+    public UnlocksData() {
         tier1Unlocks = new ArrayList<>();
         tier2Unlocks = new ArrayList<>();
         tier3Unlocks = new ArrayList<>();
@@ -36,83 +34,83 @@ public class UnlocksData {
 
 
     private void Tier1Unlocks() {
-        tier1Unlocks.add(new IronPack(plugin));
-        tier1Unlocks.add(new GoldPack(plugin));
-        tier1Unlocks.add(new QuickPick(plugin));
-        tier1Unlocks.add(new SugarRush(plugin));
-        tier1Unlocks.add(new LeatherEconomy(plugin));
-        tier1Unlocks.add(new ArrowEconomy(plugin));
-        tier1Unlocks.add(new EveTemptation(plugin));
-        tier1Unlocks.add(new Backpack(plugin));
-        tier1Unlocks.add(new FlintShovel(plugin));
-        tier1Unlocks.add(new QuickBow(plugin));
+        tier1Unlocks.add(new IronPack());
+        tier1Unlocks.add(new GoldPack());
+        tier1Unlocks.add(new QuickPick());
+        tier1Unlocks.add(new SugarRush());
+        tier1Unlocks.add(new LeatherEconomy());
+        tier1Unlocks.add(new ArrowEconomy());
+        tier1Unlocks.add(new EveTemptation());
+        tier1Unlocks.add(new Backpack());
+        tier1Unlocks.add(new FlintShovel());
+        tier1Unlocks.add(new QuickBow());
     }
 
     private void Tier2Unlocks() {
-        tier2Unlocks.add(new DiamondPack(plugin));
-        tier2Unlocks.add(new NotchApple(plugin));
-        tier2Unlocks.add(new FlamingArtifact(plugin));
-        tier2Unlocks.add(new PhilosopherPickaxe(plugin));
-        tier2Unlocks.add(new LightAnvil(plugin));
-        tier2Unlocks.add(new EnlighteningPack(plugin));
-        tier2Unlocks.add(new LightApple(plugin));
-        tier2Unlocks.add(new GoldenHead(plugin));
-        tier2Unlocks.add(new VorpalSword(plugin));
+        tier2Unlocks.add(new DiamondPack());
+        tier2Unlocks.add(new NotchApple());
+        tier2Unlocks.add(new FlamingArtifact());
+        tier2Unlocks.add(new PhilosopherPickaxe());
+        tier2Unlocks.add(new LightAnvil());
+        tier2Unlocks.add(new EnlighteningPack());
+        tier2Unlocks.add(new LightApple());
+        tier2Unlocks.add(new GoldenHead());
+        tier2Unlocks.add(new VorpalSword());
     }
 
     private void Tier3Unlocks() {
-        tier3Unlocks.add(new Tarnhelm(plugin));
-        tier3Unlocks.add(new KingsRod(plugin));
-        tier3Unlocks.add(new BookOfPower(plugin));
-        tier3Unlocks.add(new BookOfProtection(plugin));
-        tier3Unlocks.add(new BookOfSharpness(plugin));
-        tier3Unlocks.add(new BookOfProjectileProtection(plugin));
-        tier3Unlocks.add(new AncientArtifact(plugin));
-        tier3Unlocks.add(new SoulArtifact(plugin));
-        tier3Unlocks.add(new Nectar(plugin));
-        tier3Unlocks.add(new PotionOfVelocity(plugin));
+        tier3Unlocks.add(new Tarnhelm());
+        tier3Unlocks.add(new KingsRod());
+        tier3Unlocks.add(new BookOfPower());
+        tier3Unlocks.add(new BookOfProtection());
+        tier3Unlocks.add(new BookOfSharpness());
+        tier3Unlocks.add(new BookOfProjectileProtection());
+        tier3Unlocks.add(new AncientArtifact());
+        tier3Unlocks.add(new SoulArtifact());
+        tier3Unlocks.add(new Nectar());
+        tier3Unlocks.add(new PotionOfVelocity());
     }
 
     private void Tier4Unlocks() {
-        tier4Unlocks.add(new Cornucopia(plugin));
-        tier4Unlocks.add(new DragonArmor(plugin));
-        tier4Unlocks.add(new HideOfLeviathan(plugin));
-        tier4Unlocks.add(new SevenLeagueBoots(plugin));
-        tier4Unlocks.add(new Panacea(plugin));
-        tier4Unlocks.add(new Dread(plugin));
-        tier4Unlocks.add(new CubeConverter(plugin));
-        tier4Unlocks.add(new ExplosivePropulsion(plugin));
-        tier4Unlocks.add(new Resurrection(plugin));
-        tier4Unlocks.add(new WeaverSilk(plugin));
+        tier4Unlocks.add(new Cornucopia());
+        tier4Unlocks.add(new DragonArmor());
+        tier4Unlocks.add(new HideOfLeviathan());
+        tier4Unlocks.add(new SevenLeagueBoots());
+        tier4Unlocks.add(new Panacea());
+        tier4Unlocks.add(new Dread());
+        tier4Unlocks.add(new CubeConverter());
+        tier4Unlocks.add(new ExplosivePropulsion());
+        tier4Unlocks.add(new Resurrection());
+        tier4Unlocks.add(new WeaverSilk());
     }
 
     private void Tier5Unlocks() {
-        tier5Unlocks.add(new CrimsonArtifact(plugin));
-        tier5Unlocks.add(new ApolloGlare(plugin));
-        tier5Unlocks.add(new HeliosCurse(plugin));
+        tier5Unlocks.add(new CrimsonArtifact());
+        tier5Unlocks.add(new ApolloGlare());
+        tier5Unlocks.add(new HeliosCurse());
     }
 
     private void Uncraftable() {
-        new XPTome(plugin);
+        new XPTome();
         new KitBook();
     }
 
     private void Vanilla() {
-        new WoodenSword(plugin);
-        new StoneSword(plugin);
-        new IronSword(plugin);
-        new DiamondSword(plugin);
-        new NetheriteSword(plugin);
-        new WoodenAxe(plugin);
-        new StoneAxe(plugin);
-        new IronAxe(plugin);
-        new DiamondAxe(plugin);
-        new NetheriteAxe(plugin);
-        new Shield(plugin);
+        new WoodenSword();
+        new StoneSword();
+        new IronSword();
+        new DiamondSword();
+        new NetheriteSword();
+        new WoodenAxe();
+        new StoneAxe();
+        new IronAxe();
+        new DiamondAxe();
+        new NetheriteAxe();
+        new Shield();
     }
 
     public Pair<Crafts, Integer> findUnlock(String displayName) {
-        ArrayList<ArrayList<Crafts>> arr = plugin.getUnlocksData().getAllUnlocks();
+        ArrayList<ArrayList<Crafts>> arr = Ascension.getInstance().getUnlocksData().getAllUnlocks();
         for (int i = 0; i < arr.size(); i++) {
             for (Crafts c : arr.get(i)) {
                 if(c.getDisplayName().equals(displayName)) {

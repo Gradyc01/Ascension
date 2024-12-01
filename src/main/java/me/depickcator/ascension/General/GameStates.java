@@ -14,11 +14,8 @@ public class GameStates {
 
     private int currentState;
 
-    private Ascension plugin;
-
-    public GameStates(Ascension plugin) {
+    public GameStates() {
         currentState = UNLOADED;
-        this.plugin = plugin;
     }
 
     //Checks If the current state matches the state given

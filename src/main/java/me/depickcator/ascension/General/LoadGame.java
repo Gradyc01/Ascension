@@ -16,8 +16,8 @@ public class LoadGame implements Runnable {
     ArmorStand spawnCoordsArmorStand;
     public final static String spawnCoordsArmorStandName = "SpawnCoords";
     private Location spawnCoordsLocation;
-    public LoadGame(Ascension plugin, Player player, Location loc) {
-        this.plugin = plugin;
+    public LoadGame(Player player, Location loc) {
+        this.plugin = Ascension.getInstance();
         this.player = player;
         this.spawnCoordsLocation = loc;
         plugin.setBingoData(new BingoData(plugin));
@@ -57,7 +57,7 @@ public class LoadGame implements Runnable {
         }, 10);
         scheduler.runTaskLater(plugin, this::buildPlatform, 30);
         scheduler.runTaskLater(plugin, this::buildLobby, 40);
-        scheduler.runTaskLater(plugin, () -> new ResetGame(plugin, player), 50);
+        scheduler.runTaskLater(plugin, () -> new ResetGame(player), 50);
        
     }
 
@@ -97,6 +97,6 @@ public class LoadGame implements Runnable {
     }
 
     private void buildLobby() {
-        new BuildLobby(spawnCoordsArmorStand, plugin);
+        new BuildLobby(spawnCoordsArmorStand);
     }
 }

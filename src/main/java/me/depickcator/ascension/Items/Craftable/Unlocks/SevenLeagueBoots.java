@@ -25,8 +25,8 @@ public class SevenLeagueBoots implements Crafts {
     public static final String KEY = "seven_league_boots";
     private static final ItemStack result = SevenLeagueBoots.makeItem();
     private static final int modelNumber = Ascension.generateModelNumber();
-    public SevenLeagueBoots(Ascension plugin) {
-        this.plugin = plugin;
+    public SevenLeagueBoots() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

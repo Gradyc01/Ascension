@@ -21,8 +21,8 @@ public class CarePackage {
     private final int RADIUS = 1000;
     private Location spawnPoint;
     private ArmorStand armorStand;
-    public CarePackage(Ascension plugin) {
-        this.plugin = plugin;
+    public CarePackage() {
+        this.plugin = Ascension.getInstance();
         load();
     }
 
@@ -89,7 +89,7 @@ public class CarePackage {
         BlockState state = block.getState();
         Chest chest = (Chest) state;
         Random random = new Random();
-        CarePackageLoot carePackageLoot = new CarePackageLoot(plugin);
+        CarePackageLoot carePackageLoot = new CarePackageLoot();
         carePackageLoot.populateLoot(chest.getBlockInventory(), random, 1);
     }
 

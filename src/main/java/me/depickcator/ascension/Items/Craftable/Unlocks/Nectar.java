@@ -22,8 +22,8 @@ public class Nectar implements Crafts {
     public static final String DISPLAY_NAME = "Nectar";
     public static final String KEY = "nectar";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public Nectar(Ascension plugin) {
-        this.plugin = plugin;
+    public Nectar() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

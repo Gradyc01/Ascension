@@ -18,8 +18,8 @@ public class CrimsonArtifact implements Crafts {
     public static final String DISPLAY_NAME = "Crimson Artifact";
     public static final String KEY = "crimson_artifact";
     private static final ItemStack result = CrimsonArtifact.makeItem();
-    public CrimsonArtifact(Ascension plugin) {
-        this.plugin = plugin;
+    public CrimsonArtifact() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

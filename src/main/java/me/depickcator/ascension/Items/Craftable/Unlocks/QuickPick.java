@@ -22,8 +22,8 @@ public class QuickPick implements Crafts {
     public static final String DISPLAY_NAME = "Quick Pick";
     public static final String KEY = "quick_pick";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public QuickPick(Ascension plugin) {
-        this.plugin = plugin;
+    public QuickPick() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

@@ -13,9 +13,8 @@ import java.util.UUID;
 
 
 public class InventoryClickListener implements Listener {
-    Ascension ab;
-    public InventoryClickListener(Ascension ab) {
-        this.ab = ab;
+    public InventoryClickListener() {
+
     }
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {

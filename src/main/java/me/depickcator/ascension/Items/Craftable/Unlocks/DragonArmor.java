@@ -26,8 +26,8 @@ public class DragonArmor implements Crafts {
     public static final String DISPLAY_NAME = "Dragon Armor";
     public static final String KEY = "dragonarmor";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public DragonArmor(Ascension plugin) {
-        this.plugin = plugin;
+    public DragonArmor() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

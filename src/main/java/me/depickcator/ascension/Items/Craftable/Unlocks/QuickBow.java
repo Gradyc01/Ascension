@@ -16,8 +16,8 @@ public class QuickBow implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Quick Bow";
     public static final String KEY = "quick_bow";
-    public QuickBow(Ascension plugin) {
-        this.plugin = plugin;
+    public QuickBow() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

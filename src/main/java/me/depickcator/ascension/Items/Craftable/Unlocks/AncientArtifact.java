@@ -16,8 +16,8 @@ public class AncientArtifact implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Ancient Artifact";
     public static final String KEY = "ancient_artifact";
-    public AncientArtifact(Ascension plugin) {
-        this.plugin = plugin;
+    public AncientArtifact() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

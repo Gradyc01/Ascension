@@ -16,8 +16,8 @@ public class LightAnvil implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Light Anvil";
     public static final String KEY = "light_anvil";
-    public LightAnvil(Ascension plugin) {
-        this.plugin = plugin;
+    public LightAnvil() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

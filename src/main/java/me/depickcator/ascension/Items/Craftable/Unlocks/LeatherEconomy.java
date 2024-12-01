@@ -16,8 +16,8 @@ public class LeatherEconomy implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Leather Economy";
     public static final String KEY = "leather_economy";
-    public LeatherEconomy(Ascension plugin) {
-        this.plugin = plugin;
+    public LeatherEconomy() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

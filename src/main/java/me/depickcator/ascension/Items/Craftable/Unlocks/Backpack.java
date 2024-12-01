@@ -16,8 +16,8 @@ public class Backpack implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Backpack";
     public static final String KEY = "backpack";
-    public Backpack(Ascension plugin) {
-        this.plugin = plugin;
+    public Backpack() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

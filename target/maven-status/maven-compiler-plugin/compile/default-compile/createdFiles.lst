@@ -79,12 +79,10 @@ me\depickcator\ascension\Items\Uncraftable\XPTome\XPTome.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Cornucopia.class
 me\depickcator\ascension\LootTables\Entities\Entities\EndermanEntity.class
 me\depickcator\ascension\testingCommands\setTimeline.class
-me\depickcator\ascension\General\LoadGame.class
 me\depickcator\ascension\General\StartGame$4.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PhilosopherPickaxe.class
 me\depickcator\ascension\Player\PlayerUtil.class
 me\depickcator\ascension\mainMenu\mainMenuCommands.class
-me\depickcator\ascension\General\GameCommand.class
 me\depickcator\ascension\Teams\TeamUtil.class
 me\depickcator\ascension\mainMenu\BingoBoard\BingoBoardGUI.class
 me\depickcator\ascension\Player\Cooldowns\Death\PlayerDeath.class

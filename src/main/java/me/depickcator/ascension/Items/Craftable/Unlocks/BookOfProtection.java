@@ -18,8 +18,8 @@ public class BookOfProtection implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Book of Protection";
     public static final String KEY = "book_of_protection";
-    public BookOfProtection(Ascension plugin) {
-        this.plugin = plugin;
+    public BookOfProtection() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

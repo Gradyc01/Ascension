@@ -25,8 +25,8 @@ public class FlintShovel implements Crafts, LootTableChanger {
     public static final String DISPLAY_NAME = "Flint Shovel";
     public static final String KEY = "flint_shovel";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public FlintShovel(Ascension plugin) {
-        this.plugin = plugin;
+    public FlintShovel() {
+        this.plugin = Ascension.getInstance();
         recipe();
         registerItem();
     }

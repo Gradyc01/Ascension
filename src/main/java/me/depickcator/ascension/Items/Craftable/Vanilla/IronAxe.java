@@ -16,8 +16,8 @@ public class IronAxe implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Iron Axe";
     public static final String KEY = "iron_axe";
     private static final ItemStack result = IronAxe.makeResult();
-    public IronAxe(Ascension plugin) {
-        this.plugin = plugin;
+    public IronAxe() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

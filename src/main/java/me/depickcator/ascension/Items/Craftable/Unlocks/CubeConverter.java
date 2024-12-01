@@ -21,8 +21,8 @@ public class CubeConverter implements Crafts {
     public static final String DISPLAY_NAME = "Cube Converter";
     public static final String KEY = "cube_converter";
     private static final ItemStack result = CubeConverter.makeItem();
-    public CubeConverter(Ascension plugin) {
-        this.plugin = plugin;
+    public CubeConverter() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

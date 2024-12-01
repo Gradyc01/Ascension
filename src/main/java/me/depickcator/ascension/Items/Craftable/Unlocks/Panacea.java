@@ -23,8 +23,8 @@ public class Panacea implements Crafts {
     public static final String KEY = "panacea";
     private static final ItemStack result = Panacea.makeItem();
     private static final int modelNumber = Ascension.generateModelNumber();
-    public Panacea(Ascension plugin) {
-        this.plugin = plugin;
+    public Panacea() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

@@ -16,8 +16,8 @@ public class DiamondPack implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Diamond Pack";
     public static final String KEY = "diamond_pack";
-    public DiamondPack(Ascension plugin) {
-        this.plugin = plugin;
+    public DiamondPack() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

@@ -18,10 +18,10 @@ import org.bukkit.potion.PotionEffectType;
 
 
 public class PlayerInteractListener implements Listener {
-    private Ascension plugin;
+    private final Ascension plugin;
 
-    public PlayerInteractListener(Ascension plugin) {
-        this.plugin = plugin;
+    public PlayerInteractListener() {
+        this.plugin = Ascension.getInstance();
     }
     @EventHandler
     public void mainMenuClick(PlayerInteractEvent e) {

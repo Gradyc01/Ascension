@@ -17,8 +17,8 @@ public class NetheriteAxe implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Netherite Axe";
     public static final String KEY = "netherite_axe_smithing";
     private static final ItemStack result = NetheriteAxe.makeResult();
-    public NetheriteAxe(Ascension plugin) {
-        this.plugin = plugin;
+    public NetheriteAxe() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

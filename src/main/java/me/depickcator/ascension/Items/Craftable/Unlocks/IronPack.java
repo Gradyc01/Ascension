@@ -16,8 +16,8 @@ public class IronPack implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Iron Pack";
     public static final String KEY = "ironpack";
-    public IronPack(Ascension plugin) {
-        this.plugin = plugin;
+    public IronPack() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

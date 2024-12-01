@@ -34,8 +34,8 @@ public class ApolloGlare implements Crafts, ShootsProjectiles {
     public static final String KEY = "apollo_glare";
     private final ItemStack result;
     private static final int modelNumber = Ascension.generateModelNumber();
-    public ApolloGlare(Ascension plugin) {
-        this.plugin = plugin;
+    public ApolloGlare() {
+        this.plugin = Ascension.getInstance();
         result = makeItem();
         recipe();
         addProjectile(KEY, this);

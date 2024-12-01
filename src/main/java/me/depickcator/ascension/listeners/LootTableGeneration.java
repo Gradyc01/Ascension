@@ -18,10 +18,10 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class LootTableGeneration implements Listener {
-    private Ascension plugin;
+    private final Ascension plugin;
 
-    public LootTableGeneration(Ascension plugin) {
-        this.plugin = plugin;
+    public LootTableGeneration() {
+        this.plugin = Ascension.getInstance();
     }
 
     @EventHandler

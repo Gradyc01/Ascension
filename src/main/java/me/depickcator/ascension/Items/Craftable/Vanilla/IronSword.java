@@ -16,8 +16,8 @@ public class IronSword implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Iron Sword";
     public static final String KEY = "iron_sword";
     private static final ItemStack result = IronSword.makeResult();
-    public IronSword(Ascension plugin) {
-        this.plugin = plugin;
+    public IronSword() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

@@ -18,8 +18,8 @@ public class StoneAxe implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Stone Axe";
     public static final String KEY = "stone_axe";
     private static final ItemStack result = StoneAxe.makeResult();
-    public StoneAxe(Ascension plugin) {
-        this.plugin = plugin;
+    public StoneAxe() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

@@ -16,8 +16,8 @@ public class SoulArtifact implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Soul Artifact";
     public static final String KEY = "soul_artifact";
-    public SoulArtifact(Ascension plugin) {
-        this.plugin = plugin;
+    public SoulArtifact() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

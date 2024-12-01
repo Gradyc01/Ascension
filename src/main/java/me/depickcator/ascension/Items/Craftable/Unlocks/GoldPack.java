@@ -16,8 +16,8 @@ public class GoldPack implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Gold Pack";
     public static final String KEY = "goldpack";
-    public GoldPack(Ascension plugin) {
-        this.plugin = plugin;
+    public GoldPack() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

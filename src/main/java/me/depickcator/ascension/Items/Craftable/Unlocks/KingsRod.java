@@ -21,8 +21,8 @@ public class KingsRod implements Crafts {
     public static final String DISPLAY_NAME = "Kings Rod";
     public static final String KEY = "kings_rod";
     public static final int MODEL_NUMBER = Ascension.generateModelNumber();;
-    public KingsRod(Ascension plugin) {
-        this.plugin = plugin;
+    public KingsRod() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

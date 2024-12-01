@@ -22,8 +22,8 @@ public class PotionOfVelocity implements Crafts {
     public static final String DISPLAY_NAME = "Potion of Velocity";
     public static final String KEY = "potion_of_velocity";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public PotionOfVelocity(Ascension plugin) {
-        this.plugin = plugin;
+    public PotionOfVelocity() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

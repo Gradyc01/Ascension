@@ -18,8 +18,8 @@ public class WoodenSword implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Wood Sword";
     public static final String KEY = "wooden_sword";
     private static final ItemStack result = WoodenSword.makeResult();
-    public WoodenSword(Ascension plugin) {
-        this.plugin = plugin;
+    public WoodenSword() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

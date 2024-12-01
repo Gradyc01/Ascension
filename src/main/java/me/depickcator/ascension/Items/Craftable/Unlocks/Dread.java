@@ -18,8 +18,8 @@ public class Dread implements Crafts {
     public static final String DISPLAY_NAME = "Dread";
     public static final String KEY = "dread";
     private static final ItemStack result = Dread.makeItem();
-    public Dread(Ascension plugin) {
-        this.plugin = plugin;
+    public Dread() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

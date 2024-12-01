@@ -16,8 +16,8 @@ public class DiamondAxe implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Diamond Axe";
     public static final String KEY = "diamond_axe";
     private static final ItemStack result = DiamondAxe.makeResult();
-    public DiamondAxe(Ascension plugin) {
-        this.plugin = plugin;
+    public DiamondAxe() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

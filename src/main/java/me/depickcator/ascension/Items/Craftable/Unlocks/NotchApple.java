@@ -16,8 +16,8 @@ public class NotchApple implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Notch Apple";
     public static final String KEY = "notch_apple";
-    public NotchApple(Ascension plugin) {
-        this.plugin = plugin;
+    public NotchApple() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

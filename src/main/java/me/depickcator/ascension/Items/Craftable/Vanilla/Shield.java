@@ -19,8 +19,8 @@ public class Shield implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Shield";
     public static final String KEY = "shield";
     private static final ItemStack result = Shield.makeResult();
-    public Shield(Ascension plugin) {
-        this.plugin = plugin;
+    public Shield() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

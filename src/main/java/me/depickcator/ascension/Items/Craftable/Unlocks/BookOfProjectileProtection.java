@@ -18,8 +18,8 @@ public class BookOfProjectileProtection implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Artemis's Book";
     public static final String KEY = "book_of_projectile_protection";
-    public BookOfProjectileProtection(Ascension plugin) {
-        this.plugin = plugin;
+    public BookOfProjectileProtection() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

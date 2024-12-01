@@ -35,6 +35,7 @@ import java.util.logging.Logger;
 public final class Ascension extends JavaPlugin {
     public static Map<UUID, Pair<Inventory, AscensionGUI>> guiMap = new HashMap<>();
     public static Map<UUID, PlayerData> playerDataMap = new HashMap<>();
+    public static Ascension instance;
     private static Location spawn;
     private GameStates gameState;
     private BingoData bingoData;
@@ -46,10 +47,10 @@ public final class Ascension extends JavaPlugin {
     private Logger logger = getLogger();
     private static int uniqueModelNumber = 0;
 
-
     @Override
     public void onEnable() {
         // Plugin startup logic
+        instance = this;
         logger.info("Ascension has been enabled!");
         registerListeners();
         registerCommands();
@@ -57,7 +58,7 @@ public final class Ascension extends JavaPlugin {
         new EntityUtil(this);
         new BlockUtil(this);
         scheduler = this.getServer().getScheduler();
-        gameState = new GameStates(this);
+        gameState = new GameStates();
         timeline = new Timeline(this);
         world = Bukkit.getWorld("world");
         nether = Bukkit.getWorld("world_nether");
@@ -72,7 +73,7 @@ public final class Ascension extends JavaPlugin {
         PluginManager pluginManager = getServer().getPluginManager();
         Objects.requireNonNull(getCommand("open-main-menu")).setExecutor(new OpenMainMenuCommand());
         Objects.requireNonNull(getCommand("give-main-menu")).setExecutor(new GiveMainMenuItem(pluginManager, this));
-        Objects.requireNonNull(getCommand("game")).setExecutor(new GameCommand(pluginManager,this));
+        Objects.requireNonNull(getCommand("game")).setExecutor(new GameCommand(pluginManager));
         Objects.requireNonNull(getCommand("changeBingoScore")).setExecutor(new changeBingoScore(this));
         Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands(this));
         Objects.requireNonNull(getCommand("party")).setExecutor(new TeamCommand(this));
@@ -89,18 +90,18 @@ public final class Ascension extends JavaPlugin {
 //        manager.registerEvents(new onInventoryChange(), this);
         manager.registerEvents(new PlayerConsumeItem(), this);
         manager.registerEvents(new ProjectileAttacks(), this);
-        manager.registerEvents(new PlayerJoinLeave(this), this);
-        manager.registerEvents(new MobSpawning(this), this);
+        manager.registerEvents(new PlayerJoinLeave(), this);
+        manager.registerEvents(new MobSpawning(), this);
         manager.registerEvents(new InventoryClose(), this);
-        manager.registerEvents(new InventoryClickListener(this), this);
-        manager.registerEvents(new PlayerCombat(this), this);
-        manager.registerEvents(new RecipeCrafted(this), this);
-        manager.registerEvents(new PlayerInteractListener(this), this);
-        manager.registerEvents(new LootTableGeneration(this), this);
+        manager.registerEvents(new InventoryClickListener(), this);
+        manager.registerEvents(new PlayerCombat(), this);
+        manager.registerEvents(new RecipeCrafted(), this);
+        manager.registerEvents(new PlayerInteractListener(), this);
+        manager.registerEvents(new LootTableGeneration(), this);
     }
 
     private void registerCrafts() {
-        unlocksData = new UnlocksData(this);
+        unlocksData = new UnlocksData();
     }
 
     public BingoData getBingoData() {
@@ -147,4 +148,9 @@ public final class Ascension extends JavaPlugin {
         uniqueModelNumber++;
         return uniqueModelNumber - 1;
     }
+
+    public static Ascension getInstance() {
+        return instance;
+    }
+
 }

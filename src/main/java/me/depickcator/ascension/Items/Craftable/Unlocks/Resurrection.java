@@ -19,8 +19,8 @@ public class Resurrection implements Crafts {
     public static final String DISPLAY_NAME = "Resurrection";
     public static final String KEY = "resurrection";
     private static final ItemStack result = Resurrection.makeItem();
-    public Resurrection(Ascension plugin) {
-        this.plugin = plugin;
+    public Resurrection() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

@@ -16,8 +16,8 @@ public class DiamondSword implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Diamond Sword";
     public static final String KEY = "diamond_sword";
     private static final ItemStack result = DiamondSword.makeResult();
-    public DiamondSword(Ascension plugin) {
-        this.plugin = plugin;
+    public DiamondSword() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

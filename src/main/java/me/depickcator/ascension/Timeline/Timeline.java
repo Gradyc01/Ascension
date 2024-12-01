@@ -86,7 +86,7 @@ public class Timeline {
             plugin.getServer().broadcast(TextUtil.makeText("Grace Period has Ended", TextUtil.BLUE));
             SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 30, 1);
         } else if (timePassed == 35 || timePassed == 70 || timePassed == 100 || timePassed == 140) {
-            new CarePackage(plugin);
+            new CarePackage();
         } else if (timePassed == 90) {
             //FEAST
             plugin.getServer().broadcast(TextUtil.makeText("[Debug] Feast", TextUtil.BLUE));

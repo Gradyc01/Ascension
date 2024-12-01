@@ -15,8 +15,8 @@ public class CarePackageLoot extends CustomChestLoot {
     private ArrayList<ItemStack> netheriteItems;
     private ArrayList<ItemStack> netherItems;
 
-    public CarePackageLoot(Ascension plugin) {
-        super(plugin);
+    public CarePackageLoot() {
+        super();
         initNetheriteItems();
         initNetherItems();
     }

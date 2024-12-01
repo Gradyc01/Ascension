@@ -21,9 +21,7 @@ import java.util.EventListener;
 import java.util.Objects;
 
 public class RecipeCrafted implements EventListener, Listener {
-    Ascension plugin;
-    public RecipeCrafted(Ascension plugin) {
-        this.plugin = plugin;
+    public RecipeCrafted() {
     }
 
     @EventHandler

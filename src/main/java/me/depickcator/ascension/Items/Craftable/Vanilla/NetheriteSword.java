@@ -14,8 +14,8 @@ public class NetheriteSword implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Netherite Sword";
     public static final String KEY = "netherite_sword_smithing";
     private static final ItemStack result = NetheriteSword.makeResult();
-    public NetheriteSword(Ascension plugin) {
-        this.plugin = plugin;
+    public NetheriteSword() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

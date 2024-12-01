@@ -16,8 +16,8 @@ public class SugarRush implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Sugar Rush";
     public static final String KEY = "sugar_rush";
-    public SugarRush(Ascension plugin) {
-        this.plugin = plugin;
+    public SugarRush() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

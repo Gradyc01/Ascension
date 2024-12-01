@@ -24,8 +24,8 @@ public class Tarnhelm implements Crafts {
     public static final String DISPLAY_NAME = "Tarnhelm";
     public static final String KEY = "tarnhelm";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public Tarnhelm(Ascension plugin) {
-        this.plugin = plugin;
+    public Tarnhelm() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

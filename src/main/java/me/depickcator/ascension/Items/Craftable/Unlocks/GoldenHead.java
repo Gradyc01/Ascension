@@ -33,8 +33,8 @@ public class GoldenHead implements Crafts, ItemClick {
     public static final String DISPLAY_NAME = "Golden Head";
     public static final String KEY = "golden_head";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public GoldenHead(Ascension plugin) {
-        this.plugin = plugin;
+    public GoldenHead() {
+        this.plugin = Ascension.getInstance();
         recipe();
         registerItem();
     }

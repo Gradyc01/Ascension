@@ -19,8 +19,8 @@ public class WeaverSilk implements Crafts {
     public static final String DISPLAY_NAME = "A Weaver's Silk";
     public static final String KEY = "weaver_silk";
     private static final ItemStack result = WeaverSilk.makeItem();
-    public WeaverSilk(Ascension plugin) {
-        this.plugin = plugin;
+    public WeaverSilk() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

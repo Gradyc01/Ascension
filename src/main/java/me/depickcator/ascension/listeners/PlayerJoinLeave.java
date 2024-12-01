@@ -13,8 +13,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerJoinLeave implements Listener {
     private final Ascension plugin;
-    public PlayerJoinLeave(Ascension plugin) {
-        this.plugin = plugin;
+    public PlayerJoinLeave() {
+        this.plugin = Ascension.getInstance();
     }
 
     @EventHandler

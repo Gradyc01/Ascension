@@ -25,8 +25,8 @@ public class HideOfLeviathan implements Crafts {
     public static final String KEY = "hide_of_leviathan";
     private static final ItemStack result = HideOfLeviathan.makeItem();
     private static final int modelNumber = Ascension.generateModelNumber();
-    public HideOfLeviathan(Ascension plugin) {
-        this.plugin = plugin;
+    public HideOfLeviathan() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

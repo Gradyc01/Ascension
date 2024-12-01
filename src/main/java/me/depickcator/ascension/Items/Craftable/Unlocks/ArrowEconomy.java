@@ -16,8 +16,8 @@ public class ArrowEconomy implements Crafts {
     public static final int MAX_CRAFTS = 4;
     public static final String DISPLAY_NAME = "Arrow Economy";
     public static final String KEY = "arrow_economy";
-    public ArrowEconomy(Ascension plugin) {
-        this.plugin = plugin;
+    public ArrowEconomy() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

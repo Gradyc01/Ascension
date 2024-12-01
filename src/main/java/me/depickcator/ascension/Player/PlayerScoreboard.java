@@ -81,7 +81,6 @@ public class PlayerScoreboard {
             editLine(board, 13, TextUtil.makeText("  Deathmatch In:  ", TextUtil.GOLD));
             editLine(board, 12, plugin.getTimeline().getTime());
         }
-
         Component itemsText = TextUtil.makeText("  Items Obtained: ", TextUtil.WHITE);
         Component itemsNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getItemsObtained() +  "", TextUtil.GREEN);
         editLine(board, 10, itemsText.append(itemsNum));

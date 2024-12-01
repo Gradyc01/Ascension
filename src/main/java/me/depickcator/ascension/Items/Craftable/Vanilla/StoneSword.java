@@ -17,8 +17,8 @@ public class StoneSword implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Stone Sword";
     public static final String KEY = "stone_sword";
     private static final ItemStack result = StoneSword.makeResult();
-    public StoneSword(Ascension plugin) {
-        this.plugin = plugin;
+    public StoneSword() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

@@ -22,8 +22,8 @@ public class VorpalSword implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Vorpal Sword";
     public static final String KEY = "vorpal_sword";
-    public VorpalSword(Ascension plugin) {
-        this.plugin = plugin;
+    public VorpalSword() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

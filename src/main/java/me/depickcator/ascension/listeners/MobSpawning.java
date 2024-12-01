@@ -15,7 +15,6 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import me.depickcator.ascension.Ascension;
 
 public class MobSpawning implements Listener {
-    private final Ascension plugin;
     private final ArrayList<EntityType> superMobs;
     private final Set<EntityType> hostileMobs = Set.of(
             EntityType.ZOMBIE, EntityType.SKELETON, EntityType.CREEPER, EntityType.SPIDER, EntityType.ENDERMAN,
@@ -23,13 +22,12 @@ public class MobSpawning implements Listener {
             EntityType.VINDICATOR, EntityType.ZOMBIE_VILLAGER, EntityType.ZOMBIFIED_PIGLIN, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE,
             EntityType.SLIME, EntityType.HUSK, EntityType.DROWNED, EntityType.STRAY
     );
-    public MobSpawning(Ascension plugin) {
+    public MobSpawning() {
         superMobs = new ArrayList<>();
         superMobs.add(EntityType.ZOMBIE);
         superMobs.add(EntityType.SKELETON);
         superMobs.add(EntityType.CREEPER);
         superMobs.add(EntityType.SPIDER);
-        this.plugin = plugin;
     }
 
     @EventHandler

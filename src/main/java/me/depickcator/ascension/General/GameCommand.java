@@ -12,14 +12,14 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class GameCommand implements CommandExecutor {
-    PluginManager pm;
-    Ascension ab;
-    ScoreboardManager scoreboardManager;
-    Scoreboard bingoScoreboard;
-    Objective bingodata;
-    public GameCommand(PluginManager manager, Ascension plugin) {
+    private PluginManager pm;
+    private final Ascension ab;
+    private ScoreboardManager scoreboardManager;
+    private Scoreboard bingoScoreboard;
+    private Objective bingodata;
+    public GameCommand(PluginManager manager) {
         pm = manager;
-        this.ab = plugin;
+        this.ab = Ascension.getInstance();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class GameCommand implements CommandExecutor {
     }
 
     private void resetGame(Player p) {
-        new ResetGame(ab, p);
+        new ResetGame(p);
     }
 
     private void loadGame(Player p, int x, int y, int z) {
@@ -79,14 +79,14 @@ public class GameCommand implements CommandExecutor {
     }
 
     private void loadGame(Player p, Location loc) {
-        new LoadGame(ab, p, loc);
+        new LoadGame(p, loc);
         p.sendMessage("Successfully loaded game");
     }
 
     private void forceStartGame(Player p) {
         if (ab.getGameState().checkState(GameStates.LOBBY)) {
             p.sendMessage("Successfully force started game!");
-            new StartGame(ab, p);
+            new StartGame(p);
         }
     }
 

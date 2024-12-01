@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class ResetGame implements Runnable {
     Ascension plugin;
     Player player;
-    public ResetGame(Ascension plugin, Player player) {
-        this.plugin = plugin;
+    public ResetGame(Player player) {
+        this.plugin = Ascension.getInstance();
         this.player = player;
         plugin.getGameState().setCurrentState(GameStates.LOBBY);
         run();

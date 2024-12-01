@@ -10,8 +10,8 @@ import java.util.Random;
 
 public abstract class CustomChestLoot {
     protected final Ascension plugin;
-    public CustomChestLoot(Ascension plugin) {
-        this.plugin = plugin;
+    public CustomChestLoot() {
+        this.plugin = Ascension.getInstance();
     }
 
     protected Collection<ItemStack> getRandomItemFromList(ArrayList<ItemStack> arr, Random r, int count) {

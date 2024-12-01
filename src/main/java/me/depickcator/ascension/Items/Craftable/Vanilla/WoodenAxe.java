@@ -18,8 +18,8 @@ public class WoodenAxe implements Crafts, Vanilla {
     public static final String DISPLAY_NAME = "Wood Axe";
     public static final String KEY = "wooden_axe";
     private static final ItemStack result = WoodenAxe.makeResult();
-    public WoodenAxe(Ascension plugin) {
-        this.plugin = plugin;
+    public WoodenAxe() {
+        this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         recipe();
     }

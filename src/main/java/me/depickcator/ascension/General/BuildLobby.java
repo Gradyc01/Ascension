@@ -9,9 +9,9 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class BuildLobby implements Runnable {
     private final ArmorStand armorStand;
     private final Ascension plugin;
-    public BuildLobby(ArmorStand armor, Ascension plugin) {
+    public BuildLobby(ArmorStand armor) {
         armorStand = armor;
-        this.plugin = plugin;
+        this.plugin = Ascension.getInstance();
         run();
     }
 

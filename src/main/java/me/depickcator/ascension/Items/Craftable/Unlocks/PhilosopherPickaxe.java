@@ -22,8 +22,8 @@ public class PhilosopherPickaxe implements Crafts {
     public static final String DISPLAY_NAME = "Philosopher’s Pickaxe";
     public static final String KEY = "philosopher_pickaxe";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public PhilosopherPickaxe(Ascension plugin) {
-        this.plugin = plugin;
+    public PhilosopherPickaxe() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

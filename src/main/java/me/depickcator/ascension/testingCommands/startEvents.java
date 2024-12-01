@@ -25,7 +25,7 @@ public class startEvents implements CommandExecutor {
 
 
         if (name.equalsIgnoreCase("carepackage")) {
-            new CarePackage(plugin);
+            new CarePackage();
         }
         return false;
     }

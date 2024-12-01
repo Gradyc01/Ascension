@@ -16,8 +16,8 @@ public class FlamingArtifact implements Crafts {
     public static final int MAX_CRAFTS = 2;
     public static final String DISPLAY_NAME = "Flaming Artifact";
     public static final String KEY = "flaming_artifact";
-    public FlamingArtifact(Ascension plugin) {
-        this.plugin = plugin;
+    public FlamingArtifact() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

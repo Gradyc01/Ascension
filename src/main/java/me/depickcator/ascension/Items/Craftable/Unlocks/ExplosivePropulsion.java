@@ -18,8 +18,8 @@ public class ExplosivePropulsion implements Crafts {
     public static final String DISPLAY_NAME = "Explosive Propulsion";
     public static final String KEY = "explosive_propulsion";
     private static final ItemStack result = ExplosivePropulsion.makeItem();
-    public ExplosivePropulsion(Ascension plugin) {
-        this.plugin = plugin;
+    public ExplosivePropulsion() {
+        this.plugin = Ascension.getInstance();
         recipe();
     }
 

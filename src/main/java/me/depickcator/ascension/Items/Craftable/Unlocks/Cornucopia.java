@@ -26,8 +26,8 @@ public class Cornucopia implements Crafts, ItemClick {
     public static final String DISPLAY_NAME = "Cornucopia";
     public static final String KEY = "cornucopia";
     private static final int modelNumber = Ascension.generateModelNumber();
-    public Cornucopia(Ascension plugin) {
-        this.plugin = plugin;
+    public Cornucopia() {
+        this.plugin = Ascension.getInstance();
         recipe();
         registerItem();
     }

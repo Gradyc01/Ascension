@@ -24,11 +24,11 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 
 public class PlayerCombat implements Listener {
-    Ascension plugin;
+    private final Ascension plugin;
     private final String damageSourceKey = "lastDamageSource";
     private final String PLAYER_DAMAGE = "PLAYER_DAMAGE";
-    public PlayerCombat(Ascension plugin) {
-        this.plugin = plugin;
+    public PlayerCombat() {
+        this.plugin = Ascension.getInstance();
     }
 
     @EventHandler
