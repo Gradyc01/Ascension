@@ -1,6 +1,8 @@
 package me.depickcator.ascensionBingo.mainMenu;
 
 import me.depickcator.ascensionBingo.General.ItemClick;
+import me.depickcator.ascensionBingo.General.TextUtil;
+import me.depickcator.ascensionBingo.Player.Cooldowns.CombatTimer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -18,7 +20,6 @@ import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
 
 public class GiveMainMenuItem implements CommandExecutor, ItemClick {
-
     public GiveMainMenuItem(PluginManager manager, Plugin plugin) {
         registerItem();
     }
@@ -34,7 +35,7 @@ public class GiveMainMenuItem implements CommandExecutor, ItemClick {
     }
 
     private static ItemStack makeItem() {
-        ItemStack item =new ItemStack(Material.BOOK);
+        ItemStack item = new ItemStack(Material.BOOK);
         ItemMeta itemMeta = item.getItemMeta();
         Component title = Component.text("View Main Menu").color(TextColor.color(0,255,255));
         title = title.decoration(TextDecoration.ITALIC, false);
@@ -67,6 +68,8 @@ public class GiveMainMenuItem implements CommandExecutor, ItemClick {
     @Override
     public boolean uponClick(PlayerInteractEvent e, Player p) {
         if (!isMainHandRightClick(e)) return false;
+
+
         p.performCommand("open-main-menu");
         return true;
     }

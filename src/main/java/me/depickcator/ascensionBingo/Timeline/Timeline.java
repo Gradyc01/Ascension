@@ -83,8 +83,8 @@ public class Timeline {
         int timePassed = STARTING_MINUTES - MINUTES;
         if (timePassed == 30) {
             plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
-            plugin.getServer().broadcast(TextUtil.makeText("[Debug] Grace Period Ends Here", TextUtil.BLUE));
-            SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 50, 1);
+            plugin.getServer().broadcast(TextUtil.makeText("Grace Period has Ended", TextUtil.BLUE));
+            SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 30, 1);
         } else if (timePassed == 35 || timePassed == 70 || timePassed == 100 || timePassed == 140) {
             new CarePackage(plugin);
         } else if (timePassed == 90) {

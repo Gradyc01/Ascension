@@ -2,6 +2,7 @@ package me.depickcator.ascensionBingo.mainMenu;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Interfaces.AscensionGUI;
+import me.depickcator.ascensionBingo.Player.Cooldowns.CombatTimer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -33,7 +34,7 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
         Player p = ((Player) commandSender).getPlayer();
         inventory = Bukkit.createInventory(p,GUISize,Component.text("Ascension").color(TextColor.color(0,255,255)));
 
-        if (p == null) {
+        if (p == null || CombatTimer.getInstance().isOnCooldown(p)) {
             return false;
         }
         p.openInventory(inventory);

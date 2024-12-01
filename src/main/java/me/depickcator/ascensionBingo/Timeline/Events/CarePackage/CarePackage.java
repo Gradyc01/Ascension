@@ -11,10 +11,8 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Collection;
 import java.util.Random;
 import org.bukkit.util.Vector;
 
@@ -76,7 +74,7 @@ public class CarePackage {
     private void unload() {
         armorStand.remove();
         createStructure();
-        plugin.getServer().broadcast(TextUtil.makeText("[Debug] Care Package Stopped", TextUtil.BLUE));
+        // plugin.getServer().broadcast(TextUtil.makeText("[Debug] Care Package Stopped", TextUtil.BLUE));
         plugin.getWorld().setChunkForceLoaded(
                 (int) Math.floor((double) spawnPoint.getBlockX() /16),
                 (int) Math.floor((double) spawnPoint.getBlockZ() /16),
@@ -92,11 +90,11 @@ public class CarePackage {
         Chest chest = (Chest) state;
         Random random = new Random();
         CarePackageLoot carePackageLoot = new CarePackageLoot(plugin);
-        Collection<ItemStack> items = carePackageLoot.populateLoot(chest.getBlockInventory(), random, 1);
+        carePackageLoot.populateLoot(chest.getBlockInventory(), random, 1);
     }
 
     private void fireballAnimation() {
-        Fireball fireball = (Fireball) plugin.getWorld().spawnEntity(armorStand.getLocation().add(0, 100, 0), EntityType.FIREBALL);
+        Fireball fireball = (Fireball) plugin.getWorld().spawnEntity(armorStand.getLocation().add(0, 105, 0), EntityType.FIREBALL);
         Vector v = new Vector(0, -1, 0);
         fireball.setDirection(v);
         fireball.setInvulnerable(true);

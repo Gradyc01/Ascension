@@ -1,6 +1,7 @@
 package me.depickcator.ascensionBingo.mainMenu;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import me.depickcator.ascensionBingo.mainMenu.BingoBoard.BingoBoardGUI;
 import me.depickcator.ascensionBingo.mainMenu.Command.CommandGUI;
@@ -25,7 +26,7 @@ public class mainMenuCommands implements CommandExecutor {
             return false;
         }
         Player p = ((Player) commandSender).getPlayer();
-        if (strings.length != 1) {
+        if (strings.length != 1 || CombatTimer.getInstance().isOnCooldown(p)) {
             return false;
         }
         String guiBoardName = strings[0];

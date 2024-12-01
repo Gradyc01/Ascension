@@ -16,6 +16,16 @@ public class PlayerUtil {
         }
     }
 
+    public static PlayerData assignNewPlayerData(Player p, AscensionBingo ab) {
+        PlayerData playerData = new PlayerData(p, ab);
+        AscensionBingo.playerDataMap.put(p.getUniqueId(), playerData);
+        return playerData;
+    }
+
+    public static void clearPlayerDataMap() {
+        AscensionBingo.playerDataMap.clear();
+    }
+
     public static PlayerData getPlayerData(Player p) {
         if (AscensionBingo.playerDataMap.containsKey(p.getUniqueId())) {
             return AscensionBingo.playerDataMap.get(p.getUniqueId());

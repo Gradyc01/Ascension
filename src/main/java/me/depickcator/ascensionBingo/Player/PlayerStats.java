@@ -10,6 +10,7 @@ public class PlayerStats {
 
     //Statistics
     private int kills;
+    private int deaths;
 
     //Settings
     private boolean nightVision;
@@ -46,5 +47,17 @@ public class PlayerStats {
 
     public boolean isFoodDrops() {
         return foodDrops;
+    }
+
+    public int getDeaths() {
+        return deaths;
+    }
+
+    public void setDeaths(int deaths) {
+        this.deaths = deaths;
+    }
+
+    public void addDeaths(int deaths) {
+        setDeaths(this.deaths + deaths);
     }
 }

@@ -31,21 +31,28 @@ public class StartGame{
     }
 
     private void resetPlayers() {
+
+        TeamUtil.createTeamsForEveryone();
         new BukkitRunnable() {
+            ArrayList<Player> players = new ArrayList<>(plugin.getServer().getOnlinePlayers());
             @Override
             public void run() {
-                TeamUtil.createTeamsForEveryone();
-                for (Player p: Bukkit.getOnlinePlayers()) {
-                    PlayerData pD = PlayerUtil.getPlayerData(p);
-                    if (pD == null) {
-                        throw new NullPointerException("PlayerData is null");
-                    }
-                    pD.resetBeforeStartGame();
-                    pD.getPlayerScoreboard().makeGameBoard();
+                if (players.isEmpty()) {
+                    cancel();
+                    spreadAndSetWorldBorder();
+                    return;
                 }
-                spreadAndSetWorldBorder();
+                Player p = players.getFirst();
+                players.remove(p);
+
+                PlayerData pD = PlayerUtil.getPlayerData(p);
+                if (pD == null) {
+                    throw new NullPointerException("PlayerData is null");
+                }
+                pD.resetBeforeStartGame();
+                pD.getPlayerScoreboard().makeGameBoard();
             }
-        }.runTask(plugin);
+        }.runTaskTimer(plugin, 10, 10);
     }
 
     private void spreadAndSetWorldBorder() {

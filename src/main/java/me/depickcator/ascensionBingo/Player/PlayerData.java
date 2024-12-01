@@ -4,6 +4,7 @@ import me.depickcator.ascensionBingo.AscensionBingo;
 import me.depickcator.ascensionBingo.Items.Uncraftable.KitBook;
 import me.depickcator.ascensionBingo.mainMenu.GiveMainMenuItem;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -19,6 +20,9 @@ import java.util.Objects;
 public class PlayerData {
     private final Player player;
     private final AscensionBingo plugin;
+    public final static int STATE_ALIVE = 1;
+    public final static int STATE_DEAD = 2;
+    public final static int STATE_SPECTATING = 3;
 
     //Extra Player Data
     private final PlayerUnlocks playerUnlocks;
@@ -27,8 +31,9 @@ public class PlayerData {
     private final PlayerSkills playerSkills;
     private final PlayerStats playerStats;
 
-    //Stats
+    private int playerState;
 
+    //Stats
     public PlayerData(Player player, AscensionBingo plugin) {
         this.player = player;
         this.plugin = plugin;
@@ -37,29 +42,38 @@ public class PlayerData {
         playerSkills = new PlayerSkills(this, plugin);
         playerStats = new PlayerStats(this.plugin, this);
         playerScoreboard = new PlayerScoreboard(this.plugin, this);
+        initPlayerState();
+    }
+
+    private void initPlayerState() {
+        if (plugin.getGameState().inGame()) {
+            playerState = STATE_SPECTATING;
+        } else {
+            playerState = STATE_ALIVE;
+        }
     }
 
     public void resetToLobby() {
+        player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
         clearInventoryAndEffects();
         addLobbyPotionEffects();
         getMainMenuItem();
         Location loc = new Location(plugin.getWorld(), AscensionBingo.getSpawn().getX(), AscensionBingo.getSpawn().getY(), AscensionBingo.getSpawn().getZ());
         loc.setY(loc.getBlockY() + 104);
         player.teleport(loc);
+        player.setGameMode(GameMode.SURVIVAL);
     }
-
     public void resetBeforeStartGame() {
         clearInventoryAndEffects();
-        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 0, false, false));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, Integer.MAX_VALUE, 128, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, PotionEffect.INFINITE_DURATION, 0, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, PotionEffect.INFINITE_DURATION, 128, false, false));
         getMainMenuItem();
         getKitBook();
 //        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0);
         player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke @a everything");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
     }
-
     public void resetAfterStartGame() {
         player.clearActivePotionEffects();
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120 * 20, 1));
@@ -70,7 +84,6 @@ public class PlayerData {
         Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
         giveStartingFood();
     }
-
     private void giveStartingFood() {
         ItemStack food = new ItemStack(Material.COOKED_BEEF, 64);
         ItemMeta meta = food.getItemMeta();
@@ -78,24 +91,20 @@ public class PlayerData {
         food.setItemMeta(meta);
         player.getInventory().addItem(food);
     }
-
     private void clearInventoryAndEffects() {
         player.getInventory().clear();
         player.clearActivePotionEffects();
         Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(20);
     }
-
     private void getMainMenuItem() {
         player.getInventory().setItem(8, GiveMainMenuItem.getMenuItem());
     }
-
     private void getKitBook() {
         player.getInventory().setItem(7, KitBook.item());
     }
-
     private void addLobbyPotionEffects() {
-        player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, Integer.MAX_VALUE, 4, false, false));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, Integer.MAX_VALUE, 0, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, PotionEffect.INFINITE_DURATION, 4, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 0, false, false));
     }
 
     public PlayerTeam getPlayerTeam() {
@@ -120,5 +129,17 @@ public class PlayerData {
 
     public PlayerStats getPlayerStats() {
         return playerStats;
+    }
+
+    public int getPlayerState() {
+        return playerState;
+    }
+
+    public void setPlayerState(int playerState) {
+        this.playerState = playerState;
+    }
+
+    public boolean checkState(int state) {
+        return playerState == state;
     }
 }

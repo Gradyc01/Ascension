@@ -140,6 +140,11 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\mainMenu\Unlocks\UnlocksGUI_1.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\mainMenu\Unlocks\UnlocksGUI_2.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\mainMenu\Unlocks\ViewRecipeGUI.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\Cooldowns\CombatTimer.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\Cooldowns\Cooldowns.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\Cooldowns\Death\DeathTimer.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\Cooldowns\Death\PlayerDeath.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\Cooldowns\TeleportCooldown.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerData.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerScoreboard.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerSkills.java
@@ -149,6 +154,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionB
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Player\PlayerUtil.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Skills\Combat.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Skills\Foraging.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Skills\Global.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Skills\Mining.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Skills\SkillRewards.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascensionBingo\Skills\Skills.java

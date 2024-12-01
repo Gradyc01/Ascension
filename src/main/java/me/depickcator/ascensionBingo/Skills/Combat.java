@@ -63,6 +63,7 @@ public class Combat implements Skills {
         levelUpMessage(newLevel, reward, player, NAME);
         playLevelUpSound(player);
         reward.giveRewards(playerData);
+        playerData.getPlayerSkills().getGlobal().addExp(1);
         if (canLevelUp()) {
             levelUp(++level);
         }

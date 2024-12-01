@@ -41,7 +41,11 @@ public class GameStates {
     }
 
     public boolean inGame() {
-        return checkState(GAME_BEFORE_GRACE) || checkState(GAME_LOADING) || checkState(GAME_ENDING) || checkState(GAME_AFTER_GRACE);
+        return checkState(GAME_BEFORE_GRACE) ||
+                checkState(GAME_LOADING) ||
+                checkState(GAME_ENDING) ||
+                checkState(GAME_AFTER_GRACE) ||
+                checkState(GAME_FINAL_ASCENSION);
     }
 
     public boolean canNotPVP() {

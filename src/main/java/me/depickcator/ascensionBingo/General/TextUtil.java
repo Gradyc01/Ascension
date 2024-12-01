@@ -21,7 +21,8 @@ public class TextUtil {
     public static TextColor DARK_GRAY = TextColor.color(0x77, 0x77, 0x77);
     public static TextColor BLUE = TextColor.color(0x55, 0x55, 0xFF);
     public static TextColor AQUA = TextColor.color(0x00, 0xFF, 0xFF);
-    public static TextColor RED = TextColor.color(0xFF, 0x00, 0x00);
+    public static TextColor RED = TextColor.color(0xFF, 0x55, 0x55);
+    public static TextColor DARK_RED = TextColor.color(0xFF, 0x00, 0x00);
     public static TextColor BLACK = TextColor.color(0x22, 0x22, 0x22);
     public static TextColor DARK_GREEN = TextColor.color(0x00, 0xAA, 0x00);
     public static TextColor DARK_PURPLE = TextColor.color(0xAA, 0x00, 0xAA);
@@ -40,10 +41,10 @@ public class TextUtil {
         return text;
     }
 
-    public static Title makeTitle(Component title, Component subtitle, double i1, double i2, double i3) {
-        Duration fadeIn = Duration.ofMillis((long) (i1 * 1000));
-        Duration stay = Duration.ofMillis((long) (i2 * 1000));
-        Duration fadeOut = Duration.ofMillis((long) (i3 * 1000));
+    public static Title makeTitle(Component title, Component subtitle, double secFadeIn, double secStay, double secFadeOut) {
+        Duration fadeIn = Duration.ofMillis((long) (secFadeIn * 1000));
+        Duration stay = Duration.ofMillis((long) (secStay * 1000));
+        Duration fadeOut = Duration.ofMillis((long) (secFadeOut * 1000));
 
         Title.Times times = Title.Times.times(fadeIn, stay, fadeOut);
         return Title.title(title, subtitle, times);
@@ -76,10 +77,10 @@ public class TextUtil {
         }
     }
 
-    public static void sendActionBar(Player player, Component message, int duration, AscensionBingo plugin) {
+    public static void sendActionBar(Player player, Component message, int ticks, AscensionBingo plugin) {
         // Duration is in ticks; 20 ticks = 1 second
         int interval = 20; // Send message every second to ensure it's displayed
-        int repetitions = duration / interval;
+        int repetitions = ticks / interval;
 
         new BukkitRunnable() {
             int count = 0;

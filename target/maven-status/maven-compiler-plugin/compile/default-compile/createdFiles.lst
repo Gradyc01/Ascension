@@ -26,6 +26,8 @@ me\depickcator\ascensionBingo\LootTables\Blocks\Ores\IronOre.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\EveTemptation.class
 me\depickcator\ascensionBingo\listeners\PlayerJoinLeave.class
 me\depickcator\ascensionBingo\mainMenu\OpenMainMenuCommand.class
+me\depickcator\ascensionBingo\Player\Cooldowns\Death\PlayerDeath$1.class
+me\depickcator\ascensionBingo\Player\Cooldowns\TeleportCooldown.class
 me\depickcator\ascensionBingo\General\StartGame$5.class
 me\depickcator\ascensionBingo\Items\EasyItems.class
 me\depickcator\ascensionBingo\Kits\KitBookGUI.class
@@ -44,6 +46,7 @@ me\depickcator\ascensionBingo\LootTables\Blocks\Ores\NetherGoldOre.class
 me\depickcator\ascensionBingo\Items\UnlocksData.class
 me\depickcator\ascensionBingo\testingCommands\changeBingoScore.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\Dread.class
+me\depickcator\ascensionBingo\Player\Cooldowns\CombatTimer.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\CubeConverter.class
 me\depickcator\ascensionBingo\Timeline\Timeline$1.class
 me\depickcator\ascensionBingo\General\StartGame$2.class
@@ -64,6 +67,7 @@ me\depickcator\ascensionBingo\Items\Craftable\Vanilla\DiamondSword.class
 me\depickcator\ascensionBingo\LootTables\Entities\Entities\Chicken.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\StoneAxe.class
 me\depickcator\ascensionBingo\listeners\PlayerCombat.class
+me\depickcator\ascensionBingo\Player\Cooldowns\Cooldowns.class
 me\depickcator\ascensionBingo\General\StartGame$3.class
 me\depickcator\ascensionBingo\LootTables\Blocks\Ores\LapisOre.class
 me\depickcator\ascensionBingo\Items\Uncraftable\ShardOfTheFallen.class
@@ -85,6 +89,7 @@ me\depickcator\ascensionBingo\LootTables\Entities\Entities\Cow.class
 me\depickcator\ascensionBingo\General\TextUtil.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\HeliosCurse.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\DiamondAxe.class
+me\depickcator\ascensionBingo\General\ResetGame$1.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\ExplosivePropulsion.class
 me\depickcator\ascensionBingo\LootTables\Entities\Entities\Sheep.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\IronAxe.class
@@ -114,6 +119,7 @@ me\depickcator\ascensionBingo\Items\Craftable\Unlocks\Resurrection.class
 me\depickcator\ascensionBingo\LootTables\Blocks\Ores\EmeraldOre.class
 me\depickcator\ascensionBingo\General\TextUtil$1.class
 me\depickcator\ascensionBingo\Skills\Foraging.class
+me\depickcator\ascensionBingo\Skills\Global.class
 me\depickcator\ascensionBingo\Skills\Skills.class
 me\depickcator\ascensionBingo\Player\PlayerUtil.class
 me\depickcator\ascensionBingo\Teams\Team.class
@@ -136,6 +142,7 @@ me\depickcator\ascensionBingo\Items\Uncraftable\XPTome\XPTomeGUI$1.class
 me\depickcator\ascensionBingo\Items\ItemList.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\NetheriteAxe.class
 me\depickcator\ascensionBingo\testingCommands\printPlayerDataCommand.class
+me\depickcator\ascensionBingo\Player\Cooldowns\Death\DeathTimer.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\AncientArtifact.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\WoodenAxe.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\Shield.class
@@ -163,6 +170,7 @@ me\depickcator\ascensionBingo\LootTables\Blocks\Ores\CoalOre.class
 me\depickcator\ascensionBingo\mainMenu\GiveMainMenuItem.class
 me\depickcator\ascensionBingo\General\LoadGame.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\LightApple.class
+me\depickcator\ascensionBingo\Player\Cooldowns\Death\PlayerDeath.class
 me\depickcator\ascensionBingo\Items\Craftable\Unlocks\KingsRod.class
 me\depickcator\ascensionBingo\Skills\Combat.class
 me\depickcator\ascensionBingo\Items\Craftable\Vanilla\Vanilla.class

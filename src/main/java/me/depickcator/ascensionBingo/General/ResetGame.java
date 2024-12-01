@@ -1,15 +1,20 @@
 package me.depickcator.ascensionBingo.General;
 
 import me.depickcator.ascensionBingo.AscensionBingo;
+import me.depickcator.ascensionBingo.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascensionBingo.Player.PlayerData;
 import me.depickcator.ascensionBingo.Player.PlayerUtil;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class ResetGame implements Runnable {
     AscensionBingo plugin;
@@ -36,11 +41,29 @@ public class ResetGame implements Runnable {
 
     private void resetPlayers() {
         plugin.getBingoData().resetPlayers();
-        PlayerUtil.assignNewPlayerData(plugin);
-        for (Player p : plugin.getServer().getOnlinePlayers()) {
-            PlayerData pD = PlayerUtil.getPlayerData(p);
-            Objects.requireNonNull(pD).resetToLobby();
-        }
+        PlayerUtil.clearPlayerDataMap();
+//        PlayerUtil.assignNewPlayerData(plugin);
+//        for (Player p : plugin.getServer().getOnlinePlayers()) {
+//
+//        }
+
+        new BukkitRunnable() {
+            ArrayList<Player> players = new ArrayList<>(plugin.getServer().getOnlinePlayers());
+            @Override
+            public void run() {
+                if (players.isEmpty()) {
+                    cancel();
+                    return;
+                }
+                Player p = players.getFirst();
+                PlayerData pD = PlayerUtil.assignNewPlayerData(p, plugin);
+//                PlayerDeath.getInstance(plugin).respawnPlayer(pD);
+                pD.resetToLobby();
+                players.remove(p);
+                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Player " + p.getName() + " reset"));
+            }
+        }.runTaskTimer(plugin, 20, 10);
+
     }
 
     private void loadGameRules(World world) {
