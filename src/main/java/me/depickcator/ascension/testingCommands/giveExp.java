@@ -14,8 +14,8 @@ import java.util.Objects;
 
 public class giveExp implements CommandExecutor {
     private final Ascension plugin;
-    public giveExp(Ascension plugin) {
-        this.plugin = plugin;
+    public giveExp() {
+        this.plugin = Ascension.getInstance();
     }
 
     @Override

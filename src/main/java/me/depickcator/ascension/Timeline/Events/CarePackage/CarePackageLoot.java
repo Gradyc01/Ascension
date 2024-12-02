@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Timeline.Events.CarePackage;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;

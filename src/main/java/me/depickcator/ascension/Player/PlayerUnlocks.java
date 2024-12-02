@@ -1,11 +1,9 @@
 package me.depickcator.ascension.Player;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 
@@ -23,7 +21,6 @@ public class PlayerUnlocks {
     private final int AMOUNT_NEEDED_2 = 7;
     private final int AMOUNT_NEEDED_3 = 7;
     private final int AMOUNT_NEEDED_4 = 7;
-    private final Ascension plugin;
     private Player player;
     private PlayerData playerData;
     private int tier1Unlocks;
@@ -34,8 +31,7 @@ public class PlayerUnlocks {
 
     private int unlockTokens;
     private Map<String, Integer> UnlocksMap;
-    public PlayerUnlocks(Ascension plugin, PlayerData playerData) {
-        this.plugin = plugin;
+    public PlayerUnlocks(PlayerData playerData) {
         this.player = playerData.getPlayer();
         this.playerData = playerData;
         this.tier1Unlocks = 0;
@@ -178,4 +174,8 @@ public class PlayerUnlocks {
         this.unlockTokens += unlockTokens;
         playerData.getPlayerScoreboard().updateGameBoard();
     }
+
+    // private int tier5Unlocks() {
+    //     return tier5Unlocks; //IDE purposes only
+    // }
 }

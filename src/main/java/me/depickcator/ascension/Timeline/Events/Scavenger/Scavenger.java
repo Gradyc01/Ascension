@@ -10,14 +10,12 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -149,9 +147,9 @@ public class Scavenger extends EntityInteraction {
         }
     }
 
-    private void setBlock(Location loc, int x1, int y1, int z1, Material material) {
-        fillBlock(loc, x1, y1, z1, x1, y1, z1, material);
-    }
+    // private void setBlock(Location loc, int x1, int y1, int z1, Material material) {
+    //     fillBlock(loc, x1, y1, z1, x1, y1, z1, material);
+    // }
 
 
     @Override

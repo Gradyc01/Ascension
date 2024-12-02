@@ -9,9 +9,9 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class changeBingoScore implements CommandExecutor {
-    Ascension ab;
-    public changeBingoScore(Ascension ab) {
-        this.ab = ab;
+    private final Ascension ab;
+    public changeBingoScore() {
+        this.ab = Ascension.getInstance();
     }
 
     @Override

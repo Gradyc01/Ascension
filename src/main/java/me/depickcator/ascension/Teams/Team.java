@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Team {
-    private String name;
+    // private String name; //TODO: maybe add later
     private String teamKey;
     private ArrayList<Player> teamMembers;
     private Player leader;
@@ -24,7 +24,7 @@ public class Team {
         leader = player;
         TeamUtil.createTeam(player);
         TeamUtil.joinTeam(player, player);
-        teamStats = new TeamStats(plugin, this);
+        teamStats = new TeamStats(this);
     }
 
     public void addPlayer(Player p) {

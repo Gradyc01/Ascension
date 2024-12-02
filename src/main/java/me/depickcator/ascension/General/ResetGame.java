@@ -52,7 +52,7 @@ public class ResetGame implements Runnable {
                     return;
                 }
                 Player p = players.getFirst();
-                PlayerData pD = PlayerUtil.assignNewPlayerData(p, plugin);
+                PlayerData pD = PlayerUtil.assignNewPlayerData(p);
 //                PlayerDeath.getInstance(plugin).respawnPlayer(pD);
                 pD.resetToLobby();
                 players.remove(p);

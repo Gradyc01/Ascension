@@ -26,9 +26,9 @@ public class XPTomeGUI implements AscensionGUI {
     private final int GUISize = 3 * 9;
     private final Inventory inventory;
     private Player player;
-    private Ascension plugin;
-    public XPTomeGUI(Ascension plugin, Player p) {
-        this.plugin = plugin;
+    // private Ascension plugin;
+    public XPTomeGUI(Player p) {
+        // this.plugin = plugin;
         player = p;
         inventory = Bukkit.createInventory(p, GUISize, Component.text("     Pick a type of Experience").color(TextUtil.AQUA));
         if (player != null) {

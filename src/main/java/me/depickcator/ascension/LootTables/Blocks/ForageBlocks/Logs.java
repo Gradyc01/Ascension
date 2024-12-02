@@ -18,8 +18,8 @@ import java.util.Objects;
 public class Logs implements LootTableChanger, BlockLootTable, ForageBlocks {
 
     private final Ascension plugin;
-    public Logs(Ascension plugin) {
-        this.plugin = plugin;
+    public Logs() {
+        this.plugin = Ascension.getInstance();
         registerItem();
     }
     @Override

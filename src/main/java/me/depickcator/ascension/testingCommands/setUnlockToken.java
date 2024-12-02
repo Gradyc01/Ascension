@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class setUnlockToken implements CommandExecutor {
-    private Ascension plugin;
-    public setUnlockToken(Ascension plugin) {
-        this.plugin = plugin;
+    private final Ascension plugin;
+    public setUnlockToken() {
+        this.plugin = Ascension.getInstance();
     }
 
     @Override

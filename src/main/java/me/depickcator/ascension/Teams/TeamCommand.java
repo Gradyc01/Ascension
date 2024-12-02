@@ -12,9 +12,9 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class TeamCommand implements CommandExecutor {
-    private Ascension plugin;
-    public TeamCommand(Ascension plugin) {
-        this.plugin = plugin;
+    private final Ascension plugin;
+    public TeamCommand() {
+        this.plugin = Ascension.getInstance();
     }
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, org.bukkit.command.@NotNull Command command, @NotNull String s, @NotNull String[] strings) {

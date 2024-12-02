@@ -34,13 +34,13 @@ public class PlayerData {
     private int playerState;
 
     //Stats
-    public PlayerData(Player player, Ascension plugin) {
+    public PlayerData(Player player) {
         this.player = player;
-        this.plugin = plugin;
-        playerUnlocks = new PlayerUnlocks(this.plugin, this);
+        this.plugin = Ascension.getInstance();
+        playerUnlocks = new PlayerUnlocks(this);
         playerTeam = new PlayerTeam(this.plugin, this);
-        playerSkills = new PlayerSkills(this, plugin);
-        playerStats = new PlayerStats(this.plugin, this);
+        playerSkills = new PlayerSkills(this);
+        playerStats = new PlayerStats(this);
         playerScoreboard = new PlayerScoreboard(this.plugin, this);
         initPlayerState();
     }

@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Blocks.Ores;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.BlockLootTable;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;
@@ -10,9 +9,7 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 public class IronOre implements LootTableChanger, BlockLootTable {
-    private final Ascension plugin;
-    public IronOre(Ascension plugin) {
-        this.plugin = plugin;
+    public IronOre() {
         registerItem();
     }
 

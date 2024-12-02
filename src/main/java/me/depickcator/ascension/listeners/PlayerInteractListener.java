@@ -1,6 +1,5 @@
 package me.depickcator.ascension.listeners;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
@@ -21,18 +20,15 @@ import org.bukkit.potion.PotionEffectType;
 
 
 public class PlayerInteractListener implements Listener {
-    private final Ascension plugin;
+    // private final Ascension plugin;
 
     public PlayerInteractListener() {
-        this.plugin = Ascension.getInstance();
+        // this.plugin = Ascension.getInstance();
     }
     @EventHandler
     public void mainMenuClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         if (e.getItem() == null) return;
-//        if (plugin.getGameState().checkState(GameStates.LOBBY)) {
-//            e.setCancelled(true);//TODO: Having this on turns off all interactions could be useful in the future
-//        }
         ItemClick itemClick = ItemClick.findClickItem(e.getItem());
         if (itemClick != null) {
             itemClick.uponClick(e, p);
@@ -58,10 +54,13 @@ public class PlayerInteractListener implements Listener {
     private void usedPlayerHead(PlayerInteractEvent e) {
         ItemStack item = e.getItem();
         Player p = e.getPlayer();
-        try {
-            int a = item.getItemMeta().getCustomModelData();
+        // try {
+        //     int a = item.getItemMeta().getCustomModelData();
+        //     return;
+        // } catch (Exception ignored) {
+        // }
+        if (item.getItemMeta().hasCustomModelData()) {
             return;
-        } catch (Exception ignored) {
         }
         PlayerData pD = PlayerUtil.getPlayerData(p);
         if (pD == null) return;

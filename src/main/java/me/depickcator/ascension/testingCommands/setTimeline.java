@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class setTimeline implements CommandExecutor {
-    private Ascension plugin;
-    public setTimeline(Ascension plugin) {
-        this.plugin = plugin;
+    private final Ascension plugin;
+    public setTimeline() {
+        this.plugin = Ascension.getInstance();
     }
 
     @Override

@@ -13,12 +13,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
 
 public class GiveMainMenuItem implements CommandExecutor, ItemClick {
-    public GiveMainMenuItem(PluginManager manager, Plugin plugin) {
+    public GiveMainMenuItem() {
         registerItem();
     }
 

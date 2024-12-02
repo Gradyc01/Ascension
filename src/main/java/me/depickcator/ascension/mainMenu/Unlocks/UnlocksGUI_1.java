@@ -5,7 +5,6 @@ import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Player.PlayerUnlocks;
 import me.depickcator.ascension.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;

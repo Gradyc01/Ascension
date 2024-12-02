@@ -13,13 +13,13 @@ public class PlayerSkills{
     private final Mining mining;
     private final Foraging foraging;
     private final Global global;
-    public PlayerSkills(PlayerData playerData, Ascension plugin) {
-        this.plugin = plugin;
+    public PlayerSkills(PlayerData playerData) {
+        this.plugin = Ascension.getInstance();
         this.playerData = playerData;
         combat = new Combat(this.plugin, this.playerData);
         mining = new Mining(this.plugin, this.playerData);
         foraging = new Foraging(this.plugin, this.playerData);
-        global = new Global(this.plugin, this.playerData);
+        global = new Global(this.playerData);
     }
 
     public Combat getCombat() {

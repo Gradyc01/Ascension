@@ -8,16 +8,16 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 
 public class PlayerUtil {
-    public static void assignNewPlayerData(Ascension ab) {
+    public static void assignNewPlayerData() {
         Ascension.playerDataMap.clear();
         ArrayList<Player> onlinePlayerList = new ArrayList<>(Bukkit.getOnlinePlayers());
         for (Player p : onlinePlayerList) {
-            Ascension.playerDataMap.put(p.getUniqueId(), new PlayerData(p, ab));
+            Ascension.playerDataMap.put(p.getUniqueId(), new PlayerData(p));
         }
     }
 
-    public static PlayerData assignNewPlayerData(Player p, Ascension ab) {
-        PlayerData playerData = new PlayerData(p, ab);
+    public static PlayerData assignNewPlayerData(Player p) {
+        PlayerData playerData = new PlayerData(p);
         Ascension.playerDataMap.put(p.getUniqueId(), playerData);
         return playerData;
     }

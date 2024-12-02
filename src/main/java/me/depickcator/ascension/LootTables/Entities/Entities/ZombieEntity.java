@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Entities.Entities;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.Entities.Superable;
@@ -19,10 +18,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 
 public class ZombieEntity implements LootTableChanger, EntityLootTable, Superable {
-    private final Ascension plugin;
     public static String KEY = EntityType.ZOMBIE.translationKey();
-    public ZombieEntity(Ascension plugin) {
-        this.plugin = plugin;
+    public ZombieEntity() {
         registerItem();
     }
     @Override

@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Entities.Entities;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.Entities.Superable;
@@ -21,10 +20,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Random;
 
 public class SkeletonEntity implements LootTableChanger, EntityLootTable, Superable {
-    private final Ascension plugin;
     public static String KEY = EntityType.SKELETON.translationKey();
-    public SkeletonEntity(Ascension plugin) {
-        this.plugin = plugin;
+    public SkeletonEntity() {
         registerItem();
     }
     @Override
