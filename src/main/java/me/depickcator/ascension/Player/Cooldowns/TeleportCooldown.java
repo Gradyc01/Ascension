@@ -9,16 +9,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class TeleportCooldown extends Cooldowns{
     private static TeleportCooldown instance;
-    private final int MODEL_NUMBER;
     private TeleportCooldown() {
         super();
-        MODEL_NUMBER = Ascension.generateModelNumber();
     }
     @Override
     public ItemStack makeItem() {
         ItemStack item = new ItemStack(Material.BARRIER);
         ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelData(MODEL_NUMBER);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.displayName(TextUtil.makeText("Teleport Cooldown"));
         item.setItemMeta(meta);
         return item;

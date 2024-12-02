@@ -1,6 +1,5 @@
 package me.depickcator.ascension.General;
 
-import me.depickcator.ascension.Ascension;
 
 public class GameStates {
     public final static int UNLOADED = 0;

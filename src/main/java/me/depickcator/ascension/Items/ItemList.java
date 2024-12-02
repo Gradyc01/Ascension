@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Items;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.ItemLists.*;
 import org.bukkit.inventory.ItemStack;
 
@@ -10,15 +9,13 @@ import java.util.List;
 import java.util.Random;
 
 public class ItemList {
-    private final Ascension ab;
     private ArrayList<ItemStack> items;
     private final EasyItems easyItems;
     private final MediumItems mediumItems;
     private final Harditems harditems;
     private final CustomItems customItems;
     private final CombatItems combatItems;
-    public ItemList(Ascension ab) {
-        this.ab = ab;
+    public ItemList() {
         easyItems = new EasyItems();
         mediumItems = new MediumItems();
         harditems = new Harditems();
@@ -32,7 +29,7 @@ public class ItemList {
         items.addAll(easyItems.getItems());
     }
 
-    private List<ItemStack> grabItemsFromList(List<ItemStack> items, int amount) {
+    public List<ItemStack> grabItemsFromList(List<ItemStack> items, int amount) {
         Random r = new Random();
         List<ItemStack> itemList = new ArrayList<>(items);
         ArrayList<ItemStack> arr = new ArrayList<>();
@@ -57,9 +54,28 @@ public class ItemList {
     }
 
     public ArrayList<ItemStack> getItemsForBoard() {
-        Random r = new Random();
         ArrayList<ItemStack> items = new ArrayList<>(get25());
         Collections.shuffle(items);
         return items;
+    }
+
+    public EasyItems getEasyItems() {
+        return easyItems;
+    }
+
+    public MediumItems getMediumItems() {
+        return mediumItems;
+    }
+
+    public Harditems getHarditems() {
+        return harditems;
+    }
+
+    public CustomItems getCustomItems() {
+        return customItems;
+    }
+
+    public CombatItems getCombatItems() {
+        return combatItems;
     }
 }

@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -21,7 +20,6 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 
 public class DragonArmor extends Craft {
     private static DragonArmor instance;
-    private final int modelNumber = Ascension.generateModelNumber();
 
     private DragonArmor() {
         super(1, 2, "Dragon Armor", "dragon_armor");
@@ -52,7 +50,7 @@ public class DragonArmor extends Craft {
         ItemStack item = new ItemStack(Material.DIAMOND_CHESTPLATE);
         ArmorMeta meta = (ArmorMeta) item.getItemMeta();
         meta.addEnchant(Enchantment.PROTECTION, 4, true);
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         Component text = Component.text("Dragon Armor").color(TextUtil.AQUA).decoration(TextDecoration.ITALIC, false);
         meta.displayName(text);
         ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.NETHERITE, TrimPattern.DUNE);

@@ -70,6 +70,10 @@ public class TextUtil {
         }
     }
 
+    public static void broadcastMessage(Component text) {
+        Ascension.getInstance().getServer().broadcast(text);
+    }
+
     public static void broadcastMessage(Component text, ArrayList<Player> players) {
         for (Player p: players) {
             p.sendMessage(text);

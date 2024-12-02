@@ -10,6 +10,7 @@ me\depickcator\ascension\Kits\KitBookGUI.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Shield.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Nectar.class
 me\depickcator\ascension\General\GameStates.class
+me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBook.class
 me\depickcator\ascension\Items\Craftable\Vanilla\DiamondSword.class
 me\depickcator\ascension\LootTables\Blocks\Ores\DiamondOre.class
 me\depickcator\ascension\General\StartGame$5.class
@@ -67,6 +68,7 @@ me\depickcator\ascension\Items\Craftable\Vanilla\Vanilla.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldBosses.class
 me\depickcator\ascension\mainMenu\Unlocks\UnlocksGUI_1.class
 me\depickcator\ascension\LootTables\Blocks\Ores\CopperOre.class
+me\depickcator\ascension\Interfaces\ItemComparison.class
 me\depickcator\ascension\Items\Uncraftable\ShardOfTheFallen.class
 me\depickcator\ascension\mainMenu\Command\Commands\SendCoords.class
 me\depickcator\ascension\testingCommands\printPlayerDataCommand.class
@@ -97,9 +99,11 @@ me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI$1.class
 me\depickcator\ascension\Player\Cooldowns\CombatTimer.class
 me\depickcator\ascension\mainMenu\GiveMainMenuItem.class
 me\depickcator\ascension\Kits\Kits\IronTools.class
+me\depickcator\ascension\Interfaces\EntityInteraction.class
 me\depickcator\ascension\Items\UnlocksData.class
 me\depickcator\ascension\General\ResetGame$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HideOfLeviathan.class
+me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenSword.class
 me\depickcator\ascension\listeners\PlayerInteractListener.class
 me\depickcator\ascension\Player\Cooldowns\Death\PlayerDeath$1.class
@@ -115,6 +119,7 @@ me\depickcator\ascension\General\BuildLobby.class
 me\depickcator\ascension\Player\Cooldowns\Death\DeathTimer.class
 me\depickcator\ascension\LootTables\Entities\Entities\ZombieEntity.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldPassive.class
+me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBookGUI.class
 me\depickcator\ascension\mainMenu\OpenMainMenuCommand$1.class
 me\depickcator\ascension\General\StartGame$3.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfPower.class
@@ -122,6 +127,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class
 me\depickcator\ascension\mainMenu\Command\CommandGUI.class
 me\depickcator\ascension\Kits\Kits\Kit.class
 me\depickcator\ascension\listeners\ProjectileAttacks.class
+me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
 me\depickcator\ascension\Player\Cooldowns\TeleportCooldown.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.class
 me\depickcator\ascension\LootTables\Entities\Entities\SkeletonEntity.class
@@ -170,6 +176,7 @@ me\depickcator\ascension\Items\Craftable\Vanilla\IronSword.class
 me\depickcator\ascension\Timeline\Events\CarePackage\CarePackageLoot.class
 me\depickcator\ascension\Items\Craftable\Vanilla\DiamondAxe.class
 me\depickcator\ascension\Skills\Global.class
+me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.class
 me\depickcator\ascension\LootTables\Entities\Entities\SpiderEntity.class
 me\depickcator\ascension\Items\Craftable\Unlocks\SevenLeagueBoots.class

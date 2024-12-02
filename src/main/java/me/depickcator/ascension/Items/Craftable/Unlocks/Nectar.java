@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -17,7 +16,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Nectar extends Craft {
     private static Nectar instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     public Nectar() {
         super(1, 3,  "Nectar", "nectar");
     }
@@ -43,7 +41,7 @@ public class Nectar extends Craft {
         potionMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         potionMeta.setColor(Color.fromRGB(0xFF, 0x55, 0xFF));
         potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 2), true);
-        potionMeta.setCustomModelData(modelNumber);
+        potionMeta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         item.setItemMeta(potionMeta);
         return item;
     }

@@ -6,7 +6,6 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
@@ -28,7 +27,6 @@ import java.util.UUID;
 
 public class GoldenHead extends Craft implements ItemClick {
     private static GoldenHead instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private GoldenHead() {
         super(1, 4, "Golden Head", "golden_head");
         registerItem();
@@ -58,7 +56,7 @@ public class GoldenHead extends Craft implements ItemClick {
         skullMeta.setPlayerProfile(profile);
 
         skullMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
-        skullMeta.setCustomModelData(modelNumber);
+        skullMeta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         skullMeta.setEnchantmentGlintOverride(true);
         skullMeta.setMaxStackSize(1);
         Repairable repairMeta = (Repairable) skullMeta;

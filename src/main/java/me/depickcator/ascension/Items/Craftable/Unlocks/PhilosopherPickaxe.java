@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -17,7 +16,6 @@ import org.bukkit.inventory.meta.Repairable;
 
 public class PhilosopherPickaxe extends Craft {
     private static PhilosopherPickaxe instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private PhilosopherPickaxe() {
         super(2, 4, "Philosopher’s Pickaxe", "philosopher_pickaxe");
     }
@@ -46,7 +44,7 @@ public class PhilosopherPickaxe extends Craft {
         ItemStack item = new ItemStack(Material.DIAMOND_PICKAXE);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.PINK));
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.addEnchant(Enchantment.FORTUNE, 2, true);
         meta.addEnchant(Enchantment.EFFICIENCY, 3, true);
         if (meta instanceof Damageable damageMeta) {

@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
@@ -20,7 +19,6 @@ import org.bukkit.inventory.meta.Repairable;
 
 public class FlintShovel extends Craft implements LootTableChanger {
     private static FlintShovel instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private FlintShovel() {
         super(1, 2, "Flint Shovel", "flint_shovel");
         registerItem();
@@ -44,7 +42,7 @@ public class FlintShovel extends Craft implements LootTableChanger {
         ItemStack item = new ItemStack(Material.IRON_SHOVEL);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.setEnchantmentGlintOverride(true);
         if (meta instanceof Repairable repairable) {
             repairable.setRepairCost(999);

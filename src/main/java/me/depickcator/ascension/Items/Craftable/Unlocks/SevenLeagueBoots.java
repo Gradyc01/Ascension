@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -19,7 +18,6 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 
 public class SevenLeagueBoots extends Craft {
     private static SevenLeagueBoots instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private SevenLeagueBoots() {
         super(1, 2, "Seven League Boots", "seven_league_boots");
     }
@@ -49,7 +47,7 @@ public class SevenLeagueBoots extends Craft {
         ArmorMeta meta = (ArmorMeta) item.getItemMeta();
         meta.addEnchant(Enchantment.PROTECTION, 3, true);
         meta.addEnchant(Enchantment.FEATHER_FALLING, 4, true);
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         Component text = TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA);
         meta.displayName(text);
         ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.IRON, TrimPattern.SNOUT);

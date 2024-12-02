@@ -62,7 +62,7 @@ public class PlayerDeath {
                 }
                 for (PlayerData playerData : players) {
                     Player p = playerData.getPlayer();
-                    if (!deathTimer.isOnCooldown(p, false)) {
+                    if (!deathTimer.isOnCooldown(p, false) || !plugin.getGameState().inGame()) {
                         respawnPlayer(playerData);
                         continue;
                     }

@@ -4,11 +4,14 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MediumItems {
     private ArrayList<ItemStack> items;
+    private Random rand;
     public MediumItems() {
         items = new ArrayList<>();
+        rand = new Random();
         setItems();
     }
 
@@ -110,7 +113,7 @@ public class MediumItems {
         items.add(new ItemStack(Material.MAGENTA_CANDLE));
         items.add(new ItemStack(Material.PINK_CANDLE));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }
@@ -128,7 +131,7 @@ public class MediumItems {
         items.add(new ItemStack(Material.SPRUCE_HANGING_SIGN));
         items.add(new ItemStack(Material.OAK_HANGING_SIGN));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }
@@ -152,7 +155,7 @@ public class MediumItems {
         items.add(new ItemStack(Material.DEEPSLATE_DIAMOND_ORE));
         items.add(new ItemStack(Material.DEEPSLATE_EMERALD_ORE));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }

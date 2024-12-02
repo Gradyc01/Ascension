@@ -4,12 +4,15 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class EasyItems {
-    private ArrayList<ItemStack> items;
+    private final ArrayList<ItemStack> items;
+    private final Random rand;
     public EasyItems() {
         items = new ArrayList<>();
+        rand = new Random();
         setItems();
     }
 
@@ -87,7 +90,7 @@ public class EasyItems {
         items.add(new ItemStack(Material.MAGENTA_STAINED_GLASS));
         items.add(new ItemStack(Material.PINK_STAINED_GLASS));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }
@@ -111,7 +114,7 @@ public class EasyItems {
         items.add(new ItemStack(Material.MAGENTA_BANNER));
         items.add(new ItemStack(Material.PINK_BANNER));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }
@@ -135,7 +138,7 @@ public class EasyItems {
         items.add(new ItemStack(Material.MAGENTA_CONCRETE));
         items.add(new ItemStack(Material.PINK_CONCRETE));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }
@@ -159,7 +162,7 @@ public class EasyItems {
         items.add(new ItemStack(Material.MAGENTA_WOOL));
         items.add(new ItemStack(Material.PINK_WOOL));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }

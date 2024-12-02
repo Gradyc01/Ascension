@@ -1,6 +1,7 @@
 package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.ItemList;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
 import me.depickcator.ascension.Teams.TeamUtil;
@@ -75,7 +76,7 @@ public class StartGame{
             @Override
             public void run() {
                 BingoData bingoData = plugin.getBingoData();
-                bingoData.setItems(bingoData.getItemList().getItemsForBoard());
+                bingoData.setItems(new ItemList().getItemsForBoard());
                 ArrayList<ItemStack> item = bingoData.getItems();
                 for (ItemStack i : item) {
                     player.sendMessage(i.toString());

@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -16,7 +15,6 @@ import org.bukkit.inventory.meta.Repairable;
 
 public class KingsRod extends Craft {
     private static KingsRod instance;
-    private final int MODEL_NUMBER = Ascension.generateModelNumber();;
     private KingsRod() {
         super(1, 1, "Kings Rod", "kings_rod");
     }
@@ -45,7 +43,7 @@ public class KingsRod extends Craft {
         ItemStack item = new ItemStack(Material.FISHING_ROD);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
-        meta.setCustomModelData(MODEL_NUMBER);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 10, true);
         meta.addEnchant(Enchantment.LURE, 5, true);
         meta.addEnchant(Enchantment.UNBREAKING, 10, true);

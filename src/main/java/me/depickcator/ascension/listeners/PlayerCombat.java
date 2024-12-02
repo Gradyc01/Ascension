@@ -135,7 +135,6 @@ public class PlayerCombat implements Listener {
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         if (skullMeta != null) {
             skullMeta.setOwningPlayer(victim);
-            skullMeta.setCustomModelData(0);
             skullMeta.setMaxStackSize(1);
         }
         skull.setItemMeta(skullMeta);

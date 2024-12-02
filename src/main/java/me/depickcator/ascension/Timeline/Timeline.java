@@ -6,6 +6,7 @@ import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
+import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -15,6 +16,7 @@ public class Timeline {
     private int MINUTES;
     private int SECONDS;
     private boolean keepRunning;
+    private Scavenger scavenger;
     private static final int STARTING_MINUTES = 160;
     public Timeline(Ascension plugin) {
         this.plugin = plugin;
@@ -81,18 +83,33 @@ public class Timeline {
 
     private void checkForMidGameEvents() {
         int timePassed = STARTING_MINUTES - MINUTES;
-        if (timePassed == 30) {
-            plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
-            plugin.getServer().broadcast(TextUtil.makeText("Grace Period has Ended", TextUtil.BLUE));
-            SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 30, 1);
-        } else if (timePassed == 35 || timePassed == 70 || timePassed == 100 || timePassed == 140) {
-            new CarePackage();
-        } else if (timePassed == 90) {
-            //FEAST
-            plugin.getServer().broadcast(TextUtil.makeText("[Debug] Feast", TextUtil.BLUE));
-        } else if (timePassed == 55 || timePassed == 120) {
-            plugin.getServer().broadcast(TextUtil.makeText("[Debug] Scavenger", TextUtil.BLUE));
-            //SCAVENGER
+        switch (timePassed) {
+            case 5 -> {
+                scavenger = new Scavenger();
+                scavenger.announceTrades();
+            }
+            case 30 -> {
+                plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
+                plugin.getServer().broadcast(TextUtil.makeText("Grace Period has Ended", TextUtil.BLUE));
+                SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 30, 1);
+            }
+            case 35, 70, 100, 140 -> {
+                new CarePackage();
+            }
+            case 50, 115 -> {
+                //Scavenger Spawn Location
+                scavenger.announceSpawnLocation();
+            }
+            case 55, 120 -> {
+                //Scavenger Spawn In
+                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Scavenger", TextUtil.BLUE));
+                scavenger.spawnInScavenger();
+            }
+            case 90 -> {
+                //Feast
+                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Feast", TextUtil.BLUE));
+            }
+
         }
     }
 
@@ -120,7 +137,7 @@ public class Timeline {
         }
     }
 
-
-
-
+    public Scavenger getScavenger() {
+        return scavenger;
+    }
 }

@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -17,7 +16,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class QuickPick extends Craft {
     private static QuickPick instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private QuickPick() {
         super(1, 2, "Quick Pick", "quick_pick");
     }
@@ -47,7 +45,7 @@ public class QuickPick extends Craft {
         Component name = Component.text(DISPLAY_NAME).color(TextUtil.AQUA).decoration(TextDecoration.ITALIC, false);
         meta.displayName(name);
         meta.addEnchant(Enchantment.EFFICIENCY, 1, true);
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         item.setItemMeta(meta);
         return item;
     }

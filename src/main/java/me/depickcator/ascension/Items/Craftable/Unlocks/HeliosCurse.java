@@ -27,7 +27,6 @@ import java.util.List;
 
 public class HeliosCurse extends Craft implements ShootsProjectiles {
     private static HeliosCurse instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private HeliosCurse() {
         super(1, 1, "Helios' Curse" ,"helios_curse");
         addProjectile(KEY, this);
@@ -50,7 +49,7 @@ public class HeliosCurse extends Craft implements ShootsProjectiles {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.CROSSBOW);
         Damageable meta = (Damageable) item.getItemMeta();
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.setMaxDamage(24);
         meta.setEnchantmentGlintOverride(true);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));

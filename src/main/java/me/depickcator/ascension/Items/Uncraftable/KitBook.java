@@ -19,7 +19,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class KitBook implements ItemClick {
     public static String DISPLAY_NAME = "Kit Book";
     private static ItemStack item = KitBook.makeItem();;
-    private static final int modelNumber = Ascension.generateModelNumber();
     public KitBook() {
         registerItem();
         registerKits();
@@ -39,7 +38,7 @@ public class KitBook implements ItemClick {
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.GOLD).append(TextUtil.rightClickText()));
         meta.setMaxStackSize(1);
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.setEnchantmentGlintOverride(true);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         item.setItemMeta(meta);

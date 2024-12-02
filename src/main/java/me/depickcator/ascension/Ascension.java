@@ -25,6 +25,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,9 +34,10 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 public final class Ascension extends JavaPlugin {
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(Ascension.class);
     public static Map<UUID, Pair<Inventory, AscensionGUI>> guiMap = new HashMap<>();
     public static Map<UUID, PlayerData> playerDataMap = new HashMap<>();
-    public static Ascension instance;
+    private static Ascension instance;
     private static Location spawn;
     private GameStates gameState;
     private BingoData bingoData;
@@ -45,11 +47,12 @@ public final class Ascension extends JavaPlugin {
     private World world;
     private World nether;
     private Logger logger = getLogger();
-    private static int uniqueModelNumber = 0;
+    private int uniqueModelNumber;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
+        uniqueModelNumber = 2;
         instance = this;
         logger.info("Ascension has been enabled!");
         registerListeners();
@@ -144,9 +147,9 @@ public final class Ascension extends JavaPlugin {
         return timeline;
     }
 
-    public static int generateModelNumber() {
-        uniqueModelNumber++;
-        return uniqueModelNumber - 1;
+    public int generateModelNumber() {
+        logger.info("Current model number" + uniqueModelNumber);
+        return uniqueModelNumber++;
     }
 
     public static Ascension getInstance() {

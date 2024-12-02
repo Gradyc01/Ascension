@@ -3,6 +3,7 @@ package me.depickcator.ascension.mainMenu.BingoBoard;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.ItemList;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import me.depickcator.ascension.Player.PlayerData;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-public class BingoData {
+public class BingoData extends ItemComparison {
     private ScoreboardManager scoreboardManager;
     private Scoreboard bingoScoreboard;
     @SuppressWarnings("unused")
@@ -37,7 +38,7 @@ public class BingoData {
     // private Objective bingoLines;
     // private Objective bingoItemsObtained;
     private ArrayList<ItemStack> items;
-    private ItemList itemList;
+//    private ItemList itemList;
     private final Ascension plugin;
 
     public BingoData(Ascension ab) {
@@ -53,7 +54,7 @@ public class BingoData {
 
         this.plugin = ab;
         items = new ArrayList<>();
-        itemList = new ItemList(ab);
+//        itemList = new ItemList();
         resetPlayers();
     }
 
@@ -81,49 +82,49 @@ public class BingoData {
         }
     }
 
-    private boolean containsItem(ItemStack inv, ItemStack board) {
-//        ItemMeta item1Meta = inv.getItemMeta();
-//        ItemMeta item2Meta = board.getItemMeta();
-//        boolean modelData;
-//        try {
-//            modelData = item1Meta.getCustomModelData() == item2Meta.getCustomModelData();
-//        } catch (Exception e) {
-//            modelData =true;
+//    private boolean containsItem(ItemStack inv, ItemStack board) {
+////        ItemMeta item1Meta = inv.getItemMeta();
+////        ItemMeta item2Meta = board.getItemMeta();
+////        boolean modelData;
+////        try {
+////            modelData = item1Meta.getCustomModelData() == item2Meta.getCustomModelData();
+////        } catch (Exception e) {
+////            modelData =true;
+////        }
+////        return (inv.getType().equals(board.getType()) &&
+////                Objects.equals(item1Meta.lore(), item2Meta.lore()) &&
+////                Objects.equals(item1Meta.getItemFlags(), item2Meta.getItemFlags()) &&
+////                modelData &&
+////                Objects.equals(item1Meta.getEnchants(), item2Meta.getEnchants()) &&
+////                Objects.equals(item1Meta.getFood(), item2Meta.getFood()));
+//        return itemParser(inv).equals(itemParser(board));
+//    }
+//
+//    private String itemParser(ItemStack item) {
+//        int customModelNumber = getItemModelNumber(item);
+//
+//        if (item.getType().equals(Material.ENCHANTED_BOOK) && customModelNumber == 0) {
+//            return item.getType() + item.getItemMeta().getEnchants().toString();
 //        }
-//        return (inv.getType().equals(board.getType()) &&
-//                Objects.equals(item1Meta.lore(), item2Meta.lore()) &&
-//                Objects.equals(item1Meta.getItemFlags(), item2Meta.getItemFlags()) &&
-//                modelData &&
-//                Objects.equals(item1Meta.getEnchants(), item2Meta.getEnchants()) &&
-//                Objects.equals(item1Meta.getFood(), item2Meta.getFood()));
-        return itemParser(inv).equals(itemParser(board));
-    }
-
-    private String itemParser(ItemStack item) {
-        int customModelNumber = getItemModelNumber(item);
-
-        if (item.getType().equals(Material.ENCHANTED_BOOK) && customModelNumber == 0) {
-            return item.getType() + item.getItemMeta().getEnchants().toString();
-        }
-
-        if (item.getType().equals(Material.POTION) && customModelNumber == 0) {
-            PotionMeta meta = (PotionMeta) item.getItemMeta();
-            return item.getType() + meta.getCustomEffects().toString();
-        }
-
-        return item.getType().toString() + customModelNumber;
-    }
-
-    private int getItemModelNumber(ItemStack item) {
-        int customModelNumber;
-        ItemMeta meta = item.getItemMeta();
-        try {
-            customModelNumber = meta.getCustomModelData();
-        } catch (Exception ignored) {
-            customModelNumber = 0;
-        }
-        return customModelNumber;
-    }
+//
+//        if (item.getType().equals(Material.POTION) && customModelNumber == 0) {
+//            PotionMeta meta = (PotionMeta) item.getItemMeta();
+//            return item.getType() + meta.getCustomEffects().toString();
+//        }
+//
+//        return item.getType().toString() + customModelNumber;
+//    }
+//
+//    private int getItemModelNumber(ItemStack item) {
+//        int customModelNumber;
+//        ItemMeta meta = item.getItemMeta();
+//        try {
+//            customModelNumber = meta.getCustomModelData();
+//        } catch (Exception ignored) {
+//            customModelNumber = 0;
+//        }
+//        return customModelNumber;
+//    }
 
 
     public void claimItem(Player p) {
@@ -142,7 +143,7 @@ public class BingoData {
             }
             ItemStack item = items.get(i);
             for (ItemStack j : inv.getContents()) {
-                if (j != null && containsItem(j, item)) {
+                if (j != null && equalItems(j, item)) {
                     j.setAmount(j.getAmount() - 1);
                     addScore(24 - i, p);
                     giveRewards(p, item);
@@ -344,9 +345,9 @@ public class BingoData {
         this.items = items;
     }
 
-    public ItemList getItemList() {
-        return itemList;
-    }
+//    public ItemList getItemList() {
+//        return itemList;
+//    }
 
     public ArrayList<Boolean> getItemsCompleted(Player player) {
         return setArray(plugin.getServer().getScoreboardManager().getMainScoreboard().getObjective("bingo").getScore(player.getName()));

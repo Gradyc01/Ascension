@@ -4,7 +4,6 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ShootsProjectiles;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -28,9 +27,9 @@ import java.util.List;
 
 public class ApolloGlare extends Craft implements ShootsProjectiles  {
     private static ApolloGlare instance;
-    private static final int modelNumber = Ascension.generateModelNumber();
     private ApolloGlare() {
         super(1, 1, "Apollo's Glare", "apollo_glare");
+
         addProjectile(KEY, this);
     }
 
@@ -51,7 +50,7 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
         ItemStack item = new ItemStack(Material.CROSSBOW);
         Damageable meta = (Damageable) item.getItemMeta();
         meta.setMaxDamage(24);
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.setEnchantmentGlintOverride(true);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         meta.getPersistentDataContainer().set(ShootsProjectiles.key, PersistentDataType.STRING, KEY);

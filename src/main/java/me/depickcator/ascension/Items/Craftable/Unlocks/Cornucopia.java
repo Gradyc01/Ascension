@@ -4,7 +4,6 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -21,7 +20,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Cornucopia extends Craft implements ItemClick {
     private static Cornucopia instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private Cornucopia() {
         super(1, 1, "Cornucopia", "cornucopia");
         registerItem();
@@ -45,7 +43,7 @@ public class Cornucopia extends Craft implements ItemClick {
         foodComponent.setCanAlwaysEat(true);
         foodComponent.setNutrition(0);
         meta.setFood(foodComponent);
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         item.setItemMeta(meta);
         return item;

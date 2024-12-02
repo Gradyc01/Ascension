@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -19,7 +18,6 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 
 public class Tarnhelm extends Craft {
     private static Tarnhelm instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private Tarnhelm() {
         super(1, 2, "Tarnhelm", "tarnhelm");
     }
@@ -48,7 +46,7 @@ public class Tarnhelm extends Craft {
         meta.addEnchant(Enchantment.PROTECTION, 1, true);
         meta.addEnchant(Enchantment.FIRE_PROTECTION, 1, true);
         meta.addEnchant(Enchantment.AQUA_AFFINITY, 3, true);
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         Component text = TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA);
         meta.displayName(text);
         ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.REDSTONE, TrimPattern.SPIRE);

@@ -12,7 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-import me.depickcator.ascension.Ascension;
 
 public class MobSpawning implements Listener {
     private final ArrayList<EntityType> superMobs;

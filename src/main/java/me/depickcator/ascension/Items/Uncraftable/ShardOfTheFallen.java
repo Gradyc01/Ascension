@@ -10,11 +10,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class ShardOfTheFallen {
     public static String DISPLAY_NAME = "Shard of the Fallen";
     private static final ItemStack item = makeItem();
-    private static final int modelNumber = Ascension.generateModelNumber();
     private static ItemStack makeItem() {
         ItemStack item = new ItemStack(Material.DISC_FRAGMENT_5);
         ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.DARK_GRAY));

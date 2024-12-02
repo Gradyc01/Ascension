@@ -2,7 +2,6 @@ package me.depickcator.ascension.Items;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;

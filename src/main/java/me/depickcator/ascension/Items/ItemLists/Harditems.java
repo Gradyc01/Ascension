@@ -4,11 +4,14 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Harditems {
     private ArrayList<ItemStack> items;
+    private final Random rand;
     public Harditems() {
         items = new ArrayList<>();
+        rand = new Random();
         setItems();
     }
 
@@ -65,7 +68,7 @@ public class Harditems {
         items.add(new ItemStack(Material.NETHERITE_HOE));
         items.add(new ItemStack(Material.NETHERITE_INGOT));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }
@@ -92,7 +95,7 @@ public class Harditems {
         items.add(new ItemStack(Material.DEAD_TUBE_CORAL_FAN));
         items.add(new ItemStack(Material.DEAD_TUBE_CORAL_BLOCK));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }
@@ -102,7 +105,7 @@ public class Harditems {
         items.add(new ItemStack(Material.GOLDEN_HORSE_ARMOR));
         items.add(new ItemStack(Material.DIAMOND_HORSE_ARMOR));
 
-        int pick = (int) Math.round(Math.random() * items.size());
+        int pick = rand.nextInt(items.size());
 
         return items.get(pick);
     }

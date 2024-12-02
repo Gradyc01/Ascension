@@ -13,7 +13,6 @@ public class XPTome implements ItemClick {
     public static String DISPLAY_NAME = "XP Tome";
     private final ItemStack item;
     private final Ascension plugin;
-    private static final int modelNumber = Ascension.generateModelNumber();
     public XPTome() {
         this.plugin = Ascension.getInstance();
         this.item = result();
@@ -22,7 +21,7 @@ public class XPTome implements ItemClick {
     public static ItemStack result() {
         ItemStack item = new ItemStack(Material.BOOK);
         ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelData(modelNumber);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.DARK_GREEN).append(TextUtil.rightClickText()));
         meta.setEnchantmentGlintOverride(true);
         meta.setMaxStackSize(1);

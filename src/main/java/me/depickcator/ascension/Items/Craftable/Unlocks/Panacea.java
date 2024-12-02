@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Crafts;
 import me.depickcator.ascension.Items.UnlockUtil;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -17,7 +16,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Panacea extends Craft {
     private static Panacea instance;
-    private final int modelNumber = Ascension.generateModelNumber();
     private Panacea() {
         super(1, 1, "Panacea", "panacea");
     }
@@ -47,7 +45,7 @@ public class Panacea extends Craft {
         potionMeta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.PINK));
         potionMeta.setColor(Color.fromRGB(0xFF, 0x55, 0xFF));
         potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.INSTANT_HEALTH, 20, 4), true);
-        potionMeta.setCustomModelData(modelNumber);
+        potionMeta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         item.setItemMeta(potionMeta);
         return item;
     }
