@@ -91,7 +91,7 @@ public class UnlocksData {
     }
 
     private void Uncraftable() {
-        new XPTome();
+        XPTome.getInstance().getItem();
         new KitBook();
     }
 

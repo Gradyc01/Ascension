@@ -10,15 +10,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class XPTome implements ItemClick {
+    private static XPTome instance;
     public static String DISPLAY_NAME = "XP Tome";
     private final ItemStack item;
     private final Ascension plugin;
-    public XPTome() {
+    private XPTome() {
         this.plugin = Ascension.getInstance();
-        this.item = result();
+        this.item = initResult();
         registerItem();
     }
-    public static ItemStack result() {
+    private ItemStack initResult() {
         ItemStack item = new ItemStack(Material.BOOK);
         ItemMeta meta = item.getItemMeta();
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
@@ -28,7 +29,6 @@ public class XPTome implements ItemClick {
         item.setItemMeta(meta);
         return item;
     }
-
 
     @Override
     public ItemStack getItem() {
@@ -47,6 +47,13 @@ public class XPTome implements ItemClick {
 
     @Override
     public void registerItem() {
-        addItem(XPTome.result(), this);
+        addItem(item, this);
+    }
+
+    public static XPTome getInstance() {
+        if (instance == null) {
+            instance = new XPTome();
+        }
+        return instance;
     }
 }

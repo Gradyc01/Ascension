@@ -241,7 +241,7 @@ public class BingoData extends ItemComparison {
         SoundUtil.playHighPitchPling(p);
         pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY, true);
 
-        PlayerUtil.giveItem(p, XPTome.result());
+        PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
         p.addPotionEffect(effect);
     }
 
@@ -250,7 +250,7 @@ public class BingoData extends ItemComparison {
         for (Player p : otherTeamMembers) {
             p.sendMessage(text);
             SoundUtil.playHighPitchPling(p);
-            PlayerUtil.giveItem(p, XPTome.result());
+            PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
             Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_VERY_RARE, true);
             p.addPotionEffect(effect);
         }

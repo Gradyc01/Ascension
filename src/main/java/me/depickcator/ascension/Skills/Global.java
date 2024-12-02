@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Skills;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerSkills;
 import org.bukkit.attribute.Attribute;
@@ -16,7 +17,7 @@ public class Global implements Skills {
     private final Player player;
     private int experience;
     private int level;
-    private final String NAME = "Level";
+    private final String NAME = "Global";
     private final int MAXLEVEL = 5;
 //     private final static ArrayList<>
 
@@ -51,9 +52,17 @@ public class Global implements Skills {
         double health = player.getAttribute(Attribute.MAX_HEALTH).getBaseValue();
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 0, true, true));
         player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(health + 4);
+        levelUpText();
         if (canLevelUp()) {
             levelUp(++level);
         }
+    }
+
+    private void levelUpText() {
+        player.sendMessage(TextUtil.topBorder(TextUtil.GOLD));
+        player.sendMessage(TextUtil.makeText("                    LEVEL UP!!!!", TextUtil.AQUA, true, false));
+        player.sendMessage(TextUtil.makeText("                     " + NAME + " " + level, TextUtil.GOLD, true, false));
+        player.sendMessage(TextUtil.bottomBorder(TextUtil.GOLD));
     }
 
 

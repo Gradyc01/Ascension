@@ -84,7 +84,7 @@ public class XPTomeGUI implements AscensionGUI {
         if (event.isShiftClick() || playerData == null) {
             return;
         }
-        if (!p.getInventory().getItemInMainHand().equals(XPTome.result())) {
+        if (!p.getInventory().getItemInMainHand().equals(XPTome.getInstance().getItem())) {
             event.setCancelled(true);
             p.closeInventory();
             return;
