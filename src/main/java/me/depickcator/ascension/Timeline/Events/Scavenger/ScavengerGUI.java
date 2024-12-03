@@ -43,11 +43,12 @@ public class ScavengerGUI implements AscensionGUI {
         setItemBackground(inventory, GUISize);
         setTrades();
         addTradePanes();
-        addClaimItems();
         playerHeadButton(inventory, 49, player);
 
         if (!canSubmitItems) {
             inventory.setItem(48, goBackItem());
+        } else {
+            addClaimItems();
         }
 
 
