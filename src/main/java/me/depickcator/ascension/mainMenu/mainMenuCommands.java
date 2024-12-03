@@ -14,10 +14,10 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class mainMenuCommands implements CommandExecutor {
-    private Ascension ab;
+    private final Ascension ab;
 
-    public mainMenuCommands(Ascension ab) {
-        this.ab = ab;
+    public mainMenuCommands() {
+        this.ab = Ascension.getInstance();
     }
 
     @Override

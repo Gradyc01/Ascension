@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Entities.Enums;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.LootTableChanger;
@@ -10,9 +9,7 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 public class OverworldMobs implements LootTableChanger, EntityLootTable {
-    private final Ascension plugin;
-    public OverworldMobs(Ascension plugin) {
-        this.plugin = plugin;
+    public OverworldMobs() {
         registerItem();
     }
     @Override

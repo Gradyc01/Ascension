@@ -104,43 +104,43 @@ public class BuildLobby implements Runnable {
     }
 
 
-    private void buildTeamSign() {
-        // Letter T
-        placeBlock(-10, 115, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(-9, 115, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(-8, 115, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(-9, 114, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(-9, 113, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(-9, 112, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(-9, 111, -19, "minecraft:black_concrete", armorStand);
+    // private void buildTeamSign() {
+    //     // Letter T
+    //     placeBlock(-10, 115, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(-9, 115, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(-8, 115, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(-9, 114, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(-9, 113, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(-9, 112, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(-9, 111, -19, "minecraft:black_concrete", armorStand);
 
-        // Letter E
-        fillArea(-6, 115, -19, -4, 115, -19, "minecraft:black_concrete", armorStand);
-        fillArea(-6, 113, -19, -5, 113, -19, "minecraft:black_concrete", armorStand);
-        fillArea(-6, 111, -19, -4, 111, -19, "minecraft:black_concrete", armorStand);
-        fillArea(-6, 115, -19, -6, 111, -19, "minecraft:black_concrete", armorStand);
+    //     // Letter E
+    //     fillArea(-6, 115, -19, -4, 115, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(-6, 113, -19, -5, 113, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(-6, 111, -19, -4, 111, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(-6, 115, -19, -6, 111, -19, "minecraft:black_concrete", armorStand);
 
-        // Letter A
-        fillArea(-2, 115, -19, -2, 111, -19, "minecraft:black_concrete", armorStand);
-        fillArea(0, 115, -19, 0, 111, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(-1, 113, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(-1, 115, -19, "minecraft:black_concrete", armorStand);
+    //     // Letter A
+    //     fillArea(-2, 115, -19, -2, 111, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(0, 115, -19, 0, 111, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(-1, 113, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(-1, 115, -19, "minecraft:black_concrete", armorStand);
 
-        // Letter M
-        fillArea(2, 115, -19, 2, 111, -19, "minecraft:black_concrete", armorStand);
-        fillArea(6, 115, -19, 6, 111, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(3, 115, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(5, 115, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(4, 114, -19, "minecraft:black_concrete", armorStand);
-        placeBlock(4, 113, -19, "minecraft:black_concrete", armorStand);
+    //     // Letter M
+    //     fillArea(2, 115, -19, 2, 111, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(6, 115, -19, 6, 111, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(3, 115, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(5, 115, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(4, 114, -19, "minecraft:black_concrete", armorStand);
+    //     placeBlock(4, 113, -19, "minecraft:black_concrete", armorStand);
 
-        // Letter S
-        fillArea(8, 115, -19, 10, 115, -19, "minecraft:black_concrete", armorStand);
-        fillArea(8, 114, -19, 8, 113, -19, "minecraft:black_concrete", armorStand);
-        fillArea(8, 113, -19, 10, 113, -19, "minecraft:black_concrete", armorStand);
-        fillArea(10, 113, -19, 10, 111, -19, "minecraft:black_concrete", armorStand);
-        fillArea(8, 111, -19, 10, 111, -19, "minecraft:black_concrete", armorStand);
-    }
+    //     // Letter S
+    //     fillArea(8, 115, -19, 10, 115, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(8, 114, -19, 8, 113, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(8, 113, -19, 10, 113, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(10, 113, -19, 10, 111, -19, "minecraft:black_concrete", armorStand);
+    //     fillArea(8, 111, -19, 10, 111, -19, "minecraft:black_concrete", armorStand);
+    // }
 
     private void buildSpawn() {
         fillArea(5, 101, 5, -5, 101, -5, "minecraft:quartz_block", armorStand);

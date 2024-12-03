@@ -25,7 +25,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +33,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 public final class Ascension extends JavaPlugin {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(Ascension.class);
+    // private static final org.slf4j.Logger log = LoggerFactory.getLogger(Ascension.class);
     public static Map<UUID, Pair<Inventory, AscensionGUI>> guiMap = new HashMap<>();
     public static Map<UUID, PlayerData> playerDataMap = new HashMap<>();
     private static Ascension instance;
@@ -58,8 +57,8 @@ public final class Ascension extends JavaPlugin {
         registerListeners();
         registerCommands();
         registerCrafts();
-        new EntityUtil(this);
-        new BlockUtil(this);
+        new EntityUtil();
+        new BlockUtil();
         scheduler = this.getServer().getScheduler();
         gameState = new GameStates();
         timeline = new Timeline(this);
@@ -73,18 +72,18 @@ public final class Ascension extends JavaPlugin {
     }
 
     private void registerCommands() {
-        PluginManager pluginManager = getServer().getPluginManager();
+        // PluginManager pluginManager = getServer().getPluginManager();
         Objects.requireNonNull(getCommand("open-main-menu")).setExecutor(new OpenMainMenuCommand());
-        Objects.requireNonNull(getCommand("give-main-menu")).setExecutor(new GiveMainMenuItem(pluginManager, this));
-        Objects.requireNonNull(getCommand("game")).setExecutor(new GameCommand(pluginManager));
-        Objects.requireNonNull(getCommand("changeBingoScore")).setExecutor(new changeBingoScore(this));
-        Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands(this));
-        Objects.requireNonNull(getCommand("party")).setExecutor(new TeamCommand(this));
-        Objects.requireNonNull(getCommand("printPlayerData")).setExecutor(new printPlayerDataCommand(this));
-        Objects.requireNonNull(getCommand("timeline")).setExecutor(new setTimeline(this));
-        Objects.requireNonNull(getCommand("setUnlockTokens")).setExecutor(new setUnlockToken(this));
-        Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp(this));
-        Objects.requireNonNull(getCommand("startEvent")).setExecutor(new startEvents(this));
+        Objects.requireNonNull(getCommand("give-main-menu")).setExecutor(new GiveMainMenuItem());
+        Objects.requireNonNull(getCommand("game")).setExecutor(new GameCommand());
+        Objects.requireNonNull(getCommand("changeBingoScore")).setExecutor(new changeBingoScore());
+        Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands());
+        Objects.requireNonNull(getCommand("party")).setExecutor(new TeamCommand());
+        Objects.requireNonNull(getCommand("printPlayerData")).setExecutor(new printPlayerDataCommand());
+        Objects.requireNonNull(getCommand("timeline")).setExecutor(new setTimeline());
+        Objects.requireNonNull(getCommand("setUnlockTokens")).setExecutor(new setUnlockToken());
+        Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp());
+        Objects.requireNonNull(getCommand("startEvent")).setExecutor(new startEvents());
     }
 
     private void registerListeners() {

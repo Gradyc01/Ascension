@@ -1,11 +1,7 @@
 package me.depickcator.ascension.Player;
 
-import me.depickcator.ascension.Ascension;
-import org.bukkit.entity.Player;
 
 public class PlayerStats {
-    private final Ascension plugin;
-    private final Player player;
     private final PlayerData playerData;
 
     //Statistics
@@ -15,9 +11,7 @@ public class PlayerStats {
     //Settings
     private boolean nightVision;
     private boolean foodDrops;
-    public PlayerStats(Ascension plugin, PlayerData playerData) {
-        this.plugin = plugin;
-        this.player = playerData.getPlayer();
+    public PlayerStats(PlayerData playerData) {
         this.playerData = playerData;
         kills = 0;
         nightVision = false;

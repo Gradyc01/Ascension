@@ -6,19 +6,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.scoreboard.*;
+// import org.bukkit.scoreboard.*;
 import org.jetbrains.annotations.NotNull;
 
 
 public class GameCommand implements CommandExecutor {
-    private PluginManager pm;
+    // private PluginManager pm;
     private final Ascension ab;
-    private ScoreboardManager scoreboardManager;
-    private Scoreboard bingoScoreboard;
-    private Objective bingodata;
-    public GameCommand(PluginManager manager) {
-        pm = manager;
+    // private ScoreboardManager scoreboardManager;
+    // private Scoreboard bingoScoreboard;
+    // private Objective bingodata;
+    public GameCommand() {
+        // pm = manager;
         this.ab = Ascension.getInstance();
     }
 

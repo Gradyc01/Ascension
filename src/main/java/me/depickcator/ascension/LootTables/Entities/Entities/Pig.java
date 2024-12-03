@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Entities.Entities;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
@@ -12,10 +11,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class Pig implements LootTableChanger, EntityLootTable {
-    private final Ascension plugin;
     public static String KEY = EntityType.PIG.translationKey();
-    public Pig(Ascension plugin) {
-        this.plugin = plugin;
+    public Pig() {
         registerItem();
     }
     @Override

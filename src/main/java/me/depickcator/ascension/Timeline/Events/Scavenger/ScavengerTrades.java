@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Timeline.Events.Scavenger;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
@@ -10,7 +9,6 @@ import me.depickcator.ascension.Player.PlayerData;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 

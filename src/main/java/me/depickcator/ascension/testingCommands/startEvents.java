@@ -1,6 +1,5 @@
 package me.depickcator.ascension.testingCommands;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,9 +9,9 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class startEvents implements CommandExecutor {
-    private Ascension plugin;
-    public startEvents(Ascension plugin) {
-        this.plugin = plugin;
+    // private final Ascension plugin;
+    public startEvents() {
+        // this.plugin = Ascension.getInstance();
     }
 
     @Override

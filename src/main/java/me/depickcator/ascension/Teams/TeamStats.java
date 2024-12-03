@@ -1,13 +1,10 @@
 package me.depickcator.ascension.Teams;
 
-import me.depickcator.ascension.Ascension;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TeamStats {
-    private final Ascension plugin;
     private final Team team;
 
     //Statistics
@@ -18,8 +15,7 @@ public class TeamStats {
     //Scavenger
     private ArrayList<Boolean> scavengerScore;
 
-    public TeamStats(Ascension plugin, Team team) {
-        this.plugin = plugin;
+    public TeamStats(Team team) {
         this.team = team;
         itemsObtained = 0;
         linesObtained = 0;

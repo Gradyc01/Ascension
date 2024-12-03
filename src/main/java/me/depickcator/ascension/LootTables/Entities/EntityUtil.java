@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Entities;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.Entities.Entities.*;
 import me.depickcator.ascension.LootTables.Entities.Enums.NetherMobs;
 import me.depickcator.ascension.LootTables.Entities.Enums.OverworldBosses;
@@ -15,21 +14,21 @@ public class EntityUtil {
     public static int COMBAT_LEGENDARY = 128;
 
 
-    public EntityUtil(Ascension plugin) {
-        new ZombieEntity(plugin);
-        new SkeletonEntity(plugin);
-        new SpiderEntity(plugin);
-        new EndermanEntity(plugin);
-        new CaveSpider(plugin);
-        new CreeperEntity(plugin);
-        new NetherMobs(plugin);
-        new Chicken(plugin);
-        new Cow(plugin);
-        new Horse(plugin);
-        new OverworldBosses(plugin);
-        new OverworldMobs(plugin);
-        new OverworldPassive(plugin);
-        new Pig(plugin);
-        new Sheep(plugin);
+    public EntityUtil() {
+        new ZombieEntity();
+        new SkeletonEntity();
+        new SpiderEntity();
+        new EndermanEntity();
+        new CaveSpider();
+        new CreeperEntity();
+        new NetherMobs();
+        new Chicken();
+        new Cow();
+        new Horse();
+        new OverworldBosses();
+        new OverworldMobs();
+        new OverworldPassive();
+        new Pig();
+        new Sheep();
     }
 }

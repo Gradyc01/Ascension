@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Blocks.Ores;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.BlockLootTable;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;
@@ -10,9 +9,7 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 public class EmeraldOre implements LootTableChanger, BlockLootTable {
-    private final Ascension plugin;
-    public EmeraldOre(Ascension plugin) {
-        this.plugin = plugin;
+    public EmeraldOre() {
         registerItem();
     }
 

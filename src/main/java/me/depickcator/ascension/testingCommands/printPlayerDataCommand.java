@@ -1,6 +1,5 @@
 package me.depickcator.ascension.testingCommands;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Bukkit;
@@ -11,10 +10,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class printPlayerDataCommand implements CommandExecutor {
-    Ascension plugin;
 
-    public printPlayerDataCommand(Ascension plugin) {
-        this.plugin = plugin;
+    public printPlayerDataCommand() {
     }
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {

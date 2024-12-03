@@ -13,9 +13,9 @@ public class XPTome implements ItemClick {
     private static XPTome instance;
     public static String DISPLAY_NAME = "XP Tome";
     private final ItemStack item;
-    private final Ascension plugin;
+    // private final Ascension plugin;
     private XPTome() {
-        this.plugin = Ascension.getInstance();
+        // this.plugin = Ascension.getInstance();
         this.item = initResult();
         registerItem();
     }
@@ -39,7 +39,7 @@ public class XPTome implements ItemClick {
     public boolean uponClick(PlayerInteractEvent e, Player p) {
         if (isMainHandRightClick(e)) {
 //            e.getItem().setAmount(0);
-            new XPTomeGUI(plugin, p);
+            new XPTomeGUI(p);
             return true;
         }
         return false;

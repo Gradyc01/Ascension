@@ -8,10 +8,6 @@ import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamStats;
-import me.depickcator.ascension.mainMenu.Command.Commands.Commands;
-import me.depickcator.ascension.mainMenu.Command.Commands.FoodDrops;
-import me.depickcator.ascension.mainMenu.Command.Commands.NightVision;
-import me.depickcator.ascension.mainMenu.Command.Commands.SendCoords;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -24,7 +20,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ScavengerGUI implements AscensionGUI {
@@ -34,11 +29,9 @@ public class ScavengerGUI implements AscensionGUI {
     private final Inventory inventory;
     private final Player player;
     private final PlayerData playerData;
-    private final Ascension plugin;
     private final Scavenger scavenger;
     private final boolean canSubmitItems;
     public ScavengerGUI(Scavenger scavenger, Player player, boolean canSubmitItems) {
-        this.plugin = Ascension.getInstance();
         this.player = player;
         this.playerData = PlayerUtil.getPlayerData(player);
         this.scavenger = scavenger;

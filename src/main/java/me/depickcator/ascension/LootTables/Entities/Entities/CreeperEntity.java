@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Entities.Entities;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.Entities.Superable;
@@ -18,10 +17,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 
 public class CreeperEntity implements LootTableChanger, EntityLootTable, Superable {
-    private final Ascension plugin;
     public static String KEY = EntityType.CREEPER.translationKey();
-    public CreeperEntity(Ascension plugin) {
-        this.plugin = plugin;
+    public CreeperEntity() {
         registerItem();
     }
     @Override

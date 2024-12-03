@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Skills;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerSkills;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 
 public class Global implements Skills {
     private final PlayerData playerData;
-    private final Ascension plugin;
+    // private final Ascension plugin;
     private final Player player;
     private int experience;
     private int level;
@@ -21,8 +20,8 @@ public class Global implements Skills {
     private final int MAXLEVEL = 5;
 //     private final static ArrayList<>
 
-    public Global(Ascension plugin, PlayerData playerData) {
-        this.plugin = plugin;
+    public Global(PlayerData playerData) {
+        // this.plugin = plugin;
         this.playerData = playerData;
         this.player = playerData.getPlayer();
         experience = 0;

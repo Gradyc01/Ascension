@@ -8,13 +8,11 @@ import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import me.depickcator.ascension.Timeline.Events.Scavenger.ScavengerGUI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.command.Command;
@@ -22,7 +20,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -72,42 +69,6 @@ public class OpenMainMenuCommand implements CommandExecutor, AscensionGUI {
         buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         button.setItemMeta(buttonMeta);
         return button;
-    }
-
-//    private void bingoBoardButton() {
-//        ItemStack button = new ItemStack(Material.ENCHANTED_BOOK);
-//        ItemMeta buttonMeta = button.getItemMeta();
-//        Component title = Component.text("Board").color(TextColor.color(0,255,255));
-//        title = title.decoration(TextDecoration.ITALIC, false);
-//        buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-//        buttonMeta.displayName(title);
-//        buttonMeta.setCustomModelData(1);
-//        setGUIItems(inventory, button, buttonMeta,22);
-//    }
-//
-//    private void viewUnlocksButton() {
-//        ItemStack button = new ItemStack(Material.DIAMOND_SWORD);
-//        ItemMeta buttonMeta = button.getItemMeta();
-//        Component title = Component.text("Unlocks").color(TextColor.color(0,255,255));
-//        title = title.decoration(TextDecoration.ITALIC, false);
-//        buttonMeta.displayName(title);
-//        buttonMeta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
-//        buttonMeta.setCustomModelData(3);
-//        setGUIItems(inventory, button, buttonMeta,20);
-//    }
-//
-//    private void viewCommandsButton() {
-//        ItemStack button = new ItemStack(Material.REPEATING_COMMAND_BLOCK);
-//        ItemMeta buttonMeta = button.getItemMeta();
-//        Component title = Component.text("Commands").color(TextColor.color(0,255,255));
-//        title = title.decoration(TextDecoration.ITALIC, false);
-//        buttonMeta.displayName(title);
-//        buttonMeta.setCustomModelData(4);
-//        setGUIItems(inventory, button, buttonMeta,24);
-//    }
-
-    private void viewScavengerButton() {
-
     }
 
     @Override
