@@ -13,11 +13,11 @@ public class ItemComparison {
     private String itemParser(ItemStack item) {
         int customModelNumber = getItemModelNumber(item);
 
-        if (item.getType().equals(Material.ENCHANTED_BOOK) && customModelNumber == 0) {
+        if (item.getType().equals(Material.ENCHANTED_BOOK) && !item.getItemMeta().hasCustomModelData()) {
             return item.getType() + item.getItemMeta().getEnchants().toString();
         }
 
-        if (item.getType().equals(Material.POTION) && customModelNumber == 0) {
+        if (item.getType().equals(Material.POTION) && !item.getItemMeta().hasCustomModelData()) {
             PotionMeta meta = (PotionMeta) item.getItemMeta();
             return item.getType() + meta.getCustomEffects().toString();
         }

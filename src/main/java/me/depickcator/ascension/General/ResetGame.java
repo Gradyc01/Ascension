@@ -56,7 +56,7 @@ public class ResetGame implements Runnable {
 //                PlayerDeath.getInstance(plugin).respawnPlayer(pD);
                 pD.resetToLobby();
                 players.remove(p);
-                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Player " + p.getName() + " reset"));
+                TextUtil.debugText("Player " + p.getName() + " reset");
             }
         }.runTaskTimer(plugin, 20, 10);
 

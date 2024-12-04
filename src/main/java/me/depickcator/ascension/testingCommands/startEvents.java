@@ -1,6 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
+import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,6 +26,11 @@ public class startEvents implements CommandExecutor {
 
         if (name.equalsIgnoreCase("carepackage")) {
             new CarePackage();
+        } else if (name.equalsIgnoreCase("scavenger")) {
+            Scavenger scavenger = new Scavenger();
+            scavenger.announceTrades();
+            scavenger.announceSpawnLocation();
+            scavenger.spawnInScavenger();
         }
         return false;
     }

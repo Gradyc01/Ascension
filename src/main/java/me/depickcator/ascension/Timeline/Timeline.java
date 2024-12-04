@@ -26,7 +26,7 @@ public class Timeline {
     public void startTimeline() {
         keepRunning = true;
         mainTimelineMinutes();
-        plugin.getServer().broadcast(TextUtil.makeText("[Debug] Started Timeline", TextUtil.BLUE));
+        TextUtil.debugText("Started Timeline");
     }
 
     private void mainTimelineMinutes() {
@@ -35,7 +35,7 @@ public class Timeline {
             public void run() {
                 if (!keepRunning) {
                     cancel();
-                    plugin.getServer().broadcast(TextUtil.makeText("[Debug] Timeline Forcefully Stopped", TextUtil.BLUE));
+                    TextUtil.debugText("Timeline Forcefully Stopped");
                     return;
                 }
 
@@ -46,11 +46,11 @@ public class Timeline {
                     MINUTES--;
                 } else {
                     cancel();
-                    plugin.getServer().broadcast(TextUtil.makeText("[Debug] Timeline Ended", TextUtil.BLUE));
+                    TextUtil.debugText("Timeline Ended");
                     mainTimelineSeconds();
                     return;
                 }
-                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Timeline Ran", TextUtil.BLUE));
+                TextUtil.debugText("Timeline Ran");
 
             }
         }.runTaskTimer(plugin, 0, 60 * 20);
@@ -62,7 +62,7 @@ public class Timeline {
             public void run() {
                 if (!keepRunning) {
                     cancel();
-                    plugin.getServer().broadcast(TextUtil.makeText("[Debug] Timeline Forcefully Stopped", TextUtil.BLUE));
+                    TextUtil.debugText("Timeline Forcefully Stopped");
                     return;
                 }
 
@@ -72,10 +72,10 @@ public class Timeline {
                     SECONDS--;
                 } else {
                     cancel();
-                    plugin.getServer().broadcast(TextUtil.makeText("[Debug] Timeline Ended", TextUtil.BLUE));
+                    TextUtil.debugText("Timeline Ended");
                     return;
                 }
-                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Timeline Ran", TextUtil.BLUE));
+                TextUtil.debugText("Timeline Ran");
 
             }
         }.runTaskTimer(plugin, 0, 20);
@@ -102,12 +102,11 @@ public class Timeline {
             }
             case 55, 120 -> {
                 //Scavenger Spawn In
-                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Scavenger", TextUtil.BLUE));
                 scavenger.spawnInScavenger();
             }
             case 90 -> {
                 //Feast
-                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Feast", TextUtil.BLUE));
+                TextUtil.debugText("Feast");
             }
 
         }
@@ -125,6 +124,7 @@ public class Timeline {
         keepRunning = false;
         MINUTES = STARTING_MINUTES;
         SECONDS = 60;
+        scavenger = null;
     }
 
     public void setTime(int time) {

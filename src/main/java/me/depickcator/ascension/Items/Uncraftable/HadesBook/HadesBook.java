@@ -9,6 +9,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HadesBook implements ItemClick {
     private static HadesBook instance;
     private final String DISPLAY_NAME = "Hades' Book";
@@ -26,6 +29,10 @@ public class HadesBook implements ItemClick {
         ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
         ItemMeta meta = item.getItemMeta();
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
+        meta.lore(new ArrayList<>(List.of(
+                TextUtil.makeText("Select any item", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("from the board", TextUtil.DARK_PURPLE)
+        )));
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.GOLD, true, false).append(TextUtil.rightClickText()));
         item.setItemMeta(meta);
         return item;
