@@ -53,10 +53,12 @@ public class Scavenger extends EntityInteraction {
         createEntity(loc);
         createHut(location);
         addInteraction(entity, this);
+        TextUtil.debugText("Loaded Scavenger");
         deSpawnTimer();
     }
 
     public void deSpawnScavenger() {
+        TextUtil.debugText("Unloaded Scavenger");
         entity.remove();
         forceLoadChunk(false);
         removeInteraction(entity);
@@ -65,7 +67,7 @@ public class Scavenger extends EntityInteraction {
     private void announcementText(List<Pair<ItemStack, ItemStack>> trades) {
         Component arrow = TextUtil.makeText(" ---> ", TextUtil.YELLOW, true, false);
         TextUtil.broadcastMessage(TextUtil.topBorder(TextUtil.GOLD));
-        TextUtil.broadcastMessage(TextUtil.makeText("Scavenger Trades: ", TextUtil.AQUA));
+        TextUtil.broadcastMessage(TextUtil.makeText("Scavenger Trades: ", TextUtil.AQUA, true, false));
         for (Pair<ItemStack, ItemStack> trade : trades) {
             TextUtil.broadcastMessage(
                     TextUtil.makeText("    ").
@@ -97,7 +99,7 @@ public class Scavenger extends EntityInteraction {
                     return;
                 }
                 MINUTES--;
-                plugin.getServer().broadcast(TextUtil.makeText("[Debug] Scavenger Timer Ran", TextUtil.BLUE));
+                TextUtil.debugText("Scavenger Timer Ran");
 
             }
         }.runTaskTimer(plugin, 0,  60 * 20);

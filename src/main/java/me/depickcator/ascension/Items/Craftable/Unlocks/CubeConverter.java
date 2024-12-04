@@ -42,6 +42,7 @@ public class CubeConverter extends Craft {
         PotionMeta potionMeta = (PotionMeta) item.getItemMeta();
         potionMeta.setColor(Color.fromRGB(0x00, 0x66, 0x00));
         potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.OOZING, 20 * 60 * 20, 0), true);
+        item.setItemMeta(potionMeta);
         return item;
     }
 
