@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -57,6 +58,48 @@ public class PlayerCombat implements Listener {
         }
     }
 
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent e) {
+        Player victim = e.getEntity();
+        PlayerData victimData = PlayerUtil.getPlayerData(victim);
+        String cause = "Unknown";
+
+        PlayerDeath.getInstance(plugin).playerDied(victimData);
+        victimData.getPlayerStats().addDeaths(1);
+
+        // Check the cause of damage when the player dies
+        if (victim.hasMetadata(damageSourceKey)) {
+            cause = victim.getMetadata(damageSourceKey).getFirst().asString();
+        }
+        if (cause.equals(PLAYER_DAMAGE)) {
+            dropHead(victim);
+            increaseKillCount(e);
+        }
+
+        strikeLightning(victim.getLocation());
+        plugin.getServer().broadcast(e.deathMessage().color(TextUtil.DARK_RED));
+
+
+        plugin.getLogger().info(victim.getName() + " died due to: " + cause);
+
+        // Remove the metadata after use
+
+        victim.removeMetadata(damageSourceKey, plugin);
+        e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onPlayerElytra(EntityToggleGlideEvent event) {
+        if (event.getEntity() instanceof Player /*&& plugin.getGameState().inGame()*/) {
+            Player p = (Player) event.getEntity();
+//            PlayerData pD = PlayerUtil.getPlayerData(p);
+            if (p.isGliding() && CombatTimer.getInstance().isOnCooldown(p)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+
     private void strikeLightning(Location loc) {
         loc.getWorld().strikeLightningEffect(loc);
         loc.getWorld().playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0F, 1.0F);
@@ -88,38 +131,10 @@ public class PlayerCombat implements Listener {
             event.setCancelled(true);
             return;
         }
+        if (victim.isGliding()) victim.setGliding(false);
+
 
         victim.setMetadata(damageSourceKey, new FixedMetadataValue(plugin, PLAYER_DAMAGE));
-    }
-
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent e) {
-        Player victim = e.getEntity();
-        PlayerData victimData = PlayerUtil.getPlayerData(victim);
-        String cause = "Unknown";
-
-        PlayerDeath.getInstance(plugin).playerDied(victimData);
-        victimData.getPlayerStats().addDeaths(1);
-
-        // Check the cause of damage when the player dies
-        if (victim.hasMetadata(damageSourceKey)) {
-            cause = victim.getMetadata(damageSourceKey).getFirst().asString();
-        }
-        if (cause.equals(PLAYER_DAMAGE)) {
-            dropHead(victim);
-            increaseKillCount(e);
-        }
-
-        strikeLightning(victim.getLocation());
-        plugin.getServer().broadcast(e.deathMessage().color(TextUtil.DARK_RED));
-
-
-        plugin.getLogger().info(victim.getName() + " died due to: " + cause);
-
-        // Remove the metadata after use
-
-        victim.removeMetadata(damageSourceKey, plugin);
-        e.setCancelled(true);
     }
 
     private void increaseKillCount(PlayerDeathEvent e) {
