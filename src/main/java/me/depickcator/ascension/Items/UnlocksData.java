@@ -48,7 +48,6 @@ public class UnlocksData {
 
     private void Tier2Unlocks() {
         tier2Unlocks.add(DiamondPack.getInstance());
-        tier2Unlocks.add(NotchApple.getInstance());
         tier2Unlocks.add(FlamingArtifact.getInstance());
         tier2Unlocks.add(PhilosopherPickaxe.getInstance());
         tier2Unlocks.add(LightAnvil.getInstance());
@@ -56,19 +55,21 @@ public class UnlocksData {
         tier2Unlocks.add(LightApple.getInstance());
         tier2Unlocks.add(GoldenHead.getInstance());
         tier2Unlocks.add(VorpalSword.getInstance());
+        tier2Unlocks.add(BookOfProjectileProtection.getInstance());
+        tier2Unlocks.add(BookOfProtection.getInstance());
     }
 
     private void Tier3Unlocks() {
         tier3Unlocks.add(Tarnhelm.getInstance());
         tier3Unlocks.add(KingsRod.getInstance());
+        tier3Unlocks.add(NotchApple.getInstance());
         tier3Unlocks.add(BookOfPower.getInstance());
-        tier3Unlocks.add(BookOfProtection.getInstance());
         tier3Unlocks.add(BookOfSharpness.getInstance());
-        tier3Unlocks.add(BookOfProjectileProtection.getInstance());
         tier3Unlocks.add(AncientArtifact.getInstance());
         tier3Unlocks.add(SoulArtifact.getInstance());
         tier3Unlocks.add(Nectar.getInstance());
         tier3Unlocks.add(PotionOfVelocity.getInstance());
+        tier3Unlocks.add(BookOfThoth.getInstance());
     }
 
     private void Tier4Unlocks() {
@@ -88,6 +89,8 @@ public class UnlocksData {
         tier5Unlocks.add(CrimsonArtifact.getInstance());
         tier5Unlocks.add(ApolloGlare.getInstance());
         tier5Unlocks.add(HeliosCurse.getInstance());
+        tier5Unlocks.add(HermesBoots.getInstance());
+        tier5Unlocks.add(Exodus.getInstance());
     }
 
     private void Uncraftable() {
