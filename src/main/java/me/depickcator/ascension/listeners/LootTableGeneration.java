@@ -14,8 +14,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 public class LootTableGeneration implements Listener {
     private final Ascension plugin;
@@ -52,6 +55,16 @@ public class LootTableGeneration implements Listener {
             if (lootTableChanger instanceof ForageBlocks) {
                 ForageBlocks forageBlocks = (ForageBlocks) lootTableChanger;
                 forageBlocks.onPlacedForagingBlock(event);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockExplode(EntityExplodeEvent event) {
+        List<Block> explodedBlocks = event.blockList();
+        for (Block b: explodedBlocks) {
+            if (b.hasMetadata("UNBREAKABLE")) {
+                event.setCancelled(true);
             }
         }
     }

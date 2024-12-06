@@ -39,6 +39,10 @@ public class PlayerCombat implements Listener {
             Player victim = (Player) event.getEntity();
             CombatTimer.getInstance().setCooldownTimer(victim);
             setShieldCooldown(event);
+            if (victim.isGliding()) {
+                victim.setGliding(false);
+                TextUtil.debugText("Set Gliding false");
+            }
 
             if (event.getDamager() instanceof Player) {
                 setDamagerMetadataPlayer(victim, (Player) event.getDamager(), event);
@@ -93,7 +97,9 @@ public class PlayerCombat implements Listener {
         if (event.getEntity() instanceof Player /*&& plugin.getGameState().inGame()*/) {
             Player p = (Player) event.getEntity();
 //            PlayerData pD = PlayerUtil.getPlayerData(p);
-            if (p.isGliding() && CombatTimer.getInstance().isOnCooldown(p)) {
+            if (CombatTimer.getInstance().isOnCooldown(p)) {
+                TextUtil.debugText("Set Gliding false and cancelled");
+                p.setGliding(false);
                 event.setCancelled(true);
             }
         }
@@ -131,7 +137,15 @@ public class PlayerCombat implements Listener {
             event.setCancelled(true);
             return;
         }
-        if (victim.isGliding()) victim.setGliding(false);
+        TextUtil.debugText(victim.getVelocity() + "");
+//        victim.setVelocity(victim.getVelocity().multiply(2));
+//        victim.setVelocity(damager.getLocation().getDirection().multiply(10));
+//
+
+        //Need To Added Punch and Knockback manually to make this word
+        victim.setVelocity(victim.getLocation().toVector().subtract(damager.getLocation().toVector()).normalize().multiply(10));
+        TextUtil.debugText(victim.getVelocity() + "");
+
 
 
         victim.setMetadata(damageSourceKey, new FixedMetadataValue(plugin, PLAYER_DAMAGE));
