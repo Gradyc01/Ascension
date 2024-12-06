@@ -68,7 +68,7 @@ public class PlayerCombat implements Listener {
         PlayerData victimData = PlayerUtil.getPlayerData(victim);
         String cause = "Unknown";
 
-        PlayerDeath.getInstance(plugin).playerDied(victimData);
+        PlayerDeath.getInstance().playerDied(victimData);
         victimData.getPlayerStats().addDeaths(1);
 
         // Check the cause of damage when the player dies

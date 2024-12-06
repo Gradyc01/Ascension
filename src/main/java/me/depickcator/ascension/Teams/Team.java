@@ -11,11 +11,14 @@ import java.util.Objects;
 
 public class Team {
     // private String name; //TODO: maybe add later
+    public static int STATE_ACTIVE = 1;
+    public static int STATE_DEPRECATED = 2;
     private String teamKey;
     private ArrayList<Player> teamMembers;
     private Player leader;
     private final Ascension plugin;
     private final TeamStats teamStats;
+    private int STATE;
     public Team(Ascension plugin, Player player) {
         this.plugin = plugin;
         this.teamKey = player.getUniqueId().toString();
@@ -24,6 +27,7 @@ public class Team {
         leader = player;
         TeamUtil.createTeam(player);
         TeamUtil.joinTeam(player, player);
+        STATE = STATE_ACTIVE;
         teamStats = new TeamStats(this);
     }
 
@@ -103,5 +107,17 @@ public class Team {
 
     public TeamStats getTeamStats() {
         return teamStats;
+    }
+
+//    public int getSTATE() {
+//        return STATE;
+//    }
+
+    public boolean checkSTATE(int state) {
+        return STATE == state;
+    }
+
+    public void setSTATE(int STATE) {
+        this.STATE = STATE;
     }
 }

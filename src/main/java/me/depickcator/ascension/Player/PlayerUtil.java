@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerUtil {
     public static void assignNewPlayerData() {
@@ -37,5 +38,16 @@ public class PlayerUtil {
         p.getWorld().dropItem(p.getLocation(), item);
     }
 
+    //Get & returns all players who are in the game
+    public static List<PlayerData> getAllPlayingPlayers() {
+        ArrayList<Player> onlinePlayerList = new ArrayList<>(Bukkit.getOnlinePlayers());
+        ArrayList<PlayerData> playingPlayers = new ArrayList<>();
+        for (Player p : onlinePlayerList) {
+            PlayerData pD = getPlayerData(p);
+            if (pD == null) continue;
+            playingPlayers.add(pD);
+        }
+        return playingPlayers;
+    }
 
 }
