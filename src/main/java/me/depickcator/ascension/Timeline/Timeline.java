@@ -6,6 +6,7 @@ import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
+import me.depickcator.ascension.Timeline.Events.FinalAscension.FinalAscension;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
@@ -72,6 +73,7 @@ public class Timeline {
                     SECONDS--;
                 } else {
                     cancel();
+                    new FinalAscension();
                     TextUtil.debugText("Timeline Ended");
                     return;
                 }

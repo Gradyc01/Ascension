@@ -11,6 +11,7 @@ public class TeamStats {
     private int itemsObtained;
     private int linesObtained;
     private int gameScore;
+    private int finalAscensionTimer;
 
     //Scavenger
     private ArrayList<Boolean> scavengerScore;
@@ -53,7 +54,16 @@ public class TeamStats {
         return scavengerScore;
     }
 
-    public void setScavengerScore(ArrayList<Boolean> scavengerScore) {
-        this.scavengerScore = scavengerScore;
+    public int getFinalAscensionTimer() {
+        return finalAscensionTimer;
+    }
+
+    public void addFinalAscensionTimer(int finalAscensionTimer) {
+        setFinalAscensionTimer(getFinalAscensionTimer() + finalAscensionTimer);
+
+    }
+
+    public void setFinalAscensionTimer(int finalAscensionTimer) {
+        this.finalAscensionTimer = finalAscensionTimer;
     }
 }

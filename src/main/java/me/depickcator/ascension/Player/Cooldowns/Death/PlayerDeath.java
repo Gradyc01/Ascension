@@ -109,9 +109,9 @@ public class PlayerDeath {
         playerData.setPlayerState(PlayerData.STATE_SPECTATING);
     }
 
-    public static PlayerDeath getInstance(Ascension plugin) {
+    public static PlayerDeath getInstance() {
         if (instance == null) {
-            instance = new PlayerDeath(plugin);
+            instance = new PlayerDeath(Ascension.getInstance());
         }
         return instance;
 
