@@ -2,8 +2,12 @@ package me.depickcator.ascension.Teams;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeamUtil {
     public static void createTeam(Player p) {
@@ -33,6 +37,26 @@ public class TeamUtil {
             }
         }
     }
+
+    public static List<Team> getEveryTeam() {
+        return getEveryTeam(false);
+    }
+
+    public static List<Team> getEveryTeam(boolean activeOnly) {
+        List<PlayerData> allPlayingPlayers = PlayerUtil.getAllPlayingPlayers();
+        List<Team> allTeams = new ArrayList<>();
+        for (PlayerData pD : allPlayingPlayers) {
+            Team playerTeam = pD.getPlayerTeam().getTeam();
+            if (!allTeams.contains(playerTeam)) {
+                if (playerTeam.checkSTATE(Team.STATE_ACTIVE) || !activeOnly) {
+                    allTeams.add(playerTeam);
+                }
+            }
+        }
+        return allTeams;
+    }
+
+
 
 
 }

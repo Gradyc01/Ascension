@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+
 public class CarePackageLoot extends CustomChestLoot {
     private ArrayList<ItemStack> netheriteItems;
     private ArrayList<ItemStack> netherItems;
@@ -54,17 +55,7 @@ public class CarePackageLoot extends CustomChestLoot {
         items.addAll(getRandomItemFromList(netherItems, r, 3, 2, 3));
         items.add(new ItemStack(Material.NETHER_STAR, 2));
 
-        for (ItemStack item : items) {
-            boolean placed = false;
-            while (!placed) {
-                int slot = r.nextInt(inv.getSize());
-                if (inv.getItem(slot) == null) {
-                    inv.setItem(slot, item);
-                    placed = true;
-                }
-            }
-        }
-        return items;
+        return placeInInventory(inv, r, items);
     }
 
 

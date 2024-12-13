@@ -6,6 +6,8 @@ import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
+import me.depickcator.ascension.Timeline.Events.Feast.Feast;
+import me.depickcator.ascension.Timeline.Events.FinalAscension.FinalAscension;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
@@ -73,6 +75,7 @@ public class Timeline {
                 } else {
                     cancel();
                     TextUtil.debugText("Timeline Ended");
+                    new FinalAscension();
                     return;
                 }
                 TextUtil.debugText("Timeline Ran");
@@ -106,6 +109,7 @@ public class Timeline {
             }
             case 90 -> {
                 //Feast
+                new Feast();
                 TextUtil.debugText("Feast");
             }
 

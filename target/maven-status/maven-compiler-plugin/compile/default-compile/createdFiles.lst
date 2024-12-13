@@ -10,6 +10,7 @@ me\depickcator\ascension\Kits\KitBookGUI.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Shield.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Nectar.class
 me\depickcator\ascension\General\GameStates.class
+me\depickcator\ascension\Timeline\Events\Feast\FeastChests$1.class
 me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBook.class
 me\depickcator\ascension\Items\Craftable\Vanilla\DiamondSword.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HermesBoots.class
@@ -23,6 +24,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\BookOfSharpness.class
 me\depickcator\ascension\mainMenu\Command\Commands\NightVision.class
 me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.class
 me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteSword.class
+me\depickcator\ascension\Timeline\Events\Feast\FeastSpecialChestLoot.class
 me\depickcator\ascension\Items\Craftable\Vanilla\StoneSword.class
 me\depickcator\ascension\Interfaces\CustomChestLoot.class
 me\depickcator\ascension\LootTables\Entities\Entities\Pig.class
@@ -65,6 +67,8 @@ me\depickcator\ascension\Timeline\Events\CarePackage\CarePackage.class
 me\depickcator\ascension\General\ResetGame.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LightAnvil.class
 me\depickcator\ascension\mainMenu\BingoBoard\BingoBoardGUI$1.class
+me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftStar.class
+me\depickcator\ascension\Timeline\Events\Feast\FeastChests$2.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EveTemptation.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Vanilla.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldBosses.class
@@ -106,6 +110,7 @@ me\depickcator\ascension\Items\UnlocksData.class
 me\depickcator\ascension\General\ResetGame$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HideOfLeviathan.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.class
+me\depickcator\ascension\Timeline\Events\Winner\Winner$1.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenSword.class
 me\depickcator\ascension\listeners\PlayerInteractListener.class
 me\depickcator\ascension\Player\Cooldowns\Death\PlayerDeath$1.class
@@ -119,6 +124,7 @@ me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger.class
 me\depickcator\ascension\Interfaces\ShootsProjectiles.class
 me\depickcator\ascension\General\BuildLobby.class
 me\depickcator\ascension\Player\Cooldowns\Death\DeathTimer.class
+me\depickcator\ascension\Timeline\Events\Feast\FeastRegularChestLoot.class
 me\depickcator\ascension\LootTables\Entities\Entities\ZombieEntity.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldPassive.class
 me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBookGUI.class
@@ -135,6 +141,7 @@ me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.class
 me\depickcator\ascension\LootTables\Entities\Entities\SkeletonEntity.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTome.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Cornucopia.class
+me\depickcator\ascension\Timeline\Events\Feast\FeastChests.class
 me\depickcator\ascension\General\LoadGame.class
 me\depickcator\ascension\Items\ItemLists\MediumItems.class
 me\depickcator\ascension\Player\PlayerUtil.class
@@ -162,6 +169,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\DragonArmor.class
 me\depickcator\ascension\LootTables\Entities\Entities\Horse.class
 me\depickcator\ascension\mainMenu\Command\Commands\FoodDrops.class
 me\depickcator\ascension\Kits\Kits\Looter.class
+me\depickcator\ascension\Timeline\Events\Feast\Feast$2.class
 me\depickcator\ascension\Items\Uncraftable\KitBook.class
 me\depickcator\ascension\Timeline\Timeline.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Resurrection.class
@@ -181,6 +189,7 @@ me\depickcator\ascension\Timeline\Events\CarePackage\CarePackageLoot.class
 me\depickcator\ascension\Items\Craftable\Vanilla\DiamondAxe.class
 me\depickcator\ascension\Skills\Global.class
 me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger$1.class
+me\depickcator\ascension\Timeline\Events\Winner\Winner.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.class
 me\depickcator\ascension\LootTables\Entities\Entities\SpiderEntity.class
 me\depickcator\ascension\Items\Craftable\Unlocks\SevenLeagueBoots.class
@@ -194,6 +203,7 @@ me\depickcator\ascension\mainMenu\Unlocks\ViewRecipeGUI.class
 me\depickcator\ascension\Teams\Team.class
 me\depickcator\ascension\Items\Craftable\Unlocks\FlamingArtifact.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PotionOfVelocity.class
+me\depickcator\ascension\Timeline\Events\Feast\Feast.class
 me\depickcator\ascension\Skills\Foraging.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\ForageBlocks.class
 me\depickcator\ascension\General\TextUtil$1.class
@@ -201,4 +211,5 @@ me\depickcator\ascension\Items\Craftable\Unlocks\SoulArtifact.class
 me\depickcator\ascension\Teams\TeamStats.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Exodus.class
 me\depickcator\ascension\Kits\Kits\Hunter.class
+me\depickcator\ascension\Timeline\Events\Feast\Feast$1.class
 me\depickcator\ascension\Skills\Mining.class

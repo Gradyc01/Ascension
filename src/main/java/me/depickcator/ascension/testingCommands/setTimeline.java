@@ -28,7 +28,7 @@ public class setTimeline implements CommandExecutor {
 
         int time = Integer.parseInt(strings[1]);
         plugin.getTimeline().setTime(time);
-        plugin.getServer().broadcast(TextUtil.makeText("[Debug ] Set timeline to " + time, TextUtil.GRAY));
+        TextUtil.debugText("Set timeline to " + time);
         return false;
     }
 }

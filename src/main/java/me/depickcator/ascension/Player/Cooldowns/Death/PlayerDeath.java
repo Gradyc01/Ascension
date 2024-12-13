@@ -2,12 +2,14 @@ package me.depickcator.ascension.Player.Cooldowns.Death;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -32,8 +34,14 @@ public class PlayerDeath {
         if (gameState.inGame()) {
             if (!gameState.checkState(GameStates.GAME_FINAL_ASCENSION)) {
                 setRespawningLater(playerData);
+                playerData.setPlayerState(PlayerData.STATE_DEAD);
             } else {
                 setPlayerSpectating(playerData);
+                playerData.setPlayerState(PlayerData.STATE_SPECTATING);
+                playerData.getPlayerTeam().getTeam().updateState();
+                Player p = playerData.getPlayer();
+                p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 100f, 1f);
+                p.sendMessage(TextUtil.makeText("You have been eliminated, but your team is still alive!", TextUtil.RED));
             }
         }
     }
@@ -42,7 +50,6 @@ public class PlayerDeath {
         Player p = playerData.getPlayer();
         setPlayerDead(playerData);
         p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 1, false, false));
-        playerData.setPlayerState(PlayerData.STATE_DEAD);
         deathTimer.setCooldownTimer(p);
         players.add(playerData);
 
@@ -109,9 +116,9 @@ public class PlayerDeath {
         playerData.setPlayerState(PlayerData.STATE_SPECTATING);
     }
 
-    public static PlayerDeath getInstance(Ascension plugin) {
+    public static PlayerDeath getInstance() {
         if (instance == null) {
-            instance = new PlayerDeath(plugin);
+            instance = new PlayerDeath(Ascension.getInstance());
         }
         return instance;
 

@@ -1,6 +1,7 @@
 package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ShootsProjectiles;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
@@ -45,14 +46,14 @@ public class PlayerCombat implements Listener {
             }
 
             if (event.getDamager() instanceof Player) {
-                setDamagerMetadataPlayer(victim, (Player) event.getDamager(), event);
+                attackedByPlayer(victim, (Player) event.getDamager(), event);
                 return;
             }
             if (event.getDamager() instanceof Arrow) {
                 Arrow arrow = (Arrow) event.getDamager();
                 if (arrow.getShooter() instanceof Player) {
                     Player damager = (Player) arrow.getShooter();
-                    setDamagerMetadataPlayer(victim, damager, event);
+                    attackedByPlayer(victim, damager, event);
                     setSpecialArrowIfNecessary(event);
                     sendArrowDamageMessage(victim, damager, event);
                 }
@@ -68,7 +69,7 @@ public class PlayerCombat implements Listener {
         PlayerData victimData = PlayerUtil.getPlayerData(victim);
         String cause = "Unknown";
 
-        PlayerDeath.getInstance(plugin).playerDied(victimData);
+        PlayerDeath.getInstance().playerDied(victimData);
         victimData.getPlayerStats().addDeaths(1);
 
         // Check the cause of damage when the player dies
@@ -129,7 +130,7 @@ public class PlayerCombat implements Listener {
         }
     }
 
-    private void setDamagerMetadataPlayer(Player victim, Player damager, EntityDamageByEntityEvent event) {
+    private void attackedByPlayer(Player victim, Player damager, EntityDamageByEntityEvent event) {
         PlayerData damagerData = PlayerUtil.getPlayerData(damager);
         if (damagerData == null ||
                 damagerData.getPlayerTeam().getTeam().getOtherTeamMembers(damager).contains(victim) ||
@@ -140,15 +141,18 @@ public class PlayerCombat implements Listener {
         TextUtil.debugText(victim.getVelocity() + "");
 //        victim.setVelocity(victim.getVelocity().multiply(2));
 //        victim.setVelocity(damager.getLocation().getDirection().multiply(10));
-//
-
         //Need To Added Punch and Knockback manually to make this word
-        victim.setVelocity(victim.getLocation().toVector().subtract(damager.getLocation().toVector()).normalize().multiply(10));
+        victim.setVelocity(victim.getLocation().toVector().subtract(damager.getLocation().toVector()).normalize().multiply(2));
         TextUtil.debugText(victim.getVelocity() + "");
 
-
-
+        addFinalAscensionTimer(damagerData, (int) event.getFinalDamage() * 2 + 1);
         victim.setMetadata(damageSourceKey, new FixedMetadataValue(plugin, PLAYER_DAMAGE));
+    }
+
+    private void addFinalAscensionTimer(PlayerData damager, int time) {
+        if (plugin.getGameState().checkState(GameStates.GAME_FINAL_ASCENSION)) {
+            damager.getPlayerTeam().getTeam().getTeamStats().addFinalAscensionTimer(time);
+        }
     }
 
     private void increaseKillCount(PlayerDeathEvent e) {
@@ -156,6 +160,7 @@ public class PlayerCombat implements Listener {
         if (entity instanceof Player) {
             PlayerData killer = PlayerUtil.getPlayerData((Player) entity);
             killer.getPlayerStats().addKill();
+            addFinalAscensionTimer(killer, 60);
         }
     }
 

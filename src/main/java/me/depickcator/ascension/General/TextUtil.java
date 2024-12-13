@@ -12,6 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TextUtil {
     public static TextColor YELLOW = TextColor.color(255, 255, 0);
@@ -65,7 +66,11 @@ public class TextUtil {
     }
 
     public static void broadcastTitle(Title title) {
-        for (Player p: Bukkit.getOnlinePlayers()) {
+        broadcastTitle(title, new ArrayList<>(Bukkit.getOnlinePlayers()));
+    }
+
+    public static void broadcastTitle(Title title, List<Player> players) {
+        for (Player p: players) {
             p.showTitle(title);
         }
     }
@@ -110,6 +115,6 @@ public class TextUtil {
     }
 
     public static void debugText(String text) {
-        Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, BLUE));
+        Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));
     }
 }
