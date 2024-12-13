@@ -13,11 +13,9 @@ import org.bukkit.scheduler.BukkitScheduler;
 import java.util.ArrayList;
 
 public class ResetGame implements Runnable {
-    Ascension plugin;
-    Player player;
-    public ResetGame(Player player) {
+    private final Ascension plugin;
+    public ResetGame() {
         this.plugin = Ascension.getInstance();
-        this.player = player;
         plugin.getGameState().setCurrentState(GameStates.LOBBY);
         run();
     }

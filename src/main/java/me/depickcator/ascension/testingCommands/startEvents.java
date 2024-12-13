@@ -1,6 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
+import me.depickcator.ascension.Timeline.Events.Feast.Feast;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,6 +32,8 @@ public class startEvents implements CommandExecutor {
             scavenger.announceTrades();
             scavenger.announceSpawnLocation();
             scavenger.spawnInScavenger();
+        } else if (name.equalsIgnoreCase("feast")) {
+            new Feast();
         }
         return false;
     }

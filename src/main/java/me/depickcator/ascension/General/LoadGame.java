@@ -57,7 +57,7 @@ public class LoadGame implements Runnable {
         }, 10);
         scheduler.runTaskLater(plugin, this::buildPlatform, 30);
         scheduler.runTaskLater(plugin, this::buildLobby, 40);
-        scheduler.runTaskLater(plugin, () -> new ResetGame(player), 50);
+        scheduler.runTaskLater(plugin, () -> new ResetGame(), 50);
        
     }
 

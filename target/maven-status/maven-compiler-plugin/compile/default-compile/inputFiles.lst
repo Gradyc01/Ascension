@@ -47,6 +47,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LeatherEconomy.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightAnvil.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightApple.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftStar.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Nectar.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\NotchApple.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Panacea.java
@@ -182,8 +183,13 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\startEvents.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\CarePackage\CarePackage.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\CarePackage\CarePackageLoot.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\Feast\Feast.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\Feast\FeastChests.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\Feast\FeastRegularChestLoot.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\Feast\FeastSpecialChestLoot.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\FinalAscension\FinalAscension.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Events\Winner\Winner.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Timeline\Timeline.java

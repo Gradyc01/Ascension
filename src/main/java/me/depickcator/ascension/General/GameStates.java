@@ -6,6 +6,7 @@ public class GameStates {
     public final static int LOBBY = 1;
     public final static int GAME_BEFORE_GRACE = 2;
     public final static int GAME_LOADING = 3;
+    public final static int GAME_FEAST_LOADING = 7;
 
     public final static int GAME_ENDING = 4;
     public final static int GAME_AFTER_GRACE = 5;
@@ -33,7 +34,7 @@ public class GameStates {
     }
 
     public boolean canNotBuild() {
-        return currentState == LOBBY || checkState(GAME_LOADING);
+        return currentState == LOBBY || checkState(GAME_LOADING) || checkState(GAME_FEAST_LOADING);
     }
 
     public boolean inGame() {
@@ -45,6 +46,6 @@ public class GameStates {
     }
 
     public boolean canNotPVP() {
-        return checkState(GAME_BEFORE_GRACE) || checkState(GAME_ENDING) || checkState(GAME_LOADING);
+        return checkState(GAME_BEFORE_GRACE) || checkState(GAME_ENDING) || checkState(GAME_LOADING) || checkState(GAME_FEAST_LOADING);
     }
 }
