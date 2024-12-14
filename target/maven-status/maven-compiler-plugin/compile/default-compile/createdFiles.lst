@@ -43,6 +43,7 @@ me\depickcator\ascension\Player\PlayerUnlocks.class
 me\depickcator\ascension\LootTables\Blocks\Ores\CoalOre.class
 me\depickcator\ascension\LootTables\Blocks\Ores\LapisOre.class
 me\depickcator\ascension\Items\Craftable\Crafts.class
+me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.class
 me\depickcator\ascension\LootTables\Blocks\BlockUtil.class
 me\depickcator\ascension\LootTables\Entities\Entities\EndermanEntity.class
 me\depickcator\ascension\testingCommands\setTimeline.class
@@ -55,6 +56,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\ArrowEconomy.class
 me\depickcator\ascension\listeners\RecipeCrafted.class
 me\depickcator\ascension\LootTables\Entities\EntityUtil.class
 me\depickcator\ascension\mainMenu\Unlocks\UnlocksGUI.class
+me\depickcator\ascension\Items\Craftable\Unlocks\WingsOfIcarus.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LeatherEconomy.class
 me\depickcator\ascension\LootTables\Entities\Entities\CaveSpider.class
 me\depickcator\ascension\General\ItemClick.class
@@ -79,6 +81,7 @@ me\depickcator\ascension\Items\Uncraftable\ShardOfTheFallen.class
 me\depickcator\ascension\mainMenu\Command\Commands\SendCoords.class
 me\depickcator\ascension\testingCommands\printPlayerDataCommand.class
 me\depickcator\ascension\Teams\TeamCommand.class
+me\depickcator\ascension\General\AttributeUtil.class
 me\depickcator\ascension\LootTables\Entities\Entities\Cow.class
 me\depickcator\ascension\Timeline\Timeline$1.class
 me\depickcator\ascension\LootTables\Entities\Entities\Sheep.class

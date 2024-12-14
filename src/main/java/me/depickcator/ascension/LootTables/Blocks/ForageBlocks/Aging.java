@@ -1,25 +1,22 @@
 package me.depickcator.ascension.LootTables.Blocks.ForageBlocks;
 
-import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.BlockLootTable;
+import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Player.PlayerSkills;
 import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Material;
+import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.Objects;
 
-public class Logs implements LootTableChanger, BlockLootTable, ForageBlocks {
+public class Aging implements LootTableChanger, BlockLootTable, ForageBlocks {
 
-    private final Ascension plugin;
-    public Logs() {
-        this.plugin = Ascension.getInstance();
+    public Aging() {
         registerItem();
     }
     @Override
@@ -30,7 +27,8 @@ public class Logs implements LootTableChanger, BlockLootTable, ForageBlocks {
     @Override
     public boolean uponEvent(Event e, Player p) {
         BlockBreakEvent event = (BlockBreakEvent) e;
-        if (!event.getBlock().hasMetadata(PLACED_BY_PLAYER)) {
+        Ageable ageable = (Ageable) event.getBlock().getBlockData();
+        if (ageable.getAge() == ageable.getMaximumAge()) {
             PlayerSkills playerSkills = Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerSkills();
             playerSkills.getForaging().addExp(FORAGING_COMMON);
             return true;
@@ -40,20 +38,15 @@ public class Logs implements LootTableChanger, BlockLootTable, ForageBlocks {
 
     @Override
     public void registerItem() {
-        addBlock(Material.OAK_LOG, this);
-        addBlock(Material.SPRUCE_LOG, this);
-        addBlock(Material.CHERRY_LOG, this);
-        addBlock(Material.BIRCH_LOG, this);
-        addBlock(Material.DARK_OAK_LOG, this);
-        addBlock(Material.JUNGLE_LOG, this);
-        addBlock(Material.ACACIA_LOG, this);
-        addBlock(Material.SUGAR_CANE, this);
-        addBlock(Material.BROWN_MUSHROOM, this);
-        addBlock(Material.RED_MUSHROOM, this);
+        addBlock(Material.WHEAT, this);
+        addBlock(Material.CARROTS, this);
+        addBlock(Material.POTATOES, this);
+        addBlock(Material.BEETROOTS, this);
+        addBlock(Material.COCOA, this);
     }
 
     @Override
     public void onPlacedForagingBlock(BlockPlaceEvent event) {
-        event.getBlock().setMetadata(PLACED_BY_PLAYER, new FixedMetadataValue(plugin, true));
+        //Nothing
     }
 }
