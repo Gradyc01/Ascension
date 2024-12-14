@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class MakeshiftStar extends Craft {
     private static MakeshiftStar instance;
     private MakeshiftStar() {
-        super(1, 2,"Makeshift Star", "makeshift_star");
+        super(1, 999,"Makeshift Star", "makeshift_star");
     }
 
     public static MakeshiftStar getInstance() {
