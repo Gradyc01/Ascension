@@ -49,6 +49,7 @@ public class VorpalSword extends Craft {
         if (meta instanceof Damageable damageMeta) {
             damageMeta.setMaxDamage(128);
         }
+        meta.setCustomModelData(plugin.generateModelNumber());
         meta.displayName(name);
         item.setItemMeta(meta);
         return item;

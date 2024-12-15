@@ -140,7 +140,7 @@ public class FinalAscension {
 
     private void finalAscensionStartAnnouncement() {
         Component titleText = TextUtil.makeText("FINAL ASCENSION", TextUtil.YELLOW);
-        Component subtitleText = TextUtil.makeText("Try not to combust under the weight", TextUtil.YELLOW);
+        Component subtitleText = TextUtil.makeText("", TextUtil.YELLOW);
         Title title = TextUtil.makeTitle(titleText, subtitleText, 1, 3, 1);
         TextUtil.broadcastTitle(title);
         SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 1f, 1f);
