@@ -22,7 +22,8 @@ public class IronSword extends Craft implements Vanilla {
 
     @Override
     protected Recipe initRecipe() {
-        NamespacedKey key = NamespacedKey.minecraft(KEY);
+//        NamespacedKey key = NamespacedKey.minecraft(KEY);
+        NamespacedKey key = new NamespacedKey(plugin, KEY);
 
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("A", "A", "B");

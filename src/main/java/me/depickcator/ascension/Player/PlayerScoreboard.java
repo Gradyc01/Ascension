@@ -103,7 +103,7 @@ public class PlayerScoreboard {
             int timer = playerData.getPlayerTeam().getTeam().getTeamStats().getFinalAscensionTimer();
             String minutes = timer/60 + "";
             String seconds = timer%60 <= 9 ? "0" + timer%60 : timer%60 + "";
-            editLine(board, 13, TextUtil.makeText("  Combustion In: ", TextUtil.GOLD));
+            editLine(board, 13, TextUtil.makeText("  Vaporized In: ", TextUtil.GOLD));
             editLine(board, 12, TextUtil.makeText("        " + minutes + ":" + seconds, TextUtil.WHITE));
 
             return;
