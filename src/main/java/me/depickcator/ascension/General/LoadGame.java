@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.mainMenu.BingoBoard.BingoData;
+import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
 
 import static me.depickcator.ascension.General.BuildLobby.fillArea;
 

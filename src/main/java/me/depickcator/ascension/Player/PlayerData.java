@@ -2,7 +2,7 @@ package me.depickcator.ascension.Player;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
-import me.depickcator.ascension.mainMenu.GiveMainMenuItem;
+import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;

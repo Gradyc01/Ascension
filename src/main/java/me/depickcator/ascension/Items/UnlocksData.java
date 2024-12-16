@@ -93,6 +93,8 @@ public class UnlocksData {
         tier5Unlocks.add(Exodus.getInstance());
         tier5Unlocks.add(MakeshiftStar.getInstance());
         tier5Unlocks.add(WingsOfIcarus.getInstance());
+        tier5Unlocks.add(RedLedger.getInstance());
+        tier5Unlocks.add(TeamPortal.getInstance());
     }
 
     private void Uncraftable() {

@@ -5,7 +5,7 @@ import me.depickcator.ascension.Items.ItemList;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
 import me.depickcator.ascension.Teams.TeamUtil;
-import me.depickcator.ascension.mainMenu.BingoBoard.BingoData;
+import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;

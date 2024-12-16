@@ -26,6 +26,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.class
 me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteSword.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastSpecialChestLoot.class
 me\depickcator\ascension\Items\Craftable\Vanilla\StoneSword.class
+me\depickcator\ascension\mainMenu\Unlocks\NewUnlocksGUI.class
 me\depickcator\ascension\Interfaces\CustomChestLoot.class
 me\depickcator\ascension\LootTables\Entities\Entities\Pig.class
 me\depickcator\ascension\General\StartGame.class
@@ -55,7 +56,6 @@ me\depickcator\ascension\Player\PlayerStats.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ArrowEconomy.class
 me\depickcator\ascension\listeners\RecipeCrafted.class
 me\depickcator\ascension\LootTables\Entities\EntityUtil.class
-me\depickcator\ascension\mainMenu\Unlocks\UnlocksGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\WingsOfIcarus.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LeatherEconomy.class
 me\depickcator\ascension\LootTables\Entities\Entities\CaveSpider.class
@@ -64,7 +64,6 @@ me\depickcator\ascension\listeners\PlayerJoinLeave.class
 me\depickcator\ascension\General\ArmorStandUtil.class
 me\depickcator\ascension\LootTables\Blocks\Ores\GoldOre.class
 me\depickcator\ascension\LootTables\Entities\Entities\Chicken.class
-me\depickcator\ascension\mainMenu\Unlocks\UnlocksGUI_2.class
 me\depickcator\ascension\Timeline\Events\CarePackage\CarePackage.class
 me\depickcator\ascension\General\ResetGame.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LightAnvil.class
@@ -74,7 +73,6 @@ me\depickcator\ascension\Timeline\Events\Feast\FeastChests$2.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EveTemptation.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Vanilla.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldBosses.class
-me\depickcator\ascension\mainMenu\Unlocks\UnlocksGUI_1.class
 me\depickcator\ascension\LootTables\Blocks\Ores\CopperOre.class
 me\depickcator\ascension\Interfaces\ItemComparison.class
 me\depickcator\ascension\Items\Uncraftable\ShardOfTheFallen.class

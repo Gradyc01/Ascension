@@ -1,4 +1,4 @@
-package me.depickcator.ascension.mainMenu;
+package me.depickcator.ascension.MainMenu;
 
 import me.depickcator.ascension.General.ItemClick;
 import net.kyori.adventure.text.Component;
