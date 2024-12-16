@@ -2,6 +2,7 @@ package me.depickcator.ascension.Interfaces;
 
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.PlayerSkills;
 import me.depickcator.ascension.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -49,6 +50,7 @@ public interface AscensionGUI {
 
     default void playerHeadButton(Inventory inventory, int index, Player player) {
         PlayerData playerData = PlayerUtil.getPlayerData(player);
+        PlayerSkills playerSkills = playerData.getPlayerSkills();
         ItemStack button = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta headMeta = (SkullMeta) button.getItemMeta();
         headMeta.setPlayerProfile(player.getPlayerProfile());
@@ -58,9 +60,16 @@ public interface AscensionGUI {
 
         List<Component> lore = new ArrayList<>();
         Component unlockTokensText = TextUtil.makeText("Souls:         " + playerData.getPlayerUnlocks().getUnlockTokens(), TextUtil.BLUE);
-        Component combatText = TextUtil.makeText("Combat:   " + playerData.getPlayerSkills().getCombat().getExpOverTotalNeeded(), TextUtil.BLUE);
-        Component miningText = TextUtil.makeText("Mining:     " + playerData.getPlayerSkills().getMining().getExpOverTotalNeeded(), TextUtil.BLUE);
-        Component foragingText = TextUtil.makeText("Foraging: " + playerData.getPlayerSkills().getForaging().getExpOverTotalNeeded(), TextUtil.BLUE);
+
+        Component combatText = TextUtil.makeText("Combat:   " +
+                TextUtil.toRomanNumeral(playerSkills.getCombat().getExpLevel()) +
+                "  "+ playerSkills.getCombat().getExpOverTotalNeeded(), TextUtil.BLUE);
+        Component miningText = TextUtil.makeText("Mining:     " +
+                TextUtil.toRomanNumeral(playerSkills.getMining().getExpLevel()) +
+                "  "+ playerSkills.getMining().getExpOverTotalNeeded(), TextUtil.BLUE);
+        Component foragingText = TextUtil.makeText("Foraging: " +
+                TextUtil.toRomanNumeral(playerSkills.getForaging().getExpLevel()) +
+                "  "+ playerSkills.getForaging().getExpOverTotalNeeded(), TextUtil.BLUE);
         lore.add(unlockTokensText);
         lore.add(combatText);
         lore.add(miningText);

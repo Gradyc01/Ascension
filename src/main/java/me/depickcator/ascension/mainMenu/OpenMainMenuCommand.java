@@ -1,4 +1,4 @@
-package me.depickcator.ascension.mainMenu;
+package me.depickcator.ascension.MainMenu;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;

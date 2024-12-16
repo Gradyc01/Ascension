@@ -1,4 +1,4 @@
-package me.depickcator.ascension.mainMenu.BingoBoard;
+package me.depickcator.ascension.MainMenu.BingoBoard;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;

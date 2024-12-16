@@ -1,13 +1,13 @@
-package me.depickcator.ascension.mainMenu.Command;
+package me.depickcator.ascension.MainMenu.Command;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.mainMenu.Command.Commands.Commands;
-import me.depickcator.ascension.mainMenu.Command.Commands.FoodDrops;
-import me.depickcator.ascension.mainMenu.Command.Commands.NightVision;
-import me.depickcator.ascension.mainMenu.Command.Commands.SendCoords;
+import me.depickcator.ascension.MainMenu.Command.Commands.Commands;
+import me.depickcator.ascension.MainMenu.Command.Commands.FoodDrops;
+import me.depickcator.ascension.MainMenu.Command.Commands.NightVision;
+import me.depickcator.ascension.MainMenu.Command.Commands.SendCoords;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;

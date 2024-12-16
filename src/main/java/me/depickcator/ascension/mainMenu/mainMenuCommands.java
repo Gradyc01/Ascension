@@ -1,12 +1,12 @@
-package me.depickcator.ascension.mainMenu;
+package me.depickcator.ascension.MainMenu;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.MainMenu.Unlocks.NewUnlocksGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
+import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
-import me.depickcator.ascension.mainMenu.BingoBoard.BingoBoardGUI;
-import me.depickcator.ascension.mainMenu.Command.CommandGUI;
-import me.depickcator.ascension.mainMenu.Unlocks.UnlocksGUI_1;
-import me.depickcator.ascension.mainMenu.Unlocks.UnlocksGUI_2;
+import me.depickcator.ascension.MainMenu.BingoBoard.BingoBoardGUI;
+import me.depickcator.ascension.MainMenu.Command.CommandGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,6 +26,7 @@ public class mainMenuCommands implements CommandExecutor {
             return false;
         }
         Player p = ((Player) commandSender).getPlayer();
+        PlayerData pD = PlayerUtil.getPlayerData(p);
         if (strings.length != 1 || CombatTimer.getInstance().isOnCooldown(p)) {
             return false;
         }
@@ -35,13 +36,15 @@ public class mainMenuCommands implements CommandExecutor {
                 new BingoBoardGUI(ab, p);
             }
             case "unlocks-1" -> {
-                new UnlocksGUI_1(ab, p);
+//                new UnlocksGUI_1(ab, p);
+                new NewUnlocksGUI(pD, (char) 1);
             }
             case "unlocks-2" -> {
-                new UnlocksGUI_2(ab, p);
+                new NewUnlocksGUI(pD, (char) 2);
+//                new UnlocksGUI_2(ab, p);
             }
             case "commands" -> {
-                new CommandGUI(ab, PlayerUtil.getPlayerData(p));
+                new CommandGUI(ab, pD);
             }
             default -> {
                 return false;

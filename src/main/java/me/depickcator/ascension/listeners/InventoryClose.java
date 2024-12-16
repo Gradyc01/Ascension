@@ -15,7 +15,7 @@ public class InventoryClose implements Listener {
         UUID playerUUID = e.getPlayer().getUniqueId();
         if (Ascension.guiMap.containsKey(playerUUID)) {
             Ascension.guiMap.remove(playerUUID);
-            System.out.println("Map Closed");
+//            TextUtil.debugText(e.getPlayer().getName() + " has closed inventory");
         }
     }
 }

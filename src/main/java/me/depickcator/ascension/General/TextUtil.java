@@ -85,6 +85,26 @@ public class TextUtil {
         }
     }
 
+    public static String toRomanNumeral(int num) {
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] numerals = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < values.length; i++) {
+            while (num >= values[i]) {
+                result.append(numerals[i]);
+                num -= values[i];
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static String toRomanNumeral(String num) {
+        return toRomanNumeral(Integer.parseInt(num));
+    }
+
     public static void sendActionBar(Player player, Component message, int ticks, Ascension plugin) {
         // Duration is in ticks; 20 ticks = 1 second
         int interval = 20; // Send message every second to ensure it's displayed

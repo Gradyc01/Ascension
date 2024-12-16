@@ -1,9 +1,10 @@
-package me.depickcator.ascension.mainMenu.Unlocks;
+package me.depickcator.ascension.MainMenu.Unlocks;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.Craftable.Craft;
+import me.depickcator.ascension.Player.PlayerData;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -27,13 +28,14 @@ public class ViewRecipeGUI implements AscensionGUI {
     };
     private final int GUISize = 6 * 9;
     private final Inventory inventory;
-    private Player player;
-    private Ascension plugin;
-    private UnlocksGUI goBackGUI;
-    public ViewRecipeGUI(Player player, Ascension plugin, Craft craft, UnlocksGUI goBackGUI) {
-        this.player = player;
-        this.plugin = plugin;
-        this.goBackGUI = goBackGUI;
+    private final Player player;
+    private final PlayerData playerData;
+    private final char pageNumber;
+//    private UnlocksGUI goBackGUI;
+    public ViewRecipeGUI(PlayerData playerData, Craft craft, char pageNumber) {
+        this.player = playerData.getPlayer();
+        this.playerData = playerData;
+        this.pageNumber = pageNumber;
         inventory = Bukkit.createInventory(player, GUISize, Component.text("Recipe: " + craft.getDisplayName()).color(TextUtil.AQUA));
         if (player == null) {
             return;
@@ -110,11 +112,7 @@ public class ViewRecipeGUI implements AscensionGUI {
             return;
         }
         if (item.getType() == Material.ARROW) {
-            if (goBackGUI instanceof UnlocksGUI_1) {
-                new UnlocksGUI_1(plugin, player);
-            } else if (goBackGUI instanceof UnlocksGUI_2) {
-                new UnlocksGUI_2(plugin, player);
-            }
+            new NewUnlocksGUI(playerData, pageNumber);
         }
     }
     private ItemStack goBackPage() {
