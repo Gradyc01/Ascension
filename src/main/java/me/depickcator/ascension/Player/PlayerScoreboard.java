@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Player;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Teams.Team;
 import net.kyori.adventure.text.Component;
@@ -60,13 +61,11 @@ public class PlayerScoreboard {
         editLine(board, 0, TextUtil.makeText("discord.gg/not_real", TextUtil.YELLOW));
         updateLobbyBoard();
     }
-
     public void updateLobbyBoard() {
         editLine(board, 12, TextUtil.makeText("      Standard", TextUtil.YELLOW));
 
         displayTeamMembers(board, 4);
     }
-
     public void makeGameBoard() {
         blankBoard(board, 0, 14);
 
@@ -78,8 +77,7 @@ public class PlayerScoreboard {
 
     public void updateGameBoard(boolean updateTime) {
         if (updateTime) {
-            editLine(board, 13, TextUtil.makeText("  Deathmatch In:  ", TextUtil.GOLD));
-            editLine(board, 12, plugin.getTimeline().getTime());
+            updateTime();
         }
         Component itemsText = TextUtil.makeText("  Items Obtained: ", TextUtil.WHITE);
         Component itemsNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getItemsObtained() +  "", TextUtil.GREEN);
@@ -99,6 +97,22 @@ public class PlayerScoreboard {
 
         displayTeamMembers(board, 3);
     }
+
+    private void updateTime() {
+        if (plugin.getGameState().checkState(GameStates.GAME_FINAL_ASCENSION)) {
+            int timer = playerData.getPlayerTeam().getTeam().getTeamStats().getFinalAscensionTimer();
+            String minutes = timer/60 + "";
+            String seconds = timer%60 <= 9 ? "0" + timer%60 : timer%60 + "";
+            editLine(board, 13, TextUtil.makeText("  Vaporized In: ", TextUtil.GOLD));
+            editLine(board, 12, TextUtil.makeText("        " + minutes + ":" + seconds, TextUtil.WHITE));
+
+            return;
+        }
+        editLine(board, 13, TextUtil.makeText("  Deathmatch In:  ", TextUtil.GOLD));
+        editLine(board, 12, plugin.getTimeline().getTime());
+    }
+
+
 
     public void updateGameBoard() {
         updateGameBoard(false);

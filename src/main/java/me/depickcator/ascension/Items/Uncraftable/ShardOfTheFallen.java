@@ -11,7 +11,7 @@ public class ShardOfTheFallen {
     public static String DISPLAY_NAME = "Shard of the Fallen";
     private static final ItemStack item = makeItem();
     private static ItemStack makeItem() {
-        ItemStack item = new ItemStack(Material.DISC_FRAGMENT_5);
+        ItemStack item = new ItemStack(Material.DISC_FRAGMENT_5, 1);
         ItemMeta meta = item.getItemMeta();
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -19,6 +19,7 @@ public class ShardOfTheFallen {
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.DARK_GRAY));
         meta.setEnchantmentGlintOverride(true);
         item.setItemMeta(meta);
+        item.setAmount(1);
         return item;
     }
     public static ItemStack result() {

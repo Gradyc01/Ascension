@@ -79,50 +79,6 @@ public class BingoData extends ItemComparison {
         }
     }
 
-//    private boolean containsItem(ItemStack inv, ItemStack board) {
-////        ItemMeta item1Meta = inv.getItemMeta();
-////        ItemMeta item2Meta = board.getItemMeta();
-////        boolean modelData;
-////        try {
-////            modelData = item1Meta.getCustomModelData() == item2Meta.getCustomModelData();
-////        } catch (Exception e) {
-////            modelData =true;
-////        }
-////        return (inv.getType().equals(board.getType()) &&
-////                Objects.equals(item1Meta.lore(), item2Meta.lore()) &&
-////                Objects.equals(item1Meta.getItemFlags(), item2Meta.getItemFlags()) &&
-////                modelData &&
-////                Objects.equals(item1Meta.getEnchants(), item2Meta.getEnchants()) &&
-////                Objects.equals(item1Meta.getFood(), item2Meta.getFood()));
-//        return itemParser(inv).equals(itemParser(board));
-//    }
-//
-//    private String itemParser(ItemStack item) {
-//        int customModelNumber = getItemModelNumber(item);
-//
-//        if (item.getType().equals(Material.ENCHANTED_BOOK) && customModelNumber == 0) {
-//            return item.getType() + item.getItemMeta().getEnchants().toString();
-//        }
-//
-//        if (item.getType().equals(Material.POTION) && customModelNumber == 0) {
-//            PotionMeta meta = (PotionMeta) item.getItemMeta();
-//            return item.getType() + meta.getCustomEffects().toString();
-//        }
-//
-//        return item.getType().toString() + customModelNumber;
-//    }
-//
-//    private int getItemModelNumber(ItemStack item) {
-//        int customModelNumber;
-//        ItemMeta meta = item.getItemMeta();
-//        try {
-//            customModelNumber = meta.getCustomModelData();
-//        } catch (Exception ignored) {
-//            customModelNumber = 0;
-//        }
-//        return customModelNumber;
-//    }
-
 
     public void claimItem(Player p) {
         Inventory inv = p.getInventory();

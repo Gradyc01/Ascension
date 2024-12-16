@@ -47,6 +47,9 @@ public class Logs implements LootTableChanger, BlockLootTable, ForageBlocks {
         addBlock(Material.DARK_OAK_LOG, this);
         addBlock(Material.JUNGLE_LOG, this);
         addBlock(Material.ACACIA_LOG, this);
+        addBlock(Material.SUGAR_CANE, this);
+        addBlock(Material.BROWN_MUSHROOM, this);
+        addBlock(Material.RED_MUSHROOM, this);
     }
 
     @Override

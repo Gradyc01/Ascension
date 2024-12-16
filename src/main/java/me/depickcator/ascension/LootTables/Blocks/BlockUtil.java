@@ -1,5 +1,6 @@
 package me.depickcator.ascension.LootTables.Blocks;
 
+import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.Aging;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.Logs;
 import me.depickcator.ascension.LootTables.Blocks.Ores.*;
 
@@ -17,6 +18,7 @@ public class BlockUtil {
 
     private void forageBlocks() {
         new Logs();
+        new Aging();
     }
 
     private void ores() {

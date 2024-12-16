@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 
 public class StartGame{
-    Ascension plugin;
-    Player player;
+    private final Ascension plugin;
+    private final Player player;
     private final int second = 20;
     private final GameStates gameState;
     public StartGame(Player player) {
@@ -167,45 +167,34 @@ public class StartGame{
 //                world.setPVP(false);
                 world.setTime(0);
                 world.setWeatherDuration(0);
-                player.sendMessage("Reset World");
+                TextUtil.debugText("Start World");
             }
         }.runTaskLater(this.plugin, 20);
     }
 
     private void text1() {
-        plugin.getServer().broadcast(Component.text(
-                "\nThis place has been my dread for I don't know how long. " +
-                        "\nI finally have a chance to put this behind me.").color(TextUtil.DARK_GRAY));
+        plugin.getServer().broadcast(TextUtil.makeText("Text 1", TextUtil.GRAY));
         SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 0);
     }
 
     private void text2() {
-        plugin.getServer().broadcast(Component.text(
-                "\nI've come this far." +
-                        "\nI can't go back." +
-                        "\nThere is no place for me there.").color(TextUtil.DARK_GRAY));
+        plugin.getServer().broadcast(TextUtil.makeText("Text 2", TextUtil.GRAY));
         SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 0.6);
     }
 
     private void text3() {
-        plugin.getServer().broadcast(Component.text(
-                 "\n       For Terry" +
-                        "\n       For Jerome" +
-                        "\n       For Grace").color(TextUtil.DARK_GRAY));
+        plugin.getServer().broadcast(TextUtil.makeText("Text 3", TextUtil.GRAY));
         SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 1);
     }
 
     private void text4() {
-        plugin.getServer().broadcast(Component.text(
-                "\nThese worthless Gods and there stupid mission." +
-                        "\nWe are nothing to them and yet they are my only way past this." +
-                        "\nThis is the final one and all it says is:").color(TextUtil.DARK_GRAY));
+        plugin.getServer().broadcast(TextUtil.makeText("Text 4", TextUtil.GRAY));
         SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 1.2);
     }
 
     private void text5() {
         plugin.getServer().broadcast(TextUtil.topBorder(TextUtil.GRAY));
-        plugin.getServer().broadcast(Component.text("\n\n               OPERATION: ASCENSION\n\n").color(TextUtil.WHITE).decoration(TextDecoration.BOLD, true));
+        plugin.getServer().broadcast(Component.text("\n\n                        ASCENSION\n\n").color(TextUtil.WHITE).decoration(TextDecoration.BOLD, true));
         plugin.getServer().broadcast(TextUtil.bottomBorder(TextUtil.GRAY));
         SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 100, 0);
         SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 2);

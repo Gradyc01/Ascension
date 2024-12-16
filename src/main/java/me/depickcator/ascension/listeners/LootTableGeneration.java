@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.KingsRod;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
+import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -17,6 +18,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 import java.util.List;
 
@@ -84,13 +86,18 @@ public class LootTableGeneration implements Listener {
 
     @EventHandler
     public void onFishing(PlayerFishEvent event) {
+        Player p = event.getPlayer();
         if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH) {
             return;
         }
-        if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.FISHING_ROD) {
-            if (event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getCustomModelData() == KingsRod.getInstance().getResult().getItemMeta().getCustomModelData()) {
+        PlayerInventory inv = p.getInventory();
+        if (inv.getItemInMainHand().getType() == Material.FISHING_ROD) {
+            PlayerUtil.getPlayerData(p).getPlayerSkills().getForaging().addExp(ForageBlocks.FORAGING_RARE);
+            if (inv.getItemInMainHand().getItemMeta().getCustomModelData() == KingsRod.getInstance().getResult().getItemMeta().getCustomModelData()) {
                 plugin.getWorld().dropItemNaturally(event.getPlayer().getLocation(), new ItemStack(Material.GOLD_NUGGET, 12));
             }
         }
     }
+
+
 }

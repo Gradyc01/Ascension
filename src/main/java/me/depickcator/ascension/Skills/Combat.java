@@ -120,7 +120,7 @@ public class Combat implements Skills {
 
     private static SkillRewards level3Rewards() {
         SkillRewards skillRewards = new SkillRewards();
-        ItemStack shards = ShardOfTheFallen.result();
+        ItemStack shards = ShardOfTheFallen.result().clone();
         shards.setAmount(2);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
@@ -134,7 +134,7 @@ public class Combat implements Skills {
 
     private static SkillRewards level4Rewards() {
         SkillRewards skillRewards = new SkillRewards();
-        ItemStack shards = ShardOfTheFallen.result();
+        ItemStack shards = ShardOfTheFallen.result().clone();
         shards.setAmount(5);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(

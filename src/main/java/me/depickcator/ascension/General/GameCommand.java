@@ -69,7 +69,7 @@ public class GameCommand implements CommandExecutor {
     }
 
     private void resetGame(Player p) {
-        new ResetGame(p);
+        new ResetGame();
     }
 
     private void loadGame(Player p, int x, int y, int z) {

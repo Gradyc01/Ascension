@@ -24,7 +24,13 @@ public class setUnlockToken implements CommandExecutor {
         if (p == null || strings.length != 2) return false;
 
         String name = strings[0];
-        int tokens = Integer.parseInt(strings[1]);
+        int tokens;
+        if (strings[1].equals("max")) {
+            tokens = 9999999;
+        } else {
+            tokens = Integer.parseInt(strings[1]);
+        }
+
 
         Player player = plugin.getServer().getPlayer(name);
         if (player == null) {

@@ -91,6 +91,8 @@ public class UnlocksData {
         tier5Unlocks.add(HeliosCurse.getInstance());
         tier5Unlocks.add(HermesBoots.getInstance());
         tier5Unlocks.add(Exodus.getInstance());
+        tier5Unlocks.add(MakeshiftStar.getInstance());
+        tier5Unlocks.add(WingsOfIcarus.getInstance());
     }
 
     private void Uncraftable() {

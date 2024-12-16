@@ -120,4 +120,18 @@ public class Team {
     public void setSTATE(int STATE) {
         this.STATE = STATE;
     }
+
+    public void updateState() {
+        boolean update = true;
+        for (Player p : teamMembers) {
+            PlayerData pD = PlayerUtil.getPlayerData(p);
+            if (!pD.checkState(PlayerData.STATE_SPECTATING)) {
+                update = false;
+                break;
+            }
+        }
+        if (update) {
+            setSTATE(STATE_DEPRECATED);
+        }
+    }
 }
