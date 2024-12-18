@@ -8,9 +8,8 @@ import me.depickcator.ascension.Kits.Kits.Ecologist;
 import me.depickcator.ascension.Kits.Kits.Hunter;
 import me.depickcator.ascension.Kits.Kits.IronTools;
 import me.depickcator.ascension.Kits.Kits.Looter;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.PlayerData;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -46,9 +45,9 @@ public class KitBook implements ItemClick {
     }
 
     @Override
-    public boolean uponClick(PlayerInteractEvent e, Player p) {
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         if (isMainHandRightClick(e)) {
-            new KitBookGUI(PlayerUtil.getPlayerData(p));
+            new KitBookGUI(pD);
         }
         return false;
     }

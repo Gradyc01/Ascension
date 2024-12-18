@@ -31,9 +31,7 @@ public abstract class Cooldowns {
 
     public abstract void setCooldownTimer(Player p);
     public void setCooldownTimer(Player p, int seconds) {
-        if (!p.hasCooldown(item)) {
-            p.sendMessage(TextUtil.makeText("You are in Combat!", TextUtil.DARK_RED));
-        }
+
         p.setCooldown(item, seconds * ticks);
     }
 }

@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Player.Cooldowns;
 
+import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,6 +19,9 @@ public class CombatTimer extends Cooldowns {
 
     @Override
     public void setCooldownTimer(Player p) {
+        if (!p.hasCooldown(makeItem())) {
+            p.sendMessage(TextUtil.makeText("You are in Combat!", TextUtil.DARK_RED));
+        }
         setCooldownTimer(p, 20);
     }
 

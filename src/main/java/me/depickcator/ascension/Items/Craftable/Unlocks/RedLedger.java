@@ -4,10 +4,10 @@ import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Player.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
@@ -66,7 +66,7 @@ public class RedLedger extends Craft implements ItemClick {
     }
 
     @Override
-    public boolean uponClick(PlayerInteractEvent e, Player p) {
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         e.setCancelled(true);
         return false;
     }

@@ -34,7 +34,16 @@ public class GameStates {
     }
 
     public boolean canNotBuild() {
-        return currentState == LOBBY || checkState(GAME_LOADING) || checkState(GAME_FEAST_LOADING);
+        return  checkState(LOBBY) ||
+                checkState(GAME_LOADING) ||
+                checkState(GAME_FEAST_LOADING);
+    }
+
+    public boolean canTeleport() {
+        return !(checkState(GAME_FEAST_LOADING) ||
+                checkState(GAME_FINAL_ASCENSION) ||
+                checkState(LOBBY) ||
+                checkState(GAME_ENDING));
     }
 
     public boolean inGame() {
@@ -46,6 +55,9 @@ public class GameStates {
     }
 
     public boolean canNotPVP() {
-        return checkState(GAME_BEFORE_GRACE) || checkState(GAME_ENDING) || checkState(GAME_LOADING) || checkState(GAME_FEAST_LOADING);
+        return checkState(GAME_BEFORE_GRACE) ||
+                checkState(GAME_ENDING) ||
+                checkState(GAME_LOADING) ||
+                checkState(GAME_FEAST_LOADING);
     }
 }
