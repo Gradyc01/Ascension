@@ -1,12 +1,13 @@
 package me.depickcator.ascension.Interfaces;
 
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerSkills;
-import me.depickcator.ascension.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -19,37 +20,61 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface AscensionGUI {
 
-    default void setGUIItems(Inventory inventory, ItemStack button, ItemMeta buttonMeta, int index) {
-        button.setItemMeta(buttonMeta); //Sets the Meta to Button Meta
-        button.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        inventory.setItem(index, button);
+public abstract class AscensionGUI {
+    private final int GUISize;
+    protected final Inventory inventory;
+    protected final Player player;
+    protected final Ascension plugin;
+    protected final PlayerData playerData;
+
+    public AscensionGUI(PlayerData playerData, char GUILines, Component name, boolean setBackground) {
+        this.playerData = playerData;
+        this.player = playerData.getPlayer();
+        plugin = Ascension.getInstance();
+        GUISize = GUILines * 9;
+        inventory = Bukkit.createInventory(player, GUISize, name);
+        player.openInventory(inventory);
+        if (setBackground) {
+            setBackground();
+        }
+        plugin.registerGUI(player, inventory, this);
     }
 
-    default void setGUIItems(Inventory inventory, ItemStack button, int index) {
-        inventory.setItem(index, button);
-    }
-
-    default void setItemBackground(Inventory inventory, int GUISize) {
-        ItemStack button = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
-        ItemMeta buttonMeta = button.getItemMeta();
-        buttonMeta.displayName(Component.text(" ").color(TextColor.color(185, 185, 185)));
-        buttonMeta.setCustomModelData(0x010000);
-        button.setItemMeta(buttonMeta); //Sets the Meta to Button Meta
+    private void setBackground() {
+        ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(Component.text(" ").color(TextColor.color(185, 185, 185)));
+        meta.setCustomModelData(0x010000);
+        item.setItemMeta(meta);
         for (int i = 0; i < GUISize; i++) {
-            inventory.setItem(i, button);
+            inventory.setItem(i, item);
         }
     }
 
-    default void closeGUIButton(Inventory inventory, int index) {
-        ItemStack button = getCloseButton();
-        button.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        inventory.setItem(index, button);
+
+    protected ItemStack getCloseButton() {
+        ItemStack button = new ItemStack(Material.BARRIER);
+        ItemMeta buttonMeta = button.getItemMeta();
+        Component title = TextUtil.makeText("Close", TextUtil.DARK_RED);
+        title = title.decoration(TextDecoration.ITALIC, false);
+        buttonMeta.displayName(title);
+        buttonMeta.setCustomModelData(0x030000);
+        buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        button.setItemMeta(buttonMeta);
+        return button;
     }
 
-    default void playerHeadButton(Inventory inventory, int index, Player player) {
-        PlayerData playerData = PlayerUtil.getPlayerData(player);
+    protected ItemStack goBackItem() {
+        ItemStack item = new ItemStack(Material.ARROW);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText("Go Back", TextUtil.DARK_GRAY));
+        meta.setCustomModelData(0x040000);
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    protected void playerHeadButton(int index) {
         PlayerSkills playerSkills = playerData.getPlayerSkills();
         ItemStack button = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta headMeta = (SkullMeta) button.getItemMeta();
@@ -77,31 +102,11 @@ public interface AscensionGUI {
 
         headMeta.lore(lore);
         headMeta.setCustomModelData(0x020000);
-        setGUIItems(inventory, button, headMeta, index);
-
+        button.setItemMeta(headMeta);
+        inventory.setItem(index, button);
     }
 
-    static ItemStack getCloseButton() {
-        ItemStack button = new ItemStack(Material.BARRIER);
-        ItemMeta buttonMeta = button.getItemMeta();
-        Component title = Component.text("Close").color(TextColor.color(255,0,0));
-        title = title.decoration(TextDecoration.ITALIC, false);
-        buttonMeta.displayName(title);
-        buttonMeta.setCustomModelData(0x030000);
-        button.setItemMeta(buttonMeta);
-        return button;
-    }
+    public abstract void interactWithGUIButtons(InventoryClickEvent event);
 
-    default ItemStack goBackItem() {
-        ItemStack item = new ItemStack(Material.ARROW);
-        ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText("Go Back", TextUtil.DARK_GRAY));
-        meta.setCustomModelData(0x040000);
-        item.setItemMeta(meta);
-        return item;
-    }
 
-    String getGUIName();
-
-    void interactWithGUIButtons(InventoryClickEvent event, Player p);
 }

@@ -33,7 +33,7 @@ public class mainMenuCommands implements CommandExecutor {
         String guiBoardName = strings[0];
         switch (guiBoardName.toLowerCase()) {
             case "board" -> {
-                new BingoBoardGUI(ab, p);
+                new BingoBoardGUI(pD);
             }
             case "unlocks-1" -> {
 //                new UnlocksGUI_1(ab, p);

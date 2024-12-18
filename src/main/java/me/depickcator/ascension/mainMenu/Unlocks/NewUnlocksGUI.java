@@ -1,6 +1,5 @@
 package me.depickcator.ascension.MainMenu.Unlocks;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.Craftable.Craft;
@@ -10,13 +9,10 @@ import me.depickcator.ascension.Player.PlayerUnlocks;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -24,32 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class NewUnlocksGUI implements AscensionGUI {
-    public final static String menuName = "unlocks";
-
-    private final int GUISize = 6 * 9;
-    private final Inventory inventory;
-    private final Player player;
-    private final Ascension plugin;
-    private final PlayerData playerData;
+public class NewUnlocksGUI extends AscensionGUI {
     private final char pageNumber;
     private ArrayList<ItemStack> pages;
     public NewUnlocksGUI(PlayerData playerData, char pageNumber) {
-        this.plugin = Ascension.getInstance();
-        this.playerData = playerData;
+        super(playerData, (char) 6, TextUtil.makeText("Unlocks: Tier " + TextUtil.toRomanNumeral(pageNumber), TextUtil.AQUA), true);
         this.pageNumber = pageNumber;
-        player = playerData.getPlayer();
-        inventory = Bukkit.createInventory(player, GUISize, TextUtil.makeText("Unlocks: Tier " + TextUtil.toRomanNumeral(pageNumber), TextUtil.AQUA));
-        player.openInventory(inventory);
-        setItemBackground(inventory, GUISize);
         setPage(pageNumber);
         setPageTabs();
         inventory.setItem(48, goBackItem());
         inventory.setItem(50, explainerItem());
-        playerHeadButton(inventory, 49, player);
-        Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
-        Ascension.guiMap.put(player.getUniqueId(), pair2);
-
+        playerHeadButton(49);
     }
 
     private void setPageTabs() {
@@ -163,13 +144,9 @@ public class NewUnlocksGUI implements AscensionGUI {
     }
 
 
-    @Override
-    public String getGUIName() {
-        return menuName;
-    }
 
     @Override
-    public void interactWithGUIButtons(InventoryClickEvent event, Player p) {
+    public void interactWithGUIButtons(InventoryClickEvent event) {
         ItemStack item = event.getCurrentItem();
         if (item == null || !item.getItemMeta().hasDisplayName()) {
             return;
@@ -180,10 +157,10 @@ public class NewUnlocksGUI implements AscensionGUI {
             return;
         }
         if (item.equals(goBackItem())) {
-            p.performCommand("open-main-menu");
+            player.performCommand("open-main-menu");
             return;
         }
-        determineRecipeShape(event, p, item);
+        determineRecipeShape(event, player, item);
     }
 
     private void determineRecipeShape(InventoryClickEvent event, Player p, ItemStack item) {

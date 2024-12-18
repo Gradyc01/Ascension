@@ -14,6 +14,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Interfaces\CustomChestLoot.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Interfaces\EntityInteraction.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Interfaces\ItemComparison.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Interfaces\OldAscensionGUI.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Interfaces\ShootsProjectiles.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Craft.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Crafts.java
@@ -63,6 +64,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\SugarRush.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Tarnhelm.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortal.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalGUI.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\VorpalSword.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\WingsOfIcarus.java
@@ -152,6 +154,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\Command\Commands\NightVision.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\Command\Commands\SendCoords.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\GiveMainMenuItem.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\MainMenu.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\mainMenuCommands.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\OpenMainMenuCommand.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\Unlocks\NewUnlocksGUI.java
