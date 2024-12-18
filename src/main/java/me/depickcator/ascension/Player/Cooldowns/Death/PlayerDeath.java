@@ -2,7 +2,6 @@ package me.depickcator.ascension.Player.Cooldowns.Death;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import net.kyori.adventure.text.Component;

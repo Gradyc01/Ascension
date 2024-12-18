@@ -38,7 +38,7 @@ public interface Skills {
         Component spacing = TextUtil.makeText("      ", TextUtil.AQUA);
         player.sendMessage(TextUtil.topBorder(TextUtil.GOLD));
         player.sendMessage(TextUtil.makeText("                    LEVEL UP!!!!", TextUtil.AQUA, true, false));
-        player.sendMessage(TextUtil.makeText("                     " + skillName + " " + newLevel, TextUtil.GOLD, true, false));
+        player.sendMessage(TextUtil.makeText("                     " + skillName + " " + TextUtil.toRomanNumeral(newLevel), TextUtil.GOLD, true, false));
         player.sendMessage(TextUtil.makeText("\n\n   Rewards: ", TextUtil.GOLD, true, false));
         for (ItemStack item : reward.getItems()) {
             Component displayName = item.displayName().color(TextUtil.RED);

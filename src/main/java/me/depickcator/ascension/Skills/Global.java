@@ -60,7 +60,7 @@ public class Global implements Skills {
     private void levelUpText() {
         player.sendMessage(TextUtil.topBorder(TextUtil.GOLD));
         player.sendMessage(TextUtil.makeText("                    LEVEL UP!!!!", TextUtil.AQUA, true, false));
-        player.sendMessage(TextUtil.makeText("                     " + NAME + " " + level, TextUtil.GOLD, true, false));
+        player.sendMessage(TextUtil.makeText("                     " + NAME + " " + TextUtil.toRomanNumeral(level) , TextUtil.GOLD, true, false));
         player.sendMessage(TextUtil.bottomBorder(TextUtil.GOLD));
     }
 

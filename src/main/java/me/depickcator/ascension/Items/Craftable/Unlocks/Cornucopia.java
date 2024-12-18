@@ -5,6 +5,7 @@ import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Player.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -56,7 +57,8 @@ public class Cornucopia extends Craft implements ItemClick {
     }
 
     @Override
-    public boolean uponClick(PlayerInteractEvent e, Player p) {
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
+        Player p = e.getPlayer();
         ItemStack item = p.getInventory().getItemInMainHand();
         item.setAmount(item.getAmount() - 1);
         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 15 * 20, 0));

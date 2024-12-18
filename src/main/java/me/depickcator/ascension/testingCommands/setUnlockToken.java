@@ -1,6 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortal;
 import me.depickcator.ascension.Player.PlayerUnlocks;
 import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.command.Command;
@@ -30,6 +31,7 @@ public class setUnlockToken implements CommandExecutor {
         } else {
             tokens = Integer.parseInt(strings[1]);
         }
+        p.getInventory().addItem(TeamPortal.getInstance().getResult());
 
 
         Player player = plugin.getServer().getPlayer(name);

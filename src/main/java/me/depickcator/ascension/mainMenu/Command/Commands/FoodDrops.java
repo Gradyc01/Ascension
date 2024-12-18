@@ -1,4 +1,4 @@
-package me.depickcator.ascension.mainMenu.Command.Commands;
+package me.depickcator.ascension.MainMenu.Command.Commands;
 
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;

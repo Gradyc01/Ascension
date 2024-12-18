@@ -31,7 +31,7 @@ public class PlayerInteractListener implements Listener {
         if (e.getItem() == null) return;
         ItemClick itemClick = ItemClick.findClickItem(e.getItem());
         if (itemClick != null) {
-            itemClick.uponClick(e, p);
+            itemClick.uponClick(e, PlayerUtil.getPlayerData(p));
             return;
         }
 

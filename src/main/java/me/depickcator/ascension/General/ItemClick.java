@@ -1,7 +1,7 @@
 package me.depickcator.ascension.General;
 
 
-import org.bukkit.entity.Player;
+import me.depickcator.ascension.Player.PlayerData;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 public interface ItemClick {
     HashMap<String, ItemClick> items = new HashMap<>();
     ItemStack getItem();
-    boolean uponClick(PlayerInteractEvent e, Player p);
+    boolean uponClick(PlayerInteractEvent e, PlayerData pD);
     void registerItem();
 
     default void addItem(ItemStack item, ItemClick itemClick) {
@@ -43,5 +43,9 @@ public interface ItemClick {
         }
 
         return item.getType().toString() + customModelNumber;
+    }
+
+    static boolean compareItems(ItemStack item1, ItemStack item2) {
+        return parser(item1).equals(parser(item2));
     }
 }

@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Craft;
+import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortal;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
@@ -93,6 +94,8 @@ public class UnlocksData {
         tier5Unlocks.add(Exodus.getInstance());
         tier5Unlocks.add(MakeshiftStar.getInstance());
         tier5Unlocks.add(WingsOfIcarus.getInstance());
+        tier5Unlocks.add(RedLedger.getInstance());
+        tier5Unlocks.add(TeamPortal.getInstance());
     }
 
     private void Uncraftable() {

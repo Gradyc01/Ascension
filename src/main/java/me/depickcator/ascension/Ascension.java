@@ -11,16 +11,18 @@ import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Teams.TeamCommand;
 import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.listeners.*;
-import me.depickcator.ascension.mainMenu.BingoBoard.BingoData;
-import me.depickcator.ascension.mainMenu.OpenMainMenuCommand;
-import me.depickcator.ascension.mainMenu.GiveMainMenuItem;
-import me.depickcator.ascension.mainMenu.mainMenuCommands;
+import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
+import me.depickcator.ascension.MainMenu.OpenMainMenuCommand;
+import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
+import me.depickcator.ascension.MainMenu.mainMenuCommands;
 import me.depickcator.ascension.testingCommands.*;
+import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,7 +36,7 @@ import java.util.logging.Logger;
 
 public final class Ascension extends JavaPlugin {
     // private static final org.slf4j.Logger log = LoggerFactory.getLogger(Ascension.class);
-    public static Map<UUID, Pair<Inventory, AscensionGUI>> guiMap = new HashMap<>();
+//    public static Map<UUID, Pair<Inventory, AscensionGUI>> guiMap = new HashMap<>();
     public static Map<UUID, PlayerData> playerDataMap = new HashMap<>();
     private static Ascension instance;
     private static Location spawn;
@@ -47,6 +49,7 @@ public final class Ascension extends JavaPlugin {
     private World nether;
     private Logger logger = getLogger();
     private int uniqueModelNumber;
+    private Map<UUID, Pair<Inventory, AscensionGUI>> guiMap;
 
     @Override
     public void onEnable() {
@@ -64,6 +67,7 @@ public final class Ascension extends JavaPlugin {
         timeline = new Timeline(this);
         world = Bukkit.getWorld("world");
         nether = Bukkit.getWorld("world_nether");
+        guiMap = new HashMap<>();
     }
 
     @Override
@@ -153,6 +157,22 @@ public final class Ascension extends JavaPlugin {
 
     public static Ascension getInstance() {
         return instance;
+    }
+
+    public Map<UUID, Pair<Inventory, AscensionGUI>> getGuiMap() {
+        return guiMap;
+    }
+
+    public void registerGUI(Player player, Inventory inventory, AscensionGUI gui) {
+        guiMap.put(player.getUniqueId(), new MutablePair<>(inventory, gui));
+    }
+
+    public Pair<Inventory, AscensionGUI> findInventory(Player player) {
+        return guiMap.get(player.getUniqueId());
+    }
+
+    public void removeGUI(Player player) {
+        guiMap.remove(player.getUniqueId());
     }
 
 }

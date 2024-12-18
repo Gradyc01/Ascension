@@ -50,6 +50,10 @@ public class TextUtil {
         return Title.title(title, subtitle, times);
     }
 
+    public static Title makeTitle(Component title, double secFadeIn, double secStay, double secFadeOut) {
+        return makeTitle(title, TextUtil.makeText(""), secFadeIn, secStay, secFadeOut);
+    }
+
     public static Component makeText(String text) {
         return makeText(text, TextUtil.WHITE, false, false);
     }
@@ -75,6 +79,7 @@ public class TextUtil {
         }
     }
 
+
     public static void broadcastMessage(Component text) {
         Ascension.getInstance().getServer().broadcast(text);
     }
@@ -83,6 +88,26 @@ public class TextUtil {
         for (Player p: players) {
             p.sendMessage(text);
         }
+    }
+
+    public static String toRomanNumeral(int num) {
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] numerals = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < values.length; i++) {
+            while (num >= values[i]) {
+                result.append(numerals[i]);
+                num -= values[i];
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static String toRomanNumeral(String num) {
+        return toRomanNumeral(Integer.parseInt(num));
     }
 
     public static void sendActionBar(Player player, Component message, int ticks, Ascension plugin) {

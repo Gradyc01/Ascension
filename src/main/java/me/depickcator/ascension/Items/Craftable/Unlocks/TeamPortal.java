@@ -3,7 +3,12 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
+import me.depickcator.ascension.Items.Craftable.Unlocks.GUIs.TeamPortalGUI;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
+import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
+import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -11,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -44,6 +48,7 @@ public class TeamPortal extends Craft implements ItemClick {
         meta.setCustomModelData(plugin.generateModelNumber());
         meta.setEnchantmentGlintOverride(true);
         meta.addEnchant(Enchantment.PROTECTION, 10, true);
+        meta.setMaxStackSize(1);
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA).append(TextUtil.rightClickText()));
         item.setItemMeta(meta);
         return item;
@@ -61,8 +66,16 @@ public class TeamPortal extends Craft implements ItemClick {
     }
 
     @Override
-    public boolean uponClick(PlayerInteractEvent e, Player p) {
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
+        Player p = pD.getPlayer();
         e.setCancelled(true);
+        if (isMainHandRightClick(e)
+                && !TeleportCooldown.getInstance().isOnCooldown(p)
+                && plugin.getGameState().canTeleport()
+                && !CombatTimer.getInstance().isOnCooldown(p)) {
+//            TeleportCooldown.getInstance().setCooldownTimer(p);
+            new TeamPortalGUI(PlayerUtil.getPlayerData(p));
+        }
         return false;
     }
 
