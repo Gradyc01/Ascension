@@ -1,3 +1,4 @@
+package me.depickcator.ascension.MainMenu.Unlocks;
 //package me.depickcator.ascension.MainMenu.Unlocks;
 //
 //import me.depickcator.ascension.Ascension;

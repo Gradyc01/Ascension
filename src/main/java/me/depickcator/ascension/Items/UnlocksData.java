@@ -1,15 +1,15 @@
 package me.depickcator.ascension.Items;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.tuple.Pair;
+
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Craft;
-import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortal;
+import me.depickcator.ascension.Items.Craftable.Unlocks.*;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
-import me.depickcator.ascension.Items.Craftable.Unlocks.*;
-import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.ArrayList;
 
 public class UnlocksData {
     private final ArrayList<Craft> tier1Unlocks;
