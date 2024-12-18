@@ -2,40 +2,22 @@ package me.depickcator.ascension.Items.Uncraftable.HadesBook;
 
 
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
-import net.kyori.adventure.text.Component;
-import org.apache.commons.lang3.tuple.MutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import me.depickcator.ascension.Player.PlayerData;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-public class HadesBookGUI implements AscensionGUI {
-    public final static String menuName = "HadesBookGUI";
-
-    private final int GUISize = 6 * 9;
-    private final Inventory inventory;
-    private Player player;
-    private Ascension plugin;
+public class HadesBookGUI extends AscensionGUI {
     private List<ItemStack> items;
-    public HadesBookGUI(Player p) {
-        this.plugin = Ascension.getInstance();
-        player = p;
-        inventory = Bukkit.createInventory(p, GUISize, Component.text("Hades' Book").color(TextUtil.GOLD));
+    public HadesBookGUI(PlayerData playerData) {
+        super(playerData, (char) 6, TextUtil.makeText("Hades' Book", TextUtil.GOLD), true);
         items = plugin.getBingoData().getItems();
-        p.openInventory(inventory);
 
-        setItemBackground(inventory,GUISize);
         loadBingoBoard();
-        Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
-        Ascension.guiMap.put(p.getUniqueId(), pair2);
     }
 
     private void loadBingoBoard() {
@@ -50,15 +32,10 @@ public class HadesBookGUI implements AscensionGUI {
     }
 
     @Override
-    public String getGUIName() {
-        return menuName;
-    }
-
-    @Override
-    public void interactWithGUIButtons(InventoryClickEvent event, Player p) {
+    public void interactWithGUIButtons(InventoryClickEvent event) {
         if (event.getCurrentItem() != null && event.isLeftClick() && items.contains(event.getCurrentItem())) {
-            if (p.getInventory().getItemInMainHand().equals(HadesBook.getInstance().getItem())) {
-                p.getWorld().dropItem(p.getLocation(), event.getCurrentItem());
+            if (player.getInventory().getItemInMainHand().equals(HadesBook.getInstance().getItem())) {
+                player.getWorld().dropItem(player.getLocation(), event.getCurrentItem());
                 successfulPurchase(event);
             }
         }

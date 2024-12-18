@@ -1,49 +1,34 @@
 package me.depickcator.ascension.Timeline.Events.Scavenger;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamStats;
 import net.kyori.adventure.text.Component;
-import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScavengerGUI implements AscensionGUI {
+public class ScavengerGUI extends AscensionGUI {
     public final static String menuName = "Scavenger-GUI";
 
-    private final int GUISize = 6 * 9;
-    private final Inventory inventory;
-    private final Player player;
-    private final PlayerData playerData;
     private final Scavenger scavenger;
     private final boolean canSubmitItems;
-    public ScavengerGUI(Scavenger scavenger, Player player, boolean canSubmitItems) {
-        this.player = player;
-        this.playerData = PlayerUtil.getPlayerData(player);
+    public ScavengerGUI(Scavenger scavenger, PlayerData playerData, boolean canSubmitItems) {
+        super(playerData, (char) 6, TextUtil.makeText("Scavenger", TextUtil.AQUA), true);
         this.scavenger = scavenger;
         this.canSubmitItems = canSubmitItems;
 
-
-        inventory = Bukkit.createInventory(player, GUISize, TextUtil.makeText("Scavenger", TextUtil.AQUA));
-        player.openInventory(inventory);
-        setItemBackground(inventory, GUISize);
         setTrades();
         addTradePanes();
-        playerHeadButton(inventory, 49, player);
+        playerHeadButton(49);
 
         if (!canSubmitItems) {
             inventory.setItem(48, goBackItem());
@@ -51,9 +36,6 @@ public class ScavengerGUI implements AscensionGUI {
             addClaimItems();
         }
 
-
-        Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
-        Ascension.guiMap.put(player.getUniqueId(), pair2);
     }
 
     private void setTrades() {
@@ -115,13 +97,9 @@ public class ScavengerGUI implements AscensionGUI {
         return item;
     }
 
-    @Override
-    public String getGUIName() {
-        return menuName;
-    }
 
     @Override
-    public void interactWithGUIButtons(InventoryClickEvent event, Player p) {
+    public void interactWithGUIButtons(InventoryClickEvent event) {
         if (event.getCurrentItem() == null || !event.isLeftClick()) {
             event.setCancelled(true);
             return;
@@ -134,14 +112,14 @@ public class ScavengerGUI implements AscensionGUI {
             Pair<ItemStack, ItemStack> trade = trades.get(tradeNumber);
             if (scavengerTrades.tradeItem(trade.getLeft(), playerData)) {
                 successfulTrade(trade, tradeNumber);
-                new ScavengerGUI(scavenger, player, true);
+                new ScavengerGUI(scavenger, playerData, true);
             } else {
                 TextUtil.errorMessage(player, "You currently do not have the item required or your team has already completed the trade");
             }
         }
 
         if (event.getCurrentItem().equals(goBackItem()) && !canSubmitItems) {
-            p.performCommand("open-main-menu");
+            player.performCommand("open-main-menu");
         }
     }
 

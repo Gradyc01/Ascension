@@ -1,50 +1,30 @@
 package me.depickcator.ascension.MainMenu.BingoBoard;
 
-import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Player.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.apache.commons.lang3.tuple.MutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
-public class BingoBoardGUI implements AscensionGUI {
-    public final static String menuName = "BINGO-BOARD";
+public class BingoBoardGUI extends AscensionGUI {
 
-    private final int GUISize = 6 * 9;
-    private final Inventory inventory;
-    private Player player;
-    private Ascension ab;
-    public BingoBoardGUI(Ascension ab, Player p) {
-        this.ab = ab;
-        player = p;
-        inventory = Bukkit.createInventory(p, GUISize,Component.text("Game Board").color(TextColor.color(0,255,255)));
-        if (player != null) {
-            p.openInventory(inventory);
-        }
-        setItemBackground(inventory,GUISize);
+    public BingoBoardGUI(PlayerData playerData) {
+        super(playerData, (char) 6, TextUtil.makeText("Game Board", TextUtil.AQUA), true);
         boardItems();
         claimItemButton();
-        playerHeadButton(inventory, 49, p);
+        playerHeadButton(49);
         inventory.setItem(48, goBackItem());
-//        closeGUIButton(inventory, 49);
-        if (player != null) {
-            Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
-            Ascension.guiMap.put(p.getUniqueId(), pair2);
-        }
     }
 
     private void boardItems() {
-        BingoData bingoData = this.ab.getBingoData();
+        BingoData bingoData = plugin.getBingoData();
         ArrayList<ItemStack> items = bingoData.getItems();
         ArrayList<Boolean> hasItems = bingoData.getItemsCompleted(player);
         if (items.size() != 25) {
@@ -84,26 +64,23 @@ public class BingoBoardGUI implements AscensionGUI {
         buttonMeta.displayName(title);
         buttonMeta.setEnchantmentGlintOverride(true);
         buttonMeta.setCustomModelData(0); // Use this when using the same item
-        setGUIItems(inventory, button, buttonMeta,53);
+        button.setItemMeta(buttonMeta);
+        inventory.setItem( 53, button);
     }
 
-    @Override
-    public String getGUIName() {
-        return menuName;
-    }
 
     @Override
-    public void interactWithGUIButtons(InventoryClickEvent event, Player p) {
+    public void interactWithGUIButtons(InventoryClickEvent event) {
         ItemStack item = event.getCurrentItem();
         if (item == null) {
             return;
         }
         switch (item.getType()) {
             case Material.EMERALD -> {
-                ab.getBingoData().claimItem(p);
+                plugin.getBingoData().claimItem(player);
             }
             case Material.ARROW -> {
-                p.performCommand("open-main-menu");
+                player.performCommand("open-main-menu");
             }
             default -> {
 

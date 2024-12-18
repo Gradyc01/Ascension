@@ -102,7 +102,7 @@ public class BingoData extends ItemComparison {
                     giveRewards(p, item);
                     checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)
                     updateScoreboard(p);
-                    new BingoBoardGUI(plugin, p);
+                    new BingoBoardGUI(PlayerUtil.getPlayerData(p));
                     return;
                 }
             }

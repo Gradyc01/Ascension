@@ -3,6 +3,7 @@ package me.depickcator.ascension.Items.Uncraftable.HadesBook;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -41,7 +42,7 @@ public class HadesBook implements ItemClick {
     @Override
     public boolean uponClick(PlayerInteractEvent e, Player p) {
         if (!p.hasCooldown(item)) {
-            new HadesBookGUI(p);
+            new HadesBookGUI(PlayerUtil.getPlayerData(p));
             p.setCooldown(item, 3 * 20);
             return true;
         }

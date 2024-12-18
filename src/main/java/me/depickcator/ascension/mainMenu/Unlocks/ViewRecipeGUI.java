@@ -1,16 +1,11 @@
 package me.depickcator.ascension.MainMenu.Unlocks;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Player.PlayerData;
 import net.kyori.adventure.text.Component;
-import org.apache.commons.lang3.tuple.MutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,36 +14,20 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 import java.util.Map;
 
-public class ViewRecipeGUI implements AscensionGUI {
-    public final static String menuName = "VIEW-RECIPE";
+public class ViewRecipeGUI extends AscensionGUI {
     private final int[] craftingGridSlots = {
             11, 12, 13,
             20, 21, 22,
             29, 30, 31
     };
-    private final int GUISize = 6 * 9;
-    private final Inventory inventory;
-    private final Player player;
-    private final PlayerData playerData;
     private final char pageNumber;
 //    private UnlocksGUI goBackGUI;
     public ViewRecipeGUI(PlayerData playerData, Craft craft, char pageNumber) {
-        this.player = playerData.getPlayer();
-        this.playerData = playerData;
+        super(playerData, (char) 6, Component.text("Recipe: " + craft.getDisplayName()).color(TextUtil.AQUA), true);
         this.pageNumber = pageNumber;
-        inventory = Bukkit.createInventory(player, GUISize, Component.text("Recipe: " + craft.getDisplayName()).color(TextUtil.AQUA));
-        if (player == null) {
-            return;
-        }
-        player.openInventory(inventory);
-        setItemBackground(inventory,GUISize);
         makeRecipeGUI(craft);
         inventory.setItem(48, goBackPage());
-        playerHeadButton(inventory, 49, player);
-
-        Pair<Inventory, AscensionGUI> pair2 = new MutablePair<>(inventory,this);
-        Ascension.guiMap.put(player.getUniqueId(), pair2);
-
+        playerHeadButton(49);
     }
 
     private void makeRecipeGUI(Craft craft) {
@@ -101,12 +80,7 @@ public class ViewRecipeGUI implements AscensionGUI {
     }
 
     @Override
-    public String getGUIName() {
-        return menuName;
-    }
-
-    @Override
-    public void interactWithGUIButtons(InventoryClickEvent event, Player p) {
+    public void interactWithGUIButtons(InventoryClickEvent event) {
         ItemStack item = event.getCurrentItem();
         if (item == null) {
             return;

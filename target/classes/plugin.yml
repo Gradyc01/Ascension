@@ -7,21 +7,29 @@ commands:
     description: This command open the main menu
   give-main-menu:
     description: This command gives the main menu item
+    permission: ascension.give-main-menu
   game:
     description: Allows to access the main game states
+    permission: ascension.game
   changeBingoScore:
     description: changes the bingo score for a certain player
+    permission: ascension.changeBingoScore
   openmenu:
     description: opens all menu in the main menu via command
   party:
     description: team up with other players
   printPlayerData:
     description: prints the player Data
+    permission: ascension.printPlayerData
   timeline:
-    description: unlocks a craft for a certain player
+    description: sets timeline
+    permission: ascension.timeline
   setUnlockTokens:
     description: testing purposes only
+    permission: ascension.setUnlockTokens
   givePlayerExp:
     description: testing purposes only
+    permission: ascension.givePlayerExp
   startEvent:
     description: testing purposes only
+    permission: ascension.startEvent

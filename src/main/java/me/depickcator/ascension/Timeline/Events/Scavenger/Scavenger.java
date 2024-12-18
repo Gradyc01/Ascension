@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
+import me.depickcator.ascension.Player.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Location;
@@ -156,7 +157,7 @@ public class Scavenger extends EntityInteraction {
 
     @Override
     public boolean interact(PlayerInteractEntityEvent event) {
-        new ScavengerGUI(this, event.getPlayer(), true);
+        new ScavengerGUI(this, PlayerUtil.getPlayerData(event.getPlayer()), true);
         return true;
     }
 
