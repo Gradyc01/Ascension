@@ -50,6 +50,10 @@ public class TextUtil {
         return Title.title(title, subtitle, times);
     }
 
+    public static Title makeTitle(Component title, double secFadeIn, double secStay, double secFadeOut) {
+        return makeTitle(title, TextUtil.makeText(""), secFadeIn, secStay, secFadeOut);
+    }
+
     public static Component makeText(String text) {
         return makeText(text, TextUtil.WHITE, false, false);
     }
@@ -74,6 +78,7 @@ public class TextUtil {
             p.showTitle(title);
         }
     }
+
 
     public static void broadcastMessage(Component text) {
         Ascension.getInstance().getServer().broadcast(text);

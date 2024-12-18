@@ -23,7 +23,7 @@ me\depickcator\ascension\Skills\Combat.class
 me\depickcator\ascension\LootTables\Blocks\Ores\QuartzOre.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Tarnhelm.class
 me\depickcator\ascension\Skills\Skills.class
-me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalGUI.class
+me\depickcator\ascension\Player\Cooldowns\TeleportSequence.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfSharpness.class
 me\depickcator\ascension\MainMenu\mainMenuCommands.class
 me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.class
@@ -37,6 +37,7 @@ me\depickcator\ascension\General\StartGame.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfProjectileProtection.class
 me\depickcator\ascension\listeners\InventoryClose.class
 me\depickcator\ascension\LootTables\Entities\Entities\CreeperEntity.class
+me\depickcator\ascension\Items\Craftable\Unlocks\GUIs\TeamPortalGUI.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenAxe.class
 me\depickcator\ascension\LootTables\Blocks\Ores\IronOre.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfThoth.class
@@ -150,6 +151,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\Cornucopia.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastChests.class
 me\depickcator\ascension\General\LoadGame.class
 me\depickcator\ascension\Items\ItemLists\MediumItems.class
+me\depickcator\ascension\Player\Cooldowns\TeleportSequence$1.class
 me\depickcator\ascension\Player\PlayerUtil.class
 me\depickcator\ascension\General\GameCommand.class
 me\depickcator\ascension\Player\Cooldowns\Death\PlayerDeath.class

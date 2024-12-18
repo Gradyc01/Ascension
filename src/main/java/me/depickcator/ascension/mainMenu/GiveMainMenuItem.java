@@ -1,6 +1,7 @@
 package me.depickcator.ascension.MainMenu;
 
 import me.depickcator.ascension.General.ItemClick;
+import me.depickcator.ascension.Player.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -62,11 +63,11 @@ public class GiveMainMenuItem implements CommandExecutor, ItemClick {
     }
 
     @Override
-    public boolean uponClick(PlayerInteractEvent e, Player p) {
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         if (!isMainHandRightClick(e)) return false;
 
 
-        p.performCommand("open-main-menu");
+        pD.getPlayer().performCommand("open-main-menu");
         return true;
     }
 

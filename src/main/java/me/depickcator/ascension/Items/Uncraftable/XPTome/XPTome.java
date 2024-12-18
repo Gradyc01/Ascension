@@ -3,9 +3,8 @@ package me.depickcator.ascension.Items.Uncraftable.XPTome;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.PlayerData;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -37,10 +36,10 @@ public class XPTome implements ItemClick {
     }
 
     @Override
-    public boolean uponClick(PlayerInteractEvent e, Player p) {
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         if (isMainHandRightClick(e)) {
 //            e.getItem().setAmount(0);
-            new XPTomeGUI(PlayerUtil.getPlayerData(p));
+            new XPTomeGUI(pD);
             return true;
         }
         return false;

@@ -8,7 +8,6 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -72,10 +71,10 @@ public class GoldenHead extends Craft implements ItemClick {
     }
 
     @Override
-    public boolean uponClick(PlayerInteractEvent e, Player p) {
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         if (isMainHandRightClick(e)) {
             ItemStack item = e.getItem();
-            PlayerData pD = PlayerUtil.getPlayerData(p);
+            Player p = pD.getPlayer();
             if (item == null || pD == null) return false;
             item.setAmount(item.getAmount() - 1);
             giveGoldenHeadEffects(p);

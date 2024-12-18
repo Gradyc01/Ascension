@@ -16,7 +16,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class XPTomeGUI extends AscensionGUI {
     public final static String menuName = "XPTomeGUI";
 
-    private final int GUISize = 3 * 9;
     // private Ascension plugin;
     public XPTomeGUI(PlayerData playerData) {
         super(playerData, (char) 3, Component.text("     Pick a type of Experience").color(TextUtil.AQUA), true);
