@@ -2,6 +2,7 @@ package me.depickcator.ascension.General;
 
 
 import me.depickcator.ascension.Player.PlayerData;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -47,5 +48,9 @@ public interface ItemClick {
 
     static boolean compareItems(ItemStack item1, ItemStack item2) {
         return parser(item1).equals(parser(item2));
+    }
+
+    static boolean isHolding(Player p, ItemStack item1) {
+        return compareItems(item1, p.getInventory().getItemInMainHand());
     }
 }

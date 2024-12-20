@@ -74,7 +74,7 @@ public class TeamPortal extends Craft implements ItemClick {
                 && plugin.getGameState().canTeleport()
                 && !CombatTimer.getInstance().isOnCooldown(p)) {
 //            TeleportCooldown.getInstance().setCooldownTimer(p);
-            new TeamPortalGUI(PlayerUtil.getPlayerData(p));
+            new TeamPortalGUI(pD);
         }
         return false;
     }

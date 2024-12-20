@@ -5,6 +5,7 @@ import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
 import me.depickcator.ascension.Timeline.Events.Feast.Feast;
 import me.depickcator.ascension.Timeline.Events.FinalAscension.FinalAscension;
@@ -19,6 +20,7 @@ public class Timeline {
     private int SECONDS;
     private boolean keepRunning;
     private Scavenger scavenger;
+    private AscensionEvent ascensionEvent;
     private static final int STARTING_MINUTES = 160;
     public Timeline(Ascension plugin) {
         this.plugin = plugin;
@@ -29,6 +31,11 @@ public class Timeline {
         keepRunning = true;
         mainTimelineMinutes();
         TextUtil.debugText("Started Timeline");
+    }
+
+    public void pauseTimeline() {
+        keepRunning = false;
+        TextUtil.debugText("Paused Timeline");
     }
 
     private void mainTimelineMinutes() {
@@ -96,6 +103,9 @@ public class Timeline {
                 plugin.getServer().broadcast(TextUtil.makeText("Grace Period has Ended", TextUtil.BLUE));
                 SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 30, 1);
             }
+            case 31 -> {
+                ascensionEvent = new AscensionEvent();
+            }
             case 35, 70, 100, 140 -> {
                 new CarePackage();
             }
@@ -135,7 +145,7 @@ public class Timeline {
         MINUTES = time;
     }
 
-    private void updatePlayers() {
+    public void updatePlayers() {
         for (PlayerData p: Ascension.playerDataMap.values()) {
             p.getPlayerScoreboard().updateGameBoard(true);
         }
@@ -143,5 +153,9 @@ public class Timeline {
 
     public Scavenger getScavenger() {
         return scavenger;
+    }
+
+    public AscensionEvent getAscensionEvent() {
+        return ascensionEvent;
     }
 }

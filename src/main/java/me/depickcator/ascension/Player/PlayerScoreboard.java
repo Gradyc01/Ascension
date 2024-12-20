@@ -4,7 +4,9 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Teams.Team;
+import me.depickcator.ascension.Timeline.Events.Ascension.AscensionLocation;
 import net.kyori.adventure.text.Component;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
@@ -79,23 +81,42 @@ public class PlayerScoreboard {
         if (updateTime) {
             updateTime();
         }
-        Component itemsText = TextUtil.makeText("  Items Obtained: ", TextUtil.WHITE);
-        Component itemsNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getItemsObtained() +  "", TextUtil.GREEN);
-        editLine(board, 10, itemsText.append(itemsNum));
-
+        //10 9 7 6
+//        Component itemsText = TextUtil.makeText("  Items Obtained: ", TextUtil.WHITE);
+//        Component itemsNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getItemsObtained() +  "", TextUtil.GREEN);
+//        editLine(board, 10, itemsText.append(itemsNum));
+        Component itemsText = TextUtil.makeText("  Items: ", TextUtil.WHITE);
+        Component itemsNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getItemsObtained() +  ",", TextUtil.GREEN);
         Component killText = TextUtil.makeText("  Kills: ", TextUtil.WHITE);
         Component killNum = TextUtil.makeText(playerData.getPlayerStats().getKills() + "", TextUtil.GREEN);
-        editLine(board, 9, killText.append(killNum));
+        editLine(board, 6, killText.append(killNum).append(itemsText).append(itemsNum));
 
-        Component scoreText = TextUtil.makeText("  Score: ", TextUtil.WHITE);
-        Component scoreNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getGameScore() + "", TextUtil.GREEN);
-        editLine(board, 7, scoreText.append(scoreNum));
+//        Component scoreText = TextUtil.makeText("  Score: ", TextUtil.WHITE);
+//        Component scoreNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getGameScore() + "", TextUtil.GREEN);
+//        editLine(board, 7, scoreText.append(scoreNum));
+        editLine(board, 10, TextUtil.makeText("  Enlightenment: ", TextUtil.WHITE));
+        editLine(board, 9, displayBar(playerData.getPlayerTeam().getTeam().getTeamStats().getGameScore()));
 
         Component soulsText = TextUtil.makeText("  Souls: ", TextUtil.WHITE);
         Component soulsNum = TextUtil.makeText(playerData.getPlayerUnlocks().getUnlockTokens() + "", TextUtil.GREEN);
-        editLine(board, 6, soulsText.append(soulsNum));
+        editLine(board, 7, soulsText.append(soulsNum));
 
         displayTeamMembers(board, 3);
+    }
+
+    private Component displayBar(int score) {
+        Component text = TextUtil.makeText("    [", TextUtil.WHITE);
+        Component endText = TextUtil.makeText("]", TextUtil.WHITE);
+        Component red = TextUtil.makeText(":", TextUtil.RED);
+        Component green = TextUtil.makeText(":", TextUtil.GREEN);
+        for (int i = 0; i < 25; i++) {
+            if (i < score) {
+                text = text.append(green);
+            } else {
+                text = text.append(red);
+            }
+        }
+        return text.append(endText);
     }
 
     private void updateTime() {
@@ -107,7 +128,24 @@ public class PlayerScoreboard {
             editLine(board, 12, TextUtil.makeText("        " + minutes + ":" + seconds, TextUtil.WHITE));
 
             return;
+        } else if (plugin.getGameState().checkState(GameStates.GAME_ASCENSION)) {
+            AscensionLocation ascensionLocation = plugin.getTimeline().getAscensionEvent().getAscendingLocation();
+            int time = ascensionLocation.getAscendingTeam().getTeamStats().getAscensionTimer();
+            int healthPercentage = (int) (ascensionLocation.getEntity().getHealth() / ascensionLocation.getEntity().getAttribute(Attribute.MAX_HEALTH).getBaseValue() * 100);
+
+
+            String minutes = time/60 + "";
+            String seconds = time%60 <= 9 ? "0" + time%60 : time%60 + "";
+//            editLine(board, 13, TextUtil.makeText("  Ascend In: ", TextUtil.GOLD));
+//            editLine(board, 12, TextUtil.makeText("        " + minutes + ":" + seconds, TextUtil.WHITE));
+            editLine(board, 13, TextUtil.makeText("  Gatekeeper HP: ", TextUtil.GOLD)
+                    .append(TextUtil.makeText( + healthPercentage + "%", TextUtil.GREEN)));
+            editLine(board, 12, TextUtil.makeText("   Ascension In: ", TextUtil.GOLD)
+                    .append(TextUtil.makeText(minutes + ":" + seconds, TextUtil.WHITE)));
+            return;
+
         }
+
         editLine(board, 13, TextUtil.makeText("  Deathmatch In:  ", TextUtil.GOLD));
         editLine(board, 12, plugin.getTimeline().getTime());
     }

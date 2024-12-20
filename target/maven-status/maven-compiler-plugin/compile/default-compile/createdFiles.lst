@@ -1,6 +1,7 @@
 me\depickcator\ascension\Player\Cooldowns\Cooldowns.class
 me\depickcator\ascension\LootTables\Blocks\Ores\NetherGoldOre.class
 me\depickcator\ascension\Skills\SkillRewards.class
+me\depickcator\ascension\Items\Craftable\Unlocks\GUIs\RedLedgerGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\SugarRush.class
 me\depickcator\ascension\MainMenu\Unlocks\NewUnlocksGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LightApple.class
@@ -47,12 +48,14 @@ me\depickcator\ascension\Items\Craftable\Unlocks\NotchApple.class
 me\depickcator\ascension\Player\PlayerUnlocks.class
 me\depickcator\ascension\LootTables\Blocks\Ores\CoalOre.class
 me\depickcator\ascension\LootTables\Blocks\Ores\LapisOre.class
+me\depickcator\ascension\MainMenu\Command\Commands\SpawnTravel.class
 me\depickcator\ascension\Items\Craftable\Crafts.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.class
 me\depickcator\ascension\MainMenu\Command\CommandGUI.class
 me\depickcator\ascension\LootTables\Blocks\BlockUtil.class
 me\depickcator\ascension\LootTables\Entities\Entities\EndermanEntity.class
 me\depickcator\ascension\testingCommands\setTimeline.class
+me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent.class
 me\depickcator\ascension\General\StartGame$4.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PhilosopherPickaxe.class
 me\depickcator\ascension\Teams\TeamUtil.class
@@ -137,6 +140,7 @@ me\depickcator\ascension\LootTables\Entities\Entities\ZombieEntity.class
 me\depickcator\ascension\MainMenu\BingoBoard\BingoData.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldPassive.class
 me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBookGUI.class
+me\depickcator\ascension\Timeline\Events\Ascension\AscensionLocation.class
 me\depickcator\ascension\General\StartGame$3.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfPower.class
 me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class
@@ -157,6 +161,7 @@ me\depickcator\ascension\General\GameCommand.class
 me\depickcator\ascension\Player\Cooldowns\Death\PlayerDeath.class
 me\depickcator\ascension\MainMenu\Command\Commands\FoodDrops.class
 me\depickcator\ascension\Player\PlayerData.class
+me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent$1.class
 me\depickcator\ascension\Items\ItemLists\CustomItems.class
 me\depickcator\ascension\testingCommands\startEvents.class
 me\depickcator\ascension\listeners\MobSpawning.class
@@ -210,6 +215,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\FlamingArtifact.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PotionOfVelocity.class
 me\depickcator\ascension\Timeline\Events\Feast\Feast.class
 me\depickcator\ascension\Skills\Foraging.class
+me\depickcator\ascension\MainMenu\Command\Commands\Surface.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\ForageBlocks.class
 me\depickcator\ascension\General\TextUtil$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\SoulArtifact.class
