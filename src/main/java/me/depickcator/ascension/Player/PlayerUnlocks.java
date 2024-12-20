@@ -19,8 +19,8 @@ public class PlayerUnlocks {
 
     private final int AMOUNT_NEEDED_1 = 7;
     private final int AMOUNT_NEEDED_2 = 7;
-    private final int AMOUNT_NEEDED_3 = 7;
-    private final int AMOUNT_NEEDED_4 = 7;
+    private final int AMOUNT_NEEDED_3 = 6;
+    private final int AMOUNT_NEEDED_4 = 5;
     private Player player;
     private PlayerData playerData;
     private int tier1Unlocks;

@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -13,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfPower extends Craft {
     private static BookOfPower instance;
     private BookOfPower() {
-        super(1, 4, "Book of Power", "book_of_power");
+        super(UnlocksData.COST_125, 4, "Book of Power", "book_of_power");
     }
 
     @Override

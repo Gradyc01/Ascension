@@ -73,6 +73,7 @@ public class PlayerData {
         player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "recipe give " + player.getName() + " *");
     }
     public void resetAfterStartGame() {
         player.clearActivePotionEffects();

@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -11,7 +12,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 public class EveTemptation extends Craft {
     private static EveTemptation instance;
     private EveTemptation() {
-        super(1, 4, "Eve's Temptation", "eve_temptation");
+        super(UnlocksData.COST_75, 4, "Eve's Temptation", "eve_temptation");
     }
 
 

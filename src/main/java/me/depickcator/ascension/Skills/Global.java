@@ -1,14 +1,18 @@
 package me.depickcator.ascension.Skills;
 
+import it.unimi.dsi.fastutil.io.TextIO;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerSkills;
+import net.kyori.adventure.text.Component;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Global implements Skills {
     private final PlayerData playerData;
@@ -76,8 +80,10 @@ public class Global implements Skills {
     }
 
     @Override
-    public ArrayList<String> getRewardText(int level) {
-        return null;
+    public ArrayList<Component> getRewardText(int level) {
+        return new ArrayList<>(List.of(
+                TextUtil.makeText(" +4 HP", TextUtil.DARK_PURPLE)
+        ));
     }
 
     @Override
@@ -85,6 +91,9 @@ public class Global implements Skills {
         return  "";
     }
 
-
+    @Override
+    public String getName() {
+        return NAME;
+    }
 
 }

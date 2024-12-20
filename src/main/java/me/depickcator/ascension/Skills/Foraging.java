@@ -1,8 +1,11 @@
 package me.depickcator.ascension.Skills;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUnlocks;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -79,8 +82,8 @@ public class Foraging implements Skills {
     }
 
     @Override
-    public ArrayList<String> getRewardText(int level) {
-        return null;
+    public ArrayList<Component> getRewardText(int level) {
+        return parseRewardText(rewards.get(level - 1));
     }
 
     @Override
@@ -156,6 +159,9 @@ public class Foraging implements Skills {
         return skillRewards;
     }
 
-
+    @Override
+    public String getName() {
+        return NAME;
+    }
 
 }

@@ -1,11 +1,14 @@
 package me.depickcator.ascension.listeners;
 
+import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -20,14 +23,15 @@ import org.bukkit.potion.PotionEffectType;
 
 
 public class PlayerInteractListener implements Listener {
-    // private final Ascension plugin;
+     private final Ascension plugin;
 
     public PlayerInteractListener() {
-        // this.plugin = Ascension.getInstance();
+         this.plugin = Ascension.getInstance();
     }
     @EventHandler
     public void mainMenuClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
+        if (plugin.getGameState().checkState(GameStates.UNLOADED)) return;
         if (e.getItem() == null) return;
         ItemClick itemClick = ItemClick.findClickItem(e.getItem());
         if (itemClick != null) {
@@ -43,6 +47,7 @@ public class PlayerInteractListener implements Listener {
     @EventHandler
     public void interactingWithEntity(PlayerInteractEntityEvent e) {
         if (!(e.getRightClicked() instanceof LivingEntity)) return;
+        if (e.getPlayer().getGameMode() != GameMode.SURVIVAL) return;
         LivingEntity entity = (LivingEntity) e.getRightClicked();
         EntityInteraction entityInteraction = EntityInteraction.getEntityInteraction(entity);
         if (entityInteraction != null) {

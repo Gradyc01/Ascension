@@ -9,6 +9,9 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -74,6 +77,24 @@ public abstract class AscensionGUI {
         return item;
     }
 
+    protected ItemStack nextPageItem() {
+        ItemStack item = new ItemStack(Material.ARROW);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText("Next Page", TextUtil.DARK_GRAY));
+        meta.setCustomModelData(0x070000);
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    protected ItemStack previousPageItem() {
+        ItemStack item = new ItemStack(Material.ARROW);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText("Previous Page", TextUtil.DARK_GRAY));
+        meta.setCustomModelData(0x080000);
+        item.setItemMeta(meta);
+        return item;
+    }
+
     protected void playerHeadButton(int index) {
         PlayerSkills playerSkills = playerData.getPlayerSkills();
         ItemStack button = new ItemStack(Material.PLAYER_HEAD);
@@ -104,6 +125,19 @@ public abstract class AscensionGUI {
         headMeta.setCustomModelData(0x020000);
         button.setItemMeta(headMeta);
         inventory.setItem(index, button);
+    }
+
+    protected ItemStack initExplainerItem(Material material, List<Component> lore, Component name) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+        AttributeModifier buttonModifier = new AttributeModifier(NamespacedKey.minecraft("hide_main_menu"),
+                2, AttributeModifier.Operation.ADD_NUMBER);
+        meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, buttonModifier);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.displayName(name);
+        meta.lore(lore);
+        item.setItemMeta(meta);
+        return item;
     }
 
     public abstract void interactWithGUIButtons(InventoryClickEvent event);

@@ -13,6 +13,7 @@ public abstract class Craft {
     protected final String DISPLAY_NAME;
     protected final String KEY;
     protected final ItemStack result;
+
     protected Craft(int cost, int maxCrafts, String displayName, String key) {
         COST = cost; MAX_CRAFTS = maxCrafts; DISPLAY_NAME = displayName; KEY = key;
         this.plugin = Ascension.getInstance();

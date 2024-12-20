@@ -7,6 +7,7 @@ import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -27,7 +28,7 @@ import java.util.UUID;
 public class GoldenHead extends Craft implements ItemClick {
     private static GoldenHead instance;
     private GoldenHead() {
-        super(1, 4, "Golden Head", "golden_head");
+        super(UnlocksData.COST_200, 4, "Golden Head", "golden_head");
         registerItem();
     }
 

@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -15,7 +16,7 @@ import org.bukkit.inventory.meta.Repairable;
 public class Exodus extends Craft {
     private static Exodus instance;
     private Exodus() {
-        super(1, 2, "Exodus" ,"exodus");
+        super(UnlocksData.COST_450, 2, "Exodus" ,"exodus");
     }
 
     @Override

@@ -8,10 +8,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
+import static me.depickcator.ascension.Items.UnlocksData.COST_75;
+
 public class IronPack extends Craft {
     private static IronPack instance;
     private IronPack() {
-        super(1, 4, "Iron Pack", "iron_pack");
+        super(COST_75, 4, "Iron Pack", "iron_pack");
+
     }
 
     public static IronPack getInstance() {

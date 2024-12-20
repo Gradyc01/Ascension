@@ -4,12 +4,10 @@ import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GUIs.RedLedgerGUI;
-import me.depickcator.ascension.Items.Craftable.Unlocks.GUIs.TeamPortalGUI;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
-import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
 import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -24,7 +22,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class RedLedger extends Craft implements ItemClick {
     private static RedLedger instance;
     private RedLedger() {
-        super(1, 999, "Red Ledger", "red_ledger");
+        super(UnlocksData.COST_400, 4, "Red Ledger", "red_ledger");
         registerItem();
     }
 

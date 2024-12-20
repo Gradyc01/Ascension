@@ -1,6 +1,5 @@
 package me.depickcator.ascension.MainMenu.Command;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.MainMenu.Command.Commands.*;

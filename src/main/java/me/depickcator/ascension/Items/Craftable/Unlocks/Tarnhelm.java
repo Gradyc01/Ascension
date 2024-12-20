@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -19,7 +20,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 public class Tarnhelm extends Craft {
     private static Tarnhelm instance;
     private Tarnhelm() {
-        super(1, 2, "Tarnhelm", "tarnhelm");
+        super(UnlocksData.COST_150, 2, "Tarnhelm", "tarnhelm");
     }
 
     public static Tarnhelm getInstance() {

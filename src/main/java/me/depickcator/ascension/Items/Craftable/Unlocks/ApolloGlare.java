@@ -5,6 +5,7 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ShootsProjectiles;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -28,7 +29,7 @@ import java.util.List;
 public class ApolloGlare extends Craft implements ShootsProjectiles  {
     private static ApolloGlare instance;
     private ApolloGlare() {
-        super(1, 1, "Apollo's Glare", "apollo_glare");
+        super(UnlocksData.COST_375, 1, "Apollo's Glare", "apollo_glare");
 
         addProjectile(KEY, this);
     }

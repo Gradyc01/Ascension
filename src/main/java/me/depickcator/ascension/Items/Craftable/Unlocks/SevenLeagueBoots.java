@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -19,7 +20,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 public class SevenLeagueBoots extends Craft {
     private static SevenLeagueBoots instance;
     private SevenLeagueBoots() {
-        super(1, 2, "Seven League Boots", "seven_league_boots");
+        super(UnlocksData.COST_300, 2, "Seven League Boots", "seven_league_boots");
     }
 
     public static SevenLeagueBoots getInstance() {

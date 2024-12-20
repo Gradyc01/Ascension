@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -15,7 +16,7 @@ import me.depickcator.ascension.Items.UnlockUtil;
 public class AscensionKey extends Craft {
     private static AscensionKey instance;
     private AscensionKey() {
-        super(1, 999, "Ascension Key", "ascension_key");
+        super(UnlocksData.COST_500, 999, "Ascension Key", "ascension_key");
     }
 
     @Override
@@ -36,7 +37,7 @@ public class AscensionKey extends Craft {
         ItemMeta meta = item.getItemMeta();
         meta.setEnchantmentGlintOverride(true);
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
-        meta.displayName(TextUtil.makeText(getDisplayName()));
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.PINK));
         item.setItemMeta(meta);
         return item;
     }

@@ -1,13 +1,10 @@
 package me.depickcator.ascension.MainMenu.Command.Commands;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
 import me.depickcator.ascension.Player.Cooldowns.TeleportSequence;
 import me.depickcator.ascension.Player.PlayerData;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

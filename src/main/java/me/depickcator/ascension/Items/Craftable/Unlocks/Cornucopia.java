@@ -5,6 +5,7 @@ import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -22,7 +23,7 @@ import org.bukkit.potion.PotionEffectType;
 public class Cornucopia extends Craft implements ItemClick {
     private static Cornucopia instance;
     private Cornucopia() {
-        super(1, 1, "Cornucopia", "cornucopia");
+        super(UnlocksData.COST_225, 1, "Cornucopia", "cornucopia");
         registerItem();
     }
     @Override

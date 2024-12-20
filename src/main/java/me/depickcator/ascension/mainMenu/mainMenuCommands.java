@@ -1,6 +1,5 @@
 package me.depickcator.ascension.MainMenu;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.MainMenu.Unlocks.NewUnlocksGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.PlayerData;
@@ -14,10 +13,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class mainMenuCommands implements CommandExecutor {
-    private final Ascension ab;
 
     public mainMenuCommands() {
-        this.ab = Ascension.getInstance();
     }
 
     @Override
@@ -45,6 +42,9 @@ public class mainMenuCommands implements CommandExecutor {
             }
             case "commands" -> {
                 new CommandGUI(pD);
+            }
+            case "skills" -> {
+                new SkillsGUI(pD);
             }
             default -> {
                 return false;

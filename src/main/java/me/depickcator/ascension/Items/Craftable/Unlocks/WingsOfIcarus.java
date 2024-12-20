@@ -4,6 +4,7 @@ import me.depickcator.ascension.General.AttributeUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -19,7 +20,7 @@ import org.bukkit.inventory.meta.Repairable;
 public class WingsOfIcarus extends Craft {
     private static WingsOfIcarus instance;
     private WingsOfIcarus() {
-        super(1, 1, "Wings of Icarus", "wings_of_icarus");
+        super(UnlocksData.COST_500, 1, "Wings of Icarus", "wings_of_icarus");
     }
 
     public static WingsOfIcarus getInstance() {

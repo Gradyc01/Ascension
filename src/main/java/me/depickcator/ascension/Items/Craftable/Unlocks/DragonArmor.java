@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
@@ -22,7 +23,7 @@ public class DragonArmor extends Craft {
     private static DragonArmor instance;
 
     private DragonArmor() {
-        super(1, 2, "Dragon Armor", "dragon_armor");
+        super(UnlocksData.COST_300, 2, "Dragon Armor", "dragon_armor");
     }
 
 

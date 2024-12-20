@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
@@ -13,7 +14,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class Resurrection extends Craft {
     private static Resurrection instance;
     private Resurrection() {
-        super(1, 1, "Resurrection", "resurrection");
+        super(UnlocksData.COST_450, 1, "Resurrection", "resurrection");
     }
 
     public static Resurrection getInstance() {

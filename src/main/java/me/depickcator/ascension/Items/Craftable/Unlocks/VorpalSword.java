@@ -3,6 +3,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
@@ -17,7 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class VorpalSword extends Craft {
     private static VorpalSword instance;
     private VorpalSword() {
-        super(1, 2, "Vorpal Sword", "vorpal_sword");
+        super(UnlocksData.COST_250, 2, "Vorpal Sword", "vorpal_sword");
     }
 
     public static VorpalSword getInstance() {

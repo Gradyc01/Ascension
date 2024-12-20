@@ -15,13 +15,14 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class MainMenu extends AscensionGUI {
+public class MainMenuGUI extends AscensionGUI {
 
-    public MainMenu(PlayerData playerData) {
+    public MainMenuGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Ascension", TextUtil.AQUA), true);
-        inventory.setItem(21, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Unlocks"));
+        inventory.setItem(21, makeMainMenuBoardButton(Material.CRAFTING_TABLE, "Unlocks"));
         inventory.setItem(22, makeMainMenuBoardButton(Material.ENCHANTED_BOOK, "Board"));
         inventory.setItem(23, makeMainMenuBoardButton(Material.COMPARATOR, "Commands"));
+        inventory.setItem(30, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Skills"));
         inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
         inventory.setItem(49, getCloseButton());
         playerHeadButton(13);
@@ -40,8 +41,11 @@ public class MainMenu extends AscensionGUI {
             case Material.COMPARATOR -> {
                 player.performCommand("openmenu commands");
             }
-            case Material.DIAMOND_SWORD -> {
+            case Material.CRAFTING_TABLE -> {
                 player.performCommand("openmenu unlocks-1");
+            }
+            case Material.DIAMOND_SWORD -> {
+                player.performCommand("openmenu skills");
             }
             case Material.FEATHER -> {
                 Scavenger scavenger = Ascension.getInstance().getTimeline().getScavenger();

@@ -1,9 +1,12 @@
 package me.depickcator.ascension.Skills;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUnlocks;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -21,7 +24,7 @@ public class Combat implements Skills {
     private final int MAXLEVEL = 5;
     private final static ArrayList<Integer> LEVELREQUIREMENTS= new ArrayList<>(
             Arrays.asList(25, 100, 250, 750, 1500));
-    private static final ArrayList<SkillRewards> rewards = new ArrayList<>(
+    private final ArrayList<SkillRewards> rewards = new ArrayList<>(
             Arrays.asList(
                     Combat.level1Rewards(),
                     Combat.level2Rewards(),
@@ -59,7 +62,7 @@ public class Combat implements Skills {
     }
 
     private void levelUp(int newLevel) {
-        SkillRewards reward = Combat.rewards.get(level-1);
+        SkillRewards reward = rewards.get(level-1);
         levelUpMessage(newLevel, reward, player, NAME);
         playLevelUpSound(player);
         reward.giveRewards(playerData);
@@ -81,8 +84,8 @@ public class Combat implements Skills {
     }
 
     @Override
-    public ArrayList<String> getRewardText(int level) {
-        return null;
+    public ArrayList<Component> getRewardText(int level) {
+        return parseRewardText(rewards.get(level - 1));
     }
 
     @Override
@@ -91,6 +94,11 @@ public class Combat implements Skills {
             return " (" + experience + "/" + Combat.LEVELREQUIREMENTS.get(MAXLEVEL - 1) + ")";
         }
         return " (" + experience + "/" + Combat.LEVELREQUIREMENTS.get(level) + ")";
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 
     private static SkillRewards level1Rewards() {

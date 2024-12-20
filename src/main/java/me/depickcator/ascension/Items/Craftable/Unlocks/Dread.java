@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -12,7 +13,7 @@ import org.bukkit.inventory.meta.OminousBottleMeta;
 public class Dread extends Craft {
     private static Dread instance;
     private Dread() {
-        super(1, 3, "Dread", "dread");
+        super(UnlocksData.COST_250, 3, "Dread", "dread");
     }
 
 

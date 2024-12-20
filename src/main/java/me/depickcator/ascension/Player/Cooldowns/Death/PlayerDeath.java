@@ -36,7 +36,7 @@ public class PlayerDeath {
                 playerData.setPlayerState(PlayerData.STATE_DEAD);
             } else {
                 setPlayerSpectating(playerData);
-                playerData.setPlayerState(PlayerData.STATE_SPECTATING);
+//                playerData.setPlayerState(PlayerData.STATE_SPECTATING);
                 playerData.getPlayerTeam().getTeam().updateState();
                 Player p = playerData.getPlayer();
                 p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 100f, 1f);
@@ -104,7 +104,7 @@ public class PlayerDeath {
         Player p = playerData.getPlayer();
         p.setGameMode(GameMode.SURVIVAL);
         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 3, false, false));
-        p.removePotionEffect(PotionEffectType.BLINDNESS);
+        p.removePotionEffect(PotionEffectType.DARKNESS);
         Location spawn = Ascension.getSpawn();
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
                 "spreadplayers " + spawn.getBlockX() + " " + spawn.getBlockZ() + " 200 500 true " + p.getName());
@@ -115,6 +115,12 @@ public class PlayerDeath {
         playerData.setPlayerState(PlayerData.STATE_SPECTATING);
     }
 
+    public void respawnEveryone() {
+        for (PlayerData playerData : players) {
+            respawnPlayer(playerData);
+        }
+    }
+
     public static PlayerDeath getInstance() {
         if (instance == null) {
             instance = new PlayerDeath(Ascension.getInstance());
@@ -122,5 +128,6 @@ public class PlayerDeath {
         return instance;
 
     }
+
 
 }

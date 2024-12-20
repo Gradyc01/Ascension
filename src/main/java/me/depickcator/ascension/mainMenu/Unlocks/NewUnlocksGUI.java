@@ -30,13 +30,15 @@ public class NewUnlocksGUI extends AscensionGUI {
         setPageTabs();
         inventory.setItem(48, goBackItem());
         inventory.setItem(50, explainerItem());
+        if (pageNumber != 5) inventory.setItem(53, nextPageItem());
+        if (pageNumber != 1) inventory.setItem(45, previousPageItem());
         playerHeadButton(49);
     }
 
     private void setPageTabs() {
         pages = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            ItemStack item = i + 1 == pageNumber ? lockableItem(Material.GREEN_STAINED_GLASS_PANE) : lockableItem(Material.BLUE_STAINED_GLASS_PANE);
+            ItemStack item = i + 1 == pageNumber ? lockableItem(Material.LIME_STAINED_GLASS_PANE) : lockableItem(Material.BLUE_STAINED_GLASS_PANE);
             ItemMeta meta = item.getItemMeta();
             meta.displayName(TextUtil.makeText("Tier " + TextUtil.toRomanNumeral((i + 1)), TextUtil.AQUA));
             item.setItemMeta(meta);
@@ -108,6 +110,8 @@ public class NewUnlocksGUI extends AscensionGUI {
             purchaseLore = new ArrayList<>();
         }
 
+        purchaseLore.add(TextUtil.makeText("[" + craft.getMaxCrafts() + " Uses]", TextUtil.GREEN));
+
         if (!playerUnlocks.hasUnlock(craft.getKey())) {
             Component costText = TextUtil.makeText("[" + craft.getCraftCost() + " Souls]", TextUtil.GOLD);
             purchaseLore.add(costText);
@@ -156,9 +160,14 @@ public class NewUnlocksGUI extends AscensionGUI {
             new NewUnlocksGUI(playerData, (char) (index + 1));
             return;
         }
+
         if (item.equals(goBackItem())) {
             player.performCommand("open-main-menu");
             return;
+        } else if (item.equals(nextPageItem())) {
+            new NewUnlocksGUI(playerData, (char)(pageNumber + 1));
+        } else if (item.equals(previousPageItem())) {
+            new NewUnlocksGUI(playerData, (char)(pageNumber - 1));
         }
         determineRecipeShape(event, player, item);
     }

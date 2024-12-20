@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -15,7 +16,7 @@ import org.bukkit.potion.PotionEffectType;
 public class CubeConverter extends Craft {
     private static CubeConverter instance;
     private CubeConverter() {
-        super(1, 3, "Cube Converter", "cube_converter");
+        super(UnlocksData.COST_200, 3, "Cube Converter", "cube_converter");
     }
 
     public void recipe() {
