@@ -1,5 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
+import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
+import me.depickcator.ascension.Timeline.Events.Ascension.AscensionLocation;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
 import me.depickcator.ascension.Timeline.Events.Feast.Feast;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
@@ -20,7 +22,7 @@ public class startEvents implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (!(commandSender instanceof Player)) return false;
         Player p = ((Player) commandSender).getPlayer();
-        if (p == null || strings.length != 1) return false;
+        if (p == null || strings.length < 1) return false;
 
         String name = strings[0];
 
@@ -34,6 +36,8 @@ public class startEvents implements CommandExecutor {
             scavenger.spawnInScavenger();
         } else if (name.equalsIgnoreCase("feast")) {
             new Feast();
+        } else if (name.equalsIgnoreCase("ascension_loc")) {
+            new AscensionEvent();
         }
         return false;
     }

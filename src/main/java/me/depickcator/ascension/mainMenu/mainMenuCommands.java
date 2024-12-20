@@ -44,7 +44,7 @@ public class mainMenuCommands implements CommandExecutor {
 //                new UnlocksGUI_2(ab, p);
             }
             case "commands" -> {
-                new CommandGUI(ab, pD);
+                new CommandGUI(pD);
             }
             default -> {
                 return false;

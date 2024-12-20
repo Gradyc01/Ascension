@@ -6,11 +6,12 @@ public class GameStates {
     public final static int LOBBY = 1;
     public final static int GAME_BEFORE_GRACE = 2;
     public final static int GAME_LOADING = 3;
-    public final static int GAME_FEAST_LOADING = 7;
-
-    public final static int GAME_ENDING = 4;
-    public final static int GAME_AFTER_GRACE = 5;
+    public final static int GAME_AFTER_GRACE = 4;
+    public final static int GAME_FEAST_LOADING = 5;
     public final static int GAME_FINAL_ASCENSION = 6;
+    public final static int GAME_ENDING = 7;
+
+    public final static int GAME_ASCENSION = 8;
 
     private int currentState;
 
@@ -40,10 +41,11 @@ public class GameStates {
     }
 
     public boolean canTeleport() {
-        return !(checkState(GAME_FEAST_LOADING) ||
-                checkState(GAME_FINAL_ASCENSION) ||
-                checkState(LOBBY) ||
-                checkState(GAME_ENDING));
+//        return !(checkState(GAME_FEAST_LOADING) ||
+//                checkState(GAME_FINAL_ASCENSION) ||
+//                checkState(LOBBY) ||
+//                checkState(GAME_ENDING));
+        return checkState(GAME_FINAL_ASCENSION) || checkState(GAME_AFTER_GRACE);
     }
 
     public boolean inGame() {

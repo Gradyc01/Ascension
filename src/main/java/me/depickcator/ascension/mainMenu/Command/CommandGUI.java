@@ -3,11 +3,8 @@ package me.depickcator.ascension.MainMenu.Command;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.MainMenu.Command.Commands.*;
 import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.MainMenu.Command.Commands.Commands;
-import me.depickcator.ascension.MainMenu.Command.Commands.FoodDrops;
-import me.depickcator.ascension.MainMenu.Command.Commands.NightVision;
-import me.depickcator.ascension.MainMenu.Command.Commands.SendCoords;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -17,12 +14,14 @@ import java.util.*;
 
 public class CommandGUI extends AscensionGUI {
     private final HashMap<ItemStack, Commands> map;
-    public CommandGUI(Ascension plugin, PlayerData playerData) {
+    public CommandGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Commands", TextUtil.AQUA), true);
         map = new HashMap<>();
         initializeButtons(new NightVision(), 16, true, playerData.getPlayerStats().isNightVision());
         initializeButtons(new FoodDrops(), 25, true, playerData.getPlayerStats().isFoodDrops());
-        initializeButtons(new SendCoords(plugin), 10);
+        initializeButtons(new SendCoords(), 10);
+        initializeButtons(new SpawnTravel(), 19);
+        initializeButtons(new Surface(), 28);
         inventory.setItem(48, goBackItem());
         playerHeadButton(49);
 
@@ -64,7 +63,7 @@ public class CommandGUI extends AscensionGUI {
         if (map.containsKey(item)) {
             Commands c = map.get(item);
             c.uponEvent(event, playerData);
-            new CommandGUI(plugin, playerData);
+            new CommandGUI(playerData);
             return;
         }
         if (item.equals(goBackItem())) {
