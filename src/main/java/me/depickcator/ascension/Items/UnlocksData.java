@@ -84,6 +84,7 @@ public class UnlocksData {
         tier4Unlocks.add(ExplosivePropulsion.getInstance());
         tier4Unlocks.add(Resurrection.getInstance());
         tier4Unlocks.add(WeaverSilk.getInstance());
+        tier4Unlocks.add(AscensionKey.getInstance());
     }
 
     private void Tier5Unlocks() {
