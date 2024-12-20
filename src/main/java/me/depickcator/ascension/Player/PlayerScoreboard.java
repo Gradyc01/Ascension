@@ -86,9 +86,9 @@ public class PlayerScoreboard {
 //        Component itemsNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getItemsObtained() +  "", TextUtil.GREEN);
 //        editLine(board, 10, itemsText.append(itemsNum));
         Component itemsText = TextUtil.makeText("  Items: ", TextUtil.WHITE);
-        Component itemsNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getItemsObtained() +  ",", TextUtil.GREEN);
+        Component itemsNum = TextUtil.makeText( playerData.getPlayerTeam().getTeam().getTeamStats().getItemsObtained() + "", TextUtil.GREEN);
         Component killText = TextUtil.makeText("  Kills: ", TextUtil.WHITE);
-        Component killNum = TextUtil.makeText(playerData.getPlayerStats().getKills() + "", TextUtil.GREEN);
+        Component killNum = TextUtil.makeText(playerData.getPlayerStats().getKills() + ",", TextUtil.GREEN);
         editLine(board, 6, killText.append(killNum).append(itemsText).append(itemsNum));
 
 //        Component scoreText = TextUtil.makeText("  Score: ", TextUtil.WHITE);

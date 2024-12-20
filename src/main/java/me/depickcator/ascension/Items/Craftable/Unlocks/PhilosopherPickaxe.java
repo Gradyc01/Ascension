@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -17,7 +18,7 @@ import org.bukkit.inventory.meta.Repairable;
 public class PhilosopherPickaxe extends Craft {
     private static PhilosopherPickaxe instance;
     private PhilosopherPickaxe() {
-        super(2, 4, "Philosopher’s Pickaxe", "philosopher_pickaxe");
+        super(UnlocksData.COST_250, 4, "Philosopher’s Pickaxe", "philosopher_pickaxe");
     }
 
     public static PhilosopherPickaxe getInstance() {

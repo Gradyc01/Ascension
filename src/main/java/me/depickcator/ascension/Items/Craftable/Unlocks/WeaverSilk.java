@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -13,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class WeaverSilk extends Craft {
     private static WeaverSilk instance;
     private WeaverSilk() {
-        super(1, 1, "A Weaver's Silk", "weaver_silk");
+        super(UnlocksData.COST_275, 1, "A Weaver's Silk", "weaver_silk");
     }
 
     public static WeaverSilk getInstance() {

@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -13,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfProjectileProtection extends Craft {
     private static BookOfProjectileProtection instance;
     private BookOfProjectileProtection() {
-        super(1, 4, "Artemis's Book", "book_of_projectile_protection");
+        super(UnlocksData.COST_100, 4, "Artemis's Book", "book_of_projectile_protection");
     }
 
     @Override

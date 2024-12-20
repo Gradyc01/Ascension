@@ -34,7 +34,7 @@ public class SendCoords implements Commands {
                             ", " + loc.getBlockY() +
                             ", " + loc.getBlockZ() +
                             ")", TextUtil.GREEN);
-            p.sendMessage(TextUtil.makeText(p.getName() + " is currently at ", TextUtil.AQUA).append(coordsText));
+            p.sendMessage(TextUtil.makeText(playerData.getPlayer().getName() + " is currently at ", TextUtil.AQUA).append(coordsText));
             SoundUtil.playHighPitchPling(p);
         }
 

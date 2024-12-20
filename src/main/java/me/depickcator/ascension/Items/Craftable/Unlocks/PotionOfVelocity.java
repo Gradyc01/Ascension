@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -17,7 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 public class PotionOfVelocity extends Craft {
     private static PotionOfVelocity instance;
     public PotionOfVelocity() {
-        super(1, 3, "Potion of Velocity", "potion_of_velocity");
+        super(UnlocksData.COST_150, 3, "Potion of Velocity", "potion_of_velocity");
     }
 
     public static PotionOfVelocity getInstance() {

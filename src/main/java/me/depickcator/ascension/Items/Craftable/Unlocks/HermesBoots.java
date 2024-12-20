@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -19,7 +20,7 @@ import org.bukkit.inventory.meta.Repairable;
 public class HermesBoots extends Craft {
     private static HermesBoots instance;
     private HermesBoots() {
-        super(1, 2, "Hermes' Boots" ,"hermes_boots");
+        super(UnlocksData.COST_375, 2, "Hermes' Boots" ,"hermes_boots");
     }
 
     @Override

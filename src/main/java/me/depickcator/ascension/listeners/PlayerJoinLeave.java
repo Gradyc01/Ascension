@@ -2,6 +2,7 @@ package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Location;
@@ -23,11 +24,11 @@ public class PlayerJoinLeave implements Listener {
             case GameStates.LOBBY -> {
                 onPlayerJoinLobby(event);
             }
-            case GameStates.GAME_BEFORE_GRACE -> {
-
+            case GameStates.UNLOADED -> {
+                return;
             }
             default -> {
-                return;
+                onPlayerJoinDuringGame(event);
             }
         }
 
@@ -43,11 +44,14 @@ public class PlayerJoinLeave implements Listener {
                     playerData.getPlayerTeam().leaveTeam();
                 }
             }
-            case GameStates.GAME_BEFORE_GRACE -> {
-
+            case GameStates.UNLOADED -> {
+                return;
             }
             default -> {
-                return;
+                Player player = event.getPlayer();
+                PlayerData playerData = PlayerUtil.getPlayerData(player);
+                PlayerDeath.getInstance().setPlayerSpectating(playerData);
+                playerData.getPlayerTeam().getTeam().updateState();
             }
         }
     }
@@ -58,5 +62,13 @@ public class PlayerJoinLeave implements Listener {
         Location spawn = Ascension.getSpawn();
         playerData.resetToLobby();
         player.teleport(new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102, spawn.getZ()));
+    }
+
+    private void onPlayerJoinDuringGame(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        PlayerData playerData = PlayerUtil.assignNewPlayerData(player);
+        Location spawn = Ascension.getSpawn();
+        player.teleport(new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102, spawn.getZ()));
+        PlayerDeath.getInstance().setPlayerSpectating(playerData);
     }
 }

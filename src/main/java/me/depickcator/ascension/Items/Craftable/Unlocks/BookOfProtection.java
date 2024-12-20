@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -13,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfProtection extends Craft {
     private static BookOfProtection instance;
     private BookOfProtection() {
-        super(1, 4, "Book of Protection", "book_of_protection");
+        super(UnlocksData.COST_125, 4, "Book of Protection", "book_of_protection");
     }
 
 

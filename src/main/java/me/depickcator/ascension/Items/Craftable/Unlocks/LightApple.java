@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -11,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class LightApple extends Craft {
     private static LightApple instance;
     public LightApple() {
-        super(1, 2, "Light Apple", "light_apple");
+        super(UnlocksData.COST_125, 2, "Light Apple", "light_apple");
     }
 
     public static LightApple getInstance() {

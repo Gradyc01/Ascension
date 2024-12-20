@@ -3,6 +3,7 @@ package me.depickcator.ascension.Skills;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -15,8 +16,9 @@ public interface Skills {
 //    void giveRewards(int level, Player p);
     String getExp();
     String getExpLevel();
-    ArrayList<String> getRewardText(int level);
+    ArrayList<Component> getRewardText(int level);
     String getExpOverTotalNeeded();
+    String getName();
 //    boolean canLevelUp();
 //    void levelUp(int newLevel)
 
@@ -28,6 +30,17 @@ public interface Skills {
 
     default void playGainedExpSound(Player p) {
         p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.6f);
+    }
+
+    default ArrayList<Component> parseRewardText(SkillRewards rewards) {
+        ArrayList<Component> texts = new ArrayList<>();
+        for (ItemStack item : rewards.getItems()) {
+            Component displayName = item.displayName().color(TextUtil.DARK_PURPLE).decoration(TextDecoration.ITALIC, false);
+            Component amount = TextUtil.makeText(" x" + item.getAmount(), TextUtil.DARK_PURPLE);
+            texts.add(displayName.append(amount));
+        }
+        texts.add(TextUtil.makeText(rewards.getUnlockTokens() + " Souls", TextUtil.DARK_PURPLE));
+        return texts;
     }
 
     default void playLevelUpSound(Player p) {

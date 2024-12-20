@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -19,7 +20,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 public class HideOfLeviathan extends Craft {
     private static HideOfLeviathan instance;
     private HideOfLeviathan() {
-        super(1, 2, "Hide of Leviathan", "hide_of_leviathan");
+        super(UnlocksData.COST_300, 2, "Hide of Leviathan", "hide_of_leviathan");
     }
 
     public static HideOfLeviathan getInstance() {

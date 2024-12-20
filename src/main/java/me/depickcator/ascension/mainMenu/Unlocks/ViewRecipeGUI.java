@@ -31,6 +31,9 @@ public class ViewRecipeGUI extends AscensionGUI {
     }
 
     private void makeRecipeGUI(Craft craft) {
+        for (int i : craftingGridSlots) {
+            inventory.setItem(i, new ItemStack(Material.AIR));
+        }
         Recipe recipe = craft.getRecipe();
         if (recipe instanceof ShapedRecipe shapedRecipe) {
             shapedRecipeGUI(shapedRecipe);

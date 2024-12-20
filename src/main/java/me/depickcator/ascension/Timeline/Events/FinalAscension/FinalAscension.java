@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Player.Cooldowns.Death.DeathTimer;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
@@ -25,6 +26,7 @@ public class FinalAscension {
     public FinalAscension(){
         this.plugin = Ascension.getInstance();
         TextUtil.debugText("Final Ascension Ran");
+        PlayerDeath.getInstance().respawnEveryone();
         setGameState();
         calculateTeamTimers();
         finalAscensionStartAnnouncement();

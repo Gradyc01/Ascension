@@ -1,7 +1,9 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
+import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -13,7 +15,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfThoth extends Craft {
     private static BookOfThoth instance;
     private BookOfThoth() {
-        super(1, 1, "Book Of Thoth", "book_of_thoth");
+        super(UnlocksData.COST_250, 1, "Book Of Thoth", "book_of_thoth");
     }
     @Override
     protected Recipe initRecipe() {
@@ -32,6 +34,7 @@ public class BookOfThoth extends Craft {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
         EnchantmentStorageMeta storageMeta = (EnchantmentStorageMeta) item.getItemMeta();
+        storageMeta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.YELLOW));
         storageMeta.setCustomModelData(plugin.generateModelNumber());
         storageMeta.addStoredEnchant(Enchantment.PROTECTION, 3, true);
         storageMeta.addStoredEnchant(Enchantment.FIRE_ASPECT, 1, true);

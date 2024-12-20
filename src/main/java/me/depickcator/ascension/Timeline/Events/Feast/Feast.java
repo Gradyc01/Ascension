@@ -3,6 +3,7 @@ package me.depickcator.ascension.Timeline.Events.Feast;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamUtil;
 import org.bukkit.Location;
@@ -26,6 +27,7 @@ public class Feast {
     public Feast() {
         spawn = Ascension.getSpawn();
         locations = new ArrayList<>();
+        PlayerDeath.getInstance().respawnEveryone();
         initLocations();
         spreadAllTeams();
         loop();

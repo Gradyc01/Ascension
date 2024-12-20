@@ -3,6 +3,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -12,7 +13,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class MakeshiftStar extends Craft {
     private static MakeshiftStar instance;
     private MakeshiftStar() {
-        super(1, 999,"Makeshift Star", "makeshift_star");
+        super(UnlocksData.COST_200, 999,"Makeshift Star", "makeshift_star");
     }
 
     public static MakeshiftStar getInstance() {

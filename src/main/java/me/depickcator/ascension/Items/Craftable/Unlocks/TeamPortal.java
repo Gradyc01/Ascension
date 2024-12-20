@@ -5,10 +5,10 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GUIs.TeamPortalGUI;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
 import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -22,7 +22,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class TeamPortal extends Craft implements ItemClick {
     private static TeamPortal instance;
     private TeamPortal() {
-        super(1, 999, "Team Portal", "team_portal");
+        super(UnlocksData.COST_350, 4, "Team Portal", "team_portal");
         registerItem();
     }
 

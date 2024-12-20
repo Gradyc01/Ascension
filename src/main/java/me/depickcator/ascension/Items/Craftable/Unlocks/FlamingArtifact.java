@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
+import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -11,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class FlamingArtifact extends Craft {
     private static FlamingArtifact instance;
     private FlamingArtifact() {
-        super(1,2 ,"Flaming Artifact", "flaming_artifact");
+        super(UnlocksData.COST_125,2 ,"Flaming Artifact", "flaming_artifact");
     }
 
     @Override

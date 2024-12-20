@@ -24,7 +24,7 @@ public class OpenMainMenuCommand implements CommandExecutor {
         if (p == null || CombatTimer.getInstance().isOnCooldown(p)) {
             return false;
         }
-        new MainMenu(PlayerUtil.getPlayerData(p));
+        new MainMenuGUI(PlayerUtil.getPlayerData(p));
 //        p.openInventory(inventory);
 //        setItemBackground(inventory, GUISize);
 //        inventory.setItem(21, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Unlocks"));

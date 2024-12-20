@@ -1,11 +1,14 @@
 package me.depickcator.ascension.Timeline.Events.Ascension;
 
+import it.unimi.dsi.fastutil.io.TextIO;
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
@@ -62,7 +65,18 @@ public class AscensionLocation extends EntityInteraction {
         entity.setVelocity(new Vector(0, 1, 0));
         Wither w = (Wither) entity;
         plugin.getServer().broadcast(TextUtil.makeText("The ascension wither activate"));
+        startText();
+    }
 
+    private void startText() {
+//        plugin.getServer()
+        Component text = TextUtil.topBorder(TextUtil.DARK_GRAY);
+        text = text.append(TextUtil.makeText("\n        ASCENSION STARTED\n", TextUtil.WHITE));
+        text = text.append(TextUtil.makeText("    Stop the before you no longer can", TextUtil.DARK_GRAY));
+        text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
+        plugin.getServer().broadcast(text);
+        TextUtil.broadcastTitle(TextUtil.makeTitle(TextUtil.makeText("ASCENSION STARTED", TextUtil.YELLOW), 20, 20, 10));
+        SoundUtil.broadcastSound(Sound.ENTITY_ENDER_DRAGON_GROWL, 20f, 0);
     }
 
     private void forceLoadChunk(boolean forceLoad) {
@@ -78,19 +92,6 @@ public class AscensionLocation extends EntityInteraction {
     }
 
     private LivingEntity spawnEntity() {
-//        ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
-//
-//        protocolManager.addPacketListener(new PacketAdapter(this, com.comphenix.protocol.PacketType.Play.Server.ENTITY_METADATA) {
-//            @Override
-//            public void onPacketSending(PacketEvent event) {
-//                // Check if the packet is related to a Wither
-//                WrappedDataWatcher watcher = new WrappedDataWatcher(event.getPacket().getWatchableCollectionModifier().read(0));
-//                if (watcher != null && watcher.getEntity(event.getPlayer()) instanceof Wither) {
-//                    event.setCancelled(true); // Prevent the boss bar from being displayed
-//                }
-//            }
-//        });
-
         Entity e = plugin.getWorld().spawnEntity(spawnLocation, EntityType.WITHER);
         LivingEntity livingEntity = (LivingEntity) e;
         livingEntity.setCustomNameVisible(true);
