@@ -5,8 +5,10 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
 import me.depickcator.ascension.Player.PlayerData;
 import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Teams.Team;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -21,6 +23,7 @@ public class AscensionLocation extends EntityInteraction {
     private final LivingEntity entity;
     private final Ascension plugin;
     private final AscensionEvent event;
+    private Team ascendingTeam;
 
     public AscensionLocation(int x, int z, AscensionEvent event) {
         this.event = event;
@@ -40,12 +43,18 @@ public class AscensionLocation extends EntityInteraction {
             return false;
         }
         removeInteraction(entity);
-        this.event.start(this, pD.getPlayerTeam().getTeam());
+        ascendingTeam = pD.getPlayerTeam().getTeam();
+        this.event.start(this);
         return true;
     }
 
     public void startAnimation() {
         entity.setInvulnerable(false);
+//        entity.setAI(true);
+//        entity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0);
+//        entity.getAttribute(Attribute.FLYING_SPEED).setBaseValue(0);
+//        entity.getAttribute(Attribute.KNOCKBACK_RESISTANCE).setBaseValue(1);
+
         plugin.getWorld().strikeLightningEffect(spawnLocation);
         plugin.getWorld().playSound(spawnLocation, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 3, 1);
         plugin.getWorld().playSound(spawnLocation, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 3, 0);
@@ -69,6 +78,19 @@ public class AscensionLocation extends EntityInteraction {
     }
 
     private LivingEntity spawnEntity() {
+//        ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+//
+//        protocolManager.addPacketListener(new PacketAdapter(this, com.comphenix.protocol.PacketType.Play.Server.ENTITY_METADATA) {
+//            @Override
+//            public void onPacketSending(PacketEvent event) {
+//                // Check if the packet is related to a Wither
+//                WrappedDataWatcher watcher = new WrappedDataWatcher(event.getPacket().getWatchableCollectionModifier().read(0));
+//                if (watcher != null && watcher.getEntity(event.getPlayer()) instanceof Wither) {
+//                    event.setCancelled(true); // Prevent the boss bar from being displayed
+//                }
+//            }
+//        });
+
         Entity e = plugin.getWorld().spawnEntity(spawnLocation, EntityType.WITHER);
         LivingEntity livingEntity = (LivingEntity) e;
         livingEntity.setCustomNameVisible(true);
@@ -86,5 +108,9 @@ public class AscensionLocation extends EntityInteraction {
 
     public LivingEntity getEntity() {
         return entity;
+    }
+
+    public Team getAscendingTeam() {
+        return ascendingTeam;
     }
 }

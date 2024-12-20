@@ -33,6 +33,11 @@ public class Timeline {
         TextUtil.debugText("Started Timeline");
     }
 
+    public void pauseTimeline() {
+        keepRunning = false;
+        TextUtil.debugText("Paused Timeline");
+    }
+
     private void mainTimelineMinutes() {
         new BukkitRunnable() {
             @Override
