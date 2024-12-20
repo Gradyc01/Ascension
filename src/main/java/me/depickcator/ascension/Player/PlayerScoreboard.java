@@ -107,7 +107,16 @@ public class PlayerScoreboard {
             editLine(board, 12, TextUtil.makeText("        " + minutes + ":" + seconds, TextUtil.WHITE));
 
             return;
+        } else if (plugin.getGameState().checkState(GameStates.GAME_ASCENSION)) {
+            int time = plugin.getTimeline().getAscensionEvent().getAscendingTeam().getTeamStats().getAscensionTimer();
+            String minutes = time/60 + "";
+            String seconds = time%60 <= 9 ? "0" + time%60 : time%60 + "";
+            editLine(board, 13, TextUtil.makeText("  Ascend In: ", TextUtil.GOLD));
+            editLine(board, 12, TextUtil.makeText("        " + minutes + ":" + seconds, TextUtil.WHITE));
+            return;
+
         }
+
         editLine(board, 13, TextUtil.makeText("  Deathmatch In:  ", TextUtil.GOLD));
         editLine(board, 12, plugin.getTimeline().getTime());
     }

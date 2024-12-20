@@ -15,7 +15,7 @@ public class Team {
     public static int STATE_DEPRECATED = 2;
     private String teamKey;
     private ArrayList<Player> teamMembers;
-    private Player leader;
+    private final Player leader;
     private final Ascension plugin;
     private final TeamStats teamStats;
     private int STATE;
@@ -119,6 +119,10 @@ public class Team {
 
     public void setSTATE(int STATE) {
         this.STATE = STATE;
+    }
+
+    public Player getLeader() {
+        return leader;
     }
 
     public void updateState() {
