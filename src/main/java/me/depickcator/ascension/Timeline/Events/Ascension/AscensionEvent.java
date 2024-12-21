@@ -3,19 +3,13 @@ package me.depickcator.ascension.Timeline.Events.Ascension;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Interfaces.EntityInteraction;
-import me.depickcator.ascension.Items.Craftable.Unlocks.FlintShovel;
-import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Teams.Team;
+import me.depickcator.ascension.Items.Craftable.Unlocks.AscensionKey;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.TeamStats;
 import me.depickcator.ascension.Timeline.Events.Winner.Winner;
 import net.kyori.adventure.text.Component;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Wither;
-import org.bukkit.util.Vector;
-import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Location;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -99,7 +93,9 @@ public class AscensionEvent {
 
     private void stop() {
         eventOngoing = false;
+        ascendingLocation.closeLocation();
         ascendingLocation = null;
+
 
     }
 
@@ -121,8 +117,7 @@ public class AscensionEvent {
     public boolean canStartEvent(PlayerData pD) {
         if (eventOngoing) return false;
         int score = pD.getPlayerTeam().getTeam().getTeamStats().getGameScore();
-        if (score < 25/*|| !pD.getPlayer().getInventory().getItemInMainHand().equals(FlintShovel.getInstance().getItem())*/) return false;
-        return true;
+        return score >= 25 && pD.getPlayer().getInventory().getItemInMainHand().equals(AscensionKey.getInstance().getResult());
     }
 
 //    public Team getAscendingTeam() {

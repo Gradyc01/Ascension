@@ -2,9 +2,8 @@ package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedger;
-import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortal;
-import me.depickcator.ascension.Player.PlayerUnlocks;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.PlayerUnlocks;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.BuildLobby;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.MainMenu.Map.MapItem;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -33,6 +34,7 @@ public class CarePackage {
         int z = spawn.getBlockZ() + (int) ((r.nextDouble() * (RADIUS - (- RADIUS))) + 1 - RADIUS);
         spawnPoint = new Location(plugin.getWorld(), x, 255, z);
         plugin.getServer().broadcast(TextUtil.makeText("A Care Package will drop at: (" + x + ", " + z + ") in 5 minutes", TextUtil.AQUA));
+        plugin.getTimeline().getMapItems().addMapItem(new MapItem("Care Package", x, z, MapItem.CARE_PACKAGE));
         SoundUtil.broadcastSound(Sound.EVENT_RAID_HORN, 100, 0);
         plugin.getWorld().setChunkForceLoaded((int) Math.floor((double) x /16), (int) Math.floor((double) z /16), true);
         makeCarePackageArmorStand();

@@ -1,7 +1,8 @@
 package me.depickcator.ascension.MainMenu;
 
-import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.Cooldowns.CombatTimer;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,13 +19,12 @@ public class OpenMainMenuCommand implements CommandExecutor {
             return false;
         }
         Player p = ((Player) commandSender).getPlayer();
-
 //        inventory = Bukkit.createInventory(p,GUISize,TextUtil.makeText("Ascension", TextUtil.AQUA));
-//
-        if (p == null || CombatTimer.getInstance().isOnCooldown(p)) {
+        PlayerData pD = PlayerUtil.getPlayerData(p);
+        if (CombatTimer.getInstance().isOnCooldown(p) || pD == null) {
             return false;
         }
-        new MainMenuGUI(PlayerUtil.getPlayerData(p));
+        new MainMenuGUI(pD);
 //        p.openInventory(inventory);
 //        setItemBackground(inventory, GUISize);
 //        inventory.setItem(21, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Unlocks"));

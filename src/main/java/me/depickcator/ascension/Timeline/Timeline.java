@@ -4,7 +4,9 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.MainMenu.Map.MapItem;
+import me.depickcator.ascension.MainMenu.Map.MapItems;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
 import me.depickcator.ascension.Timeline.Events.Feast.Feast;
@@ -22,9 +24,11 @@ public class Timeline {
     private Scavenger scavenger;
     private AscensionEvent ascensionEvent;
     private static final int STARTING_MINUTES = 160;
+    private MapItems mapItems;
     public Timeline(Ascension plugin) {
         this.plugin = plugin;
         this.MINUTES = STARTING_MINUTES;
+        mapItems = new MapItems();
     }
 
     public void startTimeline() {
@@ -139,6 +143,8 @@ public class Timeline {
         MINUTES = STARTING_MINUTES;
         SECONDS = 60;
         scavenger = null;
+        mapItems = new MapItems();
+        Ascension.getInstance().getTimeline().getMapItems().addMapItem(new MapItem("Spawn", Ascension.getSpawn().getBlockX(), Ascension.getSpawn().getBlockZ(), MapItem.SPAWN));
     }
 
     public void setTime(int time) {
@@ -157,5 +163,9 @@ public class Timeline {
 
     public AscensionEvent getAscensionEvent() {
         return ascensionEvent;
+    }
+
+    public MapItems getMapItems() {
+        return mapItems;
     }
 }

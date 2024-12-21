@@ -5,9 +5,9 @@ import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
-import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUnlocks;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUnlocks;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamUtil;
 import net.kyori.adventure.text.Component;
@@ -16,7 +16,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -51,7 +50,6 @@ public class BingoData extends ItemComparison {
 
         this.plugin = ab;
         items = new ArrayList<>();
-//        itemList = new ItemList();
         resetPlayers();
     }
 
@@ -81,7 +79,7 @@ public class BingoData extends ItemComparison {
 
 
     public void claimItem(Player p) {
-        Inventory inv = p.getInventory();
+//        Inventory inv = p.getInventory();
         ArrayList<ItemStack> items = getItems();
         ArrayList<Boolean> hasItems = getItemsCompleted(p);
 
@@ -95,20 +93,38 @@ public class BingoData extends ItemComparison {
                 continue;
             }
             ItemStack item = items.get(i);
-            for (ItemStack j : inv.getContents()) {
-                if (j != null && equalItems(j, item)) {
-                    j.setAmount(j.getAmount() - 1);
-                    addScore(24 - i, p);
-                    giveRewards(p, item);
-                    checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)
-                    updateScoreboard(p);
-                    new BingoBoardGUI(PlayerUtil.getPlayerData(p));
-                    return;
-                }
+            if (claimItem(p, item, false)) return;
+        }
+//        SoundUtil.playErrorSoundEffect(p);
+//        p.sendMessage(Component.text("There were no items to claim").color(TextColor.color(255,0,0)));
+        TextUtil.errorMessage(p, "There were no items to claim");
+    }
+
+    public boolean claimItem(Player p, ItemStack item, boolean displayErrorText) {
+        for (ItemStack j : p.getInventory().getContents()) {
+            if (j != null && equalItems(j, item)) {
+                j.setAmount(j.getAmount() - 1);
+                addScore(24 - items.indexOf(item), p);
+                giveRewards(p, item);
+                checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)
+                updateScoreboard(p);
+                new BingoBoardGUI(PlayerUtil.getPlayerData(p));
+                return true;
             }
         }
-        SoundUtil.playErrorSoundEffect(p);
-        p.sendMessage(Component.text("There were no items to claim").color(TextColor.color(255,0,0)));
+        if (displayErrorText) {
+            TextUtil.errorMessage(p, "You can't claim this item");
+        }
+        return false;
+    }
+
+    public boolean canUnlockItem(Player p, ItemStack item) {
+        for (ItemStack j : p.getInventory().getContents()) {
+            if (j != null && equalItems(j, item)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void checkForLineCompletion(Player p) {

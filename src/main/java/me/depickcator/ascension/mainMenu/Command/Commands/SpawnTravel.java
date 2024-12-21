@@ -2,11 +2,12 @@ package me.depickcator.ascension.MainMenu.Command.Commands;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
-import me.depickcator.ascension.Player.Cooldowns.TeleportSequence;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.Cooldowns.TeleportCooldown;
+import me.depickcator.ascension.Player.Data.Cooldowns.TeleportSequence;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,9 +24,10 @@ public class SpawnTravel implements Commands {
     }
     @Override
     public void uponEvent(InventoryClickEvent event, PlayerData playerData) {
-        if (!plugin.getGameState().canTeleport() ||
-                TeleportCooldown.getInstance().isOnCooldown(playerData.getPlayer())) {
-            TextUtil.errorMessage(playerData.getPlayer(), "You can't currently use this command");
+        Player p = playerData.getPlayer();
+        if (!plugin.getGameState().canTeleport(p) ||
+                TeleportCooldown.getInstance().isOnCooldown(p)) {
+            TextUtil.errorMessage(p, "You can't currently use this command");
             return;
         }
         Location spawn = Ascension.getSpawn();

@@ -1,20 +1,34 @@
 package me.depickcator.ascension.Interfaces;
 
+import me.depickcator.ascension.General.TextUtil;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 
 public class ItemComparison {
     protected boolean equalItems(ItemStack inv, ItemStack board) {
-        return itemParser(inv).equals(itemParser(board));
+        String invItemStr = itemParser(inv);
+        String boardItemStr = itemParser(board);
+//        return itemParser(inv).equals(itemParser(board));
+        TextUtil.debugText("Inventory item:   " + invItemStr);
+        TextUtil.debugText("Board item:     " + boardItemStr);
+        return invItemStr.equals(boardItemStr);
     }
 
     private String itemParser(ItemStack item) {
         int customModelNumber = getItemModelNumber(item);
 
         if (item.getType().equals(Material.ENCHANTED_BOOK) && !item.getItemMeta().hasCustomModelData()) {
-            return item.getType() + item.getItemMeta().getEnchants().toString();
+            StringBuilder str = new StringBuilder();
+            EnchantmentStorageMeta meta = (EnchantmentStorageMeta) item.getItemMeta();
+            for (Enchantment enchantment : meta.getStoredEnchants().keySet()) {
+                str.append(enchantment.toString());
+            }
+
+            return item.getType() + str.toString();
         }
 
         if (item.getType().equals(Material.POTION) && !item.getItemMeta().hasCustomModelData()) {

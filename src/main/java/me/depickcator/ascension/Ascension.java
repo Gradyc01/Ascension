@@ -7,7 +7,7 @@ import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.TeamCommand;
 import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.listeners.*;
@@ -15,6 +15,7 @@ import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
 import me.depickcator.ascension.MainMenu.OpenMainMenuCommand;
 import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
 import me.depickcator.ascension.MainMenu.mainMenuCommands;
+import me.depickcator.ascension.listeners.ChestGeneration.ChestLootModifier;
 import me.depickcator.ascension.testingCommands.*;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -28,10 +29,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Logger;
 
 public final class Ascension extends JavaPlugin {
@@ -88,6 +86,7 @@ public final class Ascension extends JavaPlugin {
         Objects.requireNonNull(getCommand("setUnlockTokens")).setExecutor(new setUnlockToken());
         Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp());
         Objects.requireNonNull(getCommand("startEvent")).setExecutor(new startEvents());
+        Objects.requireNonNull(getCommand("giveCustomItem")).setExecutor(new giveCustomItem());
     }
 
     private void registerListeners() {
@@ -104,6 +103,7 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new RecipeCrafted(), this);
         manager.registerEvents(new PlayerInteractListener(), this);
         manager.registerEvents(new LootTableGeneration(), this);
+        manager.registerEvents(new ChestLootModifier(), this);
     }
 
     private void registerCrafts() {

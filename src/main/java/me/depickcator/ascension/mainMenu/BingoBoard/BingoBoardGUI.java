@@ -2,23 +2,34 @@ package me.depickcator.ascension.MainMenu.BingoBoard;
 
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.Cooldowns.ScanBoardCooldown;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BingoBoardGUI extends AscensionGUI {
-
+    private final int[] boardSlots = {
+             2,  3,  4,  5,  6,
+            11, 12, 13, 14, 15,
+            20, 21, 22, 23, 24,
+            29, 30 ,31, 32, 33,
+            38, 39, 40, 41 ,42};
+    private List<ItemStack> bingoItems;
     public BingoBoardGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Game Board", TextUtil.AQUA), true);
+        bingoItems = new ArrayList<>();
         boardItems();
-        claimItemButton();
+        inventory.setItem( 53, initClaimItem());
+        inventory.setItem( 44, initScanItem());
+        inventory.setItem( 45, initExplainerItem());
         playerHeadButton(49);
         inventory.setItem(48, goBackItem());
     }
@@ -28,46 +39,83 @@ public class BingoBoardGUI extends AscensionGUI {
         ArrayList<ItemStack> items = bingoData.getItems();
         ArrayList<Boolean> hasItems = bingoData.getItemsCompleted(player);
         if (items.size() != 25) {
-            return;
+            items.clear();
+            ItemStack item = new ItemStack(Material.BEDROCK);
+            ItemMeta meta = item.getItemMeta();
+            meta.displayName(TextUtil.makeText("UNSET", TextUtil.GRAY, true, true));
+            meta.setEnchantmentGlintOverride(true);
+            item.setItemMeta(meta);
+            for (int i = 0; i < 25; i++) {
+                items.add(item);
+            }
         }
-        int index = 2;
-        for (int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < 25; i++) {
+            ItemStack item = items.get(i);
             if (!hasItems.get(i)) {
-                inventory.setItem(index, items.get(i));
+                inventory.setItem(boardSlots[i], item);
+                bingoItems.add(item);
             } else {
-                inventory.setItem(index, getClaimItem());
+                inventory.setItem(boardSlots[i], makeClaimedItem(item));
             }
-
-            if (((index - 6) % 9) == 0) {
-                index+=4;
-            }
-            index++;
         }
     }
 
-    private ItemStack getClaimItem() {
+    private ItemStack makeClaimedItem(ItemStack item) {
         ItemStack CLAIMED = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
         ItemMeta meta = CLAIMED.getItemMeta();
-        Component text = Component.text("CLAIMED").color(TextColor.color(185,255,185));
-        text = text.decoration(TextDecoration.ITALIC,false);
-        text = text.decoration(TextDecoration.BOLD,true);
-        meta.displayName(text);
+        meta.displayName(item.displayName().color(TextUtil.AQUA).decoration(TextDecoration.ITALIC, false));
         CLAIMED.setItemMeta(meta);
         return CLAIMED;
     }
 
-    private void claimItemButton() {
-        ItemStack button = new ItemStack(Material.EMERALD);
-        ItemMeta buttonMeta = button.getItemMeta();
-        Component title = Component.text("CLAIM A ITEM").color(TextColor.color(62,92,32));
-        title = title.decoration(TextDecoration.ITALIC, false);
-        buttonMeta.displayName(title);
-        buttonMeta.setEnchantmentGlintOverride(true);
-        buttonMeta.setCustomModelData(0); // Use this when using the same item
-        button.setItemMeta(buttonMeta);
-        inventory.setItem( 53, button);
+    private ItemStack initClaimItem() {
+        Component title =TextUtil.makeText("CLAIM A ITEM", TextUtil.GREEN, true, false);
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText(" Claims a item (if any)", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("from the board in order", TextUtil.DARK_PURPLE)
+        ));
+        return initExplainerItem(Material.EMERALD, lore, title);
     }
 
+    private ItemStack initExplainerItem() {
+        Component title = TextUtil.makeText("Information", TextUtil.DARK_GREEN);
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText("   Claim items by either using the", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("buttons on the bottom right or by ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("clicking on the item directly. ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("", TextUtil.AQUA),
+                TextUtil.makeText("   Warning: This will claim items", TextUtil.RED),
+                TextUtil.makeText("that are currently been worn too.", TextUtil.RED)
+        ));
+        return initExplainerItem(Material.REDSTONE_TORCH, lore, title);
+    }
+
+    private ItemStack initScanItem() {
+        Component title = TextUtil.makeText("SCAN ITEMS", TextUtil.GREEN, true, false);
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText(" Scans through the items on the", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("board to find which items you have ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("in your inventory that went unnoticed", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("", TextUtil.AQUA),
+                TextUtil.makeText("       Cooldown: 60 Seconds", TextUtil.GOLD)
+        ));
+        return initExplainerItem(Material.REINFORCED_DEEPSLATE, lore, title);
+    }
+
+    private void checkClaimable() {
+        BingoData bingoData = plugin.getBingoData();
+        ItemStack item = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText(""));
+        meta.setCustomModelData(0);
+        item.setItemMeta(meta);
+        for (ItemStack i : bingoData.getItems()) {
+            if (!bingoData.canUnlockItem(player, i)) {
+                int index = boardSlots[bingoData.getItems().indexOf(i)];
+                inventory.setItem(index, item);
+            }
+        }
+    }
 
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {
@@ -75,16 +123,23 @@ public class BingoBoardGUI extends AscensionGUI {
         if (item == null) {
             return;
         }
-        switch (item.getType()) {
-            case Material.EMERALD -> {
-                plugin.getBingoData().claimItem(player);
+        BingoData bingoData = plugin.getBingoData();
+        if (item.equals(initClaimItem())) {
+            bingoData.claimItem(player);
+        } else if (item.equals(goBackItem())) {
+            player.performCommand("open-main-menu");
+        } else if (item.equals(initScanItem()) && !ScanBoardCooldown.getInstance().isOnCooldown(player)) {
+            if (!plugin.getGameState().inGame()) {
+                TextUtil.errorMessage(player, "This feature is currently not available");
+                return;
             }
-            case Material.ARROW -> {
-                player.performCommand("open-main-menu");
-            }
-            default -> {
-
-            }
+            checkClaimable();
+            player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_HURT, 10, 0);
+            ScanBoardCooldown.getInstance().setCooldownTimer(player);
+        } else if (bingoItems.contains(item)) {
+            bingoData.claimItem(player, item, true);
         }
+
+
     }
 }

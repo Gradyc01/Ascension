@@ -1,7 +1,6 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
-import me.depickcator.ascension.Timeline.Events.Ascension.AscensionLocation;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
 import me.depickcator.ascension.Timeline.Events.Feast.Feast;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;

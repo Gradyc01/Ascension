@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Skills;
 
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 

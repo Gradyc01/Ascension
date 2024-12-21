@@ -1,6 +1,8 @@
 package me.depickcator.ascension.General;
 
 
+import org.bukkit.entity.Player;
+
 public class GameStates {
     public final static int UNLOADED = 0;
     public final static int LOBBY = 1;
@@ -40,12 +42,17 @@ public class GameStates {
                 checkState(GAME_FEAST_LOADING);
     }
 
-    public boolean canTeleport() {
+    public boolean canTeleport(Player p) {
 //        return !(checkState(GAME_FEAST_LOADING) ||
 //                checkState(GAME_FINAL_ASCENSION) ||
 //                checkState(LOBBY) ||
 //                checkState(GAME_ENDING));
-        return checkState(GAME_FINAL_ASCENSION) || checkState(GAME_AFTER_GRACE);
+        if (checkState(GAME_FINAL_ASCENSION) || checkState(GAME_AFTER_GRACE)) {
+            return true;
+        } else {
+            TextUtil.errorMessage(p, "Teleporting is currently unavailable");
+            return false;
+        }
     }
 
     public boolean inGame() {

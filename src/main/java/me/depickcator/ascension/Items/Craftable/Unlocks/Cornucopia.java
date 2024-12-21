@@ -6,7 +6,8 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -19,6 +20,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cornucopia extends Craft implements ItemClick {
     private static Cornucopia instance;
@@ -45,6 +49,11 @@ public class Cornucopia extends Craft implements ItemClick {
         foodComponent.setCanAlwaysEat(true);
         foodComponent.setNutrition(0);
         meta.setFood(foodComponent);
+        List<Component> lore = new ArrayList<>(
+                List.of(TextUtil.makeText("  Regeneration I (00:15)", TextUtil.DARK_PURPLE))
+        );
+        meta.lore(lore);
+        meta.setEnchantmentGlintOverride(true);
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         item.setItemMeta(meta);

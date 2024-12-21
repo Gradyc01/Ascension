@@ -6,8 +6,9 @@ import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GUIs.RedLedgerGUI;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
-import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.Cooldowns.CombatTimer;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -18,6 +19,9 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RedLedger extends Craft implements ItemClick {
     private static RedLedger instance;
@@ -53,6 +57,11 @@ public class RedLedger extends Craft implements ItemClick {
         meta.setCustomModelData(plugin.generateModelNumber());
         meta.setEnchantmentGlintOverride(true);
         meta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText(" Hunt down those that ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("are in your way", TextUtil.DARK_PURPLE)
+        ));
+        meta.lore(lore);
         meta.setMaxStackSize(1);
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.RED).append(TextUtil.rightClickText()));
         item.setItemMeta(meta);
@@ -75,7 +84,7 @@ public class RedLedger extends Craft implements ItemClick {
         Player p = pD.getPlayer();
         e.setCancelled(true);
         if (isMainHandRightClick(e)
-                && plugin.getGameState().canTeleport()
+                && plugin.getGameState().canTeleport(p)
                 && !CombatTimer.getInstance().isOnCooldown(p)) {
             new RedLedgerGUI(pD);
         }
