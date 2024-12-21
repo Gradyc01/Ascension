@@ -4,7 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.KingsRod;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -70,6 +70,7 @@ public class LootTableGeneration implements Listener {
             }
         }
     }
+
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {

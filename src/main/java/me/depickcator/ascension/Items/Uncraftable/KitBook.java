@@ -8,7 +8,7 @@ import me.depickcator.ascension.Kits.Kits.Ecologist;
 import me.depickcator.ascension.Kits.Kits.Hunter;
 import me.depickcator.ascension.Kits.Kits.IronTools;
 import me.depickcator.ascension.Kits.Kits.Looter;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;

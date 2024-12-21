@@ -2,8 +2,8 @@ package me.depickcator.ascension.Interfaces;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerSkills;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerSkills;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;

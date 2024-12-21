@@ -4,7 +4,7 @@ package me.depickcator.ascension.MainMenu.Unlocks;
 //import me.depickcator.ascension.Ascension;
 //import me.depickcator.ascension.General.TextUtil;
 //import me.depickcator.ascension.Items.Craftable.Craft;
-//import me.depickcator.ascension.Player.PlayerUnlocks;
+//import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 //import net.kyori.adventure.text.Component;
 //import net.kyori.adventure.text.TextComponent;
 //import net.kyori.adventure.text.format.TextDecoration;

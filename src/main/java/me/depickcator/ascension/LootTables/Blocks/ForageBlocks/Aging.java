@@ -2,8 +2,8 @@ package me.depickcator.ascension.LootTables.Blocks.ForageBlocks;
 
 import me.depickcator.ascension.LootTables.Blocks.BlockLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
-import me.depickcator.ascension.Player.PlayerSkills;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.PlayerSkills;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;

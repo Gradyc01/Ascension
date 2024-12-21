@@ -5,7 +5,7 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.ItemList;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

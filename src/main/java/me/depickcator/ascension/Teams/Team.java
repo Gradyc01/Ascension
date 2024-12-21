@@ -2,8 +2,8 @@ package me.depickcator.ascension.Teams;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

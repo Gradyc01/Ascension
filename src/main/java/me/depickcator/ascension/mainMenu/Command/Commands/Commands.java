@@ -1,6 +1,6 @@
 package me.depickcator.ascension.MainMenu.Command.Commands;
 
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 

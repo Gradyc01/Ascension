@@ -2,8 +2,8 @@ package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.ItemList;
-import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.TeamUtil;
 import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
 import net.kyori.adventure.text.Component;

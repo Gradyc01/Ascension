@@ -3,11 +3,15 @@ package me.depickcator.ascension.Items.Uncraftable.XPTome;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.ItemClick;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class XPTome implements ItemClick {
     private static XPTome instance;
@@ -24,6 +28,11 @@ public class XPTome implements ItemClick {
         ItemMeta meta = item.getItemMeta();
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.DARK_GREEN).append(TextUtil.rightClickText()));
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText("  Holds a large amount ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("of skill experience", TextUtil.DARK_PURPLE)
+        ));
+        meta.lore(lore);
         meta.setEnchantmentGlintOverride(true);
         meta.setMaxStackSize(1);
         item.setItemMeta(meta);

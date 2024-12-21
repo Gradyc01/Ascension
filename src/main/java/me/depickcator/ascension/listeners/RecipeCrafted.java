@@ -2,8 +2,8 @@ package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.UnlockUtil;
-import me.depickcator.ascension.Player.PlayerUnlocks;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.PlayerUnlocks;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

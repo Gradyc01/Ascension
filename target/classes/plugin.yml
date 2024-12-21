@@ -33,3 +33,6 @@ commands:
   startEvent:
     description: testing purposes only
     permission: ascension.startEvent
+  giveCustomItem:
+    description: testing purposes only
+    permission: ascension.startEvent

@@ -1,7 +1,7 @@
 package me.depickcator.ascension.General;
 
 
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;

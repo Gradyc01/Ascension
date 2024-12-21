@@ -3,7 +3,7 @@ package me.depickcator.ascension.Timeline.Events.Scavenger;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamStats;
 import net.kyori.adventure.text.Component;

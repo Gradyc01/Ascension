@@ -1,9 +1,11 @@
 package me.depickcator.ascension.MainMenu;
 
+import me.depickcator.ascension.MainMenu.Map.MapGUI;
+import me.depickcator.ascension.MainMenu.Skills.SkillsGUI;
 import me.depickcator.ascension.MainMenu.Unlocks.NewUnlocksGUI;
-import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
-import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.Player.Data.Cooldowns.CombatTimer;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.MainMenu.BingoBoard.BingoBoardGUI;
 import me.depickcator.ascension.MainMenu.Command.CommandGUI;
 import org.bukkit.command.Command;
@@ -45,6 +47,9 @@ public class mainMenuCommands implements CommandExecutor {
             }
             case "skills" -> {
                 new SkillsGUI(pD);
+            }
+            case "events" -> {
+                new MapGUI(pD);
             }
             default -> {
                 return false;

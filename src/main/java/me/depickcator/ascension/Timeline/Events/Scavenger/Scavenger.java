@@ -4,7 +4,8 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
-import me.depickcator.ascension.Player.PlayerUtil;
+import me.depickcator.ascension.MainMenu.Map.MapItem;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Location;
@@ -25,6 +26,7 @@ public class Scavenger extends EntityInteraction {
     private Location location;
     private LivingEntity entity;
     private final Ascension plugin;
+    private MapItem mapItem;
 
     public Scavenger() {
         this.plugin = Ascension.getInstance();
@@ -63,6 +65,7 @@ public class Scavenger extends EntityInteraction {
         entity.remove();
         forceLoadChunk(false);
         removeInteraction(entity);
+        plugin.getTimeline().getMapItems().removeMapItem(mapItem);
     }
 
     private void announcementText(List<Pair<ItemStack, ItemStack>> trades) {
@@ -84,8 +87,11 @@ public class Scavenger extends EntityInteraction {
         Random r = new Random();
         int x = (int) Ascension.getSpawn().getX() + r.nextInt(Radius * -1, Radius);
         int z = (int) Ascension.getSpawn().getZ() + r.nextInt(Radius * -1, Radius);
-        Block b = plugin.getWorld().getHighestBlockAt(x, z);
 
+        mapItem = new MapItem("Scavenger", x, z, MapItem.SCAVENGER);
+        plugin.getTimeline().getMapItems().addMapItem(mapItem);
+
+        Block b = plugin.getWorld().getHighestBlockAt(x, z);
         location = new Location(b.getWorld(), x, b.getLocation().getY(), z);
     }
 

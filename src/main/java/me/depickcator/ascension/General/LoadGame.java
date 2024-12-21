@@ -22,7 +22,6 @@ public class LoadGame implements Runnable {
         this.spawnCoordsLocation = loc;
         plugin.setBingoData(new BingoData(plugin));
         deletePreviousIterations();
-
         run();
     }
 

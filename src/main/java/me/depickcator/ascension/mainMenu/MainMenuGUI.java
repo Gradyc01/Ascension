@@ -3,7 +3,7 @@ package me.depickcator.ascension.MainMenu;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import me.depickcator.ascension.Timeline.Events.Scavenger.ScavengerGUI;
 import org.bukkit.Material;
@@ -24,6 +24,7 @@ public class MainMenuGUI extends AscensionGUI {
         inventory.setItem(23, makeMainMenuBoardButton(Material.COMPARATOR, "Commands"));
         inventory.setItem(30, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Skills"));
         inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
+        inventory.setItem(32, makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));
         inventory.setItem(49, getCloseButton());
         playerHeadButton(13);
     }
@@ -46,6 +47,9 @@ public class MainMenuGUI extends AscensionGUI {
             }
             case Material.DIAMOND_SWORD -> {
                 player.performCommand("openmenu skills");
+            }
+            case Material.FILLED_MAP -> {
+                player.performCommand("openmenu events");
             }
             case Material.FEATHER -> {
                 Scavenger scavenger = Ascension.getInstance().getTimeline().getScavenger();

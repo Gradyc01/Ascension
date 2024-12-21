@@ -5,13 +5,13 @@ package me.depickcator.ascension.Items.Uncraftable.XPTome;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class XPTomeGUI extends AscensionGUI {
     public final static String menuName = "XPTomeGUI";
@@ -26,42 +26,20 @@ public class XPTomeGUI extends AscensionGUI {
     }
 
     private void makeExpButton(Material material, String name, int index) {
-        ItemStack button = new ItemStack(material);
-        ItemMeta buttonMeta = button.getItemMeta();
-        buttonMeta.displayName(TextUtil.makeText(name, TextUtil.DARK_GREEN));
-        buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        buttonMeta.setCustomModelData(0x040000);
-        button.setItemMeta(buttonMeta);
-        inventory.setItem(index, button);
+//        ItemStack item = new ItemStack(material);
+//        ItemMeta meta = item.getItemMeta();
+//        meta.displayName(TextUtil.makeText(name, TextUtil.DARK_GREEN));
+//        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+//        meta.setCustomModelData(0x040000);
+//        item.setItemMeta(meta);
+//        inventory.setItem(index, item);
+        Component title = TextUtil.makeText(name, TextUtil.DARK_GREEN);
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText(""),
+                TextUtil.makeText("[Click to Claim]", TextUtil.GOLD)
+        ));
+        inventory.setItem(index, initExplainerItem(material, lore, title));
     }
-
-//    private void combatButton() {
-//        ItemStack button = new ItemStack(Material.IRON_SWORD);
-//        ItemMeta buttonMeta = button.getItemMeta();
-//        buttonMeta.displayName(TextUtil.makeText("Combat", TextUtil.DARK_GREEN));
-//        buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-//        buttonMeta.setCustomModelData(0x040000);
-//        setGUIItems(inventory, button, buttonMeta,13);
-//    }
-//
-//    private void foragingButton() {
-//        ItemStack button = new ItemStack(Material.IRON_AXE);
-//        ItemMeta buttonMeta = button.getItemMeta();
-//        buttonMeta.displayName(TextUtil.makeText("Foraging", TextUtil.DARK_GREEN));
-//        buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-//        buttonMeta.setCustomModelData(0x050000);
-//        setGUIItems(inventory, button, buttonMeta,15);
-//    }
-//
-//    private void miningButton() {
-//        ItemStack button = new ItemStack(Material.IRON_PICKAXE);
-//        ItemMeta buttonMeta = button.getItemMeta();
-//        buttonMeta.displayName(TextUtil.makeText("Mining", TextUtil.DARK_GREEN));
-//        buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-//        buttonMeta.setCustomModelData(0x060000);
-//        setGUIItems(inventory, button, buttonMeta,11);
-//    }
-
 
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {

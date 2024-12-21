@@ -30,5 +30,6 @@ public class EntityUtil {
         new OverworldPassive();
         new Pig();
         new Sheep();
+        new Turtle();
     }
 }

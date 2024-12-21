@@ -5,7 +5,7 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.Kits.Kits.Kit;
-import me.depickcator.ascension.Player.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;

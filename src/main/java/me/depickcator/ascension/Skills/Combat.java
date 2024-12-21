@@ -1,12 +1,10 @@
 package me.depickcator.ascension.Skills;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
-import me.depickcator.ascension.Player.PlayerData;
-import me.depickcator.ascension.Player.PlayerUnlocks;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
