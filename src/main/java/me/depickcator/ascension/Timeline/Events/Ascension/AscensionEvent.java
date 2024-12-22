@@ -2,12 +2,14 @@ package me.depickcator.ascension.Timeline.Events.Ascension;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Unlocks.AscensionKey;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.TeamStats;
 import me.depickcator.ascension.Timeline.Events.Winner.Winner;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Sound;
 import org.bukkit.entity.Wither;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -80,6 +82,7 @@ public class AscensionEvent {
 
     public void success() {
         new Winner(new ArrayList<>(List.of(ascendingLocation.getAscendingTeam())));
+        successText();
         stop();
         TextUtil.debugText("Ascension Success");
     }
@@ -87,16 +90,37 @@ public class AscensionEvent {
     public void failed() {
         plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
         plugin.getTimeline().startTimeline();
+        failedText();
         stop();
         TextUtil.debugText("Ascension Failed");
+    }
+
+    public void clear() {
+        for(AscensionLocation location : locations) {
+            location.closeLocation();
+        }
     }
 
     private void stop() {
         eventOngoing = false;
         ascendingLocation.closeLocation();
         ascendingLocation = null;
+    }
 
+    private void failedText() {
+        Component text = TextUtil.topBorder(TextUtil.DARK_GRAY);
+        text = text.append(TextUtil.makeText("\n            ASCENSION DENIED\n", TextUtil.WHITE, true, false));
+        text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
+        TextUtil.broadcastMessage(text);
+        SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 20, 1);
+    }
 
+    private void successText() {
+        Component text = TextUtil.topBorder(TextUtil.DARK_GRAY);
+        text = text.append(TextUtil.makeText("\n            ASCENSION COMPLETE\n", TextUtil.WHITE, true, false));
+        text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
+        TextUtil.broadcastMessage(text);
+        SoundUtil.broadcastSound(Sound.ENTITY_ENDER_DRAGON_DEATH, 20, 1);
     }
 
     private void broadcastLocations() {
@@ -115,6 +139,7 @@ public class AscensionEvent {
     }
 
     public boolean canStartEvent(PlayerData pD) {
+        TextUtil.debugText("Ran Ascension Check");
         if (eventOngoing) return false;
         int score = pD.getPlayerTeam().getTeam().getTeamStats().getGameScore();
         return score >= 25 && pD.getPlayer().getInventory().getItemInMainHand().equals(AscensionKey.getInstance().getResult());

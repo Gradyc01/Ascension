@@ -18,9 +18,9 @@ commands:
     description: opens all menu in the main menu via command
   party:
     description: team up with other players
-  printPlayerData:
-    description: prints the player Data
-    permission: ascension.printPlayerData
+  debugger:
+    description: turns on and off the debugger
+    permission: ascension.debugger
   timeline:
     description: sets timeline
     permission: ascension.timeline

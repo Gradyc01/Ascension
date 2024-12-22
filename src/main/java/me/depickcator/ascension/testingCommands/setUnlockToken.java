@@ -1,7 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedger;
+import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;

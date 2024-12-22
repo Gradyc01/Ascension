@@ -2,6 +2,7 @@ package me.depickcator.ascension.General;
 
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.testingCommands.Debugger;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -140,6 +141,6 @@ public class TextUtil {
     }
 
     public static void debugText(String text) {
-        Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));
+        if (Debugger.getDebugger()) Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));
     }
 }

@@ -2,7 +2,7 @@ package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.Player.Data.Cooldowns.Death.PlayerDeath;
+import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.Location;

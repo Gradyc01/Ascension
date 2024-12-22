@@ -4,7 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Player.Data.Cooldowns.Death.PlayerDeath;
+import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
@@ -116,7 +116,7 @@ public class FinalAscension {
 
     //Calculates the ascension timer
     private int calculateTimer(int gameScore) {
-        int defaultTimer = 30;
+        int defaultTimer = 300;
         int multiplier = 30;
         return defaultTimer + gameScore * multiplier;
     }

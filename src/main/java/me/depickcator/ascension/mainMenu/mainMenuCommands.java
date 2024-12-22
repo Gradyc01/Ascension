@@ -3,7 +3,7 @@ package me.depickcator.ascension.MainMenu;
 import me.depickcator.ascension.MainMenu.Map.MapGUI;
 import me.depickcator.ascension.MainMenu.Skills.SkillsGUI;
 import me.depickcator.ascension.MainMenu.Unlocks.NewUnlocksGUI;
-import me.depickcator.ascension.Player.Data.Cooldowns.CombatTimer;
+import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.MainMenu.BingoBoard.BingoBoardGUI;

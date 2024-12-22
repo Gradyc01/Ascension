@@ -1,6 +1,5 @@
 me\depickcator\ascension\LootTables\Blocks\Ores\NetherGoldOre.class
 me\depickcator\ascension\Skills\SkillRewards.class
-me\depickcator\ascension\Items\Craftable\Unlocks\GUIs\RedLedgerGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\SugarRush.class
 me\depickcator\ascension\MainMenu\Unlocks\NewUnlocksGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LightApple.class
@@ -26,10 +25,12 @@ me\depickcator\ascension\Player\Data\PlayerTeam.class
 me\depickcator\ascension\Player\Data\Cooldowns\Death\DeathTimer.class
 me\depickcator\ascension\Skills\Combat.class
 me\depickcator\ascension\LootTables\Blocks\Ores\QuartzOre.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\OceanMonument.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Tarnhelm.class
 me\depickcator\ascension\Skills\Skills.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfSharpness.class
 me\depickcator\ascension\MainMenu\mainMenuCommands.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\PillagerOutpost.class
 me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.class
 me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteSword.class
 me\depickcator\ascension\Player\Data\Cooldowns\Death\PlayerDeath$1.class
@@ -41,8 +42,8 @@ me\depickcator\ascension\LootTables\Entities\Entities\Pig.class
 me\depickcator\ascension\General\StartGame.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfProjectileProtection.class
 me\depickcator\ascension\listeners\InventoryClose.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\DarkForest.class
 me\depickcator\ascension\LootTables\Entities\Entities\CreeperEntity.class
-me\depickcator\ascension\Items\Craftable\Unlocks\GUIs\TeamPortalGUI.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenAxe.class
 me\depickcator\ascension\LootTables\Blocks\Ores\IronOre.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfThoth.class
@@ -53,6 +54,7 @@ me\depickcator\ascension\LootTables\Blocks\Ores\CoalOre.class
 me\depickcator\ascension\listeners\ChestGeneration\ChestLootTable.class
 me\depickcator\ascension\LootTables\Blocks\Ores\LapisOre.class
 me\depickcator\ascension\MainMenu\Command\Commands\SpawnTravel.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\DesertPyramid.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.class
 me\depickcator\ascension\MainMenu\Command\CommandGUI.class
 me\depickcator\ascension\LootTables\Blocks\BlockUtil.class
@@ -69,9 +71,12 @@ me\depickcator\ascension\General\StartGame$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ArrowEconomy.class
 me\depickcator\ascension\listeners\RecipeCrafted.class
 me\depickcator\ascension\LootTables\Entities\EntityUtil.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Echolocator.class
 me\depickcator\ascension\Items\Craftable\Unlocks\WingsOfIcarus.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\EcholocatorLocations.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LeatherEconomy.class
 me\depickcator\ascension\LootTables\Entities\Entities\CaveSpider.class
+me\depickcator\ascension\Items\Craftable\Unlocks\RedLedgerItem\RedLedgerGUI.class
 me\depickcator\ascension\General\ItemClick.class
 me\depickcator\ascension\listeners\PlayerJoinLeave.class
 me\depickcator\ascension\Player\Data\PlayerStats.class
@@ -84,6 +89,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\LightAnvil.class
 me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftStar.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\BastionBridge.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastChests$2.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Mineshaft.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EveTemptation.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Vanilla.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\PillagerOutpost.class
@@ -100,6 +106,7 @@ me\depickcator\ascension\LootTables\Entities\Entities\Sheep.class
 me\depickcator\ascension\testingCommands\changeBingoScore.class
 me\depickcator\ascension\Player\Data\PlayerSkills.class
 me\depickcator\ascension\Items\Craftable\Unlocks\FlintShovel.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\MushroomIsland.class
 me\depickcator\ascension\Kits\Kits\Ecologist.class
 me\depickcator\ascension\Items\Craftable\Vanilla\StoneAxe.class
 me\depickcator\ascension\Timeline\Events\CarePackage\CarePackage$1.class
@@ -107,20 +114,26 @@ me\depickcator\ascension\listeners\InventoryClickListener.class
 me\depickcator\ascension\testingCommands\giveExp.class
 me\depickcator\ascension\Items\Craftable\Craft.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Dread.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\WarmOcean.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI.class
 me\depickcator\ascension\Items\ItemLists\CombatItems.class
 me\depickcator\ascension\LootTables\Entities\EntityLootTable.class
+me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalItem\TeamPortal.class
 me\depickcator\ascension\Items\ItemLists\EasyItems.class
 me\depickcator\ascension\General\SoundUtil.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\NetherFortress.class
 me\depickcator\ascension\Items\Craftable\Vanilla\IronAxe.class
 me\depickcator\ascension\MainMenu\OpenMainMenuCommand.class
 me\depickcator\ascension\LootTables\Entities\Enums\NetherMobs.class
 me\depickcator\ascension\Player\Combat\PlayerCombat.class
+me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalItem\TeamPortalGUI.class
 me\depickcator\ascension\LootTables\LootTableChanger.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI$1.class
 me\depickcator\ascension\Kits\Kits\IronTools.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Swamp.class
 me\depickcator\ascension\Interfaces\EntityInteraction.class
 me\depickcator\ascension\Items\UnlocksData.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\BambooJungle.class
 me\depickcator\ascension\General\ResetGame$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HideOfLeviathan.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.class
@@ -129,9 +142,11 @@ me\depickcator\ascension\Items\Craftable\Vanilla\WoodenSword.class
 me\depickcator\ascension\listeners\PlayerInteractListener.class
 me\depickcator\ascension\General\StartGame$2.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Panacea.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Desert.class
 me\depickcator\ascension\Ascension.class
 me\depickcator\ascension\testingCommands\setUnlockToken.class
 me\depickcator\ascension\Timeline\Timeline$2.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Trials.class
 me\depickcator\ascension\LootTables\Blocks\Ores\RedstoneOre.class
 me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger.class
 me\depickcator\ascension\Interfaces\ShootsProjectiles.class
@@ -154,7 +169,9 @@ me\depickcator\ascension\Kits\Kits\Kit.class
 me\depickcator\ascension\listeners\ProjectileAttacks.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\Dungeon.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\AncientCity.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Bastion.class
 me\depickcator\ascension\LootTables\Entities\Entities\SkeletonEntity.class
 me\depickcator\ascension\Player\Data\Cooldowns\Death\PlayerDeath.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTome.class
@@ -192,6 +209,7 @@ me\depickcator\ascension\Player\Data\PlayerUnlocks.class
 me\depickcator\ascension\Kits\Kits\Looter.class
 me\depickcator\ascension\Timeline\Events\Feast\Feast$2.class
 me\depickcator\ascension\Items\Uncraftable\KitBook.class
+me\depickcator\ascension\Timeline\Events\Ascension\BuildLayers\AscensionBuildLayers.class
 me\depickcator\ascension\Timeline\Timeline.class
 me\depickcator\ascension\Player\Data\Cooldowns\TeleportSequence$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Resurrection.class
@@ -200,6 +218,7 @@ me\depickcator\ascension\listeners\ChestGeneration\Tables\Mineshaft.class
 me\depickcator\ascension\Items\Craftable\Unlocks\VorpalSword.class
 me\depickcator\ascension\General\StartGame$6.class
 me\depickcator\ascension\MainMenu\Unlocks\ViewRecipeGUI.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Jungle.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EnlighteningPack.class
 me\depickcator\ascension\Player\Data\PlayerScoreboard.class
 me\depickcator\ascension\General\TextUtil.class
@@ -216,6 +235,7 @@ me\depickcator\ascension\Skills\Global.class
 me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger$1.class
 me\depickcator\ascension\Timeline\Events\Winner\Winner.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.class
+me\depickcator\ascension\Items\Craftable\Unlocks\RedLedgerItem\RedLedger.class
 me\depickcator\ascension\LootTables\Entities\Entities\SpiderEntity.class
 me\depickcator\ascension\Items\Craftable\Unlocks\SevenLeagueBoots.class
 me\depickcator\ascension\listeners\LootTableGeneration.class
@@ -228,6 +248,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\FlamingArtifact.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PotionOfVelocity.class
 me\depickcator\ascension\Timeline\Events\Feast\Feast.class
 me\depickcator\ascension\Skills\Foraging.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\EcholocatorGUI.class
 me\depickcator\ascension\MainMenu\Map\MapItems.class
 me\depickcator\ascension\MainMenu\Command\Commands\Surface.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\ForageBlocks.class
