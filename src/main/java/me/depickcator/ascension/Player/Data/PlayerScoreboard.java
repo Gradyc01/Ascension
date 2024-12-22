@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Player.Data;
 
+import io.papermc.paper.scoreboard.numbers.NumberFormat;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.TextUtil;
@@ -31,6 +32,7 @@ public class PlayerScoreboard {
                 "board",
                 Criteria.DUMMY,
                 TextUtil.makeText("ASCENSION", TextUtil.YELLOW, true, false));
+        board.numberFormat(NumberFormat.blank());
 
         makeLobbyBoard();
         board.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -60,7 +62,8 @@ public class PlayerScoreboard {
 
         editLine(board, 5, TextUtil.makeText( "  Your Team", TextUtil.GREEN, true, false));
 
-        editLine(board, 0, TextUtil.makeText("discord.gg/not_real", TextUtil.YELLOW));
+//        editLine(board, 0, TextUtil.makeText("discord.gg/not_real", TextUtil.YELLOW));
+        editLine(board, 0, TextUtil.makeText("Discord: zAhJTXbFeB", TextUtil.YELLOW));
         updateLobbyBoard();
     }
     public void updateLobbyBoard() {
@@ -73,7 +76,7 @@ public class PlayerScoreboard {
 
         editLine(board, 4, TextUtil.makeText("  Teammates:  ", TextUtil.GOLD));
 
-        editLine(board, 0, TextUtil.makeText("discord.gg/not_real", TextUtil.YELLOW));
+        editLine(board, 0, TextUtil.makeText("Discord: zAhJTXbFeB", TextUtil.YELLOW));
         updateGameBoard(true);
     }
 

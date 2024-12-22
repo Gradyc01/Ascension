@@ -2,8 +2,8 @@ package me.depickcator.ascension.MainMenu.Command.Commands;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
-import me.depickcator.ascension.Player.Data.Cooldowns.TeleportCooldown;
-import me.depickcator.ascension.Player.Data.Cooldowns.TeleportSequence;
+import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
+import me.depickcator.ascension.Player.Cooldowns.TeleportSequence;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,7 +25,7 @@ public class Surface implements Commands {
         Player p = playerData.getPlayer();
         if (!plugin.getGameState().canTeleport(p) ||
                 TeleportCooldown.getInstance().isOnCooldown(p)) {
-            TextUtil.errorMessage(p, "You can't currently use this command");
+//            TextUtil.errorMessage(p, "You can't currently use this command");
             return;
         }
         Player player = playerData.getPlayer();

@@ -81,7 +81,7 @@ public final class Ascension extends JavaPlugin {
         Objects.requireNonNull(getCommand("changeBingoScore")).setExecutor(new changeBingoScore());
         Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands());
         Objects.requireNonNull(getCommand("party")).setExecutor(new TeamCommand());
-        Objects.requireNonNull(getCommand("printPlayerData")).setExecutor(new printPlayerDataCommand());
+        Objects.requireNonNull(getCommand("debugger")).setExecutor(new Debugger());
         Objects.requireNonNull(getCommand("timeline")).setExecutor(new setTimeline());
         Objects.requireNonNull(getCommand("setUnlockTokens")).setExecutor(new setUnlockToken());
         Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp());

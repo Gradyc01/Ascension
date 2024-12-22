@@ -2,7 +2,7 @@ package me.depickcator.ascension.MainMenu.BingoBoard;
 
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
-import me.depickcator.ascension.Player.Data.Cooldowns.ScanBoardCooldown;
+import me.depickcator.ascension.Player.Cooldowns.ScanBoardCooldown;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;

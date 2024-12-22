@@ -74,6 +74,7 @@ public class PlayerData {
         player.setExperienceLevelAndProgress(0);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "recipe give " + player.getName() + " *");
+        giveStartingFood();
     }
     public void resetAfterStartGame() {
         player.clearActivePotionEffects();
@@ -83,7 +84,6 @@ public class PlayerData {
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
         Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
-        giveStartingFood();
     }
     private void giveStartingFood() {
         ItemStack food = new ItemStack(Material.COOKED_BEEF, 64);

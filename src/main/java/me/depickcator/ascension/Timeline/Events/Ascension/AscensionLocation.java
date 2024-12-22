@@ -25,12 +25,13 @@ public class AscensionLocation extends EntityInteraction {
     private final Ascension plugin;
     private final AscensionEvent event;
     private Team ascendingTeam;
-    private MapItem mapItem;
+    private final MapItem mapItem;
 
     public AscensionLocation(int x, int z, AscensionEvent event) {
         this.event = event;
         plugin = Ascension.getInstance();
         this.spawnLocation = findLocation(x, z);
+        forceLoadChunk(true);
         this.pillarLocations = new ArrayList<>();
         entity = spawnEntity();
         mapItem = new MapItem("Ascension", x, z, MapItem.ASCENSION);
@@ -42,25 +43,20 @@ public class AscensionLocation extends EntityInteraction {
     public boolean interact(PlayerInteractEntityEvent event) {
         Player p = event.getPlayer();
         PlayerData pD = PlayerUtil.getPlayerData(p);
+        TextUtil.debugText("Right Clicked a gatekeeper");
         if (!this.event.canStartEvent(pD)) {
             p.sendMessage(TextUtil.makeText("Go away! I can't help you", TextUtil.DARK_GRAY));
             return false;
         }
         removeInteraction(entity);
         ascendingTeam = pD.getPlayerTeam().getTeam();
+        p.getInventory().getItemInMainHand().setAmount(0);
         this.event.start(this);
         return true;
     }
 
     public void startAnimation() {
         entity.setInvulnerable(false);
-
-
-//        entity.setAI(true);
-//        entity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0);
-//        entity.getAttribute(Attribute.FLYING_SPEED).setBaseValue(0);
-//        entity.getAttribute(Attribute.KNOCKBACK_RESISTANCE).setBaseValue(1);
-
         plugin.getWorld().strikeLightningEffect(spawnLocation);
         plugin.getWorld().playSound(spawnLocation, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 3, 1);
         plugin.getWorld().playSound(spawnLocation, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 3, 0);
@@ -74,25 +70,26 @@ public class AscensionLocation extends EntityInteraction {
     public void closeLocation() {
         plugin.getTimeline().getMapItems().removeMapItem(mapItem);
         entity.remove();
+        forceLoadChunk(false);
     }
 
     private void startText() {
 //        plugin.getServer()
         Component text = TextUtil.topBorder(TextUtil.DARK_GRAY);
         text = text.append(TextUtil.makeText("\n        ASCENSION STARTED\n", TextUtil.WHITE));
-        text = text.append(TextUtil.makeText("    Stop the before you no longer can", TextUtil.DARK_GRAY));
+        text = text.append(TextUtil.makeText("    Stop it before you no longer can", TextUtil.DARK_GRAY));
         text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
         plugin.getServer().broadcast(text);
-        TextUtil.broadcastTitle(TextUtil.makeTitle(TextUtil.makeText("ASCENSION STARTED", TextUtil.YELLOW), 20, 20, 10));
-        SoundUtil.broadcastSound(Sound.ENTITY_ENDER_DRAGON_GROWL, 20f, 0);
+        TextUtil.broadcastTitle(TextUtil.makeTitle(TextUtil.makeText("ASCENSION STARTED", TextUtil.YELLOW), 3, 5, 2));
+        SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 20f, 0.7);
     }
 
-    // private void forceLoadChunk(boolean forceLoad) {
-    //     plugin.getWorld().setChunkForceLoaded(
-    //             (int) Math.floor((double) spawnLocation.getBlockX() /16),
-    //             (int) Math.floor((double) spawnLocation.getBlockZ() /16),
-    //             forceLoad);
-    // }
+     private void forceLoadChunk(boolean forceLoad) {
+         plugin.getWorld().setChunkForceLoaded(
+                 (int) Math.floor((double) spawnLocation.getBlockX() /16),
+                 (int) Math.floor((double) spawnLocation.getBlockZ() /16),
+                 forceLoad);
+     }
 
     private Location findLocation(int x, int z) {
         int y = plugin.getWorld().getHighestBlockYAt(x, z);

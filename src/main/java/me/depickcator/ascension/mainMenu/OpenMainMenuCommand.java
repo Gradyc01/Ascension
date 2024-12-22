@@ -1,6 +1,6 @@
 package me.depickcator.ascension.MainMenu;
 
-import me.depickcator.ascension.Player.Data.Cooldowns.CombatTimer;
+import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;

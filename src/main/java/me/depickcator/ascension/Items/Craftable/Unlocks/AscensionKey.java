@@ -38,6 +38,7 @@ public class AscensionKey extends Craft {
         meta.setEnchantmentGlintOverride(true);
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.PINK));
+        meta.setMaxStackSize(1);
         item.setItemMeta(meta);
         return item;
     }

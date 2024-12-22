@@ -15,6 +15,7 @@ import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 public class Timeline {
     private final Ascension plugin;
@@ -23,6 +24,7 @@ public class Timeline {
     private boolean keepRunning;
     private Scavenger scavenger;
     private AscensionEvent ascensionEvent;
+    private BukkitTask timeline;
     private static final int STARTING_MINUTES = 160;
     private MapItems mapItems;
     public Timeline(Ascension plugin) {
@@ -39,11 +41,12 @@ public class Timeline {
 
     public void pauseTimeline() {
         keepRunning = false;
+        timeline.cancel();
         TextUtil.debugText("Paused Timeline");
     }
 
     private void mainTimelineMinutes() {
-        new BukkitRunnable() {
+        timeline = new BukkitRunnable() {
             @Override
             public void run() {
                 if (!keepRunning) {
@@ -143,8 +146,15 @@ public class Timeline {
         MINUTES = STARTING_MINUTES;
         SECONDS = 60;
         scavenger = null;
+        removeAscensionElements();
         mapItems = new MapItems();
         Ascension.getInstance().getTimeline().getMapItems().addMapItem(new MapItem("Spawn", Ascension.getSpawn().getBlockX(), Ascension.getSpawn().getBlockZ(), MapItem.SPAWN));
+    }
+
+    private void removeAscensionElements() {
+        if (ascensionEvent != null) {
+            ascensionEvent.clear();
+        }
     }
 
     public void setTime(int time) {

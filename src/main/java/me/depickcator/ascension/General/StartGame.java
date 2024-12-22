@@ -79,7 +79,7 @@ public class StartGame{
                 bingoData.setItems(new ItemList().getItemsForBoard());
                 ArrayList<ItemStack> item = bingoData.getItems();
                 for (ItemStack i : item) {
-                    player.sendMessage(i.toString());
+                    TextUtil.debugText(i.toString());
                 }
                 gameIntroduction();
             }
