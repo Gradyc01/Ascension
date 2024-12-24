@@ -58,6 +58,8 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\ExplosivePropulsion.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\FlamingArtifact.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\FlintShovel.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\Ghost.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\GoldenHead.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\GoldPack.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\HeliosCurse.java
@@ -145,6 +147,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockUtil.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\ForageBlocks.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Leaves.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\Ores\CoalOre.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\Ores\CopperOre.java
@@ -156,6 +159,7 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\Ores\NetherGoldOre.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\Ores\QuartzOre.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\Ores\RedstoneOre.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Blocks\Stones.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Entities\Entities\CaveSpider.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Entities\Entities\Chicken.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\LootTables\Entities\Entities\Cow.java
@@ -199,13 +203,13 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\Unlocks\UnlocksGUI_2.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\MainMenu\Unlocks\ViewRecipeGUI.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Combat\PlayerCombat.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Cooldowns\CombatTimer.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Cooldowns\Cooldowns.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Cooldowns\Death\DeathTimer.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Cooldowns\Death\PlayerDeath.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Cooldowns\ScanBoardCooldown.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Cooldowns\TeleportCooldown.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Cooldowns\TeleportSequence.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Cooldowns\CombatTimer.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Cooldowns\Cooldowns.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Cooldowns\Death\DeathTimer.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Cooldowns\Death\PlayerDeath.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Cooldowns\ScanBoardCooldown.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Cooldowns\TeleportCooldown.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Cooldowns\TeleportSequence.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\PlayerData.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\PlayerScoreboard.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\PlayerSkills.java
@@ -213,6 +217,9 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\PlayerTeam.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\PlayerUnlocks.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\PlayerUtil.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Scoreboards\Boards.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Scoreboards\GameBoard.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Player\Data\Scoreboards\LobbyBoard.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Skills\Combat.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Skills\Foraging.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Skills\Global.java
@@ -224,9 +231,9 @@ C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Teams\TeamStats.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\Teams\TeamUtil.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\changeBingoScore.java
+C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\Debugger.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\giveCustomItem.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\giveExp.java
-C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\printPlayerDataCommand.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\setTimeline.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\setUnlockToken.java
 C:\Users\Dep\IdeaProjects\AscensionBingo\src\main\java\me\depickcator\ascension\testingCommands\startEvents.java

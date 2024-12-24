@@ -4,7 +4,6 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.EcholocatorLocations;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.block.Biome;
-import org.bukkit.util.BiomeSearchResult;
 
 public class Swamp extends EcholocatorLocations {
     public Swamp() {

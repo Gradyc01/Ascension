@@ -22,21 +22,22 @@ me\depickcator\ascension\LootTables\Blocks\Ores\DiamondOre.class
 me\depickcator\ascension\General\StartGame$5.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\OminousTrialsLoot.class
 me\depickcator\ascension\Player\Data\PlayerTeam.class
-me\depickcator\ascension\Player\Data\Cooldowns\Death\DeathTimer.class
 me\depickcator\ascension\Skills\Combat.class
 me\depickcator\ascension\LootTables\Blocks\Ores\QuartzOre.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\OceanMonument.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Tarnhelm.class
 me\depickcator\ascension\Skills\Skills.class
+me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect.class
+me\depickcator\ascension\Player\Data\Scoreboards\LobbyBoard.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfSharpness.class
 me\depickcator\ascension\MainMenu\mainMenuCommands.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\PillagerOutpost.class
 me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.class
 me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteSword.class
-me\depickcator\ascension\Player\Data\Cooldowns\Death\PlayerDeath$1.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastSpecialChestLoot.class
 me\depickcator\ascension\Items\Craftable\Vanilla\StoneSword.class
 me\depickcator\ascension\MainMenu\Command\Commands\NightVision.class
+me\depickcator\ascension\Player\Data\Scoreboards\Boards.class
 me\depickcator\ascension\Interfaces\CustomChestLoot.class
 me\depickcator\ascension\LootTables\Entities\Entities\Pig.class
 me\depickcator\ascension\General\StartGame.class
@@ -58,7 +59,6 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Struc
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.class
 me\depickcator\ascension\MainMenu\Command\CommandGUI.class
 me\depickcator\ascension\LootTables\Blocks\BlockUtil.class
-me\depickcator\ascension\Player\Data\Cooldowns\ScanBoardCooldown.class
 me\depickcator\ascension\Player\Data\PlayerData.class
 me\depickcator\ascension\LootTables\Entities\Entities\EndermanEntity.class
 me\depickcator\ascension\testingCommands\setTimeline.class
@@ -75,6 +75,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Echolocator.cla
 me\depickcator\ascension\Items\Craftable\Unlocks\WingsOfIcarus.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\EcholocatorLocations.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LeatherEconomy.class
+me\depickcator\ascension\Player\Data\Scoreboards\GameBoard.class
 me\depickcator\ascension\LootTables\Entities\Entities\CaveSpider.class
 me\depickcator\ascension\Items\Craftable\Unlocks\RedLedgerItem\RedLedgerGUI.class
 me\depickcator\ascension\General\ItemClick.class
@@ -83,6 +84,7 @@ me\depickcator\ascension\Player\Data\PlayerStats.class
 me\depickcator\ascension\General\ArmorStandUtil.class
 me\depickcator\ascension\LootTables\Blocks\Ores\GoldOre.class
 me\depickcator\ascension\LootTables\Entities\Entities\Chicken.class
+me\depickcator\ascension\LootTables\Blocks\Stones.class
 me\depickcator\ascension\Timeline\Events\CarePackage\CarePackage.class
 me\depickcator\ascension\General\ResetGame.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LightAnvil.class
@@ -97,7 +99,6 @@ me\depickcator\ascension\LootTables\Entities\Enums\OverworldBosses.class
 me\depickcator\ascension\LootTables\Blocks\Ores\CopperOre.class
 me\depickcator\ascension\Interfaces\ItemComparison.class
 me\depickcator\ascension\Items\Uncraftable\ShardOfTheFallen.class
-me\depickcator\ascension\testingCommands\printPlayerDataCommand.class
 me\depickcator\ascension\Teams\TeamCommand.class
 me\depickcator\ascension\General\AttributeUtil.class
 me\depickcator\ascension\LootTables\Entities\Entities\Cow.class
@@ -114,6 +115,7 @@ me\depickcator\ascension\listeners\InventoryClickListener.class
 me\depickcator\ascension\testingCommands\giveExp.class
 me\depickcator\ascension\Items\Craftable\Craft.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Dread.class
+me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\Ghost.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\WarmOcean.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI.class
 me\depickcator\ascension\Items\ItemLists\CombatItems.class
@@ -142,6 +144,7 @@ me\depickcator\ascension\Items\Craftable\Vanilla\WoodenSword.class
 me\depickcator\ascension\listeners\PlayerInteractListener.class
 me\depickcator\ascension\General\StartGame$2.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Panacea.class
+me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Desert.class
 me\depickcator\ascension\Ascension.class
 me\depickcator\ascension\testingCommands\setUnlockToken.class
@@ -155,7 +158,6 @@ me\depickcator\ascension\MainMenu\BingoBoard\BingoBoardGUI.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastRegularChestLoot.class
 me\depickcator\ascension\LootTables\Entities\Entities\ZombieEntity.class
 me\depickcator\ascension\MainMenu\BingoBoard\BingoData.class
-me\depickcator\ascension\Player\Data\Cooldowns\CombatTimer.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldPassive.class
 me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBookGUI.class
 me\depickcator\ascension\LootTables\Entities\Entities\Turtle.class
@@ -164,7 +166,6 @@ me\depickcator\ascension\listeners\ChestGeneration\Tables\DesertPyramid.class
 me\depickcator\ascension\General\StartGame$3.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfPower.class
 me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class
-me\depickcator\ascension\Player\Data\Cooldowns\TeleportSequence.class
 me\depickcator\ascension\Kits\Kits\Kit.class
 me\depickcator\ascension\listeners\ProjectileAttacks.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
@@ -173,9 +174,9 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Struc
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Bastion.class
 me\depickcator\ascension\LootTables\Entities\Entities\SkeletonEntity.class
-me\depickcator\ascension\Player\Data\Cooldowns\Death\PlayerDeath.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTome.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Cornucopia.class
+me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Leaves.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastChests.class
 me\depickcator\ascension\General\LoadGame.class
 me\depickcator\ascension\Items\ItemLists\MediumItems.class
@@ -185,7 +186,6 @@ me\depickcator\ascension\General\GameCommand.class
 me\depickcator\ascension\MainMenu\MainMenuGUI.class
 me\depickcator\ascension\Player\Data\PlayerUtil.class
 me\depickcator\ascension\MainMenu\Command\Commands\FoodDrops.class
-me\depickcator\ascension\Player\Data\Cooldowns\TeleportCooldown.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent$1.class
 me\depickcator\ascension\Items\ItemLists\CustomItems.class
 me\depickcator\ascension\testingCommands\startEvents.class
@@ -211,7 +211,6 @@ me\depickcator\ascension\Timeline\Events\Feast\Feast$2.class
 me\depickcator\ascension\Items\Uncraftable\KitBook.class
 me\depickcator\ascension\Timeline\Events\Ascension\BuildLayers\AscensionBuildLayers.class
 me\depickcator\ascension\Timeline\Timeline.class
-me\depickcator\ascension\Player\Data\Cooldowns\TeleportSequence$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Resurrection.class
 me\depickcator\ascension\LootTables\Entities\Superable.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\Mineshaft.class
@@ -258,5 +257,4 @@ me\depickcator\ascension\Teams\TeamStats.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Exodus.class
 me\depickcator\ascension\Kits\Kits\Hunter.class
 me\depickcator\ascension\Timeline\Events\Feast\Feast$1.class
-me\depickcator\ascension\Player\Data\Cooldowns\Cooldowns.class
 me\depickcator\ascension\Skills\Mining.class

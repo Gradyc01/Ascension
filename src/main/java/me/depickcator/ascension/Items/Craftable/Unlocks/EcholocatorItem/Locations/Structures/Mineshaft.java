@@ -3,9 +3,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locatio
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.EcholocatorLocations;
 import me.depickcator.ascension.Player.Data.PlayerData;
-import org.bukkit.entity.Player;
 import org.bukkit.generator.structure.Structure;
-import org.bukkit.util.StructureSearchResult;
 
 public class Mineshaft extends EcholocatorLocations {
     public Mineshaft() {

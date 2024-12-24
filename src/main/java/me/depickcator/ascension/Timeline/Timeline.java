@@ -7,15 +7,21 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.MainMenu.Map.MapItem;
 import me.depickcator.ascension.MainMenu.Map.MapItems;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.Scoreboards.GameBoard;
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
 import me.depickcator.ascension.Timeline.Events.Feast.Feast;
 import me.depickcator.ascension.Timeline.Events.FinalAscension.FinalAscension;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import net.kyori.adventure.text.Component;
+import org.apache.commons.lang3.tuple.MutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Sound;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Timeline {
     private final Ascension plugin;
@@ -27,10 +33,20 @@ public class Timeline {
     private BukkitTask timeline;
     private static final int STARTING_MINUTES = 160;
     private MapItems mapItems;
+    private List<Pair<String, Integer>> nextBigEvent;
     public Timeline(Ascension plugin) {
         this.plugin = plugin;
         this.MINUTES = STARTING_MINUTES;
         mapItems = new MapItems();
+        initNextBigEvent();
+    }
+
+    private void initNextBigEvent() {
+        nextBigEvent = new ArrayList<>(List.of(
+                new MutablePair<>("Grace Period Ends", 130),
+                new MutablePair<>("Feast", 70),
+                new MutablePair<>("Final Ascension", 0)
+        ));
     }
 
     public void startTimeline() {
@@ -57,28 +73,31 @@ public class Timeline {
 
                 checkForMidGameEvents();
                 updatePlayers();
-
-                if (MINUTES > 1) {
+                if (MINUTES - nextBigEvent.getFirst().getRight() == 1) {
+                    mainTimelineSeconds();
+                }
+                if (MINUTES > 0) {
                     MINUTES--;
                 } else {
                     cancel();
                     TextUtil.debugText("Timeline Ended");
-                    mainTimelineSeconds();
+                    new FinalAscension();
                     return;
                 }
-                TextUtil.debugText("Timeline Ran");
+                TextUtil.debugText("Timeline Ran (" + MINUTES + ")");
 
             }
         }.runTaskTimer(plugin, 0, 60 * 20);
     }
 
     private void mainTimelineSeconds() {
+        SECONDS = 60;
         new BukkitRunnable() {
             @Override
             public void run() {
                 if (!keepRunning) {
                     cancel();
-                    TextUtil.debugText("Timeline Forcefully Stopped");
+                    TextUtil.debugText("Seconds Visual Timeline Forcefully Stopped");
                     return;
                 }
 
@@ -88,11 +107,11 @@ public class Timeline {
                     SECONDS--;
                 } else {
                     cancel();
-                    TextUtil.debugText("Timeline Ended");
-                    new FinalAscension();
+                    nextBigEvent.removeFirst();
+                    TextUtil.debugText("Seconds Timeline Ended");
                     return;
                 }
-                TextUtil.debugText("Timeline Ran");
+                TextUtil.debugText("Seconds Timeline Ran (" + SECONDS + ")");
 
             }
         }.runTaskTimer(plugin, 0, 20);
@@ -109,6 +128,7 @@ public class Timeline {
                 plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
                 plugin.getServer().broadcast(TextUtil.makeText("Grace Period has Ended", TextUtil.BLUE));
                 SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 30, 1);
+//                nextBigEvent = new MutablePair<>("Feast", 90);
             }
             case 31 -> {
                 ascensionEvent = new AscensionEvent();
@@ -123,6 +143,7 @@ public class Timeline {
             case 55, 120 -> {
                 //Scavenger Spawn In
                 scavenger.spawnInScavenger();
+//                nextBigEvent = new MutablePair<>("Final Ascension", 160);
             }
             case 90 -> {
                 //Feast
@@ -134,8 +155,8 @@ public class Timeline {
     }
 
     public Component getTime() {
-        if (MINUTES > 1) {
-            return TextUtil.makeText("    " + MINUTES + " Minutes", TextUtil.WHITE);
+        if (MINUTES - getNextBigEvent().getRight() > 1) {
+            return TextUtil.makeText("    " + (MINUTES - getNextBigEvent().getRight()) + " Minutes", TextUtil.WHITE);
         } else {
             return TextUtil.makeText("    " + SECONDS + " Seconds", TextUtil.WHITE);
         }
@@ -146,6 +167,7 @@ public class Timeline {
         MINUTES = STARTING_MINUTES;
         SECONDS = 60;
         scavenger = null;
+//        nextBigEvent = new MutablePair<>("Grace Period Ends", 30);
         removeAscensionElements();
         mapItems = new MapItems();
         Ascension.getInstance().getTimeline().getMapItems().addMapItem(new MapItem("Spawn", Ascension.getSpawn().getBlockX(), Ascension.getSpawn().getBlockZ(), MapItem.SPAWN));
@@ -163,7 +185,10 @@ public class Timeline {
 
     public void updatePlayers() {
         for (PlayerData p: Ascension.playerDataMap.values()) {
-            p.getPlayerScoreboard().updateGameBoard(true);
+            GameBoard b = (GameBoard) p.getPlayerScoreboard().getBoards();
+//            p.getPlayerScoreboard().update();
+//            b.update();
+            b.updateTime();
         }
     }
 
@@ -177,5 +202,9 @@ public class Timeline {
 
     public MapItems getMapItems() {
         return mapItems;
+    }
+
+    public Pair<String, Integer> getNextBigEvent() {
+        return nextBigEvent.getFirst();
     }
 }

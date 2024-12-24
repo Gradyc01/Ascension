@@ -77,7 +77,8 @@ public class AscensionLocation extends EntityInteraction {
 //        plugin.getServer()
         Component text = TextUtil.topBorder(TextUtil.DARK_GRAY);
         text = text.append(TextUtil.makeText("\n        ASCENSION STARTED\n", TextUtil.WHITE));
-        text = text.append(TextUtil.makeText("    Stop it before you no longer can", TextUtil.DARK_GRAY));
+        text = text.append(TextUtil.makeText("    " + ascendingTeam.getLeader().getName() + "'s Team has started Ascension at", TextUtil.DARK_GRAY));
+        text = text.append(TextUtil.makeText("\n                 (" + spawnLocation.getBlockX() + ", " + spawnLocation.getBlockZ() + ")", TextUtil.DARK_GRAY));
         text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
         plugin.getServer().broadcast(text);
         TextUtil.broadcastTitle(TextUtil.makeTitle(TextUtil.makeText("ASCENSION STARTED", TextUtil.YELLOW), 3, 5, 2));

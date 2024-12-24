@@ -4,6 +4,8 @@ import me.depickcator.ascension.Ascension;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,22 @@ public class PlayerUtil {
             playingPlayers.add(pD);
         }
         return playingPlayers;
+    }
+
+    public static void updateTabList() {
+        ArrayList<Player> onlinePlayerList = new ArrayList<>(Bukkit.getOnlinePlayers());
+        for (Player p : onlinePlayerList) {
+            PlayerData pD = getPlayerData(p);
+            pD.getPlayerScoreboard().updateTabList();
+        }
+    }
+
+    public static void clearEffects(PlayerData pD) {
+        Player p = pD.getPlayer();
+        p.clearActivePotionEffects();
+        if (pD.getPlayerStats().isNightVision()) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, -1, 0, false, false));
+        }
     }
 
 }

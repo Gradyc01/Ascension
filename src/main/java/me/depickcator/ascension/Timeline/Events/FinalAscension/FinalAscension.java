@@ -7,6 +7,7 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Player.Data.Scoreboards.GameBoard;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamStats;
 import me.depickcator.ascension.Teams.TeamUtil;
@@ -125,7 +126,8 @@ public class FinalAscension {
     private void updateScoreboard(Team team) {
         for (Player p : team.getTeamMembers()) {
             PlayerData pD = PlayerUtil.getPlayerData(p);
-            pD.getPlayerScoreboard().updateGameBoard(true);
+            GameBoard b = (GameBoard) pD.getPlayerScoreboard().getBoards();
+            b.updateTime();
         }
     }
 

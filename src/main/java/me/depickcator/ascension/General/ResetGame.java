@@ -47,6 +47,7 @@ public class ResetGame implements Runnable {
             public void run() {
                 if (players.isEmpty()) {
                     cancel();
+                    PlayerUtil.updateTabList();
                     return;
                 }
                 Player p = players.getFirst();

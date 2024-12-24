@@ -25,7 +25,7 @@ import java.util.List;
 public class TeamPortal extends Craft implements ItemClick {
     private static TeamPortal instance;
     private TeamPortal() {
-        super(UnlocksData.COST_350, 4, "Team Portal", "team_portal");
+        super(UnlocksData.COST_350, 2, "Team Portal", "team_portal");
         registerItem();
     }
 

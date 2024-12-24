@@ -101,7 +101,8 @@ public class Team {
                 plugin.getServer().broadcast(TextUtil.makeText("ERROR updateTeamScoreboards", TextUtil.RED));
                 continue;
             }
-            playerData.getPlayerScoreboard().updateLobbyBoard();
+            playerData.getPlayerScoreboard().update();
+            PlayerUtil.updateTabList();
         }
     }
 

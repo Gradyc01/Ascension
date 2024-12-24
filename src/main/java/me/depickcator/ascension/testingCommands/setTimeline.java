@@ -25,9 +25,16 @@ public class setTimeline implements CommandExecutor {
         if (playerData == null) return false;
 
         if (strings.length != 2) return false;
-
+        String mode = strings[0];
         int time = Integer.parseInt(strings[1]);
-        plugin.getTimeline().setTime(time);
+        if (mode.equals("set")) {
+            plugin.getTimeline().setTime(time);
+        } else if (mode.equals("run")) {
+            plugin.getTimeline().pauseTimeline();
+            plugin.getTimeline().setTime(time);
+            plugin.getTimeline().startTimeline();
+        }
+
         TextUtil.debugText("Set timeline to " + time);
         return false;
     }
