@@ -30,7 +30,7 @@ public class DiamondPack extends Craft {
 
     @Override
     protected ItemStack initResult() {
-        return new ItemStack(Material.DIAMOND, 12);
+        return new ItemStack(Material.DIAMOND, 16);
     }
 
     public static DiamondPack getInstance() {

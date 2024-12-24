@@ -37,7 +37,6 @@ public class LootTableGeneration implements Listener {
         }
         Player p = event.getPlayer();
         Block b = event.getBlock();
-
         LootTableChanger lootTableChanger = LootTableChanger.findItem(p.getInventory().getItemInMainHand());
         if (lootTableChanger != null) {
             lootTableChanger.uponEvent(event, p);
@@ -95,7 +94,7 @@ public class LootTableGeneration implements Listener {
         if (inv.getItemInMainHand().getType() == Material.FISHING_ROD) {
             PlayerUtil.getPlayerData(p).getPlayerSkills().getForaging().addExp(ForageBlocks.FORAGING_RARE);
             if (inv.getItemInMainHand().getItemMeta().getCustomModelData() == KingsRod.getInstance().getResult().getItemMeta().getCustomModelData()) {
-                plugin.getWorld().dropItemNaturally(event.getPlayer().getLocation(), new ItemStack(Material.GOLD_NUGGET, 12));
+                plugin.getWorld().dropItemNaturally(event.getPlayer().getLocation(), new ItemStack(Material.GOLD_NUGGET, 6));
             }
         }
     }

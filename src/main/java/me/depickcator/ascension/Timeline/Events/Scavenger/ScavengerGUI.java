@@ -140,7 +140,7 @@ public class ScavengerGUI extends AscensionGUI {
             if (b) i++;
         }
         Component num = TextUtil.makeText(" (" + i + "/5)", TextUtil.BLUE);
-        TextUtil.broadcastMessage(name);
+        TextUtil.broadcastMessage(name, team.getTeamMembers());
         TextUtil.broadcastMessage(trade.getLeft().displayName().append(arrow.append(trade.getRight().displayName().append(num))), team.getTeamMembers());
     }
 

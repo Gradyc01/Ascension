@@ -31,7 +31,7 @@ public class PlayerJoinLeave implements Listener {
                 onPlayerJoinDuringGame(event);
             }
         }
-
+        PlayerUtil.updateTabList();
     }
 
     @EventHandler
@@ -59,6 +59,7 @@ public class PlayerJoinLeave implements Listener {
     private void onPlayerJoinLobby(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         PlayerData playerData = PlayerUtil.assignNewPlayerData(player);
+        PlayerUtil.clearEffects(playerData);
         Location spawn = Ascension.getSpawn();
         playerData.resetToLobby();
         player.teleport(new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102, spawn.getZ()));
@@ -67,8 +68,15 @@ public class PlayerJoinLeave implements Listener {
     private void onPlayerJoinDuringGame(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         PlayerData playerData = PlayerUtil.assignNewPlayerData(player);
+        PlayerUtil.clearEffects(playerData);
         Location spawn = Ascension.getSpawn();
         player.teleport(new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102, spawn.getZ()));
         PlayerDeath.getInstance().setPlayerSpectating(playerData);
     }
+
+//    private void setNightVision(PlayerData playerData) {
+//        if(playerData.getPlayerStats().isNightVision()) {
+//            playerData.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, -1, 0, false, false));
+//        }
+//    }
 }

@@ -114,9 +114,12 @@ public class Combat implements Skills {
 
     private static SkillRewards level2Rewards() {
         SkillRewards skillRewards = new SkillRewards();
+        ItemStack shards = ShardOfTheFallen.result().clone();
+        shards.setAmount(1);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
-                        new ItemStack(Material.GOLDEN_APPLE, 1)
+                        new ItemStack(Material.GOLDEN_APPLE, 1),
+                        shards
                 )
         );
         skillRewards.setItems(rewards);
@@ -127,7 +130,7 @@ public class Combat implements Skills {
     private static SkillRewards level3Rewards() {
         SkillRewards skillRewards = new SkillRewards();
         ItemStack shards = ShardOfTheFallen.result().clone();
-        shards.setAmount(2);
+        shards.setAmount(4);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
                         shards
@@ -140,11 +143,9 @@ public class Combat implements Skills {
 
     private static SkillRewards level4Rewards() {
         SkillRewards skillRewards = new SkillRewards();
-        ItemStack shards = ShardOfTheFallen.result().clone();
-        shards.setAmount(5);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
-                        shards
+                        new ItemStack(Material.NETHER_STAR, 1)
                 )
         );
         skillRewards.setItems(rewards);
@@ -154,8 +155,11 @@ public class Combat implements Skills {
 
     private static SkillRewards level5Rewards() {
         SkillRewards skillRewards = new SkillRewards();
+        ItemStack shards = ShardOfTheFallen.result().clone();
+        shards.setAmount(5);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
+                        shards,
                         new ItemStack(Material.NETHER_STAR, 1)
                 )
         );

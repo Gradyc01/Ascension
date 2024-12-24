@@ -21,8 +21,8 @@ public class PlayerUnlocks {
     private final int AMOUNT_NEEDED_2 = 7;
     private final int AMOUNT_NEEDED_3 = 6;
     private final int AMOUNT_NEEDED_4 = 5;
-    private Player player;
-    private PlayerData playerData;
+    private final Player player;
+    private final PlayerData playerData;
     private int tier1Unlocks;
     private int tier2Unlocks;
     private int tier3Unlocks;
@@ -49,7 +49,7 @@ public class PlayerUnlocks {
             Component craftName = TextUtil.makeText(craft.getDisplayName(), TextUtil.GOLD);
             player.sendMessage(unlockedText.append(craftName));
             SoundUtil.playHighPitchPling(player);
-            unlockTokens-=craft.getCraftCost();
+            addUnlockTokens(-craft.getCraftCost());
             addToMap(craft.getKey(), tier);
             return true;
         }
@@ -172,7 +172,7 @@ public class PlayerUnlocks {
             player.sendMessage(TextUtil.makeText("You have earned " + unlockTokens + " Souls", TextUtil.AQUA));
         }
         this.unlockTokens += unlockTokens;
-        playerData.getPlayerScoreboard().updateGameBoard();
+        playerData.getPlayerScoreboard().update();
     }
 
     // private int tier5Unlocks() {

@@ -47,7 +47,7 @@ public class GameStates {
 //                checkState(GAME_FINAL_ASCENSION) ||
 //                checkState(LOBBY) ||
 //                checkState(GAME_ENDING));
-        if (checkState(GAME_FINAL_ASCENSION) || checkState(GAME_AFTER_GRACE)) {
+        if (checkState(GAME_FINAL_ASCENSION) || checkState(GAME_AFTER_GRACE) || checkState(GAME_ASCENSION)) {
             return true;
         } else {
             TextUtil.errorMessage(p, "Teleporting is currently unavailable");
@@ -60,6 +60,7 @@ public class GameStates {
                 checkState(GAME_LOADING) ||
                 checkState(GAME_ENDING) ||
                 checkState(GAME_AFTER_GRACE) ||
+                checkState(GAME_ASCENSION) ||
                 checkState(GAME_FINAL_ASCENSION);
     }
 

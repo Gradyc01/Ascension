@@ -32,7 +32,7 @@ public class AscensionEvent {
 
     private List<AscensionLocation> generateLocations() {
         Location spawn = Ascension.getSpawn();
-        int x = spawn.getBlockX(); int z = spawn.getBlockZ(); int spread = 750;
+        int x = spawn.getBlockX(); int z = spawn.getBlockZ(); int spread = 500;
         List<AscensionLocation> locations = new ArrayList<>();
         locations.add(new AscensionLocation(x + spread, z + spread, this));
         locations.add(new AscensionLocation(x + spread, z - spread, this));

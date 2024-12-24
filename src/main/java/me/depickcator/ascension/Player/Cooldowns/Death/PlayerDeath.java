@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -92,7 +93,7 @@ public class PlayerDeath {
 
     private void setPlayerDead(PlayerData playerData) {
         Player p = playerData.getPlayer();
-        p.clearActivePotionEffects();
+        PlayerUtil.clearEffects(playerData);
         p.setLastDeathLocation(p.getLocation());
         p.setGameMode(GameMode.SPECTATOR);
         p.sendMessage(TextUtil.makeText("You are Dead", TextUtil.DARK_RED));

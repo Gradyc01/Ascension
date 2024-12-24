@@ -4,7 +4,6 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.EcholocatorLocations;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.generator.structure.Structure;
-import org.bukkit.util.StructureSearchResult;
 
 public class OceanMonument extends EcholocatorLocations {
     public OceanMonument() {

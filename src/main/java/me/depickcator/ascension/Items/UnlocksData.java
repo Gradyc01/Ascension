@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echolocator;
+import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
 import org.apache.commons.lang3.tuple.Pair;
@@ -116,7 +117,8 @@ public class UnlocksData {
                 WeaverSilk.getInstance(),
                 RedLedger.getInstance(),
                 CrimsonArtifact.getInstance(),
-                Echolocator.getInstance()
+                Echolocator.getInstance(),
+                Ghost.getInstance()
         ));
     }
 

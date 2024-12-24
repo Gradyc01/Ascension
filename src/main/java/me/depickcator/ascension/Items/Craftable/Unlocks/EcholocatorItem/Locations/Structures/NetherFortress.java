@@ -5,7 +5,6 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echoloca
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Location;
 import org.bukkit.generator.structure.Structure;
-import org.bukkit.util.StructureSearchResult;
 
 public class NetherFortress extends EcholocatorLocations {
     public NetherFortress() {

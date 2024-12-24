@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
@@ -16,13 +15,13 @@ public abstract class EcholocatorLocations {
     private final String name;
     private final Structure structure;
     private final Biome biome;
-    private final Ascension plugin;
+    // private final Ascension plugin;
     private final World world;
     public EcholocatorLocations(String name, Structure structure, World world) {
         this.name = name;
         this.structure = structure;
         this.biome = null;
-        this.plugin = Ascension.getInstance();
+        // this.plugin = Ascension.getInstance();
         this.world = world;
     }
 
@@ -30,7 +29,7 @@ public abstract class EcholocatorLocations {
         this.name = name;
         this.structure = null;
         this.biome = biome;
-        this.plugin = Ascension.getInstance();
+        // this.plugin = Ascension.getInstance();
         this.world = world;
     }
 

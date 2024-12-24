@@ -41,7 +41,7 @@ public class PlayerData {
         playerTeam = new PlayerTeam(this.plugin, this);
         playerSkills = new PlayerSkills(this);
         playerStats = new PlayerStats(this);
-        playerScoreboard = new PlayerScoreboard(this.plugin, this);
+        playerScoreboard = new PlayerScoreboard(this);
         initPlayerState();
     }
 
@@ -77,7 +77,7 @@ public class PlayerData {
         giveStartingFood();
     }
     public void resetAfterStartGame() {
-        player.clearActivePotionEffects();
+        PlayerUtil.clearEffects(this);
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120 * 20, 1));
         player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 30 * 60 * 20, 4, false, false));
@@ -94,7 +94,7 @@ public class PlayerData {
     }
     private void clearInventoryAndEffects() {
         player.getInventory().clear();
-        player.clearActivePotionEffects();
+        PlayerUtil.clearEffects(this);
         Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(20);
     }
     private void getMainMenuItem() {

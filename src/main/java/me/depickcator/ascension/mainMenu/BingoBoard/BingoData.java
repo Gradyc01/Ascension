@@ -157,7 +157,7 @@ public class BingoData extends ItemComparison {
     private void updateScoreboard(Player p) {
         PlayerData playerData = PlayerUtil.getPlayerData(p);
         for (Player player : playerData.getPlayerTeam().getTeam().getTeamMembers()) {
-            Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerScoreboard().updateGameBoard();
+            PlayerUtil.getPlayerData(player).getPlayerScoreboard().update();
         }
     }
 

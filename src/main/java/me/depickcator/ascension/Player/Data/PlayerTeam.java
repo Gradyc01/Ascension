@@ -78,7 +78,7 @@ public class PlayerTeam {
         }
         leaveTeamMessage();
         team.removePlayer(player);
-        playerData.getPlayerScoreboard().updateLobbyBoard();
+        playerData.getPlayerScoreboard().update();
     }
 
     public Team createOrGetTeam() {
