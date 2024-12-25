@@ -1,5 +1,6 @@
 package me.depickcator.ascension.MainMenu;
 
+import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.MainMenu.Map.MapGUI;
 import me.depickcator.ascension.MainMenu.Skills.SkillsGUI;
 import me.depickcator.ascension.MainMenu.Unlocks.NewUnlocksGUI;
@@ -27,6 +28,10 @@ public class mainMenuCommands implements CommandExecutor {
         Player p = ((Player) commandSender).getPlayer();
         PlayerData pD = PlayerUtil.getPlayerData(p);
         if (strings.length != 1 || CombatTimer.getInstance().isOnCooldown(p)) {
+            return false;
+        }
+        if (!pD.checkState(PlayerData.STATE_ALIVE)) {
+            TextUtil.errorMessage(p, "You can't use this command in your state!");
             return false;
         }
         String guiBoardName = strings[0];

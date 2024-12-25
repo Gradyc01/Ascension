@@ -278,11 +278,11 @@ public class PlayerCombat implements Listener {
 //    }
 
     private void sendArrowDamageMessage(Player victim, Player damager, EntityDamageByEntityEvent event) {
-        double health = victim.getHealth() - event.getFinalDamage();
+        double health = victim.getHealth()/* + victim.getAbsorptionAmount() */- event.getFinalDamage();
         if (health <= 0) return;
         Component name = TextUtil.makeText(victim.getName(), TextUtil.RED);
         Component isAt = TextUtil.makeText(" is at ", TextUtil.YELLOW);
-        Component num = TextUtil.makeText( BigDecimal.valueOf(health).setScale(1, RoundingMode.HALF_UP) + "", TextUtil.RED);
+        Component num = TextUtil.makeText( BigDecimal.valueOf(health).setScale(1, RoundingMode.UNNECESSARY) + "", TextUtil.RED);
         Component hp = TextUtil.makeText(" HP!", TextUtil.YELLOW);
         damager.sendMessage(name.append(isAt).append(num).append(hp));
     }

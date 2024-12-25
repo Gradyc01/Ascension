@@ -46,7 +46,7 @@ public class PlayerUtil {
         ArrayList<PlayerData> playingPlayers = new ArrayList<>();
         for (Player p : onlinePlayerList) {
             PlayerData pD = getPlayerData(p);
-            if (pD == null) continue;
+            if (pD == null || pD.checkState(PlayerData.STATE_SPECTATING)) continue;
             playingPlayers.add(pD);
         }
         return playingPlayers;

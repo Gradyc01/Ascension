@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Items.ItemLists;
 
+import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
+import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -61,8 +63,10 @@ public class Harditems {
         items.add(new ItemStack(Material.NETHERITE_CHESTPLATE));
         items.add(new ItemStack(Material.NETHERITE_LEGGINGS));
         items.add(new ItemStack(Material.NETHERITE_BOOTS));
-        items.add(new ItemStack(Material.NETHERITE_SWORD));
-        items.add(new ItemStack(Material.NETHERITE_AXE));
+//        items.add(new ItemStack(Material.NETHERITE_SWORD));
+//        items.add(new ItemStack(Material.NETHERITE_AXE));
+        items.add(NetheriteAxe.getInstance().getResult());
+        items.add(NetheriteSword.getInstance().getResult());
         items.add(new ItemStack(Material.NETHERITE_PICKAXE));
         items.add(new ItemStack(Material.NETHERITE_SHOVEL));
         items.add(new ItemStack(Material.NETHERITE_HOE));

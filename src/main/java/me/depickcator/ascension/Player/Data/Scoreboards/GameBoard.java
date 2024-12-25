@@ -42,7 +42,7 @@ public class GameBoard extends Boards {
         editLine(board, 6, killText.append(killNum).append(itemsText).append(itemsNum));
 
         editLine(board, 10, TextUtil.makeText("  Enlightenment: ", TextUtil.WHITE));
-        editLine(board, 9, displayBar(playerData.getPlayerTeam().getTeam().getTeamStats().getGameScore()));
+        editLine(board, 9, displayBar(playerData.getPlayerTeam().getTeam().getTeamStats().getGameScorePercentage()));
 
         Component soulsText = TextUtil.makeText("  Souls: ", TextUtil.WHITE);
         Component soulsNum = TextUtil.makeText(playerData.getPlayerUnlocks().getUnlockTokens() + "", TextUtil.GREEN);
@@ -92,11 +92,15 @@ public class GameBoard extends Boards {
                 .append(TextUtil.makeText(minutes + ":" + seconds, TextUtil.WHITE)));
     }
 
-    private Component displayBar(int score) {
-        Component text = TextUtil.makeText("    [", TextUtil.WHITE);
+    private Component displayBar(double percentage) {
+        Component text = TextUtil.makeText("   [", TextUtil.WHITE);
         Component endText = TextUtil.makeText("]", TextUtil.WHITE);
         Component red = TextUtil.makeText(":", TextUtil.RED);
         Component green = TextUtil.makeText(":", TextUtil.GREEN);
+        int score = (int) Math.round(25 * percentage/100);
+        TextUtil.debugText("Percentage: " + percentage + " Green Bars amount: " + score);
+        if (score >= 25) return TextUtil.makeText(" ASCENSION READY", TextUtil.GREEN);
+
         for (int i = 0; i < 25; i++) {
             if (i < score) {
                 text = text.append(green);

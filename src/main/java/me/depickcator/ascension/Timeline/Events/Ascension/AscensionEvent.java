@@ -47,6 +47,7 @@ public class AscensionEvent {
         eventOngoing = true;
         locations.remove(ascensionLocation);
         ascensionLocation.startAnimation();
+        ascensionLocation.getAscendingTeam().getTeamStats().addAscensionAttempts();
         plugin.getGameState().setCurrentState(GameStates.GAME_ASCENSION);
         loop(ascensionLocation);
         plugin.getTimeline().pauseTimeline();
@@ -141,8 +142,9 @@ public class AscensionEvent {
     public boolean canStartEvent(PlayerData pD) {
         TextUtil.debugText("Ran Ascension Check");
         if (eventOngoing) return false;
-        int score = pD.getPlayerTeam().getTeam().getTeamStats().getGameScore();
-        return score >= 25 && pD.getPlayer().getInventory().getItemInMainHand().equals(AscensionKey.getInstance().getResult());
+//        int score = pD.getPlayerTeam().getTeam().getTeamStats().getGameScore();
+        return pD.getPlayerTeam().getTeam().getTeamStats().canBeginAscension() &&
+                pD.getPlayer().getInventory().getItemInMainHand().equals(AscensionKey.getInstance().getResult());
     }
 
 //    public Team getAscendingTeam() {

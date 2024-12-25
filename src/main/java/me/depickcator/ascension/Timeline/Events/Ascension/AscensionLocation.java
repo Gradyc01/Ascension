@@ -44,7 +44,7 @@ public class AscensionLocation extends EntityInteraction {
     public boolean interact(PlayerInteractEntityEvent event) {
         Player p = event.getPlayer();
         PlayerData pD = PlayerUtil.getPlayerData(p);
-        TextUtil.debugText("Right Clicked a gatekeeper");
+        TextUtil.debugText(p.getName() + " Right Clicked a gatekeeper");
         if (!this.event.canStartEvent(pD)) {
             p.sendMessage(TextUtil.makeText("Go away! I can't help you", TextUtil.DARK_GRAY));
             return false;

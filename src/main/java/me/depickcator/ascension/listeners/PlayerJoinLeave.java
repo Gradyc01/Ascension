@@ -2,6 +2,7 @@ package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
@@ -23,12 +24,15 @@ public class PlayerJoinLeave implements Listener {
         switch (plugin.getGameState().getCurrentState()) {
             case GameStates.LOBBY -> {
                 onPlayerJoinLobby(event);
+                event.joinMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
+                        .append(TextUtil.makeText( " has joined the lobby!", TextUtil.GOLD)));
             }
             case GameStates.UNLOADED -> {
                 return;
             }
             default -> {
                 onPlayerJoinDuringGame(event);
+                event.joinMessage(TextUtil.makeText(""));
             }
         }
         PlayerUtil.updateTabList();
@@ -43,6 +47,7 @@ public class PlayerJoinLeave implements Listener {
                 if (playerData != null) {
                     playerData.getPlayerTeam().leaveTeam();
                 }
+                event.quitMessage(TextUtil.makeText(""));
             }
             case GameStates.UNLOADED -> {
                 return;
@@ -50,8 +55,14 @@ public class PlayerJoinLeave implements Listener {
             default -> {
                 Player player = event.getPlayer();
                 PlayerData playerData = PlayerUtil.getPlayerData(player);
+//                if (playerData.checkState(PlayerData.STATE_SPECTATING)) {
+//                    event.quitMessage(TextUtil.makeText(""));
+//                    return; //TODO: Add this in later? and test obv
+//                }
                 PlayerDeath.getInstance().setPlayerSpectating(playerData);
                 playerData.getPlayerTeam().getTeam().updateState();
+                event.quitMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
+                        .append(TextUtil.makeText(" has disconnected and has been eliminated", TextUtil.RED)));
             }
         }
     }

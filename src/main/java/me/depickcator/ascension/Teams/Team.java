@@ -49,7 +49,7 @@ public class Team {
             TeamUtil.disbandTeam(leader);
             for (Player pl : teamMembers) {
                 pl.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
-                pl.sendMessage(TextUtil.makeText("Party leader has left the party the party will now be disbanded", TextUtil.YELLOW));
+                pl.sendMessage(TextUtil.makeText("Party leader has left the party. The party will now be disbanded", TextUtil.YELLOW));
                 pl.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
             }
             updateTeamScoreboards();
