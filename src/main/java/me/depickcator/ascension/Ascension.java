@@ -10,6 +10,7 @@ import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.TeamCommand;
 import me.depickcator.ascension.Timeline.Timeline;
+import me.depickcator.ascension.commands.Shout;
 import me.depickcator.ascension.listeners.*;
 import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
 import me.depickcator.ascension.MainMenu.OpenMainMenuCommand;
@@ -87,6 +88,7 @@ public final class Ascension extends JavaPlugin {
         Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp());
         Objects.requireNonNull(getCommand("startEvent")).setExecutor(new startEvents());
         Objects.requireNonNull(getCommand("giveCustomItem")).setExecutor(new giveCustomItem());
+        Objects.requireNonNull(getCommand("shout")).setExecutor(new Shout());
     }
 
     private void registerListeners() {
@@ -104,6 +106,7 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new PlayerInteractListener(), this);
         manager.registerEvents(new LootTableGeneration(), this);
         manager.registerEvents(new ChestLootModifier(), this);
+        manager.registerEvents(new PlayerChatting(), this);
     }
 
     private void registerCrafts() {

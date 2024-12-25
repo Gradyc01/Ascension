@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Timeline.Events.Feast;
 
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
+import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -18,10 +19,12 @@ public class FeastSpecialChestLoot extends CustomChestLoot {
         ArrayList<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.NETHER_STAR, 2));
         items.add(HadesBook.getInstance().getItem());
+        ItemStack item = EnlightenedNugget.getInstance().getItem().clone();
+        item.setAmount(3);
+        items.add(item);
 
         return placeInInventory(inv, r, items);
     }
-
 
 
     public static FeastSpecialChestLoot getInstance() {

@@ -3,6 +3,7 @@ package me.depickcator.ascension.testingCommands;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
+import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,9 +12,12 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class giveCustomItem implements CommandExecutor {
+    private final Ascension plugin;
     public giveCustomItem() {
+        plugin = Ascension.getInstance();
     }
 
     @Override
@@ -24,7 +28,20 @@ public class giveCustomItem implements CommandExecutor {
 
         String name = strings[0];
 
-        ArrayList<ArrayList<Craft>> allCraft = Ascension.getInstance().getUnlocksData().getAllUnlocks();
+        ArrayList<ArrayList<Craft>> allCraft = plugin.getUnlocksData().getAllUnlocks();
+        allCraft.add(new ArrayList<>(List.of(
+                WoodenSword.getInstance(),
+                StoneSword.getInstance(),
+                IronSword.getInstance(),
+                DiamondSword.getInstance(),
+                NetheriteSword.getInstance(),
+                WoodenAxe.getInstance(),
+                StoneAxe.getInstance(),
+                IronAxe.getInstance(),
+                DiamondAxe.getInstance(),
+                NetheriteAxe.getInstance(),
+                Shield.getInstance()
+        )));
         if (name.equals("help")) {
             Component text = TextUtil.makeText("  All Item strings: ", TextUtil.GRAY);
             for (ArrayList<Craft> craft : allCraft) {

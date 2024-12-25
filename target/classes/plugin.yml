@@ -18,6 +18,8 @@ commands:
     description: opens all menu in the main menu via command
   party:
     description: team up with other players
+  shout:
+    description: allows players to communicate with the entire server
   debugger:
     description: turns on and off the debugger
     permission: ascension.debugger

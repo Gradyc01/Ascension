@@ -11,6 +11,7 @@ import me.depickcator.ascension.Teams.Team;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.util.Vector;
@@ -103,6 +104,8 @@ public class AscensionLocation extends EntityInteraction {
         livingEntity.setCustomNameVisible(true);
         livingEntity.customName(TextUtil.makeText("Gatekeeper", TextUtil.GRAY));
         livingEntity.setAI(false);
+        livingEntity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(700);
+        livingEntity.setHealth(700);
         livingEntity.setSilent(true);
         livingEntity.setPersistent(true);
         livingEntity.setInvulnerable(true);

@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Timeline.Events.CarePackage;
 
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
+import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -54,6 +55,8 @@ public class CarePackageLoot extends CustomChestLoot {
         items.addAll(getRandomItemFromList(netheriteItems, r, 1));
         items.addAll(getRandomItemFromList(netherItems, r, 3, 2, 3));
         items.add(new ItemStack(Material.NETHER_STAR, 2));
+        items.add(EnlightenedNugget.getInstance().getItem());
+        items.add(EnlightenedNugget.getInstance().getItem());
 
         return placeInInventory(inv, r, items);
     }

@@ -39,60 +39,37 @@ public class TeamCommand implements CommandExecutor {
 
 
     private void commandFinder(Player p, String[] args) {
+        PlayerData pD = PlayerUtil.getPlayerData(p);
         switch (args[0].toLowerCase()) {
             case "invite" -> {
 //                if (args[1].toLowerCase())
                 Player invited = Bukkit.getPlayer(args[1]);
-                if (invited == null) {
-                    p.sendMessage("failed to find player");
+                if (invited == null || invited.equals(p)) {
+                    TextUtil.errorMessage(p, "Failed to find player.");
                     return;
                 }
-                PlayerData pData = PlayerUtil.getPlayerData(p);
-                if (pData == null) {
-                    p.sendMessage("failed to playerData");
-                    return;
-                }
-                pData.getPlayerTeam().sendInvite(invited);
+                pD.getPlayerTeam().sendInvite(invited);
             }
             case "leave" -> {
-                PlayerData playerData = Ascension.playerDataMap.get(p.getUniqueId());
-                if (playerData == null) {
-                    p.sendMessage("failed to playerData");
-                    return;
-                }
-                playerData.getPlayerTeam().leaveTeam();
+                pD.getPlayerTeam().leaveTeam();
             }
             case "accept" -> {
-                PlayerData playerData = Ascension.playerDataMap.get(p.getUniqueId());
-                if (playerData == null) {
-                    p.sendMessage("failed to playerData");
-                    return;
-                }
-                playerData.getPlayerTeam().acceptInvite();
+                pD.getPlayerTeam().acceptInvite();
             }
             case "reject" -> {
-                PlayerData playerData = Ascension.playerDataMap.get(p.getUniqueId());
-                if (playerData == null) {
-                    p.sendMessage("failed to playerData");
-                    return;
-                }
-                playerData.getPlayerTeam().rejectInvite();
+                pD.getPlayerTeam().rejectInvite();
             }
             case "list" -> {
-                PlayerData playerData = Ascension.playerDataMap.get(p.getUniqueId());
-                if (playerData == null) {
-                    p.sendMessage("failed to playerData");
-                    return;
-                }
                 try {
-                    playerData.getPlayerTeam().getTeam().teamList(p);
+                    pD.getPlayerTeam().getTeam().teamList(p);
                 } catch (Exception e) {
                     TextUtil.errorMessage(p, "You are currently not in a party");
                 }
 
             }
             default -> {
-                TextUtil.errorMessage(p, "You did not use this command properly!");
+//                TextUtil.errorMessage(p, "You did not use this command properly!");
+                p.performCommand("party invite " + args[0]);
             }
         }
     }

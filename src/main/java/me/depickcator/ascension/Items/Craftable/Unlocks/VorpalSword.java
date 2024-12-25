@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
+import me.depickcator.ascension.Items.Craftable.Vanilla.IronSword;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
 import net.kyori.adventure.text.Component;
@@ -41,7 +42,7 @@ public class VorpalSword extends Craft {
 
     @Override
     protected ItemStack initResult() {
-        ItemStack item =  new ItemStack(Material.IRON_SWORD);
+        ItemStack item = IronSword.getInstance().getResult().clone();
         ItemMeta meta = item.getItemMeta();
         meta.addEnchant(Enchantment.SMITE, 2, true);
         meta.addEnchant(Enchantment.BANE_OF_ARTHROPODS, 2, true);

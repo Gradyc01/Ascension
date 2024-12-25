@@ -12,7 +12,7 @@ public abstract class Craft {
     protected final int MAX_CRAFTS;
     protected final String DISPLAY_NAME;
     protected final String KEY;
-    protected final ItemStack result;
+    protected ItemStack result;
 
     protected Craft(int cost, int maxCrafts, String displayName, String key) {
         COST = cost; MAX_CRAFTS = maxCrafts; DISPLAY_NAME = displayName; KEY = key;
@@ -22,11 +22,10 @@ public abstract class Craft {
     }
 
     protected Craft(String displayName, String key) {
+
         COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;
         this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
-        result = initResult();
-        recipe = initRecipe();
     }
 
     protected abstract Recipe initRecipe();

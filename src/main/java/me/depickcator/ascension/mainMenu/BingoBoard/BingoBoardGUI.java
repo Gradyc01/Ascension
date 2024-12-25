@@ -45,9 +45,18 @@ public class BingoBoardGUI extends AscensionGUI {
             meta.displayName(TextUtil.makeText("UNSET", TextUtil.GRAY, true, true));
             meta.setEnchantmentGlintOverride(true);
             item.setItemMeta(meta);
+//            for (int i = 0; i < 25; i++) {
+//                items.add(item);
+//            }
             for (int i = 0; i < 25; i++) {
-                items.add(item);
+                if (!hasItems.get(i)) {
+                    inventory.setItem(boardSlots[i], item);
+//                    bingoItems.add(item);
+                } else {
+                    inventory.setItem(boardSlots[i], makeClaimedItem(item));
+                }
             }
+            return;
         }
         for (int i = 0; i < 25; i++) {
             ItemStack item = items.get(i);

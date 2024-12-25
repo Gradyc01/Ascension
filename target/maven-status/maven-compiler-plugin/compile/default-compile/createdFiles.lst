@@ -16,6 +16,7 @@ me\depickcator\ascension\Timeline\Events\Feast\FeastChests$1.class
 me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBook.class
 me\depickcator\ascension\Items\Craftable\Vanilla\DiamondSword.class
 me\depickcator\ascension\MainMenu\GiveMainMenuItem.class
+me\depickcator\ascension\commands\Shout.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HermesBoots.class
 me\depickcator\ascension\listeners\ChestGeneration\ChestLootModifier.class
 me\depickcator\ascension\LootTables\Blocks\Ores\DiamondOre.class
@@ -84,12 +85,14 @@ me\depickcator\ascension\Player\Data\PlayerStats.class
 me\depickcator\ascension\General\ArmorStandUtil.class
 me\depickcator\ascension\LootTables\Blocks\Ores\GoldOre.class
 me\depickcator\ascension\LootTables\Entities\Entities\Chicken.class
+me\depickcator\ascension\Items\Craftable\Vanilla\Weapons.class
 me\depickcator\ascension\LootTables\Blocks\Stones.class
 me\depickcator\ascension\Timeline\Events\CarePackage\CarePackage.class
 me\depickcator\ascension\General\ResetGame.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LightAnvil.class
 me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftStar.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\BastionBridge.class
+me\depickcator\ascension\listeners\PlayerChatting.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastChests$2.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Mineshaft.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EveTemptation.class
@@ -100,6 +103,7 @@ me\depickcator\ascension\LootTables\Blocks\Ores\CopperOre.class
 me\depickcator\ascension\Interfaces\ItemComparison.class
 me\depickcator\ascension\Items\Uncraftable\ShardOfTheFallen.class
 me\depickcator\ascension\Teams\TeamCommand.class
+me\depickcator\ascension\Items\Uncraftable\EnlightenedNugget.class
 me\depickcator\ascension\General\AttributeUtil.class
 me\depickcator\ascension\LootTables\Entities\Entities\Cow.class
 me\depickcator\ascension\Timeline\Timeline$1.class
@@ -127,7 +131,6 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Struc
 me\depickcator\ascension\Items\Craftable\Vanilla\IronAxe.class
 me\depickcator\ascension\MainMenu\OpenMainMenuCommand.class
 me\depickcator\ascension\LootTables\Entities\Enums\NetherMobs.class
-me\depickcator\ascension\Player\Combat\PlayerCombat.class
 me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalItem\TeamPortalGUI.class
 me\depickcator\ascension\LootTables\LootTableChanger.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI$1.class
