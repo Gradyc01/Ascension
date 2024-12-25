@@ -1,7 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
 
-import me.depickcator.ascension.Items.Craftable.Craft;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -10,10 +9,10 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 
 
-public class StoneSword extends Craft implements Vanilla {
+public class StoneSword extends Weapons implements Vanilla {
     private static StoneSword instance;
     private StoneSword() {
-        super("Stone Sword", "stone_sword");
+        super("Stone Sword", "stone_sword", 7, -2.4);
     }
 
     public static StoneSword getInstance() {
@@ -37,8 +36,7 @@ public class StoneSword extends Craft implements Vanilla {
     @Override
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.STONE_SWORD);
-        double attackDamage = 7; double attackSpeed = -2.4;
-        item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), attackDamage, attackSpeed, KEY));
+        item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), getAttackDamage(), getAttackSpeed(), KEY));
         return item;
     }
 

@@ -3,6 +3,9 @@ package me.depickcator.ascension.Player.Data;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Teams.Team;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
@@ -124,8 +127,26 @@ public class PlayerTeam {
     private void receivingInviteText(Player invitedPlayer) {
         invitedPlayer.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
         invitedPlayer.sendMessage(TextUtil.makeText(player.getName() + " has invited you to their party!", TextUtil.YELLOW));
-        invitedPlayer.sendMessage(TextUtil.makeText("Accept by typing /party accept or party reject", TextUtil.YELLOW));
+
+        invitedPlayer.sendMessage(inviteHyperlink("accept"));
+//        Component rejectBeginning = TextUtil.makeText("If you would like to reject this invite ", TextUtil.YELLOW);
+//        Component rejectText = TextUtil.makeText("[Click Here]", TextUtil.GOLD)
+//                .hoverEvent(HoverEvent.showText(TextUtil.makeText("Click here to reject the invite", TextUtil.DARK_PURPLE)))
+//                .clickEvent(ClickEvent.runCommand("/party reject"));
+//        Component rejectEnd = TextUtil.makeText(" or by typing /party reject", TextUtil.YELLOW);
+        invitedPlayer.sendMessage(inviteHyperlink("reject"));
+
+
         invitedPlayer.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
+    }
+
+    private Component inviteHyperlink(String str) {
+        Component beginning = TextUtil.makeText("If you would like to " + str + " this invite ", TextUtil.YELLOW);
+        Component hyperlink = TextUtil.makeText("[Click Here]", TextUtil.GOLD)
+                .hoverEvent(HoverEvent.showText(TextUtil.makeText("Click here to " + str + " the invite", TextUtil.DARK_PURPLE)))
+                .clickEvent(ClickEvent.runCommand("/party " + str));
+        Component end = TextUtil.makeText(" or by typing /party " + str, TextUtil.YELLOW);
+        return beginning.append(hyperlink).append(end);
     }
 
     private void leaveTeamMessage() {

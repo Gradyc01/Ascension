@@ -1,7 +1,9 @@
 package me.depickcator.ascension.Teams;
 
 
+import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
+import org.bukkit.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +55,14 @@ public class TeamStats {
     public void addGameScore(int num) {
         TextUtil.debugText("Added " + num + " game score to " + team.getLeader().getName() + "'s Team");
         TextUtil.debugText(team.getLeader().getName() + "'s Team previous score : " + gameScore);
+
         gameScore += num;
+        if (num > 0) {
+            TextUtil.broadcastMessage(TextUtil.makeText("You feel a little more enlightened", TextUtil.GRAY), team.getTeamMembers());
+            SoundUtil.broadcastSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE, 100, 0, team.getTeamMembers());
+        }
+        team.updateTeamScoreboards();
+
         TextUtil.debugText(team.getLeader().getName() + "'s Team current score : " + gameScore);
     }
 

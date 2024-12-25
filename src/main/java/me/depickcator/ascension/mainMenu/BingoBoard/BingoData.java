@@ -38,8 +38,6 @@ public class BingoData extends ItemComparison {
     private final Ascension plugin;
 
     public BingoData(Ascension ab) {
-
-
         scoreboardManager = Bukkit.getServer().getScoreboardManager();
         bingoScoreboard = scoreboardManager.getMainScoreboard();
         try {
@@ -146,7 +144,6 @@ public class BingoData extends ItemComparison {
                     teamMember.sendMessage(TextUtil.bottomBorder(TextUtil.YELLOW));
                     teamMember.playSound(teamMember.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
                     PlayerUtil.giveItem(teamMember, new ItemStack(Material.NETHER_STAR));
-                    updateScoreboard(teamMember);
                 }
             }
             team.getTeamStats().setLinesObtained(newLines);

@@ -96,8 +96,16 @@ public class PlayerDeath {
         PlayerUtil.clearEffects(playerData);
         p.setLastDeathLocation(p.getLocation());
         p.setGameMode(GameMode.SPECTATOR);
+        strikeLightning(p);
         p.sendMessage(TextUtil.makeText("You are Dead", TextUtil.DARK_RED));
         p.showTitle(TextUtil.makeTitle(TextUtil.makeText("You Died", TextUtil.DARK_RED), TextUtil.makeText(""), 0, 5, 1));
+    }
+
+    private void strikeLightning(Player player) {
+        Location loc = player.getLocation();
+        loc.getWorld().strikeLightningEffect(loc);
+        loc.getWorld().playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0F, 1.0F);
+        loc.getWorld().playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0F, 0.0F);
     }
 
     public void respawnPlayer(PlayerData playerData) {

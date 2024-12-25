@@ -80,7 +80,7 @@ public class PlayerData {
         PlayerUtil.clearEffects(this);
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120 * 20, 1));
         player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 30 * 60 * 20, 4, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 20 * 60 * 20, 4, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
         Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);

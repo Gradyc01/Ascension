@@ -4,8 +4,10 @@ import me.depickcator.ascension.General.SoundUtil;
 import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.ItemList;
+import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -84,7 +86,10 @@ public class ScavengerTrades extends ItemComparison {
             }
         }
         if (i + 1 == 3) {
-            p.getWorld().dropItem(p.getLocation(), HadesBook.getInstance().getItem());
+            ItemStack item = EnlightenedNugget.getInstance().getItem().clone();
+            item.setAmount(3);
+            PlayerUtil.giveItem(p, item);
+            PlayerUtil.giveItem(p, HadesBook.getInstance().getItem());
             sendCompletionText(playerData);
         }
     }

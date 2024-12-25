@@ -1,14 +1,13 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
-import me.depickcator.ascension.Items.Craftable.Craft;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.*;
 
-public class NetheriteAxe extends Craft implements Vanilla {
+public class NetheriteAxe extends Weapons implements Vanilla {
     private static NetheriteAxe instance;
     private NetheriteAxe() {
-        super("Netherite Axe", "netherite_axe");
+        super("Netherite Axe", "netherite_axe", 15, -3);
     }
 
     public static NetheriteAxe getInstance() {
@@ -30,9 +29,8 @@ public class NetheriteAxe extends Craft implements Vanilla {
     @Override
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.NETHERITE_AXE);
-        double attackDamage = 20;
-        double attackSpeed = -3;
-        item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), attackDamage, attackSpeed, KEY));
+        item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), getAttackDamage(), getAttackSpeed(), KEY));
         return item;
     }
+
 }

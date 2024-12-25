@@ -3,6 +3,7 @@ package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.testingCommands.Debugger;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -14,6 +15,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class TextUtil {
     public static TextColor YELLOW = TextColor.color(255, 255, 0);
@@ -82,13 +84,14 @@ public class TextUtil {
 
 
     public static void broadcastMessage(Component text) {
-        Ascension.getInstance().getServer().broadcast(text);
+        Audience.audience(Bukkit.getOnlinePlayers()).sendMessage(text);
     }
 
-    public static void broadcastMessage(Component text, ArrayList<Player> players) {
-        for (Player p: players) {
-            p.sendMessage(text);
-        }
+    public static void broadcastMessage(Component text, List<Player> players) {
+//        for (Player p: players) {
+//            p.sendMessage(text);
+//        }
+        Audience.audience(players).sendMessage(text);
     }
 
     public static String toRomanNumeral(int num) {
@@ -141,6 +144,10 @@ public class TextUtil {
     }
 
     public static void debugText(String text) {
-        if (Debugger.getDebugger()) Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));
+        if (Debugger.getDebugger()) {
+            Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));
+        }
+        Logger logger = Bukkit.getLogger();
+        logger.info(text);
     }
 }

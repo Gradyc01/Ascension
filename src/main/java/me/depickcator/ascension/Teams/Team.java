@@ -94,7 +94,7 @@ public class Team {
         return otherTeamMembers;
     }
 
-    private void updateTeamScoreboards() {
+    public void updateTeamScoreboards() {
         for (Player p : teamMembers) {
             PlayerData playerData = PlayerUtil.getPlayerData(p);
             if (playerData == null) {
