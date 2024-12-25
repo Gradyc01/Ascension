@@ -1,7 +1,6 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;
@@ -35,7 +34,7 @@ public class setTimeline implements CommandExecutor {
             plugin.getTimeline().startTimeline();
         }
 
-        TextUtil.debugText("Set timeline to " + time);
+
         return false;
     }
 }

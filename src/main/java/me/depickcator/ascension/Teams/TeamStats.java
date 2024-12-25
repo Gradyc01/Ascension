@@ -17,6 +17,7 @@ public class TeamStats {
     private int gameScore;
     private int finalAscensionTimer;
     private int ascensionTimer;
+    private int ascensionAttempts;
 
     //Scavenger
     private ArrayList<Boolean> scavengerScore;
@@ -26,12 +27,14 @@ public class TeamStats {
         itemsObtained = 0;
         linesObtained = 0;
         gameScore = 0;
+        ascensionAttempts = 0;
         ascensionTimer = 300;
         scavengerScore = new ArrayList<>(List.of(
                 false, false, false, false, false
         ));
     }
 
+    //Lines Obtained
     public int getLinesObtained() {
         return linesObtained;
     }
@@ -40,6 +43,7 @@ public class TeamStats {
         this.linesObtained = linesObtained;
     }
 
+    //Items Obtained
     public int getItemsObtained() {
         return itemsObtained;
     }
@@ -48,6 +52,7 @@ public class TeamStats {
         this.itemsObtained++;
     }
 
+    //Game Score
     public int getGameScore() {
         return gameScore;
     }
@@ -66,10 +71,31 @@ public class TeamStats {
         TextUtil.debugText(team.getLeader().getName() + "'s Team current score : " + gameScore);
     }
 
+    public int getGameScorePercentage() {
+        TextUtil.debugText(gameScore + " Game Score     ");
+        double percentage;
+        if (ascensionAttempts == 0) {
+            percentage = (double) gameScore / 25;
+        } else {
+            int attemptsRemaining = ascensionAttempts - 1;
+//            return (int) ((double)  (( gameScore - 25 - (15 * attemptsRemaining)) / 15))* 100;
+            percentage = (double) (gameScore - 25 - (15 * attemptsRemaining)) / 15;
+        }
+        TextUtil.debugText(Math.round(percentage * 100) + "%");
+        return (int) Math.round(percentage * 100);
+
+    }
+
+    public boolean canBeginAscension() {
+        return getGameScorePercentage() >= 100;
+    }
+
+    //Scavenger Score
     public ArrayList<Boolean> getScavengerScore() {
         return scavengerScore;
     }
 
+    //Final Ascension Timer
     public int getFinalAscensionTimer() {
         return finalAscensionTimer;
     }
@@ -78,6 +104,12 @@ public class TeamStats {
         setFinalAscensionTimer(getFinalAscensionTimer() + finalAscensionTimer);
     }
 
+    public void setFinalAscensionTimer(int finalAscensionTimer) {
+        this.finalAscensionTimer = finalAscensionTimer;
+    }
+
+
+    //Ascension Timer
     public int getAscensionTimer() {
         return ascensionTimer;
     }
@@ -86,7 +118,17 @@ public class TeamStats {
         this.ascensionTimer += ascensionTimer;
     }
 
-    public void setFinalAscensionTimer(int finalAscensionTimer) {
-        this.finalAscensionTimer = finalAscensionTimer;
+    //Ascension Attempts
+    public int getAscensionAttempts() {
+        return ascensionAttempts;
     }
+
+    public void addAscensionAttempts() {
+        this.ascensionAttempts++;
+        team.updateTeamScoreboards();
+    }
+
+//    public void setAscensionAttempts(int ascensionAttempts) {
+//        this.ascensionAttempts = ascensionAttempts;
+//    }
 }

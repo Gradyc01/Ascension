@@ -7,6 +7,7 @@ import me.depickcator.ascension.General.TextUtil;
 import me.depickcator.ascension.MainMenu.Map.MapItem;
 import me.depickcator.ascension.MainMenu.Map.MapItems;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Player.Data.Scoreboards.GameBoard;
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
@@ -173,10 +174,11 @@ public class Timeline {
 
     public void setTime(int time) {
         MINUTES = time;
+        TextUtil.debugText("Set timeline to " + MINUTES + " minutes");
     }
 
     public void updatePlayers() {
-        for (PlayerData p: Ascension.playerDataMap.values()) {
+        for (PlayerData p: PlayerUtil.getAllPlayingPlayers()) {
             GameBoard b = (GameBoard) p.getPlayerScoreboard().getBoards();
 //            p.getPlayerScoreboard().update();
 //            b.update();

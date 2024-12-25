@@ -11,7 +11,6 @@ import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamUtil;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -82,8 +81,7 @@ public class BingoData extends ItemComparison {
         ArrayList<Boolean> hasItems = getItemsCompleted(p);
 
         if (items.size() != 25) {
-            p.sendMessage(Component.text("The board has not been initialized yet").color(TextColor.color(255,0,0)));
-            SoundUtil.playErrorSoundEffect(p);
+            TextUtil.errorMessage(p, "The board has not been initialized yet");
             return;
         }
         for (int i = 0; i < items.size(); i++) {
@@ -136,7 +134,7 @@ public class BingoData extends ItemComparison {
         if (newLines > oldLines) {
             Team team = playerData.getPlayerTeam().getTeam();
             for (int i = 0; i < newLines - oldLines; i++) {
-                playerData.getPlayerTeam().getTeam().getTeamStats().addGameScore(3);
+                playerData.getPlayerTeam().getTeam().getTeamStats().addGameScore(4);
                 ArrayList<Player> teamMembers = team.getTeamMembers();
                 for (Player teamMember : teamMembers) {
                     teamMember.sendMessage(TextUtil.topBorder(TextUtil.YELLOW));

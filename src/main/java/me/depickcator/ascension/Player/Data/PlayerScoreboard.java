@@ -16,6 +16,7 @@ import java.util.List;
 
 
 public class PlayerScoreboard {
+    private final Ascension plugin;
     private final Scoreboard scoreboard;
     private final ScoreboardManager manager;
     private final Player player;
@@ -26,9 +27,10 @@ public class PlayerScoreboard {
     private Objective board;
     private Objective health;
     public PlayerScoreboard(PlayerData playerData) {
+        this.plugin = Ascension.getInstance();
         this.player = playerData.getPlayer();
         this.playerData = playerData;
-        this.manager = Ascension.getInstance().getServer().getScoreboardManager();
+        this.manager = plugin.getServer().getScoreboardManager();
         this.scoreboard = manager.getNewScoreboard();
         board = scoreboard.registerNewObjective(
                 "board",
@@ -41,6 +43,14 @@ public class PlayerScoreboard {
         makeHealthScoreboardToTab();
         player.setScoreboard(scoreboard);
     }
+
+//    private void makeBoard() {
+//        if (plugin.getGameState().inGame()) {
+//            makeGameBoard();
+//        } else {
+//            makeLobbyBoard();
+//        }
+//    }
 
     public void makeLobbyBoard() {
         boards = new LobbyBoard(board, playerData);

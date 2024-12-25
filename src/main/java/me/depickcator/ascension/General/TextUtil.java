@@ -146,8 +146,9 @@ public class TextUtil {
     public static void debugText(String text) {
         if (Debugger.getDebugger()) {
             Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));
+        } else {
+            Logger logger = Bukkit.getLogger();
+            logger.info(text);
         }
-        Logger logger = Bukkit.getLogger();
-        logger.info(text);
     }
 }
