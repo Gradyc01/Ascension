@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Items.Uncraftable;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;

@@ -2,8 +2,8 @@ package me.depickcator.ascension.Timeline;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.SoundUtil;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.SoundUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.MainMenu.Map.MapItem;
 import me.depickcator.ascension.MainMenu.Map.MapItems;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -95,7 +95,7 @@ public class Timeline {
 
                 updatePlayers();
                 if ((SECONDS % 30 == 0 || SECONDS <= 5) && SECONDS !=0) {
-                    TextUtil.broadcastMessage(TextUtil.makeText(getNextBigEvent().getLeft() + " in: " + SECONDS + " seconds", TextUtil.YELLOW));
+                    TextUtil.broadcastMessage(TextUtil.makeText(getNextBigEvent().getLeft() + " in " + SECONDS + " seconds", TextUtil.YELLOW));
                     SoundUtil.broadcastSound(Sound.UI_BUTTON_CLICK, 100, 1);
                 }
                 if (SECONDS > 1) {
@@ -175,6 +175,12 @@ public class Timeline {
     public void setTime(int time) {
         MINUTES = time;
         TextUtil.debugText("Set timeline to " + MINUTES + " minutes");
+        List<Pair<String, Integer>> events = new ArrayList<>(nextBigEvent);
+        for (Pair<String, Integer> event : events) {
+            if (event.getRight() >= MINUTES) {
+                nextBigEvent.remove(event);
+            }
+        }
     }
 
     public void updatePlayers() {

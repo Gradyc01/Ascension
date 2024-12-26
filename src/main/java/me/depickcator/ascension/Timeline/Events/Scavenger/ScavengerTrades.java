@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Timeline.Events.Scavenger;
 
-import me.depickcator.ascension.General.SoundUtil;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.SoundUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.ItemList;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;

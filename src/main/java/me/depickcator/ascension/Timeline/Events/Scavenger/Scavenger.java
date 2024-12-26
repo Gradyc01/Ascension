@@ -1,8 +1,8 @@
 package me.depickcator.ascension.Timeline.Events.Scavenger;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.SoundUtil;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.SoundUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
 import me.depickcator.ascension.MainMenu.Map.MapItem;
 import me.depickcator.ascension.Player.Data.PlayerUtil;

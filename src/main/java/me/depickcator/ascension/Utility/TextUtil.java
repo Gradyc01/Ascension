@@ -1,4 +1,4 @@
-package me.depickcator.ascension.General;
+package me.depickcator.ascension.Utility;
 
 
 import me.depickcator.ascension.Ascension;

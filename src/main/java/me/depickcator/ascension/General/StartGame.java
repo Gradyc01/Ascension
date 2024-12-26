@@ -6,6 +6,8 @@ import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.TeamUtil;
 import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
+import me.depickcator.ascension.Utility.SoundUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
@@ -20,12 +22,10 @@ import java.util.ArrayList;
 
 public class StartGame{
     private final Ascension plugin;
-    private final Player player;
     private final int second = 20;
     private final GameStates gameState;
-    public StartGame(Player player) {
+    public StartGame() {
         this.plugin = Ascension.getInstance();
-        this.player = player;
         this.gameState = plugin.getGameState();
         this.gameState.setCurrentState(GameStates.GAME_LOADING);
         resetPlayers();
@@ -161,7 +161,7 @@ public class StartGame{
         new BukkitRunnable() {
             @Override
             public void run() {
-                World world = player.getWorld();
+                World world = plugin.getWorld();
                 world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
                 world.setDifficulty(Difficulty.NORMAL);
 //                world.setPVP(false);

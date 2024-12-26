@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;

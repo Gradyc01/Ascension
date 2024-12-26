@@ -1,6 +1,6 @@
 package me.depickcator.ascension.listeners;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Player.Data.PlayerUtil;

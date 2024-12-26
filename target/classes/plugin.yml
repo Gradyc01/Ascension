@@ -8,18 +8,21 @@ commands:
   give-main-menu:
     description: This command gives the main menu item
     permission: ascension.give-main-menu
-  game:
-    description: Allows to access the main game states
-    permission: ascension.game
-  changeBingoScore:
-    description: changes the bingo score for a certain player
-    permission: ascension.changeBingoScore
   openmenu:
     description: opens all menu in the main menu via command
   party:
     description: team up with other players
   shout:
     description: allows players to communicate with the entire server
+  queue:
+    description: queue
+
+  game:
+    description: Allows to access the main game states
+    permission: ascension.game
+  changeBingoScore:
+    description: changes the bingo score for a certain player
+    permission: ascension.changeBingoScore
   debugger:
     description: turns on and off the debugger
     permission: ascension.debugger

@@ -2,7 +2,7 @@ package me.depickcator.ascension.Teams;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.Bukkit;
@@ -29,7 +29,7 @@ public class TeamCommand implements CommandExecutor {
         } catch (Exception e) {
             return false;
         }
-        if (!plugin.getGameState().checkState(GameStates.LOBBY)) {
+        if (!plugin.getGameState().checkState(GameStates.LOBBY_NORMAL)) {
             p.sendMessage("You may not use this command currently!");
             return false;
         }

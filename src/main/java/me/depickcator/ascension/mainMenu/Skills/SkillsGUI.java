@@ -1,6 +1,6 @@
 package me.depickcator.ascension.MainMenu.Skills;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.MainMenu.MainMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;

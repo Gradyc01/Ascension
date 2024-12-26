@@ -1,8 +1,8 @@
 package me.depickcator.ascension.Items.Uncraftable.HadesBook;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.ItemClick;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

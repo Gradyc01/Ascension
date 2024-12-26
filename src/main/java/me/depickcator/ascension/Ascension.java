@@ -3,6 +3,7 @@ package me.depickcator.ascension;
 
 import me.depickcator.ascension.General.GameCommand;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Queue.QueueCommand;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;
@@ -76,19 +77,20 @@ public final class Ascension extends JavaPlugin {
 
     private void registerCommands() {
         // PluginManager pluginManager = getServer().getPluginManager();
-        Objects.requireNonNull(getCommand("open-main-menu")).setExecutor(new OpenMainMenuCommand());
-        Objects.requireNonNull(getCommand("give-main-menu")).setExecutor(new GiveMainMenuItem());
-        Objects.requireNonNull(getCommand("game")).setExecutor(new GameCommand());
-        Objects.requireNonNull(getCommand("changeBingoScore")).setExecutor(new changeBingoScore());
-        Objects.requireNonNull(getCommand("openmenu")).setExecutor(new mainMenuCommands());
-        Objects.requireNonNull(getCommand("party")).setExecutor(new TeamCommand());
-        Objects.requireNonNull(getCommand("debugger")).setExecutor(new Debugger());
-        Objects.requireNonNull(getCommand("timeline")).setExecutor(new setTimeline());
-        Objects.requireNonNull(getCommand("setUnlockTokens")).setExecutor(new setUnlockToken());
-        Objects.requireNonNull(getCommand("givePlayerExp")).setExecutor(new giveExp());
-        Objects.requireNonNull(getCommand("startEvent")).setExecutor(new startEvents());
-        Objects.requireNonNull(getCommand("giveCustomItem")).setExecutor(new giveCustomItem());
-        Objects.requireNonNull(getCommand("shout")).setExecutor(new Shout());
+        getCommand("open-main-menu").setExecutor(new OpenMainMenuCommand());
+        getCommand("give-main-menu").setExecutor(new GiveMainMenuItem());
+        getCommand("game").setExecutor(new GameCommand());
+        getCommand("changeBingoScore").setExecutor(new changeBingoScore());
+        getCommand("openmenu").setExecutor(new mainMenuCommands());
+        getCommand("party").setExecutor(new TeamCommand());
+        getCommand("debugger").setExecutor(new Debugger());
+        getCommand("timeline").setExecutor(new setTimeline());
+        getCommand("setUnlockTokens").setExecutor(new setUnlockToken());
+        getCommand("givePlayerExp").setExecutor(new giveExp());
+        getCommand("startEvent").setExecutor(new startEvents());
+        getCommand("giveCustomItem").setExecutor(new giveCustomItem());
+        getCommand("shout").setExecutor(new Shout());
+        getCommand("queue").setExecutor(new QueueCommand());
     }
 
     private void registerListeners() {

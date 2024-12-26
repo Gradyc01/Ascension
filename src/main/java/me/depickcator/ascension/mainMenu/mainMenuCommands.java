@@ -1,6 +1,6 @@
 package me.depickcator.ascension.MainMenu;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.MainMenu.Map.MapGUI;
 import me.depickcator.ascension.MainMenu.Skills.SkillsGUI;
 import me.depickcator.ascension.MainMenu.Unlocks.NewUnlocksGUI;

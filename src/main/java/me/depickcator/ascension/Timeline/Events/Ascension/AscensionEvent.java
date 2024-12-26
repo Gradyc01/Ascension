@@ -2,8 +2,8 @@ package me.depickcator.ascension.Timeline.Events.Ascension;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.SoundUtil;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.SoundUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Unlocks.AscensionKey;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.TeamStats;
@@ -35,9 +35,9 @@ public class AscensionEvent {
         int x = spawn.getBlockX(); int z = spawn.getBlockZ(); int spread = 500;
         List<AscensionLocation> locations = new ArrayList<>();
         locations.add(new AscensionLocation(x + spread, z + spread, this));
-        locations.add(new AscensionLocation(x + spread, z - spread, this));
-        locations.add(new AscensionLocation(x - spread, z - spread, this));
-        locations.add(new AscensionLocation(x - spread, z + spread, this));
+//        locations.add(new AscensionLocation(x + spread, z - spread, this));
+//        locations.add(new AscensionLocation(x - spread, z - spread, this));
+//        locations.add(new AscensionLocation(x - spread, z + spread, this));
 
         return locations;
     }

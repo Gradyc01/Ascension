@@ -2,7 +2,7 @@ package me.depickcator.ascension.listeners;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;

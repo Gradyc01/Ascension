@@ -1,7 +1,7 @@
 package me.depickcator.ascension.MainMenu.Command.Commands;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
 import me.depickcator.ascension.Player.Cooldowns.TeleportSequence;
 import me.depickcator.ascension.Player.Data.PlayerData;

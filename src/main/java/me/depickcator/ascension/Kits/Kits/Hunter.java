@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Kits.Kits;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Vanilla.IronAxe;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

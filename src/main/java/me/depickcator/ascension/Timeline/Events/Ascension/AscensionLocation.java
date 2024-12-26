@@ -1,13 +1,14 @@
 package me.depickcator.ascension.Timeline.Events.Ascension;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.SoundUtil;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.SoundUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
 import me.depickcator.ascension.MainMenu.Map.MapItem;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
+import me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers.AscensionBuildLayers;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -16,24 +17,23 @@ import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AscensionLocation extends EntityInteraction {
     private final Location spawnLocation;
-    private final List<Location> pillarLocations;
+//    private final List<Location> pillarLocations;
     private final LivingEntity entity;
     private final Ascension plugin;
     private final AscensionEvent event;
     private Team ascendingTeam;
     private final MapItem mapItem;
+    private final AscensionBuildLayers buildLayers;
 
     public AscensionLocation(int x, int z, AscensionEvent event) {
         this.event = event;
         plugin = Ascension.getInstance();
         this.spawnLocation = findLocation(x, z);
+        buildLayers = new AscensionBuildLayers(spawnLocation);
         forceLoadChunk(true);
-        this.pillarLocations = new ArrayList<>();
+        buildLayers.buildInitialLayer();
         entity = spawnEntity();
         mapItem = new MapItem("Ascension", x, z, MapItem.ASCENSION);
         plugin.getTimeline().getMapItems().addMapItem(mapItem);
@@ -58,6 +58,7 @@ public class AscensionLocation extends EntityInteraction {
 
     public void startAnimation() {
         entity.setInvulnerable(false);
+        entity.setSilent(false);
         plugin.getWorld().strikeLightningEffect(spawnLocation);
         plugin.getWorld().playSound(spawnLocation, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 3, 1);
         plugin.getWorld().playSound(spawnLocation, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 3, 0);
@@ -104,8 +105,8 @@ public class AscensionLocation extends EntityInteraction {
         livingEntity.setCustomNameVisible(true);
         livingEntity.customName(TextUtil.makeText("Gatekeeper", TextUtil.GRAY));
         livingEntity.setAI(false);
-        livingEntity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(700);
-        livingEntity.setHealth(700);
+        livingEntity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(600);
+        livingEntity.setHealth(600);
         livingEntity.setSilent(true);
         livingEntity.setPersistent(true);
         livingEntity.setInvulnerable(true);

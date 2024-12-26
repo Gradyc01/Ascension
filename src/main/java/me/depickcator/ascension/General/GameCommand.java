@@ -83,9 +83,9 @@ public class GameCommand implements CommandExecutor {
     }
 
     private void forceStartGame(Player p) {
-        if (ab.getGameState().checkState(GameStates.LOBBY)) {
+        if (ab.getGameState().checkState(GameStates.LOBBY_NORMAL)) {
             p.sendMessage("Successfully force started game!");
-            new StartGame(p);
+            new StartGame();
         }
     }
 
