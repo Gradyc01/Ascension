@@ -6,15 +6,16 @@ import org.bukkit.entity.Player;
 
 public class GameStates {
     public final static int UNLOADED = 0;
-    public final static int LOBBY = 1;
-    public final static int GAME_BEFORE_GRACE = 2;
-    public final static int GAME_LOADING = 3;
-    public final static int GAME_AFTER_GRACE = 4;
-    public final static int GAME_FEAST_LOADING = 5;
-    public final static int GAME_FINAL_ASCENSION = 6;
-    public final static int GAME_ENDING = 7;
+    public final static int LOBBY_NORMAL = 1;
+    public final static int LOBBY_QUEUE = 2;
+    public final static int GAME_BEFORE_GRACE = 3;
+    public final static int GAME_LOADING = 4;
+    public final static int GAME_AFTER_GRACE = 5;
+    public final static int GAME_FEAST_LOADING = 6;
+    public final static int GAME_FINAL_ASCENSION = 7;
+    public final static int GAME_ENDING = 8;
 
-    public final static int GAME_ASCENSION = 8;
+    public final static int GAME_ASCENSION = 9;
 
     private int currentState;
 
@@ -38,7 +39,7 @@ public class GameStates {
     }
 
     public boolean canNotBuild() {
-        return  checkState(LOBBY) ||
+        return  checkState(LOBBY_NORMAL) ||
                 checkState(GAME_LOADING) ||
                 checkState(GAME_FEAST_LOADING);
     }

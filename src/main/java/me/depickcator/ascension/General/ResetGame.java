@@ -17,7 +17,7 @@ public class ResetGame implements Runnable {
     private final Ascension plugin;
     public ResetGame() {
         this.plugin = Ascension.getInstance();
-        plugin.getGameState().setCurrentState(GameStates.LOBBY);
+        plugin.getGameState().setCurrentState(GameStates.LOBBY_NORMAL);
         run();
     }
 

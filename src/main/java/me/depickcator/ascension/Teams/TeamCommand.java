@@ -29,7 +29,7 @@ public class TeamCommand implements CommandExecutor {
         } catch (Exception e) {
             return false;
         }
-        if (!plugin.getGameState().checkState(GameStates.LOBBY)) {
+        if (!plugin.getGameState().checkState(GameStates.LOBBY_NORMAL)) {
             p.sendMessage("You may not use this command currently!");
             return false;
         }
