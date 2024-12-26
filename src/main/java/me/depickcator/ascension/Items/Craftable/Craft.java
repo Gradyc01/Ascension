@@ -3,11 +3,8 @@ package me.depickcator.ascension.Items.Craftable;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-<<<<<<< Updated upstream
-=======
 
 import me.depickcator.ascension.Ascension;
->>>>>>> Stashed changes
 
 public abstract class Craft {
     protected final Ascension plugin;
@@ -26,12 +23,6 @@ public abstract class Craft {
     }
     
     protected Craft(String displayName, String key) {
-<<<<<<< Updated upstream
-
-        COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;
-        this.plugin = Ascension.getInstance();
-        removeVanillaRecipe();
-=======
         COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;
         this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
@@ -43,7 +34,6 @@ public abstract class Craft {
         removeVanillaRecipe();
         result = initResult();
         recipe = initRecipe();
->>>>>>> Stashed changes
     }
 
     protected abstract Recipe initRecipe();
