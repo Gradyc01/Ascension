@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locations.Biomes.*;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locations.Structures.*;

@@ -2,7 +2,8 @@ package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.General.Queue.Queue;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
@@ -22,13 +23,17 @@ public class PlayerJoinLeave implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         switch (plugin.getGameState().getCurrentState()) {
-            case GameStates.LOBBY -> {
+            case GameStates.LOBBY_NORMAL -> {
                 onPlayerJoinLobby(event);
                 event.joinMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
                         .append(TextUtil.makeText( " has joined the lobby!", TextUtil.GOLD)));
             }
-            case GameStates.UNLOADED -> {
-                return;
+            case GameStates.LOBBY_QUEUE -> {
+                onPlayerJoinLobby(event);
+                Queue.getInstance().stopQueue();
+            }
+            case GameStates.GAME_BEFORE_GRACE -> {
+
             }
             default -> {
                 onPlayerJoinDuringGame(event);
@@ -41,13 +46,12 @@ public class PlayerJoinLeave implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
         switch (plugin.getGameState().getCurrentState()) {
-            case GameStates.LOBBY -> {
-                Player player = event.getPlayer();
-                PlayerData playerData = PlayerUtil.getPlayerData(player);
-                if (playerData != null) {
-                    playerData.getPlayerTeam().leaveTeam();
-                }
-                event.quitMessage(TextUtil.makeText(""));
+            case GameStates.LOBBY_NORMAL -> {
+                onPlayerLeaveLobby(event);
+            }
+            case GameStates.LOBBY_QUEUE -> {
+                onPlayerLeaveLobby(event);
+                Queue.getInstance().stopQueue();
             }
             case GameStates.UNLOADED -> {
                 return;
@@ -74,6 +78,8 @@ public class PlayerJoinLeave implements Listener {
         Location spawn = Ascension.getSpawn();
         playerData.resetToLobby();
         player.teleport(new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102, spawn.getZ()));
+        event.joinMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
+                .append(TextUtil.makeText( " has joined the lobby!", TextUtil.GOLD)));
     }
 
     private void onPlayerJoinDuringGame(PlayerJoinEvent event) {
@@ -85,9 +91,12 @@ public class PlayerJoinLeave implements Listener {
         PlayerDeath.getInstance().setPlayerSpectating(playerData);
     }
 
-//    private void setNightVision(PlayerData playerData) {
-//        if(playerData.getPlayerStats().isNightVision()) {
-//            playerData.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, -1, 0, false, false));
-//        }
-//    }
+    private void onPlayerLeaveLobby(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        PlayerData playerData = PlayerUtil.getPlayerData(player);
+        if (playerData != null) {
+            playerData.getPlayerTeam().leaveTeam();
+        }
+        event.quitMessage(TextUtil.makeText(""));
+    }
 }

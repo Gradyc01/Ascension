@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Player.Cooldowns;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Location;
 import org.bukkit.Sound;

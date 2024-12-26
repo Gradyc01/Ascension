@@ -2,7 +2,7 @@ package me.depickcator.ascension.Timeline.Events.Feast;
 
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
 import org.bukkit.Location;
 import org.bukkit.Material;

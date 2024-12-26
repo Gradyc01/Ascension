@@ -1,8 +1,8 @@
 package me.depickcator.ascension.Teams;
 
 
-import me.depickcator.ascension.General.SoundUtil;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.SoundUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Sound;
 
 import java.util.ArrayList;
