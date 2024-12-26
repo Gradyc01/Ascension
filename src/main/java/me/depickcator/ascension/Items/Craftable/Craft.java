@@ -1,9 +1,10 @@
 package me.depickcator.ascension.Items.Craftable;
 
-import me.depickcator.ascension.Ascension;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+
+import me.depickcator.ascension.Ascension;
 
 public abstract class Craft {
     protected final Ascension plugin;
@@ -20,12 +21,19 @@ public abstract class Craft {
         result = initResult();
         recipe = initRecipe();
     }
-
+    
     protected Craft(String displayName, String key) {
-
         COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;
         this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
+    }
+    
+    protected Craft(String key) {
+        COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = key; KEY = key;
+        this.plugin = Ascension.getInstance();
+        removeVanillaRecipe();
+        result = initResult();
+        recipe = initRecipe();
     }
 
     protected abstract Recipe initRecipe();
