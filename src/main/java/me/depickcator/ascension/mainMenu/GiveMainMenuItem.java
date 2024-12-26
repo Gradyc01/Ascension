@@ -1,6 +1,6 @@
 package me.depickcator.ascension.MainMenu;
 
-import me.depickcator.ascension.General.ItemClick;
+import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;

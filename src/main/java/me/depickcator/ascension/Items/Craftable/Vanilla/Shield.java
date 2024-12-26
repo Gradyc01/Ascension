@@ -16,6 +16,8 @@ public class Shield extends Craft implements Vanilla {
     private static Shield instance;
     private Shield() {
         super("Shield", "shield");
+        result = initResult();
+        recipe = initRecipe();
     }
 
     public static Shield getInstance() {

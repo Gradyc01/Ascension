@@ -1,4 +1,4 @@
-package me.depickcator.ascension.General;
+package me.depickcator.ascension.Utility;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;

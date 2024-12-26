@@ -2,8 +2,8 @@ package me.depickcator.ascension.Timeline.Events.CarePackage;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.BuildLobby;
-import me.depickcator.ascension.General.SoundUtil;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.SoundUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.MainMenu.Map.MapItem;
 import org.bukkit.*;
 import org.bukkit.block.Block;

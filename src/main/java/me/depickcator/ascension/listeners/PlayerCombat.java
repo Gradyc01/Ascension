@@ -2,7 +2,7 @@ package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.ShootsProjectiles;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
@@ -288,30 +288,23 @@ public class PlayerCombat implements Listener {
     }
 
     private void setShieldCooldown(EntityDamageByEntityEvent event) {
+
         Player victim = (Player) event.getEntity();
+//        TextUtil.debugText(victim.getShieldBlockingDelay() + "");
         if (victim.isBlocking() && event.getFinalDamage() == 0) {
-            victim.setCooldown(Material.SHIELD, Math.min((int) event.getDamage()/2 * 20, 3 * 20));
+            int shieldCooldown = Math.min(20, Math.max((int) event.getDamage(), 4));
+            TextUtil.debugText(victim.getName() + " Shield Cooldown = " + shieldCooldown + "sec");
+            victim.setCooldown(Material.SHIELD, shieldCooldown * 20);
+//            victim.setShieldBlockingDelay(4);
+//            new BukkitRunnable() {
+//                public void run() {
+//                    ItemStack item = victim.getInventory().getItemInOffHand();
+//                    victim.getInventory().setItemInOffHand(item);
+//                    victim.updateInventory();
+//                }
+//            }.runTaskLater(plugin, 1);
         }
     }
-
-//     private void attackedByPlayer(Player victim, Player damager, EntityDamageByEntityEvent event) {
-//         PlayerData damagerData = PlayerUtil.getPlayerData(damager);
-//         if (damagerData == null ||
-//                 damagerData.getPlayerTeam().getTeam().getOtherTeamMembers(damager).contains(victim) ||
-//                 plugin.getGameState().canNotPVP()) {
-//             event.setCancelled(true);
-//             return;
-//         }
-//         TextUtil.debugText(victim.getVelocity() + "");
-// //        victim.setVelocity(victim.getVelocity().multiply(2));
-// //        victim.setVelocity(damager.getLocation().getDirection().multiply(10));
-//         //Need To Added Punch and Knockback manually to make this word
-//         victim.setVelocity(victim.getLocation().toVector().subtract(damager.getLocation().toVector()).normalize().multiply(2));
-//         TextUtil.debugText(victim.getVelocity() + "");
-
-//         addFinalAscensionTimer(damagerData, (int) event.getFinalDamage() * 2 + 1);
-// //        victim.setMetadata(damageSourceKey, new FixedMetadataValue(plugin, PLAYER_DAMAGE));
-//     }
 
     private void addFinalAscensionTimer(PlayerData damager, int time) {
         if (plugin.getGameState().checkState(GameStates.GAME_FINAL_ASCENSION)) {

@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Player.Cooldowns.Death;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Cooldowns;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

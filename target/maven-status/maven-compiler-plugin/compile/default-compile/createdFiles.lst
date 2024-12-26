@@ -134,6 +134,7 @@ me\depickcator\ascension\LootTables\Entities\Enums\NetherMobs.class
 me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalItem\TeamPortalGUI.class
 me\depickcator\ascension\LootTables\LootTableChanger.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI$1.class
+me\depickcator\ascension\Timeline\Events\Ascension\BuildLayers\Builds.class
 me\depickcator\ascension\Kits\Kits\IronTools.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Swamp.class
 me\depickcator\ascension\Interfaces\EntityInteraction.class

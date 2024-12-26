@@ -3,6 +3,7 @@ package me.depickcator.ascension.testingCommands;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers.AscensionBuildLayers;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,8 +34,10 @@ public class setTimeline implements CommandExecutor {
             plugin.getTimeline().setTime(time);
             plugin.getTimeline().startTimeline();
         }
-
-
+        if (mode.equals("build")) {
+            AscensionBuildLayers a = new AscensionBuildLayers(p.getLocation());
+            a.buildInitialLayer();
+        }
         return false;
     }
 }

@@ -1,6 +1,6 @@
 package me.depickcator.ascension.testingCommands;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

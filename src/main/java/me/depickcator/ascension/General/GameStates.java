@@ -1,6 +1,7 @@
 package me.depickcator.ascension.General;
 
 
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.entity.Player;
 
 public class GameStates {

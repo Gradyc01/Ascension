@@ -2,7 +2,7 @@ package me.depickcator.ascension.Player.Data;
 
 import io.papermc.paper.scoreboard.numbers.NumberFormat;
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.Scoreboards.Boards;
 import me.depickcator.ascension.Player.Data.Scoreboards.GameBoard;
 import me.depickcator.ascension.Player.Data.Scoreboards.LobbyBoard;

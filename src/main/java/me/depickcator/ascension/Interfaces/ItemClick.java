@@ -1,4 +1,4 @@
-package me.depickcator.ascension.General;
+package me.depickcator.ascension.Interfaces;
 
 
 import me.depickcator.ascension.Player.Data.PlayerData;

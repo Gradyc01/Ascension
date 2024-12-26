@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;

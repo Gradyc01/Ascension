@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Skills;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Sound;

@@ -1,7 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerSkills;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;

@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.checkerframework.checker.units.qual.K;
 
 public abstract class Craft {
     protected final Ascension plugin;
@@ -22,10 +23,19 @@ public abstract class Craft {
     }
 
     protected Craft(String displayName, String key) {
-
         COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;
         this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
+    }
+
+    protected Craft(String displayName, String key, boolean instantInstantiation) {
+        COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;
+        this.plugin = Ascension.getInstance();
+        removeVanillaRecipe();
+        if (instantInstantiation) {
+            result = initResult();
+            recipe = initRecipe();
+        }
     }
 
     protected abstract Recipe initRecipe();

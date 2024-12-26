@@ -2,8 +2,8 @@ package me.depickcator.ascension.MainMenu.Unlocks;
 //package me.depickcator.ascension.MainMenu.Unlocks;
 //
 //import me.depickcator.ascension.Ascension;
-//import me.depickcator.ascension.General.SoundUtil;
-//import me.depickcator.ascension.General.TextUtil;
+//import me.depickcator.ascension.Utility.SoundUtil;
+//import me.depickcator.ascension.Utility.TextUtil;
 //import me.depickcator.ascension.Interfaces.AscensionGUI;
 //import me.depickcator.ascension.Items.Craftable.Craft;
 //import me.depickcator.ascension.Player.Data.PlayerUnlocks;

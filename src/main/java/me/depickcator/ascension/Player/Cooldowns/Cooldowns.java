@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Player.Cooldowns;
 
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 

@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem;
 
-import me.depickcator.ascension.General.ItemClick;
-import me.depickcator.ascension.General.TextUtil;
+import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Cooldowns.TeleportSequence;
