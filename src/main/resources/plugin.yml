@@ -16,6 +16,8 @@ commands:
     description: allows players to communicate with the entire server
   queue:
     description: queue
+  printWorldInfo:
+    description: prints the world information
 
   game:
     description: Allows to access the main game states

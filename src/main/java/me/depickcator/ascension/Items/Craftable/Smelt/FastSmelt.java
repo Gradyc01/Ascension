@@ -7,8 +7,11 @@ public abstract class FastSmelt extends Craft {
     protected FastSmelt(String key, int smeltTime) {
         super(key);
         this.smeltTime = smeltTime;
-        result = initResult();
-        recipe = initRecipe();
+    }
+
+    protected FastSmelt(String key) {
+        super(key);
+        this.smeltTime = 200;
     }
 
     public int getSmeltTime() {

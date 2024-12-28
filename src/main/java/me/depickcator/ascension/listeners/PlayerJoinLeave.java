@@ -32,8 +32,8 @@ public class PlayerJoinLeave implements Listener {
                 onPlayerJoinLobby(event);
                 Queue.getInstance().stopQueue();
             }
-            case GameStates.GAME_BEFORE_GRACE -> {
-
+            case GameStates.UNLOADED -> {
+                return;
             }
             default -> {
                 onPlayerJoinDuringGame(event);

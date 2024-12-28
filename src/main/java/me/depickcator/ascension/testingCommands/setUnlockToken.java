@@ -1,13 +1,14 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
+import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -32,7 +33,10 @@ public class setUnlockToken implements CommandExecutor {
             tokens = Integer.parseInt(strings[1]);
         }
 //        p.getInventory().addItem();
-        p.getInventory().addItem(RedLedger.getInstance().getResult());
+
+        ItemStack item = EnlightenedNugget.getInstance().getItem();
+        item.setAmount(25);
+        p.getInventory().addItem(item);
 
 
         Player player = plugin.getServer().getPlayer(name);

@@ -6,6 +6,8 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import java.util.Random;
+
 public class Builds {
     private final Ascension plugin;
 
@@ -32,19 +34,22 @@ public class Builds {
         }
     }
 
-    public void fillBlock(Location loc, int x1, int z1, int x2, int z2, Block b) {
+    public void fillFloor(Location loc, int x1, int z1, int x2, int z2, Block b) {
         int blockX = loc.getBlockX();
         int blockY = loc.getBlockY();
         int blockZ = loc.getBlockZ();
         for (int x = Math.min(x1, x2); x <= Math.max(x1, x2); x++) {
             for (int z = Math.min(z1, z2); z <= Math.max(z1, z2); z++) {
-                setBlock(loc, x, loc.getWorld().getHighestBlockYAt(blockX + x, blockZ + z) - blockY, z, b);
+//                setBlock(loc, x, loc.getWorld().getHighestBlockYAt(blockX + x, blockZ + z) - blockY, z, b);
+                int y = loc.getWorld().getHighestBlockYAt(blockX + x, blockZ + z) - blockY;
+                Random r = new Random();
+                fillBlock(loc, x, y, z, x, y - r.nextInt(0, 5), z, b);
             }
         }
     }
 
-    private void setBlock(Location loc, int x1, int y1, int z1, Block block) {
-         fillBlock(loc, x1, y1, z1, x1, y1, z1, block);
-    }
+    // private void setBlock(Location loc, int x1, int y1, int z1, Block block) {
+    //      fillBlock(loc, x1, y1, z1, x1, y1, z1, block);
+    // }
 }
 

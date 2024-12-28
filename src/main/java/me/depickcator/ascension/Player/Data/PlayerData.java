@@ -78,7 +78,7 @@ public class PlayerData {
     }
     public void resetAfterStartGame() {
         PlayerUtil.clearEffects(this);
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120 * 20, 1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 180 * 20, 1));
         player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 20 * 60 * 20, 4, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));

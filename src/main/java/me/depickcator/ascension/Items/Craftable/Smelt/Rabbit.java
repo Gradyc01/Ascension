@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Rabbit extends FastSmelt {
 
     public Rabbit() {
-        super("cooked_rabbit", 25);
+        super("cooked_rabbit");
     }
 
     @Override

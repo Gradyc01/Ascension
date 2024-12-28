@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Interfaces;
 
 import me.depickcator.ascension.Ascension;
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,7 +24,7 @@ public abstract class CustomChestLoot {
         return getRandomItemFromList(arr, r, count, min, max, true);
     }
 
-    protected Collection<ItemStack> placeInInventory(Inventory inv, Random r, ArrayList<ItemStack> items) {
+    protected Collection<ItemStack> placeInInventory(Inventory inv, Random r, List<ItemStack> items) {
         for (ItemStack item : items) {
             boolean placed = false;
             while (!placed) {
@@ -33,6 +34,15 @@ public abstract class CustomChestLoot {
                     placed = true;
                 }
             }
+        }
+        return items;
+    }
+
+    protected List<ItemStack> generateItems(Material material, int base, int num, int increment) {
+        List<ItemStack> items = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            ItemStack item = new ItemStack(material, base + i * increment);
+            items.add(item);
         }
         return items;
     }

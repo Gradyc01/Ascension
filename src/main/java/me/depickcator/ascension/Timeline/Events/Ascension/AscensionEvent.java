@@ -35,9 +35,9 @@ public class AscensionEvent {
         int x = spawn.getBlockX(); int z = spawn.getBlockZ(); int spread = 500;
         List<AscensionLocation> locations = new ArrayList<>();
         locations.add(new AscensionLocation(x + spread, z + spread, this));
-//        locations.add(new AscensionLocation(x + spread, z - spread, this));
-//        locations.add(new AscensionLocation(x - spread, z - spread, this));
-//        locations.add(new AscensionLocation(x - spread, z + spread, this));
+        locations.add(new AscensionLocation(x + spread, z - spread, this));
+        locations.add(new AscensionLocation(x - spread, z - spread, this));
+        locations.add(new AscensionLocation(x - spread, z + spread, this));
 
         return locations;
     }
@@ -73,6 +73,9 @@ public class AscensionEvent {
                 if (timer % 60 == 0) {
                     teamStats.addGameScore(1);
                 }
+                if (timer % 60 == 2) {
+                    e.getWorld().createExplosion(e, e.getLocation(), 4f, false, true, true);
+                }
                 timer--;
                 TextUtil.debugText("Ascension Timer: " + timer);
                 plugin.getTimeline().updatePlayers();
@@ -90,10 +93,19 @@ public class AscensionEvent {
 
     public void failed() {
         plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
+        checkForAscensionRemaining();
         plugin.getTimeline().startTimeline();
+        TeamStats teamStats = ascendingLocation.getAscendingTeam().getTeamStats();
+        teamStats.addAscensionTimer((int) (teamStats.getAscensionTimer() * 0.3));
         failedText();
         stop();
         TextUtil.debugText("Ascension Failed");
+    }
+
+    private void checkForAscensionRemaining() {
+        if (locations.isEmpty()) {
+            plugin.getTimeline().setTime(5);
+        }
     }
 
     public void clear() {

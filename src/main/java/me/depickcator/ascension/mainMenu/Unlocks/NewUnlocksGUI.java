@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 public class NewUnlocksGUI extends AscensionGUI {
+    private final Integer[] barrierNums = {47, 46, 37, 28, 19, 10, 11, 12, 13, 14, 15, 16, 25, 34, 43, 52, 51};
     private final char pageNumber;
     private ArrayList<ItemStack> pages;
     public NewUnlocksGUI(PlayerData playerData, char pageNumber) {
@@ -50,35 +52,11 @@ public class NewUnlocksGUI extends AscensionGUI {
     private void setPage(char pageNumber) {
         UnlocksData unlocksData = plugin.getUnlocksData();
         PlayerUnlocks playerUnlocks = playerData.getPlayerUnlocks();
-        List<Craft> unlocks;
-        boolean canUnlock;
-        switch (pageNumber) {
-            case 1 -> {
-                unlocks = unlocksData.getTier1Unlocks();
-                canUnlock = true;
-            }
-            case 2 -> {
-                unlocks = unlocksData.getTier2Unlocks();
-                canUnlock = playerUnlocks.canUnlockTier2();
-            }
-            case 3 -> {
-                unlocks = unlocksData.getTier3Unlocks();
-                canUnlock = playerUnlocks.canUnlockTier3();
-            }
-            case 4 -> {
-                unlocks = unlocksData.getTier4Unlocks();
-                canUnlock = playerUnlocks.canUnlockTier4();
-            }
-            case 5 -> {
-                unlocks = unlocksData.getTier5Unlocks();
-                canUnlock = playerUnlocks.canUnlockTier5();
-            }
-            default -> {
-                return;
-            }
-        }
+        List<Craft> unlocks = unlocksData.getUnlocksTier(pageNumber);
+//        boolean canUnlock = playerUnlocks.canUnlockTier(pageNumber);
+        double percentage = playerUnlocks.unlockTierPercentage(pageNumber);
         setUnlocks(unlocks);
-        setBarriers(canUnlock);
+        setBarriers(percentage);
     }
 
     private void setUnlocks(List<Craft> unlocks) {
@@ -123,17 +101,14 @@ public class NewUnlocksGUI extends AscensionGUI {
         return purchaseLore;
     }
 
-    private void setBarriers(boolean isUnlocked) {
-        int flip = 0;
-        ItemStack item = isUnlocked ? lockableItem(Material.GREEN_STAINED_GLASS_PANE) : lockableItem(Material.RED_STAINED_GLASS_PANE);
-        List<Integer> starts = new ArrayList<>(List.of(11, 47, 10, 16));
-        for (int start : starts) {
-            int index = start;
-            for (int i = 0; i < 5; i++) {
-                inventory.setItem(index, item);
-                index = flip > 1 ? index + 9: index + 1;
-            }
-            flip++;
+    private void setBarriers(double percentage) {
+        ItemStack unlockedItem = lockableItem(Material.GREEN_STAINED_GLASS_PANE);
+        ItemStack lockedItem = lockableItem(Material.RED_STAINED_GLASS_PANE);
+        int unlockedPanels = (int) (barrierNums.length * percentage);
+//        TextUtil.debugText("Unlocked Panels = " + barrierNums.length + " * " + percentage + "= " + unlockedPanels);
+        for (int i = 0; i < barrierNums.length; i++) {
+            ItemStack item = i < unlockedPanels ? unlockedItem : lockedItem;
+            inventory.setItem(barrierNums[i], item);
         }
 
     }

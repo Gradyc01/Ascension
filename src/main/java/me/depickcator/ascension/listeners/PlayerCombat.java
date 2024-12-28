@@ -2,6 +2,9 @@ package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.Interfaces.ItemComparison;
+import me.depickcator.ascension.Items.Craftable.Unlocks.Exodus;
+import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.ShootsProjectiles;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
@@ -24,19 +27,19 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PlayerCombat implements Listener {
+public class PlayerCombat extends ItemComparison implements Listener {
     private final Ascension plugin;
     private final String damageSourceKey = "lastDamageSource";
     private final String PLAYER_DAMAGE = "PLAYER_DAMAGE";
@@ -62,10 +65,17 @@ public class PlayerCombat implements Listener {
         Pair<Player, Boolean> damageData = setDamageMetadata(event, victim);
         if (damageData == null) return;
         Player attacker = damageData.getLeft();
+
         if (canNotDamage(attacker, victim)) {
             event.setCancelled(true);
             return;
         }
+
+        //TODO: Remove later too lazy to make it a class
+        if (equalItems(attacker.getInventory().getItem(EquipmentSlot.HAND), Exodus.getInstance().getResult())) {
+            attacker.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,  5 * 20, 0));
+        }
+
 
         calculateKnockback(event, attacker, victim, damageData.getRight());
         addFinalAscensionTimer(PlayerUtil.getPlayerData(attacker), (int) event.getFinalDamage() * 2 + 1 );
@@ -241,11 +251,8 @@ public class PlayerCombat implements Listener {
             cause = victim.getMetadata(damageSourceKey).getFirst().asString();
         }
         if (cause.equals(PLAYER_DAMAGE)) {
-            dropHead(victim);
-            ItemStack shards = ShardOfTheFallen.result().clone();
-            shards.setAmount(12);
-            victim.getWorld().dropItem(victim.getLocation(), shards);
-            increaseKillCount(e);
+            killReward(e, victimData);
+
         }
 
         plugin.getServer().broadcast(e.deathMessage().color(TextUtil.DARK_RED));
@@ -255,6 +262,15 @@ public class PlayerCombat implements Listener {
 
         victim.removeMetadata(damageSourceKey, plugin);
         e.setCancelled(true);
+    }
+
+    private void killReward(PlayerDeathEvent e, PlayerData victim) {
+        Player v = victim.getPlayer();
+        dropHead(v);
+        ItemStack shards = ShardOfTheFallen.result().clone();
+        shards.setAmount(12);
+        v.getWorld().dropItem(v.getLocation(), shards);
+        increaseKillCount(e);
     }
 
     @EventHandler
@@ -282,7 +298,8 @@ public class PlayerCombat implements Listener {
         if (health <= 0) return;
         Component name = TextUtil.makeText(victim.getName(), TextUtil.RED);
         Component isAt = TextUtil.makeText(" is at ", TextUtil.YELLOW);
-        Component num = TextUtil.makeText( BigDecimal.valueOf(health).setScale(1, RoundingMode.UNNECESSARY) + "", TextUtil.RED);
+//        BigDecimal.valueOf(health).setScale(1, RoundingMode.HALF_UP)
+        Component num = TextUtil.makeText(  (double) ((int) (health * 10))/10 + "", TextUtil.RED);
         Component hp = TextUtil.makeText(" HP!", TextUtil.YELLOW);
         damager.sendMessage(name.append(isAt).append(num).append(hp));
     }
@@ -292,7 +309,7 @@ public class PlayerCombat implements Listener {
         Player victim = (Player) event.getEntity();
 //        TextUtil.debugText(victim.getShieldBlockingDelay() + "");
         if (victim.isBlocking() && event.getFinalDamage() == 0) {
-            int shieldCooldown = Math.min(20, Math.max((int) event.getDamage(), 4));
+            int shieldCooldown = Math.min(20, Math.max((int) event.getDamage(), 3));
             TextUtil.debugText(victim.getName() + " Shield Cooldown = " + shieldCooldown + "sec");
             victim.setCooldown(Material.SHIELD, shieldCooldown * 20);
 //            victim.setShieldBlockingDelay(4);
@@ -318,6 +335,8 @@ public class PlayerCombat implements Listener {
             PlayerData killer = PlayerUtil.getPlayerData((Player) entity);
             killer.getPlayerStats().addKill();
             addFinalAscensionTimer(killer, 60);
+            //TODO: Remove this later
+            killer.getPlayerSkills().getCombat().addExp(EntityUtil.COMBAT_LEGENDARY);
         }
     }
 

@@ -7,7 +7,9 @@ import me.depickcator.ascension.Items.UnlockUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PlayerUnlocks {
@@ -17,30 +19,27 @@ public class PlayerUnlocks {
     public static int AMOUNT_VERY_RARE = 125;
     public static int AMOUNT_LEGENDARY = 250;
 
-    private final int AMOUNT_NEEDED_1 = 7;
-    private final int AMOUNT_NEEDED_2 = 7;
-    private final int AMOUNT_NEEDED_3 = 6;
-    private final int AMOUNT_NEEDED_4 = 5;
     private final Player player;
     private final PlayerData playerData;
-    private int tier1Unlocks;
-    private int tier2Unlocks;
-    private int tier3Unlocks;
-    private int tier4Unlocks;
-    private int tier5Unlocks;
-
+    private final List<Integer> amountNeeded = new ArrayList<>(List.of(
+            0, 7, 7, 6, 5
+));
+    private final List<Integer> unlockTiers;
+    private final List<Boolean> canUnlockTiers;
     private int unlockTokens;
-    private Map<String, Integer> UnlocksMap;
+    private final Map<String, Integer> UnlocksMap;
     public PlayerUnlocks(PlayerData playerData) {
         this.player = playerData.getPlayer();
         this.playerData = playerData;
-        this.tier1Unlocks = 0;
-        this.tier2Unlocks = 0;
-        this.tier3Unlocks = 0;
-        this.tier4Unlocks = 0;
-        this.tier5Unlocks = 0;
+
         this.unlockTokens = 0;
         UnlocksMap = new HashMap<>();
+        unlockTiers = new ArrayList<>(List.of(
+                0, 0, 0, 0, 0
+        ));
+        canUnlockTiers = new ArrayList<>(List.of(
+                false, false, false, false, false
+        ));
     }
 
     public boolean unlockUnlock(Craft craft, Integer tier) {
@@ -88,70 +87,36 @@ public class PlayerUnlocks {
 
     private void addToMap(String name, Integer tier) {
         UnlocksMap.put(name, 0);
-        switch (tier) {
-            case 1 -> {
-                tier1Unlocks++;
-            }
-            case 2 -> {
-                tier2Unlocks++;
-            }
-            case 3 -> {
-                tier3Unlocks++;
-            }
-            case 4 -> {
-                tier4Unlocks++;
-            }
-            case 5 -> {
-                tier5Unlocks++;
-            }
-            default -> {
-                player.sendMessage("ERROR: addToMap");
-            }
-        }
+        unlockTiers.set(tier - 1, unlockTiers.get(tier - 1) + 1);
     }
 
     private boolean canBeUnlocked(Craft craft, Integer tier) {
         String key = craft.getKey();
         if (UnlockUtil.isAUnlock(key) && unlockTokens >= craft.getCraftCost() && UnlocksMap.get(craft.getKey()) == null) {
-            switch (tier) {
-                case -1, 1 -> {
-                    return true;
-                }
-                case 2 -> {
-                    return canUnlockTier2();
-                }
-                case 3 -> {
-                    return canUnlockTier3();
-                }
-                case 4 -> {
-                    return canUnlockTier4();
-                }
-                case 5 -> {
-                    return canUnlockTier5();
-                }
-                default -> {
-                    player.sendMessage("ERROR: can be unlocked");
-                    return false;
-                }
-            }
+            if (tier == -1) return true;
+            return canUnlockTier(tier);
         }
         return false;
     }
 
-    public boolean canUnlockTier2() {
-        return tier1Unlocks >= AMOUNT_NEEDED_1;
+    public boolean canUnlockTier(int tier) {
+        initCanUnlockTiers();
+        return canUnlockTiers.get(tier - 1);
     }
 
-    public boolean canUnlockTier3() {
-        return canUnlockTier2() && tier2Unlocks >= AMOUNT_NEEDED_2;
+    public double unlockTierPercentage(int tier) {
+        if (canUnlockTier(tier)) return 1;
+        return ((double) unlockTiers.get(tier - 2) / amountNeeded.get(tier - 1));
     }
 
-    public boolean canUnlockTier4() {
-        return canUnlockTier3() && tier3Unlocks >= AMOUNT_NEEDED_3;
-    }
-
-    public boolean canUnlockTier5() {
-        return canUnlockTier4() && tier4Unlocks >= AMOUNT_NEEDED_4;
+    private void initCanUnlockTiers() {
+        canUnlockTiers.clear();
+        canUnlockTiers.add(true);
+        for (int i = 0; i < 4; i++) {
+            boolean hasAmountNeeded = unlockTiers.get(i) >= amountNeeded.get(i + 1);
+            boolean unlockedPreviousTier = canUnlockTiers.get(i);
+            canUnlockTiers.add(hasAmountNeeded && unlockedPreviousTier);
+        }
     }
 
     public int getUnlockTokens() {
@@ -175,7 +140,4 @@ public class PlayerUnlocks {
         playerData.getPlayerScoreboard().update();
     }
 
-    // private int tier5Unlocks() {
-    //     return tier5Unlocks; //IDE purposes only
-    // }
 }

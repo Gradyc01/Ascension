@@ -110,6 +110,7 @@ public class PlayerDeath {
 
     public void respawnPlayer(PlayerData playerData) {
         players.remove(playerData);
+        playerData.setPlayerState(PlayerData.STATE_ALIVE);
         Player p = playerData.getPlayer();
         p.setGameMode(GameMode.SURVIVAL);
         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 3, false, false));

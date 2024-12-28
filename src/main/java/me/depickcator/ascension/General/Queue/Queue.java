@@ -29,13 +29,10 @@ public class Queue {
     private BukkitTask task;
     private Queue() {
         plugin = Ascension.getInstance();
-//        allPlayers = new HashSet<>();
-//        allPlayers.addAll(PlayerUtil.getAllPlayingPlayers());
-//        readiedPlayers = new HashSet<>();
         isQueueOngoing = false;
     }
 
-    public boolean startQueue() {
+    public boolean startQueue(PlayerData pD) {
         if (isQueueOngoing || !plugin.getGameState().checkState(GameStates.LOBBY_NORMAL)) return false;
         isQueueOngoing = true;
         allPlayers = new HashSet<>();
@@ -43,6 +40,7 @@ public class Queue {
         readiedPlayers = new HashSet<>();
         plugin.getGameState().setCurrentState(GameStates.LOBBY_QUEUE);
         loop();
+        playerReadied(pD);
         startQueueText();
         return true;
     }
@@ -90,8 +88,8 @@ public class Queue {
 
     private void failed() {
         Component text = TextUtil.topBorder(TextUtil.DARK_GREEN);
-        text = text.append(TextUtil.makeText("\n                  Queue failed", TextUtil.YELLOW, true, false));
-        text = text.append(TextUtil.makeText("\n           Not every player had readied up\n", TextUtil.AQUA));
+        text = text.append(TextUtil.makeText("\n                    Queue failed", TextUtil.YELLOW, true, false));
+        text = text.append(TextUtil.makeText("\n              Not every player had readied up\n", TextUtil.AQUA));
         text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GREEN));
         TextUtil.broadcastMessage(text);
         stop();
@@ -99,12 +97,18 @@ public class Queue {
 
     private void success() {
         Component text = TextUtil.topBorder(TextUtil.DARK_GREEN);
-        text = text.append(TextUtil.makeText("\n                  Queue Success!", TextUtil.YELLOW, true, false));
-        text = text.append(TextUtil.makeText("\n                   Game Started\n", TextUtil.AQUA));
+        text = text.append(TextUtil.makeText("\n                    Queue Success!", TextUtil.YELLOW, true, false));
+        text = text.append(TextUtil.makeText("\n               Spreading players please be patient\n", TextUtil.AQUA));
         text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GREEN));
         TextUtil.broadcastMessage(text);
+        SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 100, 2);
         stop();
-        new StartGame();
+        new BukkitRunnable() {
+            public void run() {
+                new StartGame();
+            }
+        }.runTaskLater(plugin, 3 * 20);
+
     }
 
     private void stop() {
@@ -115,8 +119,7 @@ public class Queue {
 
     public boolean playerReadied(PlayerData pD) {
         if (isQueueOngoing) {
-            readiedPlayers.add(pD);
-            return true;
+            return readiedPlayers.add(pD);
         }
         return false;
     }

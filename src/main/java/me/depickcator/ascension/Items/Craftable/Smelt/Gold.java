@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Gold extends FastSmelt {
 
     public Gold() {
-        super("gold_ingot_from_smelting_raw_gold", 25);
+        super("gold_ingot_from_smelting_raw_gold");
     }
 
     @Override
@@ -17,9 +17,7 @@ public class Gold extends FastSmelt {
         NamespacedKey key = NamespacedKey.minecraft(KEY);
         Material source = Material.GOLD_ORE;
         float experience = (float) 1;
-        int cookingTime = this.getSmeltTime();
-        FurnaceRecipe furnace = new FurnaceRecipe(key, result, source, experience, cookingTime);
-        return furnace;
+        return new FurnaceRecipe(key, result, source, experience, getSmeltTime());
     }
 
     @Override

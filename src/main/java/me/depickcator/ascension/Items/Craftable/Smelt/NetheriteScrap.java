@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class NetheriteScrap extends FastSmelt {
 
     public NetheriteScrap() {
-        super("netherite_scrap", 25);
+        super("netherite_scrap");
     }
 
     @Override

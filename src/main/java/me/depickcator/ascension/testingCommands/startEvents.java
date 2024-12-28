@@ -1,5 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
+import me.depickcator.ascension.Items.ItemList;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
 import me.depickcator.ascension.Timeline.Events.Feast.Feast;
@@ -8,7 +10,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class startEvents implements CommandExecutor {
@@ -37,6 +43,22 @@ public class startEvents implements CommandExecutor {
             new Feast();
         } else if (name.equalsIgnoreCase("ascension_loc")) {
             new AscensionEvent();
+        } else if (name.equalsIgnoreCase("items")) {
+            String c = strings[1];
+            ItemList a = new ItemList();
+            List<ItemStack> items = new ArrayList<>();
+            if (c.equalsIgnoreCase("easy")) {
+                items.addAll(a.getEasyItems().getItems());
+            } else if (c.equalsIgnoreCase("medium")) {
+                items.addAll(a.getMediumItems().getItems());
+            } else if (c.equalsIgnoreCase("hard")) {
+                items.addAll(a.getHarditems().getItems());
+            } else if (c.equalsIgnoreCase("custom")) {
+                items.addAll(a.getCustomItems().getItems());
+            }
+            for (ItemStack item : items) {
+                PlayerUtil.giveItem(p, item);
+            }
         }
         return false;
     }

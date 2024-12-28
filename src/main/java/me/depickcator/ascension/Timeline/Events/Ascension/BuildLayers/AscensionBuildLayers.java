@@ -21,9 +21,9 @@ public class AscensionBuildLayers extends Builds {
     }
 
     public void buildInitialLayer() {
-        Block b = spawn.getBlock();
+        Block b = spawn.getWorld().getHighestBlockAt(spawn.getBlockX(), spawn.getBlockZ());
         b.setType(Material.END_STONE);
-        fillBlock(spawn, -5, 7, 5, -7, b);
+        fillFloor(spawn, -5, 7, 5, -7, b);
 //        fillBlock(spawn, -5, 7, -5, -5 ,7, 5, Material.END_STONE);
     }
 

@@ -44,6 +44,11 @@ public class GameStates {
                 checkState(GAME_FEAST_LOADING);
     }
 
+    public boolean inLobby() {
+        return  checkState(LOBBY_NORMAL) ||
+                checkState(LOBBY_QUEUE);
+    }
+
     public boolean canTeleport(Player p) {
 //        return !(checkState(GAME_FEAST_LOADING) ||
 //                checkState(GAME_FINAL_ASCENSION) ||

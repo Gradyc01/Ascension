@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Copper extends FastSmelt {
 
     public Copper() {
-        super("copper_ingot_from_smelting_raw_copper", 25);
+        super("copper_ingot_from_smelting_raw_copper");
     }
 
     @Override
@@ -17,9 +17,7 @@ public class Copper extends FastSmelt {
         NamespacedKey key = NamespacedKey.minecraft(KEY);
         Material source = Material.RAW_COPPER;
         float experience = (float) 0.7;
-        int cookingTime = this.getSmeltTime();
-        FurnaceRecipe furnace = new FurnaceRecipe(key, result, source, experience, cookingTime);
-        return furnace;
+        return new FurnaceRecipe(key, result, source, experience, getSmeltTime());
     }
 
     @Override

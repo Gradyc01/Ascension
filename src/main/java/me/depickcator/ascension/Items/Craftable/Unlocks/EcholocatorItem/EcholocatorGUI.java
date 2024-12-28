@@ -50,6 +50,7 @@ public class EcholocatorGUI extends AscensionGUI {
         addLocations(new MushroomIsland(), Material.MYCELIUM, 23);
         addLocations(new Swamp(), Material.LILY_PAD, 24);
         addLocations(new WarmOcean(), Material.SEA_PICKLE, 25);
+        addLocations(new LushCaves(), Material.GLOW_BERRIES, 26);
 
         addLocations(new NetherFortress(), Material.NETHER_BRICKS, 28);
         addLocations(new Bastion(), Material.BLACKSTONE, 29);

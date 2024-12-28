@@ -1,6 +1,7 @@
 package me.depickcator.ascension.MainMenu;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Kits.KitBookGUI;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -25,6 +26,9 @@ public class MainMenuGUI extends AscensionGUI {
         inventory.setItem(30, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Skills"));
         inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
         inventory.setItem(32, makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));
+        if (plugin.getGameState().inLobby()) inventory.setItem(40, makeMainMenuBoardButton(Material.IRON_CHESTPLATE, "Kits"));
+
+
         inventory.setItem(49, getCloseButton());
         playerHeadButton(13);
     }
@@ -58,6 +62,9 @@ public class MainMenuGUI extends AscensionGUI {
                     return;
                 }
                 new ScavengerGUI(scavenger, playerData,false);
+            }
+            case Material.IRON_CHESTPLATE -> {
+                new KitBookGUI(playerData);
             }
             case Material.BARRIER -> {
                 event.setCancelled(true);

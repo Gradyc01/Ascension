@@ -140,6 +140,11 @@ public abstract class AscensionGUI {
         return item;
     }
 
+    protected boolean isHolding(ItemStack item) {
+        ItemStack held = player.getInventory().getItemInMainHand();
+        return held.equals(item);
+    }
+
     public abstract void interactWithGUIButtons(InventoryClickEvent event);
 
 

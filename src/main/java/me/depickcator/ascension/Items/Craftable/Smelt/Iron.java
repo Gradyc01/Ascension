@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Iron extends FastSmelt {
 
     public Iron() {
-        super("iron_ingot_from_smelting_raw_iron", 25);
+        super("iron_ingot_from_smelting_raw_iron");
     }
 
     @Override

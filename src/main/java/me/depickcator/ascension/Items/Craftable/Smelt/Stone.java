@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Stone extends FastSmelt {
 
     public Stone() {
-        super("stone", 25);
+        super("stone");
     }
 
     @Override

@@ -21,7 +21,7 @@ public class QueueCommand implements CommandExecutor {
 
         switch (strings[0].toLowerCase()) {
             case "start" -> {
-                if (!Queue.getInstance().startQueue()) {
+                if (!Queue.getInstance().startQueue(PlayerUtil.getPlayerData(p))) {
                     TextUtil.errorMessage(p, "A queue can not be started at this moment in time");
                 };
             }
@@ -30,7 +30,7 @@ public class QueueCommand implements CommandExecutor {
                     p.sendMessage(TextUtil.makeText("Successfully readied up!", TextUtil.GREEN));
                     SoundUtil.playHighPitchPling(p);
                 } else {
-                    TextUtil.errorMessage(p, "There is no queue currently happening");
+                    TextUtil.errorMessage(p, "There is no queue currently happening or you've already readied up");
                 }
             }
             default -> {

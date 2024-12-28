@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Netherbrick extends FastSmelt {
 
     public Netherbrick() {
-        super("nether_brick", 25);
+        super("nether_brick");
     }
 
     @Override

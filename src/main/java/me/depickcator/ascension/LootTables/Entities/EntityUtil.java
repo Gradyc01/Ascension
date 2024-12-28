@@ -31,5 +31,6 @@ public class EntityUtil {
         new Pig();
         new Sheep();
         new Turtle();
+        new Bee();
     }
 }

@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Brick extends FastSmelt {
 
     public Brick() {
-        super("brick", 25);
+        super("brick");
     }
 
     @Override
@@ -17,9 +17,7 @@ public class Brick extends FastSmelt {
         NamespacedKey key = NamespacedKey.minecraft(KEY);
         Material source = Material.CLAY_BALL;
         float experience = (float) 0.3;
-        int cookingTime = this.getSmeltTime();
-        FurnaceRecipe furnace = new FurnaceRecipe(key, result, source, experience, cookingTime);
-        return furnace;
+        return new FurnaceRecipe(key, result, source, experience, getSmeltTime());
     }
 
     @Override

@@ -1,6 +1,10 @@
 package me.depickcator.ascension.Items.ItemLists;
 
+import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import org.bukkit.Material;
+import org.bukkit.block.Biome;
+import org.bukkit.generator.structure.Structure;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -9,14 +13,43 @@ import java.util.Random;
 public class MediumItems {
     private ArrayList<ItemStack> items;
     private Random rand;
+    private final LocationCheck locationCheck;
     public MediumItems() {
         items = new ArrayList<>();
         rand = new Random();
+        locationCheck = Ascension.getInstance().getLocationCheck();
         setItems();
+
     }
 
     private void setItems() {
-        items.add(new ItemStack(Material.COOKIE));
+        //Jungle
+        if (locationCheck.isALocation(Biome.BAMBOO_JUNGLE)) {
+            items.add(new ItemStack(Material.BAMBOO_BLOCK));
+            items.add(new ItemStack(Material.SCAFFOLDING));
+            items.add(new ItemStack(Material.COOKIE));
+        }
+        //Swamp
+        if (locationCheck.isALocation(Biome.SWAMP, Biome.JUNGLE, Biome.BAMBOO_JUNGLE)) items.add(new ItemStack(Material.VINE));
+        if (locationCheck.isALocation(Biome.SWAMP, Biome.MANGROVE_SWAMP)) items.add(new ItemStack(Material.LILY_PAD));
+
+        //Trial
+        if (locationCheck.isALocation(Structure.TRIAL_CHAMBERS)) {
+            items.add(new ItemStack(Material.BREEZE_ROD));
+            items.add(new ItemStack(Material.WIND_CHARGE));
+            items.add(new ItemStack(Material.TRIAL_KEY));
+        }
+
+        //Desert
+        if (locationCheck.isALocation(Biome.DESERT)) {
+            items.add(new ItemStack(Material.CACTUS));
+            items.add(new ItemStack(Material.RED_SANDSTONE));
+        }
+
+
+        items.add(new ItemStack(Material.SADDLE)); //TODO: Change to Medium?
+        items.add(new ItemStack(Material.NAME_TAG)); //TODO: Change to Medium?
+
         items.add(new ItemStack(Material.NETHERITE_SCRAP));
         items.add(new ItemStack(Material.AMETHYST_SHARD));
         items.add(new ItemStack(Material.PUMPKIN_PIE));
@@ -35,18 +68,14 @@ public class MediumItems {
         items.add(new ItemStack(Material.ANCIENT_DEBRIS));
         items.add(new ItemStack(Material.AMETHYST_BLOCK));
         items.add(new ItemStack(Material.BLACK_BED));
-        items.add(new ItemStack(Material.BAMBOO_BLOCK));
         items.add(new ItemStack(Material.COBWEB));
         items.add(new ItemStack(Material.NETHER_WART));
-        items.add(new ItemStack(Material.SCAFFOLDING));
+
         items.add(new ItemStack(Material.SWEET_BERRIES));
         items.add(new ItemStack(Material.SLIME_BLOCK));
-        items.add(new ItemStack(Material.RED_SANDSTONE));
         items.add(new ItemStack(Material.DIAMOND_BLOCK));
         items.add(new ItemStack(Material.EMERALD_BLOCK));
-        items.add(new ItemStack(Material.VINE));
-//        items.add(new ItemStack(Material.SPLASH_POTION));
-        items.add(new ItemStack(Material.LILY_PAD));
+
         items.add(new ItemStack(Material.ENDER_CHEST));
         items.add(new ItemStack(Material.ENDER_EYE));
         items.add(new ItemStack(Material.SPYGLASS));
@@ -57,7 +86,7 @@ public class MediumItems {
         items.add(new ItemStack(Material.BREWING_STAND));
         items.add(new ItemStack(Material.BEACON));
         items.add(new ItemStack(Material.ENCHANTING_TABLE));
-        items.add(new ItemStack(Material.HEART_OF_THE_SEA));
+        if (locationCheck.isALocation(Structure.SHIPWRECK)) items.add(new ItemStack(Material.HEART_OF_THE_SEA));
         items.add(new ItemStack(Material.NETHER_BRICKS));
         items.add(new ItemStack(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE));
         items.add(new ItemStack(Material.HONEY_BOTTLE));
@@ -66,24 +95,22 @@ public class MediumItems {
         items.add(new ItemStack(Material.FIRE_CHARGE));
         items.add(new ItemStack(Material.TINTED_GLASS));
         items.add(new ItemStack(Material.POINTED_DRIPSTONE));
-        items.add(new ItemStack(Material.BREEZE_ROD));
-        items.add(new ItemStack(Material.WIND_CHARGE));
+
         items.add(new ItemStack(Material.CREEPER_HEAD));
         items.add(new ItemStack(Material.ZOMBIE_HEAD));
         items.add(new ItemStack(Material.SKELETON_SKULL));
-        items.add(new ItemStack(Material.TRIAL_KEY));
         items.add(new ItemStack(Material.SOUL_CAMPFIRE));
         items.add(new ItemStack(Material.SOUL_TORCH));
         items.add(new ItemStack(Material.STICKY_PISTON));
         items.add(new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK));
         items.add(new ItemStack(Material.BEETROOT_SOUP));
-        items.add(new ItemStack(Material.CACTUS));
         items.add(new ItemStack(Material.BEEHIVE));
         items.add(new ItemStack(Material.SPAWNER));
         items.add(new ItemStack(Material.MAGMA_BLOCK));
         items.add(new ItemStack(Material.GLOW_ITEM_FRAME));
         items.add(new ItemStack(Material.TURTLE_HELMET));
         items.add(new ItemStack(Material.LEAD));
+        items.add(new ItemStack(Material.SPECTRAL_ARROW));
 
         items.add(new ItemStack(Material.BLAZE_ROD));
         items.add(new ItemStack(Material.SOUL_LANTERN));
@@ -121,13 +148,13 @@ public class MediumItems {
     private ItemStack getRandomHangingSign() {
         ArrayList<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.ACACIA_HANGING_SIGN));
-        items.add(new ItemStack(Material.BAMBOO_HANGING_SIGN));
+        if (locationCheck.isALocation(Biome.BAMBOO_JUNGLE)) items.add(new ItemStack(Material.BAMBOO_HANGING_SIGN));
         items.add(new ItemStack(Material.BIRCH_HANGING_SIGN));
-        items.add(new ItemStack(Material.CHERRY_HANGING_SIGN));
+        if (locationCheck.isALocation(Biome.CHERRY_GROVE)) items.add(new ItemStack(Material.CHERRY_HANGING_SIGN));
         items.add(new ItemStack(Material.CRIMSON_HANGING_SIGN));
         items.add(new ItemStack(Material.DARK_OAK_HANGING_SIGN));
-        items.add(new ItemStack(Material.MANGROVE_HANGING_SIGN));
-        items.add(new ItemStack(Material.JUNGLE_HANGING_SIGN));
+        if (locationCheck.isALocation(Biome.MANGROVE_SWAMP)) items.add(new ItemStack(Material.MANGROVE_HANGING_SIGN));
+        if (locationCheck.isALocation(Biome.JUNGLE)) items.add(new ItemStack(Material.JUNGLE_HANGING_SIGN));
         items.add(new ItemStack(Material.SPRUCE_HANGING_SIGN));
         items.add(new ItemStack(Material.OAK_HANGING_SIGN));
 

@@ -52,7 +52,7 @@ public class KitBookGUI extends AscensionGUI {
 
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {
-        if (!player.getInventory().getItemInMainHand().equals(KitBook.item())) {
+        if (!isHolding(KitBook.item()) && plugin.getGameState().inGame()) {
             event.setCancelled(true);
             player.closeInventory();
             return;
@@ -60,7 +60,11 @@ public class KitBookGUI extends AscensionGUI {
         Kit kit = Kit.getKit(event.getCurrentItem());
         if (kit == null) return;
         if (event.isLeftClick()) {
-            getKit(event, kit);
+            if (plugin.getGameState().inLobby()) {
+                TextUtil.errorMessage(player, "You are unable to pick this kit at this time");
+            } else {
+                getKit(event, kit);
+            }
         } else if (event.isRightClick()) {
             viewKit(event, kit);
         }

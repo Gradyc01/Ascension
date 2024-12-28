@@ -1,8 +1,12 @@
 package me.depickcator.ascension.Items.ItemLists;
 
+import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
 import org.bukkit.Material;
+import org.bukkit.block.Biome;
+import org.bukkit.generator.structure.Structure;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -11,46 +15,76 @@ import java.util.Random;
 public class Harditems {
     private ArrayList<ItemStack> items;
     private final Random rand;
+    private final LocationCheck locationCheck;
     public Harditems() {
         items = new ArrayList<>();
         rand = new Random();
+        locationCheck = Ascension.getInstance().getLocationCheck();
         setItems();
     }
 
     private void setItems() {
         items.add(new ItemStack(Material.ENCHANTED_GOLDEN_APPLE));
-        items.add(new ItemStack(Material.MYCELIUM));
-        items.add(new ItemStack(Material.SEA_LANTERN));
+        if (locationCheck.isALocation(Biome.MUSHROOM_FIELDS)) items.add(new ItemStack(Material.MYCELIUM));
+
+        //Ocean Temple
+        if (locationCheck.isALocation(Structure.MONUMENT)) {
+            items.add(new ItemStack(Material.SPONGE));
+            items.add(new ItemStack(Material.SEA_LANTERN));
+        }
+
+        //Trials
+        if (locationCheck.isALocation(Structure.TRIAL_CHAMBERS)) {
+            items.add(new ItemStack(Material.OMINOUS_TRIAL_KEY));
+            items.add(new ItemStack(Material.MACE));//TODO: Maybe Change Later to Custom
+            items.add(new ItemStack(Material.HEAVY_CORE));
+        }
+
         items.add(new ItemStack(Material.HONEY_BLOCK));
-        items.add(new ItemStack(Material.SPONGE));
         items.add(new ItemStack(Material.RESPAWN_ANCHOR));
-        items.add(new ItemStack(Material.GLOW_BERRIES));
+
         items.add(new ItemStack(Material.END_CRYSTAL));
         items.add(new ItemStack(Material.WITHER_SKELETON_SKULL));
-        items.add(new ItemStack(Material.BIG_DRIPLEAF));
+
         items.add(new ItemStack(Material.POISONOUS_POTATO));
-        items.add(new ItemStack(Material.NAME_TAG)); //TODO: Change to Medium?
+
         items.add(new ItemStack(Material.LODESTONE));
         items.add(new ItemStack(Material.SCULK_SENSOR));
-        items.add(new ItemStack(Material.AXOLOTL_BUCKET));
+
         items.add(new ItemStack(Material.NAUTILUS_SHELL));
         items.add(new ItemStack(Material.GOAT_HORN));
-        items.add(new ItemStack(Material.SADDLE)); //TODO: Change to Medium?
+
         items.add(new ItemStack(Material.WOLF_ARMOR));
-        items.add(new ItemStack(Material.SEA_PICKLE));
-        items.add(new ItemStack(Material.RECOVERY_COMPASS));
+
+        //Ancient City
+        if (locationCheck.isALocation(Structure.ANCIENT_CITY)) {
+            items.add(new ItemStack(Material.RECOVERY_COMPASS));
+            items.add(new ItemStack(Material.DISC_FRAGMENT_5));
+            items.add(new ItemStack(Material.ECHO_SHARD));
+        }
+
+        //Lush Caves
+        if (locationCheck.isALocation(Biome.LUSH_CAVES)) {
+            items.add(new ItemStack(Material.BIG_DRIPLEAF));
+            items.add(new ItemStack(Material.GLOW_BERRIES));
+            items.add(new ItemStack(Material.AXOLOTL_BUCKET));
+        }
+
+
         items.add(new ItemStack(Material.MUSIC_DISC_PIGSTEP));
-        items.add(new ItemStack(Material.HEAVY_CORE));
-        items.add(new ItemStack(Material.OMINOUS_TRIAL_KEY));
         items.add(new ItemStack(Material.WAXED_COPPER_GRATE)); //Change to a list later
         items.add(new ItemStack(Material.CONDUIT));
         items.add(new ItemStack(Material.HONEYCOMB_BLOCK));
-        items.add(new ItemStack(Material.MACE));//TODO: Maybe Change Later to Custom
         items.add(new ItemStack(Material.TRIDENT)); //TODO: Maybe Change Later to Custom
 
 
-        items.add(getRandomHorseArmor());
-        items.add(getRandomCoral());
+        if (locationCheck.isALocation(Structure.DESERT_PYRAMID)) items.add(getRandomHorseArmor());
+
+        //Warm Ocean
+        if (locationCheck.isALocation(Biome.WARM_OCEAN)) {
+            items.add(getRandomCoral());
+            items.add(new ItemStack(Material.SEA_PICKLE));
+        }
         items.add(getRandomNetherite());
         items.add(getRandomNetherite());
         items.add(getRandomNetherite());
@@ -63,8 +97,6 @@ public class Harditems {
         items.add(new ItemStack(Material.NETHERITE_CHESTPLATE));
         items.add(new ItemStack(Material.NETHERITE_LEGGINGS));
         items.add(new ItemStack(Material.NETHERITE_BOOTS));
-//        items.add(new ItemStack(Material.NETHERITE_SWORD));
-//        items.add(new ItemStack(Material.NETHERITE_AXE));
         items.add(NetheriteAxe.getInstance().getResult());
         items.add(NetheriteSword.getInstance().getResult());
         items.add(new ItemStack(Material.NETHERITE_PICKAXE));

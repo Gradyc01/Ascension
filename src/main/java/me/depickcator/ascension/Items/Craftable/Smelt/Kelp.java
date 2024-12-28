@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Kelp extends FastSmelt {
 
     public Kelp() {
-        super("dried_kelp_from_smelting_kelp", 25);
+        super("dried_kelp_from_smelting_kelp");
     }
 
     @Override

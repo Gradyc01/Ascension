@@ -115,7 +115,7 @@ public class Feast {
             }
         }
         Ascension.getInstance().getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
-        new FeastChests(new Location(spawn.getWorld(), spawn.getX(), spawn.getY() + 3, spawn.getZ()), FeastSpecialChestLoot.getInstance(), 60, false);
+        new FeastChests(new Location(spawn.getWorld(), spawn.getX(), spawn.getY() + 3, spawn.getZ()), FeastSpecialChestLoot.getInstance(), 60, false, false);
         spawnRandomChests();
     }
 
@@ -131,13 +131,17 @@ public class Feast {
                     cancel();
                     return;
                 }
-                if (time % 4 == 0) {
+                if (time % 2 == 0) {
                     int xM = r.nextInt(2) == 1 ? 1 : -1;
                     int zM = r.nextInt(2) == 1 ? 1 : -1;
                     int x = (int) (spawn.getX() + r.nextInt(30, 75) * xM);
                     int z = (int) (spawn.getZ() + r.nextInt(30, 75) * zM);
+                    if (time % 4 == 0) {
+                        new FeastChests(new Location(spawn.getWorld(), x, spawn.getY(), z), FeastRegularChestLoot.getInstance());
+                    } else {
+                        new FeastChests(new Location(spawn.getWorld(), x, spawn.getY(), z), FeastResourceChestLoot.getInstance());
+                    }
 
-                    new FeastChests(new Location(spawn.getWorld(), x, spawn.getY(), z), FeastRegularChestLoot.getInstance());
                 }
                 time--;
             }

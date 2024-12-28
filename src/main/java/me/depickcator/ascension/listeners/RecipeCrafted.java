@@ -100,18 +100,30 @@ public class RecipeCrafted implements EventListener, Listener {
     }
 
     private int calculateCraftAmount(PrepareItemCraftEvent event) {
-        double totalItems = 0;
-        double resultCount = 9;
+//        double totalItems = 0;
+//        double resultCount = 9;
+//        for (ItemStack item : event.getInventory().getMatrix()) {
+//            if (item != null && item.getType() != Material.AIR) {
+//                totalItems += item.getAmount();
+//            } else {
+//                resultCount--;
+//            }
+//        }
+
+//        plugin.getServer().broadcast(Component.text(totalItems / resultCount));
+//        return (int) Math.ceil(totalItems / resultCount);
+        int maxCraftableAmount = Integer.MAX_VALUE;
+
+        // Calculate the maximum possible crafts based on the items in the crafting grid
         for (ItemStack item : event.getInventory().getMatrix()) {
             if (item != null && item.getType() != Material.AIR) {
-                totalItems += item.getAmount();
-            } else {
-                resultCount--;
+                maxCraftableAmount = Math.min(maxCraftableAmount, item.getAmount());
             }
         }
 
-//        plugin.getServer().broadcast(Component.text(totalItems / resultCount));
-        return (int) Math.ceil(totalItems / resultCount);
+        return maxCraftableAmount;
+
+//
     }
 
     private boolean isCraftingRecipe(Recipe recipe) {

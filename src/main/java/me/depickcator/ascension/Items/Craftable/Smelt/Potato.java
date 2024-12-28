@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class Potato extends FastSmelt {
 
     public Potato() {
-        super("baked_potato", 25);
+        super("baked_potato");
     }
 
     @Override

@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class LimeDye extends FastSmelt {
 
     public LimeDye() {
-        super("lime_dye_from_smelting_sea_pickle", 25);
+        super("lime_dye_from_smelting_sea_pickle");
     }
 
     @Override

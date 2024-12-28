@@ -10,7 +10,10 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import java.util.Random;
 
@@ -22,10 +25,12 @@ public class FeastChests {
     private final int x;
     private final int z;
     private final int y;
-    public FeastChests(Location location, CustomChestLoot lootTable, int delay, boolean createNewYValue) {
+    private final boolean launchFireball;
+    public FeastChests(Location location, CustomChestLoot lootTable, int delay, boolean createNewYValue, boolean launchFireball) {
         this.location = location;
         this.loot = lootTable;
         this.delay = delay;
+        this.launchFireball = launchFireball;
         plugin = Ascension.getInstance();
         x = location.getBlockX();
         z = location.getBlockZ();
@@ -35,7 +40,7 @@ public class FeastChests {
     }
 
     public FeastChests(Location location, CustomChestLoot lootTable) {
-        this(location, lootTable, 0, true);
+        this(location, lootTable, 0, true, true);
     }
 
     private void delayLoop() {
@@ -58,6 +63,9 @@ public class FeastChests {
     private void spawnInChest() {
         TextUtil.debugText("FeastChest Location" + x + ", " + y + ", " + z);
         lightningStrike();
+        if (launchFireball) {
+            fireBall();
+        }
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -77,9 +85,12 @@ public class FeastChests {
         location.getWorld().strikeLightningEffect(new Location(location.getWorld(), x, y - 1, z));
         location.getWorld().playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 5.0F, 1.0F);
         location.getWorld().playSound(location, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 5.0F, 0.0F);
-//        Fireball fireball = (Fireball) plugin.getWorld().spawnEntity(new Location(location.getWorld(), x, y + 105, z), EntityType.FIREBALL);
-//        Vector v = new Vector(0, -0.5, 0);
-//        fireball.setDirection(v);
-//        fireball.setInvulnerable(true);
+    }
+
+    private void fireBall() {
+        Fireball fireball = (Fireball) plugin.getWorld().spawnEntity(new Location(location.getWorld(), x, y + 100, z), EntityType.FIREBALL);
+        Vector v = new Vector(0, -0.5, 0);
+        fireball.setDirection(v);
+        fireball.setInvulnerable(true);
     }
 }

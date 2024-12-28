@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.Craftable;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.checkerframework.checker.units.qual.K;
 
 import me.depickcator.ascension.Ascension;
 
@@ -35,6 +34,7 @@ public abstract class Craft {
         removeVanillaRecipe();
         result = initResult();
         recipe = initRecipe();
+        plugin.getServer().addRecipe(recipe);
     }
 
     protected Craft(String displayName, String key, boolean instantInstantiation) {

@@ -31,6 +31,7 @@ public class FinalAscension {
         calculateTeamTimers();
         finalAscensionStartAnnouncement();
         timer();
+        plugin.getWorld().getWorldBorder().setSize(1000, 300);
     }
 
     private void setGameState() {
@@ -51,6 +52,7 @@ public class FinalAscension {
 
     private void timer() {
         new BukkitRunnable() {
+            int time = 0;
             List<Team> activeTeams = TeamUtil.getEveryTeam(true);
             @Override
             public void run() {
@@ -64,6 +66,10 @@ public class FinalAscension {
                     new Winner(activeTeams);
                     TextUtil.debugText("win");
                     return;
+                }
+                time++;
+                if (time == 300) {
+                    plugin.getWorld().getWorldBorder().setSize(50, 600);
                 }
 //                for (Team t : activeTeams) {
 //                    updateScoreboard(t);
@@ -143,7 +149,7 @@ public class FinalAscension {
 
     private void finalAscensionStartAnnouncement() {
         Component titleText = TextUtil.makeText("FINAL ASCENSION", TextUtil.YELLOW);
-        Component subtitleText = TextUtil.makeText("", TextUtil.YELLOW);
+        Component subtitleText = TextUtil.makeText("The border will now begin to shrink", TextUtil.YELLOW);
         Title title = TextUtil.makeTitle(titleText, subtitleText, 1, 3, 1);
         TextUtil.broadcastTitle(title);
         SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 1f, 1f);

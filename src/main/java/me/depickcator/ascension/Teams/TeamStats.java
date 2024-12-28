@@ -18,6 +18,7 @@ public class TeamStats {
     private int finalAscensionTimer;
     private int ascensionTimer;
     private int ascensionAttempts;
+    private final static int ascensionStartingTime = 900;
 
     //Scavenger
     private ArrayList<Boolean> scavengerScore;
@@ -28,7 +29,7 @@ public class TeamStats {
         linesObtained = 0;
         gameScore = 0;
         ascensionAttempts = 0;
-        ascensionTimer = 300;
+        ascensionTimer = ascensionStartingTime;
         scavengerScore = new ArrayList<>(List.of(
                 false, false, false, false, false
         ));
@@ -78,8 +79,7 @@ public class TeamStats {
             percentage = (double) gameScore / 25;
         } else {
             int attemptsRemaining = ascensionAttempts - 1;
-//            return (int) ((double)  (( gameScore - 25 - (15 * attemptsRemaining)) / 15))* 100;
-            percentage = (double) (gameScore - 25 - (15 * attemptsRemaining)) / 15;
+            percentage = (double) (gameScore - 25 - (12 * attemptsRemaining)) / 12;
         }
         TextUtil.debugText(Math.round(percentage * 100) + "%");
         return (int) Math.round(percentage * 100);

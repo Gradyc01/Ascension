@@ -9,7 +9,7 @@ import org.bukkit.inventory.Recipe;
 public class GreenDye extends FastSmelt {
 
     public GreenDye() {
-        super("green_dye", 25);
+        super("green_dye");
     }
 
     @Override
@@ -18,8 +18,7 @@ public class GreenDye extends FastSmelt {
         Material source = Material.CACTUS;
         float experience = (float) 1;
         int cookingTime = this.getSmeltTime();
-        FurnaceRecipe furnace = new FurnaceRecipe(key, result, source, experience, cookingTime);
-        return furnace;
+        return new FurnaceRecipe(key, result, source, experience, cookingTime);
     }
 
     @Override

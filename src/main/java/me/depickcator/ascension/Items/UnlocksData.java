@@ -5,6 +5,7 @@ import java.util.List;
 
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echolocator;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
+import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
 import org.apache.commons.lang3.tuple.Pair;
@@ -101,7 +102,8 @@ public class UnlocksData {
                 Nectar.getInstance(),
                 PotionOfVelocity.getInstance(),
                 BookOfThoth.getInstance(),
-                Cornucopia.getInstance()
+                Cornucopia.getInstance(),
+                PandoraBox.getInstance()
         ));
     }
 
@@ -154,6 +156,23 @@ public class UnlocksData {
         Shield.getInstance();
     }
 
+    // private void initSmeltingRecipes() {
+    //     new Brick();
+    //     new Copper();
+    //     new Glass();
+    //     new Gold();
+    //     new GreenDye();
+    //     new Iron();
+    //     new Kelp();
+    //     new LimeDye();
+    //     new Netherbrick();
+    //     new NetheriteScrap();
+    //     new Potato();
+    //     new Rabbit();
+    //     new SmoothStone();
+    //     new Stone();
+    // }
+
     public Pair<Craft, Integer> findUnlock(String displayName) {
         ArrayList<ArrayList<Craft>> arr = Ascension.getInstance().getUnlocksData().getAllUnlocks();
         for (int i = 0; i < arr.size(); i++) {
@@ -194,5 +213,9 @@ public class UnlocksData {
         allUnlocks.add(tier4Unlocks);
         allUnlocks.add(tier5Unlocks);
         return allUnlocks;
+    }
+
+    public ArrayList<Craft> getUnlocksTier(int tier) {
+        return getAllUnlocks().get(tier - 1);
     }
 }

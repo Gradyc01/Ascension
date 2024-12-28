@@ -3,6 +3,7 @@ package me.depickcator.ascension;
 
 import me.depickcator.ascension.General.GameCommand;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.General.Queue.QueueCommand;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.UnlocksData;
@@ -45,6 +46,7 @@ public final class Ascension extends JavaPlugin {
     private UnlocksData unlocksData;
     private BukkitScheduler scheduler;
     private Timeline timeline;
+    private LocationCheck locationCheck;
     private World world;
     private World nether;
     private Logger logger = getLogger();
@@ -91,6 +93,7 @@ public final class Ascension extends JavaPlugin {
         getCommand("giveCustomItem").setExecutor(new giveCustomItem());
         getCommand("shout").setExecutor(new Shout());
         getCommand("queue").setExecutor(new QueueCommand());
+        getCommand("printWorldInfo").setExecutor(new printWorldInformation());
     }
 
     private void registerListeners() {
@@ -109,6 +112,7 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new LootTableGeneration(), this);
         manager.registerEvents(new ChestLootModifier(), this);
         manager.registerEvents(new PlayerChatting(), this);
+        manager.registerEvents(new FastSmelt(), this);
     }
 
     private void registerCrafts() {
@@ -180,4 +184,11 @@ public final class Ascension extends JavaPlugin {
         guiMap.remove(player.getUniqueId());
     }
 
+    public LocationCheck getLocationCheck() {
+        return locationCheck;
+    }
+
+    public void setLocationCheck(LocationCheck locationCheck) {
+        this.locationCheck = locationCheck;
+    }
 }

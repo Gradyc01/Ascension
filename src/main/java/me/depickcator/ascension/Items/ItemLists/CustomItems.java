@@ -2,6 +2,12 @@ package me.depickcator.ascension.Items.ItemLists;
 
 import java.util.ArrayList;
 
+import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echolocator;
+import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
+import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
+import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
+import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
+import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import me.depickcator.ascension.Items.Craftable.Unlocks.*;
@@ -20,16 +26,34 @@ public class CustomItems {
         items.add(KingsRod.getInstance().getResult());
         items.add(Nectar.getInstance().getResult());
         items.add(WeaverSilk.getInstance().getResult());
+
+        //Equipment
         items.add(DragonArmor.getInstance().getResult());
         items.add(HideOfLeviathan.getInstance().getResult());
         items.add(SevenLeagueBoots.getInstance().getResult());
         items.add(Tarnhelm.getInstance().getResult());
+        items.add(HermesBoots.getInstance().getResult());
+        items.add(Exodus.getInstance().getResult());
+        items.add(WingsOfIcarus.getInstance().getResult());
+        items.add(ApolloGlare.getInstance().getResult());
+        items.add(HeliosCurse.getInstance().getResult());
 
         //Combat
         items.add(new ItemStack(Material.PLAYER_HEAD));
         items.add(new ItemStack(Material.NETHER_STAR));
         items.add(ShardOfTheFallen.result());
         items.add(GoldenHead.getInstance().getResult());
+        items.add(PandoraBox.getInstance().getResult());
+
+
+        //Abilities
+        items.add(TeamPortal.getInstance().getResult());
+        items.add(RedLedger.getInstance().getResult());
+        items.add(Echolocator.getInstance().getResult());
+        items.add(Ghost.getInstance().getResult());
+        items.add(AscensionKey.getInstance().getResult());
+
+
 
         //Tools
         items.add(QuickPick.getInstance().getResult());
@@ -43,7 +67,9 @@ public class CustomItems {
         items.add(PotionOfVelocity.getInstance().getResult());
         items.add(BookOfThoth.getInstance().getResult());
         items.add(Cornucopia.getInstance().getResult());
+        items.add(CubeConverter.getInstance().getResult());
         items.add(Panacea.getInstance().getResult());
+        items.add(XPTome.getInstance().getItem());
     }
 
     public ArrayList<ItemStack> getItems() {

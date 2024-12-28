@@ -1,5 +1,6 @@
 package me.depickcator.ascension.General;
 
+import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.Utility.ArmorStandUtil;
 import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
@@ -12,14 +13,14 @@ import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
 import static me.depickcator.ascension.General.BuildLobby.fillArea;
 
 public class LoadGame implements Runnable {
-    Ascension plugin;
-    Player player;
-    ArmorStand spawnCoordsArmorStand;
+    private final Ascension plugin;
+    // private final Player player;
+    private ArmorStand spawnCoordsArmorStand;
     public final static String spawnCoordsArmorStandName = "SpawnCoords";
     private Location spawnCoordsLocation;
     public LoadGame(Player player, Location loc) {
         this.plugin = Ascension.getInstance();
-        this.player = player;
+        // this.player = player;
         this.spawnCoordsLocation = loc;
         plugin.setBingoData(new BingoData(plugin));
         deletePreviousIterations();
@@ -58,6 +59,7 @@ public class LoadGame implements Runnable {
         scheduler.runTaskLater(plugin, this::buildPlatform, 30);
         scheduler.runTaskLater(plugin, this::buildLobby, 40);
         scheduler.runTaskLater(plugin, () -> new ResetGame(), 50);
+        scheduler.runTaskLater(plugin, () -> plugin.setLocationCheck(new LocationCheck(spawnCoordsLocation)), 90);
        
     }
 
