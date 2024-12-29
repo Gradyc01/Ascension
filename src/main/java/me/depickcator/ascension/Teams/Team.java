@@ -120,6 +120,7 @@ public class Team {
 
     public void setSTATE(int STATE) {
         this.STATE = STATE;
+        TextUtil.debugText(leader.getName() + "'s team is now State: " + STATE);
     }
 
     public Player getLeader() {
@@ -127,15 +128,28 @@ public class Team {
     }
 
     public void updateState() {
-        boolean update = true;
+//        boolean update = true;
+//        for (Player p : teamMembers) {
+//            PlayerData pD = PlayerUtil.getPlayerData(p);
+//            if (!pD.checkState(PlayerData.STATE_SPECTATING)) {
+//                update = false;
+//                break;
+//            }
+//        }
+//        if (update) {
+//            setSTATE(STATE_DEPRECATED);
+//        }
+        boolean active = false;
         for (Player p : teamMembers) {
             PlayerData pD = PlayerUtil.getPlayerData(p);
             if (!pD.checkState(PlayerData.STATE_SPECTATING)) {
-                update = false;
+                active = true;
                 break;
             }
         }
-        if (update) {
+        if (active) {
+            setSTATE(STATE_ACTIVE);
+        } else {
             setSTATE(STATE_DEPRECATED);
         }
     }

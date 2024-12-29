@@ -46,10 +46,10 @@ public class PlayerDeath {
         }
     }
 
-    private void setRespawningLater(PlayerData playerData) {
+    public void setRespawningLater(PlayerData playerData) {
         Player p = playerData.getPlayer();
         setPlayerDead(playerData);
-        p.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, Integer.MAX_VALUE, 1, false, false));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, PotionEffect.INFINITE_DURATION, 1, false, false));
         deathTimer.setCooldownTimer(p);
         players.add(playerData);
 

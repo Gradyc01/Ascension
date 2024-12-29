@@ -1,9 +1,12 @@
 package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -37,6 +40,14 @@ public class PlayerUtil {
     }
 
     public static void giveItem(Player p, ItemStack item) {
+        PlayerInventory inv = p.getInventory();
+        int emptySlot = inv.firstEmpty();
+        if (emptySlot != -1) {
+            TextUtil.debugText("Empty slot found in " + p.getName() + "'s inventory at: " + emptySlot);
+            p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1f, 2);
+            inv.setItem(emptySlot, item);
+            return;
+        }
         p.getWorld().dropItem(p.getLocation(), item);
     }
 

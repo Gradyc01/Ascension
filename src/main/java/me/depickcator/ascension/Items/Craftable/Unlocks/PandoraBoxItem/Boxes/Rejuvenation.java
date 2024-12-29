@@ -33,9 +33,19 @@ public class Rejuvenation extends PandoraBoxes {
                 Enchantment.SHARPNESS,
                 Enchantment.INFINITY,
                 Enchantment.POWER,
+                Enchantment.UNBREAKING,
+                Enchantment.SHARPNESS,
+                Enchantment.INFINITY,
+                Enchantment.POWER,
+                Enchantment.UNBREAKING,
+                Enchantment.SHARPNESS,
+                Enchantment.INFINITY,
+                Enchantment.POWER,
+                Enchantment.UNBREAKING,
+                Enchantment.SMITE,
+                Enchantment.DENSITY,
                 Enchantment.FLAME,
-                Enchantment.FIRE_ASPECT,
-                Enchantment.UNBREAKING
+                Enchantment.FIRE_ASPECT
         ));
         List<ItemStack> list = new ArrayList<>(List.of(
                 new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 1),

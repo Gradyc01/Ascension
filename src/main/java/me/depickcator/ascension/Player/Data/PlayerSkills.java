@@ -1,18 +1,19 @@
 package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Skills.Combat;
-import me.depickcator.ascension.Skills.Foraging;
-import me.depickcator.ascension.Skills.Global;
-import me.depickcator.ascension.Skills.Mining;
+import me.depickcator.ascension.Skills.*;
 
-public class PlayerSkills{
+import java.util.ArrayList;
+import java.util.List;
+
+public class PlayerSkills implements PlayerDataObservers {
     private final Ascension plugin;
     private final PlayerData playerData;
     private final Combat combat;
     private final Mining mining;
     private final Foraging foraging;
     private final Global global;
+    private final List<Skills> allSkills;
     public PlayerSkills(PlayerData playerData) {
         this.plugin = Ascension.getInstance();
         this.playerData = playerData;
@@ -20,6 +21,12 @@ public class PlayerSkills{
         mining = new Mining(this.plugin, this.playerData);
         foraging = new Foraging(this.plugin, this.playerData);
         global = new Global(this.playerData);
+        allSkills = new ArrayList<>(List.of(
+                combat,
+                mining,
+                foraging,
+                global
+        ));
     }
 
     public Combat getCombat() {
@@ -36,5 +43,12 @@ public class PlayerSkills{
 
     public Global getGlobal() {
         return global;
+    }
+
+    @Override
+    public void updatePlayer() {
+        for (Skills skill : allSkills) {
+            skill.updatePlayer();
+        }
     }
 }

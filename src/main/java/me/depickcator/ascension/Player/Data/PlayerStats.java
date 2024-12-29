@@ -3,10 +3,12 @@ package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 
-public class PlayerStats {
+public class PlayerStats implements PlayerDataObservers {
     private final PlayerData playerData;
+    private Player player;
 
     //Statistics
     private int kills;
@@ -21,6 +23,7 @@ public class PlayerStats {
     private static final String foodDropsKey = "food_drops";
     public PlayerStats(PlayerData playerData) {
         this.playerData = playerData;
+        this.player = playerData.getPlayer();
         kills = 0;
 //        nightVision = getNamespacedKey(PlayerStats.nightVisionKey);
 //        foodDrops = getNamespacedKey(PlayerStats.foodDropsKey);
@@ -30,7 +33,7 @@ public class PlayerStats {
         NamespacedKey k = new NamespacedKey(Ascension.getInstance(), key);
         boolean result;
         try {
-            result = playerData.getPlayer().getPersistentDataContainer().get(k, PersistentDataType.BOOLEAN);
+            result = player.getPersistentDataContainer().get(k, PersistentDataType.BOOLEAN);
         } catch (NullPointerException e) {
             result = false;
             setNamespacedKey(key, false);
@@ -40,7 +43,7 @@ public class PlayerStats {
 
     private void setNamespacedKey(String key, boolean value) {
         NamespacedKey k = new NamespacedKey(Ascension.getInstance(), key);
-        playerData.getPlayer().getPersistentDataContainer().set(k, PersistentDataType.BOOLEAN, value);
+        player.getPersistentDataContainer().set(k, PersistentDataType.BOOLEAN, value);
     }
 
     private void booleanSwitch(String key) {
@@ -83,5 +86,10 @@ public class PlayerStats {
 
     public void addDeaths(int deaths) {
         setDeaths(this.deaths + deaths);
+    }
+
+    @Override
+    public void updatePlayer() {
+        player = playerData.getPlayer();
     }
 }

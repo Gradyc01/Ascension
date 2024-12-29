@@ -1,6 +1,5 @@
-package me.depickcator.ascension.listeners;
+package me.depickcator.ascension.listeners.Combat;
 
-import me.depickcator.ascension.Interfaces.ShootsProjectiles;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;

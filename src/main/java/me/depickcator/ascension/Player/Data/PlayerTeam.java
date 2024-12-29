@@ -10,10 +10,10 @@ import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
-public class PlayerTeam {
+public class PlayerTeam implements PlayerDataObservers {
     private final Ascension plugin;
     private final PlayerData playerData;
-    private final Player player;
+    private Player player;
 
     //TEAMS
     private Boolean pendingTeamInvite;
@@ -159,5 +159,10 @@ public class PlayerTeam {
         player.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
         player.sendMessage(TextUtil.makeText(message, TextUtil.RED));
         player.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
+    }
+
+    @Override
+    public void updatePlayer() {
+        player = playerData.getPlayer();
     }
 }

@@ -16,7 +16,6 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Inter
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemClick.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemComparison.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\OldAscensionGUI.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ShootsProjectiles.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Craft.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Crafts.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Smelt\Brick.java
@@ -47,6 +46,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Cornucopia.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\CubeConverter.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\CupidBow.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\DiamondPack.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\DragonArmor.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Dread.java
@@ -159,6 +159,12 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\liste
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\Mineshaft.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\OminousTrialsLoot.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\PillagerOutpost.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\Combat\onDamage.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\Combat\onDeath.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\Combat\onElytraFlight.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\Combat\PlayerCombat.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\Combat\ProjectileAttacks.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\Combat\ShootsProjectiles.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\FastSmelt.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\InventoryClickListener.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\InventoryClose.java
@@ -170,7 +176,6 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\liste
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerConsumeItem.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerInteractListener.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerJoinLeave.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ProjectileAttacks.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\RecipeCrafted.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockLootTable.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockUtil.java
@@ -240,6 +245,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Playe
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Cooldowns\TeleportCooldown.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Cooldowns\TeleportSequence.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerData.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerDataObservers.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerScoreboard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerSkills.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerStats.java

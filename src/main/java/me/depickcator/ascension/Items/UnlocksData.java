@@ -128,12 +128,14 @@ public class UnlocksData {
         tier5Unlocks = new ArrayList<>(List.of(
                 AscensionKey.getInstance(),
                 Resurrection.getInstance(),
+                CupidBow.getInstance(),
                 ApolloGlare.getInstance(),
                 HeliosCurse.getInstance(),
                 HermesBoots.getInstance(),
                 Exodus.getInstance(),
                 WingsOfIcarus.getInstance(),
-                Panacea.getInstance()
+                Panacea.getInstance(),
+                TabletsOfDestiny.getInstance()
         ));
     }
 

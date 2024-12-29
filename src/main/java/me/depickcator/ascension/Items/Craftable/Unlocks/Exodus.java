@@ -11,7 +11,11 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.ArmorMeta;
 import org.bukkit.inventory.meta.Repairable;
+import org.bukkit.inventory.meta.trim.ArmorTrim;
+import org.bukkit.inventory.meta.trim.TrimMaterial;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 
 public class Exodus extends Craft {
     private static Exodus instance;
@@ -42,6 +46,10 @@ public class Exodus extends Craft {
         meta.setRepairCost(999);
         meta.addEnchant(Enchantment.UNBREAKING, 3, true);
         item.setItemMeta(meta);
+        ArmorMeta meta2 = (ArmorMeta) item.getItemMeta();
+        ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.GOLD, TrimPattern.SPIRE);
+        meta2.setTrim(armorTrim);
+        item.setItemMeta(meta2);
         return item;
     }
 

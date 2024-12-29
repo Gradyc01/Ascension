@@ -19,6 +19,7 @@ public interface Skills {
     ArrayList<Component> getRewardText(int level);
     String getExpOverTotalNeeded();
     String getName();
+    void updatePlayer();
 //    boolean canLevelUp();
 //    void levelUp(int newLevel)
 

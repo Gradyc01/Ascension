@@ -19,6 +19,7 @@ import me.depickcator.ascension.MainMenu.OpenMainMenuCommand;
 import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
 import me.depickcator.ascension.MainMenu.mainMenuCommands;
 import me.depickcator.ascension.listeners.ChestGeneration.ChestLootModifier;
+import me.depickcator.ascension.listeners.Combat.*;
 import me.depickcator.ascension.testingCommands.*;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -106,7 +107,12 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new MobSpawning(), this);
         manager.registerEvents(new InventoryClose(), this);
         manager.registerEvents(new InventoryClickListener(), this);
-        manager.registerEvents(new PlayerCombat(), this);
+//        manager.registerEvents(new PlayerCombat(), this);
+//        new PlayerCombat();
+        manager.registerEvents(new onDamage(), this);
+        manager.registerEvents(new onDeath(), this);
+        manager.registerEvents(new onElytraFlight(), this);
+
         manager.registerEvents(new RecipeCrafted(), this);
         manager.registerEvents(new PlayerInteractListener(), this);
         manager.registerEvents(new LootTableGeneration(), this);

@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Skills;
 
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -53,8 +54,10 @@ public class SkillRewards {
 //                }
 //            inv.addItem(i);
 //            }
-            p.getWorld().dropItem(p.getLocation(), i);
+//            p.getWorld().dropItem(p.getLocation(), i);
+            PlayerUtil.giveItem(p, i);
         }
+
     }
 
 }

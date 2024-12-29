@@ -1,6 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
@@ -54,7 +55,8 @@ public class giveCustomItem implements CommandExecutor {
             for (ArrayList<Craft> craft : allCraft) {
                 for (Craft c : craft) {
                     if (c.getKey().equals(name)) {
-                        p.getInventory().addItem(c.getResult());
+//                        p.getInventory().addItem(c.getResult());
+                        PlayerUtil.giveItem(p, c.getResult());
                         p.sendMessage(TextUtil.makeText("Item Found!", TextUtil.DARK_GREEN));
                         return true;
                     }

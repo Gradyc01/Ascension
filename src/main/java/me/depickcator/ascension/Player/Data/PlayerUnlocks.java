@@ -12,14 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlayerUnlocks {
+public class PlayerUnlocks implements PlayerDataObservers {
     public static int AMOUNT_COMMON = 25;
     public static int AMOUNT_UNCOMMON = 50;
     public static int AMOUNT_RARE = 75;
     public static int AMOUNT_VERY_RARE = 125;
     public static int AMOUNT_LEGENDARY = 250;
 
-    private final Player player;
+    private Player player;
     private final PlayerData playerData;
     private final List<Integer> amountNeeded = new ArrayList<>(List.of(
             0, 7, 7, 6, 5
@@ -140,4 +140,8 @@ public class PlayerUnlocks {
         playerData.getPlayerScoreboard().update();
     }
 
+    @Override
+    public void updatePlayer() {
+        player = playerData.getPlayer();
+    }
 }

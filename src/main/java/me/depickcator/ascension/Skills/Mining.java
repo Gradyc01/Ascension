@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class Mining implements Skills {
     private final PlayerData playerData;
     private final Ascension plugin;
-    private final Player player;
+    private Player player;
     private int experience;
     private int level;
     private final int MAXLEVEL = 5;
@@ -68,6 +68,10 @@ public class Mining implements Skills {
         }
     }
 
+    @Override
+    public void updatePlayer() {
+        player = playerData.getPlayer();
+    }
 
     @Override
     public String getExp() {

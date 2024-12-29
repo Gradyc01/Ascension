@@ -1,6 +1,8 @@
-package me.depickcator.ascension.Interfaces;
+package me.depickcator.ascension.listeners.Combat;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
@@ -17,14 +19,13 @@ public interface ShootsProjectiles {
     default void addProjectile(String key, ShootsProjectiles projectile) {
         projectiles.put(key, projectile);
     }
-    void setProjectileComponent(EntityDamageByEntityEvent event);
+    void setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim);
     static ShootsProjectiles getProjectile(MetadataValue metadataValue) {
 //        Bukkit.getServer().broadcast(TextUtil.makeText(metadataValue.asString()));
         return projectiles.get(metadataValue.asString());
     }
     static ShootsProjectiles getProjectile(ItemStack item) {
         try {
-
             return projectiles.get(item.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING));
         } catch (Exception e) {
             return null;

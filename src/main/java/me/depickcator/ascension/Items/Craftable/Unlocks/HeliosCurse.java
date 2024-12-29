@@ -2,7 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.ShootsProjectiles;
+import me.depickcator.ascension.listeners.Combat.ShootsProjectiles;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -18,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
@@ -63,6 +65,9 @@ public class HeliosCurse extends Craft implements ShootsProjectiles {
         ));
         meta.lore(lore);
         item.setItemMeta(meta);
+        Repairable meta2 = (Repairable) item.getItemMeta();
+        meta2.setRepairCost(999);
+        item.setItemMeta(meta2);
         return item;
     }
 
@@ -75,11 +80,15 @@ public class HeliosCurse extends Craft implements ShootsProjectiles {
     }
 
     @Override
-    public void setProjectileComponent(EntityDamageByEntityEvent event) {
-        Player victim = (Player) event.getEntity();
+    public void setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim) {
+//        Player victim = (Player) event.getEntity();
         victim.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 8 * 20, 0, true, true));
-        victim.sendMessage(TextUtil.makeText("MARKED", TextUtil.DARK_GRAY, true, false));
-        victim.playSound(victim.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 2.0f);
+        if (victim instanceof Player) {
+            Player player = (Player) victim;
+            player.sendMessage(TextUtil.makeText("MARKED", TextUtil.DARK_GRAY, true, false));
+            player.playSound(player.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 2.0f);
+        }
+
     }
 
     public static HeliosCurse getInstance() {

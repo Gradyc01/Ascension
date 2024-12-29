@@ -2,6 +2,7 @@ package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;
@@ -11,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 
 public class setUnlockToken implements CommandExecutor {
     private final Ascension plugin;
@@ -43,8 +43,10 @@ public class setUnlockToken implements CommandExecutor {
         if (player == null) {
             return false;
         }
-        PlayerUnlocks playerUnlocks = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks();
+        PlayerData pD = PlayerUtil.getPlayerData(player);
+        PlayerUnlocks playerUnlocks = pD.getPlayerUnlocks();
         playerUnlocks.setUnlockTokens(tokens);
+
         p.sendMessage("Player unlocks failed");
         return false;
     }

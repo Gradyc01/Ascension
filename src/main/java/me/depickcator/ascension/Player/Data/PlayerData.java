@@ -3,6 +3,8 @@ package me.depickcator.ascension.Player.Data;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
+import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -15,10 +17,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PlayerData {
-    private final Player player;
+    private Player player;
     private final Ascension plugin;
     public final static int STATE_ALIVE = 1;
     public final static int STATE_DEAD = 2;
@@ -30,6 +34,8 @@ public class PlayerData {
     private final PlayerTeam playerTeam;
     private final PlayerSkills playerSkills;
     private final PlayerStats playerStats;
+
+    private final List<PlayerDataObservers> observers;
 
     private int playerState;
 
@@ -43,6 +49,14 @@ public class PlayerData {
         playerStats = new PlayerStats(this);
         playerScoreboard = new PlayerScoreboard(this);
         initPlayerState();
+
+        observers = new ArrayList<>(List.of(
+                playerUnlocks,
+                playerTeam,
+                playerSkills,
+                playerStats,
+                playerScoreboard
+        ));
     }
 
     private void initPlayerState() {
@@ -51,6 +65,15 @@ public class PlayerData {
         } else {
             playerState = STATE_ALIVE;
         }
+    }
+
+    public void reInitPlayer(Player player) {
+        this.player = player;
+        for (PlayerDataObservers observer : observers) {
+            observer.updatePlayer();
+        }
+        setPlayerState(STATE_DEAD);
+        PlayerDeath.getInstance().setRespawningLater(this);
     }
 
     public void resetToLobby() {
@@ -64,7 +87,8 @@ public class PlayerData {
         player.setGameMode(GameMode.SURVIVAL);
     }
     public void resetBeforeStartGame() {
-        clearInventoryAndEffects();
+//        clearInventoryAndEffects();
+        player.getInventory().clear();
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, PotionEffect.INFINITE_DURATION, 0, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, PotionEffect.INFINITE_DURATION, 128, false, false));
         getMainMenuItem();
@@ -138,6 +162,7 @@ public class PlayerData {
 
     public void setPlayerState(int playerState) {
         this.playerState = playerState;
+        TextUtil.debugText(player.getName() + "is now State: " + playerState);
     }
 
     public boolean checkState(int state) {

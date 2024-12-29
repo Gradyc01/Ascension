@@ -26,8 +26,12 @@ public class GameStates {
     //Checks If the current state matches the state given
     // returns true if it matches
     // returns false if it doesn't
-    public boolean checkState(int state) {
-        return state == currentState;
+    public boolean checkState(int... state) {
+        for (int s : state) {
+            if (s == currentState) return true;
+        }
+        return false;
+//        return state == currentState;
     }
 
     public int getCurrentState() {
@@ -39,14 +43,16 @@ public class GameStates {
     }
 
     public boolean canNotBuild() {
-        return  checkState(LOBBY_NORMAL) ||
-                checkState(GAME_LOADING) ||
-                checkState(GAME_FEAST_LOADING);
+//        return  checkState(LOBBY_NORMAL) ||
+//                checkState(GAME_LOADING) ||
+//                checkState(GAME_FEAST_LOADING);
+        return checkState(LOBBY_NORMAL, GAME_LOADING, GAME_FEAST_LOADING);
     }
 
     public boolean inLobby() {
-        return  checkState(LOBBY_NORMAL) ||
-                checkState(LOBBY_QUEUE);
+//        return  checkState(LOBBY_NORMAL) ||
+//                checkState(LOBBY_QUEUE);
+        return checkState(LOBBY_NORMAL, LOBBY_QUEUE);
     }
 
     public boolean canTeleport(Player p) {
@@ -54,7 +60,8 @@ public class GameStates {
 //                checkState(GAME_FINAL_ASCENSION) ||
 //                checkState(LOBBY) ||
 //                checkState(GAME_ENDING));
-        if (checkState(GAME_FINAL_ASCENSION) || checkState(GAME_AFTER_GRACE) || checkState(GAME_ASCENSION)) {
+        //checkState(GAME_FINAL_ASCENSION) || checkState(GAME_AFTER_GRACE) || checkState(GAME_ASCENSION)
+        if (checkState(GAME_FINAL_ASCENSION, GAME_AFTER_GRACE, GAME_ASCENSION)) {
             return true;
         } else {
             TextUtil.errorMessage(p, "Teleporting is currently unavailable");
@@ -63,18 +70,20 @@ public class GameStates {
     }
 
     public boolean inGame() {
-        return checkState(GAME_BEFORE_GRACE) ||
-                checkState(GAME_LOADING) ||
-                checkState(GAME_ENDING) ||
-                checkState(GAME_AFTER_GRACE) ||
-                checkState(GAME_ASCENSION) ||
-                checkState(GAME_FINAL_ASCENSION);
+//        return checkState(GAME_BEFORE_GRACE) ||
+//                checkState(GAME_LOADING) ||
+//                checkState(GAME_ENDING) ||
+//                checkState(GAME_AFTER_GRACE) ||
+//                checkState(GAME_ASCENSION) ||
+//                checkState(GAME_FINAL_ASCENSION);
+        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_ENDING, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_FINAL_ASCENSION);
     }
 
     public boolean canNotPVP() {
-        return checkState(GAME_BEFORE_GRACE) ||
-                checkState(GAME_ENDING) ||
-                checkState(GAME_LOADING) ||
-                checkState(GAME_FEAST_LOADING);
+//        return checkState(GAME_BEFORE_GRACE) ||
+//                checkState(GAME_ENDING) ||
+//                checkState(GAME_LOADING) ||
+//                checkState(GAME_FEAST_LOADING);
+        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_ENDING, GAME_FEAST_LOADING);
     }
 }

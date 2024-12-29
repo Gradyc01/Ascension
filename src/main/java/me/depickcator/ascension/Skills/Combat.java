@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Combat implements Skills {
     private final PlayerData playerData;
     private final Ascension plugin;
-    private final Player player;
+    private Player player;
     private int experience;
     private int level;
     private final String NAME = "Combat";
@@ -97,6 +97,11 @@ public class Combat implements Skills {
     @Override
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public void updatePlayer() {
+        player = playerData.getPlayer();
     }
 
     private static SkillRewards level1Rewards() {
