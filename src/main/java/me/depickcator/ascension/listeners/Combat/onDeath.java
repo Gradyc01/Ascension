@@ -5,6 +5,7 @@ import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -58,7 +59,7 @@ public class onDeath extends PlayerCombat {
             killer.getPlayerStats().addKill();
             addFinalAscensionTimer(killer, 60);
             //TODO: Remove this later
-            killer.getPlayerSkills().getCombat().addExp(EntityUtil.COMBAT_LEGENDARY);
+            killer.getPlayerSkills().getCombat().addExp(SkillExpAmount.COMBAT_LEGENDARY.getExp());
         }
     }
 

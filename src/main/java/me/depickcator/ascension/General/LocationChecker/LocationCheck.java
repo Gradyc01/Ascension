@@ -24,12 +24,14 @@ public class LocationCheck {
     private final HashMap<Structure, LocationStorage> structures;
     private final HashMap<Biome, LocationStorage> biomes;
     private Pair<Integer, Integer> locationScore;
+    private final int worldBorderSize;
     public LocationCheck(Location spawn) {
         this.spawn = spawn;
         this.world = spawn.getWorld();
         structures = new HashMap<>();
         biomes = new HashMap<>();
         locationScore = new MutablePair<>(0, 0);
+        worldBorderSize = Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize();
         runLocations();
     }
 
@@ -139,12 +141,12 @@ public class LocationCheck {
     }
 
     private boolean checkLocation(Structure structure, LocationStorage storage) {
-        StructureSearchResult result = world.locateNearestStructure(spawn,  structure,3000, false);
+        StructureSearchResult result = world.locateNearestStructure(spawn, structure, worldBorderSize, false);
         boolean ans;
         if (result == null) {
             ans = false;
         } else {
-            ans = calculateEuclideanDistance(result.getLocation(), spawn) <= 3000;
+            ans = calculateEuclideanDistance(result.getLocation(), spawn) <= worldBorderSize;
         }
         storage.setInWorld(ans);
         structures.put(structure, storage);
@@ -153,7 +155,7 @@ public class LocationCheck {
     }
 
     private boolean checkLocation(Biome biome, LocationStorage storage) {
-        BiomeSearchResult result = world.locateNearestBiome(spawn, 3000, biome);
+        BiomeSearchResult result = world.locateNearestBiome(spawn, worldBorderSize, biome);
         boolean ans = result != null;
         storage.setInWorld(ans);
         biomes.put(biome, storage);

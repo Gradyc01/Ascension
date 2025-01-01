@@ -1,6 +1,8 @@
 package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.GameStart.StartGame;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,7 +28,7 @@ public class GameCommand implements CommandExecutor {
         if (!(commandSender instanceof Player)) {
             return false;
         }
-        if (strings.length != 1 && strings.length != 4) return false;
+        if (strings.length == 2 || strings.length > 4) return false;
 
         Player p = ((Player) commandSender).getPlayer();
         try {
@@ -52,6 +54,10 @@ public class GameCommand implements CommandExecutor {
             case "load" -> {
                 if (strings.length == 4) {
                     loadGame(p, Integer.parseInt(strings[1]), Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));
+                } else if (strings.length == 3) {
+                    int x = Integer.parseInt(strings[1]);
+                    int z = Integer.parseInt(strings[2]);
+                    loadGame(p, x, p.getWorld().getHighestBlockYAt(x, z), z);
                 } else {
                     loadGame(p, p.getLocation());
                 }
@@ -79,7 +85,11 @@ public class GameCommand implements CommandExecutor {
 
     private void loadGame(Player p, Location loc) {
         new LoadGame(p, loc);
-        p.sendMessage("Successfully loaded game");
+        p.sendMessage(TextUtil.makeText(
+                "Successfully loaded game at ("
+                + loc.getBlockX() + ", "
+                + loc.getBlockY() + ", "
+                + loc.getBlockZ() + ")", TextUtil.GRAY));
     }
 
     private void forceStartGame(Player p) {

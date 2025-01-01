@@ -3,6 +3,7 @@ package me.depickcator.ascension.LootTables.Entities.Enums;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.LootTableChanger;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -20,7 +21,7 @@ public class NetherMobs implements LootTableChanger, EntityLootTable {
     @Override
     public boolean uponEvent(Event event, Player p) {
         try {
-            giveCombatExp(p, EntityUtil.COMBAT_RARE);
+            giveCombatExp(p, SkillExpAmount.COMBAT_RARE.getExp());
 
         } catch (Exception ignored) {
             return false;

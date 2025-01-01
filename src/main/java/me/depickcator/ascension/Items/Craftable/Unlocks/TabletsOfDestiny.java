@@ -22,7 +22,7 @@ public class TabletsOfDestiny extends Craft {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
 
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape(" A ", "CAB", "EEE");
+        recipe.shape(" D ", "CAB", "EEE");
         recipe.setIngredient('A', Material.WRITABLE_BOOK);
         recipe.setIngredient('B', Material.BOW);
         recipe.setIngredient('C', Material.DIAMOND_SWORD);
@@ -41,7 +41,7 @@ public class TabletsOfDestiny extends Craft {
         storageMeta.addStoredEnchant(Enchantment.PROTECTION, 4, true);
         storageMeta.addStoredEnchant(Enchantment.FIRE_ASPECT, 1, true);
         storageMeta.addStoredEnchant(Enchantment.POWER, 3, true);
-        storageMeta.addStoredEnchant(Enchantment.SHARPNESS, 4, true);
+        storageMeta.addStoredEnchant(Enchantment.SHARPNESS, 3, true);
         item.setItemMeta(storageMeta);
         return item;
     }

@@ -128,7 +128,8 @@ public class Foraging implements Skills {
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
                         new ItemStack(Material.PUMPKIN, 1),
-                        new ItemStack(Material.MELON_SLICE, 4)
+                        new ItemStack(Material.MELON_SLICE, 4),
+                        new ItemStack(Material.EMERALD, 1)
                 )
         );
         skillRewards.setItems(rewards);

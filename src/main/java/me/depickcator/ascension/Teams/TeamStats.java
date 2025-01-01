@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Teams;
 
 
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Sound;
@@ -18,6 +19,8 @@ public class TeamStats {
     private int finalAscensionTimer;
     private int ascensionTimer;
     private int ascensionAttempts;
+
+    private int gameScoreRequirement;
     private final static int ascensionStartingTime = 900;
 
     //Scavenger
@@ -33,6 +36,7 @@ public class TeamStats {
         scavengerScore = new ArrayList<>(List.of(
                 false, false, false, false, false
         ));
+        updateGameScoreRequirement();
     }
 
     //Lines Obtained
@@ -54,6 +58,11 @@ public class TeamStats {
     }
 
     //Game Score
+
+    public void updateGameScoreRequirement() {
+        gameScoreRequirement = Ascension.getInstance().getSettingsUI().getSettings().getAscensionGameScoreRequirement();
+    }
+
     public int getGameScore() {
         return gameScore;
     }
@@ -74,12 +83,13 @@ public class TeamStats {
 
     public int getGameScorePercentage() {
         TextUtil.debugText(gameScore + " Game Score     ");
+        int round2Requirement = gameScoreRequirement / 2;
         double percentage;
         if (ascensionAttempts == 0) {
-            percentage = (double) gameScore / 25;
+            percentage = (double) gameScore / gameScoreRequirement;
         } else {
             int attemptsRemaining = ascensionAttempts - 1;
-            percentage = (double) (gameScore - 25 - (12 * attemptsRemaining)) / 12;
+            percentage = (double) (gameScore - gameScoreRequirement - (round2Requirement * attemptsRemaining)) / round2Requirement;
         }
         TextUtil.debugText(Math.round(percentage * 100) + "%");
         return (int) Math.round(percentage * 100);

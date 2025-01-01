@@ -3,6 +3,7 @@ package me.depickcator.ascension.LootTables.Entities.Enums;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -20,7 +21,7 @@ public class OverworldPassive implements LootTableChanger, EntityLootTable {
     @Override
     public boolean uponEvent(Event event, Player p) {
         try {
-            giveForagingExp(p, ForageBlocks.FORAGING_COMMON);
+            giveForagingExp(p, SkillExpAmount.FORAGING_COMMON.getExp());
 
         } catch (Exception ignored) {
             return false;

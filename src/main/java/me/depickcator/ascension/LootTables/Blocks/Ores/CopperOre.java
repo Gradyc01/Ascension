@@ -3,6 +3,7 @@ package me.depickcator.ascension.LootTables.Blocks.Ores;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.BlockLootTable;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -22,7 +23,7 @@ public class CopperOre implements LootTableChanger, BlockLootTable {
     public boolean uponEvent(Event e, Player p) {
         if (eligibleForMiningExp(e, p)) {
             try {
-                giveMiningExp(p, BlockUtil.MINING_COMMON);
+                giveMiningExp(p, SkillExpAmount.MINING_COMMON.getExp());
             } catch (Exception ignored) {}
             return true;
         }

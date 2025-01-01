@@ -37,6 +37,7 @@ public class CustomItems {
         items.add(WingsOfIcarus.getInstance().getResult());
         items.add(ApolloGlare.getInstance().getResult());
         items.add(HeliosCurse.getInstance().getResult());
+        items.add(CupidBow.getInstance().getResult());
 
         //Combat
         items.add(new ItemStack(Material.PLAYER_HEAD));
@@ -60,16 +61,20 @@ public class CustomItems {
         items.add(FlintShovel.getInstance().getResult());
         items.add(PhilosopherPickaxe.getInstance().getResult());
         items.add(VorpalSword.getInstance().getResult());
+        items.add(PotionOfVelocity.getInstance().getResult());
+        items.add(Cornucopia.getInstance().getResult());
+        items.add(CubeConverter.getInstance().getResult());
+        items.add(Panacea.getInstance().getResult());
+
+
+        //Books
+        items.add(BookOfThoth.getInstance().getResult());
+        items.add(XPTome.getInstance().getItem());
+        items.add(TabletsOfDestiny.getInstance().getResult());
         items.add(BookOfProjectileProtection.getInstance().getResult());
         items.add(BookOfProtection.getInstance().getResult());
         items.add(BookOfPower.getInstance().getResult());
         items.add(BookOfSharpness.getInstance().getResult());
-        items.add(PotionOfVelocity.getInstance().getResult());
-        items.add(BookOfThoth.getInstance().getResult());
-        items.add(Cornucopia.getInstance().getResult());
-        items.add(CubeConverter.getInstance().getResult());
-        items.add(Panacea.getInstance().getResult());
-        items.add(XPTome.getInstance().getItem());
     }
 
     public ArrayList<ItemStack> getItems() {

@@ -4,6 +4,7 @@ import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -27,7 +28,7 @@ public class Chicken implements LootTableChanger, EntityLootTable {
     public boolean uponEvent(Event event, Player p) {
         try {
             EntityDeathEvent e = getEntityDeathEvent(event);
-            giveForagingExp(p, ForageBlocks.FORAGING_UNCOMMON);
+            giveForagingExp(p, SkillExpAmount.FORAGING_UNCOMMON.getExp());
             e.getDrops().clear();
 
             Random r = new Random();

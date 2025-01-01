@@ -2,7 +2,7 @@ package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
-import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
+import me.depickcator.ascension.MainMenuUI.GiveMainMenuItem;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
@@ -100,11 +100,11 @@ public class PlayerData {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "recipe give " + player.getName() + " *");
         giveStartingFood();
     }
-    public void resetAfterStartGame() {
+    public void resetAfterStartGame(int gracePeriodDuration) {
         PlayerUtil.clearEffects(this);
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 180 * 20, 1));
         player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 20 * 60 * 20, 4, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, gracePeriodDuration * 60 * 20, 4, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
         Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);

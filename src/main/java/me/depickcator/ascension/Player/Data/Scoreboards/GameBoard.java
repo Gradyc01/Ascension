@@ -2,6 +2,7 @@ package me.depickcator.ascension.Player.Data.Scoreboards;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionLocation;
@@ -12,9 +13,11 @@ import org.bukkit.scoreboard.Objective;
 
 public class GameBoard extends Boards {
     private final Ascension plugin;
+    private final Timeline timeline;
     public GameBoard(Objective board, PlayerData playerData) {
         super(board, playerData);
         this.plugin = Ascension.getInstance();
+        timeline = plugin.getSettingsUI().getSettings().getTimeline();
     }
 
     @Override
@@ -61,9 +64,9 @@ public class GameBoard extends Boards {
                 updateAscensionTimer();
             }
             default -> {
-                Pair<String, Integer> event = plugin.getTimeline().getNextBigEvent();
+                Pair<String, Integer> event = timeline.getNextBigEvent();
                 editLine(board, 13, TextUtil.makeText("  " + event.getLeft() +" In:  ", TextUtil.GOLD));
-                editLine(board, 12, plugin.getTimeline().getTime() );
+                editLine(board, 12, timeline.getTime() );
             }
         }
 
@@ -81,7 +84,7 @@ public class GameBoard extends Boards {
     }
 
     private void updateAscensionTimer() {
-        AscensionLocation ascensionLocation = plugin.getTimeline().getAscensionEvent().getAscendingLocation();
+        AscensionLocation ascensionLocation = timeline.getAscensionEvent().getAscendingLocation();
         int time = ascensionLocation.getAscendingTeam().getTeamStats().getAscensionTimer();
         int healthPercentage = (int) (ascensionLocation.getEntity().getHealth() / ascensionLocation.getEntity().getAttribute(Attribute.MAX_HEALTH).getBaseValue() * 100);
         String minutes = time/60 + "";

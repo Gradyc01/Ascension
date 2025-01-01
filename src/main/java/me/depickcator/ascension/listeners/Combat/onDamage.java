@@ -73,7 +73,7 @@ public class onDamage extends PlayerCombat{
 //            if ()) {
             double baseDamage = getDamageValue(weapon.getType());
             double cooldownMultiplier = attacker.getCooledAttackStrength(0);
-            double criticalMultiplier = event.isCritical() ? (isAnAxe(weapon) ? 2.5 : 1.5) : 1;
+            double criticalMultiplier = event.isCritical() ? (isAnAxe(weapon) ? 2.0 : 1.5) : 1;
             double effectMultiplier = 1 + 0.2 * effectMultiplier(attacker);
             double sharpnessMultiplier = meleeEnchantMultiplier(event, weapon);
             damageDealt = (((baseDamage + sharpnessMultiplier) * effectMultiplier) * criticalMultiplier) * cooldownMultiplier;

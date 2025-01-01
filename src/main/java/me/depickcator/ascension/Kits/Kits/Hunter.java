@@ -46,7 +46,7 @@ public class Hunter implements Kit{
         meta.addEnchant(Enchantment.SHARPNESS, 2, true);
         meta.addEnchant(Enchantment.LOOTING, 3, true);
         meta.addEnchant(Enchantment.BANE_OF_ARTHROPODS, 2, true);
-        meta.addEnchant(Enchantment.SMITE, 2, true);
+        meta.addEnchant(Enchantment.SMITE, 3, true);
         meta.addEnchant(Enchantment.EFFICIENCY, 3, true);
         meta.addEnchant(Enchantment.UNBREAKING, 1, true);
         item.setItemMeta(meta);

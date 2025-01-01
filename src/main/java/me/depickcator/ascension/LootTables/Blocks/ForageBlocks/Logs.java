@@ -5,6 +5,7 @@ import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.BlockLootTable;
 import me.depickcator.ascension.Player.Data.PlayerSkills;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -32,7 +33,7 @@ public class Logs implements LootTableChanger, BlockLootTable, ForageBlocks {
         BlockBreakEvent event = (BlockBreakEvent) e;
         if (!event.getBlock().hasMetadata(PLACED_BY_PLAYER)) {
             PlayerSkills playerSkills = Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerSkills();
-            playerSkills.getForaging().addExp(FORAGING_COMMON);
+            playerSkills.getForaging().addExp(SkillExpAmount.FORAGING_COMMON.getExp());
             return true;
         }
         return false;

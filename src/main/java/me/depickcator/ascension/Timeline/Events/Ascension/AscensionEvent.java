@@ -2,6 +2,7 @@ package me.depickcator.ascension.Timeline.Events.Ascension;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Unlocks.AscensionKey;
@@ -23,10 +24,12 @@ public class AscensionEvent {
     private boolean eventOngoing;
     private final List<AscensionLocation> locations;
     private AscensionLocation ascendingLocation;
+    private final Timeline timeline;
     public AscensionEvent() {
         plugin = Ascension.getInstance();
         eventOngoing = false;
         locations = generateLocations();
+        timeline = plugin.getSettingsUI().getSettings().getTimeline();
         broadcastLocations();
     }
 
@@ -50,7 +53,7 @@ public class AscensionEvent {
         ascensionLocation.getAscendingTeam().getTeamStats().addAscensionAttempts();
         plugin.getGameState().setCurrentState(GameStates.GAME_ASCENSION);
         loop(ascensionLocation);
-        plugin.getTimeline().pauseTimeline();
+        timeline.pauseTimeline();
     }
 
     private void loop(AscensionLocation ascensionLocation) {
@@ -78,7 +81,7 @@ public class AscensionEvent {
                 }
                 timer--;
                 TextUtil.debugText("Ascension Timer: " + timer);
-                plugin.getTimeline().updatePlayers();
+                timeline.updatePlayers();
                 teamStats.addAscensionTimer(-1);
             }
         }.runTaskTimer(Ascension.getInstance(), 0, 20);
@@ -94,7 +97,7 @@ public class AscensionEvent {
     public void failed() {
         plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
         checkForAscensionRemaining();
-        plugin.getTimeline().startTimeline();
+        timeline.startTimeline();
         TeamStats teamStats = ascendingLocation.getAscendingTeam().getTeamStats();
         teamStats.addAscensionTimer((int) (teamStats.getAscensionTimer() * 0.3));
         failedText();
@@ -104,7 +107,7 @@ public class AscensionEvent {
 
     private void checkForAscensionRemaining() {
         if (locations.isEmpty()) {
-            plugin.getTimeline().setTime(5);
+            timeline.setTime(5);
         }
     }
 

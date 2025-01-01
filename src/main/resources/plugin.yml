@@ -18,6 +18,8 @@ commands:
     description: queue
   printWorldInfo:
     description: prints the world information
+  settings:
+    description: changes settings of the game
 
   game:
     description: Allows to access the main game states

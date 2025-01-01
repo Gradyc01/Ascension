@@ -4,6 +4,7 @@ import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
@@ -34,11 +35,11 @@ public class ZombieEntity implements LootTableChanger, EntityLootTable, Superabl
             e.getDrops().clear();
             if (isSuperEntity(e.getEntity())) {
                 lootFromSuperEntity(e.getEntity());
-                giveCombatExp(p, EntityUtil.COMBAT_VERY_RARE);
+                giveCombatExp(p, SkillExpAmount.COMBAT_VERY_RARE.getExp());
                 return true;
             }
 
-            giveCombatExp(p, EntityUtil.COMBAT_COMMON);
+            giveCombatExp(p, SkillExpAmount.COMBAT_COMMON.getExp());
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
             if (e.getEntityType() == EntityType.ZOMBIE) {

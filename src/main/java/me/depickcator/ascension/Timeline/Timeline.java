@@ -1,17 +1,14 @@
 package me.depickcator.ascension.Timeline;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.MainMenu.Map.MapItem;
-import me.depickcator.ascension.MainMenu.Map.MapItems;
+import me.depickcator.ascension.MainMenuUI.Map.MapItem;
+import me.depickcator.ascension.MainMenuUI.Map.MapItems;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Player.Data.Scoreboards.GameBoard;
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
-import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
-import me.depickcator.ascension.Timeline.Events.Feast.Feast;
 import me.depickcator.ascension.Timeline.Events.FinalAscension.FinalAscension;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import net.kyori.adventure.text.Component;
@@ -24,19 +21,20 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Timeline {
-    private final Ascension plugin;
+public abstract class Timeline {
+    protected final Ascension plugin;
     private int MINUTES;
     private int SECONDS;
     private boolean keepRunning;
-    private Scavenger scavenger;
     private AscensionEvent ascensionEvent;
+    private Scavenger scavenger;
     private BukkitTask timeline;
-    private static final int STARTING_MINUTES = 120;
+    private final int STARTING_MINUTES;
     private MapItems mapItems;
     private List<Pair<String, Integer>> nextBigEvent;
-    public Timeline(Ascension plugin) {
-        this.plugin = plugin;
+    public Timeline(int startingMinutes) {
+        this.plugin = Ascension.getInstance();
+        STARTING_MINUTES = startingMinutes;
         this.MINUTES = STARTING_MINUTES;
         mapItems = new MapItems();
     }
@@ -44,15 +42,19 @@ public class Timeline {
     public void resetTimeline() {
         keepRunning = false;
         MINUTES = STARTING_MINUTES;
-        scavenger = null;
-        nextBigEvent = new ArrayList<>(List.of(
-                new MutablePair<>("Grace Period Ends", 20),
-                new MutablePair<>("Feast", 80),
-                new MutablePair<>("Final Ascension", STARTING_MINUTES)
-        ));
+        nextBigEvent = initNextBigEvents();
+//        nextBigEvent = new ArrayList<>(List.of(
+//                new MutablePair<>("Grace Period Ends", 20),
+//                new MutablePair<>("Feast", 80),
+//                new MutablePair<>("Final Ascension", STARTING_MINUTES)
+//        ));
         removeAscensionElements();
         mapItems = new MapItems();
-        Ascension.getInstance().getTimeline().getMapItems().addMapItem(new MapItem("Spawn", Ascension.getSpawn().getBlockX(), Ascension.getSpawn().getBlockZ(), MapItem.SPAWN));
+        plugin.getSettingsUI().
+                getSettings()
+                .getTimeline().
+                getMapItems().
+                addMapItem(new MapItem("Spawn", Ascension.getSpawn().getBlockX(), Ascension.getSpawn().getBlockZ(), MapItem.SPAWN));
     }
 
     public void startTimeline() {
@@ -67,37 +69,8 @@ public class Timeline {
         TextUtil.debugText("Paused Timeline");
     }
 
-    private void checkForMidGameEvents() {
-        int timePassed = STARTING_MINUTES - MINUTES;
-        switch (timePassed) {
-            case 3 -> {
-                scavenger = new Scavenger();
-                scavenger.announceTrades();
-            }
-            case 20 -> {
-                plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
-                plugin.getServer().broadcast(TextUtil.makeText("Grace Period has Ended", TextUtil.BLUE));
-                SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 30, 1);
-            }
-            case 25 -> {
-                ascensionEvent = new AscensionEvent();
-            }
-            case 35, 65, 85, 112 -> {
-                new CarePackage();
-            }
-            case 45, 95 -> {
-                scavenger.announceSpawnLocation();
-            }
-            case 50, 100 -> {
-                scavenger.spawnInScavenger();
-            }
-            case 80 -> {
-                new Feast();
-                TextUtil.debugText("Feast");
-            }
-
-        }
-    }
+    protected abstract void checkForMidGameEvents();
+    protected abstract List<Pair<String, Integer>> initNextBigEvents();
 
     private void mainTimelineMinutes() {
         timeline = new BukkitRunnable() {
@@ -193,12 +166,24 @@ public class Timeline {
         }
     }
 
+    public AscensionEvent getAscensionEvent() {
+        return ascensionEvent;
+    }
+
     public Scavenger getScavenger() {
         return scavenger;
     }
 
-    public AscensionEvent getAscensionEvent() {
-        return ascensionEvent;
+    protected void setScavenger(Scavenger scavenger) {
+        this.scavenger = scavenger;
+    }
+
+    protected void setAscensionEvent(AscensionEvent ascensionEvent) {
+        this.ascensionEvent = ascensionEvent;
+    }
+
+    public int getStartingMinutes() {
+        return STARTING_MINUTES;
     }
 
     public MapItems getMapItems() {
@@ -210,6 +195,10 @@ public class Timeline {
             return new MutablePair<>("Final Ascension", STARTING_MINUTES);
         }
         return nextBigEvent.getFirst();
+    }
+
+    public int getTimePassed() {
+        return STARTING_MINUTES - MINUTES;
     }
 
     public int getTimeTillNextBigEvent() {

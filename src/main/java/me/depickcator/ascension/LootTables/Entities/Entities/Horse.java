@@ -3,6 +3,7 @@ package me.depickcator.ascension.LootTables.Entities.Entities;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -27,7 +28,7 @@ public class Horse implements LootTableChanger, EntityLootTable {
         try {
             EntityDeathEvent e = getEntityDeathEvent(event);
             e.getDrops().clear();
-            giveForagingExp(p, ForageBlocks.FORAGING_UNCOMMON);
+            giveForagingExp(p, SkillExpAmount.FORAGING_UNCOMMON.getExp());
 
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());

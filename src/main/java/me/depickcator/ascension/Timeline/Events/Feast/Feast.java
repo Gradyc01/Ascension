@@ -34,6 +34,7 @@ public class Feast {
         border = spawn.getWorld().getWorldBorder();
         border.setSize(205, 15);
         Ascension.getInstance().getGameState().setCurrentState(GameStates.GAME_FEAST_LOADING);
+        TextUtil.debugText("Feast");
     }
 
     private void initLocations() {

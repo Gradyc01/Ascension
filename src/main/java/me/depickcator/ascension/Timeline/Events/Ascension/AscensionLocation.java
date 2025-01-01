@@ -1,10 +1,11 @@
 package me.depickcator.ascension.Timeline.Events.Ascension;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
-import me.depickcator.ascension.MainMenu.Map.MapItem;
+import me.depickcator.ascension.MainMenuUI.Map.MapItem;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
@@ -26,17 +27,19 @@ public class AscensionLocation extends EntityInteraction {
     private Team ascendingTeam;
     private final MapItem mapItem;
     private final AscensionBuildLayers buildLayers;
+    private final Timeline timeline;
 
     public AscensionLocation(int x, int z, AscensionEvent event) {
         this.event = event;
         plugin = Ascension.getInstance();
+        timeline = plugin.getSettingsUI().getSettings().getTimeline();
         this.spawnLocation = findLocation(x, z);
         buildLayers = new AscensionBuildLayers(spawnLocation);
         forceLoadChunk(true);
         buildLayers.buildInitialLayer();
         entity = spawnEntity();
         mapItem = new MapItem("Ascension", x, z, MapItem.ASCENSION);
-        plugin.getTimeline().getMapItems().addMapItem(mapItem);
+        timeline.getMapItems().addMapItem(mapItem);
         addInteraction(entity, this);
     }
 
@@ -70,7 +73,7 @@ public class AscensionLocation extends EntityInteraction {
     }
 
     public void closeLocation() {
-        plugin.getTimeline().getMapItems().removeMapItem(mapItem);
+        timeline.getMapItems().removeMapItem(mapItem);
         entity.remove();
         forceLoadChunk(false);
     }

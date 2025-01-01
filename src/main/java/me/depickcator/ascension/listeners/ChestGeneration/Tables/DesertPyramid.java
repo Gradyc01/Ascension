@@ -2,6 +2,7 @@ package me.depickcator.ascension.listeners.ChestGeneration.Tables;
 
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.listeners.ChestGeneration.ChestLootTable;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -25,6 +26,6 @@ public class DesertPyramid extends ChestLootTable {
         Collections.shuffle(items);
         lootList.add(items.getFirst());
 //        addShardsOfTheFallen(0, 1, lootList);
-        givePlayerForagingExp(pD, ForageBlocks.FORAGING_RARE);
+        givePlayerForagingExp(pD, SkillExpAmount.FORAGING_RARE.getExp());
     }
 }

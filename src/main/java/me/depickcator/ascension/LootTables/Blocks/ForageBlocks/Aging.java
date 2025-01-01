@@ -4,6 +4,7 @@ import me.depickcator.ascension.LootTables.Blocks.BlockLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Player.Data.PlayerSkills;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
@@ -30,7 +31,7 @@ public class Aging implements LootTableChanger, BlockLootTable, ForageBlocks {
         Ageable ageable = (Ageable) event.getBlock().getBlockData();
         if (ageable.getAge() == ageable.getMaximumAge()) {
             PlayerSkills playerSkills = Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerSkills();
-            playerSkills.getForaging().addExp(FORAGING_COMMON);
+            playerSkills.getForaging().addExp(SkillExpAmount.FORAGING_COMMON.getExp());
             return true;
         }
         return false;

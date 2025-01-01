@@ -10,14 +10,14 @@ import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Settings.SettingObserver;
 import me.depickcator.ascension.Teams.TeamCommand;
-import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.commands.Shout;
 import me.depickcator.ascension.listeners.*;
-import me.depickcator.ascension.MainMenu.BingoBoard.BingoData;
-import me.depickcator.ascension.MainMenu.OpenMainMenuCommand;
-import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
-import me.depickcator.ascension.MainMenu.mainMenuCommands;
+import me.depickcator.ascension.MainMenuUI.BingoBoard.BingoData;
+import me.depickcator.ascension.MainMenuUI.OpenMainMenuCommand;
+import me.depickcator.ascension.MainMenuUI.GiveMainMenuItem;
+import me.depickcator.ascension.MainMenuUI.mainMenuCommands;
 import me.depickcator.ascension.listeners.ChestGeneration.ChestLootModifier;
 import me.depickcator.ascension.listeners.Combat.*;
 import me.depickcator.ascension.testingCommands.*;
@@ -46,7 +46,7 @@ public final class Ascension extends JavaPlugin {
     private BingoData bingoData;
     private UnlocksData unlocksData;
     private BukkitScheduler scheduler;
-    private Timeline timeline;
+    private SettingObserver settings;
     private LocationCheck locationCheck;
     private World world;
     private World nether;
@@ -59,6 +59,7 @@ public final class Ascension extends JavaPlugin {
         // Plugin startup logic
         uniqueModelNumber = 2;
         instance = this;
+        settings = new SettingObserver();
         logger.info("Ascension has been enabled!");
         registerListeners();
         registerCommands();
@@ -67,7 +68,7 @@ public final class Ascension extends JavaPlugin {
         new BlockUtil();
         scheduler = this.getServer().getScheduler();
         gameState = new GameStates();
-        timeline = new Timeline(this);
+
         world = Bukkit.getWorld("world");
         nether = Bukkit.getWorld("world_nether");
         guiMap = new HashMap<>();
@@ -95,6 +96,7 @@ public final class Ascension extends JavaPlugin {
         getCommand("shout").setExecutor(new Shout());
         getCommand("queue").setExecutor(new QueueCommand());
         getCommand("printWorldInfo").setExecutor(new printWorldInformation());
+        getCommand("settings").setExecutor(new SetSetting());
     }
 
     private void registerListeners() {
@@ -161,8 +163,8 @@ public final class Ascension extends JavaPlugin {
         Ascension.spawn = spawn;
     }
 
-    public Timeline getTimeline() {
-        return timeline;
+    public SettingObserver getSettingsUI() {
+        return settings;
     }
 
     public int generateModelNumber() {

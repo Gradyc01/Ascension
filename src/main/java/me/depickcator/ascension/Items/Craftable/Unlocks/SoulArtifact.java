@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Items.Craftable.Craft;
+import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
@@ -25,9 +26,9 @@ public class SoulArtifact extends Craft {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
 
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape(" C ", " B ", "AAA");
+        recipe.shape("BCB", "BBB", "AAA");
         recipe.setIngredient('A', Material.BONE);
-        recipe.setIngredient('B', Material.NETHER_STAR);
+        recipe.setIngredient('B', ShardOfTheFallen.result());
         recipe.setIngredient('C', Material.BOW);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

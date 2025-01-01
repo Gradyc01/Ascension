@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items;
 
 import me.depickcator.ascension.Items.ItemLists.*;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -43,18 +44,31 @@ public class ItemList {
         return arr;
     }
 
-    public ArrayList<ItemStack> get25() {
+    public ArrayList<ItemStack> get25(int easyItems, int mediumItems, int hardItems, int customItems) {
         ArrayList<ItemStack> items = new ArrayList<>();
-        items.addAll(grabItemsFromList(easyItems.getItems(), 5));
-        items.addAll(grabItemsFromList(mediumItems.getItems(), 10));
-        items.addAll(grabItemsFromList(harditems.getItems(), 5));
-        items.addAll(grabItemsFromList(customItems.getItems(), 5));
+        items.addAll(grabItemsFromList(this.easyItems.getItems(), easyItems));
+        items.addAll(grabItemsFromList(this.mediumItems.getItems(), mediumItems));
+        items.addAll(grabItemsFromList(this.harditems.getItems(), hardItems));
+        items.addAll(grabItemsFromList(this.customItems.getItems(), customItems));
 //        items.addAll(grabItemsFromList(combatItems.getItems(), 5));
         return items;
     }
 
-    public ArrayList<ItemStack> getItemsForBoard() {
-        ArrayList<ItemStack> items = new ArrayList<>(get25());
+    public ArrayList<ItemStack> getItemsForBoard(List<Integer> itemDistribution) {
+        if (itemDistribution.size() != 4) {
+            throw new IllegalArgumentException("Invalid item distribution");
+        }
+        ArrayList<ItemStack> items = new ArrayList<>(get25(
+                itemDistribution.get(0),
+                itemDistribution.get(1),
+                itemDistribution.get(2),
+                itemDistribution.get(3)));
+//        if (items.size() != 25) {
+//            throw new IllegalArgumentException("Not 25 items");
+//        }
+        for (int i = items.size(); i < 25; i++) {
+            items.add(new ItemStack(Material.PLAYER_HEAD));
+        }
         Collections.shuffle(items);
         return items;
     }

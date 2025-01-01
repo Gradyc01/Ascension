@@ -1,8 +1,8 @@
 package me.depickcator.ascension.General.Queue;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.GameStart.StartGame;
 import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.StartGame;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.SoundUtil;

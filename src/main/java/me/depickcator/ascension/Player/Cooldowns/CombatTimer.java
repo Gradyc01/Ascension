@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Player.Cooldowns;
 
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.MainMenu.GiveMainMenuItem;
+import me.depickcator.ascension.MainMenuUI.GiveMainMenuItem;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

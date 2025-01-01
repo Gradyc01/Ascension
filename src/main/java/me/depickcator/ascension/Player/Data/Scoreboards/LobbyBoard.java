@@ -35,7 +35,8 @@ public class LobbyBoard extends Boards {
 
     @Override
     public void update() {
-        editLine(board, 12, TextUtil.makeText("      Standard", TextUtil.YELLOW));
+        String name = Ascension.getInstance().getSettingsUI().getSettings().getName();
+        editLine(board, 12, TextUtil.makeText("      " + name, TextUtil.YELLOW));
         displayQueueTime();
         displayTeamMembers(board, 4);
     }

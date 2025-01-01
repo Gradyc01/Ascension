@@ -2,6 +2,7 @@ package me.depickcator.ascension.listeners.ChestGeneration.Tables;
 
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.listeners.ChestGeneration.ChestLootTable;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -28,6 +29,6 @@ public class BastionBridge extends ChestLootTable {
         items.removeFirst();
         lootList.addAll(items);
         addShardsOfTheFallen(1, 2, lootList);
-        givePlayerForagingExp(pD, ForageBlocks.FORAGING_VERY_RARE);
+        givePlayerForagingExp(pD, SkillExpAmount.FORAGING_VERY_RARE.getExp());
     }
 }

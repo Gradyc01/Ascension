@@ -1,10 +1,11 @@
 package me.depickcator.ascension.Timeline.Events.Scavenger;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
-import me.depickcator.ascension.MainMenu.Map.MapItem;
+import me.depickcator.ascension.MainMenuUI.Map.MapItem;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.Pair;
@@ -27,10 +28,12 @@ public class Scavenger extends EntityInteraction {
     private LivingEntity entity;
     private final Ascension plugin;
     private MapItem mapItem;
+    private final Timeline timeline;
 
     public Scavenger() {
         this.plugin = Ascension.getInstance();
         scavengerTrades = new ScavengerTrades();
+        timeline = plugin.getSettingsUI().getSettings().getTimeline();
     }
 
     public void announceTrades() {
@@ -65,7 +68,7 @@ public class Scavenger extends EntityInteraction {
         entity.remove();
         forceLoadChunk(false);
         removeInteraction(entity);
-        plugin.getTimeline().getMapItems().removeMapItem(mapItem);
+        timeline.getMapItems().removeMapItem(mapItem);
     }
 
     private void announcementText(List<Pair<ItemStack, ItemStack>> trades) {
@@ -89,7 +92,7 @@ public class Scavenger extends EntityInteraction {
         int z = (int) Ascension.getSpawn().getZ() + r.nextInt(Radius * -1, Radius);
 
         mapItem = new MapItem("Scavenger", x, z, MapItem.SCAVENGER);
-        plugin.getTimeline().getMapItems().addMapItem(mapItem);
+        timeline.getMapItems().addMapItem(mapItem);
 
         Block b = plugin.getWorld().getHighestBlockAt(x, z);
         location = new Location(b.getWorld(), x, b.getLocation().getY(), z);

@@ -2,6 +2,7 @@ package me.depickcator.ascension.listeners.ChestGeneration;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -44,7 +45,7 @@ public class ChestLootModifier implements Listener {
         ChestLootTable table = tables.get(event.getLootTable().getKey().toString());
         if (table == null) {
             TextUtil.debugText("Table is not found within the Dictionary");
-            playerData.getPlayerSkills().getForaging().addExp(ForageBlocks.FORAGING_RARE);
+            playerData.getPlayerSkills().getForaging().addExp(SkillExpAmount.FORAGING_RARE.getExp());
             return;
         }
         table.addLootToTable(playerData, event.getLoot());

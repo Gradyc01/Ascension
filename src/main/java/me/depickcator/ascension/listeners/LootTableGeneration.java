@@ -5,6 +5,7 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.KingsRod;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -92,7 +93,7 @@ public class LootTableGeneration implements Listener {
         }
         PlayerInventory inv = p.getInventory();
         if (inv.getItemInMainHand().getType() == Material.FISHING_ROD) {
-            PlayerUtil.getPlayerData(p).getPlayerSkills().getForaging().addExp(ForageBlocks.FORAGING_RARE);
+            PlayerUtil.getPlayerData(p).getPlayerSkills().getForaging().addExp(SkillExpAmount.FORAGING_RARE.getExp());
             if (inv.getItemInMainHand().getItemMeta().getCustomModelData() == KingsRod.getInstance().getResult().getItemMeta().getCustomModelData()) {
                 plugin.getWorld().dropItemNaturally(event.getPlayer().getLocation(), new ItemStack(Material.GOLD_NUGGET, 6));
             }

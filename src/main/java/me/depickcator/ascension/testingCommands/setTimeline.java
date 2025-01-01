@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers.AscensionBuildLayers;
+import me.depickcator.ascension.Timeline.Timeline;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,9 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class setTimeline implements CommandExecutor {
-    private final Ascension plugin;
+    private Timeline timeline;
     public setTimeline() {
-        this.plugin = Ascension.getInstance();
     }
 
     @Override
@@ -23,16 +23,17 @@ public class setTimeline implements CommandExecutor {
         Player p = ((Player) commandSender).getPlayer();
         PlayerData playerData = PlayerUtil.getPlayerData(p);
         if (playerData == null) return false;
+        this.timeline = Ascension.getInstance().getSettingsUI().getSettings().getTimeline();
 
         if (strings.length != 2) return false;
         String mode = strings[0];
         int time = Integer.parseInt(strings[1]);
         if (mode.equals("set")) {
-            plugin.getTimeline().setTime(time);
+            timeline.setTime(time);
         } else if (mode.equals("run")) {
-            plugin.getTimeline().pauseTimeline();
-            plugin.getTimeline().setTime(time);
-            plugin.getTimeline().startTimeline();
+            timeline.pauseTimeline();
+            timeline.setTime(time);
+            timeline.startTimeline();
         }
         if (mode.equals("build")) {
             AscensionBuildLayers a = new AscensionBuildLayers(p.getLocation());

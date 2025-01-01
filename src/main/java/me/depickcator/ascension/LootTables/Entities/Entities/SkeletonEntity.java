@@ -4,6 +4,7 @@ import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
+import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
@@ -37,12 +38,12 @@ public class SkeletonEntity implements LootTableChanger, EntityLootTable, Supera
 
             if (isSuperEntity(e.getEntity())) {
                 lootFromSuperEntity(e.getEntity());
-                giveCombatExp(p, EntityUtil.COMBAT_VERY_RARE);
+                giveCombatExp(p, SkillExpAmount.COMBAT_VERY_RARE.getExp());
                 return true;
             }
 
             Random r = new Random();
-            giveCombatExp(p, EntityUtil.COMBAT_COMMON);
+            giveCombatExp(p, SkillExpAmount.COMBAT_COMMON.getExp());
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
             lootPoolConstant(e, lootingLevel, r);
             lootPoolBonus(e, lootingLevel, r);
