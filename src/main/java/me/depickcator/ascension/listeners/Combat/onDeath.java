@@ -1,7 +1,6 @@
 package me.depickcator.ascension.listeners.Combat;
 
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
-import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;

@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Entities.Enums;
 
-import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Skills.SkillExpAmount;

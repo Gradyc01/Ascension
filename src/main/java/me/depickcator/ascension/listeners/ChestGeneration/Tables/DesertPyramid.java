@@ -1,6 +1,5 @@
 package me.depickcator.ascension.listeners.ChestGeneration.Tables;
 
-import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.listeners.ChestGeneration.ChestLootTable;

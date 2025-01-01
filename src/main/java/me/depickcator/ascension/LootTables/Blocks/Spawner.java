@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Blocks;
 
-import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;

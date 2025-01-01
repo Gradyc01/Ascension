@@ -6,7 +6,6 @@ import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Difficulty;
 import org.bukkit.GameRule;
 import org.bukkit.World;
-import org.bukkit.WorldBorder;
 
 public class ResetWorld extends GameStartSequence {
     public ResetWorld() {

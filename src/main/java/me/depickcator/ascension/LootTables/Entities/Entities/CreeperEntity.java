@@ -1,7 +1,6 @@
 package me.depickcator.ascension.LootTables.Entities.Entities;
 
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
-import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Skills.SkillExpAmount;

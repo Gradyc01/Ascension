@@ -5,7 +5,6 @@ import me.depickcator.ascension.General.GameStart.GameStartSequence;
 import me.depickcator.ascension.General.GameStart.StartGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.WorldBorder;
 
 public class SpreadPlayers extends GameStartSequence {
     private final int radius;
