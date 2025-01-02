@@ -6,12 +6,17 @@ import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class TeamCommand implements CommandExecutor {
+import java.util.List;
+
+public class TeamCommand implements CommandExecutor, TabCompleter {
     private final Ascension plugin;
     public TeamCommand() {
         this.plugin = Ascension.getInstance();
@@ -30,7 +35,7 @@ public class TeamCommand implements CommandExecutor {
             return false;
         }
         if (!plugin.getGameState().checkState(GameStates.LOBBY_NORMAL)) {
-            p.sendMessage("You may not use this command currently!");
+            TextUtil.errorMessage(p,"You may not use this command currently!");
             return false;
         }
         commandFinder(p, strings);
@@ -74,4 +79,12 @@ public class TeamCommand implements CommandExecutor {
         }
     }
 
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+        if (strings.length == 1) {
+            return List.of("invite", "leave", "accept", "reject", "list");
+        } else {
+            return null;
+        }
+    }
 }

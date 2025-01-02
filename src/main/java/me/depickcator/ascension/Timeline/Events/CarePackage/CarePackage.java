@@ -19,11 +19,12 @@ import org.bukkit.util.Vector;
 
 public class CarePackage {
     private final Ascension plugin;
-    private final int RADIUS = 1000;
+    private final int RADIUS;
     private Location spawnPoint;
     private ArmorStand armorStand;
-    public CarePackage() {
+    public CarePackage(int radius) {
         this.plugin = Ascension.getInstance();
+        RADIUS = radius;
         load();
     }
 

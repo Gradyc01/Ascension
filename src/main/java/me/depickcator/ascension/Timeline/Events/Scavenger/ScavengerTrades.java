@@ -21,14 +21,23 @@ import java.util.Objects;
 
 public class ScavengerTrades extends ItemComparison {
     private List<Pair<ItemStack, ItemStack>> trades;
+    private final List<ItemStack> input;
+    private final List<ItemStack> output;
     public ScavengerTrades() {
+        ItemList itemList = new ItemList();
+        input = new ArrayList<>(itemList.grabItemsFromList(itemList.getMediumItems().getItems(), 5));
+        output = new ArrayList<>(itemList.grabItemsFromList(itemList.getHarditems().getItems(), 5));
+    }
 
+    public ScavengerTrades(List<ItemStack> input, List<ItemStack> output) {
+        this.input = input;
+        this.output = output;
     }
 
     public List<Pair<ItemStack, ItemStack>> generateTrades() {
-        ItemList itemList = new ItemList();
-        List<ItemStack> input = new ArrayList<>(itemList.grabItemsFromList(itemList.getMediumItems().getItems(), 5));
-        List<ItemStack> output = new ArrayList<>(itemList.grabItemsFromList(itemList.getHarditems().getItems(), 5));
+//        ItemList itemList = new ItemList();
+//        List<ItemStack> input = new ArrayList<>(itemList.grabItemsFromList(itemList.getMediumItems().getItems(), 5));
+//        List<ItemStack> output = new ArrayList<>(itemList.grabItemsFromList(itemList.getHarditems().getItems(), 5));
         List<Pair<ItemStack, ItemStack>> trades = new ArrayList<>();
         for (int i = 0; i < input.size(); i++) {
             Pair<ItemStack, ItemStack> pair = Pair.of(input.get(i), output.get(i));

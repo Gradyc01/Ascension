@@ -18,6 +18,7 @@ public class Team {
     private final Player leader;
     private final Ascension plugin;
     private final TeamStats teamStats;
+    private final TeamBackpack teamBackpack;
     private int STATE;
     public Team(Ascension plugin, Player player) {
         this.plugin = plugin;
@@ -29,6 +30,7 @@ public class Team {
         TeamUtil.joinTeam(player, player);
         STATE = STATE_ACTIVE;
         teamStats = new TeamStats(this);
+        teamBackpack = new TeamBackpack(this);
     }
 
     public void addPlayer(Player p) {
@@ -108,6 +110,10 @@ public class Team {
 
     public TeamStats getTeamStats() {
         return teamStats;
+    }
+
+    public TeamBackpack getTeamBackpack() {
+        return teamBackpack;
     }
 
 //    public int getSTATE() {

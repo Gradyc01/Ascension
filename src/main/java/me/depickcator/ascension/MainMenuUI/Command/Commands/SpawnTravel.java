@@ -30,12 +30,14 @@ public class SpawnTravel implements Commands {
 //            TextUtil.errorMessage(p, "You can't currently use this command");
             return;
         }
+
         Location spawn = Ascension.getSpawn();
+        int spreadDistance = spawn.getWorld().getWorldBorder().getSize() < 250 ? (int) spawn.getWorld().getWorldBorder().getSize() : 250;
         Random rand = new Random();
         int xM = rand.nextInt(2) == 1 ? 1 : -1;
         int zM = rand.nextInt(2) == 1 ? 1 : -1;
-        int x = spawn.getBlockX() + rand.nextInt(35, 500) * xM;
-        int z = spawn.getBlockZ() + rand.nextInt(35, 500) * zM;
+        int x = spawn.getBlockX() + rand.nextInt(35, spreadDistance) * xM;
+        int z = spawn.getBlockZ() + rand.nextInt(35, spreadDistance) * zM;
         Location newLoc = plugin.getWorld().getHighestBlockAt(x, z).getLocation();
         TeleportCooldown.getInstance().setCooldownTimer(playerData.getPlayer());
         new TeleportSequence(playerData, newLoc.add(0, 1, 0), 15);

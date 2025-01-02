@@ -33,16 +33,16 @@ public class startEvents implements CommandExecutor {
 
 
         if (name.equalsIgnoreCase("carepackage")) {
-            new CarePackage();
+            new CarePackage(100);
         } else if (name.equalsIgnoreCase("scavenger")) {
-            Scavenger scavenger = new Scavenger();
+            Scavenger scavenger = new Scavenger(100);
             scavenger.announceTrades();
             scavenger.announceSpawnLocation();
             scavenger.spawnInScavenger();
         } else if (name.equalsIgnoreCase("feast")) {
             new Feast();
         } else if (name.equalsIgnoreCase("ascension_loc")) {
-            new AscensionEvent();
+            new AscensionEvent(100);
         } else if (name.equalsIgnoreCase("items")) {
             String c = strings[1];
             ItemList a = new ItemList();

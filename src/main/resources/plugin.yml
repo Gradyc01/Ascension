@@ -5,12 +5,11 @@ api-version: '1.21'
 commands:
   open-main-menu:
     description: This command open the main menu
-  give-main-menu:
-    description: This command gives the main menu item
-    permission: ascension.give-main-menu
   openmenu:
     description: opens all menu in the main menu via command
   party:
+    description: team up with other players
+  p:
     description: team up with other players
   shout:
     description: allows players to communicate with the entire server
@@ -20,6 +19,8 @@ commands:
     description: prints the world information
   settings:
     description: changes settings of the game
+  bp:
+    description: opens the team backpack
 
   game:
     description: Allows to access the main game states
@@ -45,3 +46,6 @@ commands:
   giveCustomItem:
     description: testing purposes only
     permission: ascension.startEvent
+  give-main-menu:
+    description: This command gives the main menu item
+    permission: ascension.give-main-menu

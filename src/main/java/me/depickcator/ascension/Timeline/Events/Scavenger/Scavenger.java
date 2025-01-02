@@ -29,11 +29,21 @@ public class Scavenger extends EntityInteraction {
     private final Ascension plugin;
     private MapItem mapItem;
     private final Timeline timeline;
+    private final int radius;
 
-    public Scavenger() {
+    public Scavenger(int radius) {
         this.plugin = Ascension.getInstance();
         scavengerTrades = new ScavengerTrades();
+        this.radius = radius;
         timeline = plugin.getSettingsUI().getSettings().getTimeline();
+    }
+
+    public Scavenger(int radius, List<ItemStack> input, List<ItemStack> output) {
+        this.plugin = Ascension.getInstance();
+        this.radius = radius;
+        timeline = plugin.getSettingsUI().getSettings().getTimeline();
+
+        scavengerTrades = new ScavengerTrades(input, output);
     }
 
     public void announceTrades() {
@@ -86,10 +96,9 @@ public class Scavenger extends EntityInteraction {
     }
 
     private void generateSpawningLocation() {
-        final int Radius = 500;
         Random r = new Random();
-        int x = (int) Ascension.getSpawn().getX() + r.nextInt(Radius * -1, Radius);
-        int z = (int) Ascension.getSpawn().getZ() + r.nextInt(Radius * -1, Radius);
+        int x = (int) Ascension.getSpawn().getX() + r.nextInt(radius * -1, radius);
+        int z = (int) Ascension.getSpawn().getZ() + r.nextInt(radius * -1, radius);
 
         mapItem = new MapItem("Scavenger", x, z, MapItem.SCAVENGER);
         timeline.getMapItems().addMapItem(mapItem);

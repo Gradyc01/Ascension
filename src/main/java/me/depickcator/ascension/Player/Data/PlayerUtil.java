@@ -39,16 +39,18 @@ public class PlayerUtil {
         return null;
     }
 
-    public static void giveItem(Player p, ItemStack item) {
+    public static void giveItem(Player p, ItemStack... items) {
         PlayerInventory inv = p.getInventory();
-        int emptySlot = inv.firstEmpty();
-        if (emptySlot != -1) {
-            TextUtil.debugText("Empty slot found in " + p.getName() + "'s inventory at: " + emptySlot);
-            p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1f, 2);
-            inv.setItem(emptySlot, item);
-            return;
+        for (ItemStack item : items) {
+            int emptySlot = inv.firstEmpty();
+            if (emptySlot != -1) {
+                TextUtil.debugText("Empty slot found in " + p.getName() + "'s inventory at: " + emptySlot);
+                p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1f, 2);
+                inv.setItem(emptySlot, item);
+                continue;
+            }
+            p.getWorld().dropItem(p.getLocation(), item);
         }
-        p.getWorld().dropItem(p.getLocation(), item);
     }
 
     //Get & returns all players who are in the game

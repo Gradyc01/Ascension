@@ -6,16 +6,14 @@ import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class PlayerDeath {
@@ -115,9 +113,30 @@ public class PlayerDeath {
         p.setGameMode(GameMode.SURVIVAL);
         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 3, false, false));
         p.removePotionEffect(PotionEffectType.DARKNESS);
+//        Location spawn = Ascension.getSpawn();
+//        Random r = new Random();
+//        double worldBorderDiameter = spawn.getWorld().getWorldBorder().getSize();
+//        int x = spawn.getBlockX() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
+//        int z = spawn.getBlockZ() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
+//        int y = spawn.getWorld().getHighestBlockYAt(x, z);
+//        p.teleport(new Location(spawn.getWorld(), x, y + 1, z));
+//        spawn.getWorld().getBl
+        Location loc = getRespawnLocation();
+//        p.teleport(loc);
+        loc.getWorld().getBlockAt(loc).setType(Material.GLASS);
+        p.teleport(loc.add(0.5, 1, 0.5));
+    }
+
+    private Location getRespawnLocation() {
         Location spawn = Ascension.getSpawn();
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                "spreadplayers " + spawn.getBlockX() + " " + spawn.getBlockZ() + " 200 500 true " + p.getName());
+//        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+//                "spreadplayers " + spawn.getBlockX() + " " + spawn.getBlockZ() + " 200 500 true " + p.getName());
+        Random r = new Random();
+        double worldBorderDiameter = spawn.getWorld().getWorldBorder().getSize();
+        int x = spawn.getBlockX() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
+        int z = spawn.getBlockZ() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
+        int y = spawn.getWorld().getHighestBlockYAt(x, z);
+        return new Location(spawn.getWorld(), x, y, z);
     }
 
     public void setPlayerSpectating(PlayerData playerData) {

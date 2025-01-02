@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Timeline.Events.CarePackage;
 
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
+import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
+import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -25,8 +27,10 @@ public class CarePackageLoot extends CustomChestLoot {
     private void initNetheriteItems() {
 
         netheriteItems = new ArrayList<>(List.of(
-                new ItemStack(Material.NETHERITE_AXE),
-                new ItemStack(Material.NETHERITE_SWORD),
+//                new ItemStack(Material.NETHERITE_AXE),
+//                new ItemStack(Material.NETHERITE_SWORD),
+                NetheriteAxe.getInstance().getResult(),
+                NetheriteSword.getInstance().getResult(),
                 new ItemStack(Material.NETHERITE_HOE),
                 new ItemStack(Material.NETHERITE_PICKAXE),
                 new ItemStack(Material.NETHERITE_SHOVEL),

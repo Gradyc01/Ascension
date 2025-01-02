@@ -1,3 +1,4 @@
+
 package me.depickcator.ascension.MainMenuUI;
 
 import me.depickcator.ascension.Utility.TextUtil;
@@ -12,10 +13,14 @@ import me.depickcator.ascension.MainMenuUI.Command.CommandGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class mainMenuCommands implements CommandExecutor {
+import java.util.List;
+
+public class mainMenuCommands implements CommandExecutor, TabCompleter {
 
     public mainMenuCommands() {
     }
@@ -27,7 +32,7 @@ public class mainMenuCommands implements CommandExecutor {
         }
         Player p = ((Player) commandSender).getPlayer();
         PlayerData pD = PlayerUtil.getPlayerData(p);
-        if (strings.length != 1 || CombatTimer.getInstance().isOnCooldown(p)) {
+        if (strings.length < 1 || strings.length > 2 || CombatTimer.getInstance().isOnCooldown(p)) {
             return false;
         }
         if (!pD.checkState(PlayerData.STATE_ALIVE)) {
@@ -39,13 +44,19 @@ public class mainMenuCommands implements CommandExecutor {
             case "board" -> {
                 new BingoBoardGUI(pD);
             }
-            case "unlocks-1" -> {
-//                new UnlocksGUI_1(ab, p);
-                new UnlocksGUI(pD, (char) 1);
-            }
-            case "unlocks-2" -> {
-                new UnlocksGUI(pD, (char) 2);
-//                new UnlocksGUI_2(ab, p);
+            case "unlocks" -> {
+                int num;
+                if (strings.length == 1) {
+                    num = 1;
+                } else {
+                    int page = Integer.parseInt(strings[1]);
+                    if (page > 5 || page < 1) {
+                        num = 1;
+                    } else {
+                        num = page;
+                    }
+                }
+                new UnlocksGUI(pD, (char) num);
             }
             case "commands" -> {
                 new CommandGUI(pD);
@@ -62,5 +73,12 @@ public class mainMenuCommands implements CommandExecutor {
         }
 
         return false;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+//        if (command.getName().equalsIgnoreCase("openmenu")) {
+        return List.of("board", "unlocks", "commands", "skills", "events");
+//        }
     }
 }
