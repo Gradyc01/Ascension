@@ -104,7 +104,7 @@ public class ScavengerTrades extends ItemComparison {
     }
 
     private void sendCompletionText(PlayerData playerData) {
-        ArrayList<Player> players = playerData.getPlayerTeam().getTeam().getTeamMembers();
+        List<Player> players = playerData.getPlayerTeam().getTeam().getTeamMembers();
         TextUtil.broadcastMessage(TextUtil.topBorder(TextUtil.BLUE), players);
         TextUtil.broadcastMessage(TextUtil.makeText("       SCAVENGER COMPLETED", TextUtil.GOLD, true, false), players);
 //        TextUtil.broadcastMessage(TextUtil.makeText("\ ", TextUtil.GOLD), players);

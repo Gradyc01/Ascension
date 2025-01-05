@@ -70,7 +70,8 @@ public class UnlocksData {
                 EveTemptation.getInstance(),
                 Backpack.getInstance(),
                 FlintShovel.getInstance(),
-                QuickBow.getInstance()
+                QuickBow.getInstance(),
+                VorpalSword.getInstance()
         ));
     }
 
@@ -83,7 +84,6 @@ public class UnlocksData {
                 EnlighteningPack.getInstance(),
                 LightApple.getInstance(),
                 GoldenHead.getInstance(),
-                VorpalSword.getInstance(),
                 BookOfProjectileProtection.getInstance(),
                 BookOfProtection.getInstance(),
                 BookOfPower.getInstance(),

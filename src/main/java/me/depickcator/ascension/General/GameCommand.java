@@ -13,13 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class GameCommand implements CommandExecutor {
-    // private PluginManager pm;
     private final Ascension ab;
-    // private ScoreboardManager scoreboardManager;
-    // private Scoreboard bingoScoreboard;
-    // private Objective bingodata;
     public GameCommand() {
-        // pm = manager;
         this.ab = Ascension.getInstance();
     }
 
@@ -36,20 +31,13 @@ public class GameCommand implements CommandExecutor {
         } catch (Exception e) {
             return false;
         }
-//        if (p.hasPermission("ascensionbingo.command.changeBingoScore")) {
-//            p.sendMessage("You do not have permission to use this command!");
-//            return false;
-//        }
 
         switch (strings[0].toLowerCase()) {
             case "start" -> {
-                p.sendMessage("PLACEHOLDER MESSAGE FOR WHEN SOMEONE STARTS THE GAME");
+                forceStartGame(p);
             }
             case "reset" -> {
                 resetGame(p);
-            }
-            case "forcestart" -> {
-                forceStartGame(p);
             }
             case "load" -> {
                 if (strings.length == 4) {
@@ -64,7 +52,7 @@ public class GameCommand implements CommandExecutor {
 
             }
             default -> {
-                p.sendMessage("ERRORED");
+                TextUtil.errorMessage(p, "The command is misused");
                 return false;
             }
         }

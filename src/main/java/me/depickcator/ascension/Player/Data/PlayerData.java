@@ -102,12 +102,21 @@ public class PlayerData {
     }
     public void resetAfterStartGame(int gracePeriodDuration) {
         PlayerUtil.clearEffects(this);
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 180 * 20, 1));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, gracePeriodDuration * 60 * 20, 4, false, false));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
+//        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Math.max(gracePeriodDuration, 3) * 60 * 20, 1));
+//        player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
+//        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, gracePeriodDuration * 60 * 20, 4, false, false));
+//        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
+//        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
+        addPlayerPotionEffect(player, PotionEffectType.SPEED, Math.min(gracePeriodDuration, 3), 1);
+        addPlayerPotionEffect(player, PotionEffectType.HASTE, Math.min(gracePeriodDuration, 1), 2);
+        addPlayerPotionEffect(player, PotionEffectType.ABSORPTION, gracePeriodDuration, 4);
+        addPlayerPotionEffect(player, PotionEffectType.ABSORPTION, Math.min(gracePeriodDuration, 1), 9);
+        addPlayerPotionEffect(player, PotionEffectType.REGENERATION, 0.05, 9);
         Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
+    }
+
+    private void addPlayerPotionEffect(Player p, PotionEffectType effect, double minutes, int amplifier) {
+        p.addPotionEffect(new PotionEffect(effect, (int) (minutes * 60 * 20), amplifier, false, false));
     }
     private void giveStartingFood() {
         ItemStack food = new ItemStack(Material.COOKED_BEEF, 64);

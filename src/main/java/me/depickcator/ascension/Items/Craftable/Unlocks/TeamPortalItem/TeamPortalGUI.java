@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem;
 
 import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
@@ -56,7 +57,14 @@ public class TeamPortalGUI extends AscensionGUI {
         if (event.isLeftClick() && item != null && ItemClick.compareItems(player.getInventory().getItemInMainHand(), TeamPortal.getInstance().getItem())) {
             Player teammate = skullMap.get(item);
             if (teammate != null && !CombatTimer.getInstance().isOnCooldown(player, false)) {
-//                TextUtil.debugText(teammate.getName() + " found teleport sequence should initiate");
+                PlayerData teammateData = PlayerUtil.getPlayerData(teammate);
+                if (teammateData == null || !teammateData.checkState(PlayerData.STATE_ALIVE)) {
+                    TextUtil.errorMessage(player, "This player is currently not available");
+                    return;
+                }
+
+
+                TextUtil.debugText(teammate.getName() + " found teleport sequence should initiate");
                 TeleportCooldown.getInstance().setCooldownTimer(player, 120);
                 new TeleportSequence(playerData, teammate.getLocation(), 15);
             }

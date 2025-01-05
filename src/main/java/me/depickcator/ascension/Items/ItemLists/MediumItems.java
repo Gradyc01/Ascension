@@ -58,7 +58,6 @@ public class MediumItems {
         items.add(new ItemStack(Material.MOSSY_COBBLESTONE));
         items.add(new ItemStack(Material.GLISTERING_MELON_SLICE));
         items.add(new ItemStack(Material.FERMENTED_SPIDER_EYE));
-//        items.add(new ItemStack(Material.ENCHANTED_GOLDEN_APPLE));
         items.add(new ItemStack(Material.TROPICAL_FISH));
         items.add(new ItemStack(Material.PRISMARINE_CRYSTALS));
         items.add(new ItemStack(Material.GHAST_TEAR));
@@ -81,7 +80,6 @@ public class MediumItems {
         items.add(new ItemStack(Material.SPYGLASS));
         items.add(new ItemStack(Material.OBSERVER));
         items.add(new ItemStack(Material.MAGMA_CREAM));
-//        items.add(new ItemStack(Material.ELYTRA);
         items.add(new ItemStack(Material.JUKEBOX));
         items.add(new ItemStack(Material.BREWING_STAND));
         items.add(new ItemStack(Material.BEACON));

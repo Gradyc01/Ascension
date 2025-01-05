@@ -71,6 +71,9 @@ public abstract class Timeline {
 
     protected abstract void checkForMidGameEvents();
     protected abstract List<Pair<String, Integer>> initNextBigEvents();
+    protected int getFinalAscensionBorderShrinkSize() {
+        return 1000;
+    }
 
     private void mainTimelineMinutes() {
         timeline = new BukkitRunnable() {
@@ -92,7 +95,7 @@ public abstract class Timeline {
                 } else {
                     cancel();
                     TextUtil.debugText("Timeline Ended");
-                    new FinalAscension();
+                    new FinalAscension(getFinalAscensionBorderShrinkSize());
                     return;
                 }
                 TextUtil.debugText("Timeline Ran (" + MINUTES + ")");

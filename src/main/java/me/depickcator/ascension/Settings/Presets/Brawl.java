@@ -4,7 +4,6 @@ import me.depickcator.ascension.General.GameStart.GameStartSequence;
 import me.depickcator.ascension.General.GameStart.Sequences.*;
 import me.depickcator.ascension.Settings.Settings;
 import me.depickcator.ascension.Timeline.Timelines.BrawlTimeline;
-import me.depickcator.ascension.Timeline.Timelines.StandardTimeline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +21,7 @@ public class Brawl extends Settings {
                 new SpreadPlayers(getWorldBorderSize()),
                 new InitBingoBoard(getItemDistribution()),
                 new GiveBrawlItems(),
+                new AdjustStartingGameScore(10),
                 new TextSequence(),
                 new ResetWorld(),
                 new LaunchSequence()

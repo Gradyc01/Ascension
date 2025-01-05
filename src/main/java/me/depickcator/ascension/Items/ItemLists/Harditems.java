@@ -10,6 +10,8 @@ import org.bukkit.generator.structure.Structure;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Harditems {
@@ -85,13 +87,14 @@ public class Harditems {
             items.add(getRandomCoral());
             items.add(new ItemStack(Material.SEA_PICKLE));
         }
-        items.add(getRandomNetherite());
-        items.add(getRandomNetherite());
-        items.add(getRandomNetherite());
+//        items.add(getRandomNetherite());
+//        items.add(getRandomNetherite());
+//        items.add(getRandomNetherite());
+        items.addAll(getRandomNetherite());
 
     }
 
-    private ItemStack getRandomNetherite() {
+    private List<ItemStack> getRandomNetherite() {
         ArrayList<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.NETHERITE_HELMET));
         items.add(new ItemStack(Material.NETHERITE_CHESTPLATE));
@@ -104,9 +107,14 @@ public class Harditems {
         items.add(new ItemStack(Material.NETHERITE_HOE));
         items.add(new ItemStack(Material.NETHERITE_INGOT));
 
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+//        int pick = rand.nextInt(items.size());
+        Collections.shuffle(items);
+//        return items.get(pick);
+        return new ArrayList<>(List.of(
+                items.getFirst(),
+                items.getLast(),
+                items.get(2)
+        ));
     }
 
     private ItemStack getRandomCoral() {

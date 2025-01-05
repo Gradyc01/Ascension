@@ -26,28 +26,21 @@ public class MainMenuGUI extends AscensionGUI {
 
     public MainMenuGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Ascension", TextUtil.AQUA), true);
-        int[] layout = plugin.getGameState().inLobby() ? lobbyUILayout() : gameUILayout();
 
-        inventory.setItem(layout[0], makeMainMenuBoardButton(Material.CRAFTING_TABLE, "Unlocks"));
-        inventory.setItem(layout[1], makeMainMenuBoardButton(Material.ENCHANTED_BOOK, "Board"));
-        inventory.setItem(layout[2], makeMainMenuBoardButton(Material.COMPARATOR, "Commands"));
-        inventory.setItem(layout[3], makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Skills"));
-        inventory.setItem(layout[4], makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
-        inventory.setItem(layout[5], makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));
-        inventory.setItem(layout[6], makeMainMenuBoardButton(Material.CHEST, "Team Backpack"));
-        if (plugin.getGameState().inLobby()) inventory.setItem(layout[7], makeMainMenuBoardButton(Material.IRON_CHESTPLATE, "Kits"));
+        inventory.setItem(21, makeMainMenuBoardButton(Material.CRAFTING_TABLE, "Unlocks"));
+        inventory.setItem(22, makeMainMenuBoardButton(Material.ENCHANTED_BOOK, "Board"));
+        inventory.setItem(23, makeMainMenuBoardButton(Material.COMPARATOR, "Commands"));
+        inventory.setItem(30, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Skills"));
+        inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
+        inventory.setItem(32, makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));
+        inventory.setItem(20, makeMainMenuBoardButton(Material.CHEST, "Team Backpack"));
+        inventory.setItem(24, makeMainMenuBoardButton(Material.ANVIL, "Coming Soon..."));
+        if (plugin.getGameState().inLobby())
+            inventory.setItem(40, makeMainMenuBoardButton(Material.IRON_CHESTPLATE, "Kits"));
 
 
         inventory.setItem(49, getCloseButton());
         playerHeadButton(13);
-    }
-
-    private int[] lobbyUILayout() {
-        return new int[]{21, 22, 23, 30, 31, 32, 20, 24};
-    }
-
-    private int[] gameUILayout() {
-        return new int[]{21, 22, 23, 30, 31, 32, 40};
     }
 
     @Override
@@ -82,6 +75,9 @@ public class MainMenuGUI extends AscensionGUI {
             }
             case Material.IRON_CHESTPLATE -> {
                 new KitBookGUI(playerData);
+            }
+            case Material.ANVIL -> {
+                TextUtil.errorMessage(player, "Future feature currently not available!");;
             }
             case Material.CHEST -> {
                 Team team = playerData.getPlayerTeam().getTeam();

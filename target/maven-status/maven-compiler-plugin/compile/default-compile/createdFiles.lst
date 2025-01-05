@@ -52,6 +52,7 @@ me\depickcator\ascension\LootTables\Blocks\Ores\IronOre.class
 me\depickcator\ascension\General\GameStart\Sequences\TextSequence$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfThoth.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ApolloGlare.class
+me\depickcator\ascension\listeners\PlayerAchievements.class
 me\depickcator\ascension\Settings\Presets\Quickplay.class
 me\depickcator\ascension\Items\Craftable\Unlocks\GoldPack.class
 me\depickcator\ascension\Items\Craftable\Unlocks\NotchApple.class
@@ -90,6 +91,7 @@ me\depickcator\ascension\LootTables\Blocks\Ores\GoldOre.class
 me\depickcator\ascension\LootTables\Entities\Entities\Chicken.class
 me\depickcator\ascension\MainMenuUI\MainMenuGUI$1.class
 me\depickcator\ascension\General\Queue\Queue$2.class
+me\depickcator\ascension\General\GameStart\Sequences\AdjustStartingGameScore.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Weapons.class
 me\depickcator\ascension\LootTables\Blocks\Stones.class
 me\depickcator\ascension\General\GameStart\Sequences\TextSequence.class
@@ -151,6 +153,7 @@ me\depickcator\ascension\Items\UnlocksData.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\BambooJungle.class
 me\depickcator\ascension\listeners\Combat\ShootsProjectiles.class
 me\depickcator\ascension\General\ResetGame$1.class
+me\depickcator\ascension\General\GameStart\Sequences\AdjustStartingGameScore$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HideOfLeviathan.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.class
 me\depickcator\ascension\Timeline\Events\Winner\Winner$1.class
@@ -180,6 +183,7 @@ me\depickcator\ascension\listeners\ChestGeneration\Tables\DesertPyramid.class
 me\depickcator\ascension\General\GameStart\Sequences\SetWorldBorder.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfPower.class
 me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class
+me\depickcator\ascension\Timeline\Events\GracePeriod\GracePeriodEnds.class
 me\depickcator\ascension\Kits\Kits\Kit.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\Dungeon.class

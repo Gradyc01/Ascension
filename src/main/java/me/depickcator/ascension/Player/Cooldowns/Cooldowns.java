@@ -15,7 +15,8 @@ public abstract class Cooldowns {
     public boolean isOnCooldown(Player p, boolean text) {
         if (p.hasCooldown(item)) {
             if (text) {
-                p.sendMessage(TextUtil.makeText("You can't do that yet! (" + Math.round((getCooldownTimer(p)) * 100) / 100.0 + "s)", TextUtil.DARK_RED));
+//                p.sendMessage(TextUtil.makeText("You can't do that yet! (" + Math.round((getCooldownTimer(p)) * 100) / 100.0 + "s)", TextUtil.DARK_RED));
+                TextUtil.errorMessage(p, "You can't do that yet! (" + Math.round((getCooldownTimer(p)) * 100) / 100.0 + "s)");
             }
             return true;
         } else {

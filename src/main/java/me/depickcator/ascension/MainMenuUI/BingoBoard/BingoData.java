@@ -23,6 +23,7 @@ import org.bukkit.scoreboard.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 public class BingoData extends ItemComparison {
@@ -76,7 +77,6 @@ public class BingoData extends ItemComparison {
 
 
     public void claimItem(Player p) {
-//        Inventory inv = p.getInventory();
         ArrayList<ItemStack> items = getItems();
         ArrayList<Boolean> hasItems = getItemsCompleted(p);
 
@@ -135,7 +135,7 @@ public class BingoData extends ItemComparison {
             Team team = playerData.getPlayerTeam().getTeam();
             for (int i = 0; i < newLines - oldLines; i++) {
                 playerData.getPlayerTeam().getTeam().getTeamStats().addGameScore(4);
-                ArrayList<Player> teamMembers = team.getTeamMembers();
+                List<Player> teamMembers = team.getTeamMembers();
                 for (Player teamMember : teamMembers) {
                     teamMember.sendMessage(TextUtil.topBorder(TextUtil.YELLOW));
                     teamMember.sendMessage(TextUtil.makeText("Your team has completed a line!", TextUtil.BLUE));

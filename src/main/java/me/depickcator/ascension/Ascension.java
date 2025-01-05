@@ -115,8 +115,8 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new MobSpawning(), this);
         manager.registerEvents(new InventoryClose(), this);
         manager.registerEvents(new InventoryClickListener(), this);
-//        manager.registerEvents(new PlayerCombat(), this);
-//        new PlayerCombat();
+        manager.registerEvents(new PlayerAchievements(), this);
+
         manager.registerEvents(new onDamage(), this);
         manager.registerEvents(new onDeath(), this);
         manager.registerEvents(new onElytraFlight(), this);

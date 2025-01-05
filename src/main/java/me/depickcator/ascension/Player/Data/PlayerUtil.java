@@ -39,6 +39,14 @@ public class PlayerUtil {
         return null;
     }
 
+    public static boolean removePlayerData(Player p) {
+        if (Ascension.playerDataMap.containsKey(p.getUniqueId())) {
+            Ascension.playerDataMap.remove(p.getUniqueId());
+            return true;
+        }
+        return false;
+    }
+
     public static void giveItem(Player p, ItemStack... items) {
         PlayerInventory inv = p.getInventory();
         for (ItemStack item : items) {

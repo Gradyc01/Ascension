@@ -31,8 +31,9 @@ public class PlayerDeath {
         GameStates gameState = plugin.getGameState();
         if (gameState.inGame()) {
             if (!gameState.checkState(GameStates.GAME_FINAL_ASCENSION)) {
+//                playerData.setPlayerState(PlayerData.STATE_DEAD);
                 setRespawningLater(playerData);
-                playerData.setPlayerState(PlayerData.STATE_DEAD);
+
             } else {
                 setPlayerSpectating(playerData);
 //                playerData.setPlayerState(PlayerData.STATE_SPECTATING);
@@ -46,7 +47,7 @@ public class PlayerDeath {
 
     public void setRespawningLater(PlayerData playerData) {
         Player p = playerData.getPlayer();
-        setPlayerDead(playerData);
+        setPlayerDead(playerData, PlayerData.STATE_DEAD);
         p.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, PotionEffect.INFINITE_DURATION, 1, false, false));
         deathTimer.setCooldownTimer(p);
         players.add(playerData);
@@ -89,7 +90,8 @@ public class PlayerDeath {
         }
     }
 
-    private void setPlayerDead(PlayerData playerData) {
+    private void setPlayerDead(PlayerData playerData, int newPlayerState) {
+        playerData.setPlayerState(newPlayerState);
         Player p = playerData.getPlayer();
         PlayerUtil.clearEffects(playerData);
         p.setLastDeathLocation(p.getLocation());
@@ -97,6 +99,7 @@ public class PlayerDeath {
         strikeLightning(p);
         p.sendMessage(TextUtil.makeText("You are Dead", TextUtil.DARK_RED));
         p.showTitle(TextUtil.makeTitle(TextUtil.makeText("You Died", TextUtil.DARK_RED), TextUtil.makeText(""), 0, 5, 1));
+        changePlayerVisibility(playerData);
     }
 
     private void strikeLightning(Player player) {
@@ -122,9 +125,24 @@ public class PlayerDeath {
 //        p.teleport(new Location(spawn.getWorld(), x, y + 1, z));
 //        spawn.getWorld().getBl
         Location loc = getRespawnLocation();
-//        p.teleport(loc);
         loc.getWorld().getBlockAt(loc).setType(Material.GLASS);
         p.teleport(loc.add(0.5, 1, 0.5));
+
+
+        changePlayerVisibility(playerData);
+    }
+
+    private void changePlayerVisibility(PlayerData playerData) {
+        for (PlayerData pD : PlayerUtil.getAllPlayingPlayers()) {
+            Player p = pD.getPlayer();
+            if (playerData.checkState(PlayerData.STATE_ALIVE)) {
+                p.showPlayer(plugin, playerData.getPlayer());
+                TextUtil.debugText(playerData.getPlayer().getName() + " is no now shown to " + p.getName());
+            } else {
+                p.hidePlayer(plugin, playerData.getPlayer());
+                TextUtil.debugText(playerData.getPlayer().getName() + " is no longer now shown to " + p.getName());
+            }
+        }
     }
 
     private Location getRespawnLocation() {
@@ -140,8 +158,8 @@ public class PlayerDeath {
     }
 
     public void setPlayerSpectating(PlayerData playerData) {
-        setPlayerDead(playerData);
-        playerData.setPlayerState(PlayerData.STATE_SPECTATING);
+//        playerData.setPlayerState(PlayerData.STATE_SPECTATING);
+        setPlayerDead(playerData, PlayerData.STATE_SPECTATING);
     }
 
     public void respawnEveryone() {

@@ -4,6 +4,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\comma
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\BuildLobby.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameCommand.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\GameStartSequence.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\AdjustStartingGameScore.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\GiveBrawlItems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\InitBingoBoard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\LaunchSequence.java
@@ -167,8 +168,8 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\liste
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\LootTableGeneration.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\MobSpawning.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\onInventoryChange.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerAchievements.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerChatting.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerCombat.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerConsumeItem.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerInteractListener.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerJoinLeave.java
@@ -287,6 +288,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timel
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Events\Feast\FeastResourceChestLoot.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Events\Feast\FeastSpecialChestLoot.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Events\FinalAscension\FinalAscension.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Events\GracePeriod\GracePeriodEnds.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.java

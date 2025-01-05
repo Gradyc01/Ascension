@@ -8,7 +8,9 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.QuickPick;
 import me.depickcator.ascension.Items.Craftable.Unlocks.Tarnhelm;
 import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondSword;
+import me.depickcator.ascension.Items.Craftable.Vanilla.Shield;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerSkills;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -59,8 +61,18 @@ public class GiveBrawlItems extends GameStartSequence {
                         boots,
                         new ItemStack(Material.WATER_BUCKET),
                         AscensionKey.getInstance().getResult(),
-                        new ItemStack(Material.GOLD_INGOT, 64)
+                        new ItemStack(Material.GOLD_INGOT, 64),
+                        Shield.getInstance().getResult(),
+                        Shield.getInstance().getResult(),
+                        Shield.getInstance().getResult()
                 );
+
+                PlayerSkills pS = pD.getPlayerSkills();
+                pS.getCombat().addExp(250);
+                pS.getForaging().addExp(1500);
+                pS.getMining().addExp(1500);
+
+                pD.getPlayerTeam().getTeam().getTeamStats().setFinalAscensionTimer(600);
 
                 players.removeFirst();
             }

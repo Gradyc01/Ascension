@@ -66,7 +66,7 @@ public class TeamCommand implements CommandExecutor, TabCompleter {
             }
             case "list" -> {
                 try {
-                    pD.getPlayerTeam().getTeam().teamList(p);
+                    pD.getPlayerTeam().getTeam().teamList(pD);
                 } catch (Exception e) {
                     TextUtil.errorMessage(p, "You are currently not in a party");
                 }

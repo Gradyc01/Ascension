@@ -69,11 +69,14 @@ public class Cornucopia extends Craft implements ItemClick {
     @Override
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         Player p = e.getPlayer();
-        ItemStack item = p.getInventory().getItemInMainHand();
-        item.setAmount(item.getAmount() - 1);
-        p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 15 * 20, 0));
-        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_BURP, 1f, 1f);
-        return true;
+        if (isMainHandRightClick(e)) {
+            ItemStack item = p.getInventory().getItemInMainHand();
+            item.setAmount(item.getAmount() - 1);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 15 * 20, 0));
+            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_BURP, 1f, 1f);
+            return true;
+        }
+        return false;
     }
 
     @Override

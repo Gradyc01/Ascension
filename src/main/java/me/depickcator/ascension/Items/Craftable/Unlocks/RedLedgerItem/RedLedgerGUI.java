@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem;
 
 import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
@@ -98,6 +99,11 @@ public class RedLedgerGUI extends AscensionGUI {
             }
             Player p = players.get(item);
             if (p != null) {
+                PlayerData pD = PlayerUtil.getPlayerData(p);
+                if (pD == null || !pD.checkState(PlayerData.STATE_ALIVE)) {
+                    TextUtil.errorMessage(player, "This player is currently not available");
+                    return;
+                }
                 event.setCancelled(true);
                 player.closeInventory();
                 player.getInventory().getItemInMainHand().setAmount(0);

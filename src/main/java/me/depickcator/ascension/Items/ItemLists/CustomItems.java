@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Items.ItemLists;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echolocator;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
@@ -14,20 +16,73 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.*;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 
 public class CustomItems {
-    private ArrayList<ItemStack> items;
+    private List<ItemStack> items;
     public CustomItems() {
         items = new ArrayList<>();
         setItems();
     }
 
     private void setItems() {
-        items.add(new ItemStack(Material.OMINOUS_BOTTLE));
+        //Equipment
+        items.addAll(getEquipment());
+
+        //Combat
+        items.add(new ItemStack(Material.PLAYER_HEAD));
+        items.add(new ItemStack(Material.NETHER_STAR));
+        items.add(ShardOfTheFallen.result());
+        items.add(GoldenHead.getInstance().getResult());
+        items.add(PandoraBox.getInstance().getResult());
+
+        //Abilities
+        items.add(TeamPortal.getInstance().getResult());
+        items.add(RedLedger.getInstance().getResult());
+        items.add(Echolocator.getInstance().getResult());
+        items.add(Ghost.getInstance().getResult());
+        items.add(AscensionKey.getInstance().getResult());
         items.add(new ItemStack(Material.TOTEM_OF_UNDYING));
+
+        //Tools
+        items.add(QuickPick.getInstance().getResult());
+        items.add(FlintShovel.getInstance().getResult());
+        items.add(PhilosopherPickaxe.getInstance().getResult());
+        items.add(VorpalSword.getInstance().getResult());
         items.add(KingsRod.getInstance().getResult());
+
+        //Potions
+        items.add(PotionOfVelocity.getInstance().getResult());
         items.add(Nectar.getInstance().getResult());
+        items.add(Cornucopia.getInstance().getResult());
+        items.add(CubeConverter.getInstance().getResult());
+        items.add(Panacea.getInstance().getResult());
+        items.add(new ItemStack(Material.OMINOUS_BOTTLE));
+
+        //Books
+        items.add(BookOfThoth.getInstance().getResult());
+        items.add(XPTome.getInstance().getItem());
+        items.add(TabletsOfDestiny.getInstance().getResult());
+        items.addAll(getLevel1EnchantedBooks());
         items.add(WeaverSilk.getInstance().getResult());
 
-        //Equipment
+//        items.add(BookOfProjectileProtection.getInstance().getResult());
+//        items.add(BookOfProtection.getInstance().getResult());
+//        items.add(BookOfPower.getInstance().getResult());
+//        items.add(BookOfSharpness.getInstance().getResult());
+    }
+
+    private List<ItemStack> getLevel1EnchantedBooks() {
+        List<ItemStack> items = new ArrayList<>();
+        items.add(BookOfProjectileProtection.getInstance().getResult());
+        items.add(BookOfProtection.getInstance().getResult());
+        items.add(BookOfPower.getInstance().getResult());
+        items.add(BookOfSharpness.getInstance().getResult());
+        Collections.shuffle(items);
+        return new ArrayList<>(List.of(
+                items.getFirst()
+        ));
+    }
+
+    private List<ItemStack> getEquipment() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(DragonArmor.getInstance().getResult());
         items.add(HideOfLeviathan.getInstance().getResult());
         items.add(SevenLeagueBoots.getInstance().getResult());
@@ -38,46 +93,14 @@ public class CustomItems {
         items.add(ApolloGlare.getInstance().getResult());
         items.add(HeliosCurse.getInstance().getResult());
         items.add(CupidBow.getInstance().getResult());
-
-        //Combat
-        items.add(new ItemStack(Material.PLAYER_HEAD));
-        items.add(new ItemStack(Material.NETHER_STAR));
-        items.add(ShardOfTheFallen.result());
-        items.add(GoldenHead.getInstance().getResult());
-        items.add(PandoraBox.getInstance().getResult());
-
-
-        //Abilities
-        items.add(TeamPortal.getInstance().getResult());
-        items.add(RedLedger.getInstance().getResult());
-        items.add(Echolocator.getInstance().getResult());
-        items.add(Ghost.getInstance().getResult());
-        items.add(AscensionKey.getInstance().getResult());
-
-
-
-        //Tools
-        items.add(QuickPick.getInstance().getResult());
-        items.add(FlintShovel.getInstance().getResult());
-        items.add(PhilosopherPickaxe.getInstance().getResult());
-        items.add(VorpalSword.getInstance().getResult());
-        items.add(PotionOfVelocity.getInstance().getResult());
-        items.add(Cornucopia.getInstance().getResult());
-        items.add(CubeConverter.getInstance().getResult());
-        items.add(Panacea.getInstance().getResult());
-
-
-        //Books
-        items.add(BookOfThoth.getInstance().getResult());
-        items.add(XPTome.getInstance().getItem());
-        items.add(TabletsOfDestiny.getInstance().getResult());
-        items.add(BookOfProjectileProtection.getInstance().getResult());
-        items.add(BookOfProtection.getInstance().getResult());
-        items.add(BookOfPower.getInstance().getResult());
-        items.add(BookOfSharpness.getInstance().getResult());
+        Collections.shuffle(items);
+        return new ArrayList<>(List.of(
+                items.getFirst(),
+                items.getLast()
+        ));
     }
 
-    public ArrayList<ItemStack> getItems() {
+    public List<ItemStack> getItems() {
         return items;
     }
 }

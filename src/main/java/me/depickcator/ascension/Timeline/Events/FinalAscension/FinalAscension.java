@@ -23,7 +23,7 @@ import java.util.List;
 
 public class FinalAscension {
     private final Ascension plugin;
-    public FinalAscension(){
+    public FinalAscension(int initialBorderShrinkSize) {
         this.plugin = Ascension.getInstance();
         TextUtil.debugText("Final Ascension Ran");
         PlayerDeath.getInstance().respawnEveryone();
@@ -31,7 +31,7 @@ public class FinalAscension {
         calculateTeamTimers();
         finalAscensionStartAnnouncement();
         timer();
-        plugin.getWorld().getWorldBorder().setSize(1000, 300);
+        plugin.getWorld().getWorldBorder().setSize(initialBorderShrinkSize, 300);
     }
 
     private void setGameState() {
@@ -139,10 +139,12 @@ public class FinalAscension {
 
     private void teamEliminatedMessage(Team t) {
         Component lost = TextUtil.makeText("            YOU LOST   \n\n", TextUtil.RED, true, true);
+//        Component description = TextUtil.makeText(
+//                "      Your team has failed to ascend.      " +
+//                        "\n      You collapsed at the final hurdle and couldn't get up. " +
+//                        "\n      Maybe another day and another time.", TextUtil.AQUA);
         Component description = TextUtil.makeText(
-                "      Your team has failed to ascend.      " +
-                        "\n      You collapsed at the final hurdle and couldn't get up. " +
-                        "\n      Maybe another day and another time.", TextUtil.AQUA);
+                "      Your team has failed to ascend.      ",TextUtil.AQUA);
         Component finalText = TextUtil.topBorder(TextUtil.YELLOW).append(lost).append(description).append(TextUtil.bottomBorder(TextUtil.YELLOW));
         TextUtil.broadcastMessage(finalText, t.getTeamMembers());
     }

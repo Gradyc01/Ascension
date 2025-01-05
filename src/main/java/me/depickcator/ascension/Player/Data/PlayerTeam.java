@@ -54,7 +54,7 @@ public class PlayerTeam implements PlayerDataObservers {
             pendingTeamInvite = false;
             inviteFromWho = null;
             try {
-                sender.getPlayerTeam().getTeam().addPlayer(player);
+                sender.getPlayerTeam().getTeam().addPlayer(playerData);
             } catch (NullPointerException e) {
                 errorMessage("Party no longer exists");
                 pendingTeamInvite = false;
@@ -80,7 +80,7 @@ public class PlayerTeam implements PlayerDataObservers {
             return;
         }
         leaveTeamMessage();
-        team.removePlayer(player);
+        team.removePlayer(playerData);
         playerData.getPlayerScoreboard().update();
     }
 
@@ -88,7 +88,7 @@ public class PlayerTeam implements PlayerDataObservers {
         if (team != null) {
             return team;
         }
-        team = new Team(plugin, player);
+        team = new Team(plugin, playerData);
         return team;
     }
 

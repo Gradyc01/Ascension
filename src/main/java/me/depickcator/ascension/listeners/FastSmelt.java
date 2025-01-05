@@ -8,11 +8,11 @@ import org.bukkit.event.inventory.FurnaceStartSmeltEvent;
 public class FastSmelt implements Listener {
     @EventHandler
     public void onFurnaceSmelt(FurnaceStartSmeltEvent event) {
-        event.setTotalCookTime(event.getTotalCookTime() / 20);
+        event.setTotalCookTime(event.getTotalCookTime() / 40);
     }
 
     @EventHandler
     public void onFurnaceBurn(FurnaceBurnEvent event) {
-        event.setBurnTime(event.getBurnTime() / 20);
+        event.setBurnTime(event.getBurnTime() / 40);
     }
 }

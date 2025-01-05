@@ -21,12 +21,12 @@ public class EasyItems {
         addItem(new ItemStack(Material.ANVIL));
         addItem(new ItemStack(Material.LECTERN));
         addItem(new ItemStack(Material.LAPIS_BLOCK));
-//        addItem(new ItemStack(Material.ENCHANTED_BOOK));
         addItem(new ItemStack(Material.REDSTONE_BLOCK));
         addItem(new ItemStack(Material.GOLD_BLOCK));
         addItem(new ItemStack(Material.JACK_O_LANTERN));
         addItem(new ItemStack(Material.EGG));
-        addItem(new ItemStack(Material.ORANGE_STAINED_GLASS));
+//        addItem(new ItemStack(Material.ORANGE_STAINED_GLASS));
+//        addItem(new ItemStack(Material.BROWN_BANNER));
         addItem(new ItemStack(Material.SNOWBALL));
         addItem(new ItemStack(Material.GOLDEN_CARROT));
         addItem(new ItemStack(Material.BAKED_POTATO));
@@ -54,7 +54,6 @@ public class EasyItems {
         addItem(new ItemStack(Material.CHAIN));
         addItem(new ItemStack(Material.CAMPFIRE));
         addItem(new ItemStack(Material.CLOCK));
-        addItem(new ItemStack(Material.BROWN_BANNER));
         addItem(new ItemStack(Material.BRUSH));
         addItem(new ItemStack(Material.ITEM_FRAME));
         addItem(getRandomGlass());
