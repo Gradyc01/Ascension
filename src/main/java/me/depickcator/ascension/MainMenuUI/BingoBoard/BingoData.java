@@ -70,9 +70,15 @@ public class BingoData extends ItemComparison {
         bingoScoreboard.resetScores("bingo");
         resetTeams();
         for (Player player : players) {
-            Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
-            score.setScore(0);
+//            Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
+//            score.setScore(0);
+            resetPlayer(player);
         }
+    }
+
+    public void resetPlayer(Player player) {
+        Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
+        score.setScore(0);
     }
 
 

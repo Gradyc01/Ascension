@@ -65,6 +65,7 @@ public class PlayerData {
         } else {
             playerState = STATE_ALIVE;
         }
+        PlayerUtil.changePlayerVisibility(this);
     }
 
     public void reInitPlayer(Player player) {

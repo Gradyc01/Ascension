@@ -74,6 +74,7 @@ public class PlayerJoinLeave implements Listener {
     private void onPlayerJoinLobby(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         PlayerData playerData = PlayerUtil.assignNewPlayerData(player);
+        plugin.getBingoData().resetPlayer(player);
         PlayerUtil.clearEffects(playerData);
         Location spawn = Ascension.getSpawn();
         playerData.resetToLobby();

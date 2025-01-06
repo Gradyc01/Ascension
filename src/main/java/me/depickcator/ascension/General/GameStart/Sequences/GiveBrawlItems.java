@@ -46,6 +46,12 @@ public class GiveBrawlItems extends GameStartSequence {
                 }
                 PlayerData pD = players.getFirst();
                 Player p = pD.getPlayer();
+                PlayerSkills pS = pD.getPlayerSkills();
+                pS.getCombat().addExp(250);
+                pS.getForaging().addExp(1500);
+                pS.getMining().addExp(1500);
+
+                p.getInventory().clear();
 
                 PlayerUtil.giveItem(p,
                         sword,
@@ -67,12 +73,7 @@ public class GiveBrawlItems extends GameStartSequence {
                         Shield.getInstance().getResult()
                 );
 
-                PlayerSkills pS = pD.getPlayerSkills();
-                pS.getCombat().addExp(250);
-                pS.getForaging().addExp(1500);
-                pS.getMining().addExp(1500);
 
-                pD.getPlayerTeam().getTeam().getTeamStats().setFinalAscensionTimer(600);
 
                 players.removeFirst();
             }

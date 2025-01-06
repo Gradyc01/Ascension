@@ -47,6 +47,20 @@ public class PlayerUtil {
         return false;
     }
 
+    //Changes the visibility of the player on tab lists and also in game for all players
+    public static void changePlayerVisibility(PlayerData playerData) {
+        for (PlayerData pD : PlayerUtil.getAllPlayingPlayers()) {
+            Player p = pD.getPlayer();
+            if (playerData.checkState(PlayerData.STATE_ALIVE)) {
+                p.showPlayer(Ascension.getInstance(), playerData.getPlayer());
+                TextUtil.debugText(playerData.getPlayer().getName() + " is now shown to " + p.getName());
+            } else {
+                p.hidePlayer(Ascension.getInstance(), playerData.getPlayer());
+                TextUtil.debugText(playerData.getPlayer().getName() + " is no longer now shown to " + p.getName());
+            }
+        }
+    }
+
     public static void giveItem(Player p, ItemStack... items) {
         PlayerInventory inv = p.getInventory();
         for (ItemStack item : items) {

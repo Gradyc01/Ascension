@@ -5,12 +5,16 @@ import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
 import me.depickcator.ascension.Player.Cooldowns.TeleportSequence;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Surface implements Commands {
     public final static String NAME = "surface";
@@ -44,6 +48,10 @@ public class Surface implements Commands {
         ItemStack item = new ItemStack(Material.GRASS_BLOCK);
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.displayName(TextUtil.makeText("Surface", TextUtil.AQUA));
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText(" Teleports you to the surface", TextUtil.DARK_PURPLE)
+        ));
+        itemMeta.lore(lore);
         item.setItemMeta(itemMeta);
         return item;
     }

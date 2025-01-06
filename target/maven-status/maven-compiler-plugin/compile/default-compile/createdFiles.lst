@@ -159,6 +159,7 @@ me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.class
 me\depickcator\ascension\Timeline\Events\Winner\Winner$1.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenSword.class
 me\depickcator\ascension\listeners\PlayerInteractListener.class
+me\depickcator\ascension\Items\Craftable\Unlocks\LightEnchantingTable.class
 me\depickcator\ascension\commands\Backpack.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Panacea.class
 me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect$1.class
@@ -188,6 +189,7 @@ me\depickcator\ascension\Kits\Kits\Kit.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\Dungeon.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\AncientCity.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\CherryGrove.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.class
 me\depickcator\ascension\LootTables\Entities\Entities\Bee.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CupidBow.class
@@ -251,6 +253,7 @@ me\depickcator\ascension\LootTables\Blocks\BlockLootTable.class
 me\depickcator\ascension\testingCommands\giveCustomItem.class
 me\depickcator\ascension\Items\Craftable\Vanilla\IronSword.class
 me\depickcator\ascension\Timeline\Events\CarePackage\CarePackageLoot.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\PaleGarden.class
 me\depickcator\ascension\Items\Craftable\Vanilla\DiamondAxe.class
 me\depickcator\ascension\Skills\Global.class
 me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger$1.class

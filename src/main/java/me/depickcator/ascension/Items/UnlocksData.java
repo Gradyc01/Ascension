@@ -81,6 +81,7 @@ public class UnlocksData {
                 FlamingArtifact.getInstance(),
                 PhilosopherPickaxe.getInstance(),
                 LightAnvil.getInstance(),
+                LightEnchantingTable.getInstance(),
                 EnlighteningPack.getInstance(),
                 LightApple.getInstance(),
                 GoldenHead.getInstance(),

@@ -19,7 +19,7 @@ public class ArmorStandUtil {
         armorStand.setMarker(true);
         armorStand.setInvulnerable(true);
         armorStand.setSilent(true);
-        armorStand.setCustomNameVisible(true); //TODO Remove After Completion
+//        armorStand.setCustomNameVisible(true); //TODO Remove After Completion
         return armorStand;
     }
 }

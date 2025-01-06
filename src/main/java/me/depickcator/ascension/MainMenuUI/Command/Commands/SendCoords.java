@@ -12,6 +12,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SendCoords implements Commands {
     public final static String NAME = "send_coords";
     private final ItemStack item;
@@ -49,6 +52,10 @@ public class SendCoords implements Commands {
         ItemStack item = new ItemStack(Material.COMPASS);
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.displayName(TextUtil.makeText("Send Coordinates", TextUtil.AQUA));
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText(" Sends your coordinates to teammates", TextUtil.DARK_PURPLE)
+        ));
+        itemMeta.lore(lore);
         item.setItemMeta(itemMeta);
         return item;
     }

@@ -137,7 +137,7 @@ public class PlayerDeath {
             Player p = pD.getPlayer();
             if (playerData.checkState(PlayerData.STATE_ALIVE)) {
                 p.showPlayer(plugin, playerData.getPlayer());
-                TextUtil.debugText(playerData.getPlayer().getName() + " is no now shown to " + p.getName());
+                TextUtil.debugText(playerData.getPlayer().getName() + " is now shown to " + p.getName());
             } else {
                 p.hidePlayer(plugin, playerData.getPlayer());
                 TextUtil.debugText(playerData.getPlayer().getName() + " is no longer now shown to " + p.getName());

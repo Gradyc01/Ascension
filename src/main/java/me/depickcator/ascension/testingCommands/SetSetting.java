@@ -10,11 +10,15 @@ import me.depickcator.ascension.Settings.SettingObserver;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 
-public class SetSetting implements CommandExecutor {
+public class SetSetting implements CommandExecutor, TabCompleter {
     private final SettingObserver settingUI;
     public SetSetting() {
         this.settingUI = Ascension.getInstance().getSettingsUI();
@@ -29,11 +33,20 @@ public class SetSetting implements CommandExecutor {
 
         if (strings.length != 1) return false;
         String mode = strings[0];
-        switch (mode) {
+        switch (mode.toLowerCase()) {
             case "standard" -> settingUI.setSettings(new Standard());
             case "quickplay" -> settingUI.setSettings(new Quickplay());
             case "brawl" -> settingUI.setSettings(new Brawl());
         }
         return false;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+        return List.of(
+                "standard",
+                "quickplay",
+                "brawl"
+        );
     }
 }

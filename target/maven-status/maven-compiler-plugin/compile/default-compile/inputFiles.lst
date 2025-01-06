@@ -50,11 +50,13 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\EcholocatorGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\EcholocatorLocations.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\BambooJungle.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\CherryGrove.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\DarkForest.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Desert.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Jungle.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\LushCaves.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\MushroomIsland.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\PaleGarden.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Swamp.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\WarmOcean.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\AncientCity.java
@@ -83,6 +85,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LeatherEconomy.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightAnvil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightApple.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightEnchantingTable.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftStar.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Nectar.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\NotchApple.java

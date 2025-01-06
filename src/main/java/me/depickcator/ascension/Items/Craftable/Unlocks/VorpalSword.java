@@ -19,7 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class VorpalSword extends Craft {
     private static VorpalSword instance;
     private VorpalSword() {
-        super(UnlocksData.COST_250, 2, "Vorpal Sword", "vorpal_sword");
+        super(UnlocksData.COST_225, 2, "Vorpal Sword", "vorpal_sword");
     }
 
     public static VorpalSword getInstance() {

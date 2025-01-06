@@ -8,6 +8,7 @@ import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -18,6 +19,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PandoraBox extends Craft implements ItemClick {
     private static PandoraBox instance;
@@ -48,11 +52,10 @@ public class PandoraBox extends Craft implements ItemClick {
         meta.setCustomModelData(plugin.generateModelNumber());
         meta.setEnchantmentGlintOverride(true);
         meta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
-//        List<Component> lore = new ArrayList<>(List.of(
-//                TextUtil.makeText(" Hunt down those that ", TextUtil.DARK_PURPLE),
-//                TextUtil.makeText("are in your way", TextUtil.DARK_PURPLE)
-//        ));
-//        meta.lore(lore);
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText(" Inside Pandora's Box awaits a treasure for you.", TextUtil.DARK_PURPLE)
+        ));
+        meta.lore(lore);
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.RED).append(TextUtil.rightClickText()));
         item.setItemMeta(meta);
         return item;

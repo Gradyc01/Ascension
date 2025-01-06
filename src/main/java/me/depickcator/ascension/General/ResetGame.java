@@ -35,7 +35,7 @@ public class ResetGame implements Runnable {
     }
 
     private void resetPlayers() {
-        plugin.getBingoData().resetPlayers();
+//        plugin.getBingoData().resetPlayers(); //TODO: Removing this may allow for you to be able to see the board
         PlayerUtil.clearPlayerDataMap();
 //        PlayerUtil.assignNewPlayerData(plugin);
 //        for (Player p : plugin.getServer().getOnlinePlayers()) {

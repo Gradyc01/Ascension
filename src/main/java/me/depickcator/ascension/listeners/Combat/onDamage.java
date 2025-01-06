@@ -38,7 +38,7 @@ public class onDamage extends PlayerCombat{
 
         if (!(event.getEntity() instanceof Player)) return;
         Player victim = (Player) event.getEntity();
-        playerDamagedEffects(event, victim);
+//        playerDamagedEffects(event, victim);
         Pair<Player, Boolean> damageData = setDamageMetadata(event, victim);
         if (damageData == null) return;
         Player attacker = damageData.getLeft();
@@ -47,6 +47,7 @@ public class onDamage extends PlayerCombat{
             event.setCancelled(true);
             return;
         }
+        playerDamagedEffects(event, victim);
 
         //TODO: Remove later too lazy to make it a class
         if (equalItems(attacker.getInventory().getItem(EquipmentSlot.HEAD), Exodus.getInstance().getResult())) {

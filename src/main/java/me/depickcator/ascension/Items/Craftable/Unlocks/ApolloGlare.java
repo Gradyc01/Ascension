@@ -58,8 +58,8 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         meta.getPersistentDataContainer().set(ShootsProjectiles.key, PersistentDataType.STRING, KEY);
         ArrayList<Component> lore = new ArrayList<>(List.of(
-                TextUtil.makeText(""),
-                TextUtil.makeText(""),
+//                TextUtil.makeText(""),
+//                TextUtil.makeText(""),
                 TextUtil.makeText("Nearsights players that are hit", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("[24 Uses]", TextUtil.GOLD)
         ));

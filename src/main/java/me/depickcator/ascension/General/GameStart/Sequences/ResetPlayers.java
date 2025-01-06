@@ -17,6 +17,7 @@ public class ResetPlayers extends GameStartSequence {
 
     @Override
     public void run(StartGame game) {
+        plugin.getBingoData().resetPlayers();
         TeamUtil.createTeamsForEveryone();
         new BukkitRunnable() {
             ArrayList<Player> players = new ArrayList<>(plugin.getServer().getOnlinePlayers());

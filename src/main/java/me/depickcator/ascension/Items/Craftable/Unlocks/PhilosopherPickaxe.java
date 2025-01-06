@@ -18,7 +18,7 @@ import org.bukkit.inventory.meta.Repairable;
 public class PhilosopherPickaxe extends Craft {
     private static PhilosopherPickaxe instance;
     private PhilosopherPickaxe() {
-        super(UnlocksData.COST_250, 4, "Philosopher’s Pickaxe", "philosopher_pickaxe");
+        super(UnlocksData.COST_250, 2, "Philosopher’s Pickaxe", "philosopher_pickaxe");
     }
 
     public static PhilosopherPickaxe getInstance() {

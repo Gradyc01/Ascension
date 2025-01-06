@@ -46,6 +46,16 @@ public class MediumItems {
             items.add(new ItemStack(Material.RED_SANDSTONE));
         }
 
+        //Pale Garden
+        if (locationCheck.isALocation(Biome.PALE_GARDEN)) {
+            items.add(getResinMaterial());
+        }
+
+        //Cherry Grove
+        if (locationCheck.isALocation(Biome.CHERRY_GROVE)) {
+            items.add(new ItemStack(Material.PINK_PETALS));
+        }
+
 
         items.add(new ItemStack(Material.SADDLE)); //TODO: Change to Medium?
         items.add(new ItemStack(Material.NAME_TAG)); //TODO: Change to Medium?
@@ -114,9 +124,26 @@ public class MediumItems {
         items.add(new ItemStack(Material.SOUL_LANTERN));
         items.add(new ItemStack(Material.CRYING_OBSIDIAN));
         items.add(new ItemStack(Material.RABBIT_FOOT));
+
+        items.add(new ItemStack(Material.CRAFTER));
+
         items.add(getRandomCandle());
         items.add(getRandomHangingSign());
         items.add(getRandomOre());
+    }
+
+    private ItemStack getResinMaterial() {
+        ArrayList<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Material.RESIN_CLUMP));
+        items.add(new ItemStack(Material.RESIN_BRICK));
+        items.add(new ItemStack(Material.RESIN_BLOCK));
+        items.add(new ItemStack(Material.RESIN_BRICK_SLAB));
+        items.add(new ItemStack(Material.RESIN_BRICK_STAIRS));
+        items.add(new ItemStack(Material.RESIN_BRICK_WALL));
+
+        int pick = rand.nextInt(items.size());
+
+        return items.get(pick);
     }
 
     private ItemStack getRandomCandle() {
@@ -153,6 +180,7 @@ public class MediumItems {
         items.add(new ItemStack(Material.DARK_OAK_HANGING_SIGN));
         if (locationCheck.isALocation(Biome.MANGROVE_SWAMP)) items.add(new ItemStack(Material.MANGROVE_HANGING_SIGN));
         if (locationCheck.isALocation(Biome.JUNGLE)) items.add(new ItemStack(Material.JUNGLE_HANGING_SIGN));
+        if (locationCheck.isALocation(Biome.PALE_GARDEN)) items.add(new ItemStack(Material.PALE_OAK_HANGING_SIGN));
         items.add(new ItemStack(Material.SPRUCE_HANGING_SIGN));
         items.add(new ItemStack(Material.OAK_HANGING_SIGN));
 

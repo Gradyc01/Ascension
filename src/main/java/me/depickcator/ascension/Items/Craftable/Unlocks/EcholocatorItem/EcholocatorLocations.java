@@ -52,7 +52,7 @@ public abstract class EcholocatorLocations {
             return false;
         }
         text = text.append(TextUtil.makeText("\n                     " + name + " found!", TextUtil.GOLD));
-        text = text.append(TextUtil.makeText("\n\n                (" + loc.getBlockX() + /*", " + loc.getBlockY() + */", " + loc.getBlockZ() + ")\n", TextUtil.DARK_RED));
+        text = text.append(TextUtil.makeText("\n\n                     (" + loc.getBlockX() + /*", " + loc.getBlockY() + */", " + loc.getBlockZ() + ")\n", TextUtil.DARK_RED));
         text = text.append(TextUtil.bottomBorder(TextUtil.BLUE));
         TextUtil.broadcastMessage(text, pD.getPlayerTeam().getTeam().getTeamMembers());
         return true;

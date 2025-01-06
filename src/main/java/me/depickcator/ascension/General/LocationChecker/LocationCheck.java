@@ -25,6 +25,7 @@ public class LocationCheck {
     private final HashMap<Biome, LocationStorage> biomes;
     private Pair<Integer, Integer> locationScore;
     private final int worldBorderSize;
+    private boolean checkCompleted;
     public LocationCheck(Location spawn) {
         this.spawn = spawn;
         this.world = spawn.getWorld();
@@ -32,6 +33,7 @@ public class LocationCheck {
         biomes = new HashMap<>();
         locationScore = new MutablePair<>(0, 0);
         worldBorderSize = Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize();
+        checkCompleted = false;
         runLocations();
     }
 
@@ -121,6 +123,7 @@ public class LocationCheck {
                 //structures.isEmpty() && biomes.isEmpty()
                 if (allChecks.isEmpty()) {
                     cancel();
+                    checkCompleted = true;
                     TextUtil.debugText("World Checker Complete");
                     return;
                 }
@@ -196,7 +199,7 @@ public class LocationCheck {
 
     }
 
-
-
-
+    public boolean isCheckCompleted() {
+        return checkCompleted;
+    }
 }

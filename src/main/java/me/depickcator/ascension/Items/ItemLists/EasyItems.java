@@ -56,6 +56,19 @@ public class EasyItems {
         addItem(new ItemStack(Material.CLOCK));
         addItem(new ItemStack(Material.BRUSH));
         addItem(new ItemStack(Material.ITEM_FRAME));
+        addItem(new ItemStack(Material.SUNFLOWER));
+        addItem(new ItemStack(Material.NOTE_BLOCK));
+        addItem(new ItemStack(Material.COMPOSTER));
+
+        //Crafting Blocks
+        addItem(new ItemStack(Material.SMOKER));
+        addItem(new ItemStack(Material.BLAST_FURNACE));
+        addItem(new ItemStack(Material.GRINDSTONE));
+        addItem(new ItemStack(Material.LOOM));
+        addItem(new ItemStack(Material.SMITHING_TABLE));
+        addItem(new ItemStack(Material.FLETCHING_TABLE));
+        addItem(new ItemStack(Material.STONECUTTER));
+
         addItem(getRandomGlass());
         addItem(getRandomBanner());
         addItem(getRandomConcrete());
