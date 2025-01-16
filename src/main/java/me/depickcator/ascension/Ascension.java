@@ -110,7 +110,7 @@ public final class Ascension extends JavaPlugin {
         PluginManager manager = server.getPluginManager();
 //        manager.registerEvents(new onInventoryChange(), this);
         manager.registerEvents(new PlayerConsumeItem(), this);
-        manager.registerEvents(new ProjectileAttacks(), this);
+//        manager.registerEvents(new ProjectileAttacks(), this);
         manager.registerEvents(new PlayerJoinLeave(), this);
         manager.registerEvents(new MobSpawning(), this);
         manager.registerEvents(new InventoryClose(), this);

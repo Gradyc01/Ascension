@@ -91,7 +91,7 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
     }
 
     @Override
-    public void setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim) {
+    public double setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim) {
         victim.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 4 * 20, 0, true, true));
 
         if (victim instanceof Player) {
@@ -99,6 +99,7 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
             p.sendMessage(TextUtil.makeText("BLINDED", TextUtil.DARK_GRAY, true, false));
             p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 2.0f);
         }
-
+//        event.setDamage(0.1);
+        return 0.1;
     }
 }

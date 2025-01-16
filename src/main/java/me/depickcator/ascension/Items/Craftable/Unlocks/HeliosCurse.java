@@ -80,7 +80,7 @@ public class HeliosCurse extends Craft implements ShootsProjectiles {
     }
 
     @Override
-    public void setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim) {
+    public double setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim) {
 //        Player victim = (Player) event.getEntity();
         victim.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 8 * 20, 0, true, true));
         if (victim instanceof Player) {
@@ -88,6 +88,7 @@ public class HeliosCurse extends Craft implements ShootsProjectiles {
             player.sendMessage(TextUtil.makeText("MARKED", TextUtil.DARK_GRAY, true, false));
             player.playSound(player.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 2.0f);
         }
+        return 0.1;
 
     }
 

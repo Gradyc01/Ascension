@@ -9,7 +9,7 @@ import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Arrow;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -66,29 +66,9 @@ public class onDamage extends PlayerCombat{
 //        PlayerData attackerData = PlayerUtil.getPlayerData(attacker);/
 
         if (isPlayerMeleeAttack(event)) {
-            Player attacker = (Player) event.getDamager();
-
-            ItemStack weapon = attacker.getInventory().getItemInMainHand();
-
-//            if ()) {
-            double baseDamage = getDamageValue(weapon.getType());
-            double cooldownMultiplier = attacker.getCooledAttackStrength(0);
-            double criticalMultiplier = event.isCritical() ? (isAnAxe(weapon) ? 2.0 : 1.5) : 1;
-            double effectMultiplier = 1 + 0.2 * effectMultiplier(attacker);
-            double sharpnessMultiplier = meleeEnchantMultiplier(event, weapon);
-            damageDealt = (((baseDamage + sharpnessMultiplier) * effectMultiplier) * criticalMultiplier) * cooldownMultiplier;
-            TextUtil.debugText("(baseDamage(" + baseDamage +
-                    ") + enchantDamage(" + sharpnessMultiplier +
-                    ")) * effectMultiplier(" + effectMultiplier +
-                    ") * criticalMultiplier(" + criticalMultiplier +
-                    ") * cooldownMultiplier (" + cooldownMultiplier +
-                    ")");
-//            } else {
-//                damageDealt = event.getDamage();
-//            }
-            TextUtil.debugText("Total Damage: " + damageDealt);
+            damageDealt = calculatePlayerMeleeAttack(event);
         } else if (isPlayerProjectileAttack(event)) {
-            damageDealt = event.getDamage();
+            damageDealt = calculatePlayerArrowAttack(event);
         } else {
             damageDealt = event.getDamage();
         }
@@ -97,7 +77,59 @@ public class onDamage extends PlayerCombat{
         if (event.getEntity().isGlowing()) {
             damageDealt *= 1.3;
         }
+        TextUtil.debugText("Total Damage: " + damageDealt);
+        return damageDealt;
+    }
 
+    private double calculatePlayerArrowAttack(EntityDamageByEntityEvent event) {
+        double damageDealt;
+        AbstractArrow arrow = (AbstractArrow) event.getDamager();
+        ItemStack weapon = arrow.getWeapon();
+
+        //Calculate Vanilla minecraft damage
+        int powerLevel = (weapon.containsEnchantment(Enchantment.POWER)) ? weapon.getEnchantmentLevel(Enchantment.POWER) : 0;
+        double damageTag = 2;
+        if (powerLevel != 0) damageTag += 0.5 + (0.5 * powerLevel);
+        double speed = event.getDamage() / damageTag;
+        TextUtil.debugText("Old Damage Tag: " + damageTag + "Speed: " + speed);
+        //Custom Damage
+        damageTag = 3;
+        if (powerLevel != 0) damageTag += 1 + (0.75 * powerLevel);
+        TextUtil.debugText("New Damage Tag: " + damageTag + "Speed: " + speed);
+
+        //Set Damage
+        damageDealt = damageTag * speed;
+        damageDealt *= 1 + 0.1 * effectMultiplier((Player) ((AbstractArrow) event.getDamager()).getShooter());
+        ShootsProjectiles customWeapon = ShootsProjectiles.getProjectile(weapon);
+        if (customWeapon != null) {
+            double newDamage = customWeapon.setProjectileComponent(event, (LivingEntity) event.getEntity());
+            if (newDamage != -1) damageDealt = newDamage;
+        }
+        return damageDealt;
+    }
+
+    private double calculatePlayerMeleeAttack(EntityDamageByEntityEvent event) {
+        double damageDealt;
+        Player attacker = (Player) event.getDamager();
+
+        ItemStack weapon = attacker.getInventory().getItemInMainHand();
+
+//            if ()) {
+        double baseDamage = getDamageValue(weapon.getType());
+        double cooldownMultiplier = attacker.getCooledAttackStrength(0);
+        double criticalMultiplier = event.isCritical() ? (isAnAxe(weapon) ? 2.0 : 1.5) : 1;
+        double effectMultiplier = 1 + 0.2 * effectMultiplier(attacker);
+        double sharpnessMultiplier = meleeEnchantMultiplier(event, weapon);
+        damageDealt = (((baseDamage + sharpnessMultiplier) * effectMultiplier) * criticalMultiplier) * cooldownMultiplier;
+        TextUtil.debugText("(baseDamage(" + baseDamage +
+                ") + enchantDamage(" + sharpnessMultiplier +
+                ")) * effectMultiplier(" + effectMultiplier +
+                ") * criticalMultiplier(" + criticalMultiplier +
+                ") * cooldownMultiplier (" + cooldownMultiplier +
+                ")");
+//            } else {
+//                damageDealt = event.getDamage();
+//            }
         return damageDealt;
     }
 
@@ -134,8 +166,8 @@ public class onDamage extends PlayerCombat{
     }
 
     private boolean isPlayerProjectileAttack(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Arrow) {
-            return ((Arrow) event.getDamager()).getShooter() instanceof Player;
+        if (event.getDamager() instanceof AbstractArrow) {
+            return ((AbstractArrow) event.getDamager()).getShooter() instanceof Player;
         }
         return false;
     }
@@ -156,7 +188,7 @@ public class onDamage extends PlayerCombat{
         }
         if (isPlayerProjectileAttack(event)) {
 //            setSpecialArrowIfNecessary(event);
-            sendArrowDamageMessage(victim, (Player) ((Arrow) event.getDamager()).getShooter(), event);
+            sendArrowDamageMessage(victim, (Player) ((AbstractArrow) event.getDamager()).getShooter(), event);
         }
     }
 
@@ -188,7 +220,7 @@ public class onDamage extends PlayerCombat{
             return Pair.of((Player) event.getDamager(), true);
         } else if (isPlayerProjectileAttack(event)) {
             victim.setMetadata(getDamageSourceKey(), new FixedMetadataValue(plugin, getPLAYER_DAMAGE()));
-            Player attacker = (Player) ((Arrow) event.getDamager()).getShooter();
+            Player attacker = (Player) ((AbstractArrow) event.getDamager()).getShooter();
             return Pair.of(attacker, false);
         } else {
             victim.setMetadata(getDamageSourceKey(), new FixedMetadataValue(plugin, event.getCause().toString()));

@@ -18,7 +18,7 @@ public interface ShootsProjectiles {
     default void addProjectile(String key, ShootsProjectiles projectile) {
         projectiles.put(key, projectile);
     }
-    void setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim);
+    double setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim);
     static ShootsProjectiles getProjectile(MetadataValue metadataValue) {
 //        Bukkit.getServer().broadcast(TextUtil.makeText(metadataValue.asString()));
         return projectiles.get(metadataValue.asString());

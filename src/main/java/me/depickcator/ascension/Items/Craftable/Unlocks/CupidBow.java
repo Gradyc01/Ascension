@@ -88,7 +88,8 @@ public class CupidBow extends Craft implements ShootsProjectiles {
     }
 
     @Override
-    public void setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim) {
+    public double setProjectileComponent(EntityDamageByEntityEvent event, LivingEntity victim) {
         //Empty on purpose
+        return -1;
     }
 }

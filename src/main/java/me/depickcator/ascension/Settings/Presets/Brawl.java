@@ -22,7 +22,7 @@ public class Brawl extends Settings {
                 new InitBingoBoard(getItemDistribution()),
                 new GiveBrawlItems(),
                 new AdjustStartingGameScore(10),
-                new TextSequence(),
+                new TextSequence(5),
                 new ResetWorld(),
                 new LaunchSequence()
         ));

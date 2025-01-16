@@ -14,7 +14,12 @@ import java.util.List;
 
 public class TextSequence extends GameStartSequence {
     private final List<Component> texts;
+    private final int seconds;
     public TextSequence() {
+        this(15);
+    }
+
+    public TextSequence(int seconds) {
         this.texts = new ArrayList<>(List.of(
                 text1(),
                 text2(),
@@ -22,6 +27,7 @@ public class TextSequence extends GameStartSequence {
                 text4(),
                 text5()
         ));
+        this.seconds = seconds;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class TextSequence extends GameStartSequence {
                 gameTexts.removeFirst();
                 if (gameTexts.isEmpty()) SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 100, 0);
             }
-        }.runTaskTimer(Ascension.getInstance(), 0, 15 * 20);
+        }.runTaskTimer(Ascension.getInstance(), 0, seconds * 20L);
     }
 
     private Component text1() {
