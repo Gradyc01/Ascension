@@ -13,6 +13,14 @@ public abstract class Weapons extends Craft {
         recipe = initRecipe();
     }
 
+    protected Weapons(int cost, int maxCrafts, String displayName, String key, double attackDamage, double attackSpeed) {
+        super(cost, maxCrafts, displayName, key, true);
+        this.attackDamage = attackDamage;
+        this.attackSpeed = attackSpeed;
+        result = initResult();
+        recipe = initRecipe();
+    }
+
     public double getAttackDamage() {
         return attackDamage;
     }

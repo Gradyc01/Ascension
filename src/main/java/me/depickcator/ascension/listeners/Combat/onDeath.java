@@ -1,6 +1,5 @@
 package me.depickcator.ascension.listeners.Combat;
 
-import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
@@ -29,8 +28,8 @@ public class onDeath extends PlayerCombat {
             cause = victim.getMetadata(getDamageSourceKey()).getFirst().asString();
         }
         if (cause.equals(getPLAYER_DAMAGE())) {
-            killReward(e, victimData);
-
+            playerKillRewards(e, victimData);
+            increaseKillCount(e);
         }
 
         plugin.getServer().broadcast(e.deathMessage().color(TextUtil.DARK_RED));
@@ -42,13 +41,16 @@ public class onDeath extends PlayerCombat {
         e.setCancelled(true);
     }
 
-    private void killReward(PlayerDeathEvent e, PlayerData victim) {
+    private void playerKillRewards(PlayerDeathEvent e, PlayerData victim) {
         Player v = victim.getPlayer();
         dropHead(v);
-        ItemStack shards = ShardOfTheFallen.result().clone();
-        shards.setAmount(12);
-        v.getWorld().dropItem(v.getLocation(), shards);
-        increaseKillCount(e);
+        for (ItemStack item : plugin.getSettingsUI().getSettings().getKillReward(e, victim)) {
+            v.getWorld().dropItem(v.getLocation(), item);
+        }
+//        ItemStack shards = ShardOfTheFallen.result().clone();
+//        shards.setAmount(12);
+
+//        v.getWorld().dropItem(v.getLocation(), shards);
     }
 
     private void increaseKillCount(PlayerDeathEvent e) {
@@ -65,10 +67,8 @@ public class onDeath extends PlayerCombat {
     private void dropHead(Player victim) {
         ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-        if (skullMeta != null) {
-            skullMeta.setOwningPlayer(victim);
-            skullMeta.setMaxStackSize(1);
-        }
+        skullMeta.setOwningPlayer(victim);
+        skullMeta.setMaxStackSize(1);
         skull.setItemMeta(skullMeta);
         victim.getWorld().dropItem(victim.getLocation(), skull);
     }

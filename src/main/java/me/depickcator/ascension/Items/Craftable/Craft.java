@@ -21,6 +21,11 @@ public abstract class Craft {
         result = initResult();
         recipe = initRecipe();
     }
+
+    protected Craft(int cost, int maxCrafts, String displayName, String key, boolean isWeapon) {
+        COST = cost; MAX_CRAFTS = maxCrafts; DISPLAY_NAME = displayName; KEY = key;
+        this.plugin = Ascension.getInstance();
+    }
     
     protected Craft(String displayName, String key) {
         COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;

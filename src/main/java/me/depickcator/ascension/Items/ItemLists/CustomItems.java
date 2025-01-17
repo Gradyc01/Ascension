@@ -25,6 +25,7 @@ public class CustomItems {
     private void setItems() {
         //Equipment
         items.addAll(getEquipment());
+        items.add(ApprenticeHelmet.getInstance().getResult());
 
         //Combat
         items.add(new ItemStack(Material.PLAYER_HEAD));
@@ -47,6 +48,7 @@ public class CustomItems {
         items.add(PhilosopherPickaxe.getInstance().getResult());
         items.add(VorpalSword.getInstance().getResult());
         items.add(KingsRod.getInstance().getResult());
+        items.add(DragonSword.getInstance().getResult());
 
         //Potions
         items.add(PotionOfVelocity.getInstance().getResult());

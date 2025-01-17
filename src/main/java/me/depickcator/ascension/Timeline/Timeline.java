@@ -43,11 +43,7 @@ public abstract class Timeline {
         keepRunning = false;
         MINUTES = STARTING_MINUTES;
         nextBigEvent = initNextBigEvents();
-//        nextBigEvent = new ArrayList<>(List.of(
-//                new MutablePair<>("Grace Period Ends", 20),
-//                new MutablePair<>("Feast", 80),
-//                new MutablePair<>("Final Ascension", STARTING_MINUTES)
-//        ));
+        scavenger = null;
         removeAscensionElements();
         mapItems = new MapItems();
         plugin.getSettingsUI().

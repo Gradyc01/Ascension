@@ -1,12 +1,12 @@
-package me.depickcator.ascension.testingCommands;
+package me.depickcator.ascension.commands;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
-import me.depickcator.ascension.Settings.Presets.Brawl;
-import me.depickcator.ascension.Settings.Presets.Quickplay;
-import me.depickcator.ascension.Settings.Presets.Standard;
+import me.depickcator.ascension.Settings.Presets.*;
 import me.depickcator.ascension.Settings.SettingObserver;
+import me.depickcator.ascension.Settings.GUIs.SettingsGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,14 +29,19 @@ public class SetSetting implements CommandExecutor, TabCompleter {
         if (!(commandSender instanceof Player)) return false;
         Player p = ((Player) commandSender).getPlayer();
         PlayerData playerData = PlayerUtil.getPlayerData(p);
-        if (playerData == null) return false;
+        if (playerData == null || !Ascension.getInstance().getGameState().checkState(GameStates.LOBBY_NORMAL)) return false;
 
-        if (strings.length != 1) return false;
+        if (strings.length != 1) {
+            new SettingsGUI(playerData);
+            return true;
+        }
         String mode = strings[0];
         switch (mode.toLowerCase()) {
             case "standard" -> settingUI.setSettings(new Standard());
             case "quickplay" -> settingUI.setSettings(new Quickplay());
             case "brawl" -> settingUI.setSettings(new Brawl());
+            case "instant" -> settingUI.setSettings(new InstantAscension());
+            case "testing" -> settingUI.setSettings(new Testing());
         }
         return false;
     }
@@ -46,7 +51,9 @@ public class SetSetting implements CommandExecutor, TabCompleter {
         return List.of(
                 "standard",
                 "quickplay",
-                "brawl"
+                "brawl",
+                "testing",
+                "instant"
         );
     }
 }

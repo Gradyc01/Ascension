@@ -123,6 +123,7 @@ public class MediumItems {
         items.add(new ItemStack(Material.BLAZE_ROD));
         items.add(new ItemStack(Material.SOUL_LANTERN));
         items.add(new ItemStack(Material.CRYING_OBSIDIAN));
+        items.add(new ItemStack(Material.OBSIDIAN));
         items.add(new ItemStack(Material.RABBIT_FOOT));
 
         items.add(new ItemStack(Material.CRAFTER));

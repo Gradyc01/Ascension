@@ -13,6 +13,8 @@ import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.SettingObserver;
 import me.depickcator.ascension.Teams.TeamCommand;
 import me.depickcator.ascension.commands.Backpack;
+import me.depickcator.ascension.commands.Info;
+import me.depickcator.ascension.commands.SetSetting;
 import me.depickcator.ascension.commands.Shout;
 import me.depickcator.ascension.listeners.*;
 import me.depickcator.ascension.MainMenuUI.BingoBoard.BingoData;
@@ -87,6 +89,8 @@ public final class Ascension extends JavaPlugin {
         getCommand("game").setExecutor(new GameCommand());
         getCommand("changeBingoScore").setExecutor(new changeBingoScore());
         getCommand("openmenu").setExecutor(new mainMenuCommands());
+
+        getCommand("info").setExecutor(new Info());
 
         TeamCommand teamCommand = new TeamCommand();
         getCommand("party").setExecutor(teamCommand);

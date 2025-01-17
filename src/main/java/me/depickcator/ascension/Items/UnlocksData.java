@@ -71,7 +71,8 @@ public class UnlocksData {
                 Backpack.getInstance(),
                 FlintShovel.getInstance(),
                 QuickBow.getInstance(),
-                VorpalSword.getInstance()
+                VorpalSword.getInstance(),
+                DustOfLight.getInstance()
         ));
     }
 
@@ -85,6 +86,7 @@ public class UnlocksData {
                 EnlighteningPack.getInstance(),
                 LightApple.getInstance(),
                 GoldenHead.getInstance(),
+                ApprenticeHelmet.getInstance(),
                 BookOfProjectileProtection.getInstance(),
                 BookOfProtection.getInstance(),
                 BookOfPower.getInstance(),
@@ -103,6 +105,7 @@ public class UnlocksData {
                 Nectar.getInstance(),
                 PotionOfVelocity.getInstance(),
                 BookOfThoth.getInstance(),
+                DragonSword.getInstance(),
                 Cornucopia.getInstance(),
                 PandoraBox.getInstance()
         ));

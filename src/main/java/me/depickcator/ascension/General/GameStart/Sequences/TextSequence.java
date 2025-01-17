@@ -45,7 +45,11 @@ public class TextSequence extends GameStartSequence {
                 Component text = gameTexts.getFirst();
                 TextUtil.broadcastMessage(text);
                 gameTexts.removeFirst();
-                if (gameTexts.isEmpty()) SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 100, 0);
+                if (gameTexts.isEmpty()) {
+                    SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 100, 0);
+                } else {
+                    SoundUtil.broadcastSound(Sound.UI_BUTTON_CLICK, 100, 1);
+                }
             }
         }.runTaskTimer(Ascension.getInstance(), 0, seconds * 20L);
     }

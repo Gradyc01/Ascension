@@ -39,7 +39,8 @@ public interface Vanilla {
         List<Component> lore = new ArrayList<>();
         lore.add(TextUtil.makeText("", TextUtil.GRAY));
         lore.add(TextUtil.makeText("When in Main Hand:", TextUtil.GRAY));
-        lore.add(TextUtil.makeText(" " + ((int) attackDamage) + " Attack Damage", TextUtil.DARK_GREEN));
+//        lore.add(TextUtil.makeText(" " + ((int) attackDamage) + " Attack Damage", TextUtil.DARK_GREEN));
+        lore.add(TextUtil.makeText(" " + Math.round(attackDamage * 10) / 10.0 + " Attack Damage", TextUtil.DARK_GREEN));
         lore.add(TextUtil.makeText(" " + Math.round((4 + attackSpeed) * 10) / 10.0 + " Attack Speed", TextUtil.DARK_GREEN));
         int critDamage = KEY.contains("axe") ? 200 : 150;
         lore.add(TextUtil.makeText(" " + critDamage + "% Crit Damage", TextUtil.DARK_GREEN));

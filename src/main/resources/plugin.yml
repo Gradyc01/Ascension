@@ -17,11 +17,14 @@ commands:
     description: queue
   printWorldInfo:
     description: prints the world information
-  settings:
-    description: changes settings of the game
   bp:
     description: opens the team backpack
+  info:
+    description: reveals the info of the game settings
 
+  settings:
+    description: changes settings of the game
+    permission: ascension.settings
   game:
     description: Allows to access the main game states
     permission: ascension.game

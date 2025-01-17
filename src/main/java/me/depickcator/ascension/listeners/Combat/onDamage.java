@@ -8,6 +8,7 @@ import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.LivingEntity;
@@ -38,7 +39,7 @@ public class onDamage extends PlayerCombat{
 
         if (!(event.getEntity() instanceof Player)) return;
         Player victim = (Player) event.getEntity();
-//        playerDamagedEffects(event, victim);
+        playerDamagedEffects(event, victim);
         Pair<Player, Boolean> damageData = setDamageMetadata(event, victim);
         if (damageData == null) return;
         Player attacker = damageData.getLeft();
@@ -47,7 +48,6 @@ public class onDamage extends PlayerCombat{
             event.setCancelled(true);
             return;
         }
-        playerDamagedEffects(event, victim);
 
         //TODO: Remove later too lazy to make it a class
         if (equalItems(attacker.getInventory().getItem(EquipmentSlot.HEAD), Exodus.getInstance().getResult())) {
@@ -115,7 +115,7 @@ public class onDamage extends PlayerCombat{
         ItemStack weapon = attacker.getInventory().getItemInMainHand();
 
 //            if ()) {
-        double baseDamage = getDamageValue(weapon.getType());
+        double baseDamage = /*getDamageValue(weapon.getType());*/attacker.getAttribute(Attribute.ATTACK_DAMAGE).getValue();
         double cooldownMultiplier = attacker.getCooledAttackStrength(0);
         double criticalMultiplier = event.isCritical() ? (isAnAxe(weapon) ? 2.0 : 1.5) : 1;
         double effectMultiplier = 1 + 0.2 * effectMultiplier(attacker);
