@@ -5,7 +5,7 @@ import me.depickcator.ascension.Timeline.Timelines.StandardTimeline;
 
 public class Standard extends Settings {
     public Standard() {
-        super("Standard", 3000, 25, new StandardTimeline());
+        super("Standard", 2500, 25, new StandardTimeline());
     }
 
 }

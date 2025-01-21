@@ -32,10 +32,10 @@ public class Cow implements LootTableChanger, EntityLootTable {
 
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
-            int leatherCount = 1 + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int leatherCount = (int) (1 + calculateLootingBonus(r, lootingLevel, 0, 1));
             e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.LEATHER, leatherCount));
 
-            int beefCount = calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int beefCount = (int) (calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1));
 
             if (PlayerUtil.getPlayerData(p).getPlayerStats().isFoodDrops()) {
                 e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.BEEF, beefCount));

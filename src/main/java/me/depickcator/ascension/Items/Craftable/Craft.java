@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Items.Craftable;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
@@ -50,6 +52,11 @@ public abstract class Craft {
             result = initResult();
             recipe = initRecipe();
         }
+    }
+
+    public boolean uponCrafted(CraftItemEvent e, Player p) {
+        //Empty on purpose
+        return true;
     }
 
     protected abstract Recipe initRecipe();

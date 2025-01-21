@@ -30,7 +30,7 @@ public class GoldPack extends Craft {
 
     @Override
     protected ItemStack initResult() {
-        return new ItemStack(Material.GOLD_INGOT, 10);
+        return new ItemStack(Material.GOLD_INGOT, 12);
     }
 
     public static GoldPack getInstance() {

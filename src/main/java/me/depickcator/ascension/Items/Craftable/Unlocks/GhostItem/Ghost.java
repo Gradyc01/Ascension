@@ -34,10 +34,10 @@ public class Ghost extends Craft implements ItemClick {
 
 
         recipe.shape("ADA", "ABA", "ACA");
-        recipe.setIngredient('A', Material.SPIDER_EYE);
+        recipe.setIngredient('A', Material.GOLD_INGOT);
         recipe.setIngredient('B', Material.NETHER_STAR);
         recipe.setIngredient('C', Material.EMERALD);
-        recipe.setIngredient('D', Material.BROWN_MUSHROOM);
+        recipe.setIngredient('D', Material.FERMENTED_SPIDER_EYE);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

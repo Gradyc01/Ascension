@@ -41,7 +41,7 @@ public class Sheep implements LootTableChanger, EntityLootTable {
                 e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(woolMaterial, 1));
             }
 
-            int rawMuttonCount = calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int rawMuttonCount = (int) (calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1));
             if (PlayerUtil.getPlayerData(p).getPlayerStats().isFoodDrops()) {
                 e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.MUTTON, rawMuttonCount));
             }

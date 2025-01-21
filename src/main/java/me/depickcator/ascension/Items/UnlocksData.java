@@ -87,6 +87,7 @@ public class UnlocksData {
                 LightApple.getInstance(),
                 GoldenHead.getInstance(),
                 ApprenticeHelmet.getInstance(),
+                Obsidian.getInstance(),
                 BookOfProjectileProtection.getInstance(),
                 BookOfProtection.getInstance(),
                 BookOfPower.getInstance(),
@@ -139,7 +140,8 @@ public class UnlocksData {
                 Exodus.getInstance(),
                 WingsOfIcarus.getInstance(),
                 Panacea.getInstance(),
-                TabletsOfDestiny.getInstance()
+                TabletsOfDestiny.getInstance(),
+                Daredevil.getInstance()
         ));
     }
 

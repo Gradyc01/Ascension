@@ -31,7 +31,7 @@ public class Horse implements LootTableChanger, EntityLootTable {
 
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
-            int leatherCount = calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int leatherCount = (int) (calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1));
             e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.LEATHER, leatherCount));
 
         } catch (Exception ignored) {

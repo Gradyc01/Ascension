@@ -61,13 +61,7 @@ public class EasyItems {
         addItem(new ItemStack(Material.COMPOSTER));
 
         //Crafting Blocks
-        addItem(new ItemStack(Material.SMOKER));
-        addItem(new ItemStack(Material.BLAST_FURNACE));
-        addItem(new ItemStack(Material.GRINDSTONE));
-        addItem(new ItemStack(Material.LOOM));
-        addItem(new ItemStack(Material.SMITHING_TABLE));
-        addItem(new ItemStack(Material.FLETCHING_TABLE));
-        addItem(new ItemStack(Material.STONECUTTER));
+        addItem(getRandomCraftTable());
 
         addItem(getRandomGlass());
         addItem(getRandomBanner());
@@ -81,6 +75,21 @@ public class EasyItems {
 
     public ArrayList<ItemStack> getItems() {
         return items;
+    }
+
+    private ItemStack getRandomCraftTable() {
+        ArrayList<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Material.SMOKER));
+        items.add(new ItemStack(Material.BLAST_FURNACE));
+        items.add(new ItemStack(Material.GRINDSTONE));
+        items.add(new ItemStack(Material.LOOM));
+        items.add(new ItemStack(Material.SMITHING_TABLE));
+        items.add(new ItemStack(Material.FLETCHING_TABLE));
+        items.add(new ItemStack(Material.STONECUTTER));
+
+        int pick = rand.nextInt(items.size());
+
+        return items.get(pick);
     }
 
     private ItemStack getRandomGlass() {

@@ -6,6 +6,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.depickcator.ascension.Ascension;
@@ -22,11 +23,13 @@ public class AscensionKey extends Craft {
     @Override
     protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape("AAA", "ACB", "BBB");
-        recipe.setIngredient('A', Material.EMERALD);
-        recipe.setIngredient('B', Material.DIAMOND);
-        recipe.setIngredient('C', Material.NETHER_STAR);
+
+        ShapelessRecipe recipe = new ShapelessRecipe(key, result);
+        recipe.addIngredient(Material.DIAMOND);
+        recipe.addIngredient(Material.DIAMOND);
+        recipe.addIngredient(Material.NETHER_STAR);
+        recipe.addIngredient(Material.EMERALD);
+        recipe.addIngredient(Material.EMERALD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

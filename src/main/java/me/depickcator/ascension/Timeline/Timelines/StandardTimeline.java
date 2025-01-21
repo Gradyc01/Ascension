@@ -15,14 +15,14 @@ import java.util.List;
 public class StandardTimeline extends Timeline {
 
     public StandardTimeline() {
-        super(120);
+        super(110);
     }
 
     @Override
     protected void checkForMidGameEvents() {
         switch (getTimePassed()) {
             case 3 -> {
-                setScavenger(new Scavenger(500));
+                setScavenger(new Scavenger(350));
                 getScavenger().announceTrades();
             }
             case 20 -> {
@@ -31,16 +31,16 @@ public class StandardTimeline extends Timeline {
             case 25 -> {
                 setAscensionEvent(new AscensionEvent(500));
             }
-            case 35, 65, 85, 112 -> {
-                new CarePackage(1000);
+            case 30, 55, 75, 90 -> {
+                new CarePackage(500);
             }
-            case 45, 95 -> {
+            case 40, 82 -> {
                 getScavenger().announceSpawnLocation();
             }
-            case 50, 100 -> {
+            case 45, 87 -> {
                 getScavenger().spawnInScavenger();
             }
-            case 80 -> {
+            case 70 -> {
                 new Feast();
             }
 
@@ -51,7 +51,7 @@ public class StandardTimeline extends Timeline {
     protected List<Pair<String, Integer>> initNextBigEvents() {
         return new ArrayList<>(List.of(
                 new MutablePair<>("Grace Period Ends", 20),
-                new MutablePair<>("Feast", 80),
+                new MutablePair<>("Feast", 70),
                 new MutablePair<>("Final Ascension", getStartingMinutes())
         ));
     }

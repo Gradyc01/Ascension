@@ -57,16 +57,17 @@ public class PlayerJoinLeave implements Listener {
                 return;
             }
             default -> {
-                Player player = event.getPlayer();
-                PlayerData playerData = PlayerUtil.getPlayerData(player);
-                if (playerData.checkState(PlayerData.STATE_SPECTATING)) {
-                    event.quitMessage(TextUtil.makeText(""));
-                    return; //TODO: Add this in later? and test obv
-                }
-                PlayerDeath.getInstance().setPlayerSpectating(playerData);
-                playerData.getPlayerTeam().getTeam().updateState();
-                event.quitMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
-                        .append(TextUtil.makeText(" has disconnected and has been slain", TextUtil.RED)));
+//                Player player = event.getPlayer();
+//                PlayerData playerData = PlayerUtil.getPlayerData(player);
+//                if (playerData.checkState(PlayerData.STATE_SPECTATING)) {
+//                    event.quitMessage(TextUtil.makeText(""));
+//                    return; //TODO: Add this in later? and test obv
+//                }
+//                PlayerDeath.getInstance().setPlayerSpectating(playerData);
+//                playerData.getPlayerTeam().getTeam().updateState();
+//                event.quitMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
+//                        .append(TextUtil.makeText(" has disconnected and has been slain", TextUtil.RED)));
+                onPlayerLeaveDuringGame(event);
             }
         }
     }
@@ -99,6 +100,19 @@ public class PlayerJoinLeave implements Listener {
         Location spawn = Ascension.getSpawn();
         player.teleport(new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102, spawn.getZ()));
         PlayerDeath.getInstance().setPlayerSpectating(playerData);
+    }
+
+    private void onPlayerLeaveDuringGame(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        PlayerData playerData = PlayerUtil.getPlayerData(player);
+        if (playerData.checkState(PlayerData.STATE_SPECTATING)) {
+            event.quitMessage(TextUtil.makeText(""));
+            return; //TODO: Add this in later? and test obv
+        }
+        PlayerDeath.getInstance().setPlayerSpectating(playerData);
+        playerData.getPlayerTeam().getTeam().updateState();
+        event.quitMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
+                .append(TextUtil.makeText(" has disconnected and has been slain", TextUtil.RED)));
     }
 
     private void onPlayerLeaveLobby(PlayerQuitEvent event) {

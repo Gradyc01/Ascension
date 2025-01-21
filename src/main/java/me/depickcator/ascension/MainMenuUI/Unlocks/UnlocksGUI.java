@@ -33,8 +33,25 @@ public class UnlocksGUI extends AscensionGUI {
         inventory.setItem(48, goBackItem());
         inventory.setItem(50, explainerItem());
         if (pageNumber != 5) inventory.setItem(53, nextPageItem());
-        if (pageNumber != 1) inventory.setItem(45, previousPageItem());
+        if (pageNumber != 1) {
+            inventory.setItem(45, previousPageItem());
+        } else {
+            inventory.setItem(45, initInfoItem());
+        }
+
         playerHeadButton(49);
+    }
+
+    private ItemStack initInfoItem() {
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText("Gather Souls to be able to purchase Unlocks.", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("Each Unlock has a max use count and a associated Tier.", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("In order to unlock higher tiered Unlocks you must", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("purchase more unlocks from the tier below to fill up", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("the red surrounding till its green", TextUtil.DARK_PURPLE)
+        ));
+        Component title = TextUtil.makeText("Information", TextUtil.RED);
+        return initExplainerItem(Material.REDSTONE_TORCH, lore, title);
     }
 
     private void setPageTabs() {

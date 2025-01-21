@@ -26,7 +26,7 @@ public class WeaverSilk extends Craft {
     protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape("ABA", "ADA", "ACA");
+        recipe.shape("BAA", "ADA", "AAC");
         recipe.setIngredient('A', Material.COBWEB);
         recipe.setIngredient('B', Material.FERMENTED_SPIDER_EYE);
         recipe.setIngredient('C', Material.NETHER_STAR);

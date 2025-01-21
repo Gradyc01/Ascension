@@ -32,10 +32,10 @@ public class Chicken implements LootTableChanger, EntityLootTable {
 
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
-            int featherCount = calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int featherCount = (int) (calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0.5, 1));
             e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.FEATHER, featherCount));
 
-            int rawChickenCount = calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int rawChickenCount = (int) (calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0.5, 1));
             if (PlayerUtil.getPlayerData(p).getPlayerStats().isFoodDrops()) {
                 e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.CHICKEN, rawChickenCount));
             }

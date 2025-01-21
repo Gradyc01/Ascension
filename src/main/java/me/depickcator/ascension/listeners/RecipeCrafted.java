@@ -1,5 +1,7 @@
 package me.depickcator.ascension.listeners;
 
+import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
@@ -62,6 +64,10 @@ public class RecipeCrafted implements EventListener, Listener {
             return;
         }
         Player player = (Player) event.getWhoClicked();
+        if (event.isShiftClick() && player.getInventory().firstEmpty() == -1) {
+            event.setCancelled(true);
+            return;
+        }
         PlayerUnlocks playerUnlocks = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks();
 
         int currentCrafts = getCurrentCrafts(playerUnlocks, recipeKey);
@@ -71,8 +77,7 @@ public class RecipeCrafted implements EventListener, Listener {
 
         if (currentCrafts >= UnlockUtil.getMaxCrafts(recipeKey)) {
             event.getInventory().setResult(null);
-
-            player.sendMessage(Component.text("You have reached the crafting limit for this item!").color(TextUtil.RED));
+            player.sendMessage(TextUtil.makeText("You have reached the crafting limit for this item!", TextUtil.RED));
             return;
         }
 
@@ -83,8 +88,16 @@ public class RecipeCrafted implements EventListener, Listener {
             event.setCancelled(true);
             return;
         }
+        String displayName = UnlockUtil.getDisplayName(recipeKey);
+        Craft c = Ascension.getInstance().getUnlocksData().findUnlock(displayName).getLeft();
+
+        if (!c.uponCrafted(event, player)) {
+            event.setCancelled(true);
+            return;
+        };
+
         Component text1 = TextUtil.makeText("You crafted ", TextUtil.AQUA);
-        Component text2 = TextUtil.makeText(UnlockUtil.getDisplayName(recipeKey), TextUtil.GOLD);
+        Component text2 = TextUtil.makeText(displayName, TextUtil.GOLD);
         Component craftText = TextUtil.makeText(" (" + playerUnlocks.getUnlockCount(recipeKey)  + "/" + UnlockUtil.getMaxCrafts(recipeKey) + ")", TextUtil.AQUA);
         player.sendMessage(text1.append(text2).append(craftText));
     }
@@ -100,18 +113,6 @@ public class RecipeCrafted implements EventListener, Listener {
     }
 
     private int calculateCraftAmount(PrepareItemCraftEvent event) {
-//        double totalItems = 0;
-//        double resultCount = 9;
-//        for (ItemStack item : event.getInventory().getMatrix()) {
-//            if (item != null && item.getType() != Material.AIR) {
-//                totalItems += item.getAmount();
-//            } else {
-//                resultCount--;
-//            }
-//        }
-
-//        plugin.getServer().broadcast(Component.text(totalItems / resultCount));
-//        return (int) Math.ceil(totalItems / resultCount);
         int maxCraftableAmount = Integer.MAX_VALUE;
 
         // Calculate the maximum possible crafts based on the items in the crafting grid

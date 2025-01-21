@@ -31,7 +31,7 @@ public class Turtle implements LootTableChanger, EntityLootTable {
 
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
-            int scuteCount = 2 + calculateLootingBonus(r, lootingLevel, 0, 3);
+            int scuteCount = (int) (2 + calculateLootingBonus(r, lootingLevel, 0, 3));
             e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.TURTLE_SCUTE, scuteCount));
         } catch (Exception ignored) {
             return false;

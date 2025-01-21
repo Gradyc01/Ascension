@@ -1,6 +1,8 @@
 package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
+import me.depickcator.ascension.Lobby.SpecialItems;
+import me.depickcator.ascension.Lobby.WelcomeBoard;
 import me.depickcator.ascension.Utility.ArmorStandUtil;
 import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
@@ -18,7 +20,7 @@ public class LoadGame implements Runnable {
     private ArmorStand spawnCoordsArmorStand;
     public final static String spawnCoordsArmorStandName = "SpawnCoords";
     private Location spawnCoordsLocation;
-    public LoadGame(Player player, Location loc) {
+    public LoadGame(Location loc) {
         this.plugin = Ascension.getInstance();
         // this.player = player;
         this.spawnCoordsLocation = loc;
@@ -29,6 +31,8 @@ public class LoadGame implements Runnable {
 
     private void deletePreviousIterations() {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=minecraft:armor_stand, name=\"SpawnCoords\"]");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=minecraft:text_display]");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=minecraft:item_display]");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[tag=lobby]");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"forceload remove all");
     }
@@ -100,5 +104,7 @@ public class LoadGame implements Runnable {
 
     private void buildLobby() {
         new BuildLobby(spawnCoordsArmorStand);
+        new WelcomeBoard();
+        new SpecialItems();
     }
 }

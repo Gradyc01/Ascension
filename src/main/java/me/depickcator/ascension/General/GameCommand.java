@@ -20,39 +20,52 @@ public class GameCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (!(commandSender instanceof Player)) {
-            return false;
-        }
+//        if (!(commandSender instanceof Player)) {
+//            return false;
+//        }
         if (strings.length == 2 || strings.length > 4) return false;
 
-        Player p = ((Player) commandSender).getPlayer();
-        try {
-            assert p != null;
-        } catch (Exception e) {
-            return false;
+        Player p = null;
+        boolean playerSent = false;
+        if (commandSender instanceof Player) {
+            p = (Player) commandSender;
+            playerSent = true;
         }
+//        Player p = ((Player) commandSender).getPlayer();
+//        try {
+//            assert p != null;
+//        } catch (Exception e) {
+//            return false;
+//        }
 
         switch (strings[0].toLowerCase()) {
             case "start" -> {
-                forceStartGame(p);
+                forceStartGame();
             }
             case "reset" -> {
-                resetGame(p);
+                resetGame();
             }
             case "load" -> {
                 if (strings.length == 4) {
-                    loadGame(p, Integer.parseInt(strings[1]), Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));
+                    loadGame(Integer.parseInt(strings[1]), Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));
                 } else if (strings.length == 3) {
                     int x = Integer.parseInt(strings[1]);
                     int z = Integer.parseInt(strings[2]);
-                    loadGame(p, x, p.getWorld().getHighestBlockYAt(x, z), z);
+                    loadGame(x, Ascension.getInstance().getWorld().getHighestBlockYAt(x, z), z);
                 } else {
-                    loadGame(p, p.getLocation());
+                    if (playerSent) {
+                        loadGame(p.getLocation());
+                    }
                 }
 
             }
             default -> {
-                TextUtil.errorMessage(p, "The command is misused");
+                if (playerSent) {
+                    TextUtil.errorMessage(p, "The command is misused");
+                } else {
+                    TextUtil.debugText("The command is misused");
+                }
+
                 return false;
             }
         }
@@ -62,27 +75,29 @@ public class GameCommand implements CommandExecutor {
 
     }
 
-    private void resetGame(Player p) {
+    private void resetGame() {
         new ResetGame();
     }
 
-    private void loadGame(Player p, int x, int y, int z) {
-        Location loc = new Location(p.getWorld(), x + 0.5, y, z + 0.5);
-        loadGame(p, loc);
+    private void loadGame(int x, int y, int z) {
+        Location loc = new Location(Ascension.getInstance().getWorld(), x + 0.5, y, z + 0.5);
+        loadGame(loc);
     }
 
-    private void loadGame(Player p, Location loc) {
-        new LoadGame(p, loc);
-        p.sendMessage(TextUtil.makeText(
-                "Successfully loaded game at ("
+    private void loadGame(Location loc) {
+        new LoadGame(loc);
+        String text = "Successfully loaded game at ("
                 + loc.getBlockX() + ", "
                 + loc.getBlockY() + ", "
-                + loc.getBlockZ() + ")", TextUtil.GRAY));
+                + loc.getBlockZ() + ")";
+//        p.sendMessage(TextUtil.makeText(
+//                text, TextUtil.GRAY));
+        TextUtil.debugText(text);
     }
 
-    private void forceStartGame(Player p) {
+    private void forceStartGame() {
         if (ab.getGameState().checkState(GameStates.LOBBY_NORMAL)) {
-            p.sendMessage("Successfully force started game!");
+            TextUtil.debugText("Successfully force started game!");
             new StartGame();
         }
     }

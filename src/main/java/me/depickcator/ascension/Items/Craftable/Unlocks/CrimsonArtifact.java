@@ -20,9 +20,9 @@ public class CrimsonArtifact extends Craft {
     protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape("DAD", "DBD", "CCC");
+        recipe.shape(" A ", "DBD", "CCC");
         recipe.setIngredient('A', Material.NETHER_STAR);
-        recipe.setIngredient('B', Material.BLACK_BANNER);
+        recipe.setIngredient('B', Material.BLACK_WOOL);
         recipe.setIngredient('C', ShardOfTheFallen.result());
         recipe.setIngredient('D', Material.DIAMOND);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);

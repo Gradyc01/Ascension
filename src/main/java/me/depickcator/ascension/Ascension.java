@@ -207,6 +207,7 @@ public final class Ascension extends JavaPlugin {
     }
 
     public void setLocationCheck(LocationCheck locationCheck) {
+        if (this.locationCheck != null) this.locationCheck.cancelCheck();
         this.locationCheck = locationCheck;
     }
 }

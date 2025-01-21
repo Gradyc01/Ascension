@@ -35,11 +35,13 @@ public interface EntityLootTable {
         return 0;
     }
 
-    default int calculateUniformRandom(Random r, int min, int max) {
-        return (int) (min + (max - min) * r.nextDouble());
+    default double calculateUniformRandom(Random r, int min, int max) {
+//        return (int) (min + (max - min) * r.nextDouble());
+        return r.nextDouble(min, max + 1);
+//        return r.nextInt(min, max + 1);
     }
 
-    default int calculateLootingBonus(Random r, int lootingLevel, double min, double max) {
+    default double calculateLootingBonus(Random r, int lootingLevel, double min, double max) {
         if (lootingLevel > 0) {
             return (int) (min + (max - min) * r.nextDouble() * lootingLevel);
         }

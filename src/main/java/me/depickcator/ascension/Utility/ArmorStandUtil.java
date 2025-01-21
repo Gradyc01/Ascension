@@ -2,10 +2,12 @@ package me.depickcator.ascension.Utility;
 
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.*;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 public class ArmorStandUtil {
 
@@ -22,4 +24,39 @@ public class ArmorStandUtil {
 //        armorStand.setCustomNameVisible(true); //TODO Remove After Completion
         return armorStand;
     }
+
+
+    public static TextDisplay makeTextDisplay(Location loc, List<Component> text, float pitch, float yaw, int width) {
+        TextDisplay e = (TextDisplay) loc.getWorld().spawnEntity(loc, EntityType.TEXT_DISPLAY);
+        e.setGravity(false);
+        e.setCustomNameVisible(false);
+        e.setInvulnerable(true);
+        e.setSilent(true);
+        Component t = TextUtil.makeText("");
+        for (Component c : text) {
+            t = t.append(TextUtil.makeText("\n").append(c));
+        }
+//        e.setDisplayWidth(width);
+        e.setAlignment(TextDisplay.TextAlignment.CENTER);
+        e.setRotation(pitch, yaw);
+        e.setDefaultBackground(false);
+        e.setLineWidth(width);
+        e.text(t);
+
+
+        return e;
+    }
+
+    public static ItemDisplay makeItemDisplay(Location loc, ItemStack item, float yaw, int pitch, double size) {
+        ItemDisplay e = (ItemDisplay) loc.getWorld().spawnEntity(loc, EntityType.ITEM_DISPLAY);
+        e.setGravity(false);
+        e.setCustomNameVisible(false);
+        e.setInvulnerable(true);
+        e.setSilent(true);
+        e.setItemStack(item);
+        e.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
+        e.setRotation(pitch, yaw);
+        return e;
+    }
+
 }

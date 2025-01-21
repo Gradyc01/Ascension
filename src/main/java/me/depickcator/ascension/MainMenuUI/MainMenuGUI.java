@@ -22,6 +22,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.List;
+
 public class MainMenuGUI extends AscensionGUI {
 
     public MainMenuGUI(PlayerData playerData) {
@@ -33,7 +35,7 @@ public class MainMenuGUI extends AscensionGUI {
         inventory.setItem(30, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Skills"));
         inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
         inventory.setItem(32, makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));
-        inventory.setItem(20, makeMainMenuBoardButton(Material.CHEST, "Team Backpack"));
+        inventory.setItem(20, makeMainMenuBoardButton(Material.CHEST, "Team Backpack", "Grace Period Only!"));
         inventory.setItem(24, makeMainMenuBoardButton(Material.ANVIL, "Coming Soon..."));
         if (plugin.getGameState().inLobby())
             inventory.setItem(40, makeMainMenuBoardButton(Material.IRON_CHESTPLATE, "Kits"));
@@ -98,9 +100,23 @@ public class MainMenuGUI extends AscensionGUI {
     }
 
     private ItemStack makeMainMenuBoardButton(Material material, String name) {
+//        ItemStack button = new ItemStack(material);
+//        ItemMeta buttonMeta = button.getItemMeta();
+//        buttonMeta.displayName(TextUtil.makeText(name, TextUtil.AQUA));
+//        AttributeModifier buttonModifier = new AttributeModifier(NamespacedKey.minecraft("hide_main_menu"),
+//                2, AttributeModifier.Operation.ADD_NUMBER);
+//        buttonMeta.addAttributeModifier(Attribute.ATTACK_DAMAGE, buttonModifier);
+//        buttonMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+//        button.setItemMeta(buttonMeta);
+//        return button;
+        return makeMainMenuBoardButton(material, name, "");
+    }
+
+    private ItemStack makeMainMenuBoardButton(Material material, String name, String lore) {
         ItemStack button = new ItemStack(material);
         ItemMeta buttonMeta = button.getItemMeta();
         buttonMeta.displayName(TextUtil.makeText(name, TextUtil.AQUA));
+        if (!lore.isBlank()) buttonMeta.lore(List.of(TextUtil.makeText(lore, TextUtil.RED)));
         AttributeModifier buttonModifier = new AttributeModifier(NamespacedKey.minecraft("hide_main_menu"),
                 2, AttributeModifier.Operation.ADD_NUMBER);
         buttonMeta.addAttributeModifier(Attribute.ATTACK_DAMAGE, buttonModifier);

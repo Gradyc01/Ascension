@@ -32,13 +32,13 @@ public class QuickplayTimeline extends Timeline {
                 setScavenger(new Scavenger(300, scavInput, scavOutput));
                 getScavenger().announceTrades();
             }
-            case 10 -> {
+            case 15 -> {
                 new GracePeriodEnds();
             }
             case 11 -> {
                 setAscensionEvent(new AscensionEvent(200));
             }
-            case 15, 32, 45, 60  -> {
+            case 16, 32, 45, 60  -> {
                 new CarePackage(500);
             }
             case 22, 52 -> {
@@ -63,7 +63,7 @@ public class QuickplayTimeline extends Timeline {
     @Override
     protected List<Pair<String, Integer>> initNextBigEvents() {
         return new ArrayList<>(List.of(
-                new MutablePair<>("Grace Period Ends", 10),
+                new MutablePair<>("Grace Period Ends", 15),
                 new MutablePair<>("Feast", 40),
                 new MutablePair<>("Final Ascension", getStartingMinutes())
         ));

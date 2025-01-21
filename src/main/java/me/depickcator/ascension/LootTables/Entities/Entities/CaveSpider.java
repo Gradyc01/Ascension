@@ -31,11 +31,11 @@ public class CaveSpider implements LootTableChanger, EntityLootTable {
 
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
-            int stringCount = calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int stringCount = (int) (calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1));
             if (stringCount > 0) {
                 e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.STRING, stringCount));
             }
-            int spiderEyeCount = calculateUniformRandom(r, 0, 1) + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int spiderEyeCount = (int) (calculateUniformRandom(r, 1, 1) + calculateLootingBonus(r, lootingLevel, 0, 1));
             if (spiderEyeCount > 0) {
                 e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.SPIDER_EYE, spiderEyeCount));
             }

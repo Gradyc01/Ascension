@@ -31,7 +31,7 @@ public class Bee implements LootTableChanger, EntityLootTable {
 
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
-            int honeycombCount = 1 + calculateLootingBonus(r, lootingLevel, 0, 1);
+            int honeycombCount = (int) (1 + calculateLootingBonus(r, lootingLevel, 0, 1));
             e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.HONEYCOMB, honeycombCount));
         } catch (Exception ignored) {
             return false;

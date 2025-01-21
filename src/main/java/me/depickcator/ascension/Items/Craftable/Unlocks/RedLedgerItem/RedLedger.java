@@ -40,7 +40,7 @@ public class RedLedger extends Craft implements ItemClick {
                 Material.CREEPER_HEAD,
                 Material.PLAYER_HEAD);
 
-        recipe.shape("AAA", "BCD", "AAA");
+        recipe.shape(" A ", "BCD", " A ");
         recipe.setIngredient('A', Material.DIAMOND);
         recipe.setIngredient('B', Material.IRON_SWORD);
         recipe.setIngredient('C', Material.BOOK);

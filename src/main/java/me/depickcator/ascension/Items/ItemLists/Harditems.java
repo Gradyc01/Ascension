@@ -51,7 +51,7 @@ public class Harditems {
         items.add(new ItemStack(Material.POISONOUS_POTATO));
 
         items.add(new ItemStack(Material.LODESTONE));
-        items.add(new ItemStack(Material.SCULK_SENSOR));
+//        items.add(new ItemStack(Material.SCULK_SENSOR));
 
         items.add(new ItemStack(Material.NAUTILUS_SHELL));
         items.add(new ItemStack(Material.GOAT_HORN));
@@ -77,7 +77,7 @@ public class Harditems {
         items.add(new ItemStack(Material.WAXED_COPPER_GRATE)); //Change to a list later
         items.add(new ItemStack(Material.CONDUIT));
         items.add(new ItemStack(Material.HONEYCOMB_BLOCK));
-        items.add(new ItemStack(Material.TRIDENT)); //TODO: Maybe Change Later to Custom
+//        items.add(new ItemStack(Material.TRIDENT)); //TODO: Maybe Change Later to Custom
 
 
         if (locationCheck.isALocation(Structure.DESERT_PYRAMID)) items.add(getRandomHorseArmor());

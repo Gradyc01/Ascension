@@ -22,7 +22,7 @@ public class Dread extends Craft {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
 
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape("ACA", "ABA", "ADA");
+        recipe.shape(" C ", "ABA", " D ");
         recipe.setIngredient('A', Material.EMERALD);
         recipe.setIngredient('B', Material.NETHER_STAR);
         recipe.setIngredient('C', Material.PUMPKIN);

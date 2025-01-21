@@ -36,7 +36,7 @@ public class SoulArtifact extends Craft {
 
     @Override
     protected ItemStack initResult() {
-        return new ItemStack(Material.GHAST_TEAR, 1);
+        return new ItemStack(Material.GHAST_TEAR, 3);
     }
 
 }

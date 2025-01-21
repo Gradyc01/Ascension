@@ -26,7 +26,7 @@ import java.util.List;
 public class PandoraBox extends Craft implements ItemClick {
     private static PandoraBox instance;
     private PandoraBox() {
-        super(UnlocksData.COST_350, 3, "Pandora's Box", "pandora_box");
+        super(UnlocksData.COST_350, 4, "Pandora's Box", "pandora_box");
         registerItem();
     }
 

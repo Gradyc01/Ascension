@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Kits;
 
+import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
@@ -10,7 +11,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,10 @@ public class KitBookGUI extends AscensionGUI {
         super(playerData, (char) 3, TextUtil.makeText("Choose a Kit", TextUtil.AQUA), true);
         makeKitButtons();
         infoButton();
+        if (plugin.getGameState().inLobby()) {
+            inventory.setItem(22, getCloseButton());
+            inventory.setItem(21, goBackItem());
+        }
     }
 
     private void makeKitButtons() {
@@ -31,22 +35,14 @@ public class KitBookGUI extends AscensionGUI {
     }
 
     private void infoButton() {
-        ItemStack item = new ItemStack(Material.EMERALD);
-        ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText("      INFO", TextUtil.YELLOW, true, false));
-        meta.setCustomModelData(999999);
+        Component title = TextUtil.makeText("INFO", TextUtil.YELLOW, true, false);
+//
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText("[Left Click]", TextUtil.GOLD).append(TextUtil.makeText(" Pick Kit", TextUtil.GREEN)),
+                TextUtil.makeText("[Right Click]", TextUtil.GOLD).append(TextUtil.makeText(" View Kit", TextUtil.GREEN))
+        ));
 
-        List<Component> lore = new ArrayList<>();
-        Component leftClickText = TextUtil.makeText("[Left Click]", TextUtil.GOLD);
-        Component rightClickText = TextUtil.makeText("[Right Click]", TextUtil.GOLD);
-        Component leftClickExplanation = TextUtil.makeText(" Pick Kit", TextUtil.GREEN);
-        Component rightClickExplanation = TextUtil.makeText(" View Kit", TextUtil.GREEN);
-        lore.add(TextUtil.makeText("", TextUtil.YELLOW));;
-        lore.add(leftClickText.append(leftClickExplanation));;
-        lore.add(rightClickText.append(rightClickExplanation));;
-        meta.lore(lore);
-        item.setItemMeta(meta);
-        inventory.setItem(18, item);
+        inventory.setItem(18, initExplainerItem(Material.REDSTONE_TORCH, lore, title));
     }
 
 
@@ -56,6 +52,15 @@ public class KitBookGUI extends AscensionGUI {
             event.setCancelled(true);
             player.closeInventory();
             return;
+        }
+        if (plugin.getGameState().inLobby()) {
+            ItemStack item = event.getCurrentItem();
+            if (item.equals(getCloseButton())) {
+                event.setCancelled(true);
+                player.closeInventory();
+            } else if (item.equals(goBackItem())) {
+                new MainMenuGUI(playerData);
+            }
         }
         Kit kit = Kit.getKit(event.getCurrentItem());
         if (kit == null) return;

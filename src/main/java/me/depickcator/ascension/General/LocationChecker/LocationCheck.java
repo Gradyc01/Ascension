@@ -10,6 +10,7 @@ import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.structure.Structure;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.BiomeSearchResult;
 import org.bukkit.util.StructureSearchResult;
 
@@ -26,6 +27,7 @@ public class LocationCheck {
     private Pair<Integer, Integer> locationScore;
     private final int worldBorderSize;
     private boolean checkCompleted;
+    private BukkitTask task;
     public LocationCheck(Location spawn) {
         this.spawn = spawn;
         this.world = spawn.getWorld();
@@ -35,6 +37,11 @@ public class LocationCheck {
         worldBorderSize = Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize();
         checkCompleted = false;
         runLocations();
+    }
+
+    public void cancelCheck() {
+        task.cancel();
+        task = null;
     }
 
     public boolean isALocation(Biome... biome) {
@@ -117,7 +124,7 @@ public class LocationCheck {
 //        List<Pair<Biome, Integer>> biomes = initBiomes();
         List<LocationStorage> allChecks = new ArrayList<>(initStructures());
         allChecks.addAll(initBiomes());
-        new BukkitRunnable() {
+        task = new BukkitRunnable() {
             @Override
             public void run() {
                 //structures.isEmpty() && biomes.isEmpty()

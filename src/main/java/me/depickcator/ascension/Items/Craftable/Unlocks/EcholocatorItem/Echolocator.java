@@ -30,7 +30,7 @@ public class Echolocator extends Craft implements ItemClick {
     protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape("AAA", "CBD", "AAA");
+        recipe.shape("CAD", "ABA", "DAD");
         recipe.setIngredient('A', Material.EMERALD);
         recipe.setIngredient('B', Material.NETHER_STAR);
         recipe.setIngredient('C', Material.MAP);

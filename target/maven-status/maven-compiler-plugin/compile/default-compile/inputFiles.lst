@@ -46,6 +46,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\CubeConverter.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\CupidBow.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Daredevil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\DiamondPack.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\DragonArmor.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\DragonSword.java
@@ -94,6 +95,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftStar.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Nectar.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\NotchApple.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Obsidian.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Panacea.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\Hell.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\OverWorld.java
@@ -182,6 +184,10 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\liste
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerInteractListener.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerJoinLeave.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\RecipeCrafted.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\Boards.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCBoard.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\SpecialItems.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\WelcomeBoard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockLootTable.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockUtil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.java

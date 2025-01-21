@@ -35,6 +35,6 @@ public class IronPack extends Craft {
 
     @Override
     protected ItemStack initResult() {
-        return new ItemStack(Material.IRON_INGOT, 10);
+        return new ItemStack(Material.IRON_INGOT, 12);
     }
 }

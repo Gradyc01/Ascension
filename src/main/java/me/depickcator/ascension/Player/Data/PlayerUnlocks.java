@@ -22,7 +22,7 @@ public class PlayerUnlocks implements PlayerDataObservers {
     private Player player;
     private final PlayerData playerData;
     private final List<Integer> amountNeeded = new ArrayList<>(List.of(
-            0, 7, 7, 6, 5
+            0, 7, 6, 5, 4
 ));
     private final List<Integer> unlockTiers;
     private final List<Boolean> canUnlockTiers;

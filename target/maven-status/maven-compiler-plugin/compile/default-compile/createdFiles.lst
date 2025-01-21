@@ -40,6 +40,7 @@ me\depickcator\ascension\Timeline\Events\Feast\FeastSpecialChestLoot.class
 me\depickcator\ascension\Items\Craftable\Vanilla\StoneSword.class
 me\depickcator\ascension\Player\Data\Scoreboards\Boards.class
 me\depickcator\ascension\General\LocationChecker\LocationStorage.class
+me\depickcator\ascension\Lobby\NPCBoard.class
 me\depickcator\ascension\Interfaces\CustomChestLoot.class
 me\depickcator\ascension\Settings\BuildCustom\ScalarButtons.class
 me\depickcator\ascension\LootTables\Entities\Entities\Pig.class
@@ -48,6 +49,7 @@ me\depickcator\ascension\listeners\InventoryClose.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\DarkForest.class
 me\depickcator\ascension\Settings\BuildCustom\BuildCustom.class
 me\depickcator\ascension\LootTables\Entities\Entities\CreeperEntity.class
+me\depickcator\ascension\Lobby\Boards.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\OverWorld.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenAxe.class
 me\depickcator\ascension\General\GameStart\Sequences\SpreadPlayers.class
@@ -73,6 +75,7 @@ me\depickcator\ascension\testingCommands\setTimeline.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PhilosopherPickaxe.class
 me\depickcator\ascension\General\GameStart\StartGame$1.class
+me\depickcator\ascension\Items\Craftable\Unlocks\Daredevil.class
 me\depickcator\ascension\Teams\TeamUtil.class
 me\depickcator\ascension\Settings\Presets\Brawl.class
 me\depickcator\ascension\Settings\BuildCustom\Buttons\EasyItems.class
@@ -151,6 +154,7 @@ me\depickcator\ascension\Items\ItemLists\EasyItems.class
 me\depickcator\ascension\Settings\Settings.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\NetherFortress.class
 me\depickcator\ascension\Items\Craftable\Vanilla\IronAxe.class
+me\depickcator\ascension\Lobby\WelcomeBoard.class
 me\depickcator\ascension\LootTables\Entities\Enums\NetherMobs.class
 me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalItem\TeamPortalGUI.class
 me\depickcator\ascension\LootTables\LootTableChanger.class
@@ -203,6 +207,7 @@ me\depickcator\ascension\Kits\Kits\Kit.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\Dungeon.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\AncientCity.class
+me\depickcator\ascension\Lobby\SpecialItems.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\CherryGrove.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.class
 me\depickcator\ascension\LootTables\Entities\Entities\Bee.class
@@ -222,6 +227,7 @@ me\depickcator\ascension\Timeline\Timelines\QuickplayTimeline.class
 me\depickcator\ascension\General\GameCommand.class
 me\depickcator\ascension\Player\Data\PlayerUtil.class
 me\depickcator\ascension\Settings\BuildCustom\Buttons\HardItems.class
+me\depickcator\ascension\Items\Craftable\Unlocks\Obsidian.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent$1.class
 me\depickcator\ascension\Items\ItemLists\CustomItems.class
 me\depickcator\ascension\testingCommands\startEvents.class

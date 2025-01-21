@@ -76,7 +76,7 @@ public class GameStates {
 //                checkState(GAME_AFTER_GRACE) ||
 //                checkState(GAME_ASCENSION) ||
 //                checkState(GAME_FINAL_ASCENSION);
-        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_ENDING, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_FINAL_ASCENSION);
+        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_FINAL_ASCENSION, GAME_ENDING);
     }
 
     public boolean canNotPVP() {

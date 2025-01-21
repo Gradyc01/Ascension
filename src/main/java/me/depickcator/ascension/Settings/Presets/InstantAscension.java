@@ -5,6 +5,6 @@ import me.depickcator.ascension.Timeline.Timelines.StandardTimeline;
 
 public class InstantAscension extends Settings {
     public InstantAscension() {
-        super("Board Only", 3000, 25, new StandardTimeline(), 1);
+        super("Board Only", 2500, 25, new StandardTimeline(), 1);
     }
 }

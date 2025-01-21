@@ -41,13 +41,13 @@ public class SpiderEntity implements LootTableChanger, EntityLootTable, Superabl
             Random r = new Random();
             int lootingLevel = getLootingLevel(e.getEntity().getKiller());
             if (e.getEntityType() == EntityType.SPIDER) {
-                int stringCount = calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1);
+                int stringCount = (int) (calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0, 1));
                 if (stringCount > 0) {
                     e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.STRING, stringCount));
                 }
 
                 // Pool 2: Drop spider eye with looting effects
-                int spiderEyeCount = calculateUniformRandom(r, -1, 1) + calculateLootingBonus(r, lootingLevel, 0, 1);
+                int spiderEyeCount = (int) (calculateUniformRandom(r, 0, 1) + calculateLootingBonus(r, lootingLevel, 0, 1));
                 if (spiderEyeCount > 0) {
                     e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.SPIDER_EYE, spiderEyeCount));
                 }
