@@ -1,8 +1,8 @@
 package me.depickcator.ascension.Teams;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -31,8 +31,9 @@ public class TeamUtil {
 
     public static void createTeamsForEveryone() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            PlayerData playerData = Ascension.playerDataMap.get(p.getUniqueId());
+            PlayerData playerData = PlayerUtil.getPlayerData(p);
             if (playerData.getPlayerTeam().getTeam() == null) {
+                TextUtil.debugText("Created a brand new team for p");
                 playerData.getPlayerTeam().createOrGetTeam();
             }
         }

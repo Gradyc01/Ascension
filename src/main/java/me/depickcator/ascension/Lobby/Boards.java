@@ -11,6 +11,10 @@ public abstract class Boards {
         textDisplay = initTextDisplay();
     };
 
+    public Boards(boolean noTextDisplay) {
+        plugin = Ascension.getInstance();
+    };
+
     public TextDisplay getTextDisplay() {
         return textDisplay;
     }

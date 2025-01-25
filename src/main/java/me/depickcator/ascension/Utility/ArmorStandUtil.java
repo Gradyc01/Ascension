@@ -6,6 +6,7 @@ import org.bukkit.entity.*;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Transformation;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class ArmorStandUtil {
         e.setCustomNameVisible(false);
         e.setInvulnerable(true);
         e.setSilent(true);
+        e.setPersistent(true);
         Component t = TextUtil.makeText("");
         for (Component c : text) {
             t = t.append(TextUtil.makeText("\n").append(c));
@@ -53,6 +55,9 @@ public class ArmorStandUtil {
         e.setCustomNameVisible(false);
         e.setInvulnerable(true);
         e.setSilent(true);
+        Transformation t = e.getTransformation();
+        t.getScale().set(size);
+        e.setTransformation(t);
         e.setItemStack(item);
         e.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
         e.setRotation(pitch, yaw);

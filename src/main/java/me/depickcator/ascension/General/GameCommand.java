@@ -18,6 +18,7 @@ public class GameCommand implements CommandExecutor {
         this.ab = Ascension.getInstance();
     }
 
+    @SuppressWarnings("null")
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
 //        if (!(commandSender instanceof Player)) {

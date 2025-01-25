@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,7 +29,7 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (!(commandSender instanceof Player)) return false;
         Player p = ((Player) commandSender).getPlayer();
-        if (p == null || strings.length == 0 || strings.length > 2) return false;
+        if (p == null || strings.length == 0 || strings.length > 3) return false;
 
         String name = strings[1];
         p = Bukkit.getPlayer(strings[0]);
@@ -47,7 +48,16 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 for (Craft c : craft) {
                     if (c.getKey().equals(name)) {
 //                        p.getInventory().addItem(c.getResult());
-                        PlayerUtil.giveItem(p, c.getResult());
+                        ItemStack item = c.getResult();
+                        int count;
+                        if (strings.length == 2) {
+                            count = 1;
+                        } else {
+                            count = Integer.parseInt(strings[2]);
+                        }
+                        for (int i = 0; i < count; i++) {
+                            PlayerUtil.giveItem(p, item);
+                        }
                         p.sendMessage(TextUtil.makeText("Item Found!", TextUtil.DARK_GREEN));
                         return true;
                     }

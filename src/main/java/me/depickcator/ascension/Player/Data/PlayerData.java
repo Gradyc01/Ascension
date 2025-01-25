@@ -82,6 +82,7 @@ public class PlayerData {
         clearInventoryAndEffects();
         addLobbyPotionEffects();
         getMainMenuItem();
+        plugin.getLobby().getEventBoard().showDefaultBoard(this);
         Location loc = new Location(plugin.getWorld(), Ascension.getSpawn().getX(), Ascension.getSpawn().getY(), Ascension.getSpawn().getZ());
         loc.setY(loc.getBlockY() + 104);
         player.teleport(loc);

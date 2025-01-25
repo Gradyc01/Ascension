@@ -1,12 +1,13 @@
 package me.depickcator.ascension.Lobby;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
-import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
-import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
+import me.depickcator.ascension.Lobby.NPCs.ViewKits;
+import me.depickcator.ascension.Lobby.NPCs.ViewSettings;
+import me.depickcator.ascension.Lobby.NPCs.ViewSkills;
 import me.depickcator.ascension.Utility.ArmorStandUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.bukkit.Location;
 import org.bukkit.entity.TextDisplay;
 
@@ -20,17 +21,23 @@ public class NPCBoard extends Boards {
     @Override
     protected TextDisplay initTextDisplay() {
         List<Component> text = new ArrayList<>(List.of(
-                TextUtil.makeText("Menus", TextUtil.YELLOW, true, false)
-//                TextUtil.makeText("\n Items that can only be earned through different objectives", TextUtil.AQUA)
+                TextUtil.makeText("Menus", TextUtil.YELLOW, true, false),
+                TextUtil.makeText("\n[Right Click] ", TextUtil.GRAY).append(TextUtil.makeText("to view Menus"))
         ));
         Location spawn = Ascension.getSpawn();
-        Location loc = new Location(plugin.getWorld(), spawn.getX() , spawn.getY() + 105.4, spawn.getZ() - 18.45);
+        Location loc = new Location(plugin.getWorld(), spawn.getX() + 13.3 , spawn.getY() + 104.5, spawn.getZ() + 13.3);
 
-        return ArmorStandUtil.makeTextDisplay(loc, text, 0, 0, 450);
+        return ArmorStandUtil.makeTextDisplay(loc, text, 135, 0, 450);
     }
 
     private void initOtherDisplays() {
-
+        Location spawn = Ascension.getSpawn();
+        double x = spawn.getX();
+        double y = spawn.getY() + 101;
+        double z = spawn.getZ();
+        new ViewKits(x + 13, y, z + 13, new ImmutablePair<>(135, 0));
+        new ViewSettings(x + 11, y, z + 15, new ImmutablePair<>(135, 0));
+        new ViewSkills(x + 15, y, z + 11, new ImmutablePair<>(135,0));
     }
 
 }

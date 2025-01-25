@@ -18,7 +18,7 @@ public class OverWorld extends PandoraBoxes {
                 new ItemStack(Material.ENDER_PEARL, 1),
                 new ItemStack(Material.BONE, rand.nextInt(3, 9)),
                 new ItemStack(Material.GUNPOWDER, rand.nextInt(1, 4)),
-                new ItemStack(Material.SUGAR, rand.nextInt(3, 12)),
+                new ItemStack(Material.SUGAR_CANE, rand.nextInt(2, 8)),
                 new ItemStack(Material.LEATHER, rand.nextInt(1, 5))
         ));
         return list;

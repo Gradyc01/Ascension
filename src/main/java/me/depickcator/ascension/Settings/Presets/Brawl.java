@@ -6,7 +6,6 @@ import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.Settings;
 import me.depickcator.ascension.Timeline.Timelines.BrawlTimeline;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;

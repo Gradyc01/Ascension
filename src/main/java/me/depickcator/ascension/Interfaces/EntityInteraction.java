@@ -20,5 +20,9 @@ public abstract class EntityInteraction {
         return entityInteractions.get(entity);
     }
 
+    public static void clearInteractions() {
+        entityInteractions.clear();
+    }
+
     public abstract boolean interact(PlayerInteractEntityEvent event);
 }

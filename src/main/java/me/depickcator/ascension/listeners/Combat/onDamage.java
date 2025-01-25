@@ -93,8 +93,8 @@ public class onDamage extends PlayerCombat{
         double speed = event.getDamage() / damageTag;
         TextUtil.debugText("Old Damage Tag: " + damageTag + "Speed: " + speed);
         //Custom Damage
-        damageTag = 3;
-        if (powerLevel != 0) damageTag += 1 + (0.75 * powerLevel);
+        damageTag = 2.75;
+        if (powerLevel != 0) damageTag += 0.75 + (0.5 * powerLevel);
         TextUtil.debugText("New Damage Tag: " + damageTag + "Speed: " + speed);
 
         //Set Damage

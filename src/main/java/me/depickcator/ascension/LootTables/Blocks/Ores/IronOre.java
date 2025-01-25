@@ -1,6 +1,5 @@
 package me.depickcator.ascension.LootTables.Blocks.Ores;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.BlockLootTable;
 import me.depickcator.ascension.Skills.SkillExpAmount;

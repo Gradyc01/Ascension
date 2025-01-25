@@ -6,6 +6,7 @@ import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Items.UnlockUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -17,6 +18,9 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FlintShovel extends Craft implements LootTableChanger {
     private static FlintShovel instance;
@@ -42,7 +46,11 @@ public class FlintShovel extends Craft implements LootTableChanger {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.IRON_SHOVEL);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText("100% Flint Drop Rate", TextUtil.DARK_PURPLE)
+        ));
+        meta.lore(lore);
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.setEnchantmentGlintOverride(true);
         if (meta instanceof Repairable repairable) {

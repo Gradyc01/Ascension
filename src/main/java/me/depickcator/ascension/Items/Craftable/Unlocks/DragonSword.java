@@ -6,12 +6,16 @@ import me.depickcator.ascension.Items.Craftable.Vanilla.Weapons;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Utility.TextUtil;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import net.kyori.adventure.text.Component;
+import org.bukkit.*;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.List;
 
 public class DragonSword extends Weapons {
     private static DragonSword instance;
@@ -40,6 +44,18 @@ public class DragonSword extends Weapons {
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         item.setItemMeta(Vanilla.addModifiers(meta, getAttackDamage(), getAttackSpeed(), KEY));
         return item;
+    }
+
+    @Override
+    public boolean uponCrafted(CraftItemEvent e, Player p) {
+        ItemStack item = e.getCurrentItem();
+        ItemMeta meta = item.getItemMeta();
+        List<Component> lore = meta.lore();
+        lore.addFirst(TextUtil.makeText("Crafted by ", TextUtil.YELLOW)
+                .append(TextUtil.makeText(p.getName(), TextUtil.AQUA, false, true)));
+        meta.lore(lore);
+        item.setItemMeta(meta);
+        return true;
     }
 
     public static DragonSword getInstance() {

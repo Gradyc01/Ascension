@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfThoth extends Craft {
     private static BookOfThoth instance;
     private BookOfThoth() {
-        super(UnlocksData.COST_250, 1, "Book Of Thoth", "book_of_thoth");
+        super(UnlocksData.COST_250, 2, "Book Of Thoth", "book_of_thoth");
     }
     @Override
     protected Recipe initRecipe() {

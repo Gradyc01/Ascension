@@ -2,10 +2,7 @@ package me.depickcator.ascension.General.GameStart.Sequences;
 
 import me.depickcator.ascension.General.GameStart.GameStartSequence;
 import me.depickcator.ascension.General.GameStart.StartGame;
-import me.depickcator.ascension.Items.Craftable.Unlocks.AscensionKey;
-import me.depickcator.ascension.Items.Craftable.Unlocks.HideOfLeviathan;
-import me.depickcator.ascension.Items.Craftable.Unlocks.QuickPick;
-import me.depickcator.ascension.Items.Craftable.Unlocks.Tarnhelm;
+import me.depickcator.ascension.Items.Craftable.Unlocks.*;
 import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondSword;
 import me.depickcator.ascension.Items.Craftable.Vanilla.Shield;
@@ -20,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
+import java.util.Random;
 
 public class GiveBrawlItems extends GameStartSequence {
     public GiveBrawlItems() {
@@ -50,17 +48,23 @@ public class GiveBrawlItems extends GameStartSequence {
                 pS.getCombat().addExp(250);
                 pS.getForaging().addExp(1500);
                 pS.getMining().addExp(1500);
+                p.giveExp(128);
 
                 p.getInventory().clear();
+
+                int r = new Random().nextInt(0, 3);
+                ItemStack crossbow = r == 0 ? HeliosCurse.getInstance().getResult() : r == 1 ?
+                        CupidBow.getInstance().getResult() : ApolloGlare.getInstance().getResult();
 
                 PlayerUtil.giveItem(p,
                         sword,
                         axe,
                         QuickPick.getInstance().getResult(),
-                        new ItemStack(Material.OAK_PLANKS, 128),
+                        new ItemStack(Material.OAK_PLANKS, 64),
                         new ItemStack(Material.GOLDEN_APPLE, 32),
                         bow,
-                        new ItemStack(Material.ARROW, 128),
+                        new ItemStack(Material.ARROW, 64),
+                        crossbow,
                         Tarnhelm.getInstance().getResult(),
                         chestplate,
                         HideOfLeviathan.getInstance().getResult(),
@@ -70,7 +74,12 @@ public class GiveBrawlItems extends GameStartSequence {
                         new ItemStack(Material.GOLD_INGOT, 64),
                         Shield.getInstance().getResult(),
                         Shield.getInstance().getResult(),
-                        Shield.getInstance().getResult()
+                        Shield.getInstance().getResult(),
+                        Resurrection.getInstance().getResult(),
+                        Nectar.getInstance().getResult(),
+                        new ItemStack(Material.OAK_PLANKS, 64),
+                        new ItemStack(Material.ARROW, 64)
+
                 );
 
 

@@ -1,12 +1,11 @@
 package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
-import me.depickcator.ascension.Lobby.SpecialItems;
-import me.depickcator.ascension.Lobby.WelcomeBoard;
+import me.depickcator.ascension.Interfaces.EntityInteraction;
+import me.depickcator.ascension.Lobby.*;
 import me.depickcator.ascension.Utility.ArmorStandUtil;
 import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import me.depickcator.ascension.Ascension;
@@ -24,6 +23,7 @@ public class LoadGame implements Runnable {
         this.plugin = Ascension.getInstance();
         // this.player = player;
         this.spawnCoordsLocation = loc;
+        EntityInteraction.clearInteractions();
         plugin.setBingoData(new BingoData(plugin));
         deletePreviousIterations();
         run();
@@ -103,8 +103,7 @@ public class LoadGame implements Runnable {
     }
 
     private void buildLobby() {
-        new BuildLobby(spawnCoordsArmorStand);
-        new WelcomeBoard();
-        new SpecialItems();
+//        new BuildLobby(spawnCoordsArmorStand);
+        plugin.setLobby(new Lobby(spawnCoordsArmorStand.getLocation()));
     }
 }

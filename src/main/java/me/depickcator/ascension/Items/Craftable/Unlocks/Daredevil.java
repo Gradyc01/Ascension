@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
@@ -8,8 +7,6 @@ import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.SkeletonHorse;
@@ -18,13 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ArmorMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.Repairable;
-import org.bukkit.inventory.meta.trim.ArmorTrim;
-import org.bukkit.inventory.meta.trim.TrimMaterial;
-import org.bukkit.inventory.meta.trim.TrimPattern;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,15 +69,6 @@ public class Daredevil extends Craft {
         world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0F, 0.0F);
         if (e.getCurrentItem() != null) e.getCurrentItem().setAmount(0);
         e.getInventory().setMatrix(new ItemStack[]{null, null, null, null, null, null, null, null, null});
-//        SkeletonHorse entity = (SkeletonHorse) world.spawnEntity(loc, EntityType.SKELETON_HORSE);
-//        entity.setTrapped(false);
-//        entity.addPassenger(p);
-//        entity.setTamed(true);
-//        entity.getInventory().setSaddle(new ItemStack(Material.SADDLE));
-//        entity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.3375);
-//        entity.setJumpStrength(0.8);
-//        entity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(50.0);
-//        entity.setHealth(30.0);
         makeSkeletonHorse(loc, p);
         return true;
     }
@@ -97,10 +79,12 @@ public class Daredevil extends Craft {
         entity.addPassenger(p);
         entity.setTamed(true);
         entity.getInventory().setSaddle(new ItemStack(Material.SADDLE));
-        entity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.3375);
+        entity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.4);
+        //Vanilla max speed 0.3375
         entity.setJumpStrength(0.8);
         entity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(50.0);
         entity.setHealth(30.0);
+        entity.customName(TextUtil.makeText(getDisplayName(), TextUtil.DARK_RED));
         return entity;
     }
 

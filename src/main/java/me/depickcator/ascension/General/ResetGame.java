@@ -1,9 +1,12 @@
 package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Teams.TeamUtil;
 import me.depickcator.ascension.Utility.TextUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
@@ -35,13 +38,8 @@ public class ResetGame implements Runnable {
     }
 
     private void resetPlayers() {
-//        plugin.getBingoData().resetPlayers(); //TODO: Removing this may allow for you to be able to see the board
         PlayerUtil.clearPlayerDataMap();
-//        PlayerUtil.assignNewPlayerData(plugin);
-//        for (Player p : plugin.getServer().getOnlinePlayers()) {
-//
-//        }
-
+        resetTeams();
         new BukkitRunnable() {
             ArrayList<Player> players = new ArrayList<>(plugin.getServer().getOnlinePlayers());
             @Override
@@ -53,13 +51,23 @@ public class ResetGame implements Runnable {
                 }
                 Player p = players.getFirst();
                 PlayerData pD = PlayerUtil.assignNewPlayerData(p);
-//                PlayerDeath.getInstance(plugin).respawnPlayer(pD);
+                PlayerDeath.getInstance().respawnPlayer(pD);
                 pD.resetToLobby();
                 players.remove(p);
                 TextUtil.debugText("Player " + p.getName() + " reset");
             }
         }.runTaskTimer(plugin, 20, 10);
 
+    }
+
+    private void resetTeams() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            try {
+                TeamUtil.disbandTeam(p);
+            } catch (Exception ignored) {
+                continue;
+            }
+        }
     }
 
     private void loadGameRules(World world) {

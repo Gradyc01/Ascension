@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Skills;
 
-import me.depickcator.ascension.Ascension;
 
 public enum SkillExpAmount {
     COMBAT_COMMON(8),

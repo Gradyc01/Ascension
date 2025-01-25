@@ -31,13 +31,10 @@ public class SendCoords implements Commands {
         }
         Location loc = playerData.getPlayer().getLocation();
         for (Player p : playerData.getPlayerTeam().getTeam().getTeamMembers()) {
-            Component coordsText = TextUtil.makeText(
-                        "(" +
-                            loc.getBlockX() +
-                            ", " + loc.getBlockY() +
-                            ", " + loc.getBlockZ() +
-                            ")", TextUtil.GREEN);
-            p.sendMessage(TextUtil.makeText(playerData.getPlayer().getName() + " is currently at ", TextUtil.AQUA).append(coordsText));
+            Component prefix = TextUtil.makeText("[Team Coords] ", TextUtil.BLUE);
+            Component main = TextUtil.makeText(playerData.getPlayer().getName() + " is currently at ", TextUtil.AQUA);
+            Component coordsText = TextUtil.makeText("(" + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ() + ")", TextUtil.DARK_GREEN);
+            p.sendMessage(prefix.append(main).append(coordsText));
             SoundUtil.playHighPitchPling(p);
         }
 

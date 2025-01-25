@@ -2,14 +2,14 @@ package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.Ascension;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class BuildLobby implements Runnable {
-    private final ArmorStand armorStand;
+    private final Location armorStand;
     private final Ascension plugin;
-    public BuildLobby(ArmorStand armor) {
+    public BuildLobby(Location armor) {
         armorStand = armor;
         this.plugin = Ascension.getInstance();
         run();
@@ -21,33 +21,81 @@ public class BuildLobby implements Runnable {
         scheduler.runTaskLater(plugin, this::buildBox, 10);
         scheduler.runTaskLater(plugin, this::buildSpawn, 20);
         scheduler.runTaskLater(plugin, this::buildBoards, 30);
+        scheduler.runTaskLater(plugin, this::buildParkour, 40);
     }
 
-    public static void fillArea(int x1, int y1, int z1, int x2, int y2, int z2, String material, Entity entity) {
-        int x = entity.getLocation().getBlockX();
-        int y = entity.getLocation().getBlockY();
-        int z = entity.getLocation().getBlockZ();
+    public static void fillArea(int x1, int y1, int z1, int x2, int y2, int z2, String material, Location entity) {
+        int x = entity.getBlockX();
+        int y = entity.getBlockY();
+        int z = entity.getBlockZ();
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "fill " +
                 (x + x1) + " " + (y + y1) + " " + (z + z1) + " " + (x + x2) + " " + (y + y2) + " " + (z + z2) + " " + material);
     }
 
-    public static void clone(int x1, int y1, int z1, int x2, int y2, int z2, int x3, int y3, int z3, Entity entity) {
-        int x = entity.getLocation().getBlockX();
-        int y = entity.getLocation().getBlockY();
-        int z = entity.getLocation().getBlockZ();
+    public static void fillArea(int x1, int y1, int z1, int x2, int y2, int z2, String material, ArmorStand entity) {
+        fillArea(x1, y1, z1, x2, y2, z2, material, entity.getLocation());
+    }
+
+    public static void clone(int x1, int y1, int z1, int x2, int y2, int z2, int x3, int y3, int z3, Location entity) {
+        int x = entity.getBlockX();
+        int y = entity.getBlockY();
+        int z = entity.getBlockZ();
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "clone " +
                 (x + x1) + " " + (y + y1) + " " + (z + z1) + " " +
                 (x + x2) + " " + (y + y2) + " " + (z + z2) + " " +
                 (x + x3) + " " + (y + y3) + " " + (z + z3));
     }
 
-    public static void placeBlock(int x1, int y1, int z1, String material, Entity entity) {
-        int x = entity.getLocation().getBlockX();
-        int y = entity.getLocation().getBlockY();
-        int z = entity.getLocation().getBlockZ();
+    public static void placeBlock(int x1, int y1, int z1, String material, Location entity) {
+        int x = entity.getBlockX();
+        int y = entity.getBlockY();
+        int z = entity.getBlockZ();
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "setblock " +
                 (x + x1) + " " + (y + y1) + " " + (z + z1) + " " + material);
 
+    }
+
+    private void buildParkour() {
+        //fill -19 179 -8 -19 177 -8 minecraft:ladder[facing=east]
+        fillArea(6, 105, -19, 6, 101, -19, "minecraft:ladder[facing=east]", armorStand);
+        fillArea(-19, 107, -8, -19, 108, -8, "minecraft:ladder[facing=east]", armorStand);
+        placeBlock(-19, 110, -10, "minecraft:ladder[facing=east]", armorStand);
+        placeBlock(-19, 111, -14, "minecraft:oak_trapdoor[facing=east,half=bottom]", armorStand);
+        placeBlock(-19, 111, -19, "minecraft:oak_trapdoor[facing=south,half=top]", armorStand);
+
+        placeBlock(-16, 112, -19, "minecraft:smooth_stone_slab[type=top]", armorStand);
+        placeBlock(-14, 112, -19, "minecraft:smooth_stone_slab[type=top]", armorStand);
+        placeBlock(-12, 112, -19, "minecraft:smooth_stone_slab[type=top]", armorStand);
+
+        placeBlock(-16, 115, -19, "minecraft:smooth_stone_slab[type=bottom]", armorStand);
+        placeBlock(-14, 115, -19, "minecraft:smooth_stone_slab[type=bottom]", armorStand);
+        placeBlock(-12, 115, -19, "minecraft:smooth_stone_slab[type=bottom]", armorStand);
+
+        placeBlock(-9, 112, -16, "minecraft:oak_fence", armorStand);
+
+        fillArea(-6, 112, -14, -4, 112, -14, "minecraft:oak_fence", armorStand);
+        fillArea(-5, 112, -13, -5, 112, -15, "minecraft:oak_fence", armorStand);
+        fillArea(-5, 112, -14, -5, 115, -14, "minecraft:oak_planks", armorStand);
+        fillArea(-5, 116, -14, -5, 119, -14, "minecraft:oak_fence", armorStand);
+
+        fillArea(0, 112, -14, 2, 112, -14, "minecraft:oak_fence", armorStand);
+        fillArea(1, 112, -13, 1, 112, -15, "minecraft:oak_fence", armorStand);
+        fillArea(1, 112, -14, 1, 115, -14, "minecraft:oak_planks", armorStand);
+        fillArea(1, 116, -14, 1, 119, -14, "minecraft:oak_fence", armorStand);
+
+
+        placeBlock(6, 113, -14, "minecraft:oak_stairs[facing=east, half=bottom]", armorStand);
+        placeBlock(7, 113, -14, "minecraft:oak_stairs[facing=west, half=bottom]", armorStand);
+        placeBlock(6, 112, -14, "minecraft:oak_stairs[facing=east, half=top]", armorStand);
+        placeBlock(7, 112, -14, "minecraft:oak_stairs[facing=west, half=top]", armorStand);
+
+        fillArea(10, 114, -15, 10, 114, -16, "minecraft:oak_stairs[facing=west, half=bottom]", armorStand);
+        fillArea(11, 113, -15, 11, 113, -16, "minecraft:oak_stairs[facing=west, half=bottom]", armorStand);
+
+        fillArea(16, 115, -17, 16, 115, -18, "minecraft:oak_stairs[facing=east, half=bottom]", armorStand);
+        fillArea(15, 114, -17, 15, 114, -18, "minecraft:oak_stairs[facing=east, half=bottom]", armorStand);
+
+        fillArea(17, 116, -17, 19, 116, -19, "minecraft:quartz_slab[type=top]", armorStand);
     }
 
     private void buildBox() {

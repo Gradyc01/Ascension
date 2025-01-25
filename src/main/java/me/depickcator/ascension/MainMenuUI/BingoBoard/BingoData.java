@@ -9,7 +9,6 @@ import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
-import me.depickcator.ascension.Teams.TeamUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -55,20 +54,11 @@ public class BingoData extends ItemComparison {
 //        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard objectives remove bingo");
 //    }
 
-    private void resetTeams() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            try {
-                TeamUtil.disbandTeam(p);
-            } catch (Exception ignored) {
-                continue;
-            }
-        }
-    }
+
 
     public void resetPlayers() {
         Collection<? extends Player> players = Bukkit.getOnlinePlayers();
         bingoScoreboard.resetScores("bingo");
-        resetTeams();
         for (Player player : players) {
 //            Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
 //            score.setScore(0);

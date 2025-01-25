@@ -7,15 +7,13 @@ import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.General.Queue.QueueCommand;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.UnlocksData;
+import me.depickcator.ascension.Lobby.Lobby;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.SettingObserver;
 import me.depickcator.ascension.Teams.TeamCommand;
-import me.depickcator.ascension.commands.Backpack;
-import me.depickcator.ascension.commands.Info;
-import me.depickcator.ascension.commands.SetSetting;
-import me.depickcator.ascension.commands.Shout;
+import me.depickcator.ascension.commands.*;
 import me.depickcator.ascension.listeners.*;
 import me.depickcator.ascension.MainMenuUI.BingoBoard.BingoData;
 import me.depickcator.ascension.MainMenuUI.OpenMainMenuCommand;
@@ -51,6 +49,7 @@ public final class Ascension extends JavaPlugin {
     private BukkitScheduler scheduler;
     private SettingObserver settings;
     private LocationCheck locationCheck;
+    private Lobby lobby;
     private World world;
     private World nether;
     private Logger logger = getLogger();
@@ -89,6 +88,7 @@ public final class Ascension extends JavaPlugin {
         getCommand("game").setExecutor(new GameCommand());
         getCommand("changeBingoScore").setExecutor(new changeBingoScore());
         getCommand("openmenu").setExecutor(new mainMenuCommands());
+        getCommand("who").setExecutor(new Who());
 
         getCommand("info").setExecutor(new Info());
 
@@ -120,7 +120,7 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new InventoryClose(), this);
         manager.registerEvents(new InventoryClickListener(), this);
         manager.registerEvents(new PlayerAchievements(), this);
-
+        manager.registerEvents(new PlayerExpGain(), this);
         manager.registerEvents(new onDamage(), this);
         manager.registerEvents(new onDeath(), this);
         manager.registerEvents(new onElytraFlight(), this);
@@ -209,5 +209,13 @@ public final class Ascension extends JavaPlugin {
     public void setLocationCheck(LocationCheck locationCheck) {
         if (this.locationCheck != null) this.locationCheck.cancelCheck();
         this.locationCheck = locationCheck;
+    }
+
+    public Lobby getLobby() {
+        return lobby;
+    }
+
+    public void setLobby(Lobby lobby) {
+        this.lobby = lobby;
     }
 }

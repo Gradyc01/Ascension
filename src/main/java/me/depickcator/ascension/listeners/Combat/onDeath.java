@@ -7,6 +7,8 @@ import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -35,6 +37,10 @@ public class onDeath extends PlayerCombat {
         plugin.getServer().broadcast(e.deathMessage().color(TextUtil.DARK_RED));
         plugin.getLogger().info(victim.getName() + " died due to: " + cause);
 
+//        victim.setExp(0);
+        victim.setTotalExperience(0);
+        ExperienceOrb entity = (ExperienceOrb) victim.getWorld().spawnEntity(victim.getLocation(), EntityType.EXPERIENCE_ORB);
+        entity.setExperience((int) victim.getExp() / 2);
         // Remove the metadata after use
 
         victim.removeMetadata(getDamageSourceKey(), plugin);

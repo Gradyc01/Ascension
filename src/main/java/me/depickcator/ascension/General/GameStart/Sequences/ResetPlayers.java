@@ -5,6 +5,7 @@ import me.depickcator.ascension.General.GameStart.StartGame;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.TeamUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -36,6 +37,8 @@ public class ResetPlayers extends GameStartSequence {
                     throw new NullPointerException("PlayerData is null");
                 }
                 pD.resetBeforeStartGame();
+//                TextUtil.makeTitle(TextUtil.makeText(""), 10, 10, 10);
+                TextUtil.sendActionBar(p, TextUtil.makeText("Starting Game Please Be Patient", TextUtil.RED, true, false), 30 * 20, plugin);
                 pD.getPlayerScoreboard().makeGameBoard();
             }
         }.runTaskTimer(plugin, 10, 10);

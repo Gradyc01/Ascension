@@ -104,6 +104,8 @@ public class PlayerScoreboard implements PlayerDataObservers {
 //        Audience.(player).sendMessage(TextUtil.makeText("T"));/
         Component text = TextUtil.makeText("You are currently playing ", TextUtil.AQUA);
         text = text.append(TextUtil.makeText("ASCENSION", TextUtil.YELLOW, true, false));
+//        text = text.append(TextUtil.makeText("\nGame Type: ", TextUtil.BLUE));
+//        text = text.append(TextUtil.makeText(plugin.getSettingsUI().getSettings().getName(), TextUtil.GOLD));
         Audience.audience(player).sendPlayerListFooter(text);
     }
 

@@ -21,6 +21,8 @@ commands:
     description: opens the team backpack
   info:
     description: reveals the info of the game settings
+  who:
+    description: reveals the info of the game settings
 
   settings:
     description: changes settings of the game
