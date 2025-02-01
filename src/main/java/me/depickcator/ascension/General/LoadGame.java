@@ -3,7 +3,7 @@ package me.depickcator.ascension.General;
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
 import me.depickcator.ascension.Lobby.*;
-import me.depickcator.ascension.Utility.ArmorStandUtil;
+import me.depickcator.ascension.Utility.DisplayUtil;
 import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -48,7 +48,7 @@ public class LoadGame implements Runnable {
 
     private ArmorStand setSpawnCoordsArmorStand() {
         Location loc = spawnCoordsLocation;
-        return ArmorStandUtil.makeMarkerArmorStand(loc, plugin.getWorld(), spawnCoordsArmorStandName);
+        return DisplayUtil.makeMarkerArmorStand(loc, plugin.getWorld(), spawnCoordsArmorStandName);
     }
 
     @Override

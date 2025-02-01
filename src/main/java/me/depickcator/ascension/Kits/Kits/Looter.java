@@ -9,16 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Looter implements Kit{
-    private final static String DISPLAY_NAME = "Looter";
-    private final List<ItemStack> kitItems;
+public class Looter extends Kit2{
     public Looter() {
-        kitItems = kitItems();
-        registerKit(this);
+        super("Looter");
     }
 
-    private List<ItemStack> kitItems() {
-        return new ArrayList<>(Set.of(
+
+    @Override
+    public ItemStack getMascot() {
+        ItemStack item = new ItemStack(Material.BONE);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
+        meta.setCustomModelData(10);
+        item.setItemMeta(meta);
+        return item;
+    }
+
+
+    @Override
+    public List<ItemStack> initKitItems() {
+        return new ArrayList<>(List.of(
                 new ItemStack(Material.ROTTEN_FLESH, 3),
                 new ItemStack(Material.BONE, 3),
                 new ItemStack(Material.SLIME_BALL, 3),
@@ -28,25 +38,5 @@ public class Looter implements Kit{
                 new ItemStack(Material.MAGMA_CREAM, 3),
                 new ItemStack(Material.ENDER_PEARL, 3)
         ));
-    }
-
-    @Override
-    public List<ItemStack> getKitItems() {
-        return kitItems;
-    }
-
-    @Override
-    public ItemStack getMascot() {
-        ItemStack item = new ItemStack(Material.BONE);
-        ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
-        meta.setCustomModelData(10);
-        item.setItemMeta(meta);
-        return item;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
     }
 }

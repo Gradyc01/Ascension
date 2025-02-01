@@ -32,10 +32,10 @@ public class FeastRegularChestLoot extends CustomChestLoot {
     }
 
     private void initCombatItems() {
-        ItemStack shard = ShardOfTheFallen.result().clone();
+//        ItemStack shard = ShardOfTheFallen.result().clone();
         combatItems = new ArrayList<>(List.of(
-                shard,
-                shard,
+                ShardOfTheFallen.getInstance().getResult(),
+                ShardOfTheFallen.getInstance().getResult(),
                 new ItemStack(Material.ARROW, 8),
                 new ItemStack(Material.ARROW, 16),
                 new ItemStack(Material.ARROW, 24),

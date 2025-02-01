@@ -11,51 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Ecologist implements Kit{
-    private final static String DISPLAY_NAME = "Ecologist";
-    private final List<ItemStack> kitItems;
+public class Ecologist extends Kit2 {
     public Ecologist() {
-        kitItems = kitItems();
-        registerKit(this);
+        super("Ecologist");
     }
 
-    private List<ItemStack> kitItems() {
-        ItemStack pickaxe = new ItemStack(Material.STONE_PICKAXE);
-        pickaxe.setItemMeta(setMeta(pickaxe));
-        return new ArrayList<>(Set.of(
-                pickaxe,
-                new ItemStack(Material.LILY_PAD, 64),
+    @Override
+    public List<ItemStack> initKitItems() {
+        return new ArrayList<>(List.of(
+                setToolMeta(new ItemStack(Material.STONE_PICKAXE)),
                 new ItemStack(Material.SUGAR_CANE, 12),
+                new ItemStack(Material.LILY_PAD, 64),
                 new ItemStack(Material.VINE, 32),
                 new ItemStack(Material.COW_SPAWN_EGG, 3)
         ));
-    }
-
-
-
-    private Repairable setMeta(ItemStack item) {
-        Repairable meta = (Repairable) item.getItemMeta();
-        meta.setRepairCost(999);
-        meta.addEnchant(Enchantment.EFFICIENCY, 3, true);
-        meta.addEnchant(Enchantment.UNBREAKING, 1, true);
-        return meta;
-    }
-
-    @Override
-    public List<ItemStack> getKitItems() {
-        return kitItems;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
     }
 
     @Override
     public ItemStack getMascot() {
         ItemStack item = new ItemStack(Material.OAK_LOG);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
         meta.setCustomModelData(10);
         item.setItemMeta(meta);
         return item;

@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Items.Craftable;
 
+import me.depickcator.ascension.Items.CustomItem;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.CraftItemEvent;
@@ -8,35 +9,39 @@ import org.bukkit.inventory.Recipe;
 
 import me.depickcator.ascension.Ascension;
 
-public abstract class Craft {
+public abstract class Craft extends CustomItem {
     protected final Ascension plugin;
     protected Recipe recipe;
     protected final int COST;
     protected final int MAX_CRAFTS;
-    protected final String DISPLAY_NAME;
-    protected final String KEY;
-    protected ItemStack result;
+//    protected final String DISPLAY_NAME;
+//    protected final String KEY;
+//    protected ItemStack result;
 
     protected Craft(int cost, int maxCrafts, String displayName, String key) {
-        COST = cost; MAX_CRAFTS = maxCrafts; DISPLAY_NAME = displayName; KEY = key;
+        super(displayName, key, true);
+        COST = cost; MAX_CRAFTS = maxCrafts;
         this.plugin = Ascension.getInstance();
         result = initResult();
         recipe = initRecipe();
     }
 
     protected Craft(int cost, int maxCrafts, String displayName, String key, boolean isWeapon) {
-        COST = cost; MAX_CRAFTS = maxCrafts; DISPLAY_NAME = displayName; KEY = key;
+        super(displayName, key, true);
+        COST = cost; MAX_CRAFTS = maxCrafts;
         this.plugin = Ascension.getInstance();
     }
     
     protected Craft(String displayName, String key) {
-        COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;
+        super(displayName, key, true);
+        COST = -1; MAX_CRAFTS = -1;
         this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
     }
     
     protected Craft(String key) {
-        COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = key; KEY = key;
+        super(key, key, true);
+        COST = -1; MAX_CRAFTS = -1;
         this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         result = initResult();
@@ -45,7 +50,8 @@ public abstract class Craft {
     }
 
     protected Craft(String displayName, String key, boolean instantInstantiation) {
-        COST = -1; MAX_CRAFTS = -1; DISPLAY_NAME = displayName; KEY = key;
+        super(displayName, key, true);
+        COST = -1; MAX_CRAFTS = -1;
         this.plugin = Ascension.getInstance();
         removeVanillaRecipe();
         if (instantInstantiation) {

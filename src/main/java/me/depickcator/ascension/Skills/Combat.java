@@ -119,8 +119,8 @@ public class Combat implements Skills {
 
     private static SkillRewards level2Rewards() {
         SkillRewards skillRewards = new SkillRewards();
-        ItemStack shards = ShardOfTheFallen.result().clone();
-        shards.setAmount(1);
+        ItemStack shards = ShardOfTheFallen.getInstance().getResult(1);
+//        shards.setAmount(1);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
                         new ItemStack(Material.GOLDEN_APPLE, 1),
@@ -134,8 +134,8 @@ public class Combat implements Skills {
 
     private static SkillRewards level3Rewards() {
         SkillRewards skillRewards = new SkillRewards();
-        ItemStack shards = ShardOfTheFallen.result().clone();
-        shards.setAmount(4);
+        ItemStack shards = ShardOfTheFallen.getInstance().getResult(4);
+//        shards.setAmount(4);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
                         shards
@@ -160,8 +160,8 @@ public class Combat implements Skills {
 
     private static SkillRewards level5Rewards() {
         SkillRewards skillRewards = new SkillRewards();
-        ItemStack shards = ShardOfTheFallen.result().clone();
-        shards.setAmount(5);
+        ItemStack shards = ShardOfTheFallen.getInstance().getResult(5);
+//        shards.setAmount(5);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
                         shards,

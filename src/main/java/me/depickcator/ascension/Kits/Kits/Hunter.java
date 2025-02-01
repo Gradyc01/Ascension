@@ -11,32 +11,10 @@ import org.bukkit.inventory.meta.Repairable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-public class Hunter implements Kit{
-    private final static String DISPLAY_NAME = "Hunter";
-    private final List<ItemStack> kitItems;
+public class Hunter extends Kit2{
     public Hunter() {
-        kitItems = ironTools();
-        registerKit(this);
-    }
-
-    private List<ItemStack> ironTools() {
-        ItemStack shovel = new ItemStack(Material.IRON_SHOVEL);
-        shovel.setItemMeta(setMeta(shovel));
-
-        return new ArrayList<>(Set.of(
-                shovel,
-                hunterAxe(),
-                hunterBook(),
-                new ItemStack(Material.STRING, 6),
-                new ItemStack(Material.FEATHER, 9),
-                new ItemStack(Material.FLINT, 6),
-                new ItemStack(Material.CHAINMAIL_HELMET),
-                new ItemStack(Material.CHAINMAIL_CHESTPLATE),
-                new ItemStack(Material.CHAINMAIL_LEGGINGS),
-                new ItemStack(Material.CHAINMAIL_BOOTS)
-        ));
+        super("Hunter");
     }
 
     private ItemStack hunterAxe() {
@@ -62,31 +40,29 @@ public class Hunter implements Kit{
         return item;
     }
 
-    private Repairable setMeta(ItemStack item) {
-        Repairable meta = (Repairable) item.getItemMeta();
-        meta.setRepairCost(999);
-        meta.addEnchant(Enchantment.EFFICIENCY, 3, true);
-        meta.addEnchant(Enchantment.UNBREAKING, 1, true);
-        return meta;
-    }
-
-    @Override
-    public List<ItemStack> getKitItems() {
-        return kitItems;
-    }
-
     @Override
     public ItemStack getMascot() {
         ItemStack item = new ItemStack(Material.IRON_AXE);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
         meta.setCustomModelData(10);
         item.setItemMeta(meta);
         return item;
     }
 
     @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
+    public List<ItemStack> initKitItems() {
+        return new ArrayList<>(List.of(
+                hunterAxe(),
+                new ItemStack(Material.STRING, 6),
+                new ItemStack(Material.FEATHER, 9),
+                new ItemStack(Material.FLINT, 6),
+                setToolMeta(new ItemStack(Material.IRON_SHOVEL)),
+                hunterBook(),
+                new ItemStack(Material.CHAINMAIL_HELMET),
+                new ItemStack(Material.CHAINMAIL_CHESTPLATE),
+                new ItemStack(Material.CHAINMAIL_LEGGINGS),
+                new ItemStack(Material.CHAINMAIL_BOOTS)
+        ));
     }
 }

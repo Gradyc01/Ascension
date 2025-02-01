@@ -17,7 +17,6 @@ import me.depickcator.ascension.commands.*;
 import me.depickcator.ascension.listeners.*;
 import me.depickcator.ascension.MainMenuUI.BingoBoard.BingoData;
 import me.depickcator.ascension.MainMenuUI.OpenMainMenuCommand;
-import me.depickcator.ascension.MainMenuUI.GiveMainMenuItem;
 import me.depickcator.ascension.MainMenuUI.mainMenuCommands;
 import me.depickcator.ascension.listeners.ChestGeneration.ChestLootModifier;
 import me.depickcator.ascension.listeners.Combat.*;
@@ -84,7 +83,7 @@ public final class Ascension extends JavaPlugin {
     private void registerCommands() {
         // PluginManager pluginManager = getServer().getPluginManager();
         getCommand("open-main-menu").setExecutor(new OpenMainMenuCommand());
-        getCommand("give-main-menu").setExecutor(new GiveMainMenuItem());
+//        getCommand("give-main-menu").setExecutor(new GiveMainMenuItem());
         getCommand("game").setExecutor(new GameCommand());
         getCommand("changeBingoScore").setExecutor(new changeBingoScore());
         getCommand("openmenu").setExecutor(new mainMenuCommands());

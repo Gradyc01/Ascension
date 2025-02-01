@@ -2,7 +2,7 @@ package me.depickcator.ascension.Lobby;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Lobby.NPCs.*;
-import me.depickcator.ascension.Utility.ArmorStandUtil;
+import me.depickcator.ascension.Utility.DisplayUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -26,7 +26,7 @@ public class NPCBoard2 extends Boards {
         Location spawn = Ascension.getSpawn();
         Location loc = new Location(plugin.getWorld(), spawn.getX() - 13.3 , spawn.getY() + 104.5, spawn.getZ() + 13.3);
 
-        return ArmorStandUtil.makeTextDisplay(loc, text, 225, 0, 450);
+        return DisplayUtil.makeTextDisplay(loc, text, 225, 0, 450);
     }
 
     private void initOtherDisplays() {

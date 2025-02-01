@@ -2,12 +2,10 @@ package me.depickcator.ascension.Items.Uncraftable;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Items.CustomItem;
+import me.depickcator.ascension.Kits.Kits.*;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Kits.KitBookGUI;
-import me.depickcator.ascension.Kits.Kits.Ecologist;
-import me.depickcator.ascension.Kits.Kits.Hunter;
-import me.depickcator.ascension.Kits.Kits.IronTools;
-import me.depickcator.ascension.Kits.Kits.Looter;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -15,33 +13,28 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class KitBook implements ItemClick {
-    public static String DISPLAY_NAME = "Kit Book";
-    private static ItemStack item = KitBook.makeItem();;
-    public KitBook() {
+import java.util.ArrayList;
+import java.util.List;
+
+public class KitBook extends CustomItem implements ItemClick {
+    private static KitBook instance;
+    private final List<Kit2> kits;
+    private KitBook() {
+        super("Kit Book", "kit_book");
         registerItem();
-        registerKits();
+        kits = registerKits();
     }
 
     @Override
     public ItemStack getItem() {
-        return item;
+        return getResult();
     }
 
-    public static ItemStack item() {
-        return item;
-    }
-
-    private static ItemStack makeItem() {
-        ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
-        ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.GOLD).append(TextUtil.rightClickText()));
-        meta.setMaxStackSize(1);
-        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
-        meta.setEnchantmentGlintOverride(true);
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        item.setItemMeta(meta);
-        return item;
+    public static KitBook getInstance() {
+        if (instance == null) {
+            instance = new KitBook();
+        }
+        return instance;
     }
 
     @Override
@@ -54,13 +47,42 @@ public class KitBook implements ItemClick {
 
     @Override
     public void registerItem() {
-        addItem(item, this);
+        addItem(getResult(), this);
     }
 
-    private void registerKits() {
-        new Ecologist();
-        new Hunter();
-        new IronTools();
-        new Looter();
+    private List<Kit2> registerKits() {
+        return new ArrayList<>(List.of(
+                new Ecologist(),
+                new Hunter(),
+                new IronTools(),
+                new Looter()
+        ));
+    }
+
+    public List<Kit2> getKits() {
+        return kits;
+    }
+
+    public Kit2 getKit(ItemStack item) {
+        for (Kit2 k : kits) {
+            if (k.getMascot().equals(item)) {
+                return k;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    protected ItemStack initResult() {
+        ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.GOLD).append(TextUtil.rightClickText()));
+        meta.setMaxStackSize(1);
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
+        meta.setEnchantmentGlintOverride(true);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        item.setItemMeta(meta);
+        return item;
     }
 }

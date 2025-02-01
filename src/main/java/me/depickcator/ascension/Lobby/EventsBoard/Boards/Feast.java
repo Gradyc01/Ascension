@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Lobby.EventsBoard.Boards;
 
-import me.depickcator.ascension.Utility.ArmorStandUtil;
+import me.depickcator.ascension.Utility.DisplayUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
@@ -32,11 +32,11 @@ public class Feast extends Events {
         ));
         Location loc = new Location(plugin.getWorld(), getX() ,getY() - 1.5, getZ());
 
-        return ArmorStandUtil.makeTextDisplay(loc, text, 270, 0, 280);
+        return DisplayUtil.makeTextDisplay(loc, text, 270, 0, 280);
     }
 
     @Override
     protected ItemDisplay initItemDisplay() {
-        return ArmorStandUtil.makeItemDisplay(new Location(plugin.getWorld(), getX(), getY() - 2.3, getZ()), new ItemStack(Material.CAMPFIRE), 0, 270, 1);
+        return DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), getX(), getY() - 2.3, getZ()), new ItemStack(Material.CAMPFIRE), 0, 270, 1);
     }
 }

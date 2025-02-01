@@ -79,7 +79,7 @@ public class AscensionEvent {
                 if (timer % 60 == 0) {
                     teamStats.addGameScore(1);
                 }
-                if (timer % 60 == 2) {
+                if (timer % 60 == 2 && !e.isCharged()) {
                     e.getWorld().createExplosion(e, e.getLocation(), 4f, false, true, true);
                 }
                 timer--;

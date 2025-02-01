@@ -1,5 +1,6 @@
 package me.depickcator.ascension.testingCommands;
 
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,7 +19,6 @@ public class Debugger implements CommandExecutor {
         Player p = (Player) commandSender;
         p.sendMessage(TextUtil.makeText("Changed State of the debugger", TextUtil.DARK_GREEN));
         debugger = !debugger;
-
         return true;
     }
 

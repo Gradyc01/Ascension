@@ -48,6 +48,7 @@ public class TeamUtil {
         List<Team> allTeams = new ArrayList<>();
         for (PlayerData pD : allPlayingPlayers) {
             Team playerTeam = pD.getPlayerTeam().getTeam();
+            if (playerTeam == null) continue;
             if (!allTeams.contains(playerTeam)) {
                 if (playerTeam.checkSTATE(Team.STATE_ACTIVE) || !activeOnly) {
                     allTeams.add(playerTeam);

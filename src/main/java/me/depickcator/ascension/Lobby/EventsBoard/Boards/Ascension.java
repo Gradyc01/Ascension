@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Lobby.EventsBoard.Boards;
 
-import me.depickcator.ascension.Utility.ArmorStandUtil;
+import me.depickcator.ascension.Utility.DisplayUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
@@ -34,13 +34,13 @@ public class Ascension extends Events {
         Location loc = new Location(plugin.getWorld(), getX() ,getY() - 1.5, getZ()/* + 1.5*/);
 
         return
-                ArmorStandUtil.makeTextDisplay(loc, text, 270, 0, 300);
+                DisplayUtil.makeTextDisplay(loc, text, 270, 0, 300);
     }
 
     @Override
     protected ItemDisplay initItemDisplay() {
         return
-                ArmorStandUtil.makeItemDisplay(new Location(plugin.getWorld(), getX() + 0.5, getY() - 2.5, getZ() /*- 4*/),
+                DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), getX() + 0.5, getY() - 2.5, getZ() /*- 4*/),
                         new ItemStack(getMaterial()), 0, 270, 1.5);
     }
 }

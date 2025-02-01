@@ -30,7 +30,7 @@ public class CustomItems {
         //Combat
         items.add(new ItemStack(Material.PLAYER_HEAD));
         items.add(new ItemStack(Material.NETHER_STAR));
-        items.add(ShardOfTheFallen.result());
+        items.add(ShardOfTheFallen.getInstance().getResult());
         items.add(GoldenHead.getInstance().getResult());
         items.add(PandoraBox.getInstance().getResult());
 

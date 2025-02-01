@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Uncraftable.HadesBook;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Material;
@@ -13,20 +14,33 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HadesBook implements ItemClick {
+public class HadesBook extends CustomItem implements ItemClick {
     private static HadesBook instance;
-    private final String DISPLAY_NAME = "Hades' Book";
-    private final ItemStack item;
     private HadesBook() {
-        item = initItem();
+        super("Hades' Book", "hades_book");
         registerItem();
     }
+
     @Override
-    public ItemStack getItem() {
-        return item;
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
+        Player p = pD.getPlayer();
+        if (!p.hasCooldown(getResult())) {
+            new HadesBookGUI(pD);
+            p.setCooldown(getResult(), 3 * 20);
+            return true;
+        }
+        return false;
     }
 
-    private ItemStack initItem() {
+    public static HadesBook getInstance() {
+        if (instance == null) {
+            instance = new HadesBook();
+        }
+        return instance;
+    }
+
+    @Override
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
         ItemMeta meta = item.getItemMeta();
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
@@ -40,25 +54,12 @@ public class HadesBook implements ItemClick {
     }
 
     @Override
-    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
-        Player p = pD.getPlayer();
-        if (!p.hasCooldown(item)) {
-            new HadesBookGUI(pD);
-            p.setCooldown(item, 3 * 20);
-            return true;
-        }
-        return false;
+    public ItemStack getItem() {
+        return getResult();
     }
 
     @Override
     public void registerItem() {
-        addItem(item, this);
-    }
-
-    public static HadesBook getInstance() {
-        if (instance == null) {
-            instance = new HadesBook();
-        }
-        return instance;
+        addItem(getResult(), this);
     }
 }

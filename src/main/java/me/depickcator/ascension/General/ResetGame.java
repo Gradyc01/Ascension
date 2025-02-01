@@ -30,7 +30,8 @@ public class ResetGame implements Runnable {
         WorldBorder border = plugin.getWorld().getWorldBorder();
         border.setSize(59999968, 0);
         resetPlayers();
-        Ascension.getInstance().getSettingsUI().getSettings().getTimeline().resetTimeline();
+        plugin.getLobby().updateLobby();
+        plugin.getSettingsUI().getSettings().getTimeline().resetTimeline();
         scheduler.runTaskLater(plugin, () -> {
             loadGameRules(plugin.getWorld());
             loadGameRules(plugin.getNether());

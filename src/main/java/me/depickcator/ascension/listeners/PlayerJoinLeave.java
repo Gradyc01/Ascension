@@ -37,7 +37,8 @@ public class PlayerJoinLeave implements Listener {
             }
             default -> {
                 onPlayerJoinDuringGame(event);
-                event.joinMessage(TextUtil.makeText(""));
+//                event.joinMessage(TextUtil.makeText(""));
+                event.joinMessage(null);
             }
         }
         PlayerUtil.updateTabList();
@@ -106,7 +107,8 @@ public class PlayerJoinLeave implements Listener {
         Player player = event.getPlayer();
         PlayerData playerData = PlayerUtil.getPlayerData(player);
         if (playerData.checkState(PlayerData.STATE_SPECTATING)) {
-            event.quitMessage(TextUtil.makeText(""));
+//            event.quitMessage(TextUtil.makeText(""));
+            event.quitMessage(null);
             return; //TODO: Add this in later? and test obv
         }
         PlayerDeath.getInstance().setPlayerSpectating(playerData);
@@ -122,6 +124,6 @@ public class PlayerJoinLeave implements Listener {
             playerData.getPlayerTeam().leaveTeam();
         }
         PlayerUtil.removePlayerData(player);
-        event.quitMessage(TextUtil.makeText(""));
+        event.quitMessage(null);
     }
 }

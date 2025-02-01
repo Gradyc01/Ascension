@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Lobby;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Utility.ArmorStandUtil;
+import me.depickcator.ascension.Utility.DisplayUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
@@ -27,7 +27,7 @@ public class WelcomeBoard extends Boards {
         ));
         Location spawn = Ascension.getSpawn();
         Location loc = new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102.2, spawn.getZ() + 18.45);
-        return ArmorStandUtil.makeTextDisplay(loc, text, 180, 0, 450);
+        return DisplayUtil.makeTextDisplay(loc, text, 180, 0, 450);
 //        ArmorStandUtil.
     }
 }

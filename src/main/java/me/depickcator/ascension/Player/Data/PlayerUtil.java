@@ -62,6 +62,10 @@ public class PlayerUtil {
     }
 
     public static void giveItem(Player p, ItemStack... items) {
+        giveItem(p, new ArrayList<>(List.of(items)));
+    }
+
+    public static void giveItem(Player p, List<ItemStack> items) {
         PlayerInventory inv = p.getInventory();
         for (ItemStack item : items) {
             int emptySlot = inv.firstEmpty();
@@ -74,6 +78,7 @@ public class PlayerUtil {
             p.getWorld().dropItem(p.getLocation(), item);
         }
     }
+
 
     //Get & returns all players who are in the game
     public static List<PlayerData> getAllPlayingPlayers() {

@@ -1,11 +1,12 @@
 package me.depickcator.ascension.Kits;
 
+import me.depickcator.ascension.Kits.Kits.Kit2;
 import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
-import me.depickcator.ascension.Kits.Kits.Kit;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -16,8 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KitBookGUI extends AscensionGUI {
+    private final KitBook kitBook;
     public KitBookGUI(PlayerData playerData) {
         super(playerData, (char) 3, TextUtil.makeText("Choose a Kit", TextUtil.AQUA), true);
+        kitBook = KitBook.getInstance();
         makeKitButtons();
         infoButton();
         if (plugin.getGameState().inLobby()) {
@@ -28,7 +31,7 @@ public class KitBookGUI extends AscensionGUI {
 
     private void makeKitButtons() {
         int index = 10;
-        for (Kit kit : Kit.getKits().values()) {
+        for (Kit2 kit : kitBook.getKits()) {
             inventory.setItem(index, kit.getMascot());
             index+=2;
         }
@@ -48,7 +51,7 @@ public class KitBookGUI extends AscensionGUI {
 
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {
-        if (!isHolding(KitBook.item()) && plugin.getGameState().inGame()) {
+        if (!isHolding(KitBook.getInstance().getResult()) && plugin.getGameState().inGame()) {
             event.setCancelled(true);
             player.closeInventory();
             return;
@@ -62,11 +65,13 @@ public class KitBookGUI extends AscensionGUI {
                 new MainMenuGUI(playerData);
             }
         }
-        Kit kit = Kit.getKit(event.getCurrentItem());
+//        Kit kit = Kit.getKit(event.getCurrentItem());
+        Kit2 kit = kitBook.getKit(event.getCurrentItem());
         if (kit == null) return;
         if (event.isLeftClick()) {
             if (plugin.getGameState().inLobby()) {
-                TextUtil.errorMessage(player, "You are unable to pick this kit at this time");
+//                TextUtil.errorMessage(player, "You are unable to pick this kit at this time");
+                viewKit(event, kit);
             } else {
                 getKit(event, kit);
             }
@@ -75,19 +80,19 @@ public class KitBookGUI extends AscensionGUI {
         }
     }
 
-    private void getKit(InventoryClickEvent event, Kit kit) {
+    private void getKit(InventoryClickEvent event, Kit2 kit) {
         Component name = TextUtil.makeText(kit.getDisplayName(), TextUtil.GOLD);
         Component text1 = TextUtil.makeText("You have chosen the ", TextUtil.DARK_GREEN);
         Component text2 = TextUtil.makeText(" Kit", TextUtil.DARK_GREEN);
         SoundUtil.playHighPitchPling(player);
         player.sendMessage(text1.append(name).append(text2));
-        kit.giveKitItems(player);
+        PlayerUtil.giveItem(player, kit.getKitItems());
         player.getInventory().getItemInMainHand().setAmount(0);
         event.setCancelled(true);
         player.closeInventory();
     }
 
-    private void viewKit(InventoryClickEvent event, Kit kit) {
+    private void viewKit(InventoryClickEvent event, Kit2 kit) {
         new ViewKitGUI(playerData, kit, this);
     }
 

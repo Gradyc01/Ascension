@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Uncraftable;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Material;
@@ -13,32 +14,17 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnlightenedNugget implements ItemClick {
+public class EnlightenedNugget extends CustomItem implements ItemClick {
     private static EnlightenedNugget instance;
-    private final String DISPLAY_NAME = "Enlightened Nugget";
-    private final ItemStack item;
     private EnlightenedNugget() {
-        item = initItem();
+        super("Enlightened Nugget", "enlightened_nugget");
         registerItem();
     }
     @Override
     public ItemStack getItem() {
-        return item;
+        return getResult();
     }
 
-    private ItemStack initItem() {
-        ItemStack item = new ItemStack(Material.IRON_NUGGET);
-        ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
-        meta.lore(new ArrayList<>(List.of(
-                TextUtil.makeText(" Become a little", TextUtil.DARK_PURPLE),
-                TextUtil.makeText("more enlightened", TextUtil.DARK_PURPLE)
-        )));
-        meta.setEnchantmentGlintOverride(true);
-        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.WHITE).append(TextUtil.rightClickText()));
-        item.setItemMeta(meta);
-        return item;
-    }
 
     @Override
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
@@ -52,7 +38,7 @@ public class EnlightenedNugget implements ItemClick {
 
     @Override
     public void registerItem() {
-        addItem(item, this);
+        addItem(getResult(), this);
     }
 
     public static EnlightenedNugget getInstance() {
@@ -60,5 +46,20 @@ public class EnlightenedNugget implements ItemClick {
             instance = new EnlightenedNugget();
         }
         return instance;
+    }
+
+    @Override
+    protected ItemStack initResult() {
+        ItemStack item = new ItemStack(Material.IRON_NUGGET);
+        ItemMeta meta = item.getItemMeta();
+        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
+        meta.lore(new ArrayList<>(List.of(
+                TextUtil.makeText(" Become a little", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("more enlightened", TextUtil.DARK_PURPLE)
+        )));
+        meta.setEnchantmentGlintOverride(true);
+        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.WHITE).append(TextUtil.rightClickText()));
+        item.setItemMeta(meta);
+        return item;
     }
 }

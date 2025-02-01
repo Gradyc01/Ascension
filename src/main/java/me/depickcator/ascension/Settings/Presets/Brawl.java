@@ -52,8 +52,8 @@ public class Brawl extends Settings {
 
         ));
         rewards.addAll(Arrays.stream(p.getInventory().getContents()).filter(Objects::nonNull).toList());
-        ItemStack shards = ShardOfTheFallen.result().clone();
-        shards.setAmount(7);
+        ItemStack shards = ShardOfTheFallen.getInstance().getResult(7);
+//        shards.setAmount(7);
         rewards.add(shards);
         return rewards;
     }

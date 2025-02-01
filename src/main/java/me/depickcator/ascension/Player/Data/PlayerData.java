@@ -2,7 +2,8 @@ package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
-import me.depickcator.ascension.MainMenuUI.GiveMainMenuItem;
+import me.depickcator.ascension.Items.Uncraftable.MainMenu;
+import me.depickcator.ascension.Lobby.Lobby;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
@@ -82,7 +83,11 @@ public class PlayerData {
         clearInventoryAndEffects();
         addLobbyPotionEffects();
         getMainMenuItem();
-        plugin.getLobby().getEventBoard().showDefaultBoard(this);
+
+        Lobby lobby = plugin.getLobby();
+        lobby.getEventBoard().showDefaultBoard(this);
+        lobby.getBoardDisplay().displayBoard(player, player);
+
         Location loc = new Location(plugin.getWorld(), Ascension.getSpawn().getX(), Ascension.getSpawn().getY(), Ascension.getSpawn().getZ());
         loc.setY(loc.getBlockY() + 104);
         player.teleport(loc);
@@ -133,10 +138,10 @@ public class PlayerData {
         Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(20);
     }
     private void getMainMenuItem() {
-        player.getInventory().setItem(8, GiveMainMenuItem.getMenuItem());
+        player.getInventory().setItem(8, MainMenu.getInstance().getResult());
     }
     private void getKitBook() {
-        player.getInventory().setItem(7, KitBook.item());
+        player.getInventory().setItem(7, KitBook.getInstance().getResult());
     }
     private void addLobbyPotionEffects() {
         player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, PotionEffect.INFINITE_DURATION, 4, false, false));

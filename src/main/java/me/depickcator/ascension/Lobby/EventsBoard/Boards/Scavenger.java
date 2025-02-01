@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Lobby.EventsBoard.Boards;
 
-import me.depickcator.ascension.Utility.ArmorStandUtil;
+import me.depickcator.ascension.Utility.DisplayUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
@@ -39,12 +39,12 @@ public class Scavenger extends Events {
         ));
         Location loc = new Location(plugin.getWorld(), getX() ,getY() - 1.5, getZ());
 
-        return ArmorStandUtil.makeTextDisplay(loc, text, 270, 0, 440);
+        return DisplayUtil.makeTextDisplay(loc, text, 270, 0, 440);
     }
 
     @Override
     protected ItemDisplay initItemDisplay() {
-        return ArmorStandUtil.makeItemDisplay(new Location(plugin.getWorld(), getX(), getY() - 2.5, getZ() ),
+        return DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), getX(), getY() - 2.5, getZ() ),
                         new ItemStack(getMaterial()), 0, 270, 1);
     }
 }

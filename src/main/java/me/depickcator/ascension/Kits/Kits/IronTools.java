@@ -14,38 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class IronTools implements Kit{
-    private final static String DISPLAY_NAME = "Iron Tools";
-    private final List<ItemStack> kitItems;
+public class IronTools extends Kit2{
     public IronTools() {
-        kitItems = ironTools();
-        registerKit(this);
+        super("Iron Tools");
     }
 
-    private List<ItemStack> ironTools() {
-        ItemStack pickaxe = new ItemStack(Material.IRON_PICKAXE);
-        pickaxe.setItemMeta(setMeta(pickaxe));
-        ItemStack axe = IronAxe.getInstance().getResult().clone();
-        axe.setItemMeta(setMeta(axe));
-        ItemStack shovel = new ItemStack(Material.IRON_SHOVEL);
-        shovel.setItemMeta(setMeta(shovel));
 
-        return new ArrayList<>(Set.of(
-                pickaxe,
-                axe,
-                shovel,
-                ironSword(),
-                silkTouchBook()
-        ));
-    }
-
-    private Repairable setMeta(ItemStack item) {
-        Repairable meta = (Repairable) item.getItemMeta();
-        meta.setRepairCost(999);
-        meta.addEnchant(Enchantment.EFFICIENCY, 3, true);
-        meta.addEnchant(Enchantment.UNBREAKING, 1, true);
-        return meta;
-    }
     private ItemStack ironSword() {
         ItemStack sword = IronSword.getInstance().getResult().clone();
         Repairable meta = (Repairable) sword.getItemMeta();
@@ -64,22 +38,23 @@ public class IronTools implements Kit{
     }
 
     @Override
-    public List<ItemStack> getKitItems() {
-        return kitItems;
-    }
-
-    @Override
     public ItemStack getMascot() {
         ItemStack item = new ItemStack(Material.IRON_PICKAXE);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.AQUA));
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
         meta.setCustomModelData(10);
         item.setItemMeta(meta);
         return item;
     }
 
     @Override
-    public String getDisplayName() {
-        return DISPLAY_NAME;
+    public List<ItemStack> initKitItems() {
+        return new ArrayList<>(List.of(
+                ironSword(),
+                setToolMeta(new ItemStack(Material.IRON_PICKAXE)),
+                setToolMeta(IronAxe.getInstance().getResult().clone()),
+                setToolMeta(new ItemStack(Material.IRON_SHOVEL)),
+                silkTouchBook()
+        ));
     }
 }

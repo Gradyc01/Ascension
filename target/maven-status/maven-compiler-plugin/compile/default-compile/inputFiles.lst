@@ -31,7 +31,6 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Inter
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemComparison.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\OldAscensionGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Craft.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Crafts.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\AncientArtifact.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\ApolloGlare.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\ApprenticeHelmet.java
@@ -136,6 +135,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\Weapons.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\WoodenAxe.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\WoodenSword.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\CustomItem.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemList.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\CombatItems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\CustomItems.java
@@ -146,6 +146,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBook.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBookGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\KitBook.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\MainMenu.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\ShardOfTheFallen.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\XPTome\XPTome.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI.java
@@ -156,6 +157,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\Hunter.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\IronTools.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\Kit.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\Kit2.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\Looter.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\ViewKitGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\ChestLootModifier.java
@@ -186,8 +188,8 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\liste
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerInteractListener.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\PlayerJoinLeave.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\RecipeCrafted.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\BingoBoard\BingoDisplay.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\BingoBoard\BoardDisplay.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\BingoBoard\DisplayBox.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\Boards.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\EventsBoard\Boards\Ascension.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\EventsBoard\Boards\CarePackage.java
@@ -201,6 +203,8 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\MiscBoard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCBoard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCBoard2.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\Bingo\BingoNPC.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\Bingo\BingoNPCGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\EventsNPC.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\LobbyNPCs.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\ViewBoard.java
@@ -353,7 +357,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timel
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Timelines\BrawlTimeline.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Timelines\QuickplayTimeline.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Timeline\Timelines\StandardTimeline.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Utility\ArmorStandUtil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Utility\AttributeUtil.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Utility\DisplayUtil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Utility\SoundUtil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Utility\TextUtil.java

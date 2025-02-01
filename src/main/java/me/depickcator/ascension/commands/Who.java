@@ -1,6 +1,5 @@
 package me.depickcator.ascension.commands;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
@@ -22,7 +21,7 @@ public class Who implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (!(commandSender instanceof Player) || Ascension.getInstance().getGameState().inGame()) return false;
+        if (!(commandSender instanceof Player)) return false;
         Player p = ((Player) commandSender).getPlayer();
 //        PlayerData playerData = PlayerUtil.getPlayerData(p);
 //        if (playerData == null) return false;

@@ -5,7 +5,7 @@ import me.depickcator.ascension.Lobby.Boards;
 import me.depickcator.ascension.Lobby.EventsBoard.Boards.*;
 import me.depickcator.ascension.Lobby.NPCs.EventsNPC;
 import me.depickcator.ascension.Player.Data.PlayerData;
-import me.depickcator.ascension.Utility.ArmorStandUtil;
+import me.depickcator.ascension.Utility.DisplayUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -34,7 +34,7 @@ public class EventBoard extends Boards {
         Location spawn = Ascension.getSpawn();
         Location loc = new Location(plugin.getWorld(), spawn.getX() - 18.4 , spawn.getY() + 105.3, spawn.getZ());
         new EventsNPC(spawn.getX() - 17, spawn.getY() + 101, spawn.getZ() - 7, new ImmutablePair<>(315, 0));
-        return ArmorStandUtil.makeTextDisplay(loc, text, 270, 0, 450);
+        return DisplayUtil.makeTextDisplay(loc, text, 270, 0, 450);
     }
 
     private void initOtherDisplays() {

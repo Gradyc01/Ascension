@@ -29,8 +29,8 @@ public abstract class ChestLootTable {
     }
 
     protected void addShardsOfTheFallen(int amount, List<ItemStack> lootList) {
-        ItemStack reward = ShardOfTheFallen.result().clone();
-        reward.setAmount(amount);
+        ItemStack reward = ShardOfTheFallen.getInstance().getResult(amount);
+//        reward.setAmount(amount);
         lootList.add(reward);
     }
 }

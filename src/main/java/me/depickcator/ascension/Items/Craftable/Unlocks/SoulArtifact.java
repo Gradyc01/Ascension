@@ -28,7 +28,7 @@ public class SoulArtifact extends Craft {
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("BCB", "BBB", "AAA");
         recipe.setIngredient('A', Material.BONE);
-        recipe.setIngredient('B', ShardOfTheFallen.result());
+        recipe.setIngredient('B', ShardOfTheFallen.getInstance().getResult());
         recipe.setIngredient('C', Material.BOW);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

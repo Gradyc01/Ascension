@@ -27,7 +27,7 @@ public class MakeshiftStar extends Craft {
 
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("AAA", "AAA", "AAA");
-        recipe.setIngredient('A', ShardOfTheFallen.result());
+        recipe.setIngredient('A', ShardOfTheFallen.getInstance().getResult());
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

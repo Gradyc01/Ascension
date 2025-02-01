@@ -8,6 +8,7 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
 import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
+import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import org.apache.commons.lang3.tuple.Pair;
 
 import me.depickcator.ascension.Ascension;
@@ -146,8 +147,8 @@ public class UnlocksData {
     }
 
     private void Uncraftable() {
-        XPTome.getInstance().getItem();
-        new KitBook();
+        XPTome.getInstance();
+        KitBook.getInstance();
     }
 
     private void Vanilla() {

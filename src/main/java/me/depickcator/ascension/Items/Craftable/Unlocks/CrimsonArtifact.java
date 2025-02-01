@@ -23,7 +23,7 @@ public class CrimsonArtifact extends Craft {
         recipe.shape(" A ", "DBD", "CCC");
         recipe.setIngredient('A', Material.NETHER_STAR);
         recipe.setIngredient('B', Material.BLACK_WOOL);
-        recipe.setIngredient('C', ShardOfTheFallen.result());
+        recipe.setIngredient('C', ShardOfTheFallen.getInstance().getResult());
         recipe.setIngredient('D', Material.DIAMOND);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

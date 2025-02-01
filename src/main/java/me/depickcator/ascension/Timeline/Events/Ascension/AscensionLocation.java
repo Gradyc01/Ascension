@@ -16,6 +16,8 @@ import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.loot.LootTable;
+import org.bukkit.loot.LootTables;
 import org.bukkit.util.Vector;
 
 public class AscensionLocation extends EntityInteraction {
@@ -108,11 +110,13 @@ public class AscensionLocation extends EntityInteraction {
         livingEntity.setCustomNameVisible(true);
         livingEntity.customName(TextUtil.makeText("Gatekeeper", TextUtil.GRAY));
         livingEntity.setAI(false);
-        livingEntity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(600);
-        livingEntity.setHealth(600);
+        livingEntity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(450);
+        livingEntity.setHealth(450);
         livingEntity.setSilent(true);
         livingEntity.setPersistent(true);
         livingEntity.setInvulnerable(true);
+//        Wither wither = (Wither) livingEntity;
+//        wither.setLootTable(LootTables.PLAYER.getLootTable());
         return livingEntity;
     }
 

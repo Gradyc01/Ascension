@@ -10,7 +10,7 @@ import org.bukkit.util.Transformation;
 
 import java.util.List;
 
-public class ArmorStandUtil {
+public class DisplayUtil {
 
     //Making a Armor Stand for the purpose of marking a specific location
     public static ArmorStand makeMarkerArmorStand(Location loc, World world, String name) {

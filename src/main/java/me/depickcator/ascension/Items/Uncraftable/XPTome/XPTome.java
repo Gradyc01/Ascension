@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Uncraftable.XPTome;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
@@ -13,17 +14,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XPTome implements ItemClick {
+public class XPTome extends CustomItem implements ItemClick {
     private static XPTome instance;
-    public static String DISPLAY_NAME = "XP Tome";
-    private final ItemStack item;
-    // private final Ascension plugin;
     private XPTome() {
-        // this.plugin = Ascension.getInstance();
-        this.item = initResult();
+        super("XP Tome", "xp_tome");
         registerItem();
     }
-    private ItemStack initResult() {
+
+    @Override
+    protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.BOOK);
         ItemMeta meta = item.getItemMeta();
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
@@ -41,7 +40,7 @@ public class XPTome implements ItemClick {
 
     @Override
     public ItemStack getItem() {
-        return item;
+        return getResult();
     }
 
     @Override
@@ -56,7 +55,7 @@ public class XPTome implements ItemClick {
 
     @Override
     public void registerItem() {
-        addItem(item, this);
+        addItem(getResult(), this);
     }
 
     public static XPTome getInstance() {

@@ -1,6 +1,13 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.CustomItem;
+import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
+import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
+import me.depickcator.ascension.Items.Uncraftable.KitBook;
+import me.depickcator.ascension.Items.Uncraftable.MainMenu;
+import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
+import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
@@ -31,44 +38,38 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
         Player p = ((Player) commandSender).getPlayer();
         if (p == null || strings.length == 0 || strings.length > 3) return false;
 
-        String name = strings[1];
-        p = Bukkit.getPlayer(strings[0]);
-
-        ArrayList<ArrayList<Craft>> allCraft = getAllCustomItems();
+        List<CustomItem> allItems = getAllCustomItems();
         if (strings[0].equals("help")) {
             Component text = TextUtil.makeText("  All Item strings: ", TextUtil.GRAY);
-            for (ArrayList<Craft> craft : allCraft) {
-                for (Craft c : craft) {
-                    text = text.append(TextUtil.makeText("   [" + c.getKey() + "]", TextUtil.GRAY));
-                }
+            for (CustomItem i : allItems) {
+                text = text.append(TextUtil.makeText("   [" + i.getKey() + "]", TextUtil.GRAY));
             }
             p.sendMessage(text);
-        } else {
-            for (ArrayList<Craft> craft : allCraft) {
-                for (Craft c : craft) {
-                    if (c.getKey().equals(name)) {
-//                        p.getInventory().addItem(c.getResult());
-                        ItemStack item = c.getResult();
-                        int count;
-                        if (strings.length == 2) {
-                            count = 1;
-                        } else {
-                            count = Integer.parseInt(strings[2]);
-                        }
-                        for (int i = 0; i < count; i++) {
-                            PlayerUtil.giveItem(p, item);
-                        }
-                        p.sendMessage(TextUtil.makeText("Item Found!", TextUtil.DARK_GREEN));
-                        return true;
-                    }
-                }
-            }
-            TextUtil.errorMessage(p, "Unable to find unlock");
-            return false;
+            return true;
         }
-        return true;
 
-
+        String name = strings[1];
+        if (Bukkit.getPlayer(strings[0]) != null) {
+            p = Bukkit.getPlayer(strings[0]);
+        }
+        for (CustomItem customItem : allItems) {
+            if (customItem.getKey().equals(name)) {
+                ItemStack item = customItem.getResult();
+                int count;
+                if (strings.length == 2) {
+                    count = 1;
+                } else {
+                    count = Integer.parseInt(strings[2]);
+                }
+                for (int i = 0; i < count; i++) {
+                    PlayerUtil.giveItem(p, item);
+                }
+                p.sendMessage(TextUtil.makeText("Item Found!", TextUtil.DARK_GREEN));
+                return true;
+            }
+        }
+        TextUtil.errorMessage(p, "Unable to find unlock");
+        return false;
     }
 
     @Override
@@ -79,17 +80,18 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 arr.add(p.getName());
             }
         } else if (strings.length == 2) {
-            for (ArrayList<Craft> craft : getAllCustomItems()) {
-                for (Craft c : craft) {
-                    arr.add(c.getKey());
-                }
+            for (CustomItem i : getAllCustomItems()) {
+//                for (Craft c : craft) {
+//                    arr.add(c.getKey());
+//                }
+                arr.add(i.getKey());
             }
         }
 
         return arr;
     }
 
-    private ArrayList<ArrayList<Craft>> getAllCustomItems() {
+    private List<CustomItem> getAllCustomItems() {
         ArrayList<ArrayList<Craft>> allCraft = plugin.getUnlocksData().getAllUnlocks();
         allCraft.add(new ArrayList<>(List.of(
                 WoodenSword.getInstance(),
@@ -104,6 +106,17 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 NetheriteAxe.getInstance(),
                 Shield.getInstance()
         )));
-        return allCraft;
+        List<CustomItem> items = new ArrayList<>(List.of(
+                HadesBook.getInstance(),
+                XPTome.getInstance(),
+                EnlightenedNugget.getInstance(),
+                KitBook.getInstance(),
+                MainMenu.getInstance(),
+                ShardOfTheFallen.getInstance()
+                ));
+        for (ArrayList<Craft> craft : allCraft) {
+            items.addAll(craft);
+        }
+        return items;
     }
 }

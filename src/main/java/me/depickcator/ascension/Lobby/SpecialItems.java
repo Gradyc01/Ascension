@@ -4,7 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
-import me.depickcator.ascension.Utility.ArmorStandUtil;
+import me.depickcator.ascension.Utility.DisplayUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
@@ -26,7 +26,7 @@ public class SpecialItems extends Boards {
         Location spawn = Ascension.getSpawn();
         Location loc = new Location(plugin.getWorld(), spawn.getX() , spawn.getY() + 105.4, spawn.getZ() - 18.45);
 
-        return ArmorStandUtil.makeTextDisplay(loc, text, 0, 0, 450);
+        return DisplayUtil.makeTextDisplay(loc, text, 0, 0, 450);
     }
 
     private void initOtherDisplays() {
@@ -34,12 +34,12 @@ public class SpecialItems extends Boards {
         double x = spawn.getX();
         double y = spawn.getY() + 102.5;
         double z = spawn.getZ() - 18.45;
-        ArmorStandUtil.makeTextDisplay(new Location(plugin.getWorld(), x, y + 0.7, z), initHadesBook(), 0, 0, 140);
-        ArmorStandUtil.makeTextDisplay(new Location(plugin.getWorld(), x + 3.5, y + 0.7, z), initEnlightenmentNugget(), 0, 0, 140);
-        ArmorStandUtil.makeTextDisplay(new Location(plugin.getWorld(), x - 3.5, y + 0.7, z), initXPTome(), 0, 0, 140);
-        ArmorStandUtil.makeItemDisplay(new Location(plugin.getWorld(), x - 3.5, y - 0.3, z), XPTome.getInstance().getItem(), 0, 0, 1);
-        ArmorStandUtil.makeItemDisplay(new Location(plugin.getWorld(), x, y - 0.3, z), HadesBook.getInstance().getItem(), 0, 0, 1);
-        ArmorStandUtil.makeItemDisplay(new Location(plugin.getWorld(), x + 3.5, y - 0.3, z), EnlightenedNugget.getInstance().getItem(), 0, 0, 1);
+        DisplayUtil.makeTextDisplay(new Location(plugin.getWorld(), x, y + 0.7, z), initHadesBook(), 0, 0, 140);
+        DisplayUtil.makeTextDisplay(new Location(plugin.getWorld(), x + 3.5, y + 0.7, z), initEnlightenmentNugget(), 0, 0, 140);
+        DisplayUtil.makeTextDisplay(new Location(plugin.getWorld(), x - 3.5, y + 0.7, z), initXPTome(), 0, 0, 140);
+        DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), x - 3.5, y - 0.3, z), XPTome.getInstance().getItem(), 0, 0, 1);
+        DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), x, y - 0.3, z), HadesBook.getInstance().getItem(), 0, 0, 1);
+        DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), x + 3.5, y - 0.3, z), EnlightenedNugget.getInstance().getItem(), 0, 0, 1);
     }
 
     private List<Component> initHadesBook() {
