@@ -49,7 +49,6 @@ public class GoldenHead extends Craft implements ItemClick {
         String goldenHeadTexture = "ewogICJ0aW1lc3RhbXAiIDogMTU4OTQ4Njc4OTg3MSwKICAicHJvZmlsZUlkIiA6ICI5MWZlMTk2ODdjOTA0NjU2YWExZmMwNTk4NmRkM2ZlNyIsCiAgInByb2ZpbGVOYW1lIiA6ICJoaGphYnJpcyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS81NjZhODc0NjAxNzNhZGYwNjdjYjM1NmFlMjAwZDAzMDUwNDM3OGM1NTJlMzQyOGI0Nzc0YzRjMTFhNTk5YzI0IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=";
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
-        if (skullMeta == null) throw new NullPointerException();
 
         PlayerProfile profile = Bukkit.createProfile(UUID.fromString("5f856526-a7c6-4782-bcf9-803e02b08e1d"), null);
         profile.getProperties().add(new ProfileProperty("textures", goldenHeadTexture));
@@ -76,7 +75,6 @@ public class GoldenHead extends Craft implements ItemClick {
         if (isMainHandRightClick(e)) {
             ItemStack item = e.getItem();
             Player p = pD.getPlayer();
-            if (item == null || pD == null) return false;
             item.setAmount(item.getAmount() - 1);
             giveGoldenHeadEffects(p);
             ArrayList<Player> teamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(p);

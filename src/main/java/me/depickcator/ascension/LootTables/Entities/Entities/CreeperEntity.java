@@ -1,5 +1,6 @@
 package me.depickcator.ascension.LootTables.Entities.Entities;
 
+import me.depickcator.ascension.Items.Uncraftable.Skulls.CreeperHead;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
@@ -65,7 +66,7 @@ public class CreeperEntity implements LootTableChanger, EntityLootTable, Superab
     private void lootPoolBonus(EntityDeathEvent e, int lootingLevel, Random r) {
         double chance = calculateLootChance(lootingLevel, 0.02, 0.03, 0.01);
         if (r.nextDouble() <= chance) {
-            e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.CREEPER_HEAD));
+            superEntity(e.getEntity());
         }
     }
 
@@ -96,6 +97,6 @@ public class CreeperEntity implements LootTableChanger, EntityLootTable, Superab
 
     @Override
     public void lootFromSuperEntity(Entity e) {
-        e.getWorld().dropItem(e.getLocation(), new ItemStack(Material.CREEPER_HEAD));
+        e.getWorld().dropItem(e.getLocation(), CreeperHead.getInstance().getResult());
     }
 }

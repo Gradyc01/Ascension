@@ -2,11 +2,12 @@ package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.CustomItem;
-import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
+import me.depickcator.ascension.Items.Uncraftable.*;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
-import me.depickcator.ascension.Items.Uncraftable.KitBook;
-import me.depickcator.ascension.Items.Uncraftable.MainMenu;
-import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.CreeperHead;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.SkeletonSkull;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.ZombieHead;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -112,7 +113,12 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 EnlightenedNugget.getInstance(),
                 KitBook.getInstance(),
                 MainMenu.getInstance(),
-                ShardOfTheFallen.getInstance()
+                ShardOfTheFallen.getInstance(),
+                TeammateTracker.getInstance(),
+                CreeperHead.getInstance(),
+                SkeletonSkull.getInstance(),
+                ZombieHead.getInstance(),
+                PlayerHead.getInstance()
                 ));
         for (ArrayList<Craft> craft : allCraft) {
             items.addAll(craft);

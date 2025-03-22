@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class AscensionGUI {
+public abstract class AscensionGUI extends ItemComparison{
     private final int GUISize;
     protected final Inventory inventory;
     protected final Player player;
@@ -142,7 +142,8 @@ public abstract class AscensionGUI {
 
     protected boolean isHolding(ItemStack item) {
         ItemStack held = player.getInventory().getItemInMainHand();
-        return held.equals(item);
+//        return held.equals(item);
+        return equalItems(held, item);
     }
 
     public abstract void interactWithGUIButtons(InventoryClickEvent event);

@@ -12,7 +12,6 @@ import org.bukkit.inventory.meta.Repairable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class IronTools extends Kit2{
     public IronTools() {

@@ -1,5 +1,6 @@
 package me.depickcator.ascension.MainMenuUI.BingoBoard;
 
+import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Cooldowns.ScanBoardCooldown;
@@ -23,6 +24,7 @@ public class BingoBoardGUI extends AscensionGUI {
             29, 30 ,31, 32, 33,
             38, 39, 40, 41 ,42};
     private List<ItemStack> bingoItems;
+    private final int rightClickClaim = 250;
     public BingoBoardGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Game Board", TextUtil.AQUA), true);
         bingoItems = new ArrayList<>();
@@ -92,6 +94,10 @@ public class BingoBoardGUI extends AscensionGUI {
                 TextUtil.makeText("   Claim items by either using the", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("buttons on the bottom right or by ", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("clicking on the item directly. ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText(""),
+                TextUtil.makeText("    If using Right Click you can ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("Claim an Item without consuming it ", TextUtil.GOLD),
+                TextUtil.makeText("at the cost of " + rightClickClaim + " Souls", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("", TextUtil.AQUA),
                 TextUtil.makeText("   Warning: This will claim items", TextUtil.RED),
                 TextUtil.makeText("that are currently been worn too.", TextUtil.RED)
@@ -146,7 +152,22 @@ public class BingoBoardGUI extends AscensionGUI {
             player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_HURT, 10, 0);
             ScanBoardCooldown.getInstance().setCooldownTimer(player);
         } else if (bingoItems.contains(item)) {
-            bingoData.claimItem(player, item, true);
+            if (event.isLeftClick()) {
+                bingoData.claimItem(player, item, true);
+                return;
+            }
+            if (event.isRightClick()) {
+                PlayerUnlocks playerUnlocks = playerData.getPlayerUnlocks();
+                if (playerUnlocks.getUnlockTokens() > rightClickClaim) {
+                    if (bingoData.claimItem(player, item, true, false)) {
+                        playerUnlocks.addUnlockTokens(-rightClickClaim);
+                    }
+                    return;
+                }
+                TextUtil.errorMessage(player, "You do not have enough Souls to do this!");
+
+            }
+
         }
 
 

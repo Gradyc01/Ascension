@@ -6,6 +6,7 @@ import java.util.List;
 
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echolocator;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
+import me.depickcator.ascension.Items.Craftable.Unlocks.MasterCompass.MasterCompass;
 import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
@@ -26,6 +27,7 @@ public class CustomItems {
         //Equipment
         items.addAll(getEquipment());
         items.add(ApprenticeHelmet.getInstance().getResult());
+        items.add(MasterCompass.getInstance().getResult());
 
         //Combat
         items.add(new ItemStack(Material.PLAYER_HEAD));

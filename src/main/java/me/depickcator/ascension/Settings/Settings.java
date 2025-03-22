@@ -6,8 +6,10 @@ import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Timeline.Timeline;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +77,13 @@ public abstract class Settings {
         ItemStack shards = ShardOfTheFallen.getInstance().getResult(7);
 //        shards.setAmount(7);
         rewards.add(shards);
+        PlayerInventory inv = victim.getPlayer().getInventory();
+        for (ItemStack item : inv.getContents().clone()) {
+            if (item == null) continue;
+            item.getItemMeta().hasEnchant(Enchantment.VANISHING_CURSE);
+            inv.removeItem(item);
+            rewards.add(item);
+        }
         return rewards;
     }
 

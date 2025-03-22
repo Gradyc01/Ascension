@@ -1,5 +1,6 @@
 package me.depickcator.ascension.LootTables.Entities.Entities;
 
+import me.depickcator.ascension.Items.Uncraftable.Skulls.ZombieHead;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
@@ -72,7 +73,7 @@ public class ZombieEntity implements LootTableChanger, EntityLootTable, Superabl
         }
 
         if (r.nextDouble() <= calculateLootChance(lootingLevel, 0.020, 0.030, 0.01)) {
-            e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.ZOMBIE_HEAD));
+            e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), ZombieHead.getInstance().getResult());
         }
     }
 
@@ -111,6 +112,6 @@ public class ZombieEntity implements LootTableChanger, EntityLootTable, Superabl
 
     @Override
     public void lootFromSuperEntity(Entity e) {
-        e.getWorld().dropItem(e.getLocation(), new ItemStack(Material.ZOMBIE_HEAD));
+        e.getWorld().dropItem(e.getLocation(), ZombieHead.getInstance().getResult());
     }
 }

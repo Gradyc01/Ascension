@@ -2,6 +2,9 @@ package me.depickcator.ascension.Items.ItemLists;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.CreeperHead;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.SkeletonSkull;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.ZombieHead;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.structure.Structure;
@@ -104,9 +107,9 @@ public class MediumItems {
         items.add(new ItemStack(Material.TINTED_GLASS));
         items.add(new ItemStack(Material.POINTED_DRIPSTONE));
 
-        items.add(new ItemStack(Material.CREEPER_HEAD));
-        items.add(new ItemStack(Material.ZOMBIE_HEAD));
-        items.add(new ItemStack(Material.SKELETON_SKULL));
+        items.add(new ItemStack(CreeperHead.getInstance().getResult()));
+        items.add(new ItemStack(ZombieHead.getInstance().getResult()));
+        items.add(new ItemStack(SkeletonSkull.getInstance().getResult()));
         items.add(new ItemStack(Material.SOUL_CAMPFIRE));
         items.add(new ItemStack(Material.SOUL_TORCH));
         items.add(new ItemStack(Material.STICKY_PISTON));

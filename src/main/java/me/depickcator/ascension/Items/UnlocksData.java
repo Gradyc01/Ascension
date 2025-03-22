@@ -5,10 +5,10 @@ import java.util.List;
 
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echolocator;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
+import me.depickcator.ascension.Items.Craftable.Unlocks.MasterCompass.MasterCompass;
 import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
-import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import org.apache.commons.lang3.tuple.Pair;
 
 import me.depickcator.ascension.Ascension;
@@ -109,7 +109,8 @@ public class UnlocksData {
                 BookOfThoth.getInstance(),
                 DragonSword.getInstance(),
                 Cornucopia.getInstance(),
-                PandoraBox.getInstance()
+                PandoraBox.getInstance(),
+                MasterCompass.getInstance()
         ));
     }
 

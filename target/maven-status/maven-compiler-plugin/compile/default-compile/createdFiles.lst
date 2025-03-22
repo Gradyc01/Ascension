@@ -14,12 +14,14 @@ me\depickcator\ascension\Items\Craftable\Vanilla\DiamondSword.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HermesBoots.class
 me\depickcator\ascension\listeners\ChestGeneration\ChestLootModifier.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\OminousTrialsLoot.class
+me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassTrackSpecificPlayer.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Tarnhelm.class
 me\depickcator\ascension\Player\Cooldowns\TeleportSequence.class
 me\depickcator\ascension\MainMenuUI\Map\MapItems.class
 me\depickcator\ascension\Player\Cooldowns\ScanBoardCooldown.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\PillagerOutpost.class
 me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.class
+me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\MasterCompass.class
 me\depickcator\ascension\listeners\InventoryClose.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\DarkForest.class
 me\depickcator\ascension\Settings\BuildCustom\BuildCustom.class
@@ -41,6 +43,7 @@ me\depickcator\ascension\testingCommands\Debugger.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ArrowEconomy.class
 me\depickcator\ascension\Settings\Presets\InstantAscension.class
 me\depickcator\ascension\listeners\RecipeCrafted.class
+me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassMain.class
 me\depickcator\ascension\LootTables\Entities\EntityUtil.class
 me\depickcator\ascension\General\GameStart\Sequences\ResetWorld.class
 me\depickcator\ascension\Settings\Presets\Testing.class
@@ -121,6 +124,7 @@ me\depickcator\ascension\Player\Cooldowns\Death\DeathTimer.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastRegularChestLoot.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\Hell.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionLocation.class
+me\depickcator\ascension\Items\Uncraftable\Skulls\PlayerHead.class
 me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class
 me\depickcator\ascension\Lobby\NPCs\ViewUnlocks.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
@@ -138,6 +142,7 @@ me\depickcator\ascension\Timeline\Timelines\QuickplayTimeline.class
 me\depickcator\ascension\General\GameCommand.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\CarePackage.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Obsidian.class
+me\depickcator\ascension\Items\Uncraftable\Skulls\Skulls.class
 me\depickcator\ascension\testingCommands\startEvents.class
 me\depickcator\ascension\Skills\SkillExpAmount.class
 me\depickcator\ascension\General\GameStart\Sequences\LaunchSequence.class
@@ -149,6 +154,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\AncientArtifact.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Backpack.class
 me\depickcator\ascension\Items\Craftable\Unlocks\DragonArmor.class
 me\depickcator\ascension\MainMenuUI\Command\Commands\Commands.class
+me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\CompassAbilities.class
 me\depickcator\ascension\Player\Data\PlayerUnlocks.class
 me\depickcator\ascension\Kits\Kits\Looter.class
 me\depickcator\ascension\Timeline\Events\Feast\Feast$2.class
@@ -242,6 +248,7 @@ me\depickcator\ascension\listeners\ChestGeneration\ChestLootTable.class
 me\depickcator\ascension\LootTables\Blocks\Ores\LapisOre.class
 me\depickcator\ascension\General\GameStart\StartGame.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\DesertPyramid.class
+me\depickcator\ascension\Items\Uncraftable\Skulls\CreeperHead.class
 me\depickcator\ascension\LootTables\Blocks\BlockUtil.class
 me\depickcator\ascension\LootTables\Entities\Entities\EndermanEntity.class
 me\depickcator\ascension\testingCommands\setTimeline.class
@@ -266,6 +273,7 @@ me\depickcator\ascension\MainMenuUI\Command\Commands\SendCoords.class
 me\depickcator\ascension\General\ResetGame.class
 me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftStar.class
 me\depickcator\ascension\Items\CustomItem.class
+me\depickcator\ascension\Items\Uncraftable\Skulls\SkeletonSkull.class
 me\depickcator\ascension\listeners\PlayerChatting.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastChests$2.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Mineshaft.class
@@ -322,6 +330,7 @@ me\depickcator\ascension\LootTables\Entities\Entities\Turtle.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\DesertPyramid.class
 me\depickcator\ascension\General\GameStart\Sequences\SetWorldBorder.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfPower.class
+me\depickcator\ascension\Items\Uncraftable\Skulls\ZombieHead.class
 me\depickcator\ascension\Lobby\NPCs\LobbyNPCs.class
 me\depickcator\ascension\Timeline\Events\GracePeriod\GracePeriodEnds.class
 me\depickcator\ascension\Kits\Kits\Kit.class
@@ -330,6 +339,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Struc
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.class
 me\depickcator\ascension\MainMenuUI\Command\CommandGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CupidBow.class
+me\depickcator\ascension\Items\Uncraftable\TeammateTracker.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Bastion.class
 me\depickcator\ascension\LootTables\Entities\Entities\SkeletonEntity.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTome.class
@@ -364,6 +374,7 @@ me\depickcator\ascension\Timeline\Events\Ascension\BuildLayers\AscensionBuildLay
 me\depickcator\ascension\Items\Craftable\Unlocks\Resurrection.class
 me\depickcator\ascension\LootTables\Entities\Superable.class
 me\depickcator\ascension\Items\Craftable\Unlocks\VorpalSword.class
+me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassGUIs.class
 me\depickcator\ascension\MainMenuUI\Unlocks\ViewRecipeGUI.class
 me\depickcator\ascension\Settings\BuildCustom\Buttons\CustomItems.class
 me\depickcator\ascension\Settings\BuildCustom\Buttons\WorldBorderSize.class

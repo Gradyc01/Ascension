@@ -93,14 +93,23 @@ public class BingoData extends ItemComparison {
     }
 
     public boolean claimItem(Player p, ItemStack item, boolean displayErrorText) {
+        return claimItem(p, item, displayErrorText, true);
+    }
+
+    public boolean claimItem(Player p, ItemStack item, boolean displayErrorText, boolean removeItem) {
+        PlayerData pD = PlayerUtil.getPlayerData(p);
         for (ItemStack j : p.getInventory().getContents()) {
             if (j != null && equalItems(j, item)) {
-                j.setAmount(j.getAmount() - 1);
+                if (removeItem) {
+                    j.setAmount(j.getAmount() - 1);
+                    giveRewards(p);
+                }
+                pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
+                sendItemObtainedMessage(p, item);
                 addScore(24 - items.indexOf(item), p);
-                giveRewards(p, item);
                 checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)
                 updateScoreboard(p);
-                new BingoBoardGUI(PlayerUtil.getPlayerData(p));
+                new BingoBoardGUI(pD);
                 return true;
             }
         }
@@ -117,6 +126,18 @@ public class BingoData extends ItemComparison {
             }
         }
         return false;
+    }
+
+    private void sendItemObtainedMessage(Player p, ItemStack item) {
+        Component obtainedItemTextSolo = TextUtil.makeText("You have obtained an Item! ", TextUtil.GREEN);
+        Component obtainedItemTextItem = item.displayName().color(TextUtil.GOLD);
+        Component obtainedItemTextTeam = TextUtil.makeText(p.getName() + " obtained an Item! ", TextUtil.GREEN);
+        p.sendMessage(obtainedItemTextSolo.append(obtainedItemTextItem));
+        PlayerData pD = PlayerUtil.getPlayerData(p);
+        List<Player> teamMembers =pD.getPlayerTeam().getTeam().getOtherTeamMembers(p);
+        TextUtil.broadcastMessage(obtainedItemTextTeam.append(obtainedItemTextItem) , teamMembers);
+        SoundUtil.playHighPitchPling(p);
+        SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 100, 2.0, teamMembers);
     }
 
     private void checkForLineCompletion(Player p) {
@@ -178,38 +199,30 @@ public class BingoData extends ItemComparison {
 
 
 
-    private void giveRewards(Player p, ItemStack item) {
-        Component obtainedItemTextSolo = TextUtil.makeText("You have obtained an Item! ", TextUtil.GREEN);
-        Component obtainedItemTextItem = item.displayName().color(TextUtil.GOLD);
-        Component obtainedItemTextTeam = TextUtil.makeText(p.getName() + " obtained an Item! ", TextUtil.GREEN);
+    private void giveRewards(Player p) {
+
         PotionEffect rewardEffect = new PotionEffect(PotionEffectType.REGENERATION, 16 * 20, 0);
         PlayerData pD = PlayerUtil.getPlayerData(p);
         if (pD == null) {
             plugin.getServer().broadcast(TextUtil.makeText("UNABLE TO FIND PLAYER DATA Bingo data::giveReward", TextUtil.RED));
             return;
         }
-        pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
         //Individual Rewards
-        soloRewards(obtainedItemTextSolo.append(obtainedItemTextItem), rewardEffect, p, pD);
+        soloRewards(rewardEffect, p, pD);
         //Other Teammates rewards
-        teamRewards(obtainedItemTextTeam.append(obtainedItemTextItem), rewardEffect, pD);
+        teamRewards(rewardEffect, pD);
     }
 
-    private void soloRewards(Component text, PotionEffect effect, Player p, PlayerData pD) {
-        p.sendMessage(text);
+    private void soloRewards(PotionEffect effect, Player p, PlayerData pD) {
         p.giveExp(7);
-        SoundUtil.playHighPitchPling(p);
         pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY, true);
-
         PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
         p.addPotionEffect(effect);
     }
 
-    private void teamRewards(Component text, PotionEffect effect, PlayerData pD) {
+    private void teamRewards(PotionEffect effect, PlayerData pD) {
         ArrayList<Player> otherTeamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(pD.getPlayer());
         for (Player p : otherTeamMembers) {
-            p.sendMessage(text);
-            SoundUtil.playHighPitchPling(p);
             PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
             Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_VERY_RARE, true);
             p.addPotionEffect(effect);

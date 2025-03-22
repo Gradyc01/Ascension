@@ -1,11 +1,12 @@
 package me.depickcator.ascension.listeners.Combat;
 
+import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.Utility.TextUtil;
-import org.bukkit.Material;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
@@ -13,7 +14,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class onDeath extends PlayerCombat {
     @EventHandler
@@ -49,14 +53,10 @@ public class onDeath extends PlayerCombat {
 
     private void playerKillRewards(PlayerDeathEvent e, PlayerData victim) {
         Player v = victim.getPlayer();
-        dropHead(v);
+        dropHead(e, v);
         for (ItemStack item : plugin.getSettingsUI().getSettings().getKillReward(e, victim)) {
             v.getWorld().dropItem(v.getLocation(), item);
         }
-//        ItemStack shards = ShardOfTheFallen.result().clone();
-//        shards.setAmount(12);
-
-//        v.getWorld().dropItem(v.getLocation(), shards);
     }
 
     private void increaseKillCount(PlayerDeathEvent e) {
@@ -70,12 +70,19 @@ public class onDeath extends PlayerCombat {
         }
     }
 
-    private void dropHead(Player victim) {
-        ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
-        SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-        skullMeta.setOwningPlayer(victim);
-        skullMeta.setMaxStackSize(1);
-        skull.setItemMeta(skullMeta);
-        victim.getWorld().dropItem(victim.getLocation(), skull);
+    private void dropHead(PlayerDeathEvent e, Player victim) {
+        Entity entity = e.getDamageSource().getCausingEntity();
+        ItemStack item = PlayerHead.getInstance().getResult(victim);
+        ItemMeta meta = item.getItemMeta();
+        if (entity instanceof Player) {
+            Player p = (Player) entity;
+            List<Component> lore = new ArrayList<>(List.of(
+                    TextUtil.makeText("  Slain by " + p.getName(), TextUtil.RED, false, true)
+            ));
+            meta.lore(lore);
+            item.setItemMeta(meta);
+        }
+
+        victim.getWorld().dropItem(victim.getLocation(), item);
     }
 }

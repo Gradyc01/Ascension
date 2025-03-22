@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Lobby.NPCs.Bingo;
 
-import me.depickcator.ascension.Lobby.EventsBoard.EventBoardGUI;
 import me.depickcator.ascension.Lobby.NPCs.LobbyNPCs;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;

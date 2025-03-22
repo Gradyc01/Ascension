@@ -1,5 +1,6 @@
 package me.depickcator.ascension.LootTables.Entities.Entities;
 
+import me.depickcator.ascension.Items.Uncraftable.Skulls.SkeletonSkull;
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
@@ -76,7 +77,7 @@ public class SkeletonEntity implements LootTableChanger, EntityLootTable, Supera
 
     private void lootPoolBonus(EntityDeathEvent e, int lootingLevel, Random r) {
         if (r.nextDouble() <= calculateLootChance(lootingLevel, 0.020, 0.030, 0.01)) {
-            e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.SKELETON_SKULL));
+            lootFromSuperEntity(e.getEntity());
         }
     }
 
@@ -115,6 +116,6 @@ public class SkeletonEntity implements LootTableChanger, EntityLootTable, Supera
 
     @Override
     public void lootFromSuperEntity(Entity e) {
-        e.getWorld().dropItem(e.getLocation(), new ItemStack(Material.SKELETON_SKULL));
+        e.getWorld().dropItem(e.getLocation(), SkeletonSkull.getInstance().getResult());
     }
 }

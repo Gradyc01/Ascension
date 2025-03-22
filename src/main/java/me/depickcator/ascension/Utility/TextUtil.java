@@ -143,6 +143,10 @@ public class TextUtil {
         return TextUtil.makeText(" [Right Click]", TextUtil.GRAY);
     }
 
+    public static Component clickText() {
+        return TextUtil.makeText(" [Click]", TextUtil.GRAY);
+    }
+
     public static void debugText(String text) {
         if (Debugger.getDebugger()) {
             Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));

@@ -3,7 +3,6 @@ package me.depickcator.ascension.Kits;
 import me.depickcator.ascension.Kits.Kits.Kit2;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
-import me.depickcator.ascension.Kits.Kits.Kit;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;

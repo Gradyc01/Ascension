@@ -3,6 +3,7 @@ package me.depickcator.ascension.Player.Data;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.Items.Uncraftable.MainMenu;
+import me.depickcator.ascension.Items.Uncraftable.TeammateTracker;
 import me.depickcator.ascension.Lobby.Lobby;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -14,6 +15,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -94,13 +96,14 @@ public class PlayerData {
         player.setGameMode(GameMode.SURVIVAL);
     }
     public void resetBeforeStartGame() {
-//        clearInventoryAndEffects();
-        player.getInventory().clear();
+        PlayerInventory inv = player.getInventory();
+        inv.clear();
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, PotionEffect.INFINITE_DURATION, 0, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, PotionEffect.INFINITE_DURATION, 128, false, false));
         getMainMenuItem();
-        getKitBook();
-//        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).setBaseValue(0);
+        inv.setItem(6, TeammateTracker.getInstance().getResult());
+        inv.setItem(7, KitBook.getInstance().getResult());
+
         player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
@@ -109,11 +112,6 @@ public class PlayerData {
     }
     public void resetAfterStartGame(int gracePeriodDuration) {
         PlayerUtil.clearEffects(this);
-//        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Math.max(gracePeriodDuration, 3) * 60 * 20, 1));
-//        player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 60 * 20, 2));
-//        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, gracePeriodDuration * 60 * 20, 4, false, false));
-//        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 60 * 20, 9, false, false));
-//        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2 * 20, 9, false, false));
         addPlayerPotionEffect(player, PotionEffectType.SPEED, Math.min(gracePeriodDuration, 3), 1);
         addPlayerPotionEffect(player, PotionEffectType.HASTE, Math.min(gracePeriodDuration, 1), 2);
         addPlayerPotionEffect(player, PotionEffectType.ABSORPTION, gracePeriodDuration, 4);
@@ -139,9 +137,6 @@ public class PlayerData {
     }
     private void getMainMenuItem() {
         player.getInventory().setItem(8, MainMenu.getInstance().getResult());
-    }
-    private void getKitBook() {
-        player.getInventory().setItem(7, KitBook.getInstance().getResult());
     }
     private void addLobbyPotionEffects() {
         player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, PotionEffect.INFINITE_DURATION, 4, false, false));
