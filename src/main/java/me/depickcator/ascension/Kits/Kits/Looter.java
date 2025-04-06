@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Looter extends Kit2{
+public class Looter extends Kit {
     public Looter() {
         super("Looter");
     }

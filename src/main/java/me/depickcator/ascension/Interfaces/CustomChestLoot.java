@@ -47,6 +47,8 @@ public abstract class CustomChestLoot {
         return items;
     }
 
+    /* Gets a number of random items from arr and randomly sets the amount between min and max if changeItemAmount is true
+    * Returns a Collection of ItemStacks*/
     private Collection<ItemStack> getRandomItemFromList(List<ItemStack> arr, Random r, int count, int min, int max, boolean changeItemAmount) {
         ArrayList<ItemStack> items = new ArrayList<>(arr);
         ArrayList<ItemStack> ans = new ArrayList<>();
@@ -64,6 +66,7 @@ public abstract class CustomChestLoot {
         return ans;
     }
 
+    /* Populates an inventory with an Itemstack returns what was populated with*/
     public abstract Collection<ItemStack> populateLoot(Inventory inv, Random r, double luck);
 
 }

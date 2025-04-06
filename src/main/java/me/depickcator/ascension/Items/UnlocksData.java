@@ -43,13 +43,8 @@ public class UnlocksData {
     public static int COST_475 = 475;
     public static int COST_500 = 500;
 
-
+    /*Initializes all Unlocks and Custom Items */
     public UnlocksData() {
-//        tier1Unlocks = new ArrayList<>();
-//        tier2Unlocks = new ArrayList<>();
-//        tier3Unlocks = new ArrayList<>();
-//        tier4Unlocks = new ArrayList<>();
-//        tier5Unlocks = new ArrayList<>();
         Tier1Unlocks();
         Tier2Unlocks();
         Tier3Unlocks();
@@ -166,23 +161,7 @@ public class UnlocksData {
         Shield.getInstance();
     }
 
-    // private void initSmeltingRecipes() {
-    //     new Brick();
-    //     new Copper();
-    //     new Glass();
-    //     new Gold();
-    //     new GreenDye();
-    //     new Iron();
-    //     new Kelp();
-    //     new LimeDye();
-    //     new Netherbrick();
-    //     new NetheriteScrap();
-    //     new Potato();
-    //     new Rabbit();
-    //     new SmoothStone();
-    //     new Stone();
-    // }
-
+    /*Returns the Craft and the Tier it is in for Unlock with displayName 'displayName'*/
     public Pair<Craft, Integer> findUnlock(String displayName) {
         ArrayList<ArrayList<Craft>> arr = Ascension.getInstance().getUnlocksData().getAllUnlocks();
         for (int i = 0; i < arr.size(); i++) {

@@ -1,28 +1,36 @@
 package me.depickcator.ascension.Kits.Kits;
 
-import org.bukkit.entity.Player;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Repairable;
 
-import java.util.HashMap;
 import java.util.List;
 
-public interface Kit {
-    HashMap<ItemStack, Kit> KITS = new HashMap<>();
-    ItemStack getMascot();
-    List<ItemStack> getKitItems();
-    String getDisplayName();
-    default void registerKit(Kit kit) {
-        KITS.put(getMascot(), kit);
+public abstract class Kit {
+    private final String DISPLAY_NAME;
+    private List<ItemStack> items;
+    public Kit(String DISPLAY_NAME) {
+        this.DISPLAY_NAME = DISPLAY_NAME;
+
     }
-    default void giveKitItems(Player player) {
-        for (ItemStack item : getKitItems()) {
-            player.getInventory().addItem(item);
-        }
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
-    static HashMap<ItemStack, Kit> getKits() {
-        return KITS;
+    /*Initializes and Returns a List of ItemStacks that are contained in the Kit*/
+    public abstract List<ItemStack> initKitItems();
+    /*Get ItemStack that represents the Kit (The Icon of the Kit)*/
+    public abstract ItemStack getMascot();
+
+    public List<ItemStack> getKitItems() {
+        if (items == null) items = initKitItems();
+        return items;
     }
-    static Kit getKit(ItemStack item) {
-        return KITS.get(item);
+    protected ItemStack setToolMeta(ItemStack item) {
+        Repairable meta = (Repairable) item.getItemMeta();
+        meta.setRepairCost(999);
+        meta.addEnchant(Enchantment.EFFICIENCY, 3, true);
+        meta.addEnchant(Enchantment.UNBREAKING, 1, true);
+        item.setItemMeta(meta);
+        return item;
     }
 }

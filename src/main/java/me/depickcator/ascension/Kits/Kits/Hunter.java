@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.Repairable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hunter extends Kit2{
+public class Hunter extends Kit {
     public Hunter() {
         super("Hunter");
     }

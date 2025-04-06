@@ -17,6 +17,7 @@ public abstract class CustomItem {
         this.KEY = key;
     }
 
+    /*Initialize the Custom Item Result and Returns the ItemStack*/
     protected abstract ItemStack initResult();
 
     public String getDisplayName() {

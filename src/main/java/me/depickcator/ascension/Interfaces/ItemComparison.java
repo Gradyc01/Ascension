@@ -9,15 +9,16 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 
 public class ItemComparison {
+    /* Returns True if they are equal items, False Otherwise */
     protected boolean equalItems(ItemStack inv, ItemStack board) {
         String invItemStr = itemParser(inv);
         String boardItemStr = itemParser(board);
-//        return itemParser(inv).equals(itemParser(board));
         TextUtil.debugText("Inventory item:   " + invItemStr);
         TextUtil.debugText("Board item:     " + boardItemStr);
         return invItemStr.equals(boardItemStr);
     }
 
+    /* Parses items into an identifiable string and returns the string */
     private String itemParser(ItemStack item) {
         int customModelNumber = getItemModelNumber(item);
 
@@ -39,6 +40,7 @@ public class ItemComparison {
         return item.getType().toString() + customModelNumber;
     }
 
+    /* Gets the customModelNumber of an item returns 0 if there is none */
     private int getItemModelNumber(ItemStack item) {
         int customModelNumber;
         ItemMeta meta = item.getItemMeta();

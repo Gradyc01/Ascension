@@ -23,15 +23,13 @@ public class GameStates {
         currentState = UNLOADED;
     }
 
-    //Checks If the current state matches the state given
-    // returns true if it matches
-    // returns false if it doesn't
+    /*Checks whether the game is currently in one of these states
+    * Return True if it is, False Otherwise*/
     public boolean checkState(int... state) {
         for (int s : state) {
             if (s == currentState) return true;
         }
         return false;
-//        return state == currentState;
     }
 
     public int getCurrentState() {
@@ -42,25 +40,24 @@ public class GameStates {
         this.currentState = currentState;
     }
 
+    /*Checks if game is in a state where players can not build
+    * Returns True if Players can't build
+    * Returns False Otherwise*/
     public boolean canNotBuild() {
-//        return  checkState(LOBBY_NORMAL) ||
-//                checkState(GAME_LOADING) ||
-//                checkState(GAME_FEAST_LOADING);
         return checkState(LOBBY_NORMAL, GAME_LOADING, GAME_FEAST_LOADING);
     }
 
+    /*Checks if game is in a lobby state
+     * Returns True if Yes
+     * Returns False Otherwise*/
     public boolean inLobby() {
-//        return  checkState(LOBBY_NORMAL) ||
-//                checkState(LOBBY_QUEUE);
         return checkState(LOBBY_NORMAL, LOBBY_QUEUE);
     }
 
+    /*Check if Game is in a state where players can teleport
+     * Returns True if Yes
+     * Returns False Otherwise*/
     public boolean canTeleport(Player p) {
-//        return !(checkState(GAME_FEAST_LOADING) ||
-//                checkState(GAME_FINAL_ASCENSION) ||
-//                checkState(LOBBY) ||
-//                checkState(GAME_ENDING));
-        //checkState(GAME_FINAL_ASCENSION) || checkState(GAME_AFTER_GRACE) || checkState(GAME_ASCENSION)
         if (checkState(GAME_FINAL_ASCENSION, GAME_AFTER_GRACE, GAME_ASCENSION)) {
             return true;
         } else {
@@ -69,21 +66,17 @@ public class GameStates {
         }
     }
 
+    /*Check if Game is in Game state
+     * Returns True if Yes
+     * Returns False Otherwise*/
     public boolean inGame() {
-//        return checkState(GAME_BEFORE_GRACE) ||
-//                checkState(GAME_LOADING) ||
-//                checkState(GAME_ENDING) ||
-//                checkState(GAME_AFTER_GRACE) ||
-//                checkState(GAME_ASCENSION) ||
-//                checkState(GAME_FINAL_ASCENSION);
         return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_FINAL_ASCENSION, GAME_ENDING);
     }
 
+    /*Check if Game is in a state where players can pvp
+     * Returns True if Yes
+     * Returns False Otherwise*/
     public boolean canNotPVP() {
-//        return checkState(GAME_BEFORE_GRACE) ||
-//                checkState(GAME_ENDING) ||
-//                checkState(GAME_LOADING) ||
-//                checkState(GAME_FEAST_LOADING);
         return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_ENDING, GAME_FEAST_LOADING);
     }
 }

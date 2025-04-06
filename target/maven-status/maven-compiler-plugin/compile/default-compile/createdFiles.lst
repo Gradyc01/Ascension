@@ -69,7 +69,6 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EveTemptation.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Vanilla.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\PillagerOutpost.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldBosses.class
-me\depickcator\ascension\Kits\Kits\Kit2.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\Feast.class
 me\depickcator\ascension\LootTables\Blocks\Ores\CopperOre.class
 me\depickcator\ascension\Interfaces\ItemComparison.class

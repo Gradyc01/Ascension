@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ecologist extends Kit2 {
+public class Ecologist extends Kit {
     public Ecologist() {
         super("Ecologist");
     }

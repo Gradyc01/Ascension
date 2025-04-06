@@ -11,22 +11,21 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.HashMap;
 public interface ItemClick {
     HashMap<String, ItemClick> items = new HashMap<>();
+    /* Gets the item in the ItemClick*/
     ItemStack getItem();
+    /* What happens when it is clicked
+    Returns True if successful
+    False Otherwise*/
     boolean uponClick(PlayerInteractEvent e, PlayerData pD);
+    /* Registers item into Items*/
     void registerItem();
 
     default void addItem(ItemStack item, ItemClick itemClick) {
-//        items.put(item.toString().toLowerCase(), itemClick);
         items.put(parser(item), itemClick);
     }
 
     static ItemClick findClickItem(ItemStack item) {
-//        Bukkit.getServer().broadcast(TextUtil.makeText(item.toString(), TextUtil.WHITE));
         if (item == null) return null;
-//        for (String itemStr: items.keySet()) {
-//            Ascension.getInstance().getServer().broadcast(TextUtil.makeText(itemStr + "      ", TextUtil.BLUE).append(items.get(itemStr).getItem().displayName()));
-//        }
-//        return items.get(item.toString().toLowerCase());
         return items.get(parser(item));
     }
 
@@ -46,10 +45,13 @@ public interface ItemClick {
         return item.getType().toString() + customModelNumber;
     }
 
+    /* Compares item1 and item2 if they are the same return True
+    False Otherwise */
     static boolean compareItems(ItemStack item1, ItemStack item2) {
         return parser(item1).equals(parser(item2));
     }
 
+    /* Compares whether Player is holding item1 in their main hand */
     static boolean isHolding(Player p, ItemStack item1) {
         return compareItems(item1, p.getInventory().getItemInMainHand());
     }

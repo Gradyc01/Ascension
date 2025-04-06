@@ -24,5 +24,6 @@ public abstract class EntityInteraction {
         entityInteractions.clear();
     }
 
+    /* Triggers when a user interacts with an entity has an EntityInteraction attached */
     public abstract boolean interact(PlayerInteractEntityEvent event);
 }

@@ -31,6 +31,7 @@ public abstract class AscensionGUI extends ItemComparison{
     protected final Ascension plugin;
     protected final PlayerData playerData;
 
+    /* Creates a GUI for playerData that is GUI lines tall */
     public AscensionGUI(PlayerData playerData, char GUILines, Component name, boolean setBackground) {
         this.playerData = playerData;
         this.player = playerData.getPlayer();
@@ -55,7 +56,7 @@ public abstract class AscensionGUI extends ItemComparison{
         }
     }
 
-
+    /* The standardized close button */
     protected ItemStack getCloseButton() {
         ItemStack button = new ItemStack(Material.BARRIER);
         ItemMeta buttonMeta = button.getItemMeta();
@@ -68,6 +69,7 @@ public abstract class AscensionGUI extends ItemComparison{
         return button;
     }
 
+    /* The standardized go back button */
     protected ItemStack goBackItem() {
         ItemStack item = new ItemStack(Material.ARROW);
         ItemMeta meta = item.getItemMeta();
@@ -77,6 +79,7 @@ public abstract class AscensionGUI extends ItemComparison{
         return item;
     }
 
+    /* The standardized net page button */
     protected ItemStack nextPageItem() {
         ItemStack item = new ItemStack(Material.ARROW);
         ItemMeta meta = item.getItemMeta();
@@ -86,6 +89,7 @@ public abstract class AscensionGUI extends ItemComparison{
         return item;
     }
 
+    /* The standardized previous page button */
     protected ItemStack previousPageItem() {
         ItemStack item = new ItemStack(Material.ARROW);
         ItemMeta meta = item.getItemMeta();
@@ -95,6 +99,7 @@ public abstract class AscensionGUI extends ItemComparison{
         return item;
     }
 
+    /* The standardized Player Head button */
     protected void playerHeadButton(int index) {
         PlayerSkills playerSkills = playerData.getPlayerSkills();
         ItemStack button = new ItemStack(Material.PLAYER_HEAD);
@@ -127,6 +132,7 @@ public abstract class AscensionGUI extends ItemComparison{
         inventory.setItem(index, button);
     }
 
+    /* The standardized Explainer item */
     protected ItemStack initExplainerItem(Material material, List<Component> lore, Component name) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
@@ -140,12 +146,16 @@ public abstract class AscensionGUI extends ItemComparison{
         return item;
     }
 
+    /* Checks whether a player is holding item
+    * Returns true if Yes
+    * False Otherwise */
     protected boolean isHolding(ItemStack item) {
         ItemStack held = player.getInventory().getItemInMainHand();
 //        return held.equals(item);
         return equalItems(held, item);
     }
 
+    /* Triggers when a player interacts with an item in the GUI */
     public abstract void interactWithGUIButtons(InventoryClickEvent event);
 
 

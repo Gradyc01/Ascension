@@ -51,12 +51,11 @@ public class StartGame {
         int gracePeriodDuration = settings.getTimeline().getNextBigEvent().getRight();
         for (PlayerData pD : PlayerUtil.getAllPlayingPlayers()) {
             pD.resetAfterStartGame(gracePeriodDuration);
-//            assert pD != null;
-//            pD.resetAfterStartGame();
 
         }
     }
 
+    /* What each GameStartSequence should call at the end of their run */
     public void callback() {
         new BukkitRunnable() {
             public void run() {

@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Kits;
 
-import me.depickcator.ascension.Kits.Kits.Kit2;
+import me.depickcator.ascension.Kits.Kits.Kit;
 import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.SoundUtil;
@@ -31,7 +31,7 @@ public class KitBookGUI extends AscensionGUI {
 
     private void makeKitButtons() {
         int index = 10;
-        for (Kit2 kit : kitBook.getKits()) {
+        for (Kit kit : kitBook.getKits()) {
             inventory.setItem(index, kit.getMascot());
             index+=2;
         }
@@ -66,7 +66,7 @@ public class KitBookGUI extends AscensionGUI {
             }
         }
 //        Kit kit = Kit.getKit(event.getCurrentItem());
-        Kit2 kit = kitBook.getKit(event.getCurrentItem());
+        Kit kit = kitBook.getKit(event.getCurrentItem());
         if (kit == null) return;
         if (event.isLeftClick()) {
             if (plugin.getGameState().inLobby()) {
@@ -80,7 +80,7 @@ public class KitBookGUI extends AscensionGUI {
         }
     }
 
-    private void getKit(InventoryClickEvent event, Kit2 kit) {
+    private void getKit(InventoryClickEvent event, Kit kit) {
         Component name = TextUtil.makeText(kit.getDisplayName(), TextUtil.GOLD);
         Component text1 = TextUtil.makeText("You have chosen the ", TextUtil.DARK_GREEN);
         Component text2 = TextUtil.makeText(" Kit", TextUtil.DARK_GREEN);
@@ -92,7 +92,7 @@ public class KitBookGUI extends AscensionGUI {
         player.closeInventory();
     }
 
-    private void viewKit(InventoryClickEvent event, Kit2 kit) {
+    private void viewKit(InventoryClickEvent event, Kit kit) {
         new ViewKitGUI(playerData, kit, this);
     }
 

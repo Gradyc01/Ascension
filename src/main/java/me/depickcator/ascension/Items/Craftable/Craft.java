@@ -60,11 +60,13 @@ public abstract class Craft extends CustomItem {
         }
     }
 
+    /*Can have a certain affect when upon Crafted*/
     public boolean uponCrafted(CraftItemEvent e, Player p) {
         //Empty on purpose
         return true;
     }
 
+    /*Initializes the Recipe and returns the Recipe that is initialized*/
     protected abstract Recipe initRecipe();
     protected abstract ItemStack initResult();
 

@@ -18,12 +18,9 @@ public class GameCommand implements CommandExecutor {
         this.ab = Ascension.getInstance();
     }
 
-    @SuppressWarnings("null")
+    /* Controls the loading, starting, resetting of a game instance */
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-//        if (!(commandSender instanceof Player)) {
-//            return false;
-//        }
         if (strings.length == 2 || strings.length > 4) return false;
 
         Player p = null;
@@ -32,12 +29,6 @@ public class GameCommand implements CommandExecutor {
             p = (Player) commandSender;
             playerSent = true;
         }
-//        Player p = ((Player) commandSender).getPlayer();
-//        try {
-//            assert p != null;
-//        } catch (Exception e) {
-//            return false;
-//        }
 
         switch (strings[0].toLowerCase()) {
             case "start" -> {

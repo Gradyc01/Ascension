@@ -18,7 +18,7 @@ import java.util.List;
 
 public class KitBook extends CustomItem implements ItemClick {
     private static KitBook instance;
-    private final List<Kit2> kits;
+    private final List<Kit> kits;
     private KitBook() {
         super("Kit Book", "kit_book");
         registerItem();
@@ -50,7 +50,7 @@ public class KitBook extends CustomItem implements ItemClick {
         addItem(getResult(), this);
     }
 
-    private List<Kit2> registerKits() {
+    private List<Kit> registerKits() {
         return new ArrayList<>(List.of(
                 new Ecologist(),
                 new Hunter(),
@@ -59,12 +59,12 @@ public class KitBook extends CustomItem implements ItemClick {
         ));
     }
 
-    public List<Kit2> getKits() {
+    public List<Kit> getKits() {
         return kits;
     }
 
-    public Kit2 getKit(ItemStack item) {
-        for (Kit2 k : kits) {
+    public Kit getKit(ItemStack item) {
+        for (Kit k : kits) {
             if (k.getMascot().equals(item)) {
                 return k;
             }

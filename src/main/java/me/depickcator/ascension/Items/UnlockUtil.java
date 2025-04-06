@@ -24,6 +24,8 @@ public class UnlockUtil {
             Material.DARK_OAK_SAPLING);
     private static HashMap<String, Pair<Integer, String>> UNLOCKS = new HashMap<>();
 
+    /*Registers the Unlock into the HashMap Unlock
+    * It also Registers the Recipe, displayName, and the Max number of Crafts*/
     public static void addUnlock(Ascension plugin, Recipe recipe, Integer maxCrafts, String displayName) {
         plugin.getServer().addRecipe(recipe);
         if (recipe instanceof ShapedRecipe) {

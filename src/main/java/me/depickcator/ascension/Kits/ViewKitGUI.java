@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Kits;
 
-import me.depickcator.ascension.Kits.Kits.Kit2;
+import me.depickcator.ascension.Kits.Kits.Kit;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -8,9 +8,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class ViewKitGUI extends AscensionGUI {
-    private final Kit2 kit;
+    private final Kit kit;
     private final AscensionGUI parent;
-    public ViewKitGUI(PlayerData playerData, Kit2 kit, AscensionGUI gui) {
+    public ViewKitGUI(PlayerData playerData, Kit kit, AscensionGUI gui) {
         super(playerData, (char) 6, TextUtil.makeText("Viewing ", TextUtil.AQUA).append(TextUtil.makeText(kit.getDisplayName(), TextUtil.GOLD)), true);
         this.parent = gui;
         this.kit = kit;

@@ -75,14 +75,14 @@ public abstract class Settings {
                 new ItemStack(Material.GOLD_NUGGET, 21)
         ));
         ItemStack shards = ShardOfTheFallen.getInstance().getResult(7);
-//        shards.setAmount(7);
         rewards.add(shards);
         PlayerInventory inv = victim.getPlayer().getInventory();
         for (ItemStack item : inv.getContents().clone()) {
             if (item == null) continue;
-            item.getItemMeta().hasEnchant(Enchantment.VANISHING_CURSE);
-            inv.removeItem(item);
-            rewards.add(item);
+            if (item.getItemMeta().hasEnchant(Enchantment.VANISHING_CURSE)) {
+                inv.removeItem(item);
+                rewards.add(item);
+            }
         }
         return rewards;
     }

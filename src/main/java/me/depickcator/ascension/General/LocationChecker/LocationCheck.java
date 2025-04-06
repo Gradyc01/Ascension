@@ -51,11 +51,6 @@ public class LocationCheck {
             }
         }
         return false;
-//        if (biomes.containsKey(biome)) {
-//            return biomes.get(biome).isInWorld();
-//        } else {
-//            return false;
-//        }
     }
 
     public boolean isALocation(Structure... structure) {
@@ -65,11 +60,6 @@ public class LocationCheck {
             }
         }
         return false;
-//        if (structures.containsKey(structure)) {
-//            return structures.get(structure).isInWorld();
-//        } else {
-//            return false;
-//        }
     }
 
     public int getPercentageScore() {
@@ -120,8 +110,6 @@ public class LocationCheck {
     }
 
     private void runLocations() {
-//        List<Pair<Structure, Integer>> structures = initStructures();
-//        List<Pair<Biome, Integer>> biomes = initBiomes();
         List<LocationStorage> allChecks = new ArrayList<>(initStructures());
         allChecks.addAll(initBiomes());
         task = new BukkitRunnable() {
@@ -173,13 +161,6 @@ public class LocationCheck {
         return ans;
     }
 
-//    private void checkLocation(Biome biome) {
-//        checkLocation(biome, 10);
-//    }
-//
-//    private void checkLocation(Structure structure) {
-//        checkLocation(structure, 10);
-//    }
 
     private void addScore(boolean success, int total) {
         int score = success ? locationScore.getLeft() + total : locationScore.getLeft();

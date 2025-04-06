@@ -14,6 +14,7 @@ import java.util.List;
 
 public interface Vanilla {
 //    void removeVanillaRecipe();
+    /*Adds modifiers to ItemMeta 'meta' with a certain attackDamage and attackSpeed*/
     static ItemMeta addModifiers(ItemMeta meta, double attackDamage, double attackSpeed, String KEY) {
         meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, Vanilla.makeAttackDamageModifier(KEY, attackDamage));
         meta.addAttributeModifier(Attribute.ATTACK_SPEED, Vanilla.makeAttackSpeedModifier(KEY, attackSpeed));

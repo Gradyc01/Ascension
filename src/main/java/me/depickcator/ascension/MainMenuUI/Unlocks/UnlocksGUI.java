@@ -25,6 +25,8 @@ public class UnlocksGUI extends AscensionGUI {
     private final Integer[] barrierNums = {47, 46, 37, 28, 19, 10, 11, 12, 13, 14, 15, 16, 25, 34, 43, 52, 51};
     private final char pageNumber;
     private ArrayList<ItemStack> pages;
+
+    /* pageNumber is 1 indexed */
     public UnlocksGUI(PlayerData playerData, char pageNumber) {
         super(playerData, (char) 6, TextUtil.makeText("Unlocks: Tier " + TextUtil.toRomanNumeral(pageNumber), TextUtil.AQUA), true);
         this.pageNumber = pageNumber;

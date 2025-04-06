@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.Repairable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IronTools extends Kit2{
+public class IronTools extends Kit {
     public IronTools() {
         super("Iron Tools");
     }

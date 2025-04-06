@@ -7,5 +7,7 @@ public abstract class GameStartSequence {
     public GameStartSequence() {
         plugin = Ascension.getInstance();
     }
+    /*Runs a certain sequence of events that help start the game
+    * Calls the callback at the end*/
     public abstract void run(StartGame game);
 }

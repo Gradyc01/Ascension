@@ -16,6 +16,7 @@ public class ItemList {
     private final Harditems harditems;
     private final CustomItems customItems;
     private final CombatItems combatItems;
+    /*Contains all ItemLists used for the Board and Scavenger*/
     public ItemList() {
         easyItems = new EasyItems();
         mediumItems = new MediumItems();
@@ -23,13 +24,9 @@ public class ItemList {
         customItems = new CustomItems();
         combatItems = new CombatItems();
         items = new ArrayList<>();
-        setItems();
     }
 
-    public void setItems() {
-        items.addAll(easyItems.getItems());
-    }
-
+    //Returns 'amount of items' from List 'items'
     public List<ItemStack> grabItemsFromList(List<ItemStack> items, int amount) {
         Random r = new Random();
         List<ItemStack> itemList = new ArrayList<>(items);
@@ -44,6 +41,8 @@ public class ItemList {
         return arr;
     }
 
+    /*Returns 'easyItems' easyItems, 'mediumItems' medium items etc.
+    * get25 doesn't necessarily need to get 25*/
     public ArrayList<ItemStack> get25(int easyItems, int mediumItems, int hardItems, int customItems) {
         ArrayList<ItemStack> items = new ArrayList<>();
         items.addAll(grabItemsFromList(this.easyItems.getItems(), easyItems));
@@ -54,6 +53,8 @@ public class ItemList {
         return items;
     }
 
+    /*Returns a List of ItemStacks of a certain itemDistribution
+    * 'itemDistribution' must be of size 4*/
     public ArrayList<ItemStack> getItemsForBoard(List<Integer> itemDistribution) {
         if (itemDistribution.size() != 4) {
             throw new IllegalArgumentException("Invalid item distribution");
