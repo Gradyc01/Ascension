@@ -26,13 +26,6 @@ public class XPTomeGUI extends AscensionGUI {
     }
 
     private void makeExpButton(Material material, String name, int index) {
-//        ItemStack item = new ItemStack(material);
-//        ItemMeta meta = item.getItemMeta();
-//        meta.displayName(TextUtil.makeText(name, TextUtil.DARK_GREEN));
-//        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-//        meta.setCustomModelData(0x040000);
-//        item.setItemMeta(meta);
-//        inventory.setItem(index, item);
         Component title = TextUtil.makeText(name, TextUtil.DARK_GREEN);
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText(""),

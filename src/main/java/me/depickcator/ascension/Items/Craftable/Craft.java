@@ -14,9 +14,6 @@ public abstract class Craft extends CustomItem {
     protected Recipe recipe;
     protected final int COST;
     protected final int MAX_CRAFTS;
-//    protected final String DISPLAY_NAME;
-//    protected final String KEY;
-//    protected ItemStack result;
 
     protected Craft(int cost, int maxCrafts, String displayName, String key) {
         super(displayName, key, true);
@@ -94,7 +91,4 @@ public abstract class Craft extends CustomItem {
         return recipe;
     }
 
-    public ItemStack getResult() {
-        return result;
-    }
 }

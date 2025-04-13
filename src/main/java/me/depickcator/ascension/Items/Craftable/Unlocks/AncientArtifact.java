@@ -22,7 +22,7 @@ public class AncientArtifact extends Craft {
         recipe.shape(" A ", "BCB", " D ");
         recipe.setIngredient('A', Material.MAGMA_CREAM);
         recipe.setIngredient('B', Material.BLAZE_POWDER);
-        recipe.setIngredient('C', Material.NETHER_STAR);
+        recipe.setIngredient('C', Material.PLAYER_HEAD);
         recipe.setIngredient('D', Material.GOLD_BLOCK);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

@@ -29,7 +29,7 @@ public abstract class CustomItem {
     }
 
     public ItemStack getResult() {
-        return result;
+        return result.clone();
     }
 
     public ItemStack getResult(int amount) {

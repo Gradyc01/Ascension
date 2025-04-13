@@ -27,8 +27,8 @@ public class PlayerTeam implements PlayerDataObservers {
         team = null;
     }
 
+    /*Sends a party invite to Player p from this Player*/
     public void sendInvite(Player p) {
-
         team = createOrGetTeam();
         PlayerTeam invitedPlayerTeamData = Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerTeam();
         if (invitedPlayerTeamData == null) {
@@ -44,6 +44,7 @@ public class PlayerTeam implements PlayerDataObservers {
         receivingInviteText(p);
     }
 
+    /*Player accepts the current incoming invite*/
     public void acceptInvite() {
         if (team != null) {
             errorMessage("Already on a team must leave before joining another team!");
@@ -63,6 +64,7 @@ public class PlayerTeam implements PlayerDataObservers {
         }
     }
 
+    /*Player rejects the incoming invite*/
     public void rejectInvite() {
         if (getPendingTeamInvite()) {
             PlayerData sender = getInviteFromWho();
@@ -74,6 +76,7 @@ public class PlayerTeam implements PlayerDataObservers {
         }
     }
 
+    /*Player leaves the current party*/
     public void leaveTeam() {
         if (team == null) {
             errorMessage("You must be on a team to be able to leave the team");
@@ -84,6 +87,7 @@ public class PlayerTeam implements PlayerDataObservers {
         playerData.getPlayerScoreboard().update();
     }
 
+    /*Creates or gets the current team for this Player */
     public Team createOrGetTeam() {
         if (team != null) {
             return team;
@@ -129,11 +133,6 @@ public class PlayerTeam implements PlayerDataObservers {
         invitedPlayer.sendMessage(TextUtil.makeText(player.getName() + " has invited you to their party!", TextUtil.YELLOW));
 
         invitedPlayer.sendMessage(inviteHyperlink("accept"));
-//        Component rejectBeginning = TextUtil.makeText("If you would like to reject this invite ", TextUtil.YELLOW);
-//        Component rejectText = TextUtil.makeText("[Click Here]", TextUtil.GOLD)
-//                .hoverEvent(HoverEvent.showText(TextUtil.makeText("Click here to reject the invite", TextUtil.DARK_PURPLE)))
-//                .clickEvent(ClickEvent.runCommand("/party reject"));
-//        Component rejectEnd = TextUtil.makeText(" or by typing /party reject", TextUtil.YELLOW);
         invitedPlayer.sendMessage(inviteHyperlink("reject"));
 
 

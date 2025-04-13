@@ -32,7 +32,7 @@ public class CubeConverter extends Craft {
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("A", "B", "C");
         recipe.setIngredient('A', Material.EMERALD);
-        recipe.setIngredient('B', Material.NETHER_STAR);
+        recipe.setIngredient('B', Material.PLAYER_HEAD);
         recipe.setIngredient('C', Material.MOSSY_COBBLESTONE);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

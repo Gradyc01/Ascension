@@ -29,7 +29,7 @@ public class WeaverSilk extends Craft {
         recipe.shape("BAA", "ADA", "AAC");
         recipe.setIngredient('A', Material.COBWEB);
         recipe.setIngredient('B', Material.FERMENTED_SPIDER_EYE);
-        recipe.setIngredient('C', Material.NETHER_STAR);
+        recipe.setIngredient('C', Material.PLAYER_HEAD);
         recipe.setIngredient('D', Material.BOOK);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

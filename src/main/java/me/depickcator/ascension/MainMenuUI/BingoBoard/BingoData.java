@@ -1,6 +1,7 @@
 package me.depickcator.ascension.MainMenuUI.BingoBoard;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
@@ -50,18 +51,10 @@ public class BingoData extends ItemComparison {
         resetPlayers();
     }
 
-//    private void resetScoreboards() {
-//        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard objectives remove bingo");
-//    }
-
-
-
     public void resetPlayers() {
         Collection<? extends Player> players = Bukkit.getOnlinePlayers();
         bingoScoreboard.resetScores("bingo");
         for (Player player : players) {
-//            Score score = Objects.requireNonNull(bingoScoreboard.getObjective("bingo")).getScore(player.getName());
-//            score.setScore(0);
             resetPlayer(player);
         }
     }
@@ -87,8 +80,6 @@ public class BingoData extends ItemComparison {
             ItemStack item = items.get(i);
             if (claimItem(p, item, false)) return;
         }
-//        SoundUtil.playErrorSoundEffect(p);
-//        p.sendMessage(Component.text("There were no items to claim").color(TextColor.color(255,0,0)));
         TextUtil.errorMessage(p, "There were no items to claim");
     }
 
@@ -147,7 +138,6 @@ public class BingoData extends ItemComparison {
 
         int oldLines = playerData.getPlayerTeam().getTeam().getTeamStats().getLinesObtained();
         int newLines = calculateTotalLines(hasItems);
-        // plugin.getServer().broadcast(TextUtil.makeText(oldLines + "           " + newLines, TextUtil.BLUE));
         if (newLines > oldLines) {
             Team team = playerData.getPlayerTeam().getTeam();
             for (int i = 0; i < newLines - oldLines; i++) {
@@ -158,7 +148,7 @@ public class BingoData extends ItemComparison {
                     teamMember.sendMessage(TextUtil.makeText("Your team has completed a line!", TextUtil.BLUE));
                     teamMember.sendMessage(TextUtil.bottomBorder(TextUtil.YELLOW));
                     teamMember.playSound(teamMember.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
-                    PlayerUtil.giveItem(teamMember, new ItemStack(Material.NETHER_STAR));
+                    PlayerUtil.giveItem(teamMember, MakeshiftSkull.getInstance().getResult());
                 }
             }
             team.getTeamStats().setLinesObtained(newLines);
@@ -203,10 +193,6 @@ public class BingoData extends ItemComparison {
 
         PotionEffect rewardEffect = new PotionEffect(PotionEffectType.REGENERATION, 16 * 20, 0);
         PlayerData pD = PlayerUtil.getPlayerData(p);
-        if (pD == null) {
-            plugin.getServer().broadcast(TextUtil.makeText("UNABLE TO FIND PLAYER DATA Bingo data::giveReward", TextUtil.RED));
-            return;
-        }
         //Individual Rewards
         soloRewards(rewardEffect, p, pD);
         //Other Teammates rewards
@@ -215,7 +201,7 @@ public class BingoData extends ItemComparison {
 
     private void soloRewards(PotionEffect effect, Player p, PlayerData pD) {
         p.giveExp(7);
-        pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY, true);
+        pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_RARE, true);
         PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
         p.addPotionEffect(effect);
     }
@@ -224,7 +210,7 @@ public class BingoData extends ItemComparison {
         ArrayList<Player> otherTeamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(pD.getPlayer());
         for (Player p : otherTeamMembers) {
             PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
-            Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_VERY_RARE, true);
+            PlayerUtil.getPlayerData(p).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_UNCOMMON, true);
             p.addPotionEffect(effect);
         }
     }

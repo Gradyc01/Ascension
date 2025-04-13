@@ -44,24 +44,19 @@ public class PlayerScoreboard implements PlayerDataObservers {
         player.setScoreboard(scoreboard);
     }
 
-//    private void makeBoard() {
-//        if (plugin.getGameState().inGame()) {
-//            makeGameBoard();
-//        } else {
-//            makeLobbyBoard();
-//        }
-//    }
-
+    /*Creates the LobbyBoard for this player*/
     public void makeLobbyBoard() {
         boards = new LobbyBoard(board, playerData);
         boards.makeBoard();
     }
 
+    /*Creates the GameBoard for this player*/
     public void makeGameBoard() {
         boards = new GameBoard(board, playerData);
         boards.makeBoard();
     }
 
+    /*Updates the board that is associated with this player*/
     public void update() {
         boards.update();
     }
@@ -79,6 +74,7 @@ public class PlayerScoreboard implements PlayerDataObservers {
         health.setDisplaySlot(DisplaySlot.PLAYER_LIST);
     }
 
+    /*Updates the Tab to represent which players in the game are friend and foe*/
     public void updateTabList() {
         List<PlayerData> allPlayers = PlayerUtil.getAllPlayingPlayers();
         teammates.addPlayer(player);

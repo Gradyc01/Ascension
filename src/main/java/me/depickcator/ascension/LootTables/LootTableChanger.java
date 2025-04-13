@@ -20,28 +20,35 @@ public interface LootTableChanger {
     NamespacedKey namespacedKey = new NamespacedKey(NAMESPACED_KEY1, NAMESPACED_KEY2);
     HashMap<String, LootTableChanger> items = new HashMap<>();
     ItemStack getItem();
+    /*Upon triggering a certain LootTable event.
+    * Returns true if successful false otherwise*/
     boolean uponEvent(Event e, Player p);
+    /*Registers an Item/Block into the LootTable*/
     void registerItem();
 
     default boolean isEventBreakBlockEvent(Event e) {
         return e instanceof BlockBreakEvent;
     }
 
+    /*Adds a Loot Table Item into Items*/
     default void addItem(ItemStack item, LootTableChanger lootTableChanger) {
         String itemKey = item.getItemMeta().getPersistentDataContainer().get(namespacedKey, PersistentDataType.STRING);
         items.put(itemKey, lootTableChanger);
     }
 
+    /*Adds a Loot Table Entity into Items*/
     default void addEntity(String entityString, LootTableChanger lootTableChanger) {
         items.put(entityString, lootTableChanger);
     }
 
+    /*Adds a Loot Table Block into Items*/
     default void addBlock(Material material, LootTableChanger lootTableChanger) {
         if (material.isBlock()) {
             items.put(material.getBlockTranslationKey(), lootTableChanger);
         }
     }
 
+    /*Adds a Persistent Data Tag onto an ItemStack*/
     static void addPersistentDataForItems(ItemStack item, String KEY) {
         ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();

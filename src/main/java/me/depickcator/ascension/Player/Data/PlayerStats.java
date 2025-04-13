@@ -14,10 +14,6 @@ public class PlayerStats implements PlayerDataObservers {
     private int kills;
     private int deaths;
 
-    //Settings
-//    private boolean nightVision;
-//    private boolean foodDrops;
-
     //Keys
     private static final String nightVisionKey = "night_vision";
     private static final String foodDropsKey = "food_drops";
@@ -25,8 +21,6 @@ public class PlayerStats implements PlayerDataObservers {
         this.playerData = playerData;
         this.player = playerData.getPlayer();
         kills = 0;
-//        nightVision = getNamespacedKey(PlayerStats.nightVisionKey);
-//        foodDrops = getNamespacedKey(PlayerStats.foodDropsKey);
     }
 
     private boolean getNamespacedKey(String key) {

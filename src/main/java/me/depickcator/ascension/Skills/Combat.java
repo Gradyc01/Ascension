@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Skills;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
@@ -150,7 +151,7 @@ public class Combat implements Skills {
         SkillRewards skillRewards = new SkillRewards();
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
-                        new ItemStack(Material.NETHER_STAR, 1)
+                        MakeshiftSkull.getInstance().getResult()
                 )
         );
         skillRewards.setItems(rewards);
@@ -165,7 +166,7 @@ public class Combat implements Skills {
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
                         shards,
-                        new ItemStack(Material.NETHER_STAR, 1)
+                        MakeshiftSkull.getInstance().getResult()
                 )
         );
         skillRewards.setItems(rewards);

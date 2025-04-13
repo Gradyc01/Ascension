@@ -35,8 +35,8 @@ public class PandoraBox extends Craft implements ItemClick {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
         ShapedRecipe recipe = new ShapedRecipe(key, result);
 
-        recipe.shape("BDB", "CAC", "BCB");
-        recipe.setIngredient('A', Material.NETHER_STAR);
+        recipe.shape("BCB", "CDC", "BCB");
+//        recipe.setIngredient('A', Material.NETHER_STAR);
         recipe.setIngredient('B', ShardOfTheFallen.getInstance().getResult());
         recipe.setIngredient('C', Material.CHEST);
         recipe.setIngredient('D', Material.PLAYER_HEAD);

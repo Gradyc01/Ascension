@@ -1,6 +1,7 @@
 package me.depickcator.ascension.General;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Unlocks.Backpack;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
@@ -40,6 +41,7 @@ public class ResetGame implements Runnable {
 
     private void resetPlayers() {
         PlayerUtil.clearPlayerDataMap();
+        Backpack.getInstance().resetBackpacks();
         resetTeams();
         new BukkitRunnable() {
             ArrayList<Player> players = new ArrayList<>(plugin.getServer().getOnlinePlayers());

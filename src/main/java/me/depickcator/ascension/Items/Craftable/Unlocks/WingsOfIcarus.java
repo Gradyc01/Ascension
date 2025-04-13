@@ -35,7 +35,7 @@ public class WingsOfIcarus extends Craft {
         recipe.shape("ABA", "C C", "ADA");
         recipe.setIngredient('A', Material.FEATHER);
         recipe.setIngredient('B', Material.ENDER_PEARL);
-        recipe.setIngredient('C', Material.NETHER_STAR);
+        recipe.setIngredient('C', Material.PLAYER_HEAD);
         recipe.setIngredient('D', Material.FIREWORK_ROCKET);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

@@ -98,7 +98,7 @@ public class UnlocksData {
                 NotchApple.getInstance(),
                 AncientArtifact.getInstance(),
                 SoulArtifact.getInstance(),
-                MakeshiftStar.getInstance(),
+                MakeshiftSkull.getInstance(),
                 Nectar.getInstance(),
                 PotionOfVelocity.getInstance(),
                 BookOfThoth.getInstance(),

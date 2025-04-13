@@ -1,17 +1,22 @@
 package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import static me.depickcator.ascension.Interfaces.ItemClick.compareItems;
 
 public class PlayerUtil {
     public static void assignNewPlayerData() {
@@ -67,15 +72,61 @@ public class PlayerUtil {
 
     public static void giveItem(Player p, List<ItemStack> items) {
         PlayerInventory inv = p.getInventory();
+//        for (ItemStack item : items) {
+//            int emptySlot = inv.firstEmpty();
+//            if (emptySlot != -1) {
+//                TextUtil.debugText("Empty slot found in " + p.getName() + "'s inventory at: " + emptySlot);
+//                p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1f, 2);
+//                inv.setItem(emptySlot, item);
+//                continue;
+//            }
+//            p.getWorld().dropItem(p.getLocation(), item);
+//        }
+        List<ItemStack> itemsLeft = new ArrayList<>(); // Items Left to give
         for (ItemStack item : items) {
-            int emptySlot = inv.firstEmpty();
-            if (emptySlot != -1) {
-                TextUtil.debugText("Empty slot found in " + p.getName() + "'s inventory at: " + emptySlot);
-                p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1f, 2);
-                inv.setItem(emptySlot, item);
-                continue;
+            itemsLeft.add(item.clone());
+        }
+        List<Integer> emptySlots = new ArrayList<>(); // All empty slots
+        for (int i = 0; i < 35; i++) {
+            ItemStack invItem = inv.getItem(i);
+            if (invItem == null) {
+                TextUtil.debugText("Empty Slot found at index " + i);
+                emptySlots.add(i);
+            } else {
+                TextUtil.debugText("Empty Slot not found at index " + i);
+                for (ItemStack item : new ArrayList<>(itemsLeft)) {
+                    TextUtil.debugText("Comparing Item " + invItem.getType() + " to " + item.getType());
+                    if (compareItems(item, invItem)) {
+                        TextUtil.debugText("Same Item");
+                        int maxSize = invItem.getMaxStackSize();
+                        int itemAmount = item.getAmount();
+                        int invItemAmount = invItem.getAmount();
+                        if (maxSize >= invItemAmount + itemAmount) {
+                            TextUtil.debugText("Not full");
+                            p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 0.5f, 2);
+                            invItem.setAmount(invItemAmount + itemAmount);
+                            itemsLeft.remove(item);
+                        } else {
+                            TextUtil.debugText("Full");
+                            p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 0.5f, 2);
+                            invItem.setAmount(maxSize);
+                            item.setAmount(itemAmount - (maxSize - invItemAmount));
+                        }
+                    }
+                }
             }
-            p.getWorld().dropItem(p.getLocation(), item);
+        }
+        for (ItemStack item : itemsLeft) {
+            try {
+                int slot = emptySlots.getFirst();
+                TextUtil.debugText("Empty slot found in " + p.getName() + "'s inventory at: " + slot);
+                p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 0.5f, 2);
+                inv.setItem(slot, item);
+                emptySlots.removeFirst();
+
+            } catch (NoSuchElementException ignored) {
+                p.getWorld().dropItem(p.getLocation(), item);
+            }
         }
     }
 

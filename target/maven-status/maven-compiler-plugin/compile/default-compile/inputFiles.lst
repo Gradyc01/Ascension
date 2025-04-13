@@ -29,7 +29,6 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Inter
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\EntityInteraction.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemClick.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemComparison.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\OldAscensionGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Craft.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\AncientArtifact.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\ApolloGlare.java
@@ -92,7 +91,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightAnvil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightApple.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightEnchantingTable.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftStar.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftSkull.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\CompassAbilities.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassAddFuel.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassGUIs.java
@@ -276,7 +275,6 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainM
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\SendCoords.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\SpawnTravel.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\Surface.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\GiveMainMenuItem.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\mainMenuCommands.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\MainMenuGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Map\MapGUI.java

@@ -23,7 +23,7 @@ public class ExplosivePropulsion extends Craft {
         recipe.shape("ABA", "ACA", "ABA");
         recipe.setIngredient('A', Material.PAPER);
         recipe.setIngredient('B', Material.GUNPOWDER);
-        recipe.setIngredient('C', Material.NETHER_STAR);
+        recipe.setIngredient('C', Material.PLAYER_HEAD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

@@ -10,6 +10,7 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.MasterCompass.MasterComp
 import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -30,8 +31,8 @@ public class CustomItems {
         items.add(MasterCompass.getInstance().getResult());
 
         //Combat
-        items.add(new ItemStack(Material.PLAYER_HEAD));
-        items.add(new ItemStack(Material.NETHER_STAR));
+        items.add(PlayerHead.getInstance().getResult());
+        items.add(MakeshiftSkull.getInstance().getResult());
         items.add(ShardOfTheFallen.getInstance().getResult());
         items.add(GoldenHead.getInstance().getResult());
         items.add(PandoraBox.getInstance().getResult());

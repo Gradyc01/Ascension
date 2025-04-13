@@ -22,7 +22,7 @@ public class DiamondPack extends Craft {
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("AAA", "ABA", "ACA");
         recipe.setIngredient('A', Material.DIAMOND);
-        recipe.setIngredient('B', Material.NETHER_STAR);
+        recipe.setIngredient('B', Material.PLAYER_HEAD);
         recipe.setIngredient('C', Material.IRON_PICKAXE);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

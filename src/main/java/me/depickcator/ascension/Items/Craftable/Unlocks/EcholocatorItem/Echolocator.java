@@ -32,7 +32,7 @@ public class Echolocator extends Craft implements ItemClick {
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("CAD", "ABA", "DAD");
         recipe.setIngredient('A', Material.EMERALD);
-        recipe.setIngredient('B', Material.NETHER_STAR);
+        recipe.setIngredient('B', Material.PLAYER_HEAD);
         recipe.setIngredient('C', Material.MAP);
         recipe.setIngredient('D', Material.GOLD_INGOT);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);

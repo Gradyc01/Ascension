@@ -13,10 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.*;
 
 import java.util.EventListener;
 import java.util.Objects;
@@ -54,47 +51,54 @@ public class RecipeCrafted implements EventListener, Listener {
     }
 
     @EventHandler
-    public void onCraftItem(CraftItemEvent event) throws Exception {
+    public void onCraftItem(CraftItemEvent event) {
         Recipe recipe = event.getRecipe();
-        if (!isCraftingRecipe(recipe)) {
-            return;
-        }
+        if (!isCraftingRecipe(recipe)) return;
         String recipeKey = getKey(recipe);
-        if (!UnlockUtil.isAUnlock(recipeKey)) {
-            return;
-        }
+        if (!UnlockUtil.isAUnlock(recipeKey)) return;
+
         Player player = (Player) event.getWhoClicked();
-        if (event.isShiftClick() && player.getInventory().firstEmpty() == -1) {
+        int numberOfCrafts = calculateCraftAmount(event);
+
+        //Check if Inventory is big enough
+        if (event.isShiftClick() && !hasEnoughEmptySlots(player, numberOfCrafts)) {
+            player.sendMessage(TextUtil.makeText("Your inventory is too full to craft that much!", TextUtil.RED));
             event.setCancelled(true);
             return;
         }
-        PlayerUnlocks playerUnlocks = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks();
 
+        PlayerUnlocks playerUnlocks = PlayerUtil.getPlayerData(player).getPlayerUnlocks();
         int currentCrafts = getCurrentCrafts(playerUnlocks, recipeKey);
+
+        //Check if craft is Unlocked
         if (currentCrafts == -1) {
+            player.sendMessage(TextUtil.makeText("You do not have this item unlocked!", TextUtil.RED));
             event.getInventory().setResult(null);
+            return;
         }
 
+        //Check if player has reached the limit
         if (currentCrafts >= UnlockUtil.getMaxCrafts(recipeKey)) {
             event.getInventory().setResult(null);
             player.sendMessage(TextUtil.makeText("You have reached the crafting limit for this item!", TextUtil.RED));
             return;
         }
 
-        if (!playerUnlocks.addUnlockCount(recipeKey, calculateCraftAmount(event))) {
-            Component t1 = TextUtil.makeText("You can't craft that many!", TextUtil.RED);
-            Component craftText = TextUtil.makeText(" (" + playerUnlocks.getUnlockCount(recipeKey)  + "/" + UnlockUtil.getMaxCrafts(recipeKey) + ")", TextUtil.AQUA);
-            player.sendMessage(t1.append(craftText));
-            event.setCancelled(true);
-            return;
-        }
         String displayName = UnlockUtil.getDisplayName(recipeKey);
         Craft c = Ascension.getInstance().getUnlocksData().findUnlock(displayName).getLeft();
-
         if (!c.uponCrafted(event, player)) {
             event.setCancelled(true);
             return;
         };
+
+        //Check if player is crafting over the limit
+        if (!playerUnlocks.addUnlockCount(recipeKey, numberOfCrafts)) {
+            Component t1 = TextUtil.makeText("You can't craft that many!", TextUtil.RED);
+            Component craftText = TextUtil.makeText(" (" + playerUnlocks.getUnlockCount(recipeKey) + "/" + UnlockUtil.getMaxCrafts(recipeKey) + ")", TextUtil.AQUA);
+            player.sendMessage(t1.append(craftText));
+            event.setCancelled(true);
+            return;
+        }
 
         Component text1 = TextUtil.makeText("You crafted ", TextUtil.AQUA);
         Component text2 = TextUtil.makeText(displayName, TextUtil.GOLD);
@@ -123,8 +127,19 @@ public class RecipeCrafted implements EventListener, Listener {
         }
 
         return maxCraftableAmount;
+    }
 
-//
+    private boolean hasEnoughEmptySlots(Player p, int amount) {
+        PlayerInventory inv = p.getInventory();
+        int i = 0;
+        int iter = 0;
+        for (ItemStack item : inv.getContents()) {
+            if (iter > 35) return false;
+            if (item == null) i++;
+            if (i >= amount) return true;
+            iter++;
+        }
+        return false;
     }
 
     private boolean isCraftingRecipe(Recipe recipe) {

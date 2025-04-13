@@ -26,7 +26,7 @@ public class AscensionKey extends Craft {
         ShapelessRecipe recipe = new ShapelessRecipe(key, result);
         recipe.addIngredient(Material.DIAMOND);
         recipe.addIngredient(Material.DIAMOND);
-        recipe.addIngredient(Material.NETHER_STAR);
+        recipe.addIngredient(Material.PLAYER_HEAD);
         recipe.addIngredient(Material.EMERALD);
         recipe.addIngredient(Material.EMERALD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);

@@ -37,7 +37,7 @@ public class TeamPortal extends Craft implements ItemClick {
 
         recipe.shape(" D ", " B ", "ACA");
         recipe.setIngredient('A', Material.GOLDEN_APPLE);
-        recipe.setIngredient('B', Material.NETHER_STAR);
+        recipe.setIngredient('B', Material.PLAYER_HEAD);
         recipe.setIngredient('C', Material.SHIELD);
         recipe.setIngredient('D', Material.EMERALD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);

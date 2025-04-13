@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Timeline.Events.Feast;
 
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
+import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
 import org.bukkit.Material;
@@ -17,7 +18,9 @@ public class FeastSpecialChestLoot extends CustomChestLoot {
     public Collection<ItemStack> populateLoot(Inventory inv, Random r, double luck) {
 //        return List.of();
         ArrayList<ItemStack> items = new ArrayList<>();
-        items.add(new ItemStack(Material.NETHER_STAR, 2));
+//        items.add(new ItemStack(Material.NETHER_STAR, 2));
+        items.add(MakeshiftSkull.getInstance().getResult());
+        items.add(MakeshiftSkull.getInstance().getResult());
         items.add(HadesBook.getInstance().getItem());
         ItemStack item = EnlightenedNugget.getInstance().getItem().clone();
         item.setAmount(3);

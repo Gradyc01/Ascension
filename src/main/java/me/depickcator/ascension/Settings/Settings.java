@@ -79,7 +79,7 @@ public abstract class Settings {
         PlayerInventory inv = victim.getPlayer().getInventory();
         for (ItemStack item : inv.getContents().clone()) {
             if (item == null) continue;
-            if (item.getItemMeta().hasEnchant(Enchantment.VANISHING_CURSE)) {
+            if (item.getEnchantments().get(Enchantment.VANISHING_CURSE) != null) {
                 inv.removeItem(item);
                 rewards.add(item);
             }

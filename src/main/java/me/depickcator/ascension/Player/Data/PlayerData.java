@@ -42,7 +42,7 @@ public class PlayerData {
 
     private int playerState;
 
-    //Stats
+    /*Initializes a Player by associating a playerData with a player*/
     public PlayerData(Player player) {
         this.player = player;
         this.plugin = Ascension.getInstance();
@@ -71,6 +71,7 @@ public class PlayerData {
         PlayerUtil.changePlayerVisibility(this);
     }
 
+    /*Re-initializes the Player after they re-login or obtained a new player instance*/
     public void reInitPlayer(Player player) {
         this.player = player;
         for (PlayerDataObservers observer : observers) {
@@ -80,6 +81,7 @@ public class PlayerData {
         PlayerDeath.getInstance().setRespawningLater(this);
     }
 
+    /*Resets the Player back to its lobby state*/
     public void resetToLobby() {
         player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
         clearInventoryAndEffects();
@@ -95,6 +97,8 @@ public class PlayerData {
         player.teleport(loc);
         player.setGameMode(GameMode.SURVIVAL);
     }
+
+    /*Resets the Player so that it can begin a new Game*/
     public void resetBeforeStartGame() {
         PlayerInventory inv = player.getInventory();
         inv.clear();
@@ -110,6 +114,9 @@ public class PlayerData {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "recipe give " + player.getName() + " *");
         giveStartingFood();
     }
+
+    /*Gives the player the effects and movement it should have after the game countdown
+    * Takes in gracePeriodDuration as input depending on how long Grace Period is*/
     public void resetAfterStartGame(int gracePeriodDuration) {
         PlayerUtil.clearEffects(this);
         addPlayerPotionEffect(player, PotionEffectType.SPEED, Math.min(gracePeriodDuration, 3), 1);
@@ -171,6 +178,7 @@ public class PlayerData {
         return playerState;
     }
 
+    /*Sets the player to Player State playerState*/
     public void setPlayerState(int playerState) {
         this.playerState = playerState;
         TextUtil.debugText(player.getName() + "is now State: " + playerState);

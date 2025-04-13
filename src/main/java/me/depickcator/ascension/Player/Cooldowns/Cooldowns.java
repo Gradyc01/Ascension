@@ -10,12 +10,15 @@ public abstract class Cooldowns {
     protected Cooldowns() {
         item = makeItem();
     }
+    /*Makes the item that will represent the cooldown*/
     public abstract ItemStack makeItem();
 
+    /*Checks if Player p is on Cooldown
+    * Returns true if Player p is on Cooldown
+    * Also shows the text to Player p if text is true*/
     public boolean isOnCooldown(Player p, boolean text) {
         if (p.hasCooldown(item)) {
             if (text) {
-//                p.sendMessage(TextUtil.makeText("You can't do that yet! (" + Math.round((getCooldownTimer(p)) * 100) / 100.0 + "s)", TextUtil.DARK_RED));
                 TextUtil.errorMessage(p, "You can't do that yet! (" + Math.round((getCooldownTimer(p)) * 100) / 100.0 + "s)");
             }
             return true;
@@ -30,6 +33,7 @@ public abstract class Cooldowns {
         return (double) p.getCooldown(item) / ticks;
     }
 
+    /*Sets the cooldown timer for Player p*/
     public abstract void setCooldownTimer(Player p);
     public void setCooldownTimer(Player p, int seconds) {
 

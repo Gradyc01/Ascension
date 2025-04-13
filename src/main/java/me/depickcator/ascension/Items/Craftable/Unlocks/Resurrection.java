@@ -29,7 +29,7 @@ public class Resurrection extends Craft {
         recipe.shape("DAD", "DCD", "DBD");
         recipe.setIngredient('A', Material.DIAMOND_AXE);
         recipe.setIngredient('B', Material.OMINOUS_BOTTLE);
-        recipe.setIngredient('C', Material.NETHER_STAR);
+        recipe.setIngredient('C', Material.PLAYER_HEAD);
         recipe.setIngredient('D', new RecipeChoice.MaterialChoice(Tag.LOGS));
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;

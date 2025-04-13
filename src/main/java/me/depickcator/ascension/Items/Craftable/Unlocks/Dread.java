@@ -24,7 +24,7 @@ public class Dread extends Craft {
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape(" C ", "ABA", " D ");
         recipe.setIngredient('A', Material.EMERALD);
-        recipe.setIngredient('B', Material.NETHER_STAR);
+        recipe.setIngredient('B', Material.PLAYER_HEAD);
         recipe.setIngredient('C', Material.PUMPKIN);
         recipe.setIngredient('D', Material.HAY_BLOCK);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);

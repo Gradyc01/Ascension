@@ -21,7 +21,7 @@ public class CrimsonArtifact extends Craft {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape(" A ", "DBD", "CCC");
-        recipe.setIngredient('A', Material.NETHER_STAR);
+        recipe.setIngredient('A', Material.PLAYER_HEAD);
         recipe.setIngredient('B', Material.BLACK_WOOL);
         recipe.setIngredient('C', ShardOfTheFallen.getInstance().getResult());
         recipe.setIngredient('D', Material.DIAMOND);

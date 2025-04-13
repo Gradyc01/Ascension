@@ -128,7 +128,7 @@ public class Feast {
             public void run() {
                 if (time <= 0 || !Ascension.getInstance().getGameState().inGame()) {
                     TextUtil.debugText("Random Chests Stopped");
-                    border.setSize(6000, 0);
+                    border.setSize(Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize(), 0);
                     cancel();
                     return;
                 }

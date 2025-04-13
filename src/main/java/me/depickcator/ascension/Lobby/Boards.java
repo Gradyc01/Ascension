@@ -6,6 +6,7 @@ import org.bukkit.entity.TextDisplay;
 public abstract class Boards {
     protected final Ascension plugin;
     private TextDisplay textDisplay;
+    /*Initializes a Board in the lobby*/
     public Boards() {
         plugin = Ascension.getInstance();
         textDisplay = initTextDisplay();
@@ -19,6 +20,7 @@ public abstract class Boards {
         return textDisplay;
     }
 
+    /*Creates the text Display that will be displayed on the board*/
     protected abstract TextDisplay initTextDisplay();
 
     public void setTextDisplay(TextDisplay textDisplay) {

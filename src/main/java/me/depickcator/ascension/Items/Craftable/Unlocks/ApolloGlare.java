@@ -43,7 +43,7 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
         recipe.shape("A", "B", "C");
         recipe.setIngredient('A', Material.INK_SAC);
         recipe.setIngredient('B', Material.CROSSBOW);
-        recipe.setIngredient('C', Material.NETHER_STAR);
+        recipe.setIngredient('C', Material.PLAYER_HEAD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

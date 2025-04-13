@@ -43,12 +43,12 @@ public abstract class Skulls extends CustomItem implements ItemClick {
     }
 
     private void giveSkullEffects(Player p) {
-        p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 7 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 8 * 20, 0));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 7 * 20, 1, false));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 8 * 20, 0, false));
     }
 
     protected void giveSkullTeamEffects(PlayerData pD) {
-        giveSkullTeamEffects(pD, new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0));
+        giveSkullTeamEffects(pD, new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0, false));
     }
 
     protected void giveSkullTeamEffects(PlayerData pD, PotionEffect... effects) {
