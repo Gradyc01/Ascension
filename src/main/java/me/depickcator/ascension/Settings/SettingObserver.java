@@ -12,13 +12,6 @@ public class SettingObserver {
     }
 
     private void updateSettings() {
-//        for (PlayerData pD: PlayerUtil.getAllPlayingPlayers()) {
-//            pD.getPlayerScoreboard().update();
-//        }
-//        for (Team team : TeamUtil.getEveryTeam()) {
-//            team.getTeamStats().updateGameScoreRequirement();
-//        }
-//        Ascension.getInstance().setLocationCheck(new LocationCheck(Ascension.getSpawn()));
         new ResetGame();
         Ascension.getInstance().setLocationCheck(new LocationCheck(Ascension.getSpawn()));
     }

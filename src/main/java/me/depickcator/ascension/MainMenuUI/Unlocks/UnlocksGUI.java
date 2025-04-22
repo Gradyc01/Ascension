@@ -73,7 +73,7 @@ public class UnlocksGUI extends AscensionGUI {
         PlayerUnlocks playerUnlocks = playerData.getPlayerUnlocks();
         List<Craft> unlocks = unlocksData.getUnlocksTier(pageNumber);
 //        boolean canUnlock = playerUnlocks.canUnlockTier(pageNumber);
-        double percentage = playerUnlocks.unlockTierPercentage(pageNumber);
+        double percentage = playerUnlocks.unlockTierPercentage(pageNumber + 1);
         setUnlocks(unlocks);
         setBarriers(percentage);
     }
@@ -123,7 +123,13 @@ public class UnlocksGUI extends AscensionGUI {
     private void setBarriers(double percentage) {
         ItemStack unlockedItem = lockableItem(Material.GREEN_STAINED_GLASS_PANE);
         ItemStack lockedItem = lockableItem(Material.RED_STAINED_GLASS_PANE);
-        int unlockedPanels = (int) (barrierNums.length * percentage);
+        int unlockedPanels;
+        if (percentage != -1) {
+            unlockedPanels = (int) (barrierNums.length * percentage);
+        } else {
+            unlockedPanels = barrierNums.length;
+            unlockedItem = lockableItem(Material.BLACK_STAINED_GLASS_PANE);
+        }
 //        TextUtil.debugText("Unlocked Panels = " + barrierNums.length + " * " + percentage + "= " + unlockedPanels);
         for (int i = 0; i < barrierNums.length; i++) {
             ItemStack item = i < unlockedPanels ? unlockedItem : lockedItem;

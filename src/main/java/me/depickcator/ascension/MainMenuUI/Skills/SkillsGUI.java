@@ -1,11 +1,11 @@
 package me.depickcator.ascension.MainMenuUI.Skills;
 
+import me.depickcator.ascension.Skills.Skills;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerSkills;
-import me.depickcator.ascension.Skills.Skills;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -52,7 +52,7 @@ public class SkillsGUI extends AscensionGUI {
     }
 
     private void makeSkillColumns(Skills skill, List<Component> lore, int column, Material icon) {
-        ItemStack explainer = initExplainerItem(icon, lore, TextUtil.makeText(skill.getName(), TextUtil.DARK_GREEN));
+        ItemStack explainer = initExplainerItem(icon, lore, TextUtil.makeText(skill.getSkillName(), TextUtil.DARK_GREEN));
         int glasses = 5;
         int level = Integer.parseInt(skill.getExpLevel());
         for (int i = column; i < 54; i+=9) {

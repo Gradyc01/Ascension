@@ -47,6 +47,8 @@ public class MediumItems {
         if (locationCheck.isALocation(Biome.DESERT)) {
             items.add(new ItemStack(Material.CACTUS));
             items.add(new ItemStack(Material.RED_SANDSTONE));
+            /*1.21.5 Minecraft Items*/
+            items.add(new ItemStack(Material.CACTUS_FLOWER));
         }
 
         //Pale Garden
@@ -60,8 +62,8 @@ public class MediumItems {
         }
 
 
-        items.add(new ItemStack(Material.SADDLE)); //TODO: Change to Medium?
-        items.add(new ItemStack(Material.NAME_TAG)); //TODO: Change to Medium?
+        items.add(new ItemStack(Material.SADDLE));
+        items.add(new ItemStack(Material.NAME_TAG));
 
         items.add(new ItemStack(Material.NETHERITE_SCRAP));
         items.add(new ItemStack(Material.AMETHYST_SHARD));
@@ -130,6 +132,10 @@ public class MediumItems {
         items.add(new ItemStack(Material.RABBIT_FOOT));
 
         items.add(new ItemStack(Material.CRAFTER));
+
+        /*1.21.5 Minecraft Items*/
+        items.add(new ItemStack(Material.FIREFLY_BUSH));
+        items.add(new ItemStack(Material.BUSH));
 
         items.add(getRandomCandle());
         items.add(getRandomHangingSign());

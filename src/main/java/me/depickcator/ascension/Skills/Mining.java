@@ -1,99 +1,29 @@
 package me.depickcator.ascension.Skills;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class Mining implements Skills {
-    private final PlayerData playerData;
-    private final Ascension plugin;
-    private Player player;
-    private int experience;
-    private int level;
-    private final int MAXLEVEL = 5;
-    private final String NAME = "Mining";
-    private final static ArrayList<Integer> LEVELREQUIREMENTS= new ArrayList<>(
-            Arrays.asList(25, 100, 250, 750, 1500));
-    private static final ArrayList<SkillRewards> rewards = new ArrayList<>(
-            Arrays.asList(
-                    Mining.level1Rewards(),
-                    Mining.level2Rewards(),
-                    Mining.level3Rewards(),
-                    Mining.level4Rewards(),
-                    Mining.level5Rewards()
-            )
-    );
-//     private final static ArrayList<>
+public class Mining extends Skills {
 
-    public Mining(Ascension plugin, PlayerData playerData) {
-        this.plugin = plugin;
-        this.playerData = playerData;
-        this.player = playerData.getPlayer();
-        experience = 0;
-        level = 0;
+    public Mining(PlayerData playerData) {
+        super(playerData, "Mining");
     }
 
     @Override
-    public void addExp(int amount) {
-        experience+=amount;
-        playerData.getPlayerUnlocks().addUnlockTokens(amount);
-        if (canLevelUp()) {
-            levelUp(++level);
-        }
-        playerGainedExpNotification(player, amount, NAME, plugin);
-    }
-
-    private boolean canLevelUp() {
-        if (level >= MAXLEVEL) {
-            return false;
-        }
-        return experience >= LEVELREQUIREMENTS.get(level);
-    }
-
-    private void levelUp(int newLevel) {
-        SkillRewards reward = Mining.rewards.get(level-1);
-        levelUpMessage(newLevel, reward, player, NAME);
-        playLevelUpSound(player);
-        reward.giveRewards(playerData);
-        playerData.getPlayerSkills().getGlobal().addExp(1);
-        if (canLevelUp()) {
-            levelUp(++level);
-        }
-    }
-
-    @Override
-    public void updatePlayer() {
-        player = playerData.getPlayer();
-    }
-
-    @Override
-    public String getExp() {
-        return experience + "";
-    }
-
-    @Override
-    public String getExpLevel() {
-        return level + "";
-    }
-
-    @Override
-    public ArrayList<Component> getRewardText(int level) {
-        return parseRewardText(rewards.get(level - 1));
-    }
-
-    @Override
-    public String getExpOverTotalNeeded() {
-        if (level >= MAXLEVEL) {
-            return " (" + experience + "/" + Mining.LEVELREQUIREMENTS.get(MAXLEVEL - 1) + ")";
-        }
-        return " (" + experience + "/" + Mining.LEVELREQUIREMENTS.get(level) + ")";
+    public List<SkillRewards> initRewards() {
+        return List.of(
+                Mining.level1Rewards(),
+                Mining.level2Rewards(),
+                Mining.level3Rewards(),
+                Mining.level4Rewards(),
+                Mining.level5Rewards()
+        );
     }
 
     private static SkillRewards level1Rewards() {
@@ -158,11 +88,6 @@ public class Mining implements Skills {
         skillRewards.setItems(rewards);
         skillRewards.setUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY);
         return skillRewards;
-    }
-
-    @Override
-    public String getName() {
-        return NAME;
     }
 
 }

@@ -22,7 +22,14 @@ public abstract class Settings {
     private final String name;
     private final int startingAscensionTimer;
     private final int ascensionGameScoreRequirement;
-
+    /*Settings controls the settings of the Game
+    * This includes:
+    *   World Border Size
+    *   The timeline
+    *   The Starting Sequence
+    *   The itemDistribution
+    *   The Name of this particular setting
+    *   How much the Ascension Requirement and Timer are*/
     public Settings(String name, int worldBorderSize, int ascensionGameScoreRequirement, Timeline timeline) {
         this(name, worldBorderSize, ascensionGameScoreRequirement, timeline, 900);
     }
@@ -48,6 +55,7 @@ public abstract class Settings {
         this.sequence = initSequence();
     }
 
+    /*Returns the default initial starting sequence*/
     protected List<GameStartSequence> initSequence() {
         return new ArrayList<>(List.of(
                 new ResetPlayers(),
@@ -60,6 +68,8 @@ public abstract class Settings {
         ));
     }
 
+    /*Returns the default item distribution
+    * List of Integers must be size of 4 and sums up to 25*/
     protected List<Integer> initItemDistribution() {
         return new ArrayList<>(List.of(
                 5,
@@ -69,7 +79,8 @@ public abstract class Settings {
         ));
     }
 
-
+    /*  What a player victim drops to the floor when killed
+     * Returns a list of ItemStacks*/
     public List<ItemStack> getKillReward(PlayerDeathEvent e, PlayerData victim) {
         List<ItemStack> rewards = new ArrayList<>(List.of(
                 new ItemStack(Material.GOLD_NUGGET, 21)

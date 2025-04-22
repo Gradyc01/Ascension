@@ -207,7 +207,7 @@ public class BingoData extends ItemComparison {
     }
 
     private void teamRewards(PotionEffect effect, PlayerData pD) {
-        ArrayList<Player> otherTeamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(pD.getPlayer());
+        List<Player> otherTeamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(pD.getPlayer());
         for (Player p : otherTeamMembers) {
             PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
             PlayerUtil.getPlayerData(p).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_UNCOMMON, true);

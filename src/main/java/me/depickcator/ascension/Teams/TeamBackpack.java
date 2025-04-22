@@ -6,6 +6,7 @@ import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -17,9 +18,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class TeamBackpack {
-
     private final Inventory inventory;
     private final Team team;
+    /*Creates a team backpack from the Team team*/
     public TeamBackpack(Team team) {
         this.team = team;
         inventory = Bukkit.createInventory(this.team.getLeader(),
@@ -27,6 +28,8 @@ public class TeamBackpack {
                 TextUtil.makeText(" Team " + team.getLeader().getName() + "'s Backpack", TextUtil.AQUA));
     }
 
+    /*Opens the team backpack for Player playerData
+    * Returns True if it was opened successfully or False otherwise*/
     public boolean openInventory(PlayerData playerData) {
         Player p = playerData.getPlayer();
         if (Ascension.getInstance().getGameState().checkState(GameStates.GAME_BEFORE_GRACE)) {
@@ -42,14 +45,19 @@ public class TeamBackpack {
         return false;
     }
 
+    /*Closes the backpack permanently giving all items to the team Leader*/
     public void shutdownBackpack() {
         List<ItemStack> items = deleteBackpack();
         if (!items.isEmpty()) {
             Player leader = team.getLeader();
             PlayerUtil.giveItem(leader, items);
-            TextUtil.broadcastMessage(
-                    TextUtil.makeText("All Backpack Items have been given to " + leader.getName()
-                    ,TextUtil.DARK_GREEN ));
+            Component itemText = TextUtil.topBorder(TextUtil.DARK_GRAY);
+            itemText = itemText.append(TextUtil.makeText("All Backpack Items have been given to " + leader.getName(), TextUtil.DARK_GREEN));
+            for (ItemStack item : items) {
+                itemText = itemText.append(TextUtil.makeText("\n  -", TextUtil.GRAY).append(item.displayName()));
+            }
+            itemText = itemText.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
+            TextUtil.broadcastMessage(itemText, team.getTeamMembers());
         }
 
     }

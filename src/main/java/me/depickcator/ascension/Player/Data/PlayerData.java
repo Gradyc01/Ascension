@@ -110,6 +110,7 @@ public class PlayerData {
 
         player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
+
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "recipe give " + player.getName() + " *");
         giveStartingFood();
@@ -119,16 +120,17 @@ public class PlayerData {
     * Takes in gracePeriodDuration as input depending on how long Grace Period is*/
     public void resetAfterStartGame(int gracePeriodDuration) {
         PlayerUtil.clearEffects(this);
-        addPlayerPotionEffect(player, PotionEffectType.SPEED, Math.min(gracePeriodDuration, 3), 1);
-        addPlayerPotionEffect(player, PotionEffectType.HASTE, Math.min(gracePeriodDuration, 1), 2);
-        addPlayerPotionEffect(player, PotionEffectType.ABSORPTION, gracePeriodDuration, 4);
-        addPlayerPotionEffect(player, PotionEffectType.ABSORPTION, Math.min(gracePeriodDuration, 1), 9);
-        addPlayerPotionEffect(player, PotionEffectType.REGENERATION, 0.05, 9);
+        addPlayerPotionEffect(PotionEffectType.SPEED, Math.min(gracePeriodDuration, 3), 1);
+        addPlayerPotionEffect(PotionEffectType.HASTE, Math.min(gracePeriodDuration, 2), 1);
+        addPlayerPotionEffect(PotionEffectType.HASTE, Math.min(gracePeriodDuration, 1), 2);
+        addPlayerPotionEffect(PotionEffectType.ABSORPTION, gracePeriodDuration, 4);
+        addPlayerPotionEffect(PotionEffectType.ABSORPTION, Math.min(gracePeriodDuration, 1), 14);
+        addPlayerPotionEffect(PotionEffectType.REGENERATION, 0.05, 9);
         Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
     }
 
-    private void addPlayerPotionEffect(Player p, PotionEffectType effect, double minutes, int amplifier) {
-        p.addPotionEffect(new PotionEffect(effect, (int) (minutes * 60 * 20), amplifier, false, false));
+    private void addPlayerPotionEffect(PotionEffectType effect, double minutes, int amplifier) {
+        player.addPotionEffect(new PotionEffect(effect, (int) (minutes * 60 * 20), amplifier, false, false));
     }
     private void giveStartingFood() {
         ItemStack food = new ItemStack(Material.COOKED_BEEF, 64);

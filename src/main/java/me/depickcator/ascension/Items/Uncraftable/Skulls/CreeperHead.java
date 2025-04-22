@@ -1,12 +1,17 @@
 package me.depickcator.ascension.Items.Uncraftable.Skulls;
 
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Utility.TextUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreeperHead extends Skulls {
     private static CreeperHead instance;
@@ -39,6 +44,9 @@ public class CreeperHead extends Skulls {
 
     @Override
     protected ItemStack initResult() {
-        return buildSkull(Material.CREEPER_HEAD);
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText("  Resistance II (7 Sec) ", TextUtil.DARK_PURPLE)
+        ));
+        return buildSkull(Material.CREEPER_HEAD, TextUtil.makeText("Creeper Head"), lore);
     }
 }

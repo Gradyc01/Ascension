@@ -104,7 +104,9 @@ public class PlayerUnlocks implements PlayerDataObservers {
         return canUnlockTiers.get(tier - 1);
     }
 
+    /*Returns a double between 0 - 1 representing the percentage of the tier that has been unlocked*/
     public double unlockTierPercentage(int tier) {
+        if (tier > unlockTiers.size()) return -1;
         if (canUnlockTier(tier)) return 1;
         return ((double) unlockTiers.get(tier - 2) / amountNeeded.get(tier - 1));
     }

@@ -24,7 +24,7 @@ public class TeamStats {
 //    private final static int ascensionStartingTime = 900;
 
     //Scavenger
-    private ArrayList<Boolean> scavengerScore;
+    private List<Boolean> scavengerScore;
 
     public TeamStats(Team team) {
         this.team = team;
@@ -58,7 +58,6 @@ public class TeamStats {
     }
 
     //Game Score
-
     public void updateGameScoreRequirement() {
         gameScoreRequirement = Ascension.getInstance().getSettingsUI().getSettings().getAscensionGameScoreRequirement();
     }
@@ -83,7 +82,7 @@ public class TeamStats {
 
     public int getGameScorePercentage() {
         TextUtil.debugText(gameScore + " Game Score     ");
-        int round2Requirement = gameScoreRequirement / 2;
+        int round2Requirement = 2 * gameScoreRequirement / 3;
         double percentage;
         if (ascensionAttempts == 0) {
             percentage = (double) gameScore / gameScoreRequirement;
@@ -101,7 +100,7 @@ public class TeamStats {
     }
 
     //Scavenger Score
-    public ArrayList<Boolean> getScavengerScore() {
+    public List<Boolean> getScavengerScore() {
         return scavengerScore;
     }
 

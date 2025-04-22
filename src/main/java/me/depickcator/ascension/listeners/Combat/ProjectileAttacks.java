@@ -1,14 +1,27 @@
 package me.depickcator.ascension.listeners.Combat;
 
+import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Utility.TextUtil;
+import me.depickcator.ascension.testingCommands.Debugger;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.NotNull;
 
 public class ProjectileAttacks implements Listener {
-    // private final Ascension plugin;
+    private final Ascension plugin;
     public ProjectileAttacks() {
-        // plugin = Ascension.getInstance();
+        plugin = Ascension.getInstance();
     }
 
     @EventHandler
@@ -16,36 +29,19 @@ public class ProjectileAttacks implements Listener {
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
-        // Player player = (Player) event.getEntity();
-//        ShootsProjectiles shootsProjectiles = ShootsProjectiles.getProjectile(event.getBow());
-//        if (shootsProjectiles != null) {
-//            shootsProjectiles.applyKey(event);
-//            return;
-//        }
-//        if (event.getProjectile() instanceof Arrow) {
-//            setArrowDamage((Arrow) event.getProjectile(), player, event.getBow());
-////            setArrowNBT((Arrow) event.getProjectile(), );
-//        }
+        Player p = (Player) event.getEntity();
+        Entity e = event.getProjectile();
+        p.hideEntity(plugin, e);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                p.showEntity(plugin, e);
+            }
+
+        }.runTaskLater(plugin, 1);
+//        e.teleport(p.getEyeLocation().add(p.getEyeLocation().getDirection().multiply(0.75)));
+//        e.setVelocity(e.getVelocity().multiply(1.02));
+
     }
 
-    // private void setArrowDamage(Arrow arrow, Player player, ItemStack bow) {
-    //     double arrowDamage = 4;
-    //     if (player.hasPotionEffect(PotionEffectType.STRENGTH)) {
-    //         arrowDamage *= 1.2;
-    //     }
-    //     if (player.hasPotionEffect(PotionEffectType.WEAKNESS)) {
-    //         arrowDamage *= 0.8;
-    //     }
-    //     if (bow != null) {
-    //         arrowDamage += (0.1 * bow.getEnchantmentLevel(Enchantment.POWER));
-    //     }
-    //     arrow.setDamage(arrowDamage);
-    // }
-
-//    private void setArrowNBT(Arrow arrow, ItemStack bow) {
-//        int powerLevel = bow.getEnchantmentLevel(Enchantment.POWER);
-//        int punchLevel = bow.getEnchantmentLevel(Enchantment.PUNCH);
-//        arrow.getPersistentDataContainer().set(new NamespacedKey(plugin, "power"), PersistentDataType.INTEGER, powerLevel);
-//        arrow.getPersistentDataContainer().set(new NamespacedKey(plugin, "punch"), PersistentDataType.INTEGER, punchLevel);
-//    }
 }

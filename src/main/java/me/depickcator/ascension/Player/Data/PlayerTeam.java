@@ -92,7 +92,7 @@ public class PlayerTeam implements PlayerDataObservers {
         if (team != null) {
             return team;
         }
-        team = new Team(plugin, playerData);
+        team = new Team(playerData);
         return team;
     }
 

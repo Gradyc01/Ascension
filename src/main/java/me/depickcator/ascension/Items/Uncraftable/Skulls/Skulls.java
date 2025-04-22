@@ -15,6 +15,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.List;
+
 
 public abstract class Skulls extends CustomItem implements ItemClick {
     public Skulls(String displayName, String key) {
@@ -78,8 +80,17 @@ public abstract class Skulls extends CustomItem implements ItemClick {
     }
 
     protected ItemStack buildSkull(Material material) {
+        return buildSkull(material, null, null);
+    }
+
+    protected ItemStack buildSkull(Material material, Component name, List<Component> lore) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
+        if (name != null) meta.displayName(name.append(TextUtil.rightClickText()));
+        if (lore != null) {
+            lore.addFirst(TextUtil.makeText("Bonus Skull Effects:", TextUtil.YELLOW));
+            meta.lore(lore);
+        }
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.setMaxStackSize(1);
         item.setItemMeta(meta);

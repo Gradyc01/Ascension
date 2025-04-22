@@ -61,6 +61,10 @@ public class EasyItems {
         addItem(new ItemStack(Material.NOTE_BLOCK));
         addItem(new ItemStack(Material.COMPOSTER));
 
+        /*1.21.5 Minecraft Items*/
+        addItem(new ItemStack(Material.LEAF_LITTER));
+        addItem(new ItemStack(Material.WILDFLOWERS));
+
         //Crafting Blocks
         addItem(getRandomCraftTable());
 

@@ -1,12 +1,17 @@
 package me.depickcator.ascension.Items.Uncraftable.Skulls;
 
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Utility.TextUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ZombieHead extends Skulls {
     private static ZombieHead instance;
@@ -39,6 +44,10 @@ public class ZombieHead extends Skulls {
 
     @Override
     protected ItemStack initResult() {
-        return buildSkull(Material.ZOMBIE_HEAD);
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText("  Regeneration III (7 Sec)", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("  Instant Health II", TextUtil.DARK_PURPLE)
+        ));
+        return buildSkull(Material.ZOMBIE_HEAD, TextUtil.makeText("Zombie Head"), lore);
     }
 }

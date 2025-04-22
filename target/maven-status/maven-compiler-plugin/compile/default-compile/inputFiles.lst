@@ -9,6 +9,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Gener
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\GameStartSequence.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\AdjustStartingGameScore.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\GiveBrawlItems.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\GiveBrawlItems2.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\InitBingoBoard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\LaunchSequence.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\GameStart\Sequences\ResetPlayers.java
@@ -30,6 +31,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Inter
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemClick.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemComparison.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Craft.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\AdvancedQuickPick.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\AncientArtifact.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\ApolloGlare.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\ApprenticeHelmet.java
@@ -98,6 +100,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassMain.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassTrackSpecificPlayer.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\MasterCompass.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MinerBlessing.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Nectar.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\NotchApple.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\Obsidian.java

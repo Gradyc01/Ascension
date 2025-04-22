@@ -44,12 +44,12 @@ public class HermesBoots extends Craft {
         Repairable meta = (Repairable) item.getItemMeta();
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
-        AttributeModifier modifier = new AttributeModifier(
-                new NamespacedKey(Ascension.getInstance(), KEY),
-                0.25,
-                AttributeModifier.Operation.MULTIPLY_SCALAR_1,
-                EquipmentSlotGroup.FEET);
-        meta.addAttributeModifier(Attribute.MOVEMENT_SPEED, modifier);
+        AttributeModifier speed = new AttributeModifier(new NamespacedKey(KEY, "speed"), 0.25, AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.FEET);
+        AttributeModifier armor = new AttributeModifier(new NamespacedKey(KEY, "armor"), 3, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET);
+        AttributeModifier toughness = new AttributeModifier(new NamespacedKey(KEY, "toughness"), 2, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET);
+        meta.addAttributeModifier(Attribute.MOVEMENT_SPEED, speed);
+        meta.addAttributeModifier(Attribute.ARMOR, armor);
+        meta.addAttributeModifier(Attribute.ARMOR_TOUGHNESS, toughness);
         meta.setRepairCost(999);
         meta.addEnchant(Enchantment.PROTECTION, 2, true);
         meta.addEnchant(Enchantment.FEATHER_FALLING, 1, true);

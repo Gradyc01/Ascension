@@ -95,7 +95,7 @@ public class UnlocksData {
         tier3Unlocks = new ArrayList<>(List.of(
                 Tarnhelm.getInstance(),
                 KingsRod.getInstance(),
-                NotchApple.getInstance(),
+                AdvancedQuickPick.getInstance(),
                 AncientArtifact.getInstance(),
                 SoulArtifact.getInstance(),
                 MakeshiftSkull.getInstance(),
@@ -105,7 +105,8 @@ public class UnlocksData {
                 DragonSword.getInstance(),
                 Cornucopia.getInstance(),
                 PandoraBox.getInstance(),
-                MasterCompass.getInstance()
+                MasterCompass.getInstance(),
+                NotchApple.getInstance()
         ));
     }
 
@@ -122,7 +123,8 @@ public class UnlocksData {
                 RedLedger.getInstance(),
                 CrimsonArtifact.getInstance(),
                 Echolocator.getInstance(),
-                Ghost.getInstance()
+                Ghost.getInstance(),
+                MinerBlessing.getInstance()
         ));
     }
 

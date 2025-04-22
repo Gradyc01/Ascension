@@ -6,20 +6,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SkillRewards {
-    private ArrayList<ItemStack> items;
+    private List<ItemStack> items;
     private int unlockTokens;
     public SkillRewards() {
         items = new ArrayList<>();
         unlockTokens = 0;
     }
 
-    public ArrayList<ItemStack> getItems() {
+    public List<ItemStack> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<ItemStack> items) {
+    public void setItems(List<ItemStack> items) {
         this.items = items;
     }
 
@@ -43,18 +44,6 @@ public class SkillRewards {
     private void giveItems(PlayerData pD) {
         Player p = pD.getPlayer();
         for (ItemStack i : items) {
-//            HashMap<Integer, ItemStack> remain = inv.addItem(i);
-//            if (!remain.isEmpty()) {
-//                Bukkit.getServer().broadcast(TextUtil.makeText("There are items remaining", TextUtil.BLUE));
-//                for (int left: remain.keySet()) {
-//                    ItemStack remainingItem = remain.get(left);
-//                    remainingItem.setAmount(left);
-//                    Bukkit.getServer().broadcast(TextUtil.makeText(remainingItem.toString() + "       " + left, TextUtil.BLUE));
-//                    p.getWorld().dropItem(p.getLocation(), remainingItem);
-//                }
-//            inv.addItem(i);
-//            }
-//            p.getWorld().dropItem(p.getLocation(), i);
             PlayerUtil.giveItem(p, i);
         }
 

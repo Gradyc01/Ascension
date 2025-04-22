@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Skills;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -9,31 +10,114 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public interface Skills {
+public abstract class Skills {
+    protected final PlayerData playerData;
+    private final Ascension plugin;
+    protected Player player;
+    protected int experience;
+    protected int level;
+    private final String skillName;
+    protected final int MAXLEVEL = 5;
+    private final List<Integer> levelRequirements;
+    private final List<SkillRewards> rewards;
+    /*Initializes a Skill Named skillName for Player playerData*/
+    public Skills(PlayerData playerData, String skillName) {
+        this.playerData = playerData;
+        this.skillName = skillName;
+        plugin = Ascension.getInstance();
+        player = playerData.getPlayer();
+        experience = 0;
+        level = 0;
+        levelRequirements = initLevelRequirements();
+        rewards = initRewards();
 
-    void addExp(int amount);
-//    void giveRewards(int level, Player p);
-    String getExp();
-    String getExpLevel();
-    ArrayList<Component> getRewardText(int level);
-    String getExpOverTotalNeeded();
-    String getName();
-    void updatePlayer();
-//    boolean canLevelUp();
-//    void levelUp(int newLevel)
+    }
 
-    default void playerGainedExpNotification(Player player, int amount, String skillName, Ascension plugin) {
+    /*Initializes the rewards of this particular skill
+    * Returns a list of SkillRewards
+    * The List must have a size greater than MAXLEVEL*/
+    public abstract List<SkillRewards> initRewards();
+
+    /*Initializes the level requirements of this particular skill
+     * Returns a list of Integers
+     * The List must have a size greater than MAXLEVEL*/
+    public List<Integer> initLevelRequirements() {
+        return new ArrayList<>(List.of(
+                25, 100, 250, 750, 1500
+        ));
+    }
+
+    /*Adds Experience to this particular skill*/
+    public void addExp(int amount) {
+        experience+=amount;
+        playerData.getPlayerUnlocks().addUnlockTokens(amount);
+        if (canLevelUp()) {
+            levelUp(++level);
+        }
+        playerGainedExpNotification(player, amount, skillName, plugin);
+    }
+
+
+    protected boolean canLevelUp() {
+        if (level >= MAXLEVEL) {
+            return false;
+        }
+        return experience >= levelRequirements.get(level);
+    }
+
+    protected void levelUp(int newLevel) {
+        SkillRewards reward = rewards.get(level-1);
+        levelUpMessage(newLevel, reward, player, skillName);
+        playLevelUpSound(player);
+        reward.giveRewards(playerData);
+        playerData.getPlayerSkills().getGlobal().addExp(1);
+        if (canLevelUp()) {
+            levelUp(++level);
+        }
+    }
+
+
+
+    public String getExp() {
+        return experience + "";
+    }
+
+    public String getExpLevel() {
+        return level + "";
+    }
+
+    public List<Component> getRewardText(int level) {
+        return parseRewardText(rewards.get(level - 1));
+    }
+
+    public String getExpOverTotalNeeded() {
+        if (level >= MAXLEVEL) {
+            return " (" + experience + "/" + levelRequirements.get(MAXLEVEL - 1) + ")";
+        }
+        return " (" + experience + "/" + levelRequirements.get(level) + ")";
+    }
+
+    public void updatePlayer() {
+        player = playerData.getPlayer();
+    };
+
+    public String getSkillName() {
+        return skillName;
+    }
+
+    private void playerGainedExpNotification(Player player, int amount, String skillName, Ascension plugin) {
         playGainedExpSound(player);
         Component message = TextUtil.makeText("+" + amount + " " + skillName + " " + getExpOverTotalNeeded(), TextUtil.AQUA);
         TextUtil.sendActionBar(player, message, 20, plugin);
     }
 
-    default void playGainedExpSound(Player p) {
+    private void playGainedExpSound(Player p) {
         p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.6f);
     }
 
-    default ArrayList<Component> parseRewardText(SkillRewards rewards) {
+    private List<Component> parseRewardText(SkillRewards rewards) {
         ArrayList<Component> texts = new ArrayList<>();
         for (ItemStack item : rewards.getItems()) {
             Component displayName = item.displayName().color(TextUtil.DARK_PURPLE).decoration(TextDecoration.ITALIC, false);
@@ -44,11 +128,11 @@ public interface Skills {
         return texts;
     }
 
-    default void playLevelUpSound(Player p) {
+    private void playLevelUpSound(Player p) {
         p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1f);
     }
 
-    default void levelUpMessage(int newLevel, SkillRewards reward, Player player, String skillName) {
+    private void levelUpMessage(int newLevel, SkillRewards reward, Player player, String skillName) {
         Component spacing = TextUtil.makeText("      ", TextUtil.AQUA);
         player.sendMessage(TextUtil.topBorder(TextUtil.GOLD));
         player.sendMessage(TextUtil.makeText("                    LEVEL UP!!!!", TextUtil.AQUA, true, false));

@@ -52,6 +52,8 @@ public class CustomItems {
         items.add(VorpalSword.getInstance().getResult());
         items.add(KingsRod.getInstance().getResult());
         items.add(DragonSword.getInstance().getResult());
+        items.add(AdvancedQuickPick.getInstance().getResult());
+        items.add(MinerBlessing.getInstance().getResult());
 
         //Potions
         items.add(PotionOfVelocity.getInstance().getResult());
@@ -68,10 +70,6 @@ public class CustomItems {
         items.addAll(getLevel1EnchantedBooks());
         items.add(WeaverSilk.getInstance().getResult());
 
-//        items.add(BookOfProjectileProtection.getInstance().getResult());
-//        items.add(BookOfProtection.getInstance().getResult());
-//        items.add(BookOfPower.getInstance().getResult());
-//        items.add(BookOfSharpness.getInstance().getResult());
     }
 
     private List<ItemStack> getLevel1EnchantedBooks() {

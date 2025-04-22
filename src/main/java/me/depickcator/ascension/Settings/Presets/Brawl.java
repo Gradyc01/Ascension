@@ -27,7 +27,7 @@ public class Brawl extends Settings {
                 new SetWorldBorder(getWorldBorderSize()),
                 new SpreadPlayers(getWorldBorderSize()),
                 new InitBingoBoard(getItemDistribution()),
-                new GiveBrawlItems(),
+                new GiveBrawlItems2(),
                 new AdjustStartingGameScore(10),
                 new TextSequence(5),
                 new ResetWorld(),

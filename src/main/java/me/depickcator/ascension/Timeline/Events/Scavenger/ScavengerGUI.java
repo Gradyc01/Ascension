@@ -52,7 +52,7 @@ public class ScavengerGUI extends AscensionGUI {
 
     private void addTradePanes() {
         TeamStats teamStats = playerData.getPlayerTeam().getTeam().getTeamStats();
-        ArrayList<Boolean> score = teamStats.getScavengerScore();
+        List<Boolean> score = teamStats.getScavengerScore();
         for (int i = 0; i < 5; i++) {
             ItemStack item;
             if (score.get(i)) {
@@ -127,12 +127,12 @@ public class ScavengerGUI extends AscensionGUI {
         Team team = playerData.getPlayerTeam().getTeam();
         SoundUtil.playHighPitchPling(player);
         TeamStats teamStats = team.getTeamStats();
-        ArrayList<Boolean> scavScore = teamStats.getScavengerScore();
+        List<Boolean> scavScore = teamStats.getScavengerScore();
         scavScore.set(tradeNumber, true);
         successfulTradeText(scavScore, trade, team);
     }
 
-    private void successfulTradeText(ArrayList<Boolean> scavScore, Pair<ItemStack, ItemStack> trade, Team team) {
+    private void successfulTradeText(List<Boolean> scavScore, Pair<ItemStack, ItemStack> trade, Team team) {
         Component name = TextUtil.makeText(player.getName() + " has completed a trade ", TextUtil.DARK_GREEN);
         Component arrow = TextUtil.makeText(" --> ", TextUtil.YELLOW);
         int i = 0;

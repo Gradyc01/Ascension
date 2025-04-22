@@ -20,8 +20,9 @@ public class Team {
     private final TeamStats teamStats;
     private final TeamBackpack teamBackpack;
     private int STATE;
-    public Team(Ascension plugin, PlayerData playerData) {
-        this.plugin = plugin;
+    /*Initializes a team with PlayerData playerData as the leader*/
+    public Team(PlayerData playerData) {
+        this.plugin = Ascension.getInstance();
         this.teamKey = playerData.getPlayer().getUniqueId().toString();
         teamMembers = new ArrayList<>();
         teamMembers.add(playerData);
@@ -34,8 +35,8 @@ public class Team {
         teamBackpack = new TeamBackpack(this);
     }
 
+    /*Adds PlayerData pD to this Team*/
     public void addPlayer(PlayerData pD) {
-//        Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerTeam().setTeam(this);
         Player p = pD.getPlayer();
         pD.getPlayerTeam().setTeam(this);
         teamMembers.add(pD);
@@ -44,6 +45,7 @@ public class Team {
         updateTeamScoreboards();
     }
 
+    /*Removes PlayerData pD from this Team*/
     public void removePlayer(PlayerData pD) {
         if (teamMembers.size() == 1 || leader.equals(pD)) {
             for (PlayerData i: teamMembers) {
@@ -70,6 +72,7 @@ public class Team {
         }
     }
 
+    /*Prints in the chat the members in this Team to Player pD*/
     public void teamList(PlayerData pD) {
         Player p = pD.getPlayer();
         p.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
@@ -80,6 +83,7 @@ public class Team {
         p.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
     }
 
+    /*Announces to all team members message str*/
     public void announceToAllTeamMembers(String str) {
         for (PlayerData pD : teamMembers) {
             Player p = pD.getPlayer();
@@ -102,12 +106,14 @@ public class Team {
         return teamKey;
     }
 
-    public ArrayList<Player> getOtherTeamMembers(Player p) {
+    /*Returns a list of teamMembers other than Player p*/
+    public List<Player> getOtherTeamMembers(Player p) {
         ArrayList<Player> otherTeamMembers = new ArrayList<>(getTeamMembers());
         otherTeamMembers.remove(p);
         return otherTeamMembers;
     }
 
+    /*Returns a list of teamMembers other than Player p*/
     public void updateTeamScoreboards() {
         for (PlayerData pD : teamMembers) {
 //            PlayerData playerData = PlayerUtil.getPlayerData(p);
@@ -128,15 +134,11 @@ public class Team {
         return teamBackpack;
     }
 
-//    public int getSTATE() {
-//        return STATE;
-//    }
-
     public boolean checkSTATE(int state) {
         return STATE == state;
     }
 
-    public void setSTATE(int STATE) {
+    private void setSTATE(int STATE) {
         this.STATE = STATE;
         TextUtil.debugText(leader.getPlayer().getName() + "'s team is now State: " + STATE);
     }
@@ -145,10 +147,10 @@ public class Team {
         return leader.getPlayer();
     }
 
+    /*Changes the State of the team*/
     public void updateState() {
         boolean active = false;
         for (PlayerData pD : teamMembers) {
-//            PlayerData pD = PlayerUtil.getPlayerData(p);
             if (!pD.checkState(PlayerData.STATE_SPECTATING)) {
                 active = true;
                 break;

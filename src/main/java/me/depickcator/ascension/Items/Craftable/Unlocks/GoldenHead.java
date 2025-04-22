@@ -12,6 +12,7 @@ import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -22,7 +23,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class GoldenHead extends Craft implements ItemClick {
@@ -77,7 +78,8 @@ public class GoldenHead extends Craft implements ItemClick {
             Player p = pD.getPlayer();
             item.setAmount(item.getAmount() - 1);
             giveGoldenHeadEffects(p);
-            ArrayList<Player> teamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(p);
+            p.getWorld().playSound(p.getLocation(), Sound.ENTITY_PLAYER_BURP, 2.0F, 1.0F);
+            List<Player> teamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(p);
             p.sendMessage(TextUtil.makeText("You ate a golden head which grants you Regeneration III for 8 seconds, Resistance I for 15 seconds",
                     TextUtil.GREEN));
             for (Player player : teamMembers) {

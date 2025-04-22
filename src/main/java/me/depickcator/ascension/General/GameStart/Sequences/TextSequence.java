@@ -3,6 +3,8 @@ package me.depickcator.ascension.General.GameStart.Sequences;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.GameStart.GameStartSequence;
 import me.depickcator.ascension.General.GameStart.StartGame;
+import me.depickcator.ascension.General.LocationChecker.LocationCheck;
+import me.depickcator.ascension.Settings.Settings;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
@@ -13,13 +15,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextSequence extends GameStartSequence {
-    private final List<Component> texts;
+    private List<Component> texts;
     private final int seconds;
+    private Settings settings;
     public TextSequence() {
         this(15);
     }
 
     public TextSequence(int seconds) {
+//        settings = Ascension.getInstance().getSettingsUI().getSettings();
+        ;
+        this.seconds = seconds;
+
+    }
+
+    @Override
+    public void run(StartGame game) {
+        settings = Ascension.getInstance().getSettingsUI().getSettings();
         this.texts = new ArrayList<>(List.of(
                 text1(),
                 text2(),
@@ -27,12 +39,7 @@ public class TextSequence extends GameStartSequence {
                 text4(),
                 text5()
         ));
-        this.seconds = seconds;
-    }
-
-    @Override
-    public void run(StartGame game) {
-
+//
         new BukkitRunnable() {
             List<Component> gameTexts = new ArrayList<>(texts);
             @Override
@@ -55,23 +62,43 @@ public class TextSequence extends GameStartSequence {
     }
 
     private Component text1() {
-        return TextUtil.makeText("Text 1", TextUtil.GRAY);
-//        SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 0);
+//        return TextUtil.makeText("Text 1", TextUtil.GRAY);
+        Component text = TextUtil.topBorder(TextUtil.GOLD);
+        text = text.append(TextUtil.makeText("\n Collect Items on the Board & Level up skills to earn souls", TextUtil.YELLOW));
+        text = text.append(TextUtil.makeText("\n       Gear up to defend yourself against mobs and peers\n", TextUtil.YELLOW));
+        text = text.append(TextUtil.bottomBorder(TextUtil.GOLD));
+        return text;
     }
 
     private Component text2() {
-        return TextUtil.makeText("Text 2", TextUtil.GRAY);
-//        SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 0.6);
+        Component text = TextUtil.topBorder(TextUtil.GOLD);
+
+        text = text.append(TextUtil.makeText("\n           Game Information", TextUtil.YELLOW, true, false));
+        text = text.append(TextUtil.makeText("\n\n Preset: " + settings.getName(), TextUtil.GOLD));
+        text = text.append(TextUtil.makeText("\n\n Score Requirement: " + settings.getAscensionGameScoreRequirement(), TextUtil.AQUA));
+        text = text.append(TextUtil.makeText("\n World Border: " + settings.getWorldBorderSize(), TextUtil.AQUA));
+        LocationCheck locationCheck = Ascension.getInstance().getLocationCheck();
+        if (locationCheck.isCheckCompleted()) text = text.append(TextUtil.makeText("\n\n World Score: " + locationCheck.getPercentageScore() +  "%\n", TextUtil.AQUA));
+
+        text = text.append(TextUtil.bottomBorder(TextUtil.GOLD));
+
+        return text;
     }
 
     private Component text3() {
-        return TextUtil.makeText("Text 3", TextUtil.GRAY);
-//        SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 1);
+        Component text = TextUtil.topBorder(TextUtil.GOLD);
+        List<Integer> distribution = settings.getItemDistribution();
+        text = text.append(TextUtil.makeText("\n           Item Distribution", TextUtil.AQUA, true, false));
+        text = text.append(TextUtil.makeText("\n\n Easy Items: " + distribution.get(0), TextUtil.GREEN));
+        text = text.append(TextUtil.makeText("\n Medium Items: " + distribution.get(1), TextUtil.YELLOW));
+        text = text.append(TextUtil.makeText("\n Hard Items: " + distribution.get(2), TextUtil.RED));
+        text = text.append(TextUtil.makeText("\n Custom Items: " + distribution.get(3) + "\n", TextUtil.BLUE));
+        text = text.append(TextUtil.bottomBorder(TextUtil.GOLD));
+        return text;
     }
 
     private Component text4() {
-        return TextUtil.makeText("Text 4", TextUtil.GRAY);
-//        SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 1.2);
+        return TextUtil.makeText("Happy Hunting!", TextUtil.GRAY);
     }
 
     private Component text5() {
@@ -79,7 +106,5 @@ public class TextSequence extends GameStartSequence {
         Component text = TextUtil.makeText("\n\n                        ASCENSION\n\n", TextUtil.WHITE, true, false);
         Component bottomBorder = TextUtil.bottomBorder(TextUtil.GRAY);
         return topBorder.append(text).append(bottomBorder);
-//        SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 100, 0);
-//        SoundUtil.broadcastSound(Sound.AMBIENT_CAVE, 100, 2);
     }
 }

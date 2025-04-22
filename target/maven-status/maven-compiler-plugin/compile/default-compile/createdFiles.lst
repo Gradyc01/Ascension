@@ -29,6 +29,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\OverWorld.
 me\depickcator\ascension\General\GameStart\Sequences\SpreadPlayers.class
 me\depickcator\ascension\LootTables\Blocks\Ores\IronOre.class
 me\depickcator\ascension\Timeline\Events\FinalAscension\FinalAscension$1.class
+me\depickcator\ascension\Items\Craftable\Unlocks\MinerBlessing.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ApolloGlare.class
 me\depickcator\ascension\Items\Craftable\Unlocks\NotchApple.class
 me\depickcator\ascension\LootTables\Blocks\Ores\CoalOre.class
@@ -162,6 +163,7 @@ me\depickcator\ascension\General\GameStart\Sequences\LaunchSequence$1.class
 me\depickcator\ascension\Timeline\Timeline.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\Mineshaft.class
 me\depickcator\ascension\listeners\PlayerExpGain.class
+me\depickcator\ascension\Items\Craftable\Unlocks\AdvancedQuickPick.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Jungle.class
 me\depickcator\ascension\Settings\GUIs\SettingsGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EnlighteningPack.class
@@ -290,6 +292,7 @@ me\depickcator\ascension\Items\Craftable\Vanilla\StoneAxe.class
 me\depickcator\ascension\Utility\AttributeUtil.class
 me\depickcator\ascension\Timeline\Events\CarePackage\CarePackage$1.class
 me\depickcator\ascension\listeners\InventoryClickListener.class
+me\depickcator\ascension\listeners\Combat\ProjectileAttacks$1.class
 me\depickcator\ascension\Lobby\BingoBoard\DisplayBox.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Dread.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\Village.class
@@ -298,6 +301,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biome
 me\depickcator\ascension\Lobby\Lobby.class
 me\depickcator\ascension\Items\ItemLists\CombatItems.class
 me\depickcator\ascension\Items\ItemLists\EasyItems.class
+me\depickcator\ascension\General\GameStart\Sequences\GiveBrawlItems2.class
 me\depickcator\ascension\Lobby\WelcomeBoard.class
 me\depickcator\ascension\LootTables\Entities\Enums\NetherMobs.class
 me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalItem\TeamPortalGUI.class
@@ -356,6 +360,7 @@ me\depickcator\ascension\Settings\BuildCustom\Buttons\HardItems.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent$1.class
 me\depickcator\ascension\Items\ItemLists\CustomItems.class
 me\depickcator\ascension\Lobby\BingoBoard\BoardDisplay.class
+me\depickcator\ascension\General\GameStart\Sequences\GiveBrawlItems2$1.class
 me\depickcator\ascension\listeners\MobSpawning.class
 me\depickcator\ascension\LootTables\Blocks\Ores\EmeraldOre.class
 me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteAxe.class

@@ -9,6 +9,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Boards {
     protected final Objective board;
@@ -47,7 +48,7 @@ public abstract class Boards {
             undefinedTeamMemberLine(board, startingLine - 1);
             return;
         };
-        ArrayList<Player> teamMembers = team.getOtherTeamMembers(player);
+        List<Player> teamMembers = team.getOtherTeamMembers(player);
         int memberIndex = 0;
         for (int i = startingLine; i > startingLine - 2; i--) {
             try {
