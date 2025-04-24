@@ -24,7 +24,7 @@ public class DesertPyramid extends ChestLootTable {
         ));
         Collections.shuffle(items);
         lootList.add(items.getFirst());
-//        addShardsOfTheFallen(0, 1, lootList);
+        addShardsOfTheFallen(0, 1, lootList);
         givePlayerForagingExp(pD, SkillExpAmount.FORAGING_RARE.getExp());
     }
 }

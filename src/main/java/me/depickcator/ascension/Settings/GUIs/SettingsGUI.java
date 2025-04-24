@@ -2,7 +2,7 @@ package me.depickcator.ascension.Settings.GUIs;
 
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
-import me.depickcator.ascension.Settings.BuildCustom.ScalarButtons;
+import me.depickcator.ascension.Settings.BuildCustom.AllButtons;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -28,7 +28,7 @@ public class SettingsGUI extends AscensionGUI {
         if (item.equals(presetsButton)) {
             new SettingsPresetGUI(playerData);
         } else if (item.equals(customButton)) {
-            new SettingsCustomGUI(playerData, new ScalarButtons());
+            new SettingsCustomGUI(playerData, new AllButtons());
         } else if (item.equals(getCloseButton())) {
             event.setCancelled(true);
             player.closeInventory();

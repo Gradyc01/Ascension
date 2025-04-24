@@ -10,6 +10,8 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.MasterCompass.MasterComp
 import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
+import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
+import me.depickcator.ascension.Items.Uncraftable.RejuvenationBook;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import org.bukkit.Material;
@@ -29,6 +31,8 @@ public class CustomItems {
         items.addAll(getEquipment());
         items.add(ApprenticeHelmet.getInstance().getResult());
         items.add(MasterCompass.getInstance().getResult());
+        items.add(MinerBlessing.getInstance().getResult());
+        items.add(DragonSword.getInstance().getResult());
 
         //Combat
         items.add(PlayerHead.getInstance().getResult());
@@ -36,6 +40,7 @@ public class CustomItems {
         items.add(ShardOfTheFallen.getInstance().getResult());
         items.add(GoldenHead.getInstance().getResult());
         items.add(PandoraBox.getInstance().getResult());
+        items.add(NetherStar.getInstance().getResult());
 
         //Abilities
         items.add(TeamPortal.getInstance().getResult());
@@ -43,7 +48,7 @@ public class CustomItems {
         items.add(Echolocator.getInstance().getResult());
         items.add(Ghost.getInstance().getResult());
         items.add(AscensionKey.getInstance().getResult());
-        items.add(new ItemStack(Material.TOTEM_OF_UNDYING));
+        items.add(Resurrection.getInstance().getResult());
 
         //Tools
         items.add(QuickPick.getInstance().getResult());
@@ -51,9 +56,7 @@ public class CustomItems {
         items.add(PhilosopherPickaxe.getInstance().getResult());
         items.add(VorpalSword.getInstance().getResult());
         items.add(KingsRod.getInstance().getResult());
-        items.add(DragonSword.getInstance().getResult());
         items.add(AdvancedQuickPick.getInstance().getResult());
-        items.add(MinerBlessing.getInstance().getResult());
 
         //Potions
         items.add(PotionOfVelocity.getInstance().getResult());
@@ -69,7 +72,7 @@ public class CustomItems {
         items.add(TabletsOfDestiny.getInstance().getResult());
         items.addAll(getLevel1EnchantedBooks());
         items.add(WeaverSilk.getInstance().getResult());
-
+        items.add(RejuvenationBook.getInstance().getResult());
     }
 
     private List<ItemStack> getLevel1EnchantedBooks() {

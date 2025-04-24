@@ -64,8 +64,13 @@ public class TextSequence extends GameStartSequence {
     private Component text1() {
 //        return TextUtil.makeText("Text 1", TextUtil.GRAY);
         Component text = TextUtil.topBorder(TextUtil.GOLD);
-        text = text.append(TextUtil.makeText("\n Collect Items on the Board & Level up skills to earn souls", TextUtil.YELLOW));
-        text = text.append(TextUtil.makeText("\n       Gear up to defend yourself against mobs and peers\n", TextUtil.YELLOW));
+//        text = text.append(TextUtil.makeText("\n Collect Items on the Board & Level up skills to earn souls", TextUtil.YELLOW));
+//        text = text.append(TextUtil.makeText("\n     Gear up to defend yourself against mobs and peers", TextUtil.YELLOW));
+        text = text.append(TextUtil.makeText("\n Collect Items on the Board to become more enlightened", TextUtil.YELLOW));
+        text = text.append(TextUtil.makeText("\n Level up skills to earn souls to help with your journey", TextUtil.YELLOW));
+        text = text.append(TextUtil.makeText("\n   Gear up to defend yourself against mobs and peers", TextUtil.YELLOW));
+        text = text.append(TextUtil.makeText("\n    When ready find a Gatekeeper to begin Ascension\n", TextUtil.YELLOW));
+
         text = text.append(TextUtil.bottomBorder(TextUtil.GOLD));
         return text;
     }

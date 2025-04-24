@@ -4,6 +4,7 @@ import me.depickcator.ascension.Interfaces.CustomChestLoot;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
+import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -20,11 +21,12 @@ public class FeastSpecialChestLoot extends CustomChestLoot {
         ArrayList<ItemStack> items = new ArrayList<>();
 //        items.add(new ItemStack(Material.NETHER_STAR, 2));
         items.add(MakeshiftSkull.getInstance().getResult());
-        items.add(MakeshiftSkull.getInstance().getResult());
-        items.add(HadesBook.getInstance().getItem());
-        ItemStack item = EnlightenedNugget.getInstance().getItem().clone();
-        item.setAmount(3);
-        items.add(item);
+        items.add(NetherStar.getInstance().getResult(2));
+        items.add(HadesBook.getInstance().getResult());
+//        ItemStack item = EnlightenedNugget.getInstance().getResult();
+//        item.setAmount(3);
+//        items.add(item);
+        items.add(EnlightenedNugget.getInstance().getResult(3));
 
         return placeInInventory(inv, r, items);
     }

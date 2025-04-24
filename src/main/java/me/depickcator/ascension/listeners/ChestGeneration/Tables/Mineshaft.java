@@ -16,7 +16,7 @@ public class Mineshaft extends ChestLootTable {
     @Override
     public void addLootToTable(PlayerData pD, List<ItemStack> lootList) {
         lootList.add(new ItemStack(Material.NAME_TAG, 1));
-        addShardsOfTheFallen(1, lootList);
+        addShardsOfTheFallen(1, 3, lootList);
         givePlayerForagingExp(pD, SkillExpAmount.FORAGING_LEGENDARY.getExp());
     }
 }

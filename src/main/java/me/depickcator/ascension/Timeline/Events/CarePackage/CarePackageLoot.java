@@ -5,6 +5,7 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
+import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -29,8 +30,6 @@ public class CarePackageLoot extends CustomChestLoot {
     private void initNetheriteItems() {
 
         netheriteItems = new ArrayList<>(List.of(
-//                new ItemStack(Material.NETHERITE_AXE),
-//                new ItemStack(Material.NETHERITE_SWORD),
                 NetheriteAxe.getInstance().getResult(),
                 NetheriteSword.getInstance().getResult(),
                 new ItemStack(Material.NETHERITE_HOE),
@@ -61,9 +60,9 @@ public class CarePackageLoot extends CustomChestLoot {
         items.addAll(getRandomItemFromList(netheriteItems, r, 1));
         items.addAll(getRandomItemFromList(netherItems, r, 3, 2, 3));
         items.add(MakeshiftSkull.getInstance().getResult());
-        items.add(MakeshiftSkull.getInstance().getResult());
-        items.add(EnlightenedNugget.getInstance().getItem());
-        items.add(EnlightenedNugget.getInstance().getItem());
+        items.add(NetherStar.getInstance().getResult(2));
+        items.add(EnlightenedNugget.getInstance().getResult());
+        items.add(EnlightenedNugget.getInstance().getResult());
 
         return placeInInventory(inv, r, items);
     }

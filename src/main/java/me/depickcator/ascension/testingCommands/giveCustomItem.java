@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Items.Uncraftable.*;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
+import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.CreeperHead;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.SkeletonSkull;
@@ -118,7 +119,9 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 CreeperHead.getInstance(),
                 SkeletonSkull.getInstance(),
                 ZombieHead.getInstance(),
-                PlayerHead.getInstance()
+                PlayerHead.getInstance(),
+                RejuvenationBook.getInstance(),
+                NetherStar.getInstance()
                 ));
         for (ArrayList<Craft> craft : allCraft) {
             items.addAll(craft);

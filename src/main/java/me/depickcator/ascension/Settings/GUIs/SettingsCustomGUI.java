@@ -3,9 +3,7 @@ package me.depickcator.ascension.Settings.GUIs;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
-import me.depickcator.ascension.Settings.BuildCustom.BuildCustom;
-import me.depickcator.ascension.Settings.BuildCustom.ScalarButton;
-import me.depickcator.ascension.Settings.BuildCustom.ScalarButtons;
+import me.depickcator.ascension.Settings.BuildCustom.*;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
@@ -18,10 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SettingsCustomGUI extends AscensionGUI {
-    private final ScalarButtons buttons;
-    private final HashMap<ItemStack, ScalarButton> customButtons;
+    private final AllButtons buttons;
+    private final HashMap<ItemStack, Button> customButtons;
     private final ItemStack buildSettingsItem;
-    public SettingsCustomGUI(PlayerData playerData, ScalarButtons buttons) {
+    public SettingsCustomGUI(PlayerData playerData, AllButtons buttons) {
         super(playerData, (char) 6 , TextUtil.makeText("Build Custom Game", TextUtil.AQUA), true);
         inventory.setItem(49, getCloseButton());
         inventory.setItem(48, goBackItem());
@@ -41,7 +39,7 @@ public class SettingsCustomGUI extends AscensionGUI {
     }
 
     private void initSettings() {
-        for (ScalarButton button : buttons.getKeys()) {
+        for (Button button : buttons.getKeys()) {
             ItemStack item = button.getItem();
             customButtons.put(item, button);
             inventory.setItem(buttons.getIndex(button), item);
@@ -62,9 +60,15 @@ public class SettingsCustomGUI extends AscensionGUI {
             event.setCancelled(true);
             player.closeInventory();
         } else {
-            ScalarButton button = customButtons.get(item);
+            Button button = customButtons.get(item);
             if (button != null) {
-                new SettingsIncrementGUI(playerData, button, buttons);
+                if (button instanceof ScalarButton) {
+                    new SettingsIncrementGUI(playerData, (ScalarButton) button, buttons);
+                }
+                if (button instanceof ChoiceButton) {
+                    new SettingsChoiceGUI(playerData, (ChoiceButton) button, buttons);
+                }
+
             }
         }
     }

@@ -75,7 +75,7 @@ public class GiveBrawlItems2 extends GameStartSequence {
                 items.add(new ItemStack(Material.WATER_BUCKET, 1));
                 items.add(new ItemStack(Material.ANVIL, 1));
                 items.add(new ItemStack(Material.ARROW, 64));
-                items.add(new ItemStack(Material.GOLDEN_APPLE, 16));
+                items.add(new ItemStack(Material.GOLDEN_APPLE, 24));
                 items.add(Shield.getInstance().getResult());
                 items.add(Shield.getInstance().getResult());
                 PlayerUtil.giveItem(p, items);
@@ -124,8 +124,7 @@ public class GiveBrawlItems2 extends GameStartSequence {
     }
     private List<Pair<ItemStack, Integer>> initChestplate() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(DragonArmor.getInstance().getResult(), 10),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_CHESTPLATE, 4), 9),
+                new ImmutablePair<>(DragonArmor.getInstance().getResult(), 11),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_CHESTPLATE, 3), 7),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_CHESTPLATE, 2), 4),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_CHESTPLATE, 1), 0)
@@ -133,19 +132,17 @@ public class GiveBrawlItems2 extends GameStartSequence {
     }
     private List<Pair<ItemStack, Integer>> initLeggings() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(HideOfLeviathan.getInstance().getResult(), 9),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_LEGGINGS, 4), 8),
+                new ImmutablePair<>(HideOfLeviathan.getInstance().getResult(), 11),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_LEGGINGS, 3), 7),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_LEGGINGS, 2), 4),
+                new ImmutablePair<>(initArmor(Material.DIAMOND_LEGGINGS, 2), 5),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_LEGGINGS, 1), 0)
         ));
     }
     private List<Pair<ItemStack, Integer>> initBoots() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(HermesBoots.getInstance().getResult(), 10),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 4), 9),
+                new ImmutablePair<>(HermesBoots.getInstance().getResult(), 15),
+                new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 4), 10),
                 new ImmutablePair<>(SevenLeagueBoots.getInstance().getResult(), 7),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 3), 6),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 2), 4),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 1), 0)
         ));
@@ -192,14 +189,11 @@ public class GiveBrawlItems2 extends GameStartSequence {
     private List<Pair<ItemStack, Integer>> initHealing() {
         return new ArrayList<>(List.of(
                 new ImmutablePair<>(Panacea.getInstance().getResult(), 15),
-                new ImmutablePair<>(new ItemStack(Material.GOLDEN_APPLE, 24), 12),
                 new ImmutablePair<>(Resurrection.getInstance().getResult(), 10),
-                new ImmutablePair<>(new ItemStack(Material.GOLDEN_APPLE, 16), 9),
                 new ImmutablePair<>(Cornucopia.getInstance().getResult(), 8),
                 new ImmutablePair<>(Nectar.getInstance().getResult(), 7),
                 new ImmutablePair<>(ZombieHead.getInstance().getResult(), 6),
                 new ImmutablePair<>(SkeletonSkull.getInstance().getResult(), 5),
-                new ImmutablePair<>(new ItemStack(Material.GOLDEN_APPLE, 8), 3),
                 new ImmutablePair<>(CreeperHead.getInstance().getResult(), 2),
                 new ImmutablePair<>(GoldenHead.getInstance().getResult(), 1),
                 new ImmutablePair<>(MakeshiftSkull.getInstance().getResult(), 0)

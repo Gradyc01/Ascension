@@ -16,7 +16,7 @@ public class Dungeon extends ChestLootTable {
     @Override
     public void addLootToTable(PlayerData pD, List<ItemStack> lootList) {
         lootList.add(new ItemStack(Material.SADDLE, 1));
-        addShardsOfTheFallen(1, lootList);
+        addShardsOfTheFallen(1, 2, lootList);
         givePlayerForagingExp(pD, SkillExpAmount.FORAGING_VERY_RARE.getExp());
     }
 }

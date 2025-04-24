@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
@@ -59,10 +58,7 @@ public class AdvancedQuickPick extends Craft implements ItemClick {
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
         meta.addEnchant(Enchantment.EFFICIENCY, 4, true);
         meta.addEnchant(Enchantment.UNBREAKING, 2, true);
-        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
-//        CustomModelDataComponent modelData = meta.getCustomModelDataComponent();
-//        modelData.setFloats(new ArrayList<>(List.of((float) Ascension.getInstance().generateModelNumber())));
-//        meta.setCustomModelDataComponent(modelData);
+        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText("Gives haste when mining", TextUtil.DARK_PURPLE)
         ));
@@ -81,8 +77,6 @@ public class AdvancedQuickPick extends Craft implements ItemClick {
         }
         return false;
     }
-
-
 
     private Set<Material> initOres() {
         return new HashSet<>(Set.of(

@@ -9,11 +9,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ScalarButton {
-    private final Material material;
-    private final String title;
+public abstract class ScalarButton extends Button {
     private int number;
-    private final ItemStack item;
     private final int min;
     private final int max;
     public ScalarButton(Material material, String title, int initialNumber) {
@@ -25,10 +22,8 @@ public abstract class ScalarButton {
     }
 
     public ScalarButton(Material material, String title, int initialNumber, int min, int max) {
-        this.material = material;
-        this.title = title;
+        super(material, title);
         this.number = initialNumber;
-        item = initItem();
         this.min = min;
         this.max = max;
         updateVisual();
@@ -40,9 +35,9 @@ public abstract class ScalarButton {
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText(getNumber() + "", TextUtil.DARK_GREEN)
         ));
-        ItemMeta meta = item.getItemMeta();
+        ItemMeta meta = getItem().getItemMeta();
         meta.lore(lore);
-        item.setItemMeta(meta);
+        getItem().setItemMeta(meta);
     }
 
     public int addNumber(int amount) {
@@ -58,13 +53,6 @@ public abstract class ScalarButton {
         return number;
     }
 
-    private ItemStack initItem() {
-        ItemStack item = new ItemStack(material);
-        ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText(title, TextUtil.GOLD));
-        item.setItemMeta(meta);
-        return item;
-    }
 
     public List<Integer> getIncrementSpread() {
         return new ArrayList<>(List.of(
@@ -81,18 +69,5 @@ public abstract class ScalarButton {
     public int getNumber() {
         return number;
     }
-
-    public Material getMaterial() {
-        return material;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public ItemStack getItem() {
-        return item;
-    }
-
 
 }

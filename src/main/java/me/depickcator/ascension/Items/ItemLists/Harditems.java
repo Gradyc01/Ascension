@@ -38,7 +38,7 @@ public class Harditems {
         //Trials
         if (locationCheck.isALocation(Structure.TRIAL_CHAMBERS)) {
             items.add(new ItemStack(Material.OMINOUS_TRIAL_KEY));
-            items.add(new ItemStack(Material.MACE));//TODO: Maybe Change Later to Custom
+//            items.add(new ItemStack(Material.MACE));//TODO: Maybe Change Later to Custom
             items.add(new ItemStack(Material.HEAVY_CORE));
         }
 
@@ -73,9 +73,9 @@ public class Harditems {
         }
 
 
-        items.add(new ItemStack(Material.MUSIC_DISC_PIGSTEP));
+//        items.add(new ItemStack(Material.MUSIC_DISC_PIGSTEP));
         items.add(new ItemStack(Material.WAXED_COPPER_GRATE)); //Change to a list later
-        items.add(new ItemStack(Material.CONDUIT));
+//        items.add(new ItemStack(Material.CONDUIT));
         items.add(new ItemStack(Material.HONEYCOMB_BLOCK));
 //        items.add(new ItemStack(Material.TRIDENT)); //TODO: Maybe Change Later to Custom
 

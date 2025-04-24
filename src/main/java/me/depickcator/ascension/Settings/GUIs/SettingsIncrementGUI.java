@@ -4,7 +4,7 @@ import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.BuildCustom.ScalarButton;
 import me.depickcator.ascension.Settings.BuildCustom.IncrementButton;
-import me.depickcator.ascension.Settings.BuildCustom.ScalarButtons;
+import me.depickcator.ascension.Settings.BuildCustom.AllButtons;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -15,8 +15,8 @@ import java.util.List;
 public class SettingsIncrementGUI extends AscensionGUI {
     private final HashMap<ItemStack, IncrementButton> incrementButtons;
     private final ScalarButton button;
-    private final ScalarButtons allButtons;
-    public SettingsIncrementGUI(PlayerData playerData, ScalarButton button, ScalarButtons allButtons) {
+    private final AllButtons allButtons;
+    public SettingsIncrementGUI(PlayerData playerData, ScalarButton button, AllButtons allButtons) {
         super(playerData, (char) 1, TextUtil.makeText("Adjust " + button.getTitle(), TextUtil.AQUA), true);
         inventory.setItem(0, goBackItem());
         incrementButtons = new HashMap<>();

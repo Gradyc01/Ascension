@@ -28,7 +28,7 @@ public class ZombieHead extends Skulls {
             Player p = e.getPlayer();
             consumedSkull(pD, item);
             p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 7 * 20, 2));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.INSTANT_HEALTH, 20, 1));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.INSTANT_HEALTH, 1, 1));
             return true;
         }
         return false;

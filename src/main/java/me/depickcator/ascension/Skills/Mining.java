@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Skills;
 
+import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import org.bukkit.Material;
@@ -82,7 +83,8 @@ public class Mining extends Skills {
         SkillRewards skillRewards = new SkillRewards();
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
-                        new ItemStack(Material.NETHERITE_INGOT, 1)
+                        new ItemStack(Material.NETHERITE_INGOT, 1),
+                        MakeshiftSkull.getInstance().getResult()
                 )
         );
         skillRewards.setItems(rewards);

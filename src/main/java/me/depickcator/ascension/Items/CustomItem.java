@@ -1,6 +1,11 @@
 package me.depickcator.ascension.Items;
 
+import me.depickcator.ascension.Ascension;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.components.CustomModelDataComponent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class CustomItem {
     protected final String DISPLAY_NAME;
@@ -19,6 +24,11 @@ public abstract class CustomItem {
 
     /*Initialize the Custom Item Result and Returns the ItemStack*/
     protected abstract ItemStack initResult();
+
+    protected CustomModelDataComponent generateUniqueModelNumber(CustomModelDataComponent model) {
+        model.setFloats(new ArrayList<>(List.of((float) Ascension.getInstance().generateModelNumber())));
+        return model;
+    }
 
     public String getDisplayName() {
         return DISPLAY_NAME;

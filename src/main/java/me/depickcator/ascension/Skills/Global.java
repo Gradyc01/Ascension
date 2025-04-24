@@ -45,7 +45,7 @@ public class Global extends Skills {
     @Override
     protected void levelUp(int newLevel) {
         double health = player.getAttribute(Attribute.MAX_HEALTH).getBaseValue();
-        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 0, true, true));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 12 * 20, 0, true, true));
         player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(health + 4);
         levelUpText();
         if (canLevelUp()) {

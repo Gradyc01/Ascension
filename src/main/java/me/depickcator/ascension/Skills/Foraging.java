@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Skills;
 
+import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
+import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import org.bukkit.Material;
@@ -71,7 +73,8 @@ public class Foraging extends Skills {
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
                         new ItemStack(Material.EMERALD, 5),
-                        new ItemStack(Material.RABBIT_FOOT, 1)
+                        new ItemStack(Material.RABBIT_FOOT, 1),
+                        NetherStar.getInstance().getResult()
                 )
         );
         skillRewards.setItems(rewards);
@@ -84,7 +87,9 @@ public class Foraging extends Skills {
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
                         new ItemStack(Material.EMERALD, 9),
-                        new ItemStack(Material.HONEY_BLOCK, 1)
+                        new ItemStack(Material.HONEY_BLOCK, 1),
+                        MakeshiftSkull.getInstance().getResult(),
+                        NetherStar.getInstance().getResult(2)
                 )
         );
         skillRewards.setItems(rewards);

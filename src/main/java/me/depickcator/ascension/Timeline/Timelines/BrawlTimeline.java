@@ -17,19 +17,9 @@ public class BrawlTimeline extends Timeline {
     @Override
     protected void checkForMidGameEvents() {
         switch (getTimePassed()) {
-//            case 1 -> {
-//                setAscensionEvent(new AscensionEvent(150));
-//            }
             case 0 -> {
                 new GracePeriodEnds();
             }
-//            case 5, 12, 30  -> {
-//                new CarePackage(200);
-//            }
-//            case 20 -> {
-//                new Feast();
-//            }
-
         }
     }
 
@@ -37,7 +27,6 @@ public class BrawlTimeline extends Timeline {
     protected List<Pair<String, Integer>> initNextBigEvents() {
         return new ArrayList<>(List.of(
                 new MutablePair<>("Grace Period Ends", 0),
-//                new MutablePair<>("Feast", 20),
                 new MutablePair<>("Final Ascension", getStartingMinutes())
         ));
     }

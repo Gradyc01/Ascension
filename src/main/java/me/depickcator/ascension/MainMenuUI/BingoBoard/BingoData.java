@@ -2,6 +2,7 @@ package me.depickcator.ascension.MainMenuUI.BingoBoard;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
+import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
@@ -149,6 +150,7 @@ public class BingoData extends ItemComparison {
                     teamMember.sendMessage(TextUtil.bottomBorder(TextUtil.YELLOW));
                     teamMember.playSound(teamMember.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
                     PlayerUtil.giveItem(teamMember, MakeshiftSkull.getInstance().getResult());
+                    PlayerUtil.giveItem(teamMember, NetherStar.getInstance().getResult(2));
                 }
             }
             team.getTeamStats().setLinesObtained(newLines);

@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Skills;
 
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
+import me.depickcator.ascension.Items.Uncraftable.RejuvenationBook;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
@@ -60,7 +62,8 @@ public class Combat extends Skills {
 //        shards.setAmount(4);
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
-                        shards
+                        shards,
+                        RejuvenationBook.getInstance().getResult()
                 )
         );
         skillRewards.setItems(rewards);
@@ -72,7 +75,8 @@ public class Combat extends Skills {
         SkillRewards skillRewards = new SkillRewards();
         ArrayList<ItemStack> rewards = new ArrayList<>(
                 Arrays.asList(
-                        MakeshiftSkull.getInstance().getResult()
+                        ShardOfTheFallen.getInstance().getResult(5),
+                        RejuvenationBook.getInstance().getResult()
                 )
         );
         skillRewards.setItems(rewards);
