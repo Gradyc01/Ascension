@@ -43,13 +43,12 @@ public class ChestLootModifier implements Listener {
         Player player = (Player) event.getEntity();
         PlayerData playerData = PlayerUtil.getPlayerData(player);
         ChestLootTable table = tables.get(event.getLootTable().getKey().toString());
+        event.getLoot().add(NetherStar.getInstance().getResult());
         if (table == null) {
             TextUtil.debugText("Table is not found within the Dictionary");
             playerData.getPlayerSkills().getForaging().addExp(SkillExpAmount.FORAGING_RARE.getExp());
             return;
         }
         table.addLootToTable(playerData, event.getLoot());
-        event.getLoot().add(NetherStar.getInstance().getResult());
-
     }
 }

@@ -91,7 +91,7 @@ public class MinerBlessing extends Craft implements ItemClick {
 
     /*Returns true if not on cooldown and sets the cooldown, False otherwise*/
     private boolean checkCooldown(Player p, ItemStack item) {
-        if (!p.hasCooldown(item)) {
+        if (!p.hasCooldown(item) && plugin.getGameState().inGame()) {
             p.setCooldown(item, 12 * 20);
             return true;
         }

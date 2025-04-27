@@ -48,12 +48,12 @@ public class Harditems {
         items.add(new ItemStack(Material.END_CRYSTAL));
         items.add(new ItemStack(Material.WITHER_SKELETON_SKULL));
 
-        items.add(new ItemStack(Material.POISONOUS_POTATO));
+//        items.add(new ItemStack(Material.POISONOUS_POTATO));
 
         items.add(new ItemStack(Material.LODESTONE));
 //        items.add(new ItemStack(Material.SCULK_SENSOR));
 
-        items.add(new ItemStack(Material.NAUTILUS_SHELL));
+//        items.add(new ItemStack(Material.NAUTILUS_SHELL));
         items.add(new ItemStack(Material.GOAT_HORN));
 
         items.add(new ItemStack(Material.WOLF_ARMOR));
@@ -74,7 +74,7 @@ public class Harditems {
 
 
 //        items.add(new ItemStack(Material.MUSIC_DISC_PIGSTEP));
-        items.add(new ItemStack(Material.WAXED_COPPER_GRATE)); //Change to a list later
+
 //        items.add(new ItemStack(Material.CONDUIT));
         items.add(new ItemStack(Material.HONEYCOMB_BLOCK));
 //        items.add(new ItemStack(Material.TRIDENT)); //TODO: Maybe Change Later to Custom
@@ -87,11 +87,25 @@ public class Harditems {
             items.add(getRandomCoral());
             items.add(new ItemStack(Material.SEA_PICKLE));
         }
-//        items.add(getRandomNetherite());
-//        items.add(getRandomNetherite());
-//        items.add(getRandomNetherite());
+        items.add(getRandomWaxedCopperBlock());
         items.addAll(getRandomNetherite());
 
+    }
+
+    private ItemStack getRandomWaxedCopperBlock() {
+        ArrayList<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Material.WAXED_COPPER_BLOCK));
+        items.add(new ItemStack(Material.WAXED_CHISELED_COPPER));
+        items.add(new ItemStack(Material.WAXED_COPPER_BULB));
+        items.add(new ItemStack(Material.WAXED_COPPER_DOOR));
+        items.add(new ItemStack(Material.WAXED_COPPER_GRATE));
+        items.add(new ItemStack(Material.WAXED_COPPER_TRAPDOOR));
+        items.add(new ItemStack(Material.WAXED_CUT_COPPER));
+        items.add(new ItemStack(Material.WAXED_CUT_COPPER_SLAB));
+        items.add(new ItemStack(Material.WAXED_CUT_COPPER_STAIRS));
+
+        int pick = rand.nextInt(items.size());
+        return items.get(pick);
     }
 
     private List<ItemStack> getRandomNetherite() {
@@ -107,9 +121,7 @@ public class Harditems {
         items.add(new ItemStack(Material.NETHERITE_HOE));
         items.add(new ItemStack(Material.NETHERITE_INGOT));
 
-//        int pick = rand.nextInt(items.size());
         Collections.shuffle(items);
-//        return items.get(pick);
         return new ArrayList<>(List.of(
                 items.getFirst(),
                 items.getLast(),

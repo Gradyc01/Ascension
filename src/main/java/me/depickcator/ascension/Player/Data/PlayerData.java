@@ -103,12 +103,12 @@ public class PlayerData {
         PlayerInventory inv = player.getInventory();
         inv.clear();
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, PotionEffect.INFINITE_DURATION, 0, false, false));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, PotionEffect.INFINITE_DURATION, 128, false, false));
+//        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, PotionEffect.INFINITE_DURATION, 128, false, false));
         getMainMenuItem();
         inv.setItem(6, TeammateTracker.getInstance().getResult());
         inv.setItem(7, KitBook.getInstance().getResult());
 
-        player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
+//        player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
 
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
@@ -124,9 +124,9 @@ public class PlayerData {
         addPlayerPotionEffect(PotionEffectType.HASTE, Math.min(gracePeriodDuration, 2), 1);
         addPlayerPotionEffect(PotionEffectType.HASTE, Math.min(gracePeriodDuration, 1), 2);
         addPlayerPotionEffect(PotionEffectType.ABSORPTION, gracePeriodDuration, 4);
-        addPlayerPotionEffect(PotionEffectType.ABSORPTION, Math.min(gracePeriodDuration, 1), 14);
+        addPlayerPotionEffect(PotionEffectType.RESISTANCE, Math.min(gracePeriodDuration + 0.25, 1), 4);
         addPlayerPotionEffect(PotionEffectType.REGENERATION, 0.05, 9);
-        Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
+//        Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
     }
 
     private void addPlayerPotionEffect(PotionEffectType effect, double minutes, int amplifier) {

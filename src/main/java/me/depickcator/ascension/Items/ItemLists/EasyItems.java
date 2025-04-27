@@ -36,7 +36,6 @@ public class EasyItems {
         addItem(new ItemStack(Material.CARROT_ON_A_STICK));
         addItem(new ItemStack(Material.BEETROOT));
         addItem(new ItemStack(Material.MUD_BRICKS));
-        addItem(new ItemStack(Material.CUT_COPPER));
         addItem(new ItemStack(Material.MILK_BUCKET));
         addItem(new ItemStack(Material.TNT));
         addItem(new ItemStack(Material.PUFFERFISH));
@@ -68,6 +67,7 @@ public class EasyItems {
         //Crafting Blocks
         addItem(getRandomCraftTable());
 
+        addItem(getRandomCopperBlock());
         addItem(getRandomGlass());
         addItem(getRandomBanner());
         addItem(getRandomConcrete());
@@ -94,6 +94,22 @@ public class EasyItems {
 
         int pick = rand.nextInt(items.size());
 
+        return items.get(pick);
+    }
+
+    private ItemStack getRandomCopperBlock() {
+        ArrayList<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Material.COPPER_BLOCK));
+        items.add(new ItemStack(Material.CHISELED_COPPER));
+        items.add(new ItemStack(Material.COPPER_BULB));
+        items.add(new ItemStack(Material.COPPER_DOOR));
+        items.add(new ItemStack(Material.COPPER_GRATE));
+        items.add(new ItemStack(Material.COPPER_TRAPDOOR));
+        items.add(new ItemStack(Material.CUT_COPPER));
+        items.add(new ItemStack(Material.CUT_COPPER_SLAB));
+        items.add(new ItemStack(Material.CUT_COPPER_STAIRS));
+
+        int pick = rand.nextInt(items.size());
         return items.get(pick);
     }
 

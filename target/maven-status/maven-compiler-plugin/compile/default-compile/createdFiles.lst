@@ -127,6 +127,7 @@ me\depickcator\ascension\Timeline\Events\Feast\FeastRegularChestLoot.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\Hell.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionLocation.class
 me\depickcator\ascension\Items\Uncraftable\Skulls\PlayerHead.class
+me\depickcator\ascension\General\GameStart\Sequences\SpreadPlayers$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class
 me\depickcator\ascension\Lobby\NPCs\ViewUnlocks.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
@@ -144,6 +145,7 @@ me\depickcator\ascension\Timeline\Timelines\QuickplayTimeline.class
 me\depickcator\ascension\General\GameCommand.class
 me\depickcator\ascension\Items\Uncraftable\NetherStar\NetherStarGUI.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\CarePackage.class
+me\depickcator\ascension\General\GameStart\StartGame$2.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Obsidian.class
 me\depickcator\ascension\Items\Uncraftable\Skulls\Skulls.class
 me\depickcator\ascension\testingCommands\startEvents.class

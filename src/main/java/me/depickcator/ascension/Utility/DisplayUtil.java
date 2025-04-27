@@ -49,7 +49,7 @@ public class DisplayUtil {
         return e;
     }
 
-    public static ItemDisplay makeItemDisplay(Location loc, ItemStack item, float yaw, int pitch, double size) {
+    public static ItemDisplay makeItemDisplay(Location loc, ItemStack item, float pitch, int yaw, double size) {
         ItemDisplay e = (ItemDisplay) loc.getWorld().spawnEntity(loc, EntityType.ITEM_DISPLAY);
         e.setGravity(false);
         e.setCustomNameVisible(false);
@@ -60,7 +60,7 @@ public class DisplayUtil {
         e.setTransformation(t);
         e.setItemStack(item);
         e.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
-        e.setRotation(pitch, yaw);
+        e.setRotation(yaw, pitch);
         return e;
     }
 

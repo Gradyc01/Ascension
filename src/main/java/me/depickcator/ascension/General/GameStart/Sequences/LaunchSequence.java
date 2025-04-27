@@ -41,13 +41,14 @@ public class LaunchSequence extends GameStartSequence {
                 }, 120);
             }
         }.runTaskLater(this.plugin, 20);
+
     }
 
 
-        private void makeAndShowTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
-            Component titleT = TextUtil.makeText(title, TextUtil.YELLOW, false, false);
-            Component subtitleT = TextUtil.makeText(subtitle, TextUtil.YELLOW, false, false);
-            Title t = TextUtil.makeTitle(titleT, subtitleT, fadeIn, stay, fadeOut);
-            plugin.getServer().showTitle(t);
-        }
+    private void makeAndShowTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+        Component titleT = TextUtil.makeText(title, TextUtil.YELLOW, false, false);
+        Component subtitleT = TextUtil.makeText(subtitle, TextUtil.YELLOW, false, false);
+        Title t = TextUtil.makeTitle(titleT, subtitleT, fadeIn, stay, fadeOut);
+        plugin.getServer().showTitle(t);
+    }
 }
