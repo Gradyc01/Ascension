@@ -19,6 +19,7 @@ public class AllButtons {
         addSetting(new MediumItems(), 23);
         addSetting(new HardItems(), 24);
         addSetting(new CustomItems(), 25);
+        addSetting(new TeamSize(), 28);
         addSetting(new Timelines(), 31);
     }
 

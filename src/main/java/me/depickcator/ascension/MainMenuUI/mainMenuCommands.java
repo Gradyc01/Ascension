@@ -77,8 +77,6 @@ public class mainMenuCommands implements CommandExecutor, TabCompleter {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-//        if (command.getName().equalsIgnoreCase("openmenu")) {
         return List.of("board", "unlocks", "commands", "skills", "events");
-//        }
     }
 }

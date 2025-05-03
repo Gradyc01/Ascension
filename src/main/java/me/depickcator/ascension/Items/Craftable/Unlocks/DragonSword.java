@@ -43,7 +43,7 @@ public class DragonSword extends Weapons {
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.RED));
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         item.setItemMeta(Vanilla.addModifiers(meta, getAttackDamage(), getAttackSpeed(), KEY));
-        return item;
+        return addSwordEffects(item);
     }
 
     @Override

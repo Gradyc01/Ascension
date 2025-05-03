@@ -58,6 +58,11 @@ public final class Ascension extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+//        if (getServer().getPluginManager().getPlugin("ProtocolLib") == null) {
+//            getLogger().severe("ProtocolLib not found! This plugin requires ProtocolLib to function.");
+//            getServer().getPluginManager().disablePlugin(this);
+//            return;
+//        }
         uniqueModelNumber = 2;
         instance = this;
         settings = new SettingObserver();
@@ -81,9 +86,7 @@ public final class Ascension extends JavaPlugin {
     }
 
     private void registerCommands() {
-        // PluginManager pluginManager = getServer().getPluginManager();
         getCommand("open-main-menu").setExecutor(new OpenMainMenuCommand());
-//        getCommand("give-main-menu").setExecutor(new GiveMainMenuItem());
         getCommand("game").setExecutor(new GameCommand());
         getCommand("changeBingoScore").setExecutor(new changeBingoScore());
         getCommand("openmenu").setExecutor(new mainMenuCommands());
@@ -131,6 +134,7 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new PlayerChatting(), this);
         manager.registerEvents(new FastSmelt(), this);
     }
+
 
     private void registerCrafts() {
         unlocksData = new UnlocksData();

@@ -32,11 +32,10 @@ public class WingsOfIcarus extends Craft {
     protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape("ABA", "C C", "ADA");
+        recipe.shape("CBC", "A A", "A A");
         recipe.setIngredient('A', Material.FEATHER);
         recipe.setIngredient('B', Material.ENDER_PEARL);
         recipe.setIngredient('C', Material.PLAYER_HEAD);
-        recipe.setIngredient('D', Material.FIREWORK_ROCKET);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

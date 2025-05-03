@@ -6,7 +6,6 @@ import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
-import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

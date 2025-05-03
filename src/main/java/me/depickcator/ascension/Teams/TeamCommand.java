@@ -59,10 +59,20 @@ public class TeamCommand implements CommandExecutor, TabCompleter {
                 pD.getPlayerTeam().leaveTeam();
             }
             case "accept" -> {
-                pD.getPlayerTeam().acceptInvite();
+                Player sender = Bukkit.getPlayer(args[1]);
+                if (sender == null || sender.equals(p)) {
+                    TextUtil.errorMessage(p, "Failed to find player.");
+                    return;
+                }
+                pD.getPlayerTeam().acceptInvite(PlayerUtil.getPlayerData(sender));
             }
             case "reject" -> {
-                pD.getPlayerTeam().rejectInvite();
+                Player sender = Bukkit.getPlayer(args[1]);
+                if (sender == null || sender.equals(p)) {
+                    TextUtil.errorMessage(p, "Failed to find player.");
+                    return;
+                }
+                pD.getPlayerTeam().rejectInvite(PlayerUtil.getPlayerData(sender));
             }
             case "list" -> {
                 try {

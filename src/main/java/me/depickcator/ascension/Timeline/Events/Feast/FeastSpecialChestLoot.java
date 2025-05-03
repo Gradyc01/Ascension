@@ -5,7 +5,6 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
 import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
-import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 

@@ -150,6 +150,8 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\EasyItems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\Harditems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\MediumItems.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\RecipeBookModifier.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\EnderPearl.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\EnlightenedNugget.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBook.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBookGUI.java
@@ -317,6 +319,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Setti
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Settings\BuildCustom\Buttons\GameScoreRequirement.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Settings\BuildCustom\Buttons\HardItems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Settings\BuildCustom\Buttons\MediumItems.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Settings\BuildCustom\Buttons\TeamSize.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Settings\BuildCustom\Buttons\Timelines.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Settings\BuildCustom\Buttons\WorldBorderSize.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Settings\BuildCustom\ChoiceButton.java

@@ -29,7 +29,7 @@ public class Obsidian extends Craft {
 
     @Override
     protected ItemStack initResult() {
-        return new ItemStack(Material.OBSIDIAN, 2);
+        return new ItemStack(Material.OBSIDIAN, 3);
     }
 
     public static Obsidian getInstance() {

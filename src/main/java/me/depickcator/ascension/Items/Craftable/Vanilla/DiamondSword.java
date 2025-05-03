@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.BlocksAttacks;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -35,7 +37,7 @@ public class DiamondSword extends Weapons implements Vanilla {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
         item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), getAttackDamage(), getAttackSpeed(), KEY));
-        return item;
+        return addSwordEffects(item);
     }
 
 

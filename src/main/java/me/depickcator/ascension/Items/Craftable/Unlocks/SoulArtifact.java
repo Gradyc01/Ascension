@@ -26,7 +26,7 @@ public class SoulArtifact extends Craft {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
 
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape("BCB", "BBB", "AAA");
+        recipe.shape(" C ", "B B", "AAA");
         recipe.setIngredient('A', Material.BONE);
         recipe.setIngredient('B', ShardOfTheFallen.getInstance().getResult());
         recipe.setIngredient('C', Material.BOW);

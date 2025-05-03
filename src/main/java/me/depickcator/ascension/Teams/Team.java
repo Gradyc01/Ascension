@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -36,13 +37,17 @@ public class Team {
     }
 
     /*Adds PlayerData pD to this Team*/
-    public void addPlayer(PlayerData pD) {
+    public boolean addPlayer(PlayerData pD) {
         Player p = pD.getPlayer();
-        pD.getPlayerTeam().setTeam(this);
-        teamMembers.add(pD);
-        TeamUtil.joinTeam(leader.getPlayer(), p);
-        announceToAllTeamMembers(p.getName() + " has joined the party!");
-        updateTeamScoreboards();
+        if (teamMembers.size() < plugin.getSettingsUI().getSettings().getTeamSize()) {
+            pD.getPlayerTeam().setTeam(this);
+            teamMembers.add(pD);
+            TeamUtil.joinTeam(leader.getPlayer(), p);
+            announceToAllTeamMembers(p.getName() + " has joined the party!");
+            updateTeamScoreboards();
+            return true;
+        }
+        return false;
     }
 
     /*Removes PlayerData pD from this Team*/
@@ -85,11 +90,12 @@ public class Team {
 
     /*Announces to all team members message str*/
     public void announceToAllTeamMembers(String str) {
+        Component text = TextUtil.topBorder(TextUtil.BLUE)
+                .append(TextUtil.makeText("\n" + str + "\n", TextUtil.YELLOW))
+                .append(TextUtil.bottomBorder(TextUtil.BLUE));
         for (PlayerData pD : teamMembers) {
             Player p = pD.getPlayer();
-            p.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
-            p.sendMessage(TextUtil.makeText(str, TextUtil.YELLOW));
-            p.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
+            p.sendMessage(text);
             teamList(pD);
         }
     }

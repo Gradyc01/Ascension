@@ -14,11 +14,13 @@ public class BuildCustom {
     private List<Integer> itemDistribution; // Easy | Medium | Hard | Custom
     private int ascensionTimer;
     private int ascensionGameScoreRequirement;
+    private int teamSize;
 
     private final AllButtons incrementButtons;
 
     public BuildCustom(AllButtons buttons) {
         this.incrementButtons = buttons;
+        teamSize = 3;
         itemDistribution = new ArrayList<>(List.of(0, 0, 0, 0));
     }
 
@@ -37,7 +39,7 @@ public class BuildCustom {
     }
 
     public Settings build() {
-        return new Custom(worldBorderSize, ascensionGameScoreRequirement, timeline, ascensionTimer, itemDistribution);
+        return new Custom(worldBorderSize, ascensionGameScoreRequirement, timeline, ascensionTimer, itemDistribution, teamSize);
     }
 
     public void setWorldBorderSize(int worldBorderSize) {
@@ -62,5 +64,9 @@ public class BuildCustom {
 
     public void setAscensionGameScoreRequirement(int ascensionGameScoreRequirement) {
         this.ascensionGameScoreRequirement = ascensionGameScoreRequirement;
+    }
+
+    public void setTeamSize(int teamSize) {
+        this.teamSize = teamSize;
     }
 }

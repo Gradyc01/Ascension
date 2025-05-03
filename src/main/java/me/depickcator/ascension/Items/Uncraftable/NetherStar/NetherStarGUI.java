@@ -45,15 +45,15 @@ public class NetherStarGUI extends AscensionGUI {
         buildItem(new ItemStack(Material.GOLD_INGOT, 6), 12);
         buildItem(new ItemStack(Material.WHEAT, 10), 13);
         buildItem(new ItemStack(Material.POTATO, 3), 14);
-        buildItem(new ItemStack(Material.ROTTEN_FLESH, 2), 15);
-        buildItem(new ItemStack(Material.BONE, 1), 16);
+        buildItem(new ItemStack(Material.ROTTEN_FLESH, 4), 15);
+        buildItem(new ItemStack(Material.BONE, 3), 16);
         /*Tier 2*/
         buildItem(new ItemStack(Material.LAPIS_LAZULI, 12), 19);
         buildItem(new ItemStack(Material.REDSTONE, 16), 20);
         buildItem(new ItemStack(Material.LEATHER, 3), 21);
-        buildItem(new ItemStack(Material.MELON_SLICE, 2), 22);
+        buildItem(new ItemStack(Material.MELON_SLICE, 3), 22);
         buildItem(new ItemStack(Material.PUMPKIN, 1), 23);
-        buildItem(new ItemStack(Material.INK_SAC, 1), 24);
+        buildItem(new ItemStack(Material.INK_SAC, 3), 24);
         buildItem(new ItemStack(Material.GUNPOWDER, 2), 25);
         /*Tier 3*/
         buildItem(new ItemStack(Material.EMERALD, 2), 28);
@@ -69,7 +69,7 @@ public class NetherStarGUI extends AscensionGUI {
         buildItem(new ItemStack(Material.LILY_PAD, 3), 39);
         buildItem(new ItemStack(Material.BEETROOT, 4), 40);
         buildItem(new ItemStack(Material.BROWN_MUSHROOM, 2), 41);
-        buildItem(ShardOfTheFallen.getInstance().getResult(2), 42);
+        buildItem(ShardOfTheFallen.getInstance().getResult(3), 42);
         buildItem(new ItemStack(Material.SLIME_BALL, 3), 43);
     }
 

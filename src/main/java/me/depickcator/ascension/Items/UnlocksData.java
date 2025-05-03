@@ -9,6 +9,7 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.MasterCompass.MasterComp
 import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
+import me.depickcator.ascension.Items.Uncraftable.EnderPearl;
 import org.apache.commons.lang3.tuple.Pair;
 
 import me.depickcator.ascension.Ascension;
@@ -52,6 +53,7 @@ public class UnlocksData {
         Tier5Unlocks();
         Uncraftable();
         Vanilla();
+        new RecipeBookModifier();
     }
 
 
@@ -147,6 +149,7 @@ public class UnlocksData {
     private void Uncraftable() {
         XPTome.getInstance();
         KitBook.getInstance();
+        EnderPearl.getInstance();
     }
 
     private void Vanilla() {

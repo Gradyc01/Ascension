@@ -1,13 +1,17 @@
 package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Teams.TeamUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Teams.Team;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PlayerTeam implements PlayerDataObservers {
@@ -16,14 +20,15 @@ public class PlayerTeam implements PlayerDataObservers {
     private Player player;
 
     //TEAMS
-    private Boolean pendingTeamInvite;
-    private PlayerData inviteFromWho;
+//    private Boolean pendingTeamInvite;
+    private List<PlayerData> inviteFromWho;
     private Team team;
     public PlayerTeam(Ascension plugin, PlayerData PlayerData) {
         this.plugin = plugin;
         this.playerData = PlayerData;
         this.player = playerData.getPlayer();
-        pendingTeamInvite = false;
+//        pendingTeamInvite = false;
+        inviteFromWho = new ArrayList<>();
         team = null;
     }
 
@@ -34,45 +39,41 @@ public class PlayerTeam implements PlayerDataObservers {
         if (invitedPlayerTeamData == null) {
             throw new NullPointerException("PlayerData is null!");
         }
-        if (invitedPlayerTeamData.getPendingTeamInvite()) {
-            errorMessage(p.getName() + " already has a team invite from somewhere else");
-            return;
-        }
-        invitedPlayerTeamData.setInviteFromWho(playerData);
-        invitedPlayerTeamData.setPendingTeamInvite(true);
+//        if (invitedPlayerTeamData.getPendingTeamInvite()) {
+//            errorMessage(p.getName() + " already has a team invite from somewhere else");
+//            return;
+//        }
+        invitedPlayerTeamData.addInviteFromWho(playerData);
+//        invitedPlayerTeamData.setPendingTeamInvite(true);
         sendingInviteText(p);
         receivingInviteText(p);
     }
 
     /*Player accepts the current incoming invite*/
-    public void acceptInvite() {
+    public void acceptInvite(PlayerData sender) {
         if (team != null) {
             errorMessage("Already on a team must leave before joining another team!");
             return;
         }
-        if (getPendingTeamInvite()) {
-            PlayerData sender = getInviteFromWho();
-            pendingTeamInvite = false;
-            inviteFromWho = null;
+        if (hasInviteFrom(sender)) {
             try {
-                sender.getPlayerTeam().getTeam().addPlayer(playerData);
+                if (!sender.getPlayerTeam().getTeam().addPlayer(playerData)) {
+                    errorMessage("Unable to accept the invite, Party may be full");
+                }
+                removeInviteFromWho(sender);
             } catch (NullPointerException e) {
                 errorMessage("Party no longer exists");
-                pendingTeamInvite = false;
-                inviteFromWho = null;
+                removeInviteFromWho(sender);
             }
         }
     }
 
+
     /*Player rejects the incoming invite*/
-    public void rejectInvite() {
-        if (getPendingTeamInvite()) {
-            PlayerData sender = getInviteFromWho();
+    public void rejectInvite(PlayerData sender) {
+        if (hasInviteFrom(sender)) {
             sender.getPlayerTeam().getTeam().announceToAllTeamMembers(player.getName() + " has rejected your party invite");
-            pendingTeamInvite = false;
-            inviteFromWho = null;
-        } else {
-            errorMessage("You do not have an invite from anyone");
+            removeInviteFromWho(sender);
         }
     }
 
@@ -104,60 +105,69 @@ public class PlayerTeam implements PlayerDataObservers {
         team = t;
     }
 
-    public Boolean getPendingTeamInvite() {
-        return pendingTeamInvite;
+//    public Boolean getPendingTeamInvite() {
+//        return pendingTeamInvite;
+//    }
+
+//    public void setPendingTeamInvite(Boolean teamInvite) {
+//        pendingTeamInvite = teamInvite;
+//    }
+
+    public boolean hasInviteFrom(PlayerData teamLeader) {
+        if (this.inviteFromWho.contains(teamLeader)) {
+            return true;
+        }
+        errorMessage("You don't have an invite to this Party");
+        return false;
     }
 
-    public void setPendingTeamInvite(Boolean teamInvite) {
-        pendingTeamInvite = teamInvite;
+    /*Adds a invite from inviteFromWho for this player*/
+    public void addInviteFromWho(PlayerData inviteFromWho) {
+        this.inviteFromWho.add(inviteFromWho);
     }
 
-    public PlayerData getInviteFromWho() {
-        return inviteFromWho;
-    }
-
-    public void setInviteFromWho(PlayerData inviteFromWho) {
-        this.inviteFromWho = inviteFromWho;
+    /*Removes an invite from inviteFromWho for this player*/
+    public void removeInviteFromWho(PlayerData inviteFromWho) {
+        this.inviteFromWho.remove(inviteFromWho);
     }
 
     private void sendingInviteText(Player invitedPlayer) {
-        for (Player p : getTeam().getTeamMembers()) {
-            p.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
-            p.sendMessage(TextUtil.makeText(player.getName() + " has invited " + invitedPlayer.getName() + " to the party!", TextUtil.YELLOW));
-            p.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
-        }
+        Component text = TextUtil.topBorder(TextUtil.BLUE)
+                .append(TextUtil.makeText("\n" + player.getName() + " has invited " + invitedPlayer.getName() + " to the party!\n", TextUtil.YELLOW))
+                .append(TextUtil.bottomBorder(TextUtil.BLUE));
+        TextUtil.broadcastMessage(text, getTeam().getTeamMembers());
     }
 
     private void receivingInviteText(Player invitedPlayer) {
         invitedPlayer.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
         invitedPlayer.sendMessage(TextUtil.makeText(player.getName() + " has invited you to their party!", TextUtil.YELLOW));
 
-        invitedPlayer.sendMessage(inviteHyperlink("accept"));
-        invitedPlayer.sendMessage(inviteHyperlink("reject"));
-
+        invitedPlayer.sendMessage(inviteHyperlink("accept", player.getName()));
 
         invitedPlayer.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
     }
 
-    private Component inviteHyperlink(String str) {
+    private Component inviteHyperlink(String str, String senderName) {
         Component beginning = TextUtil.makeText("If you would like to " + str + " this invite ", TextUtil.YELLOW);
         Component hyperlink = TextUtil.makeText("[Click Here]", TextUtil.GOLD)
-                .hoverEvent(HoverEvent.showText(TextUtil.makeText("Click here to " + str + " the invite", TextUtil.DARK_PURPLE)))
-                .clickEvent(ClickEvent.runCommand("/party " + str));
-        Component end = TextUtil.makeText(" or by typing /party " + str, TextUtil.YELLOW);
-        return beginning.append(hyperlink).append(end);
+                .hoverEvent(HoverEvent.showText(TextUtil.makeText("Click here to " + str + " the invite", TextUtil.DARK_PURPLE)
+                        .append(TextUtil.makeText("\n /party " + str + " " + senderName, TextUtil.YELLOW))))
+                .clickEvent(ClickEvent.runCommand("/party " + str + " " + senderName));
+        return beginning.append(hyperlink);
     }
 
     private void leaveTeamMessage() {
-        player.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
-        player.sendMessage(TextUtil.makeText("You have left the party", TextUtil.YELLOW));
-        player.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
+        player.sendMessage(makeTeamMessage("You have left the party", TextUtil.BLUE));
     }
 
     private void errorMessage(String message) {
-        player.sendMessage(TextUtil.topBorder(TextUtil.BLUE));
-        player.sendMessage(TextUtil.makeText(message, TextUtil.RED));
-        player.sendMessage(TextUtil.bottomBorder(TextUtil.BLUE));
+        player.sendMessage(makeTeamMessage(message, TextUtil.RED));
+    }
+
+    private Component makeTeamMessage(String msg, TextColor color) {
+        return TextUtil.topBorder(TextUtil.BLUE)
+                .append(TextUtil.makeText("\n" + msg + "\n", color))
+                .append(TextUtil.bottomBorder(TextUtil.BLUE));
     }
 
     @Override

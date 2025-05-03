@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.BlocksAttacks;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.*;
@@ -32,6 +34,7 @@ public class NetheriteSword extends Weapons implements Vanilla {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.NETHERITE_SWORD);
         item.setItemMeta(Vanilla.addModifiers(item.getItemMeta(), getAttackDamage(), getAttackSpeed(), KEY));
+        item.setData(DataComponentTypes.BLOCKS_ATTACKS, BlocksAttacks.blocksAttacks().blockDelaySeconds(0));
         return item;
     }
 

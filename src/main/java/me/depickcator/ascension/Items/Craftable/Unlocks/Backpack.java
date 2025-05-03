@@ -21,6 +21,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.recipe.CraftingBookCategory;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.*;
@@ -89,6 +90,10 @@ public class Backpack extends Craft implements ItemClick {
 
     @Override
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
+        if (!e.getAction().isRightClick()) {
+            e.setCancelled(true);
+            return false;
+        }
         ItemStack item = e.getItem();
         ItemMeta meta = item.getItemMeta();
         String uuid = meta.getPersistentDataContainer().get(key, PersistentDataType.STRING);

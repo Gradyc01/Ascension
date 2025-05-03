@@ -124,6 +124,7 @@ me\depickcator\ascension\testingCommands\printWorldInformation.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ApprenticeHelmet.class
 me\depickcator\ascension\Player\Cooldowns\Death\DeathTimer.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastRegularChestLoot.class
+me\depickcator\ascension\Settings\BuildCustom\Buttons\TeamSize.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\Hell.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionLocation.class
 me\depickcator\ascension\Items\Uncraftable\Skulls\PlayerHead.class
@@ -223,6 +224,7 @@ me\depickcator\ascension\Utility\TextUtil$1.class
 me\depickcator\ascension\Skills\Combat.class
 me\depickcator\ascension\LootTables\Blocks\Ores\QuartzOre.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\OceanMonument.class
+me\depickcator\ascension\Items\Uncraftable\EnderPearl.class
 me\depickcator\ascension\Skills\Skills.class
 me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect.class
 me\depickcator\ascension\Player\Data\Scoreboards\LobbyBoard.class
@@ -243,6 +245,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\BookOfProjectileProtection.clas
 me\depickcator\ascension\LootTables\Entities\Entities\CreeperEntity.class
 me\depickcator\ascension\Lobby\Boards.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenAxe.class
+me\depickcator\ascension\Items\RecipeBookModifier.class
 me\depickcator\ascension\Lobby\NPCs\ViewBoard.class
 me\depickcator\ascension\General\GameStart\Sequences\TextSequence$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfThoth.class

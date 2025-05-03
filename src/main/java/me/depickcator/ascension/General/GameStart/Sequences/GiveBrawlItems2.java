@@ -86,19 +86,25 @@ public class GiveBrawlItems2 extends GameStartSequence {
                 List<ItemStack> items = new ArrayList<>();
 
 
-                int weightRemaining = 63;
-//                int addedWeight = itemLists.size();
+                int weightRemaining = 55;
 
                 for (List<Pair<ItemStack, Integer>> list : itemLists) {
                     List<Pair<ItemStack, Integer>> selectedItems = new ArrayList<>();
+//                    TextUtil.debugText("Weights for this list:");
                     for (Pair<ItemStack, Integer> pair : list) {
                         int weight = pair.getRight();
-                        if (weightRemaining >= weight) {
-                            for (int i = 0; i < weight + 1; i++) {
+                        if (weightRemaining >= weight && weight != 0) {
+                            int iterations = list.size() - list.indexOf(pair);
+                            if (weight < 10 && weight > 0) iterations *= 3;
+//                            TextUtil.debugText(iterations + "");
+                            for (int i = 0; i < iterations; i++) {
                                 selectedItems.add(pair);
                             }
                         }
+
                     }
+                    if (selectedItems.isEmpty()) selectedItems.add(list.getLast());
+//                    TextUtil.debugText("Total weight for this list: " + selectedItems.size());
                     Pair<ItemStack, Integer> item = selectedItems.get(r.nextInt(selectedItems.size()));
 
                     items.add(item.getLeft());
@@ -115,9 +121,9 @@ public class GiveBrawlItems2 extends GameStartSequence {
     private List<Pair<ItemStack, Integer>> initHelmets() {
         return new ArrayList<>(List.of(
                 new ImmutablePair<>(Exodus.getInstance().getResult(), 11),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_HELMET, 4), 8),
+                new ImmutablePair<>(initArmor(Material.DIAMOND_HELMET, 4), 10),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_HELMET, 3), 6),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_HELMET, 2), 4),
+                new ImmutablePair<>(initArmor(Material.DIAMOND_HELMET, 2), 5),
                 new ImmutablePair<>(Tarnhelm.getInstance().getResult(), 2),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_HELMET, 1), 0)
         ));
@@ -126,7 +132,7 @@ public class GiveBrawlItems2 extends GameStartSequence {
         return new ArrayList<>(List.of(
                 new ImmutablePair<>(DragonArmor.getInstance().getResult(), 11),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_CHESTPLATE, 3), 7),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_CHESTPLATE, 2), 4),
+                new ImmutablePair<>(initArmor(Material.DIAMOND_CHESTPLATE, 2), 5),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_CHESTPLATE, 1), 0)
         ));
     }
@@ -141,7 +147,7 @@ public class GiveBrawlItems2 extends GameStartSequence {
     private List<Pair<ItemStack, Integer>> initBoots() {
         return new ArrayList<>(List.of(
                 new ImmutablePair<>(HermesBoots.getInstance().getResult(), 15),
-                new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 4), 10),
+                new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 4), 11),
                 new ImmutablePair<>(SevenLeagueBoots.getInstance().getResult(), 7),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 2), 4),
                 new ImmutablePair<>(initArmor(Material.DIAMOND_BOOTS, 1), 0)
@@ -149,19 +155,23 @@ public class GiveBrawlItems2 extends GameStartSequence {
     }
     private List<Pair<ItemStack, Integer>> initSword() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(initMeleeWeapons(DragonSword.getInstance().getResult(), 3), 10),
-                new ImmutablePair<>(initMeleeWeapons(DragonSword.getInstance().getResult(), 2), 8),
-                new ImmutablePair<>(initMeleeWeapons(DragonSword.getInstance().getResult(), 1), 6),
-                new ImmutablePair<>(initMeleeWeapons(DiamondSword.getInstance().getResult(), 3), 4),
-                new ImmutablePair<>(initMeleeWeapons(DiamondSword.getInstance().getResult(), 2), 2),
+                new ImmutablePair<>(initMeleeWeapons(DragonSword.getInstance().getResult(), 3), 13),
+                new ImmutablePair<>(initMeleeWeapons(DragonSword.getInstance().getResult(), 2), 12),
+                new ImmutablePair<>(initMeleeWeapons(DragonSword.getInstance().getResult(), 1), 11),
+                new ImmutablePair<>(initMeleeWeapons(DiamondSword.getInstance().getResult(), 3), 6),
+                new ImmutablePair<>(initMeleeWeapons(DiamondSword.getInstance().getResult(), 3), 5),
+                new ImmutablePair<>(initMeleeWeapons(DiamondSword.getInstance().getResult(), 2), 4),
+                new ImmutablePair<>(initMeleeWeapons(DiamondSword.getInstance().getResult(), 2), 3),
                 new ImmutablePair<>(initMeleeWeapons(DiamondSword.getInstance().getResult(), 1), 0)
         ));
     }
     private List<Pair<ItemStack, Integer>> initAxe() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(initMeleeWeapons(NetheriteAxe.getInstance().getResult(), 2), 10),
-                new ImmutablePair<>(initMeleeWeapons(NetheriteAxe.getInstance().getResult(), 1), 9),
+                new ImmutablePair<>(initMeleeWeapons(NetheriteAxe.getInstance().getResult(), 2), 15),
+                new ImmutablePair<>(initMeleeWeapons(NetheriteAxe.getInstance().getResult(), 1), 12),
                 new ImmutablePair<>(initMeleeWeapons(DiamondAxe.getInstance().getResult(), 3), 6),
+                new ImmutablePair<>(initMeleeWeapons(DiamondAxe.getInstance().getResult(), 3), 5),
+                new ImmutablePair<>(initMeleeWeapons(DiamondAxe.getInstance().getResult(), 2), 4),
                 new ImmutablePair<>(initMeleeWeapons(DiamondAxe.getInstance().getResult(), 2), 3),
                 new ImmutablePair<>(initMeleeWeapons(DiamondAxe.getInstance().getResult(), 1), 0)
         ));
@@ -169,31 +179,34 @@ public class GiveBrawlItems2 extends GameStartSequence {
     private List<Pair<ItemStack, Integer>> initBow() {
         return new ArrayList<>(List.of(
                 new ImmutablePair<>(enchantBow(5), 16),
-                new ImmutablePair<>(enchantBow(4), 11),
+                new ImmutablePair<>(enchantBow(4), 10),
+                new ImmutablePair<>(enchantBow(3), 6),
                 new ImmutablePair<>(enchantBow(3), 5),
+                new ImmutablePair<>(enchantBow(2), 4),
                 new ImmutablePair<>(enchantBow(2), 3),
+                new ImmutablePair<>(enchantBow(2), 2),
                 new ImmutablePair<>(enchantBow(1), 1),
                 new ImmutablePair<>(new ItemStack(Material.BOW, 1), 0)
         ));
     }
     private List<Pair<ItemStack, Integer>> initUtility() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(new ItemStack(Material.ARROW, 64), 10),
-                new ImmutablePair<>(new ItemStack(Material.SPECTRAL_ARROW, 32), 9),
-                new ImmutablePair<>(new ItemStack(Material.ARROW, 32), 8),
-                new ImmutablePair<>(new ItemStack(Material.SPECTRAL_ARROW, 16), 6),
+                new ImmutablePair<>(new ItemStack(Material.ARROW, 64), 15),
+                new ImmutablePair<>(new ItemStack(Material.SPECTRAL_ARROW, 12), 11),
+                new ImmutablePair<>(new ItemStack(Material.SPECTRAL_ARROW, 8), 9),
+                new ImmutablePair<>(new ItemStack(Material.ARROW, 32), 7),
                 new ImmutablePair<>(Shield.getInstance().getResult(), 2),
                 new ImmutablePair<>(new ItemStack(Material.OAK_PLANKS, 64), 0)
         ));
     }
     private List<Pair<ItemStack, Integer>> initHealing() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(Panacea.getInstance().getResult(), 15),
-                new ImmutablePair<>(Resurrection.getInstance().getResult(), 10),
-                new ImmutablePair<>(Cornucopia.getInstance().getResult(), 8),
-                new ImmutablePair<>(Nectar.getInstance().getResult(), 7),
-                new ImmutablePair<>(ZombieHead.getInstance().getResult(), 6),
-                new ImmutablePair<>(SkeletonSkull.getInstance().getResult(), 5),
+                new ImmutablePair<>(Panacea.getInstance().getResult(), 13),
+                new ImmutablePair<>(Resurrection.getInstance().getResult(), 12),
+                new ImmutablePair<>(SkeletonSkull.getInstance().getResult(), 8),
+                new ImmutablePair<>(Cornucopia.getInstance().getResult(), 7),
+                new ImmutablePair<>(Nectar.getInstance().getResult(), 6),
+                new ImmutablePair<>(ZombieHead.getInstance().getResult(), 5),
                 new ImmutablePair<>(CreeperHead.getInstance().getResult(), 2),
                 new ImmutablePair<>(GoldenHead.getInstance().getResult(), 1),
                 new ImmutablePair<>(MakeshiftSkull.getInstance().getResult(), 0)
@@ -201,7 +214,7 @@ public class GiveBrawlItems2 extends GameStartSequence {
     }
     private List<Pair<ItemStack, Integer>> initSpecial() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(CupidBow.getInstance().getResult(), 8),
+                new ImmutablePair<>(CupidBow.getInstance().getResult(), 10),
                 new ImmutablePair<>(MinerBlessing.getInstance().getResult(), 7),
                 new ImmutablePair<>(HeliosCurse.getInstance().getResult(), 6),
                 new ImmutablePair<>(ApolloGlare.getInstance().getResult(), 5),

@@ -26,6 +26,7 @@ public class EasyItems {
         addItem(new ItemStack(Material.JACK_O_LANTERN));
         addItem(new ItemStack(Material.EGG));
         addItem(new ItemStack(Material.TRIPWIRE_HOOK));
+        addItem(new ItemStack(Material.BUNDLE));
 //        addItem(new ItemStack(Material.ORANGE_STAINED_GLASS));
 //        addItem(new ItemStack(Material.BROWN_BANNER));
         addItem(new ItemStack(Material.SNOWBALL));

@@ -1,13 +1,16 @@
 package me.depickcator.ascension.listeners.Combat;
 
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.Exodus;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Material;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.AbstractArrow;
@@ -22,15 +25,65 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.List;
 
 public class onDamage extends PlayerCombat{
     public onDamage() {
-
     }
+
+//    public void register() {
+//        ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+//        protocolManager.addPacketListener(new PacketAdapter(this.plugin,
+//                PacketType.Play.Server.NAMED_SOUND_EFFECT) {
+//
+//            @Override
+//            public void onPacketSending(PacketEvent event) {
+//                PacketContainer packet = event.getPacket();
+//
+//                Sound sound;
+//                try {
+//                    sound = packet.getSoundEffects().read(0);
+//                } catch (Exception e) {
+//                    plugin.getLogger().warning("Could not read Sound enum from NAMED_SOUND_EFFECT packet. Sound blocking might not work.");
+//                    return;
+//                }
+//
+//                if (Sound.ENTITY_PLAYER_ATTACK_NODAMAGE.equals(sound)) {
+//                    event.setCancelled(true);
+//                }
+//            }
+//        });
+//    }
+
+//    private static void stopSound(Player p) {
+//        new BukkitRunnable() {
+//            @Override
+//            public void run() {
+//                TextUtil.debugText("Stop Sound Again for " + p.getName());
+//
+//                net.kyori.adventure.sound.Sound sound = Sound.sound(Key.key("entity.player.attack.nodamage"), Sound.Source.PLAYER, 0.7f, 1.0f);
+//                p.stopSound(sound);
+//            }
+//        }.runTaskLater(Ascension.getInstance(), 1);
+//    }
 
     @EventHandler
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
         if (!plugin.getGameState().inGame() || !(event.getEntity() instanceof LivingEntity)) return;
+        if (event.getEntity().isInvulnerable() || ((LivingEntity) event.getEntity()).getNoDamageTicks() > 0) {
+            event.setCancelled(true);
+
+//            TextUtil.debugText("Stop Sound for " + event.getDamager().getName());
+//            net.kyori.adventure.sound.Sound sound = Sound.sound(Key.key("entity.player.attack.nodamage"), Sound.Source.PLAYER, 0.7f, 1.0f);
+//            event.getDamager().stopSound(sound);
+//            stopSound((Player) event.getDamager());
+//            Player p = (Player) event.getEntity();
+//            p.playSound(sound);
+//            p.stopSound(sound);
+            return;
+        }
 
         double damageDealt = calculateDamage(event);
         event.setDamage(damageDealt);
@@ -54,8 +107,9 @@ public class onDamage extends PlayerCombat{
             attacker.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,  5 * 20, 0));
         }
 
-
-        calculateKnockback(event, attacker, victim, damageData.getRight());
+        if (isAnAxe(attacker.getInventory().getItemInMainHand())) {
+            calculateKnockback(event, attacker, victim, damageData.getRight());
+        }
         addFinalAscensionTimer(PlayerUtil.getPlayerData(attacker), (int) event.getFinalDamage() * 2 + 1 );
     }
 
@@ -174,7 +228,7 @@ public class onDamage extends PlayerCombat{
 
     //====================================================================================
     private void entityDamagedEffects(EntityDamageByEntityEvent event, LivingEntity victim) {
-
+//        victim.setNoDamageTicks(7);
         setSpecialArrowIfNecessary(event);
     }
 

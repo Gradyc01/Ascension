@@ -1,6 +1,10 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.BlocksAttacks;
 import me.depickcator.ascension.Items.Craftable.Craft;
+import net.kyori.adventure.key.Key;
+import org.bukkit.inventory.ItemStack;
 
 public abstract class Weapons extends Craft {
     private final double attackDamage;
@@ -19,6 +23,13 @@ public abstract class Weapons extends Craft {
         this.attackSpeed = attackSpeed;
         result = initResult();
         recipe = initRecipe();
+    }
+
+    /*Adds Sword Effects*/
+    protected ItemStack addSwordEffects(ItemStack item) {
+//        item.setData(DataComponentTypes.BLOCKS_ATTACKS, BlocksAttacks.blocksAttacks().blockDelaySeconds(0));
+//        item.setData(DataComponentTypes.BLOCKS_ATTACKS, BlocksAttacks.blocksAttacks().blockSound(Key.key("entity.player.attack.nodamage")));
+        return item;
     }
 
     public double getAttackDamage() {
