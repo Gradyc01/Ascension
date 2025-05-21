@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Kits.Kits;
 
+import me.depickcator.ascension.Items.Uncraftable.ToolVoucher.ToolVoucher;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Vanilla.IronAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.IronSword;
@@ -28,13 +29,6 @@ public class IronTools extends Kit {
         sword.setItemMeta(meta);
         return sword;
     }
-    private ItemStack silkTouchBook() {
-        ItemStack silkTouchBook = new ItemStack(Material.ENCHANTED_BOOK);
-        EnchantmentStorageMeta storageMeta = (EnchantmentStorageMeta) silkTouchBook.getItemMeta();
-        storageMeta.addStoredEnchant(Enchantment.SILK_TOUCH, 1, true);
-        silkTouchBook.setItemMeta(storageMeta);
-        return silkTouchBook;
-    }
 
     @Override
     public ItemStack getMascot() {
@@ -53,7 +47,7 @@ public class IronTools extends Kit {
                 setToolMeta(new ItemStack(Material.IRON_PICKAXE)),
                 setToolMeta(IronAxe.getInstance().getResult().clone()),
                 setToolMeta(new ItemStack(Material.IRON_SHOVEL)),
-                silkTouchBook()
+                ToolVoucher.getInstance().getResult()
         ));
     }
 }

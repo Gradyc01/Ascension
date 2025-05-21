@@ -9,6 +9,7 @@ import me.depickcator.ascension.Items.Uncraftable.Skulls.CreeperHead;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.SkeletonSkull;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.ZombieHead;
+import me.depickcator.ascension.Items.Uncraftable.ToolVoucher.ToolVoucher;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -112,6 +113,7 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 HadesBook.getInstance(),
                 XPTome.getInstance(),
                 EnlightenedNugget.getInstance(),
+                ToolVoucher.getInstance(),
                 KitBook.getInstance(),
                 MainMenu.getInstance(),
                 ShardOfTheFallen.getInstance(),

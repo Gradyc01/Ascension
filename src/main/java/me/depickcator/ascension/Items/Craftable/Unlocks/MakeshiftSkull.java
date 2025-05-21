@@ -2,7 +2,6 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
@@ -10,14 +9,11 @@ import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.UUID;

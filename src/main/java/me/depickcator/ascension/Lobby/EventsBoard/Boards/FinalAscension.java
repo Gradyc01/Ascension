@@ -20,14 +20,14 @@ public class FinalAscension extends Events {
     protected TextDisplay initTextDisplay() {
         List<Component> text = new ArrayList<>(List.of(
                 TextUtil.makeText(getKey(), TextUtil.GOLD, true, false),
-                TextUtil.makeText("You start feeling the pressure of being in the OverWorld. " +
+                TextUtil.makeText("You start feeling the pressure of being in the Overworld. " +
                         "It's starting to collapse you from within. " +
                         "This is your final chance to make a stand and fight past the weight", TextUtil.AQUA),
                 TextUtil.makeText("\nThere is now a ", TextUtil.AQUA)
                         .append(TextUtil.makeText("Timer ", TextUtil.DARK_PURPLE))
                         .append(TextUtil.makeText("before you and the rest of your team gets ", TextUtil.AQUA))
                         .append(TextUtil.makeText("Vaporized", TextUtil.DARK_PURPLE))
-                        .append(TextUtil.makeText(" by the OverWorld. Be the ", TextUtil.AQUA))
+                        .append(TextUtil.makeText(" by the Overworld. Be the ", TextUtil.AQUA))
                         .append(TextUtil.makeText("Last Team Standing", TextUtil.DARK_PURPLE))
                         .append(TextUtil.makeText(" and Ascension will be yours", TextUtil.AQUA))
         ));

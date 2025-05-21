@@ -142,7 +142,7 @@ public class BingoData extends ItemComparison {
         if (newLines > oldLines) {
             Team team = playerData.getPlayerTeam().getTeam();
             for (int i = 0; i < newLines - oldLines; i++) {
-                playerData.getPlayerTeam().getTeam().getTeamStats().addGameScore(4);
+                playerData.getPlayerTeam().getTeam().getTeamStats().addGameScore(5);
                 List<Player> teamMembers = team.getTeamMembers();
                 for (Player teamMember : teamMembers) {
                     teamMember.sendMessage(TextUtil.topBorder(TextUtil.YELLOW));

@@ -10,6 +10,7 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBo
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
 import me.depickcator.ascension.Items.Uncraftable.EnderPearl;
+import me.depickcator.ascension.Items.Uncraftable.ToolVoucher.ToolVoucher;
 import org.apache.commons.lang3.tuple.Pair;
 
 import me.depickcator.ascension.Ascension;
@@ -62,12 +63,13 @@ public class UnlocksData {
                 IronPack.getInstance(),
                 GoldPack.getInstance(),
                 QuickPick.getInstance(),
-                SugarRush.getInstance(),
-                LeatherEconomy.getInstance(),
+                FlintShovel.getInstance(),
+                LumberjackAxe.getInstance(),
                 ArrowEconomy.getInstance(),
                 EveTemptation.getInstance(),
                 Backpack.getInstance(),
-                FlintShovel.getInstance(),
+                SugarRush.getInstance(),
+                LeatherEconomy.getInstance(),
                 QuickBow.getInstance(),
                 VorpalSword.getInstance(),
                 DustOfLight.getInstance()
@@ -150,6 +152,7 @@ public class UnlocksData {
         XPTome.getInstance();
         KitBook.getInstance();
         EnderPearl.getInstance();
+        ToolVoucher.getInstance();
     }
 
     private void Vanilla() {

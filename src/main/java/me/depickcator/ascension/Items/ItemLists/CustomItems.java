@@ -52,6 +52,7 @@ public class CustomItems {
 
         //Tools
         items.add(QuickPick.getInstance().getResult());
+        items.add(LumberjackAxe.getInstance().getResult());
         items.add(FlintShovel.getInstance().getResult());
         items.add(PhilosopherPickaxe.getInstance().getResult());
         items.add(VorpalSword.getInstance().getResult());

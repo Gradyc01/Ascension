@@ -109,7 +109,6 @@ public class AdvancedQuickPick extends Craft implements ItemClick {
         for (int i = 0; i < 250; i++) {
             ItemStack pick = item.clone();
             Damageable meta = (Damageable) pick.getItemMeta();
-            TextUtil.debugText("Set Damage to " + meta.getDamage() + " + " + i + " = " + meta.getDamage() + i);
             meta.setDamage(i);
             pick.setItemMeta(meta);
             itemStacks.add(pick);

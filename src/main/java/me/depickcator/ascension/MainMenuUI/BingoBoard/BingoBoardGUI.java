@@ -29,8 +29,8 @@ public class BingoBoardGUI extends AscensionGUI {
         super(playerData, (char) 6, TextUtil.makeText("Game Board", TextUtil.AQUA), true);
         bingoItems = new ArrayList<>();
         boardItems();
-        inventory.setItem( 53, initClaimItem());
-        inventory.setItem( 44, initScanItem());
+//        inventory.setItem( 53, initClaimItem());
+        inventory.setItem( /*44*/53, initScanItem());
         inventory.setItem( 45, initExplainerItem());
         playerHeadButton(49);
         inventory.setItem(48, goBackItem());
@@ -80,7 +80,7 @@ public class BingoBoardGUI extends AscensionGUI {
     }
 
     private ItemStack initClaimItem() {
-        Component title =TextUtil.makeText("CLAIM A ITEM", TextUtil.GREEN, true, false);
+        Component title =TextUtil.makeText("CLAIM AN ITEM", TextUtil.GREEN, true, false);
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText(" Claims a item (if any)", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("from the board in order", TextUtil.DARK_PURPLE)
@@ -91,9 +91,11 @@ public class BingoBoardGUI extends AscensionGUI {
     private ItemStack initExplainerItem() {
         Component title = TextUtil.makeText("Information", TextUtil.DARK_GREEN);
         List<Component> lore = new ArrayList<>(List.of(
-                TextUtil.makeText("   Claim items by either using the", TextUtil.DARK_PURPLE),
-                TextUtil.makeText("buttons on the bottom right or by ", TextUtil.DARK_PURPLE),
-                TextUtil.makeText("clicking on the item directly. ", TextUtil.DARK_PURPLE),
+//                TextUtil.makeText("   Claim items by either using the", TextUtil.DARK_PURPLE),
+//                TextUtil.makeText("buttons on the bottom right or by ", TextUtil.DARK_PURPLE),
+//                TextUtil.makeText("clicking on the item directly. ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("   Claim items by clicking on", TextUtil.DARK_PURPLE),
+                TextUtil.makeText(" the item directly. ", TextUtil.DARK_PURPLE),
                 TextUtil.makeText(""),
                 TextUtil.makeText("    If using Right Click you can ", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("Claim an Item without consuming it ", TextUtil.GOLD),

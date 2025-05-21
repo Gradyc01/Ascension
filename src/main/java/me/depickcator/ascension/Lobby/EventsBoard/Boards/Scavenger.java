@@ -22,7 +22,7 @@ public class Scavenger extends Events {
                 TextUtil.makeText(getKey(), TextUtil.GOLD, true, false),
                 TextUtil.makeText("In a dimension like the OverWorld there are beings that have given up and taken this as their way of life." +
                         " Constantly wandering the world and picking up scraps left behind. " +
-                        "Sometimes its a rare item, others are some gear from a fallen also trying to reach Ascension" +
+                        "Sometimes its a rare item, others are some gear from a fallen also trying to reach Ascension." +
                         " These items mean no use to them, but they are willing to trade it for something in return.", TextUtil.AQUA),
                 TextUtil.makeText("\nThese scavengers offer you ", TextUtil.AQUA)
                         .append(TextUtil.makeText("Five Trades", TextUtil.GRAY))
@@ -33,8 +33,9 @@ public class Scavenger extends Events {
                         .append(TextUtil.makeText(" tied to it. Additionally if your team ", TextUtil.AQUA))
                         .append(TextUtil.makeText("Completes Three out of the Five Trades", TextUtil.GRAY))
                         .append(TextUtil.makeText(" the God of the dead rewards you with his ", TextUtil.AQUA))
-                        .append(TextUtil.makeText("Special Book", TextUtil.DARK_PURPLE))
-                        .append(TextUtil.makeText(" as a treat for keeping another soul out of his Kingdom", TextUtil.AQUA))
+                        .append(TextUtil.makeText(" the Scavenger thanks you by giving you his ", TextUtil.AQUA))
+                        .append(TextUtil.makeText("Prized Book", TextUtil.DARK_PURPLE))
+                        .append(TextUtil.makeText(" as a treat for doing so much business with him", TextUtil.AQUA))
 
         ));
         Location loc = new Location(plugin.getWorld(), getX() ,getY() - 1.5, getZ());

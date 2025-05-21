@@ -46,7 +46,10 @@ public class NetherStar extends CustomItem implements ItemClick {
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA).append(TextUtil.rightClickText()));
         List<Component> lore = new ArrayList<>(List.of(
-                TextUtil.makeText("Grants raw resources", TextUtil.DARK_PURPLE)
+                TextUtil.makeText("Rift I", TextUtil.GRAY),
+                TextUtil.makeText(""),
+                TextUtil.makeText("Can be exchanged for raw materials with", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("more quantity unlocking more trades", TextUtil.DARK_PURPLE)
         ));
         meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         meta.lore(lore);

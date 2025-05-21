@@ -17,6 +17,7 @@ me\depickcator\ascension\listeners\ChestGeneration\Tables\OminousTrialsLoot.clas
 me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassTrackSpecificPlayer.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Tarnhelm.class
 me\depickcator\ascension\Player\Cooldowns\TeleportSequence.class
+me\depickcator\ascension\Items\Uncraftable\ToolVoucher\ToolVoucher.class
 me\depickcator\ascension\MainMenuUI\Map\MapItems.class
 me\depickcator\ascension\Player\Cooldowns\ScanBoardCooldown.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\PillagerOutpost.class
@@ -43,6 +44,7 @@ me\depickcator\ascension\MainMenuUI\Skills\SkillsGUI.class
 me\depickcator\ascension\testingCommands\Debugger.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ArrowEconomy.class
 me\depickcator\ascension\Settings\Presets\InstantAscension.class
+me\depickcator\ascension\Items\Craftable\Unlocks\LumberjackAxe$1.class
 me\depickcator\ascension\listeners\RecipeCrafted.class
 me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassMain.class
 me\depickcator\ascension\LootTables\Entities\EntityUtil.class
@@ -167,6 +169,7 @@ me\depickcator\ascension\Timeline\Events\Feast\Feast$2.class
 me\depickcator\ascension\Settings\BuildCustom\ChoiceButton.class
 me\depickcator\ascension\General\GameStart\Sequences\LaunchSequence$1.class
 me\depickcator\ascension\Timeline\Timeline.class
+me\depickcator\ascension\Items\Uncraftable\ToolVoucher\ToolVoucherGUI.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\Mineshaft.class
 me\depickcator\ascension\listeners\PlayerExpGain.class
 me\depickcator\ascension\Items\Craftable\Unlocks\AdvancedQuickPick.class
@@ -184,6 +187,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biome
 me\depickcator\ascension\Items\Craftable\Vanilla\DiamondAxe.class
 me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.class
+me\depickcator\ascension\Items\Craftable\Unlocks\LumberjackAxe.class
 me\depickcator\ascension\commands\SetSetting.class
 me\depickcator\ascension\Items\Craftable\Unlocks\RedLedgerItem\RedLedger.class
 me\depickcator\ascension\LootTables\Entities\Entities\SpiderEntity.class
@@ -284,6 +288,7 @@ me\depickcator\ascension\MainMenuUI\Command\Commands\SendCoords.class
 me\depickcator\ascension\Timeline\Timelines\NoEventTimeline.class
 me\depickcator\ascension\General\ResetGame.class
 me\depickcator\ascension\Items\CustomItem.class
+me\depickcator\ascension\Items\Uncraftable\ToolVoucher\VouchableTool.class
 me\depickcator\ascension\Items\Uncraftable\Skulls\SkeletonSkull.class
 me\depickcator\ascension\listeners\PlayerChatting.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastChests$2.class

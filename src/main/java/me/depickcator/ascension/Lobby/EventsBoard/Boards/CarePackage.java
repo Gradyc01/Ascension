@@ -21,7 +21,7 @@ public class CarePackage extends Events {
         List<Component> text = new ArrayList<>(List.of(
                 TextUtil.makeText("Care Package", TextUtil.GOLD, true, false),
                 TextUtil.makeText("Its hard to keep all dimensions intact, once in a while the dimensions will collide with each other. " +
-                        "The Care Package results from the Nether breaking open and falling into the OverWorld.", TextUtil.AQUA),
+                        "The Care Package results from the Nether breaking open and falling into the Overworld.", TextUtil.AQUA),
                 TextUtil.makeText("\n It brings", TextUtil.AQUA)
                         .append(TextUtil.makeText(" Nether items ", TextUtil.GREEN))
                         .append(TextUtil.makeText("including ", TextUtil.AQUA))

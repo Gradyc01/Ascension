@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
+import it.unimi.dsi.fastutil.io.TextIO;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
@@ -44,7 +45,7 @@ public class QuickPick extends Craft {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.IRON_PICKAXE);
         Repairable meta = (Repairable) item.getItemMeta();
-        Component name = Component.text(DISPLAY_NAME).color(TextUtil.AQUA).decoration(TextDecoration.ITALIC, false);
+        Component name = TextUtil.makeText(getDisplayName(), TextUtil.AQUA);
         meta.displayName(name);
         meta.addEnchant(Enchantment.EFFICIENCY, 1, true);
         meta.setRepairCost(999);
