@@ -138,6 +138,7 @@ me\depickcator\ascension\Player\Cooldowns\TeleportCooldown.class
 me\depickcator\ascension\Lobby\SpecialItems.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\CherryGrove.class
 me\depickcator\ascension\LootTables\Entities\Entities\Bee.class
+me\depickcator\ascension\Items\ItemLists\ScavengerLists\Output_Quickplay.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\Underground.class
 me\depickcator\ascension\MainMenuUI\Unlocks\UnlocksGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Cornucopia.class
@@ -156,7 +157,6 @@ me\depickcator\ascension\Skills\SkillExpAmount.class
 me\depickcator\ascension\General\GameStart\Sequences\LaunchSequence.class
 me\depickcator\ascension\MainMenuUI\Map\MapItem.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HeliosCurse.class
-me\depickcator\ascension\Items\ItemLists\Harditems.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\BastionTreasure.class
 me\depickcator\ascension\Items\Craftable\Unlocks\AncientArtifact.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Backpack.class
@@ -168,6 +168,7 @@ me\depickcator\ascension\Kits\Kits\Looter.class
 me\depickcator\ascension\Timeline\Events\Feast\Feast$2.class
 me\depickcator\ascension\Settings\BuildCustom\ChoiceButton.class
 me\depickcator\ascension\General\GameStart\Sequences\LaunchSequence$1.class
+me\depickcator\ascension\Items\ItemLists\ItemLists.class
 me\depickcator\ascension\Timeline\Timeline.class
 me\depickcator\ascension\Items\Uncraftable\ToolVoucher\ToolVoucherGUI.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\Mineshaft.class
@@ -185,6 +186,7 @@ me\depickcator\ascension\Items\Craftable\Vanilla\IronSword.class
 me\depickcator\ascension\MainMenuUI\MainMenuGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\PaleGarden.class
 me\depickcator\ascension\Items\Craftable\Vanilla\DiamondAxe.class
+me\depickcator\ascension\Items\ItemLists\ScavengerLists\Input_Quickplay.class
 me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LumberjackAxe.class
@@ -287,7 +289,9 @@ me\depickcator\ascension\General\GameStart\Sequences\TextSequence.class
 me\depickcator\ascension\MainMenuUI\Command\Commands\SendCoords.class
 me\depickcator\ascension\Timeline\Timelines\NoEventTimeline.class
 me\depickcator\ascension\General\ResetGame.class
+me\depickcator\ascension\General\PauseGame.class
 me\depickcator\ascension\Items\CustomItem.class
+me\depickcator\ascension\Items\ItemLists\ScavengerLists\Output_Standard.class
 me\depickcator\ascension\Items\Uncraftable\ToolVoucher\VouchableTool.class
 me\depickcator\ascension\Items\Uncraftable\Skulls\SkeletonSkull.class
 me\depickcator\ascension\listeners\PlayerChatting.class
@@ -297,6 +301,7 @@ me\depickcator\ascension\General\Queue\Queue$1.class
 me\depickcator\ascension\Settings\GUIs\SettingsCustomGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\AscensionKey.class
 me\depickcator\ascension\MainMenuUI\Command\Commands\Surface.class
+me\depickcator\ascension\Items\ItemLists\ScavengerLists\Input_Standard.class
 me\depickcator\ascension\Items\Uncraftable\RejuvenationBook.class
 me\depickcator\ascension\LootTables\Entities\Entities\Cow.class
 me\depickcator\ascension\Timeline\Timeline$1.class
@@ -319,6 +324,7 @@ me\depickcator\ascension\Items\ItemLists\CombatItems.class
 me\depickcator\ascension\Items\ItemLists\EasyItems.class
 me\depickcator\ascension\General\GameStart\Sequences\GiveBrawlItems2.class
 me\depickcator\ascension\Lobby\WelcomeBoard.class
+me\depickcator\ascension\Items\ItemLists\HardItems.class
 me\depickcator\ascension\LootTables\Entities\Enums\NetherMobs.class
 me\depickcator\ascension\Items\Craftable\Unlocks\TeamPortalItem\TeamPortalGUI.class
 me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI$1.class
@@ -341,6 +347,7 @@ me\depickcator\ascension\LootTables\Blocks\Ores\RedstoneOre.class
 me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger.class
 me\depickcator\ascension\General\BuildLobby.class
 me\depickcator\ascension\MainMenuUI\mainMenuCommands.class
+me\depickcator\ascension\LootTables\Blocks\ForageBlocks\DeadBushes.class
 me\depickcator\ascension\LootTables\Entities\Entities\ZombieEntity.class
 me\depickcator\ascension\Settings\GUIs\SettingsIncrementGUI.class
 me\depickcator\ascension\LootTables\Entities\Enums\OverworldPassive.class

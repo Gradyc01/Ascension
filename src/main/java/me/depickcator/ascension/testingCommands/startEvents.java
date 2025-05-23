@@ -52,7 +52,7 @@ public class startEvents implements CommandExecutor {
             } else if (c.equalsIgnoreCase("medium")) {
                 items.addAll(a.getMediumItems().getItems());
             } else if (c.equalsIgnoreCase("hard")) {
-                items.addAll(a.getHarditems().getItems());
+                items.addAll(a.getHardItems().getItems());
             } else if (c.equalsIgnoreCase("custom")) {
                 items.addAll(a.getCustomItems().getItems());
             }

@@ -62,6 +62,7 @@ public abstract class Timeline {
     public void pauseTimeline() {
         keepRunning = false;
         timeline.cancel();
+        MINUTES++;
         TextUtil.debugText("Paused Timeline");
     }
 

@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Timeline.Timelines;
 
 import me.depickcator.ascension.Items.ItemList;
+import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Input_Quickplay;
+import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Output_Quickplay;
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
 import me.depickcator.ascension.Timeline.Events.CarePackage.CarePackage;
 import me.depickcator.ascension.Timeline.Events.Feast.Feast;
@@ -16,20 +18,19 @@ import java.util.List;
 
 public class QuickplayTimeline extends Timeline {
 
-    private final List<ItemStack> scavInput;
-    private final List<ItemStack> scavOutput;
+//    private final List<ItemStack> scavInput;
+//    private final List<ItemStack> scavOutput;
     public QuickplayTimeline() {
         super(70);
-        ItemList itemList = new ItemList();
-        scavInput = new ArrayList<>(itemList.grabItemsFromList(itemList.getEasyItems().getItems(), 5));
-        scavOutput = new ArrayList<>(itemList.grabItemsFromList(itemList.getCustomItems().getItems(), 5));
+//        scavInput = new ArrayList<>(new Input_Quickplay().getItems(5));
+//        scavOutput = new ArrayList<>(new Output_Quickplay().getItems(5));
     }
 
     @Override
     protected void checkForMidGameEvents() {
         switch (getTimePassed()) {
             case 1 -> {
-                setScavenger(new Scavenger(300, scavInput, scavOutput));
+                setScavenger(new Scavenger(300, new Input_Quickplay().getItems(5), new Output_Quickplay().getItems(5)));
                 getScavenger().announceTrades();
             }
             case 15 -> {

@@ -1,12 +1,15 @@
 package me.depickcator.ascension.MainMenuUI.BingoBoard;
 
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
+import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
+import me.depickcator.ascension.Timeline.Events.Scavenger.ScavengerTrades;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Cooldowns.ScanBoardCooldown;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -29,11 +32,38 @@ public class BingoBoardGUI extends AscensionGUI {
         super(playerData, (char) 6, TextUtil.makeText("Game Board", TextUtil.AQUA), true);
         bingoItems = new ArrayList<>();
         boardItems();
+        scavengerItemDisplay();
 //        inventory.setItem( 53, initClaimItem());
         inventory.setItem( /*44*/53, initScanItem());
-        inventory.setItem( 45, initExplainerItem());
+        inventory.setItem( 50, initExplainerItem());
         playerHeadButton(49);
         inventory.setItem(48, goBackItem());
+    }
+
+    private void scavengerItemDisplay() {
+        Scavenger scav = plugin.getSettingsUI().getSettings().getTimeline().getScavenger();
+        int index = -9;
+        if (scav != null && plugin.getGameState().inGame()) {
+            List<Boolean> scavengerScore = playerData.getPlayerTeam().getTeam().getTeamStats().getScavengerScore();
+            ScavengerTrades scavTrades = scav.getScavengerTrades();
+            List<Pair<ItemStack, ItemStack>> trades = scavTrades.getTrades();
+            if (trades != null) {
+                for (int i = 0; i < trades.size(); i++) {
+                    ItemStack item = trades.get(i).getLeft();
+                    if (scavengerScore.get(i)) {
+                        inventory.setItem(index+=9, makeClaimedItem(item));
+                    } else {
+                        inventory.setItem(index+=9, item);
+                    }
+                }
+                return;
+            }
+        }
+        ItemStack item = initUnsetItem("Scavenger not available");
+        for (int i = 0; i < 5; i++) {
+            inventory.setItem(index+=9, item);
+        }
+
     }
 
     private void boardItems() {
@@ -42,18 +72,10 @@ public class BingoBoardGUI extends AscensionGUI {
         ArrayList<Boolean> hasItems = bingoData.getItemsCompleted(player);
         if (items.size() != 25) {
             items.clear();
-            ItemStack item = new ItemStack(Material.BEDROCK);
-            ItemMeta meta = item.getItemMeta();
-            meta.displayName(TextUtil.makeText("UNSET", TextUtil.GRAY, true, true));
-            meta.setEnchantmentGlintOverride(true);
-            item.setItemMeta(meta);
-//            for (int i = 0; i < 25; i++) {
-//                items.add(item);
-//            }
+            ItemStack item = initUnsetItem("UNSET");
             for (int i = 0; i < 25; i++) {
                 if (!hasItems.get(i)) {
                     inventory.setItem(boardSlots[i], item);
-//                    bingoItems.add(item);
                 } else {
                     inventory.setItem(boardSlots[i], makeClaimedItem(item));
                 }
@@ -69,6 +91,15 @@ public class BingoBoardGUI extends AscensionGUI {
                 inventory.setItem(boardSlots[i], makeClaimedItem(item));
             }
         }
+    }
+
+    private ItemStack initUnsetItem(String name) {
+        ItemStack item = new ItemStack(Material.BEDROCK);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText(name, TextUtil.GRAY, true, true));
+        meta.setEnchantmentGlintOverride(true);
+        item.setItemMeta(meta);
+        return item;
     }
 
     private ItemStack makeClaimedItem(ItemStack item) {
@@ -137,9 +168,7 @@ public class BingoBoardGUI extends AscensionGUI {
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {
         ItemStack item = event.getCurrentItem();
-        if (item == null) {
-            return;
-        }
+        if (item == null) return;
         BingoData bingoData = plugin.getBingoData();
         if (item.equals(initClaimItem())) {
             bingoData.claimItem(player);
@@ -156,9 +185,7 @@ public class BingoBoardGUI extends AscensionGUI {
         } else if (bingoItems.contains(item)) {
             if (event.isLeftClick()) {
                 bingoData.claimItem(player, item, true);
-                return;
-            }
-            if (event.isRightClick()) {
+            } else if (event.isRightClick()) {
                 PlayerUnlocks playerUnlocks = playerData.getPlayerUnlocks();
                 if (playerUnlocks.getUnlockTokens() > rightClickClaim) {
                     if (bingoData.claimItem(player, item, true, false)) {
@@ -167,7 +194,6 @@ public class BingoBoardGUI extends AscensionGUI {
                     return;
                 }
                 TextUtil.errorMessage(player, "You do not have enough Souls to do this!");
-
             }
 
         }

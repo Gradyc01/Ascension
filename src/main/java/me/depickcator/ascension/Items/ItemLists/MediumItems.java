@@ -11,139 +11,110 @@ import org.bukkit.generator.structure.Structure;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
-public class MediumItems {
-    private ArrayList<ItemStack> items;
-    private Random rand;
-    private final LocationCheck locationCheck;
-    public MediumItems() {
-        items = new ArrayList<>();
-        rand = new Random();
-        locationCheck = Ascension.getInstance().getLocationCheck();
-        setItems();
+public class MediumItems extends ItemLists {
 
-    }
-
-    private void setItems() {
+    @Override
+    protected void initItemList() {
         //Jungle
-        if (locationCheck.isALocation(Biome.BAMBOO_JUNGLE)) {
-            items.add(new ItemStack(Material.BAMBOO_BLOCK));
-            items.add(new ItemStack(Material.SCAFFOLDING));
-            items.add(new ItemStack(Material.COOKIE));
-        }
+        addItems(parseMaterials(Material.BAMBOO_BLOCK, Material.SCAFFOLDING, Material.COOKIE), Biome.BAMBOO_JUNGLE);
         //Swamp
-        if (locationCheck.isALocation(Biome.SWAMP, Biome.JUNGLE, Biome.BAMBOO_JUNGLE)) items.add(new ItemStack(Material.VINE));
-        if (locationCheck.isALocation(Biome.SWAMP, Biome.MANGROVE_SWAMP)) items.add(new ItemStack(Material.LILY_PAD));
-
+        addItems(parseMaterials(Material.VINE), Biome.BAMBOO_JUNGLE, Biome.JUNGLE, Biome.SWAMP);
+        addItems(parseMaterials(Material.LILY_PAD), Biome.MANGROVE_SWAMP, Biome.SWAMP);
         //Trial
-        if (locationCheck.isALocation(Structure.TRIAL_CHAMBERS)) {
-            items.add(new ItemStack(Material.BREEZE_ROD));
-            items.add(new ItemStack(Material.WIND_CHARGE));
-            items.add(new ItemStack(Material.TRIAL_KEY));
-        }
+        addItems(parseMaterials(
+                Material.BREEZE_ROD,
+                Material.WIND_CHARGE,
+                Material.TRIAL_KEY), Structure.TRIAL_CHAMBERS);
 
         //Desert
-        if (locationCheck.isALocation(Biome.DESERT)) {
-            items.add(new ItemStack(Material.CACTUS));
-            items.add(new ItemStack(Material.RED_SANDSTONE));
-            /*1.21.5 Minecraft Items*/
-            items.add(new ItemStack(Material.CACTUS_FLOWER));
-        }
-
+        addItems(parseMaterials(
+                Material.CACTUS,
+                Material.RED_SANDSTONE,
+                Material.CACTUS_FLOWER
+        ), Biome.DESERT);
         //Pale Garden
-        if (locationCheck.isALocation(Biome.PALE_GARDEN)) {
-            items.add(getResinMaterial());
-        }
+        addItems(getRandomItemInList(getResinMaterial(), 1), Biome.PALE_GARDEN);
 
         //Cherry Grove
-        if (locationCheck.isALocation(Biome.CHERRY_GROVE)) {
-            items.add(new ItemStack(Material.PINK_PETALS));
-        }
+        addItems(parseMaterials(Material.PINK_PETALS), Biome.CHERRY_GROVE);
 
-
-        items.add(new ItemStack(Material.SADDLE));
-        items.add(new ItemStack(Material.NAME_TAG));
-
-        items.add(new ItemStack(Material.NETHERITE_SCRAP));
-        items.add(new ItemStack(Material.AMETHYST_SHARD));
-        items.add(new ItemStack(Material.PUMPKIN_PIE));
-        items.add(new ItemStack(Material.HONEYCOMB));
-        items.add(new ItemStack(Material.SLIME_BALL));
-        items.add(new ItemStack(Material.MOSSY_COBBLESTONE));
-        items.add(new ItemStack(Material.GLISTERING_MELON_SLICE));
-        items.add(new ItemStack(Material.FERMENTED_SPIDER_EYE));
-        items.add(new ItemStack(Material.TROPICAL_FISH));
-        items.add(new ItemStack(Material.PRISMARINE_CRYSTALS));
-        items.add(new ItemStack(Material.GHAST_TEAR));
-        items.add(new ItemStack(Material.CAKE));
-        items.add(new ItemStack(Material.RABBIT_HIDE));
-        items.add(new ItemStack(Material.INK_SAC));
-        items.add(new ItemStack(Material.ANCIENT_DEBRIS));
-        items.add(new ItemStack(Material.AMETHYST_BLOCK));
-        items.add(new ItemStack(Material.BLACK_BED));
-        items.add(new ItemStack(Material.COBWEB));
-        items.add(new ItemStack(Material.NETHER_WART));
-
-        items.add(new ItemStack(Material.SWEET_BERRIES));
-        items.add(new ItemStack(Material.SLIME_BLOCK));
-        items.add(new ItemStack(Material.DIAMOND_BLOCK));
-        items.add(new ItemStack(Material.EMERALD_BLOCK));
-
-        items.add(new ItemStack(Material.ENDER_CHEST));
-        items.add(new ItemStack(Material.ENDER_EYE));
-        items.add(new ItemStack(Material.SPYGLASS));
-        items.add(new ItemStack(Material.OBSERVER));
-        items.add(new ItemStack(Material.MAGMA_CREAM));
-        items.add(new ItemStack(Material.JUKEBOX));
-        items.add(new ItemStack(Material.BREWING_STAND));
-        items.add(new ItemStack(Material.BEACON));
-        items.add(new ItemStack(Material.ENCHANTING_TABLE));
-        if (locationCheck.isALocation(Structure.SHIPWRECK)) items.add(new ItemStack(Material.HEART_OF_THE_SEA));
-        items.add(new ItemStack(Material.NETHER_BRICKS));
-        items.add(new ItemStack(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE));
-        items.add(new ItemStack(Material.HONEY_BOTTLE));
-        items.add(new ItemStack(Material.MUSHROOM_STEW));
-        items.add(new ItemStack(Material.RABBIT_STEW));
-        items.add(new ItemStack(Material.FIRE_CHARGE));
-        items.add(new ItemStack(Material.TINTED_GLASS));
-        items.add(new ItemStack(Material.POINTED_DRIPSTONE));
-
-        items.add(new ItemStack(CreeperHead.getInstance().getResult()));
-        items.add(new ItemStack(ZombieHead.getInstance().getResult()));
-        items.add(new ItemStack(SkeletonSkull.getInstance().getResult()));
-        items.add(new ItemStack(Material.SOUL_CAMPFIRE));
-        items.add(new ItemStack(Material.SOUL_TORCH));
-        items.add(new ItemStack(Material.STICKY_PISTON));
-        items.add(new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK));
-        items.add(new ItemStack(Material.BEETROOT_SOUP));
-        items.add(new ItemStack(Material.BEEHIVE));
-        items.add(new ItemStack(Material.SPAWNER));
-        items.add(new ItemStack(Material.MAGMA_BLOCK));
-        items.add(new ItemStack(Material.GLOW_ITEM_FRAME));
-        items.add(new ItemStack(Material.TURTLE_HELMET));
-        items.add(new ItemStack(Material.LEAD));
-        items.add(new ItemStack(Material.SPECTRAL_ARROW));
-
-        items.add(new ItemStack(Material.BLAZE_ROD));
-        items.add(new ItemStack(Material.SOUL_LANTERN));
-        items.add(new ItemStack(Material.CRYING_OBSIDIAN));
-        items.add(new ItemStack(Material.OBSIDIAN));
-        items.add(new ItemStack(Material.RABBIT_FOOT));
-
-        items.add(new ItemStack(Material.CRAFTER));
-
-        /*1.21.5 Minecraft Items*/
-        items.add(new ItemStack(Material.FIREFLY_BUSH));
-        items.add(new ItemStack(Material.BUSH));
-
-        items.add(getRandomCandle());
-        items.add(getRandomHangingSign());
-        items.add(getRandomOre());
+        //Shipwreck
+        addItems(parseMaterials(Material.HEART_OF_THE_SEA), Structure.SHIPWRECK, Structure.SHIPWRECK_BEACHED);
+        addItems(parseMaterials(
+                        Material.SADDLE,
+                        Material.NAME_TAG,
+                        Material.NETHERITE_SCRAP,
+                        Material.AMETHYST_SHARD,
+                        Material.PUMPKIN_PIE,
+                        Material.HONEYCOMB,
+                        Material.SLIME_BALL,
+                        Material.MOSSY_COBBLESTONE,
+                        Material.GLISTERING_MELON_SLICE,
+                        Material.FERMENTED_SPIDER_EYE,
+                        Material.TROPICAL_FISH,
+                        Material.GHAST_TEAR,
+                        Material.CAKE,
+                        Material.RABBIT_HIDE,
+                        Material.INK_SAC,
+                        Material.ANCIENT_DEBRIS,
+                        Material.AMETHYST_BLOCK,
+                        Material.BLACK_BED,
+                        Material.COBWEB,
+                        Material.NETHER_WART,
+                        Material.SWEET_BERRIES,
+                        Material.SLIME_BLOCK,
+                        Material.DIAMOND_BLOCK,
+                        Material.EMERALD_BLOCK,
+                        Material.ENDER_CHEST,
+                        Material.ENDER_EYE,
+                        Material.SPYGLASS,
+                        Material.OBSERVER,
+                        Material.MAGMA_CREAM,
+                        Material.JUKEBOX,
+                        Material.BREWING_STAND,
+                        Material.BEACON,
+                        Material.ENCHANTING_TABLE,
+                        Material.NETHER_BRICKS,
+                        Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE,
+                        Material.HONEY_BOTTLE,
+                        Material.MUSHROOM_STEW,
+                        Material.RABBIT_STEW,
+                        Material.FIRE_CHARGE,
+                        Material.TINTED_GLASS,
+                        Material.POINTED_DRIPSTONE,
+                        Material.SOUL_CAMPFIRE,
+                        Material.SOUL_TORCH,
+                        Material.STICKY_PISTON,
+                        Material.WARPED_FUNGUS_ON_A_STICK,
+                        Material.BEETROOT_SOUP,
+                        Material.BEEHIVE,
+                        Material.MAGMA_BLOCK,
+                        Material.GLOW_ITEM_FRAME,
+                        Material.TURTLE_HELMET,
+                        Material.LEAD,
+                        Material.SPECTRAL_ARROW,
+                        Material.BLAZE_ROD,
+                        Material.SOUL_LANTERN,
+                        Material.CRYING_OBSIDIAN,
+                        Material.OBSIDIAN,
+                        Material.RABBIT_FOOT,
+                        Material.DAYLIGHT_DETECTOR,
+                        Material.FIREFLY_BUSH,
+                        Material.BUSH
+                ));
+        addItems(List.of(
+                ZombieHead.getInstance().getResult(),
+                SkeletonSkull.getInstance().getResult(),
+                CreeperHead.getInstance().getResult(),
+                getRandomItemInList(getCandle()),
+                getRandomItemInList(getHangingSign()),
+                getRandomItemInList(getOre())));
     }
 
-    private ItemStack getResinMaterial() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getResinMaterial() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.RESIN_CLUMP));
         items.add(new ItemStack(Material.RESIN_BRICK));
         items.add(new ItemStack(Material.RESIN_BLOCK));
@@ -151,13 +122,10 @@ public class MediumItems {
         items.add(new ItemStack(Material.RESIN_BRICK_STAIRS));
         items.add(new ItemStack(Material.RESIN_BRICK_WALL));
 
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+        return items;
     }
-
-    private ItemStack getRandomCandle() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getCandle() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.WHITE_CANDLE));
         items.add(new ItemStack(Material.GRAY_CANDLE));
         items.add(new ItemStack(Material.LIGHT_GRAY_CANDLE));
@@ -174,14 +142,11 @@ public class MediumItems {
         items.add(new ItemStack(Material.PURPLE_CANDLE));
         items.add(new ItemStack(Material.MAGENTA_CANDLE));
         items.add(new ItemStack(Material.PINK_CANDLE));
-
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+        return items;
     }
-
-    private ItemStack getRandomHangingSign() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getHangingSign() {
+        List<ItemStack> items = new ArrayList<>();
+        LocationCheck locationCheck = Ascension.getInstance().getLocationCheck();
         items.add(new ItemStack(Material.ACACIA_HANGING_SIGN));
         if (locationCheck.isALocation(Biome.BAMBOO_JUNGLE)) items.add(new ItemStack(Material.BAMBOO_HANGING_SIGN));
         items.add(new ItemStack(Material.BIRCH_HANGING_SIGN));
@@ -193,14 +158,10 @@ public class MediumItems {
         if (locationCheck.isALocation(Biome.PALE_GARDEN)) items.add(new ItemStack(Material.PALE_OAK_HANGING_SIGN));
         items.add(new ItemStack(Material.SPRUCE_HANGING_SIGN));
         items.add(new ItemStack(Material.OAK_HANGING_SIGN));
-
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+        return items;
     }
-
-    private ItemStack getRandomOre() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getOre() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.COPPER_ORE));
         items.add(new ItemStack(Material.COAL_ORE));
         items.add(new ItemStack(Material.IRON_ORE));
@@ -217,13 +178,6 @@ public class MediumItems {
         items.add(new ItemStack(Material.DEEPSLATE_REDSTONE_ORE));
         items.add(new ItemStack(Material.DEEPSLATE_DIAMOND_ORE));
         items.add(new ItemStack(Material.DEEPSLATE_EMERALD_ORE));
-
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
-    }
-
-    public ArrayList<ItemStack> getItems() {
         return items;
     }
 

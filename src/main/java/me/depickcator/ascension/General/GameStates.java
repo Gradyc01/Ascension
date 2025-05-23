@@ -14,13 +14,16 @@ public class GameStates {
     public final static int GAME_FEAST_LOADING = 6;
     public final static int GAME_FINAL_ASCENSION = 7;
     public final static int GAME_ENDING = 8;
+    public final static int GAME_PAUSED = 10;
 
     public final static int GAME_ASCENSION = 9;
 
     private int currentState;
+    private int previousState;
 
     public GameStates() {
         currentState = UNLOADED;
+        previousState = UNLOADED;
     }
 
     /*Checks whether the game is currently in one of these states
@@ -36,15 +39,22 @@ public class GameStates {
         return currentState;
     }
 
+    public int getPreviousState() {
+        return previousState;
+    }
+
     public void setCurrentState(int currentState) {
+        previousState = this.currentState;
         this.currentState = currentState;
+        TextUtil.debugText("Current state: " + currentState + "             Previous State: " + previousState);
+
     }
 
     /*Checks if game is in a state where players can not build
     * Returns True if Players can't build
     * Returns False Otherwise*/
     public boolean canNotBuild() {
-        return checkState(LOBBY_NORMAL, GAME_LOADING, GAME_FEAST_LOADING);
+        return checkState(LOBBY_NORMAL, GAME_LOADING, GAME_FEAST_LOADING, GAME_PAUSED);
     }
 
     /*Checks if game is in a lobby state
@@ -58,7 +68,7 @@ public class GameStates {
      * Returns True if Yes
      * Returns False Otherwise*/
     public boolean canTeleport(Player p) {
-        if (checkState(GAME_FINAL_ASCENSION, GAME_AFTER_GRACE, GAME_ASCENSION)) {
+        if (checkState(GAME_FINAL_ASCENSION, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_PAUSED)) {
             return true;
         } else {
             TextUtil.errorMessage(p, "Teleporting is currently unavailable");
@@ -70,13 +80,13 @@ public class GameStates {
      * Returns True if Yes
      * Returns False Otherwise*/
     public boolean inGame() {
-        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_FINAL_ASCENSION, GAME_ENDING);
+        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_FINAL_ASCENSION, GAME_ENDING, GAME_PAUSED);
     }
 
     /*Check if Game is in a state where players can pvp
      * Returns True if Yes
      * Returns False Otherwise*/
     public boolean canNotPVP() {
-        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_ENDING, GAME_FEAST_LOADING);
+        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_ENDING, GAME_FEAST_LOADING, GAME_PAUSED);
     }
 }

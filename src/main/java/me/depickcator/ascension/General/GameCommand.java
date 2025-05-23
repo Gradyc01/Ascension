@@ -37,6 +37,9 @@ public class GameCommand implements CommandExecutor {
             case "reset" -> {
                 resetGame();
             }
+            case "pause" -> {
+                new PauseGame();
+            }
             case "load" -> {
                 if (strings.length == 4) {
                     loadGame(Integer.parseInt(strings[1]), Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));

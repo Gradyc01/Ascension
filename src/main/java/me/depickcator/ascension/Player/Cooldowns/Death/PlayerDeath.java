@@ -116,19 +116,10 @@ public class PlayerDeath {
         p.setGameMode(GameMode.SURVIVAL);
         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 3, false, false));
         p.removePotionEffect(PotionEffectType.DARKNESS);
-//        Location spawn = Ascension.getSpawn();
-//        Random r = new Random();
-//        double worldBorderDiameter = spawn.getWorld().getWorldBorder().getSize();
-//        int x = spawn.getBlockX() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
-//        int z = spawn.getBlockZ() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
-//        int y = spawn.getWorld().getHighestBlockYAt(x, z);
-//        p.teleport(new Location(spawn.getWorld(), x, y + 1, z));
-//        spawn.getWorld().getBl
         Location loc = getRespawnLocation();
         loc.getWorld().getBlockAt(loc).setType(Material.GLASS);
         p.teleport(loc.add(0.5, 1, 0.5));
-
-
+        playerData.freezePlayer(plugin.getGameState().checkState(GameStates.GAME_PAUSED));
         changePlayerVisibility(playerData);
     }
 

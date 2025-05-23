@@ -29,7 +29,7 @@ public class EnderPearl extends CustomItem implements ItemClick {
 
     @Override
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
-        if (Ascension.getInstance().getGameState().checkState(GameStates.GAME_LOADING, GameStates.GAME_FEAST_LOADING)) {
+        if (!Ascension.getInstance().getGameState().canTeleport(pD.getPlayer())) {
             e.setCancelled(true);
             return false;
         }

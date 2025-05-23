@@ -1,14 +1,17 @@
 package me.depickcator.ascension.Lobby;
 
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.BuildLobby;
 import me.depickcator.ascension.Lobby.BingoBoard.BoardDisplay;
 import me.depickcator.ascension.Lobby.EventsBoard.EventBoard;
+import org.bukkit.Difficulty;
 import org.bukkit.Location;
 
 public class Lobby {
     private final EventBoard eventBoard;
     private final BoardDisplay boardDisplay;
     public Lobby(Location loc) {
+        Ascension.getInstance().getWorld().setDifficulty(Difficulty.NORMAL);
         new BuildLobby(loc);
         initLobbyBoards();
         eventBoard = new EventBoard();

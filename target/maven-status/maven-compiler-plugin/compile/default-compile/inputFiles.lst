@@ -22,6 +22,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Gener
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\LoadGame.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\LocationChecker\LocationCheck.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\LocationChecker\LocationStorage.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\PauseGame.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Queue\Queue.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Queue\QueueCommand.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\ResetGame.java
@@ -149,8 +150,13 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\CombatItems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\CustomItems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\EasyItems.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\Harditems.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\HardItems.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\ItemLists.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\MediumItems.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\ScavengerLists\Input_Quickplay.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\ScavengerLists\Input_Standard.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\ScavengerLists\Output_Quickplay.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\ScavengerLists\Output_Standard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\RecipeBookModifier.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\EnderPearl.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\EnlightenedNugget.java
@@ -242,6 +248,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockLootTable.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockUtil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\DeadBushes.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\ForageBlocks.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Leaves.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Logs.java

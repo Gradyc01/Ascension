@@ -4,86 +4,68 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
 
-public class EasyItems {
-    private final ArrayList<ItemStack> items;
-    private final Random rand;
-    public EasyItems() {
-        items = new ArrayList<>();
-        rand = new Random();
-        setItems();
+public class EasyItems extends ItemLists {
+    @Override
+    protected void initItemList() {
+        addItems(parseMaterials(
+                Material.LIGHTNING_ROD,
+                Material.ANVIL,
+                Material.LECTERN,
+                Material.LAPIS_BLOCK,
+                Material.REDSTONE_BLOCK,
+                Material.GOLD_BLOCK,
+                Material.JACK_O_LANTERN,
+                Material.EGG,
+                Material.TRIPWIRE_HOOK,
+                Material.BUNDLE,
+                Material.SNOWBALL,
+                Material.GOLDEN_CARROT,
+                Material.BAKED_POTATO,
+                Material.TARGET,
+                Material.BELL,
+                Material.CARROT_ON_A_STICK,
+                Material.BEETROOT,
+                Material.MUD_BRICKS,
+                Material.MILK_BUCKET,
+                Material.TNT,
+                Material.PUFFERFISH,
+                Material.COD_BUCKET,
+                Material.SALMON_BUCKET,
+                Material.GLOWSTONE,
+                Material.BRICK_SLAB,
+                Material.EXPERIENCE_BOTTLE,
+                Material.BONE_BLOCK,
+                Material.DRIED_KELP_BLOCK,
+                Material.FLOWER_POT,
+                Material.ENDER_PEARL,
+                Material.FIREWORK_STAR,
+                Material.FIREWORK_ROCKET,
+                Material.CHAIN,
+                Material.CAMPFIRE,
+                Material.CLOCK,
+                Material.BRUSH,
+                Material.ITEM_FRAME,
+                Material.SUNFLOWER,
+                Material.NOTE_BLOCK,
+                Material.COMPOSTER,
+                Material.CRAFTER,
+                Material.LEAF_LITTER,
+                Material.WILDFLOWERS
+        ));
+        addItems(List.of(
+                getRandomItemInList(getCraftTable()),
+                getRandomItemInList(getCopperBlock()),
+                getRandomItemInList(getGlass()),
+                getRandomItemInList(getBanner()),
+                getRandomItemInList(getConcrete()),
+                getRandomItemInList(getWool())
+        ));
     }
 
-    private void setItems() {
-        addItem(new ItemStack(Material.LIGHTNING_ROD));
-        addItem(new ItemStack(Material.ANVIL));
-        addItem(new ItemStack(Material.LECTERN));
-        addItem(new ItemStack(Material.LAPIS_BLOCK));
-        addItem(new ItemStack(Material.REDSTONE_BLOCK));
-        addItem(new ItemStack(Material.GOLD_BLOCK));
-        addItem(new ItemStack(Material.JACK_O_LANTERN));
-        addItem(new ItemStack(Material.EGG));
-        addItem(new ItemStack(Material.TRIPWIRE_HOOK));
-        addItem(new ItemStack(Material.BUNDLE));
-//        addItem(new ItemStack(Material.ORANGE_STAINED_GLASS));
-//        addItem(new ItemStack(Material.BROWN_BANNER));
-        addItem(new ItemStack(Material.SNOWBALL));
-        addItem(new ItemStack(Material.GOLDEN_CARROT));
-        addItem(new ItemStack(Material.BAKED_POTATO));
-        addItem(new ItemStack(Material.TARGET));
-        addItem(new ItemStack(Material.BELL));
-        addItem(new ItemStack(Material.CARROT_ON_A_STICK));
-        addItem(new ItemStack(Material.BEETROOT));
-        addItem(new ItemStack(Material.MUD_BRICKS));
-        addItem(new ItemStack(Material.MILK_BUCKET));
-        addItem(new ItemStack(Material.TNT));
-        addItem(new ItemStack(Material.PUFFERFISH));
-        addItem(new ItemStack(Material.COD_BUCKET));
-        addItem(new ItemStack(Material.SALMON_BUCKET));
-        addItem(new ItemStack(Material.DAYLIGHT_DETECTOR));
-        addItem(new ItemStack(Material.GLOWSTONE));
-        addItem(new ItemStack(Material.BRICK_SLAB));
-        addItem(new ItemStack(Material.EXPERIENCE_BOTTLE));
-        addItem(new ItemStack(Material.BONE_BLOCK));
-        addItem(new ItemStack(Material.DRIED_KELP_BLOCK));
-        addItem(new ItemStack(Material.FLOWER_POT));
-        addItem(new ItemStack(Material.ENDER_PEARL));
-        addItem(new ItemStack(Material.FIREWORK_STAR));
-        addItem(new ItemStack(Material.FIREWORK_ROCKET));
-        addItem(new ItemStack(Material.CHAIN));
-        addItem(new ItemStack(Material.CAMPFIRE));
-        addItem(new ItemStack(Material.CLOCK));
-        addItem(new ItemStack(Material.BRUSH));
-        addItem(new ItemStack(Material.ITEM_FRAME));
-        addItem(new ItemStack(Material.SUNFLOWER));
-        addItem(new ItemStack(Material.NOTE_BLOCK));
-        addItem(new ItemStack(Material.COMPOSTER));
-
-        /*1.21.5 Minecraft Items*/
-        addItem(new ItemStack(Material.LEAF_LITTER));
-        addItem(new ItemStack(Material.WILDFLOWERS));
-
-        //Crafting Blocks
-        addItem(getRandomCraftTable());
-
-        addItem(getRandomCopperBlock());
-        addItem(getRandomGlass());
-        addItem(getRandomBanner());
-        addItem(getRandomConcrete());
-        addItem(getRandomWool());
-    }
-
-    private void addItem(ItemStack item) {
-        items.add(item);
-    }
-
-    public ArrayList<ItemStack> getItems() {
-        return items;
-    }
-
-    private ItemStack getRandomCraftTable() {
+    private List<ItemStack> getCraftTable() {
         ArrayList<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.SMOKER));
         items.add(new ItemStack(Material.BLAST_FURNACE));
@@ -92,14 +74,11 @@ public class EasyItems {
         items.add(new ItemStack(Material.SMITHING_TABLE));
         items.add(new ItemStack(Material.FLETCHING_TABLE));
         items.add(new ItemStack(Material.STONECUTTER));
-
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+        return items;
     }
 
-    private ItemStack getRandomCopperBlock() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getCopperBlock() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.COPPER_BLOCK));
         items.add(new ItemStack(Material.CHISELED_COPPER));
         items.add(new ItemStack(Material.COPPER_BULB));
@@ -109,13 +88,11 @@ public class EasyItems {
         items.add(new ItemStack(Material.CUT_COPPER));
         items.add(new ItemStack(Material.CUT_COPPER_SLAB));
         items.add(new ItemStack(Material.CUT_COPPER_STAIRS));
-
-        int pick = rand.nextInt(items.size());
-        return items.get(pick);
+        return items;
     }
 
-    private ItemStack getRandomGlass() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getGlass() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.WHITE_STAINED_GLASS));
         items.add(new ItemStack(Material.GRAY_STAINED_GLASS));
         items.add(new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS));
@@ -133,13 +110,11 @@ public class EasyItems {
         items.add(new ItemStack(Material.MAGENTA_STAINED_GLASS));
         items.add(new ItemStack(Material.PINK_STAINED_GLASS));
 
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+        return items;
     }
 
-    private ItemStack getRandomBanner() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getBanner() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.WHITE_BANNER));
         items.add(new ItemStack(Material.GRAY_BANNER));
         items.add(new ItemStack(Material.LIGHT_GRAY_BANNER));
@@ -156,14 +131,11 @@ public class EasyItems {
         items.add(new ItemStack(Material.PURPLE_BANNER));
         items.add(new ItemStack(Material.MAGENTA_BANNER));
         items.add(new ItemStack(Material.PINK_BANNER));
-
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+        return items;
     }
 
-    private ItemStack getRandomConcrete() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getConcrete() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.WHITE_CONCRETE));
         items.add(new ItemStack(Material.GRAY_CONCRETE));
         items.add(new ItemStack(Material.LIGHT_GRAY_CONCRETE));
@@ -180,14 +152,11 @@ public class EasyItems {
         items.add(new ItemStack(Material.PURPLE_CONCRETE));
         items.add(new ItemStack(Material.MAGENTA_CONCRETE));
         items.add(new ItemStack(Material.PINK_CONCRETE));
-
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+        return items;
     }
 
-    private ItemStack getRandomWool() {
-        ArrayList<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> getWool() {
+        List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.WHITE_WOOL));
         items.add(new ItemStack(Material.GRAY_WOOL));
         items.add(new ItemStack(Material.LIGHT_GRAY_WOOL));
@@ -205,9 +174,7 @@ public class EasyItems {
         items.add(new ItemStack(Material.MAGENTA_WOOL));
         items.add(new ItemStack(Material.PINK_WOOL));
 
-        int pick = rand.nextInt(items.size());
-
-        return items.get(pick);
+        return items;
     }
 
 

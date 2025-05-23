@@ -14,7 +14,11 @@ import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.ArmorMeta;
 import org.bukkit.inventory.meta.Repairable;
+import org.bukkit.inventory.meta.trim.ArmorTrim;
+import org.bukkit.inventory.meta.trim.TrimMaterial;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 
 
 public class HermesBoots extends Craft {
@@ -55,6 +59,10 @@ public class HermesBoots extends Craft {
         meta.addEnchant(Enchantment.FEATHER_FALLING, 1, true);
         meta.addEnchant(Enchantment.UNBREAKING, 2, true);
         item.setItemMeta(meta);
+        ArmorMeta armorMeta = (ArmorMeta) item.getItemMeta();
+        ArmorTrim armorTrim = new ArmorTrim(TrimMaterial.NETHERITE, TrimPattern.SNOUT);
+        armorMeta.setTrim(armorTrim);
+        item.setItemMeta(armorMeta);
         return item;
     }
 

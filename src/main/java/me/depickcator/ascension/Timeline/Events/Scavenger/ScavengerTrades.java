@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Timeline.Events.Scavenger;
 
+import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Input_Standard;
+import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Output_Standard;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
@@ -20,13 +22,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class ScavengerTrades extends ItemComparison {
+    /*Input on the Left Output on the Right*/
     private List<Pair<ItemStack, ItemStack>> trades;
     private final List<ItemStack> input;
     private final List<ItemStack> output;
     public ScavengerTrades() {
-        ItemList itemList = new ItemList();
-        input = new ArrayList<>(itemList.grabItemsFromList(itemList.getMediumItems().getItems(), 5));
-        output = new ArrayList<>(itemList.grabItemsFromList(itemList.getHarditems().getItems(), 5));
+        input = new ArrayList<>(new Input_Standard().getItems(5));
+        output = new ArrayList<>(new Output_Standard().getItems(5));
     }
 
     public ScavengerTrades(List<ItemStack> input, List<ItemStack> output) {
@@ -35,9 +37,6 @@ public class ScavengerTrades extends ItemComparison {
     }
 
     public List<Pair<ItemStack, ItemStack>> generateTrades() {
-//        ItemList itemList = new ItemList();
-//        List<ItemStack> input = new ArrayList<>(itemList.grabItemsFromList(itemList.getMediumItems().getItems(), 5));
-//        List<ItemStack> output = new ArrayList<>(itemList.grabItemsFromList(itemList.getHarditems().getItems(), 5));
         List<Pair<ItemStack, ItemStack>> trades = new ArrayList<>();
         for (int i = 0; i < input.size(); i++) {
             Pair<ItemStack, ItemStack> pair = Pair.of(input.get(i), output.get(i));
@@ -55,7 +54,8 @@ public class ScavengerTrades extends ItemComparison {
         boolean alreadyTraded = playerData.getPlayerTeam().getTeam().getTeamStats().getScavengerScore().get(tradeNumber);
         if (output == null || playerItemStack == null || alreadyTraded) return false;
         playerItemStack.setAmount(playerItemStack.getAmount() - 1);
-        p.getWorld().dropItem(p.getLocation(), output);
+//        p.getWorld().dropItem(p.getLocation(), output);
+        PlayerUtil.giveItem(p, output);
 
         checkIfCompleted(playerData);
 

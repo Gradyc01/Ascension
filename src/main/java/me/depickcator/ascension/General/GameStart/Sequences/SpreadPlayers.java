@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -56,6 +57,7 @@ public class SpreadPlayers extends GameStartSequence {
                 for (Player p: team.getTeamMembers()) {
                     p.teleport(loc);
                     p.removePotionEffect(PotionEffectType.BLINDNESS);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, 20 * 20, 0, false, false));
                 }
 
 

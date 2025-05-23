@@ -1,6 +1,7 @@
 package me.depickcator.ascension.listeners.Combat;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.GameStates;
 import me.depickcator.ascension.Items.Craftable.Unlocks.Exodus;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -71,6 +72,10 @@ public class onDamage extends PlayerCombat{
 
     @EventHandler
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
+        if (plugin.getGameState().checkState(GameStates.GAME_PAUSED)) {
+            event.setCancelled(true);
+            if (!(event.getDamager() instanceof Player)) event.getDamager().remove();
+        }
         if (!plugin.getGameState().inGame() || !(event.getEntity() instanceof LivingEntity)) return;
         if (event.getEntity().isInvulnerable() || ((LivingEntity) event.getEntity()).getNoDamageTicks() > 0) {
             event.setCancelled(true);

@@ -84,6 +84,7 @@ public class PlayerData {
     /*Resets the Player back to its lobby state*/
     public void resetToLobby() {
         player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
+        freezePlayer(false);
         clearInventoryAndEffects();
         addLobbyPotionEffects();
         getMainMenuItem();
@@ -103,14 +104,10 @@ public class PlayerData {
         PlayerInventory inv = player.getInventory();
         inv.clear();
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, PotionEffect.INFINITE_DURATION, 0, false, false));
-//        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, PotionEffect.INFINITE_DURATION, 128, false, false));
         getMainMenuItem();
         inv.setItem(6, TeammateTracker.getInstance().getResult());
         inv.setItem(7, KitBook.getInstance().getResult());
-
-//        player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
         player.setExperienceLevelAndProgress(0);
-
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "recipe give " + player.getName() + " *");
         giveStartingFood();
@@ -128,6 +125,18 @@ public class PlayerData {
         addPlayerPotionEffect(PotionEffectType.REGENERATION, 0.05, 9);
 //        Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
     }
+
+    /*Freezes the player in place and doesn't allow them to move if 'freeze' is true else unfreezes them if 'freeze' is false*/
+    public void freezePlayer(boolean freeze) {
+        if (!freeze) {
+            player.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.1);
+            player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0.41999998688697815);
+        } else {
+            player.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0);
+            player.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0);
+        }
+    }
+
 
     private void addPlayerPotionEffect(PotionEffectType effect, double minutes, int amplifier) {
         player.addPotionEffect(new PotionEffect(effect, (int) (minutes * 60 * 20), amplifier, false, false));
