@@ -61,7 +61,7 @@ public class BuildLobby implements Runnable {
         fillArea(-19, 107, -8, -19, 108, -8, "minecraft:ladder[facing=east]", armorStand);
         placeBlock(-19, 110, -10, "minecraft:ladder[facing=east]", armorStand);
         placeBlock(-19, 111, -14, "minecraft:oak_trapdoor[facing=east,half=bottom]", armorStand);
-        placeBlock(-19, 111, -19, "minecraft:oak_trapdoor[facing=south,half=top]", armorStand);
+        placeBlock(-19, 111, -18, "minecraft:oak_trapdoor[facing=south,half=top]", armorStand);
 
         placeBlock(-16, 112, -19, "minecraft:smooth_stone_slab[type=top]", armorStand);
         placeBlock(-14, 112, -19, "minecraft:smooth_stone_slab[type=top]", armorStand);

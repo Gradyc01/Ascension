@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Timeline.Events.GracePeriod;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamUtil;
 import me.depickcator.ascension.Utility.SoundUtil;

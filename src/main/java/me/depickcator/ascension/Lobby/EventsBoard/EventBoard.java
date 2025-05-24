@@ -63,7 +63,7 @@ public class EventBoard extends Boards {
         if (event == null) return false;
         for (Events e : keys.values()) {
             if (!e.equals(event)) {
-                TextUtil.debugText("Hiding " + e.getKey() + " board from " + playerData.getPlayer().getName());
+//                TextUtil.debugText("Hiding " + e.getKey() + " board from " + playerData.getPlayer().getName());
                 e.makeHiddenToPlayer(playerData.getPlayer());
             }
         }

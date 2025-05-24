@@ -1,7 +1,7 @@
 package me.depickcator.ascension.listeners.ChestGeneration;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.Utility.TextUtil;

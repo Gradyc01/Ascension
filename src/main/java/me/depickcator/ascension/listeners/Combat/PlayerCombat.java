@@ -1,7 +1,7 @@
 package me.depickcator.ascension.listeners.Combat;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import me.depickcator.ascension.Player.Data.PlayerData;

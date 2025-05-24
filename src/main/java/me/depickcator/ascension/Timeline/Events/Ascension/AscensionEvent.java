@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Timeline.Events.Ascension;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;

@@ -1,7 +1,7 @@
 package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
 import me.depickcator.ascension.Player.Data.PlayerUtil;

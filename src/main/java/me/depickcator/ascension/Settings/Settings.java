@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Settings;
 
-import me.depickcator.ascension.General.GameStart.GameStartSequence;
-import me.depickcator.ascension.General.GameStart.Sequences.*;
+import me.depickcator.ascension.General.Game.GameSequences;
+import me.depickcator.ascension.General.Game.Start.Sequences.*;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Timeline.Timeline;
@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class Settings {
     private final int worldBorderSize;
     private final Timeline timeline;
-    private final List<GameStartSequence> sequence;
+    private final List<GameSequences> sequence;
     private final List<Integer> itemDistribution; // Easy | Medium | Hard | Custom
     private final String name;
     private final int startingAscensionTimer;
@@ -71,7 +71,7 @@ public abstract class Settings {
     }
 
     /*Returns the default initial starting sequence*/
-    protected List<GameStartSequence> initSequence() {
+    protected List<GameSequences> initSequence() {
         return new ArrayList<>(List.of(
                 new ResetPlayers(),
                 new SetWorldBorder(worldBorderSize),
@@ -126,7 +126,7 @@ public abstract class Settings {
         return startingAscensionTimer;
     }
 
-    public List<GameStartSequence> getSequence() {
+    public List<GameSequences> getSequence() {
         return sequence;
     }
 

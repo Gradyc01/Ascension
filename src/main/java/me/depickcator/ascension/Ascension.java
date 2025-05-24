@@ -1,8 +1,8 @@
 package me.depickcator.ascension;
 
 
-import me.depickcator.ascension.General.GameCommand;
-import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Game.GameCommand;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.General.Queue.QueueCommand;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
@@ -10,9 +10,11 @@ import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Lobby.Lobby;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;
 import me.depickcator.ascension.LootTables.Entities.EntityUtil;
+import me.depickcator.ascension.Persistence.SettingsReader;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.SettingObserver;
 import me.depickcator.ascension.Teams.TeamCommand;
+import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.commands.*;
 import me.depickcator.ascension.listeners.*;
 import me.depickcator.ascension.MainMenuUI.BingoBoard.BingoData;
@@ -31,14 +33,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 
 public final class Ascension extends JavaPlugin {
-    // private static final org.slf4j.Logger log = LoggerFactory.getLogger(Ascension.class);
-//    public static Map<UUID, Pair<Inventory, AscensionGUI>> guiMap = new HashMap<>();
     public static Map<UUID, PlayerData> playerDataMap = new HashMap<>();
     private static Ascension instance;
     private static Location spawn;
@@ -74,16 +77,29 @@ public final class Ascension extends JavaPlugin {
         new BlockUtil();
         scheduler = this.getServer().getScheduler();
         gameState = new GameStates();
-
         world = Bukkit.getWorld("world");
         nether = Bukkit.getWorld("world_nether");
         guiMap = new HashMap<>();
+        try {
+            SettingsReader reader = new SettingsReader();
+            reader.read();
+        } catch (IOException e) {
+            TextUtil.debugText("No save file!, Game has to be manually launched.");
+        }
     }
 
     @Override
     public void onDisable() {
         logger.info("Ascension has been Disabled!");
+//        deleteWorld(world);
+//        deleteWorld(nether);
+//        deleteWorld(Bukkit.getWorld("world_the_end"));
+
     }
+//    private void deleteWorld(World world) {
+//        Bukkit.unloadWorld(world, false);
+//        deleteDirectory(world.getWorldFolder());
+//    }
 
     private void registerCommands() {
         getCommand("open-main-menu").setExecutor(new OpenMainMenuCommand());
@@ -91,13 +107,10 @@ public final class Ascension extends JavaPlugin {
         getCommand("changeBingoScore").setExecutor(new changeBingoScore());
         getCommand("openmenu").setExecutor(new mainMenuCommands());
         getCommand("who").setExecutor(new Who());
-
         getCommand("info").setExecutor(new Info());
-
         TeamCommand teamCommand = new TeamCommand();
         getCommand("party").setExecutor(teamCommand);
         getCommand("p").setExecutor(teamCommand);
-
         getCommand("debugger").setExecutor(new Debugger());
         getCommand("timeline").setExecutor(new setTimeline());
         getCommand("setUnlockTokens").setExecutor(new setUnlockToken());
@@ -110,7 +123,6 @@ public final class Ascension extends JavaPlugin {
         getCommand("settings").setExecutor(new SetSetting());
         getCommand("bp").setExecutor(new Backpack());
     }
-
     private void registerListeners() {
         Server server = getServer();
         PluginManager manager = server.getPluginManager();
@@ -134,90 +146,74 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new PlayerChatting(), this);
         manager.registerEvents(new FastSmelt(), this);
     }
-
-
     private void registerCrafts() {
         unlocksData = new UnlocksData();
     }
-
     public BingoData getBingoData() {
         return bingoData;
     }
-
     public void setBingoData(BingoData bingoData) {
         this.bingoData = bingoData;
     }
-
     public GameStates getGameState() {
         return gameState;
     }
-
     public BukkitScheduler getScheduler() {
         return scheduler;
     }
-
     public World getWorld() {
         return world;
     }
-
     public World getNether() {
         return nether;
     }
-
+    public void setWorld(World world) {
+        this.world = world;
+    }
+    public void setNether(World nether) {
+        this.nether = nether;
+    }
     public static Location getSpawn() {
         return spawn;
     }
-
     public UnlocksData getUnlocksData() {
         return unlocksData;
     }
-
     public static void setSpawn(Location spawn) {
         Ascension.spawn = spawn;
     }
-
     public SettingObserver getSettingsUI() {
         return settings;
     }
-
     public int generateModelNumber() {
         logger.info("Current model number" + uniqueModelNumber);
         return uniqueModelNumber++;
     }
-
     public static Ascension getInstance() {
         return instance;
     }
-
     public Map<UUID, Pair<Inventory, AscensionGUI>> getGuiMap() {
         return guiMap;
     }
-
     public void registerGUI(Player player, Inventory inventory, AscensionGUI gui) {
         guiMap.put(player.getUniqueId(), new MutablePair<>(inventory, gui));
     }
-
     public Pair<Inventory, AscensionGUI> findInventory(Player player) {
         return guiMap.get(player.getUniqueId());
     }
-
     public void removeGUI(Player player) {
         guiMap.remove(player.getUniqueId());
     }
-
     public LocationCheck getLocationCheck() {
         return locationCheck;
     }
-
     public void setLocationCheck(LocationCheck locationCheck) {
         if (this.locationCheck != null) this.locationCheck.cancelCheck();
         this.locationCheck = locationCheck;
     }
-
     public Lobby getLobby() {
         return lobby;
     }
-
     public void setLobby(Lobby lobby) {
         this.lobby = lobby;
     }

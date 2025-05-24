@@ -1,17 +1,14 @@
 package me.depickcator.ascension.listeners.Combat;
 
-import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Items.Craftable.Unlocks.Exodus;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Material;
-import net.kyori.adventure.sound.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.AbstractArrow;
@@ -26,9 +23,6 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.List;
 
 public class onDamage extends PlayerCombat{
     public onDamage() {
@@ -77,18 +71,18 @@ public class onDamage extends PlayerCombat{
             if (!(event.getDamager() instanceof Player)) event.getDamager().remove();
         }
         if (!plugin.getGameState().inGame() || !(event.getEntity() instanceof LivingEntity)) return;
-        if (event.getEntity().isInvulnerable() || ((LivingEntity) event.getEntity()).getNoDamageTicks() > 0) {
-            event.setCancelled(true);
-
-//            TextUtil.debugText("Stop Sound for " + event.getDamager().getName());
-//            net.kyori.adventure.sound.Sound sound = Sound.sound(Key.key("entity.player.attack.nodamage"), Sound.Source.PLAYER, 0.7f, 1.0f);
-//            event.getDamager().stopSound(sound);
-//            stopSound((Player) event.getDamager());
-//            Player p = (Player) event.getEntity();
-//            p.playSound(sound);
-//            p.stopSound(sound);
-            return;
-        }
+//        if (event.getEntity().isInvulnerable() || ((LivingEntity) event.getEntity()).getNoDamageTicks() > 0) {
+//            event.setCancelled(true);
+//
+////            TextUtil.debugText("Stop Sound for " + event.getDamager().getName());
+////            net.kyori.adventure.sound.Sound sound = Sound.sound(Key.key("entity.player.attack.nodamage"), Sound.Source.PLAYER, 0.7f, 1.0f);
+////            event.getDamager().stopSound(sound);
+////            stopSound((Player) event.getDamager());
+////            Player p = (Player) event.getEntity();
+////            p.playSound(sound);
+////            p.stopSound(sound);
+//            return;
+//        }
 
         double damageDealt = calculateDamage(event);
         event.setDamage(damageDealt);

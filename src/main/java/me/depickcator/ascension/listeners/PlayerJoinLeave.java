@@ -1,7 +1,7 @@
 package me.depickcator.ascension.listeners;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.General.Queue.Queue;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;

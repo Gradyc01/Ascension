@@ -1,8 +1,8 @@
 package me.depickcator.ascension.Timeline.Events.Winner;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.General.GameStates;
-import me.depickcator.ascension.General.ResetGame;
+import me.depickcator.ascension.General.Game.GameStates;
+import me.depickcator.ascension.General.Game.Reset.ResetGame;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Teams.Team;
