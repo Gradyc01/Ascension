@@ -131,6 +131,7 @@ me\depickcator\ascension\Lobby\NPCs\ViewMap.class
 me\depickcator\ascension\commands\Backpack.class
 me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect$1.class
 me\depickcator\ascension\General\Game\Load\Sequences\ClearEntityInteractions.class
+me\depickcator\ascension\MainMenuUI\Command\Commands\AscensionTravel.class
 me\depickcator\ascension\testingCommands\setUnlockToken.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Trials.class
 me\depickcator\ascension\MainMenuUI\BingoBoard\BingoBoardGUI.class

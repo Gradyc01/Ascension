@@ -14,7 +14,9 @@ import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.WorldBorder;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -62,8 +64,17 @@ public abstract class Timeline {
     public void pauseTimeline() {
         keepRunning = false;
         timeline.cancel();
-        MINUTES++;
+
         TextUtil.debugText("Paused Timeline");
+    }
+
+    /*Changes the world border instantly to the startingRadius and then gradually goes down to the ending Radius*/
+    //Not Used currently
+    public void changeWorldBorder(Location newCenter, int startingRadius, int endingRadius, int duration) {
+        WorldBorder worldBorder = plugin.getWorld().getWorldBorder();
+        worldBorder.setCenter(newCenter);
+        worldBorder.setSize(startingRadius * 2);
+        worldBorder.setSize(endingRadius * 2, duration);
     }
 
     protected abstract void checkForMidGameEvents();
@@ -108,6 +119,7 @@ public abstract class Timeline {
             public void run() {
                 if (!keepRunning) {
                     cancel();
+                    MINUTES++;
                     TextUtil.debugText("Seconds Visual Timeline Forcefully Stopped");
                     return;
                 }

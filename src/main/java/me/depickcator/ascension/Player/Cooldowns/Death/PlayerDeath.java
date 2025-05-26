@@ -137,11 +137,14 @@ public class PlayerDeath {
     }
 
     private Location getRespawnLocation() {
-        Location spawn = Ascension.getSpawn();
-//        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-//                "spreadplayers " + spawn.getBlockX() + " " + spawn.getBlockZ() + " 200 500 true " + p.getName());
+        WorldBorder border = plugin.getWorld().getWorldBorder();
+        Location spawn = border.getCenter();
         Random r = new Random();
-        double worldBorderDiameter = spawn.getWorld().getWorldBorder().getSize();
+        double worldBorderDiameter = border.getSize() - 100 < 100 ? border.getSize() : border.getSize() - 100;;
+        if (plugin.getGameState().checkState(GameStates.GAME_ASCENSION)) {
+            spawn = plugin.getSettingsUI().getSettings().getTimeline().getAscensionEvent().getAscendingLocation().getSpawnLocation();
+            worldBorderDiameter = 500;
+        }
         int x = spawn.getBlockX() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
         int z = spawn.getBlockZ() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
         int y = spawn.getWorld().getHighestBlockYAt(x, z);

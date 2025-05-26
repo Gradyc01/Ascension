@@ -32,11 +32,14 @@ public class BingoNPCGUI extends AscensionGUI {
     }
 
     private void initHeads() {
-        int index = /*0 + */playersPerGUI * pageNum;
+//        int index = /*0 + */playersPerGUI * pageNum;
+        int index = 0;
         for (PlayerData playerData : playerDataList) {
             if (playerData.equals(this.playerData)) continue;
             inventory.setItem(index, makePlayerSkull(playerData.getPlayer()));
+            index++;
         }
+
     }
 
     private ItemStack makePlayerSkull(Player p) {

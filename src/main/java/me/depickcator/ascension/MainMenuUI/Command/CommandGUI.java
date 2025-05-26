@@ -21,6 +21,7 @@ public class CommandGUI extends AscensionGUI {
         initializeButtons(new SendCoords(), 19);
         initializeButtons(new SpawnTravel(), 21);
         initializeButtons(new Surface(), 22);
+        initializeButtons(new AscensionTravel(), 23);
         inventory.setItem(48, goBackItem());
         playerHeadButton(49);
 

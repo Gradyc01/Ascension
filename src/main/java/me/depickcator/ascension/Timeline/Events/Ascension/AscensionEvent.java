@@ -11,6 +11,7 @@ import me.depickcator.ascension.Teams.TeamStats;
 import me.depickcator.ascension.Timeline.Events.Winner.Winner;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
+import org.bukkit.WorldBorder;
 import org.bukkit.entity.Wither;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -48,6 +49,7 @@ public class AscensionEvent {
         return locations;
     }
 
+    /*Starts the Ascension event*/
     public void start(AscensionLocation ascensionLocation) {
         this.ascendingLocation = ascensionLocation;
         eventOngoing = true;
@@ -102,7 +104,8 @@ public class AscensionEvent {
         checkForAscensionRemaining();
         timeline.startTimeline();
         TeamStats teamStats = ascendingLocation.getAscendingTeam().getTeamStats();
-        teamStats.addAscensionTimer((int) (teamStats.getAscensionTimer() * 0.3));
+//        teamStats.addAscensionTimer((int) (teamStats.getAscensionTimer() * 0.3));
+        teamStats.setAscensionTimer(Integer.max((int) (teamStats.getAscensionTimer() * 1.3), 300));
         failedText();
         stop();
         TextUtil.debugText("Ascension Failed");
