@@ -6,6 +6,7 @@ import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -52,13 +53,15 @@ public class EnlightenedNugget extends CustomItem implements ItemClick {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.IRON_NUGGET);
         ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
+        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         meta.lore(new ArrayList<>(List.of(
-                TextUtil.makeText(" Become a little", TextUtil.DARK_PURPLE),
-                TextUtil.makeText("more enlightened", TextUtil.DARK_PURPLE)
+                TextUtil.makeText("Enlightened I", TextUtil.GRAY),
+                TextUtil.makeText("", TextUtil.GRAY),
+                TextUtil.makeText(" Become a little more enlightened", TextUtil.DARK_PURPLE)
         )));
+        meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
         meta.setEnchantmentGlintOverride(true);
-        meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.WHITE).append(TextUtil.rightClickText()));
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.DARK_GRAY).append(TextUtil.rightClickText()));
         item.setItemMeta(meta);
         return item;
     }

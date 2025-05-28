@@ -67,6 +67,8 @@ public class Daredevil extends Craft {
         world.strikeLightningEffect(loc);
         world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0F, 1.0F);
         world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0F, 0.0F);
+        world.playSound(loc, Sound.ENTITY_HORSE_ANGRY, 5.0F, 0.0F);
+        world.playSound(loc, Sound.ENTITY_SKELETON_HORSE_DEATH, 5.0F, 0.0F);
         if (e.getCurrentItem() != null) e.getCurrentItem().setAmount(0);
         e.getInventory().setMatrix(new ItemStack[]{null, null, null, null, null, null, null, null, null});
         makeSkeletonHorse(loc, p);

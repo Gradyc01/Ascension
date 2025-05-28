@@ -143,12 +143,17 @@ public class PlayerDeath {
         double worldBorderDiameter = border.getSize() - 100 < 100 ? border.getSize() : border.getSize() - 100;;
         if (plugin.getGameState().checkState(GameStates.GAME_ASCENSION)) {
             spawn = plugin.getSettingsUI().getSettings().getTimeline().getAscensionEvent().getAscendingLocation().getSpawnLocation();
-            worldBorderDiameter = 500;
+            worldBorderDiameter = 1250;
         }
         int x = spawn.getBlockX() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
         int z = spawn.getBlockZ() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
         int y = spawn.getWorld().getHighestBlockYAt(x, z);
-        return new Location(spawn.getWorld(), x, y, z);
+        Location spawnLocation = new Location(spawn.getWorld(), x, y, z);
+        if (border.isInside(spawnLocation)) {
+            return spawnLocation;
+        } else {
+            return getRespawnLocation();
+        }
     }
 
     public void setPlayerSpectating(PlayerData playerData) {

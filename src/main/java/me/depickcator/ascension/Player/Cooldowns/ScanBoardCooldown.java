@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 public class ScanBoardCooldown extends Cooldowns{
     private static ScanBoardCooldown instance;
     public ScanBoardCooldown() {
-        super();
+        super("ScanBoard");
     }
 
     @Override
@@ -17,7 +17,7 @@ public class ScanBoardCooldown extends Cooldowns{
 
     @Override
     public void setCooldownTimer(Player p) {
-        setCooldownTimer(p, 60);
+        setCooldownTimer(p, 60, Material.REINFORCED_DEEPSLATE);
     }
 
     public static ScanBoardCooldown getInstance() {

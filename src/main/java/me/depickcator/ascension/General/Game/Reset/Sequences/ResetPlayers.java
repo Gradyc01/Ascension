@@ -1,5 +1,8 @@
 package me.depickcator.ascension.General.Game.Reset.Sequences;
 
+import com.lunarclient.apollo.Apollo;
+import com.lunarclient.apollo.module.waypoint.WaypointModule;
+import com.lunarclient.apollo.player.ApolloPlayer;
 import me.depickcator.ascension.General.Game.GameLauncher;
 import me.depickcator.ascension.General.Game.GameSequences;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
@@ -10,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ResetPlayers extends GameSequences {
     @Override
@@ -35,9 +39,16 @@ public class ResetPlayers extends GameSequences {
                 PlayerDeath.getInstance().respawnPlayer(pD);
                 pD.resetToLobby();
                 players.remove(p);
+                resetLunarWaypoints(p);
                 TextUtil.debugText("Player " + p.getName() + " reset");
             }
         }.runTaskTimer(plugin, 20, 10);
 
+    }
+
+    private void resetLunarWaypoints(Player p) {
+        WaypointModule waypointModule = Apollo.getModuleManager().getModule(WaypointModule.class);
+        Optional<ApolloPlayer> apolloPlayerOpt = Apollo.getPlayerManager().getPlayer(p.getUniqueId());
+        apolloPlayerOpt.ifPresent(waypointModule::resetWaypoints);
     }
 }

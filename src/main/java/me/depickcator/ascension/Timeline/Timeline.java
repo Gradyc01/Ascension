@@ -48,11 +48,7 @@ public abstract class Timeline {
         scavenger = null;
         removeAscensionElements();
         mapItems = new MapItems();
-        plugin.getSettingsUI().
-                getSettings()
-                .getTimeline().
-                getMapItems().
-                addMapItem(new MapItem("Spawn", Ascension.getSpawn().getBlockX(), Ascension.getSpawn().getBlockZ(), MapItem.SPAWN));
+        mapItems.addMapItem(new MapItem("Spawn", Ascension.getSpawn(), MapItem.SPAWN));
     }
 
     public void startTimeline() {

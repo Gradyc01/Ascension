@@ -6,6 +6,7 @@ import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -45,9 +46,11 @@ public class HadesBook extends CustomItem implements ItemClick {
         ItemMeta meta = item.getItemMeta();
         meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.lore(new ArrayList<>(List.of(
-                TextUtil.makeText("Select any item", TextUtil.DARK_PURPLE),
-                TextUtil.makeText("from the board", TextUtil.DARK_PURPLE)
+                TextUtil.makeText(" This remnant of the gods allows", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("whoever to grant themselves any", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("item that they wish from the board", TextUtil.DARK_PURPLE)
         )));
+        meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.GOLD, true, false).append(TextUtil.rightClickText()));
         item.setItemMeta(meta);
         return item;

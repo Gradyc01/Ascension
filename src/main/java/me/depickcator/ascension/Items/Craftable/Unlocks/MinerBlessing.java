@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.UseCooldown;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Items.Craftable.Craft;

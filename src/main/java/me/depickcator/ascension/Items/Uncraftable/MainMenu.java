@@ -1,12 +1,16 @@
 package me.depickcator.ascension.Items.Uncraftable;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.UseCooldown;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
+import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -47,7 +51,7 @@ public class MainMenu extends CustomItem implements ItemClick {
 
     @Override
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
-        if (isMainHandRightClick(e)) {
+        if (isMainHandRightClick(e) && !CombatTimer.getInstance().isOnCooldown(pD.getPlayer())) {
             new MainMenuGUI(pD);
             return true;
         }

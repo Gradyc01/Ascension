@@ -41,6 +41,7 @@ public class StartGame extends GameLauncher {
     protected boolean canStart() {
         if (plugin.getLocationCheck().isCheckCompleted()) {
             plugin.getGameState().setCurrentState(GameStates.GAME_LOADING);
+            settings.getTimeline().getMapItems().reMapItemsForLunar(); // First Setting (Technically)
             return true;
         } else {
             TextUtil.broadcastMessage(TextUtil.makeText("Failed to Start Game: Location Check is incomplete", TextUtil.DARK_RED));

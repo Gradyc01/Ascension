@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class DeathTimer extends Cooldowns {
 //    private static DeathTimer instance;
     public DeathTimer() {
-        super();
+        super("Death");
     }
     @Override
     public ItemStack makeItem() {
@@ -27,11 +27,4 @@ public class DeathTimer extends Cooldowns {
     public void setCooldownTimer(Player p) {
         setCooldownTimer(p, 60);
     }
-
-//    public static DeathTimer getInstance() {
-//        if (instance == null) {
-//            instance = new DeathTimer();
-//        }
-//        return instance;
-//    }
 }

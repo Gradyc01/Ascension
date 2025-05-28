@@ -31,6 +31,7 @@ public class CompassAbilities extends Cooldowns {
     private final int fuelAmount;
 
     public CompassAbilities(ItemStack compass, Material fuelMaterial, int fuelAmount) {
+        super("Compass");
         this.compass = compass;
         trackingText = TextUtil.makeText("Tracking Player: ", TextUtil.DARK_PURPLE);
         tracked_player = new NamespacedKey(Ascension.getInstance(), "tracked_player");
@@ -185,8 +186,8 @@ public class CompassAbilities extends Cooldowns {
     @Override
     public void setCooldownTimer(Player p) {
         if (CombatTimer.getInstance().isOnCooldown(p, false)) {
-            setCooldownTimer(p, 15);
+            setCooldownTimer(p, 15, Material.COMPASS);
         }
-        setCooldownTimer(p, 5);
+        setCooldownTimer(p, 5, Material.COMPASS);
     }
 }

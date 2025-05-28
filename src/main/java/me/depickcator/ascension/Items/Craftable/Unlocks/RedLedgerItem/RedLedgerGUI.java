@@ -101,7 +101,7 @@ public class RedLedgerGUI extends AscensionGUI {
             if (p != null) {
                 PlayerData pD = PlayerUtil.getPlayerData(p);
                 if (pD == null || !pD.checkState(PlayerData.STATE_ALIVE)) {
-                    TextUtil.errorMessage(player, "This player is currently not available");
+                    TextUtil.errorMessage(player, "This player is currently not alive");
                     return;
                 }
                 event.setCancelled(true);

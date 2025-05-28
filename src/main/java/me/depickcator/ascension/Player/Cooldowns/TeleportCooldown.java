@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class TeleportCooldown extends Cooldowns{
     private static TeleportCooldown instance;
     private TeleportCooldown() {
-        super();
+        super("Teleport");
     }
     @Override
     public ItemStack makeItem() {
@@ -24,7 +24,7 @@ public class TeleportCooldown extends Cooldowns{
 
     @Override
     public void setCooldownTimer(Player p) {
-        setCooldownTimer(p, 120);
+        setCooldownTimer(p, 120, Material.ENDER_PEARL);
     }
 
     public static TeleportCooldown getInstance() {
