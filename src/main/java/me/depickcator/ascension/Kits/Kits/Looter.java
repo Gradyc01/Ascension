@@ -19,7 +19,6 @@ public class Looter extends Kit {
         ItemStack item = new ItemStack(Material.BONE);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
-        meta.setCustomModelData(10);
         item.setItemMeta(meta);
         return item;
     }

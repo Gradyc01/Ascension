@@ -149,6 +149,7 @@ me\depickcator\ascension\Lobby\NPCs\ViewUnlocks.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerGUI.class
 me\depickcator\ascension\Player\Cooldowns\TeleportCooldown.class
 me\depickcator\ascension\Lobby\SpecialItems.class
+me\depickcator\ascension\MainMenuUI\Unlocks\ViewRecipeGUI$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\CherryGrove.class
 me\depickcator\ascension\LootTables\Entities\Entities\Bee.class
 me\depickcator\ascension\Items\ItemLists\ScavengerLists\Output_Quickplay.class
@@ -160,6 +161,7 @@ me\depickcator\ascension\Timeline\Events\Feast\FeastChests.class
 me\depickcator\ascension\Items\ItemLists\MediumItems.class
 me\depickcator\ascension\Timeline\Timelines\QuickplayTimeline.class
 me\depickcator\ascension\Items\Uncraftable\NetherStar\NetherStarGUI.class
+me\depickcator\ascension\Items\Uncraftable\Anduril.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\CarePackage.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Obsidian.class
 me\depickcator\ascension\General\Game\GameCommand.class
@@ -168,6 +170,7 @@ me\depickcator\ascension\testingCommands\startEvents.class
 me\depickcator\ascension\Skills\SkillExpAmount.class
 me\depickcator\ascension\General\Game\Load\Sequences\CallResetGame.class
 me\depickcator\ascension\General\Game\Load\LoadGame.class
+me\depickcator\ascension\Kits\Kits\Scout.class
 me\depickcator\ascension\MainMenuUI\Map\MapItem.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HeliosCurse.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\BastionTreasure.class

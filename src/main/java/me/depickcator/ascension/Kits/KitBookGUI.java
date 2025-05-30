@@ -30,7 +30,7 @@ public class KitBookGUI extends AscensionGUI {
     }
 
     private void makeKitButtons() {
-        int index = 10;
+        int index = 9;
         for (Kit kit : kitBook.getKits()) {
             inventory.setItem(index, kit.getMascot());
             index+=2;

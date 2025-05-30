@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
+import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import me.depickcator.ascension.Items.UnlocksData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -25,10 +26,10 @@ public class AscensionKey extends Craft {
 
         ShapelessRecipe recipe = new ShapelessRecipe(key, result);
         recipe.addIngredient(Material.DIAMOND);
-        recipe.addIngredient(Material.DIAMOND);
+        recipe.addIngredient(Material.GOLD_INGOT);
         recipe.addIngredient(Material.PLAYER_HEAD);
         recipe.addIngredient(Material.EMERALD);
-        recipe.addIngredient(Material.EMERALD);
+        recipe.addIngredient(NetherStar.getInstance().getResult());
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

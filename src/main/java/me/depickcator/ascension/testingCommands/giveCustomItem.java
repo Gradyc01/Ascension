@@ -123,7 +123,8 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 ZombieHead.getInstance(),
                 PlayerHead.getInstance(),
                 RejuvenationBook.getInstance(),
-                NetherStar.getInstance()
+                NetherStar.getInstance(),
+                Anduril.getInstance()
                 ));
         for (ArrayList<Craft> craft : allCraft) {
             items.addAll(craft);

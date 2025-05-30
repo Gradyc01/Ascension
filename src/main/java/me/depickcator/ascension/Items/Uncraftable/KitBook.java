@@ -55,6 +55,7 @@ public class KitBook extends CustomItem implements ItemClick {
                 new Ecologist(),
                 new Hunter(),
                 new IronTools(),
+                new Scout(),
                 new Looter()
         ));
     }

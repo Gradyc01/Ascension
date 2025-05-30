@@ -60,29 +60,8 @@ public class RecipeCrafted implements EventListener, Listener {
         Player player = (Player) event.getWhoClicked();
         int numberOfCrafts = calculateCraftAmount(event);
 
-        //Check if Inventory is big enough
-        if (event.isShiftClick() && !hasEnoughEmptySlots(player, numberOfCrafts)) {
-            player.sendMessage(TextUtil.makeText("Your inventory is too full to craft that much!", TextUtil.RED));
-            event.setCancelled(true);
-            return;
-        }
-
+        if (!canCraftItem(event, player, numberOfCrafts, recipeKey)) return;
         PlayerUnlocks playerUnlocks = PlayerUtil.getPlayerData(player).getPlayerUnlocks();
-        int currentCrafts = getCurrentCrafts(playerUnlocks, recipeKey);
-
-        //Check if craft is Unlocked
-        if (currentCrafts == -1) {
-            player.sendMessage(TextUtil.makeText("You do not have this item unlocked!", TextUtil.RED));
-            event.getInventory().setResult(null);
-            return;
-        }
-
-        //Check if player has reached the limit
-        if (currentCrafts >= UnlockUtil.getMaxCrafts(recipeKey)) {
-            event.getInventory().setResult(null);
-            player.sendMessage(TextUtil.makeText("You have reached the crafting limit for this item!", TextUtil.RED));
-            return;
-        }
 
         String displayName = UnlockUtil.getDisplayName(recipeKey);
         Craft c = Ascension.getInstance().getUnlocksData().findUnlock(displayName).getLeft();
@@ -104,6 +83,33 @@ public class RecipeCrafted implements EventListener, Listener {
         Component text2 = TextUtil.makeText(displayName, TextUtil.GOLD);
         Component craftText = TextUtil.makeText(" (" + playerUnlocks.getUnlockCount(recipeKey)  + "/" + UnlockUtil.getMaxCrafts(recipeKey) + ")", TextUtil.AQUA);
         player.sendMessage(text1.append(text2).append(craftText));
+    }
+
+    private boolean canCraftItem(CraftItemEvent event, Player player, int numberOfCrafts, String recipeKey) {
+        //Check if Inventory is big enough
+        if (event.isShiftClick() && !hasEnoughEmptySlots(player, numberOfCrafts)) {
+            TextUtil.errorMessage(player, "Your inventory is too full to craft that much!");
+            event.setCancelled(true);
+            return false;
+        }
+
+        PlayerUnlocks playerUnlocks = PlayerUtil.getPlayerData(player).getPlayerUnlocks();
+        int currentCrafts = getCurrentCrafts(playerUnlocks, recipeKey);
+
+        //Check if craft is Unlocked
+        if (currentCrafts == -1) {
+            TextUtil.errorMessage(player, "You do not have this item unlocked!");
+            event.getInventory().setResult(null);
+            return false;
+        }
+
+        //Check if player has reached the limit
+        if (currentCrafts >= UnlockUtil.getMaxCrafts(recipeKey)) {
+            event.getInventory().setResult(null);
+            TextUtil.errorMessage(player, "You have reached the crafting limit for this item!");
+            return false;
+        }
+        return true;
     }
 
     private String getKey(Recipe recipe) {

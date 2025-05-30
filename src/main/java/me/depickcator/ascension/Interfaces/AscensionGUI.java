@@ -14,6 +14,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -157,6 +158,11 @@ public abstract class AscensionGUI extends ItemComparison{
 
     /* Triggers when a player interacts with an item in the GUI */
     public abstract void interactWithGUIButtons(InventoryClickEvent event);
+
+    /* Triggers when a player closes the GUI */
+    public boolean runWhenCloseGUI(InventoryCloseEvent event) {
+        return true; //Stub on purpose
+    }
 
 
 }

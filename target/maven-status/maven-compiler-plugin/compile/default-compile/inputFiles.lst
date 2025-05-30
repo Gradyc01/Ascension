@@ -181,6 +181,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\ScavengerLists\Output_Quickplay.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\ItemLists\ScavengerLists\Output_Standard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\RecipeBookModifier.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\Anduril.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\EnderPearl.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\EnlightenedNugget.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBook.java
@@ -210,6 +211,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\IronTools.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\Kit.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\Looter.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\Kits\Scout.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\ViewKitGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\ChestLootModifier.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\ChestLootTable.java

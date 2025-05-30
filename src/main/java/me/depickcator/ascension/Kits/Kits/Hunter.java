@@ -45,7 +45,6 @@ public class Hunter extends Kit {
         ItemStack item = new ItemStack(Material.IRON_AXE);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
-        meta.setCustomModelData(10);
         item.setItemMeta(meta);
         return item;
     }

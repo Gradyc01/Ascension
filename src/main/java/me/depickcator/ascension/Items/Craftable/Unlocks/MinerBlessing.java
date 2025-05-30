@@ -18,6 +18,7 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.Damageable;
 
@@ -36,6 +37,20 @@ public class MinerBlessing extends Craft implements ItemClick {
         return instance;
     }
 
+    private RecipeChoice makeRecipeChoice() {
+        List<ItemStack> itemStacks = new ArrayList<>();
+        ItemStack item = QuickPick.getInstance().getResult();
+
+        for (int i = 0; i < 250; i++) {
+            ItemStack pick = item.clone();
+            Damageable meta = (Damageable) pick.getItemMeta();
+            meta.setDamage(i);
+            pick.setItemMeta(meta);
+            itemStacks.add(pick);
+        }
+        return new RecipeChoice.ExactChoice(itemStacks);
+    }
+
     protected Recipe initRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
 
@@ -43,7 +58,7 @@ public class MinerBlessing extends Craft implements ItemClick {
         recipe.shape("AB ", "BC ", "  D");
         recipe.setIngredient('A', Material.TNT);
         recipe.setIngredient('B', Material.DIAMOND);
-        recipe.setIngredient('C', QuickPick.getInstance().getResult());
+        recipe.setIngredient('C', makeRecipeChoice());
         recipe.setIngredient('D', MakeshiftSkull.getInstance().getResult());
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
