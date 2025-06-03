@@ -3,7 +3,7 @@ package me.depickcator.ascension.MainMenuUI.Command.Commands;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
-import me.depickcator.ascension.Player.Cooldowns.TeleportSequence;
+import me.depickcator.ascension.Effects.TeleportSequence;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Utility.TextUtil;

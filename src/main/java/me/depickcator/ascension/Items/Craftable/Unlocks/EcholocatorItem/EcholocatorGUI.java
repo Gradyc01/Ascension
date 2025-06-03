@@ -1,11 +1,14 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem;
 
+import me.depickcator.ascension.General.LocationChecker.LocationCheck;
+import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locations.Structures.Villages.*;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locations.Biomes.*;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locations.Structures.*;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -58,15 +61,36 @@ public class EcholocatorGUI extends AscensionGUI {
 
         addLocations(new NetherFortress(), Material.NETHER_BRICKS, 37);
         addLocations(new Bastion(), Material.BLACKSTONE, 38);
+
+        addLocations(new Village_Desert(), Material.GREEN_BED, 33);
+        addLocations(new Village_Savanna(), Material.ORANGE_BED, 34);
+        addLocations(new Village_Plains(), Material.YELLOW_BED, 41);
+        addLocations(new Village_Taiga(), Material.BROWN_BED, 42);
+        addLocations(new Village_Snowy(), Material.WHITE_BED, 43);
     }
 
     private void addLocations(EcholocatorLocations location, Material material, int index) {
-        ItemStack item = new ItemStack(material);
+        String name = location.getName();
+        boolean addInMap = true;
+        Material icon = material;
+        TextColor color = TextUtil.DARK_GREEN;
+        LocationCheck locationCheck = plugin.getLocationCheck();
+        if (!((location.getBiome() != null && locationCheck.isALocation(location.getBiome()))
+                || (location.getStructure() != null && locationCheck.isALocation(location.getStructure())))) {
+            name += " (Not Available)";
+            color = TextUtil.DARK_RED;
+            icon = Material.RED_STAINED_GLASS;
+            addInMap = false;
+        }
+
+        ItemStack item = new ItemStack(icon);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(TextUtil.makeText(location.getName(), TextUtil.DARK_GREEN));
+        meta.displayName(TextUtil.makeText(name, color));
         meta.setCustomModelData(0xFF0000);
         item.setItemMeta(meta);
-        map.put(item, location);
+        if (addInMap) {
+            map.put(item, location);
+        }
         inventory.setItem(index, item);
     }
 

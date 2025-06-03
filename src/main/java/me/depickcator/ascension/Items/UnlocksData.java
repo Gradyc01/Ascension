@@ -144,7 +144,8 @@ public class UnlocksData {
                 WingsOfIcarus.getInstance(),
                 Panacea.getInstance(),
                 TabletsOfDestiny.getInstance(),
-                Daredevil.getInstance()
+                Daredevil.getInstance(),
+                Poseidon.getInstance()
         ));
     }
 

@@ -15,6 +15,7 @@ public class MapItem {
     public static final int CARE_PACKAGE = 1;
     public static final int SCAVENGER = 2;
     public static final int ASCENSION = 3;
+    public static final int ACTIVE_ASCENSION = 4;
     public MapItem(String name, int x, int z, int type) {
         this.name = name;
         this.x = x;

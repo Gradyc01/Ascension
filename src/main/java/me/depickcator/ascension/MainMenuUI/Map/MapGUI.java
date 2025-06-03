@@ -51,6 +51,13 @@ public class MapGUI extends AscensionGUI {
                     index = coords.getRight() > Ascension.getSpawn().getBlockZ() ? index : index + 36;
                     inventory.setItem(index, makeSquare(mapItem, Material.REINFORCED_DEEPSLATE));
                 }
+                case MapItem.ACTIVE_ASCENSION -> {
+                    int index;
+                    Pair<Integer, Integer> coords = mapItem.getCoords();
+                    index = coords.getLeft() > Ascension.getSpawn().getBlockX() ? 2 : 6;
+                    index = coords.getRight() > Ascension.getSpawn().getBlockZ() ? index : index + 36;
+                    inventory.setItem(index, makeSquare(mapItem, Material.END_PORTAL_FRAME));
+                }
                 case MapItem.SCAVENGER -> {
                     inventory.setItem(scavengerIndex, makeSquare(mapItem, Material.FEATHER));
                     scavengerIndex+=9;

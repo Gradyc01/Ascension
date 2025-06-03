@@ -11,11 +11,15 @@ import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers.AscensionBuildLayers;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.loot.LootTables;
 import org.bukkit.util.Vector;
 
 public class AscensionLocation extends EntityInteraction {
@@ -25,7 +29,7 @@ public class AscensionLocation extends EntityInteraction {
     private final Ascension plugin;
     private final AscensionEvent event;
     private Team ascendingTeam;
-    private final MapItem mapItem;
+    private MapItem mapItem;
     private final AscensionBuildLayers buildLayers;
     private final Timeline timeline;
 
@@ -34,6 +38,7 @@ public class AscensionLocation extends EntityInteraction {
         plugin = Ascension.getInstance();
         timeline = plugin.getSettingsUI().getSettings().getTimeline();
         this.spawnLocation = findLocation(x, z);
+        this.spawnLocation.add(0.49, 0, 0.49);
         buildLayers = new AscensionBuildLayers(spawnLocation);
         forceLoadChunk(true);
         buildLayers.buildInitialLayer();
@@ -49,7 +54,6 @@ public class AscensionLocation extends EntityInteraction {
         PlayerData pD = PlayerUtil.getPlayerData(p);
         TextUtil.debugText(p.getName() + " Right Clicked a gatekeeper");
         if (!this.event.canStartEvent(pD)) {
-            p.sendMessage(TextUtil.makeText("Go away! I can't help you", TextUtil.DARK_GRAY));
             return false;
         }
         removeInteraction(entity);
@@ -68,14 +72,30 @@ public class AscensionLocation extends EntityInteraction {
         entity.teleport(new Location(spawnLocation.getWorld(), spawnLocation.getX(), spawnLocation.getY() + 10, spawnLocation.getZ()));
         entity.setVelocity(new Vector(0, 1, 0));
         // Wither w = (Wither) entity;
-        plugin.getServer().broadcast(TextUtil.makeText("The ascension wither activate"));
         startText();
+        changeToActiveAscension();
+        buildLayers.buildPillars(entity.getLocation().getBlockY());
     }
 
     public void closeLocation() {
         timeline.getMapItems().removeMapItem(mapItem);
         entity.remove();
+        buildLayers.destroyCrystals();
         forceLoadChunk(false);
+    }
+
+    public void updateBossBarHealth() {
+        Wither wither = (Wither) entity;
+        BossBar bossBar = wither.getBossBar();
+        bossBar.setProgress(wither.getHealth() / wither.getAttribute(Attribute.MAX_HEALTH).getBaseValue());
+    }
+
+    private void changeToActiveAscension() {
+        int x = mapItem.getCoords().getLeft();
+        int z = mapItem.getCoords().getRight();
+        timeline.getMapItems().removeMapItem(mapItem);
+        mapItem = new MapItem("Active Ascension", x, z, MapItem.ACTIVE_ASCENSION);
+        timeline.getMapItems().addMapItem(mapItem);
     }
 
     private void startText() {
@@ -90,7 +110,7 @@ public class AscensionLocation extends EntityInteraction {
         SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 20f, 0.7);
     }
 
-     private void forceLoadChunk(boolean forceLoad) {
+    private void forceLoadChunk(boolean forceLoad) {
          plugin.getWorld().setChunkForceLoaded(
                  (int) Math.floor((double) spawnLocation.getBlockX() /16),
                  (int) Math.floor((double) spawnLocation.getBlockZ() /16),
@@ -113,8 +133,6 @@ public class AscensionLocation extends EntityInteraction {
         livingEntity.setSilent(true);
         livingEntity.setPersistent(true);
         livingEntity.setInvulnerable(true);
-//        Wither wither = (Wither) livingEntity;
-//        wither.setLootTable(LootTables.PLAYER.getLootTable());
         return livingEntity;
     }
 

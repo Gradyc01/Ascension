@@ -44,7 +44,8 @@ public class Output_Standard extends ItemLists {
                 HeliosCurse.getInstance(),
                 CupidBow.getInstance(),
                 MinerBlessing.getInstance(),
-                ToolVoucher.getInstance()
+                ToolVoucher.getInstance(),
+                Poseidon.getInstance()
         ), 1));
         items.addAll(getRandomItemInList(List.of(
                 Nectar.getInstance().getResult(),

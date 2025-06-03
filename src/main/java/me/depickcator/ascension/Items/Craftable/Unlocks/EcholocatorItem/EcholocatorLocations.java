@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem;
 
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
@@ -15,12 +16,14 @@ public abstract class EcholocatorLocations {
     private final String name;
     private final Structure structure;
     private final Biome biome;
+    protected final int worldBorderSize;
     // private final Ascension plugin;
     private final World world;
     public EcholocatorLocations(String name, Structure structure, World world) {
         this.name = name;
         this.structure = structure;
         this.biome = null;
+        worldBorderSize = Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize();
         // this.plugin = Ascension.getInstance();
         this.world = world;
     }
@@ -29,6 +32,7 @@ public abstract class EcholocatorLocations {
         this.name = name;
         this.structure = null;
         this.biome = biome;
+        worldBorderSize = Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize();
         // this.plugin = Ascension.getInstance();
         this.world = world;
     }
@@ -46,7 +50,7 @@ public abstract class EcholocatorLocations {
         Location loc = locateNearest(pD);
         Component text = TextUtil.topBorder(TextUtil.BLUE);
         if (loc == null || !world.getWorldBorder().isInside(loc)) {
-            text = text.append(TextUtil.makeText("                  " + name + " not found", TextUtil.RED));
+            text = text.append(TextUtil.makeText("    " + name + " not found try echolocating somewhere else", TextUtil.RED));
             text = text.append(TextUtil.bottomBorder(TextUtil.BLUE));
             TextUtil.broadcastMessage(text, pD.getPlayerTeam().getTeam().getTeamMembers());
             return false;

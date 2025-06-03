@@ -79,15 +79,7 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
 
     @Override
     public void applyKey(EntityShootBowEvent event) {
-        if (!(event.getProjectile() instanceof Arrow)) return;
-//        ItemStack bow = event.getBow();
-//        assert bow != null;
-        Arrow arrow = (Arrow) event.getProjectile();
-        arrow.setMetadata(ShootsProjectiles.METADATA, new FixedMetadataValue(plugin, KEY));
-        arrow.setDamage(0.5);
-//        PersistentDataContainer container = arrow.getPersistentDataContainer();
-//        NamespacedKey key = new NamespacedKey(plugin, "arrow");
-//        container.set(key, PersistentDataType.STRING, KEY);
+        /*Empty on Purpose*/
     }
 
     @Override
@@ -99,7 +91,6 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
             p.sendMessage(TextUtil.makeText("BLINDED", TextUtil.DARK_GRAY, true, false));
             p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 2.0f);
         }
-//        event.setDamage(0.1);
         return 0.1;
     }
 }

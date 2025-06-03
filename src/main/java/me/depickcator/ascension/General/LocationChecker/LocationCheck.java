@@ -88,10 +88,18 @@ public class LocationCheck {
         return storages;
     }
 
+    private List<LocationStorage> initNetherStructures() {
+        return new ArrayList<>(List.of(
+                new LocationStorage(Structure.BASTION_REMNANT, 5, "Bastion"),
+                new LocationStorage(Structure.FORTRESS, 5, "Nether Fortress")
+        ));
+    }
+
     private List<LocationStorage> initStructures() {
         List<LocationStorage> storages = new ArrayList<>(List.of(
                 new LocationStorage(Structure.OCEAN_RUIN_COLD, 10, "Ocean Ruin"),
                 new LocationStorage(Structure.SHIPWRECK, 10, "Ship Wreck"),
+                new LocationStorage(Structure.MINESHAFT, 10, "Mine Shaft"),
                 new LocationStorage(Structure.VILLAGE_DESERT, 10, "Village: Desert"),
                 new LocationStorage(Structure.VILLAGE_PLAINS, 10, "Village: Plains"),
                 new LocationStorage(Structure.VILLAGE_SAVANNA, 10, "Village: Savanna"),
@@ -112,6 +120,7 @@ public class LocationCheck {
     private void runLocations() {
         List<LocationStorage> allChecks = new ArrayList<>(initStructures());
         allChecks.addAll(initBiomes());
+        List<LocationStorage> netherChecks = new ArrayList<>(initNetherStructures());
         task = new BukkitRunnable() {
             @Override
             public void run() {
@@ -122,6 +131,16 @@ public class LocationCheck {
                     TextUtil.debugText("World Checker Complete");
                     return;
                 }
+
+                if (netherChecks.isEmpty()) {
+                    runWorldCheck();
+                } else {
+                    runNetherCheck();
+                }
+
+            }
+
+            private void runWorldCheck() {
                 LocationStorage check = allChecks.getFirst();
                 boolean found = false;
                 if (check.getStructure() != null) {
@@ -131,14 +150,45 @@ public class LocationCheck {
                 }
                 TextUtil.debugText(check.getDisplayName() + "         " + found);
                 allChecks.removeFirst();
+            }
 
-
+            private void runNetherCheck() {
+                LocationStorage check = netherChecks.getFirst();
+                boolean found = false;
+                if (check.getStructure() != null) {
+                    found = checkLocation(check.getStructure(), check, Ascension.getInstance().getNether());
+                }
+                TextUtil.debugText(check.getDisplayName() + "         " + found);
+                netherChecks.removeFirst();
             }
         }.runTaskTimer(Ascension.getInstance(), 0, 20);
-
     }
 
     private boolean checkLocation(Structure structure, LocationStorage storage) {
+//        StructureSearchResult result = world.locateNearestStructure(spawn, structure, worldBorderSize, false);
+//        boolean ans;
+//        if (result == null) {
+//            ans = false;
+//        } else {
+//            ans = calculateEuclideanDistance(result.getLocation(), spawn) <= worldBorderSize;
+//        }
+//        storage.setInWorld(ans);
+//        structures.put(structure, storage);
+//        addScore(ans, storage.getPoints());
+//        return ans;
+        return checkLocation(structure, storage, world);
+    }
+
+    private boolean checkLocation(Biome biome, LocationStorage storage) {
+        BiomeSearchResult result = world.locateNearestBiome(spawn, worldBorderSize, biome);
+        boolean ans = result != null;
+        storage.setInWorld(ans);
+        biomes.put(biome, storage);
+        addScore(ans, storage.getPoints());
+        return ans;
+    }
+
+    private boolean checkLocation(Structure structure, LocationStorage storage, World world) {
         StructureSearchResult result = world.locateNearestStructure(spawn, structure, worldBorderSize, false);
         boolean ans;
         if (result == null) {
@@ -148,15 +198,6 @@ public class LocationCheck {
         }
         storage.setInWorld(ans);
         structures.put(structure, storage);
-        addScore(ans, storage.getPoints());
-        return ans;
-    }
-
-    private boolean checkLocation(Biome biome, LocationStorage storage) {
-        BiomeSearchResult result = world.locateNearestBiome(spawn, worldBorderSize, biome);
-        boolean ans = result != null;
-        storage.setInWorld(ans);
-        biomes.put(biome, storage);
         addScore(ans, storage.getPoints());
         return ans;
     }

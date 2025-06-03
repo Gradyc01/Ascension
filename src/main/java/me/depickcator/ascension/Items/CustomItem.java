@@ -1,6 +1,9 @@
 package me.depickcator.ascension.Items;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.UseCooldown;
 import me.depickcator.ascension.Ascension;
+import net.kyori.adventure.key.Key;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 
@@ -28,6 +31,15 @@ public abstract class CustomItem {
     protected CustomModelDataComponent generateUniqueModelNumber(CustomModelDataComponent model) {
         model.setFloats(new ArrayList<>(List.of((float) Ascension.getInstance().generateModelNumber())));
         return model;
+    }
+
+    protected void addCooldownGroup(ItemStack item, float seconds) {
+        item.setData(DataComponentTypes.USE_COOLDOWN,
+                UseCooldown.useCooldown(seconds)
+                        .cooldownGroup(Key.key(Ascension.getInstance().getName().toLowerCase()+ ":" + getKey())));
+    }
+    protected void addCooldownGroup(ItemStack item) {
+        addCooldownGroup(item, 0.01f);
     }
 
     public String getDisplayName() {

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Testing extends Settings {
     public Testing() {
-        super("Testing", 500, 15, new StandardTimeline());
+        super("Testing", 550, 15, new StandardTimeline());
     }
 
     @Override

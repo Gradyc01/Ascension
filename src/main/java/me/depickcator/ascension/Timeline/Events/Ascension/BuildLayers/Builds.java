@@ -3,6 +3,7 @@ package me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.metadata.FixedMetadataValue;
 
@@ -25,10 +26,10 @@ public class Builds {
                     block.setType(b.getType());
                     block.setBlockData(b.getBlockData());
                     block.setMetadata("UNBREAKABLE", new FixedMetadataValue(plugin, true));
-                    TextUtil.debugText("Placed block at (" +
-                            block.getLocation().getBlockX() + ", " +
-                            block.getLocation().getBlockY() + ", " +
-                            block.getLocation().getBlockZ() + ")");
+//                    TextUtil.debugText("Placed block at (" +
+//                            block.getLocation().getBlockX() + ", " +
+//                            block.getLocation().getBlockY() + ", " +
+//                            block.getLocation().getBlockZ() + ")");
                 }
             }
         }
@@ -46,6 +47,38 @@ public class Builds {
                 fillBlock(loc, x, y, z, x, y - r.nextInt(0, 5), z, b);
             }
         }
+    }
+
+
+    protected void floodBlock(Location loc, double successRate, Random r) {
+        if (r.nextDouble() > successRate) return;
+        int blockX = loc.getBlockX();
+        int blockY = loc.getBlockY();
+        int blockZ = loc.getBlockZ();
+        Block block = loc.getWorld().getBlockAt(blockX, blockY, blockZ);
+        if (block.getType() == Material.END_STONE
+                || block.getType() == Material.OBSIDIAN
+                || block.getType() == Material.AIR) return;
+        Material type = r.nextDouble() <= 0.95 ? Material.END_STONE : Material.OBSIDIAN;
+        block.setType(type);
+//        block.setBlockData(b.getBlockData());
+//        block.setMetadata("UNBREAKABLE", new FixedMetadataValue(Ascension.getInstance(), true));
+
+        double newSuccessRate = Double.max(0, successRate - r.nextDouble(0.02, 0.10));
+
+        floodBlock(new Location(loc.getWorld(), blockX + 1, blockY, blockZ + 1), newSuccessRate, r);
+        floodBlock(new Location(loc.getWorld(), blockX + 1, blockY, blockZ + 0), newSuccessRate, r);
+        floodBlock(new Location(loc.getWorld(), blockX + 1, blockY, blockZ - 1), newSuccessRate, r);
+
+        floodBlock(new Location(loc.getWorld(), blockX + 0, blockY, blockZ + 1), newSuccessRate, r);
+        floodBlock(new Location(loc.getWorld(), blockX + 0, blockY, blockZ - 1), newSuccessRate, r);
+
+        floodBlock(new Location(loc.getWorld(), blockX - 1, blockY, blockZ + 1), newSuccessRate, r);
+        floodBlock(new Location(loc.getWorld(), blockX - 1, blockY, blockZ + 0), newSuccessRate, r);
+        floodBlock(new Location(loc.getWorld(), blockX - 1, blockY, blockZ - 1), newSuccessRate, r);
+
+        floodBlock(new Location(loc.getWorld(), blockX, blockY - 1, blockZ), newSuccessRate, r);
+        floodBlock(new Location(loc.getWorld(), blockX, blockY + 1, blockZ), newSuccessRate, r);
     }
 
     // private void setBlock(Location loc, int x1, int y1, int z1, Block block) {

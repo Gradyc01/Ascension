@@ -2,6 +2,7 @@ package me.depickcator.ascension.Timeline.Events.Ascension;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
+import me.depickcator.ascension.Player.Cooldowns.EntityInteractionCooldown;
 import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -10,6 +11,8 @@ import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.TeamStats;
 import me.depickcator.ascension.Timeline.Events.Winner.Winner;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Sound;
 import org.bukkit.WorldBorder;
 import org.bukkit.entity.Wither;
@@ -83,10 +86,12 @@ public class AscensionEvent {
                 }
                 if (timer % 60 == 2 && !e.isCharged()) {
                     e.getWorld().createExplosion(e, e.getLocation(), 4f, false, true, true);
+//                    e.getHealth()
                 }
                 timer--;
                 TextUtil.debugText("Ascension Timer: " + timer);
                 timeline.updatePlayers();
+                ascensionLocation.updateBossBarHealth();
                 teamStats.addAscensionTimer(-1);
             }
         }.runTaskTimer(Ascension.getInstance(), 0, 20);
@@ -134,7 +139,7 @@ public class AscensionEvent {
         text = text.append(TextUtil.makeText("\n            ASCENSION DENIED\n", TextUtil.WHITE, true, false));
         text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
         TextUtil.broadcastMessage(text);
-        SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 20, 1);
+        SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 100, 1);
     }
 
     private void successText() {
@@ -142,7 +147,7 @@ public class AscensionEvent {
         text = text.append(TextUtil.makeText("\n            ASCENSION COMPLETE\n", TextUtil.WHITE, true, false));
         text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
         TextUtil.broadcastMessage(text);
-        SoundUtil.broadcastSound(Sound.ENTITY_ENDER_DRAGON_DEATH, 20, 1);
+        SoundUtil.broadcastSound(Sound.ENTITY_ENDER_DRAGON_DEATH, 100, 1);
     }
 
     private void broadcastLocations() {
@@ -161,11 +166,30 @@ public class AscensionEvent {
     }
 
     public boolean canStartEvent(PlayerData pD) {
+        if (EntityInteractionCooldown.getInstance().isOnCooldown(pD.getPlayer())) return false;
         TextUtil.debugText("Ran Ascension Check");
-        if (eventOngoing) return false;
+        boolean canBeginAscension = pD.getPlayerTeam().getTeam().getTeamStats().canBeginAscension();
+        boolean hasAscensionKey = pD.getPlayer().getInventory().getItemInMainHand().equals(AscensionKey.getInstance().getResult());
+        Component text = TextUtil.topBorder(TextUtil.DARK_GRAY)
+                .append(TextUtil.makeText("            Failed to Start Ascension", TextUtil.WHITE, true, false))
+                .append(createRejectionText(!eventOngoing, "No Ascension Event Happening"))
+                .append(createRejectionText(canBeginAscension, "Is Ascension Ready"))
+                .append(createRejectionText(hasAscensionKey, "Has an Ascension Key"))
+                .append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
+//        if (eventOngoing) return false;
 //        int score = pD.getPlayerTeam().getTeam().getTeamStats().getGameScore();
-        return pD.getPlayerTeam().getTeam().getTeamStats().canBeginAscension() &&
-                pD.getPlayer().getInventory().getItemInMainHand().equals(AscensionKey.getInstance().getResult());
+        if (!eventOngoing && hasAscensionKey && canBeginAscension) {
+            return true;
+        } else {
+            pD.getPlayer().sendMessage(text);
+            return false;
+        }
+
+    }
+
+    private Component createRejectionText(boolean canQualify, String text) {
+        TextColor color = canQualify ? TextUtil.GREEN : TextUtil.RED;
+        return TextUtil.makeText("\n   " + text, color);
     }
 
 //    public Team getAscendingTeam() {

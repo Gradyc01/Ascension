@@ -4,6 +4,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\LightApple.class
 me\depickcator\ascension\General\Game\Delete\GameDelete.class
 me\depickcator\ascension\Items\Craftable\Unlocks\DiamondPack.class
 me\depickcator\ascension\Kits\KitBookGUI.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Plains.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Shield.class
 me\depickcator\ascension\Lobby\EventsBoard\EventBoard.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Nectar.class
@@ -17,9 +18,9 @@ me\depickcator\ascension\General\Game\GameLauncher.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\OminousTrialsLoot.class
 me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassTrackSpecificPlayer.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Tarnhelm.class
-me\depickcator\ascension\Player\Cooldowns\TeleportSequence.class
 me\depickcator\ascension\Items\Uncraftable\ToolVoucher\ToolVoucher.class
 me\depickcator\ascension\MainMenuUI\Map\MapItems.class
+me\depickcator\ascension\Timeline\Events\Ascension\BuildLayers\AscensionBuildLayers$1.class
 me\depickcator\ascension\Player\Cooldowns\ScanBoardCooldown.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\PillagerOutpost.class
 me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.class
@@ -40,6 +41,7 @@ me\depickcator\ascension\Lobby\EventsBoard\Boards\Ascension.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.class
 me\depickcator\ascension\General\Game\Start\Sequences\SetWorldBorder.class
 me\depickcator\ascension\Player\Data\PlayerData.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Savanna.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Daredevil.class
 me\depickcator\ascension\Teams\TeamUtil.class
@@ -121,6 +123,7 @@ me\depickcator\ascension\Items\UnlocksData.class
 me\depickcator\ascension\MainMenuUI\Command\Commands\NightVision.class
 me\depickcator\ascension\listeners\Combat\ShootsProjectiles.class
 me\depickcator\ascension\Lobby\NPCs\WeaponsValues\WeaponValuesGUI.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Snowy.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HideOfLeviathan.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.class
 me\depickcator\ascension\Timeline\Events\Winner\Winner$1.class
@@ -129,6 +132,7 @@ me\depickcator\ascension\listeners\PlayerInteractListener.class
 me\depickcator\ascension\Lobby\EventsBoard\EventBoardGUI.class
 me\depickcator\ascension\Lobby\NPCs\ViewMap.class
 me\depickcator\ascension\commands\Backpack.class
+me\depickcator\ascension\Items\Craftable\Unlocks\Poseidon.class
 me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect$1.class
 me\depickcator\ascension\General\Game\Load\Sequences\ClearEntityInteractions.class
 me\depickcator\ascension\MainMenuUI\Command\Commands\AscensionTravel.class
@@ -172,6 +176,7 @@ me\depickcator\ascension\General\Game\Load\Sequences\CallResetGame.class
 me\depickcator\ascension\General\Game\Load\LoadGame.class
 me\depickcator\ascension\Kits\Kits\Scout.class
 me\depickcator\ascension\MainMenuUI\Map\MapItem.class
+me\depickcator\ascension\Effects\NatureWrath.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HeliosCurse.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\BastionTreasure.class
 me\depickcator\ascension\Items\Craftable\Unlocks\AncientArtifact.class
@@ -243,6 +248,7 @@ me\depickcator\ascension\Settings\BuildCustom\Buttons\MediumItems.class
 me\depickcator\ascension\General\LocationChecker\LocationCheck.class
 me\depickcator\ascension\Utility\SoundUtil.class
 me\depickcator\ascension\commands\Shout.class
+me\depickcator\ascension\Effects\NatureWrath$1.class
 me\depickcator\ascension\Lobby\NPCBoard2.class
 me\depickcator\ascension\LootTables\Blocks\Ores\DiamondOre.class
 me\depickcator\ascension\General\Game\Reset\Sequences\ResetTeams.class
@@ -325,10 +331,13 @@ me\depickcator\ascension\listeners\PlayerChatting.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastChests$2.class
 me\depickcator\ascension\General\Game\Load\Sequences\BuildLobby.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Mineshaft.class
+me\depickcator\ascension\Player\Cooldowns\EntityInteractionCooldown.class
+me\depickcator\ascension\Effects\TeleportSequence.class
 me\depickcator\ascension\General\Queue\Queue$1.class
 me\depickcator\ascension\Settings\GUIs\SettingsCustomGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\AscensionKey.class
 me\depickcator\ascension\General\Game\Start\Sequences\TextSequence.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Desert.class
 me\depickcator\ascension\MainMenuUI\Command\Commands\Surface.class
 me\depickcator\ascension\Items\ItemLists\ScavengerLists\Input_Standard.class
 me\depickcator\ascension\Items\Uncraftable\RejuvenationBook.class
@@ -385,6 +394,8 @@ me\depickcator\ascension\Items\Uncraftable\HadesBook\HadesBookGUI.class
 me\depickcator\ascension\LootTables\Entities\Entities\Turtle.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\DesertPyramid.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfPower.class
+me\depickcator\ascension\Effects\TeleportSequence$1.class
+me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Taiga.class
 me\depickcator\ascension\Items\Uncraftable\Skulls\ZombieHead.class
 me\depickcator\ascension\Lobby\NPCs\LobbyNPCs.class
 me\depickcator\ascension\Timeline\Events\GracePeriod\GracePeriodEnds.class
@@ -404,7 +415,6 @@ me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Leaves.class
 me\depickcator\ascension\Settings\Presets\Standard.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\Scavenger.class
 me\depickcator\ascension\listeners\Combat\onElytraFlight.class
-me\depickcator\ascension\Player\Cooldowns\TeleportSequence$1.class
 me\depickcator\ascension\Settings\BuildCustom\Button.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\Events.class
 me\depickcator\ascension\Items\Uncraftable\NetherStar\NetherStar.class

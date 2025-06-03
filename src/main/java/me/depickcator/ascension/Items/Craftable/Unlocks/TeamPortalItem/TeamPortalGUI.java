@@ -6,7 +6,7 @@ import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
-import me.depickcator.ascension.Player.Cooldowns.TeleportSequence;
+import me.depickcator.ascension.Effects.TeleportSequence;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.Team;
 import org.bukkit.Material;

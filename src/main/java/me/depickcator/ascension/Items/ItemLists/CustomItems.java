@@ -12,6 +12,7 @@ import me.depickcator.ascension.Items.Uncraftable.RejuvenationBook;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
+import org.bukkit.entity.Pose;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -87,6 +88,7 @@ public class CustomItems extends ItemLists{
         items.add(ApolloGlare.getInstance().getResult());
         items.add(HeliosCurse.getInstance().getResult());
         items.add(CupidBow.getInstance().getResult());
+        items.add(Poseidon.getInstance().getResult());
         return items;
     }
 }

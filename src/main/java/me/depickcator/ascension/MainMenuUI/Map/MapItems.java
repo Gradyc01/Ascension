@@ -4,19 +4,14 @@ import com.lunarclient.apollo.Apollo;
 import com.lunarclient.apollo.common.location.ApolloBlockLocation;
 import com.lunarclient.apollo.module.waypoint.Waypoint;
 import com.lunarclient.apollo.module.waypoint.WaypointModule;
-import com.lunarclient.apollo.player.ApolloPlayer;
 import com.lunarclient.apollo.recipients.Recipients;
-import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Player.Data.PlayerData;
-import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 public class MapItems {
     private final List<MapItem> mapItems;
@@ -52,8 +47,12 @@ public class MapItems {
 
     /*Removes a Lunar waypoint for all players */
     private void removeLunarWaypoint(MapItem mapItem) {
-        WaypointModule waypointModule = Apollo.getModuleManager().getModule(WaypointModule.class);
-        waypointModule.removeWaypoint(Recipients.ofEveryone(), lunarNames.get(mapItem));
+        try {
+            WaypointModule waypointModule = Apollo.getModuleManager().getModule(WaypointModule.class);
+            waypointModule.removeWaypoint(Recipients.ofEveryone(), lunarNames.get(mapItem));
+        } catch (Exception e) {
+            TextUtil.debugText("Error Occurred: " + e.getMessage());
+        }
 //        Optional<ApolloPlayer> apolloPlayerOpt = Apollo.getPlayerManager().getPlayer(p.getUniqueId());
 //        apolloPlayerOpt.ifPresent(apolloPlayer -> waypointModule.removeWaypoint(apolloPlayer, "Spawn"));
     }

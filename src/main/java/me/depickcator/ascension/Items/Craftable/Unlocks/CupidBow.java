@@ -1,10 +1,13 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.UseCooldown;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.listeners.Combat.ShootsProjectiles;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
+import net.kyori.adventure.key.Key;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -14,10 +17,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.CrossbowMeta;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
+import org.bukkit.inventory.meta.components.UseCooldownComponent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -51,11 +58,17 @@ public class CupidBow extends Craft implements ShootsProjectiles {
         meta.setCustomModelData(plugin.generateModelNumber());
         meta.setMaxStackSize(1);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.DARK_RED));
+//        meta.getUseCooldown().setCooldownGroup(key);
         meta.getPersistentDataContainer().set(ShootsProjectiles.key, PersistentDataType.STRING, KEY);
         item.setItemMeta(meta);
         Damageable meta1 = (Damageable) item.getItemMeta();
         meta1.setMaxDamage(32);
         item.setItemMeta(meta1);
+//        UseCooldownComponent component = UseCooldown.useCooldown(1).build().;
+//        /
+        item.setData(DataComponentTypes.USE_COOLDOWN,
+                UseCooldown.useCooldown(0.01f)
+                .cooldownGroup(Key.key(plugin.getName().toLowerCase()+ ":" + getKey())));
         return item;
     }
 
@@ -66,24 +79,18 @@ public class CupidBow extends Craft implements ShootsProjectiles {
 
     @Override
     public void applyKey(EntityShootBowEvent event) {
-        if (!(event.getProjectile() instanceof Arrow)) return;
-        Arrow arrow = (Arrow) event.getProjectile();
-        arrow.setMetadata(ShootsProjectiles.METADATA, new FixedMetadataValue(plugin, KEY));
-        arrow.setDamage(3.0);
+        /*Empty on Purpose*/
         Player player = (Player) event.getEntity();
-        player.setCooldown(Material.CROSSBOW, 6 * 20);
-
-        //
-//        new BukkitRunnable() {
-//            @Override
-//            public void run() {
-//                ItemStack bow = event.getBow();
-//                CrossbowMeta meta = (CrossbowMeta) bow.getItemMeta();
-//                meta.addChargedProjectile(new ItemStack(Material.ARROW));
-//                bow.setItemMeta(meta);
-//            }
-//        }.runTaskLater(plugin, 20);
-
+        ItemStack bow = event.getBow();
+        player.setCooldown(bow, 8 * 20);
+        PlayerInventory inv = player.getInventory();
+        if (inv.contains(Material.ARROW)) {
+            ItemStack item = inv.getItem(inv.first(Material.ARROW));
+            item.setAmount(item.getAmount() - 1);
+            CrossbowMeta bowMeta = (CrossbowMeta) bow.getItemMeta();
+            bowMeta.addChargedProjectile(item);
+            bow.setItemMeta(bowMeta);
+        }
 
     }
 

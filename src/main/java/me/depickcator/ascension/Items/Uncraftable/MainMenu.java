@@ -9,6 +9,7 @@ import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
+import net.kyori.adventure.key.Key;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -37,10 +38,13 @@ public class MainMenu extends CustomItem implements ItemClick {
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         itemMeta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA).append(TextUtil.rightClickText()));
-        itemMeta.setCustomModelData(Ascension.getInstance().generateModelNumber());
+        itemMeta.setCustomModelDataComponent(generateUniqueModelNumber(itemMeta.getCustomModelDataComponent()));
         itemMeta.setMaxStackSize(1);
         itemMeta.setEnchantmentGlintOverride(true);
         item.setItemMeta(itemMeta);
+        item.setData(DataComponentTypes.USE_COOLDOWN,
+                UseCooldown.useCooldown(0.01f)
+                        .cooldownGroup(Key.key(Ascension.getInstance().getName().toLowerCase()+ ":" + getKey())));
         return item;
     }
 

@@ -7,7 +7,7 @@ import org.bukkit.block.Biome;
 
 public class MushroomIsland extends EcholocatorLocations {
     public MushroomIsland() {
-        super("Mushroom Island", Biome.SWAMP, Ascension.getInstance().getWorld());
+        super("Mushroom Island", Biome.MUSHROOM_FIELDS, Ascension.getInstance().getWorld());
     }
 
     @Override

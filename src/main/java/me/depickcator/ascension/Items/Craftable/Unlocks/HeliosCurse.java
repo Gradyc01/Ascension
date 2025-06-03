@@ -73,10 +73,7 @@ public class HeliosCurse extends Craft implements ShootsProjectiles {
 
     @Override
     public void applyKey(EntityShootBowEvent event) {
-        if (!(event.getProjectile() instanceof Arrow)) return;
-        Arrow arrow = (Arrow) event.getProjectile();
-        arrow.setMetadata(ShootsProjectiles.METADATA, new FixedMetadataValue(plugin, KEY));
-        arrow.setDamage(0.2);
+        /*Empty on Purpose*/
     }
 
     @Override

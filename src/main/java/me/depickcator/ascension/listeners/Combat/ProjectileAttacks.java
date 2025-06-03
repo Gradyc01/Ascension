@@ -1,6 +1,7 @@
 package me.depickcator.ascension.listeners.Combat;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.testingCommands.Debugger;
@@ -12,9 +13,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +35,8 @@ public class ProjectileAttacks implements Listener {
         }
         Player p = (Player) event.getEntity();
         Entity e = event.getProjectile();
+        ShootsProjectiles item = ShootsProjectiles.getProjectile(event.getBow());
+        if (item != null) item.applyKey(event);
         p.hideEntity(plugin, e);
         new BukkitRunnable() {
             @Override
@@ -39,8 +45,6 @@ public class ProjectileAttacks implements Listener {
             }
 
         }.runTaskLater(plugin, 1);
-//        e.teleport(p.getEyeLocation().add(p.getEyeLocation().getDirection().multiply(0.75)));
-//        e.setVelocity(e.getVelocity().multiply(1.02));
 
     }
 

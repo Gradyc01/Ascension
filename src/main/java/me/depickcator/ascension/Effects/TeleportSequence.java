@@ -1,6 +1,7 @@
-package me.depickcator.ascension.Player.Cooldowns;
+package me.depickcator.ascension.Effects;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Location;

@@ -9,6 +9,7 @@ import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -78,6 +79,7 @@ public class MinerBlessing extends Craft implements ItemClick {
         ));
         meta.lore(lore);
         item.setItemMeta(meta);
+        addCooldownGroup(item);
         return item;
     }
 

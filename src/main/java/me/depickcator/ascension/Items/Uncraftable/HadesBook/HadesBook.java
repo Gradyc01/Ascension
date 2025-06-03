@@ -53,6 +53,7 @@ public class HadesBook extends CustomItem implements ItemClick {
         meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.GOLD, true, false).append(TextUtil.rightClickText()));
         item.setItemMeta(meta);
+        addCooldownGroup(item);
         return item;
     }
 

@@ -40,12 +40,13 @@ public class ResetGame extends GameLauncher {
     @Override
     protected void end() {
         TextUtil.debugText("Game has been Reset!");
+        plugin.getGameState().setCurrentState(GameStates.LOBBY_NORMAL);
         SettingsWriter writer = new SettingsWriter();
         try {
             writer.open();
         } catch (Exception e) {
-            TextUtil.debugText("Failed to open file");
-            e.printStackTrace();
+            TextUtil.debugText("Failed to open file" + e.getMessage());
+
         }
         writer.write();
         writer.close();

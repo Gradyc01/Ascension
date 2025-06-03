@@ -39,7 +39,11 @@ public class ResetPlayers extends GameSequences {
                 PlayerDeath.getInstance().respawnPlayer(pD);
                 pD.resetToLobby();
                 players.remove(p);
-                resetLunarWaypoints(p);
+                try {
+                    resetLunarWaypoints(p);
+                } catch (Exception ignored) {
+                    TextUtil.debugText("Resetting Lunar Waypoints failed moving on");
+                }
                 TextUtil.debugText("Player " + p.getName() + " reset");
             }
         }.runTaskTimer(plugin, 20, 10);

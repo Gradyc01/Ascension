@@ -1,5 +1,6 @@
 package me.depickcator.ascension.listeners.Combat;
 
+import me.depickcator.ascension.Effects.NatureWrath;
 import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Items.Craftable.Unlocks.Exodus;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
@@ -14,6 +15,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Trident;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -117,9 +119,12 @@ public class onDamage extends PlayerCombat{
     private double calculateDamage(EntityDamageByEntityEvent event) {
         double damageDealt;
 //        PlayerData attackerData = PlayerUtil.getPlayerData(attacker);/
-
         if (isPlayerMeleeAttack(event)) {
-            damageDealt = calculatePlayerMeleeAttack(event);
+            if (((Player) event.getDamager()).getInventory().getItemInMainHand().getType() == Material.MACE) {
+                damageDealt = event.getDamage();
+            } else {
+                damageDealt = calculatePlayerMeleeAttack(event);
+            }
         } else if (isPlayerProjectileAttack(event)) {
             damageDealt = calculatePlayerArrowAttack(event);
         } else {
@@ -154,7 +159,9 @@ public class onDamage extends PlayerCombat{
         damageDealt = damageTag * speed;
         damageDealt *= 1 + 0.1 * effectMultiplier((Player) ((AbstractArrow) event.getDamager()).getShooter());
         ShootsProjectiles customWeapon = ShootsProjectiles.getProjectile(weapon);
-        if (customWeapon != null) {
+        if (customWeapon != null
+                && (!(event.getEntity() instanceof Player)
+                || !isBlockingWithShield((Player) event.getEntity(), event))) {
             double newDamage = customWeapon.setProjectileComponent(event, (LivingEntity) event.getEntity());
             if (newDamage != -1) damageDealt = newDamage;
         }
@@ -228,7 +235,8 @@ public class onDamage extends PlayerCombat{
     //====================================================================================
     private void entityDamagedEffects(EntityDamageByEntityEvent event, LivingEntity victim) {
 //        victim.setNoDamageTicks(7);
-        setSpecialArrowIfNecessary(event);
+
+//        setSpecialArrowIfNecessary(event); //Called somewhere else
     }
 
 
@@ -250,7 +258,7 @@ public class onDamage extends PlayerCombat{
 
         Player victim = (Player) event.getEntity();
 //        TextUtil.debugText(victim.getShieldBlockingDelay() + "");
-        if (victim.isBlocking() && event.getFinalDamage() == 0) {
+        if (victim.isBlocking() && event.getFinalDamage() <= 0) {
             int shieldCooldown = Math.min(20, Math.max((int) event.getDamage(), 3));
             TextUtil.debugText(victim.getName() + " Shield Cooldown = " + shieldCooldown + "sec");
             victim.setCooldown(Material.SHIELD, shieldCooldown * 20);
@@ -263,6 +271,10 @@ public class onDamage extends PlayerCombat{
 //                }
 //            }.runTaskLater(plugin, 1);
         }
+    }
+
+    private boolean isBlockingWithShield(Player player, EntityDamageByEntityEvent event) {
+        return player.isBlocking() && event.getFinalDamage() <= 0;
     }
 
     //====================================================================================

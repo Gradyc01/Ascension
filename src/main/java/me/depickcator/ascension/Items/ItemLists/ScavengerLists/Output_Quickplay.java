@@ -45,6 +45,7 @@ public class Output_Quickplay extends ItemLists {
                 HeliosCurse.getInstance(),
                 CupidBow.getInstance(),
                 MinerBlessing.getInstance(),
+                Poseidon.getInstance(),
                 ToolVoucher.getInstance()
         ), 1));
         items.addAll(getRandomItemInList(List.of(
