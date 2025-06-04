@@ -47,6 +47,9 @@ public class GameCommand implements CommandExecutor, TabCompleter {
             case "reset" -> {
                 resetGame();
             }
+            case "reset-" -> {
+                new ResetGame(true);
+            }
             case "pause" -> {
                 new PauseGame();
             }
@@ -90,7 +93,7 @@ public class GameCommand implements CommandExecutor, TabCompleter {
     }
 
     private void resetGame() {
-        new ResetGame();
+        new ResetGame(false);
     }
 
     private void loadGame(int x, int y, int z) {

@@ -11,15 +11,12 @@ import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers.AscensionBuildLayers;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.loot.LootTables;
 import org.bukkit.util.Vector;
 
 public class AscensionLocation extends EntityInteraction {

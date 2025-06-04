@@ -31,9 +31,11 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Gener
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\ReSeed\Sequences\TakeNewSeed.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Reset\ResetGame.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Reset\Sequences\LoadGameRules.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Reset\Sequences\ReloadLobby.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Reset\Sequences\ResetBackpacks.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Reset\Sequences\ResetPlayers.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Reset\Sequences\ResetTeams.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Reset\Sequences\SaveGameStatistics.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Start\Sequences\AdjustStartingGameScore.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Start\Sequences\GiveBrawlItems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Start\Sequences\GiveBrawlItems2.java
@@ -277,6 +279,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\WeaponsValues\WeaponValuesGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\WeaponsValues\WeaponValuesNPC.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\SpecialItems.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\StatsBoard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\WelcomeBoard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockLootTable.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\LootTables\Blocks\BlockUtil.java
@@ -337,11 +340,16 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainM
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Skills\SkillsGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Unlocks\UnlocksGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Unlocks\ViewRecipeGUI.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\AscensionStats.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\DeleteSettings.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\JsonWriter.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\PlayerDataWriter.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\PlayerStats.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\Readers.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\SeedChooser.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\SettingsReader.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\SettingsWriter.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\Writeable.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Cooldowns\CombatTimer.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Cooldowns\Cooldowns.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Cooldowns\Death\DeathTimer.java

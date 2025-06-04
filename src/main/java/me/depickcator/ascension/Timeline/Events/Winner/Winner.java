@@ -23,6 +23,7 @@ public class Winner {
         this.plugin = Ascension.getInstance();
         if (teams.size() == 1) {
             this.team = teams.getFirst();
+            team.getTeamStats().setWin();
             globalAnnouncement();
             winnerAnnouncement();
         } else {
@@ -37,7 +38,7 @@ public class Winner {
     }
 
     private void globalAnnouncement() {
-        Component text = TextUtil.makeText("\n       Winners -   ", TextUtil.YELLOW);
+        Component text = TextUtil.makeText("\n       Winners -  ", TextUtil.YELLOW);
         Component playerNames = appendPlayerNames(team.getTeamMembers());
         TextUtil.broadcastMessage(
                 TextUtil.topBorder(TextUtil.DARK_GREEN)
@@ -67,10 +68,9 @@ public class Winner {
         new BukkitRunnable() {
             @Override
             public void run() {
-                new ResetGame();
+                new ResetGame(plugin.getSettingsUI().getSettings().isCountTowardsLeaderboards());
             }
         }.runTaskLater(Ascension.getInstance(), 60 * 20);
-
     }
 
 

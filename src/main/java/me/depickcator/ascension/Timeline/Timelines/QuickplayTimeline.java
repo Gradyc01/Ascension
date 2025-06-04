@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Timeline.Timelines;
 
-import me.depickcator.ascension.Items.ItemList;
 import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Input_Quickplay;
 import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Output_Quickplay;
 import me.depickcator.ascension.Timeline.Events.Ascension.AscensionEvent;
@@ -11,7 +10,6 @@ import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import me.depickcator.ascension.Timeline.Timeline;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;

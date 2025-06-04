@@ -1,15 +1,12 @@
 package me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Utility.TextUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.EntityType;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;

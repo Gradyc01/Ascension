@@ -1,7 +1,6 @@
 package me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

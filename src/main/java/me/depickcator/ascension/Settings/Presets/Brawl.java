@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class Brawl extends Settings {
     public Brawl() {
-        super("Brawl", 300, 25, new BrawlTimeline());
+        super("Brawl", 300, 25, new BrawlTimeline(), false);
     }
 
     @Override

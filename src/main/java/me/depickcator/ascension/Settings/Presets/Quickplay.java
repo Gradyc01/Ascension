@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Quickplay extends Settings {
     public Quickplay() {
-        super("Quickplay", 1000, 20, new QuickplayTimeline(), 720, 2);
+        super("Quickplay", 1000, 20, new QuickplayTimeline(), 720, 2, true);
     }
 
     @Override

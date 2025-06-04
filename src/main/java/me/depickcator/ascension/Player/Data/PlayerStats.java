@@ -1,18 +1,21 @@
 package me.depickcator.ascension.Player.Data;
 
 
+import com.google.gson.JsonObject;
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Persistence.Writeable;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 
-public class PlayerStats implements PlayerDataObservers {
+public class PlayerStats implements PlayerDataObservers, Writeable {
     private final PlayerData playerData;
     private Player player;
 
     //Statistics
     private int kills;
     private int deaths;
+    private int itemsObtained;
 
     //Keys
     private static final String nightVisionKey = "night_vision";
@@ -54,6 +57,14 @@ public class PlayerStats implements PlayerDataObservers {
         return kills;
     }
 
+    public int getItemsObtained() {
+        return itemsObtained;
+    }
+
+    public void addItemsObtained() {
+        itemsObtained++;
+    }
+
     public void nightVisionSwitch() {
         booleanSwitch(nightVisionKey);
     }
@@ -70,6 +81,9 @@ public class PlayerStats implements PlayerDataObservers {
         return getNamespacedKey(foodDropsKey);
     }
 
+
+    //Deaths
+
     public int getDeaths() {
         return deaths;
     }
@@ -82,8 +96,21 @@ public class PlayerStats implements PlayerDataObservers {
         setDeaths(this.deaths + deaths);
     }
 
+    public void addDeath() {
+        deaths++;
+    }
+
     @Override
     public void updatePlayer() {
         player = playerData.getPlayer();
+    }
+
+    @Override
+    public JsonObject toJson() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("kills", player.getName());
+        jsonObject.addProperty("itemsObtained", itemsObtained);
+        jsonObject.addProperty("deaths", deaths);
+        return jsonObject;
     }
 }

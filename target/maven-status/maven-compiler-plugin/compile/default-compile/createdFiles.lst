@@ -16,6 +16,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\HermesBoots.class
 me\depickcator\ascension\listeners\ChestGeneration\ChestLootModifier.class
 me\depickcator\ascension\General\Game\GameLauncher.class
 me\depickcator\ascension\listeners\ChestGeneration\Tables\OminousTrialsLoot.class
+me\depickcator\ascension\Lobby\StatsBoard$3.class
 me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassTrackSpecificPlayer.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Tarnhelm.class
 me\depickcator\ascension\Items\Uncraftable\ToolVoucher\ToolVoucher.class
@@ -29,6 +30,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\MasterCompass.cla
 me\depickcator\ascension\listeners\InventoryClose.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\DarkForest.class
 me\depickcator\ascension\Settings\BuildCustom\BuildCustom.class
+me\depickcator\ascension\General\Game\Reset\Sequences\ReloadLobby.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\OverWorld.class
 me\depickcator\ascension\General\Game\Start\Sequences\SpreadPlayers.class
 me\depickcator\ascension\LootTables\Blocks\Ores\IronOre.class
@@ -42,6 +44,7 @@ me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Aging.class
 me\depickcator\ascension\General\Game\Start\Sequences\SetWorldBorder.class
 me\depickcator\ascension\Player\Data\PlayerData.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Savanna.class
+me\depickcator\ascension\Persistence\PlayerStats.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Daredevil.class
 me\depickcator\ascension\Teams\TeamUtil.class
@@ -164,7 +167,9 @@ me\depickcator\ascension\General\Game\Load\Sequences\CallLocationCheck.class
 me\depickcator\ascension\Timeline\Events\Feast\FeastChests.class
 me\depickcator\ascension\Items\ItemLists\MediumItems.class
 me\depickcator\ascension\Timeline\Timelines\QuickplayTimeline.class
+me\depickcator\ascension\Persistence\Writeable.class
 me\depickcator\ascension\Items\Uncraftable\NetherStar\NetherStarGUI.class
+me\depickcator\ascension\Lobby\StatsBoard.class
 me\depickcator\ascension\Items\Uncraftable\Anduril.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\CarePackage.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Obsidian.class
@@ -173,6 +178,7 @@ me\depickcator\ascension\Items\Uncraftable\Skulls\Skulls.class
 me\depickcator\ascension\testingCommands\startEvents.class
 me\depickcator\ascension\Skills\SkillExpAmount.class
 me\depickcator\ascension\General\Game\Load\Sequences\CallResetGame.class
+me\depickcator\ascension\General\Game\Reset\Sequences\SaveGameStatistics$1.class
 me\depickcator\ascension\General\Game\Load\LoadGame.class
 me\depickcator\ascension\Kits\Kits\Scout.class
 me\depickcator\ascension\MainMenuUI\Map\MapItem.class
@@ -205,6 +211,7 @@ me\depickcator\ascension\Player\Data\PlayerScoreboard.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\Boxes\PandoraBoxes.class
 me\depickcator\ascension\listeners\PlayerConsumeItem.class
 me\depickcator\ascension\General\Game\Start\Sequences\LaunchSequence.class
+me\depickcator\ascension\Persistence\JsonWriter.class
 me\depickcator\ascension\Items\Craftable\Unlocks\IronPack.class
 me\depickcator\ascension\LootTables\Blocks\BlockLootTable.class
 me\depickcator\ascension\Items\Craftable\Vanilla\IronSword.class
@@ -281,6 +288,7 @@ me\depickcator\ascension\Items\Uncraftable\MainMenu.class
 me\depickcator\ascension\Interfaces\CustomChestLoot.class
 me\depickcator\ascension\LootTables\Entities\Entities\Pig.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfProjectileProtection.class
+me\depickcator\ascension\Lobby\StatsBoard$2.class
 me\depickcator\ascension\LootTables\Entities\Entities\CreeperEntity.class
 me\depickcator\ascension\Lobby\Boards.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenAxe.class
@@ -379,6 +387,7 @@ me\depickcator\ascension\Lobby\NPCs\WeaponsValues\WeaponValuesNPC.class
 me\depickcator\ascension\Player\Cooldowns\Death\PlayerDeath$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LightEnchantingTable.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Panacea.class
+me\depickcator\ascension\Lobby\StatsBoard$2$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Desert.class
 me\depickcator\ascension\Ascension.class
 me\depickcator\ascension\Timeline\Timeline$2.class
@@ -414,7 +423,9 @@ me\depickcator\ascension\General\Game\Load\Sequences\BuildPlatform.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\Leaves.class
 me\depickcator\ascension\Settings\Presets\Standard.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\Scavenger.class
+me\depickcator\ascension\Lobby\StatsBoard$1.class
 me\depickcator\ascension\listeners\Combat\onElytraFlight.class
+me\depickcator\ascension\Persistence\PlayerDataWriter.class
 me\depickcator\ascension\Settings\BuildCustom\Button.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\Events.class
 me\depickcator\ascension\Items\Uncraftable\NetherStar\NetherStar.class
@@ -439,6 +450,7 @@ me\depickcator\ascension\General\Queue\QueueCommand.class
 me\depickcator\ascension\Items\Uncraftable\KitBook.class
 me\depickcator\ascension\Timeline\Events\Ascension\BuildLayers\AscensionBuildLayers.class
 me\depickcator\ascension\General\Game\Start\Sequences\GiveBrawlItems.class
+me\depickcator\ascension\Persistence\AscensionStats.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Resurrection.class
 me\depickcator\ascension\LootTables\Entities\Superable.class
 me\depickcator\ascension\Items\Craftable\Unlocks\VorpalSword.class
@@ -446,6 +458,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompas
 me\depickcator\ascension\MainMenuUI\Unlocks\ViewRecipeGUI.class
 me\depickcator\ascension\Settings\BuildCustom\Buttons\CustomItems.class
 me\depickcator\ascension\Settings\BuildCustom\Buttons\WorldBorderSize.class
+me\depickcator\ascension\General\Game\Reset\Sequences\SaveGameStatistics.class
 me\depickcator\ascension\Teams\TeamBackpack.class
 me\depickcator\ascension\Items\UnlockUtil.class
 me\depickcator\ascension\Items\Craftable\Unlocks\QuickPick.class

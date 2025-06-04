@@ -5,7 +5,6 @@ import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Output_Standard;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
-import me.depickcator.ascension.Items.ItemList;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
 import me.depickcator.ascension.Player.Data.PlayerData;

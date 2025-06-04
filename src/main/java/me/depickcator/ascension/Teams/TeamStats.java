@@ -19,6 +19,7 @@ public class TeamStats {
     private int finalAscensionTimer;
     private int ascensionTimer;
     private int ascensionAttempts;
+    private boolean win;
 
     private int gameScoreRequirement;
 //    private final static int ascensionStartingTime = 900;
@@ -32,6 +33,7 @@ public class TeamStats {
         linesObtained = 0;
         gameScore = 0;
         ascensionAttempts = 0;
+        win = false;
         ascensionTimer = Ascension.getInstance().getSettingsUI().getSettings().getStartingAscensionTimer();
         scavengerScore = new ArrayList<>(List.of(
                 false, false, false, false, false
@@ -139,6 +141,14 @@ public class TeamStats {
     public void addAscensionAttempts() {
         this.ascensionAttempts++;
         team.updateTeamScoreboards();
+    }
+
+    public boolean isWin() {
+        return win;
+    }
+
+    public void setWin() {
+        this.win = true;
     }
 
 //    public void setAscensionAttempts(int ascensionAttempts) {

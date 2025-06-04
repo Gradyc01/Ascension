@@ -97,6 +97,7 @@ public class BingoData extends ItemComparison {
                     giveRewards(p);
                 }
                 pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
+                pD.getPlayerStats().addItemsObtained();
                 sendItemObtainedMessage(p, item);
                 addScore(24 - items.indexOf(item), p);
                 checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)

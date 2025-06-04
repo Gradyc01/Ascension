@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Custom extends Settings {
     public Custom(int worldBorderSize, int gameScoreReq, Timeline timeline, int ascensionTimer, List<Integer> itemDistribution, int teamSize) {
-        super("Custom", worldBorderSize, gameScoreReq, timeline, ascensionTimer, itemDistribution, teamSize);
+        super("Custom", worldBorderSize, gameScoreReq, timeline, ascensionTimer, itemDistribution, teamSize, false);
     }
 
     @Override

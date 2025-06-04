@@ -89,9 +89,7 @@ public class PlayerData {
         addLobbyPotionEffects();
         getMainMenuItem();
 
-        Lobby lobby = plugin.getLobby();
-        lobby.getEventBoard().showDefaultBoard(this);
-        lobby.getBoardDisplay().displayBoard(player, player);
+        plugin.getLobby().resetToLobby(this);
 
         Location loc = new Location(plugin.getWorld(), Ascension.getSpawn().getX(), Ascension.getSpawn().getY(), Ascension.getSpawn().getZ());
         loc.setY(loc.getBlockY() + 104);

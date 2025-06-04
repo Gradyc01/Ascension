@@ -23,6 +23,7 @@ public abstract class Settings {
     private final int startingAscensionTimer;
     private final int ascensionGameScoreRequirement;
     private final int teamSize;
+    private final boolean countsTowardLeaderboards;
     /*Settings controls the settings of the Game
     * This includes:
     *   World Border Size
@@ -32,8 +33,12 @@ public abstract class Settings {
     *   The Name of this particular setting
     *   How much the Ascension Requirement and Timer are
     *   Team Size*/
-    public Settings(String name, int worldBorderSize, int ascensionGameScoreRequirement, Timeline timeline) {
-        this(name, worldBorderSize, ascensionGameScoreRequirement, timeline, 900, 3);
+    public Settings(String name,
+                    int worldBorderSize,
+                    int ascensionGameScoreRequirement,
+                    Timeline timeline,
+                    boolean countsTowardLeaderboards) {
+        this(name, worldBorderSize, ascensionGameScoreRequirement, timeline, 900, 3, countsTowardLeaderboards);
     }
 
     public Settings(String name,
@@ -41,7 +46,8 @@ public abstract class Settings {
                     int ascensionGameScoreRequirement,
                     Timeline timeline,
                     int startingAscensionTimer,
-                    int teamSize) {
+                    int teamSize,
+                    boolean countsTowardLeaderboards) {
         this.name = name;
         this.worldBorderSize = worldBorderSize;
         this.timeline = timeline;
@@ -50,6 +56,7 @@ public abstract class Settings {
         this.startingAscensionTimer = startingAscensionTimer;
         this.teamSize = teamSize;
         this.sequence = initSequence();
+        this.countsTowardLeaderboards = countsTowardLeaderboards;
     }
 
     protected Settings(String name,
@@ -58,7 +65,8 @@ public abstract class Settings {
                        Timeline timeline,
                        int startingAscensionTimer,
                        List<Integer> itemDistribution,
-                       int teamSize) {
+                       int teamSize,
+                       boolean countsTowardLeaderboards) {
         this.name = name;
         this.worldBorderSize = worldBorderSize;
         this.timeline = timeline;
@@ -66,6 +74,7 @@ public abstract class Settings {
         this.startingAscensionTimer = startingAscensionTimer;
         this.ascensionGameScoreRequirement = ascensionGameScoreRequirement;
         this.teamSize = teamSize;
+        this.countsTowardLeaderboards = countsTowardLeaderboards;
 
         this.sequence = initSequence();
     }
@@ -113,6 +122,9 @@ public abstract class Settings {
         return rewards;
     }
 
+    public boolean isCountTowardsLeaderboards() {
+        return countsTowardLeaderboards;
+    }
 
     public int getWorldBorderSize() {
         return worldBorderSize;
