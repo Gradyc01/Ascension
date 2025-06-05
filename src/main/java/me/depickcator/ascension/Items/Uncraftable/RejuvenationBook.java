@@ -32,9 +32,9 @@ public class RejuvenationBook extends CustomItem {
         meta.addStoredEnchant(Enchantment.PROJECTILE_PROTECTION, 1, true);
         meta.addStoredEnchant(Enchantment.SHARPNESS, 1, true);
         meta.addStoredEnchant(Enchantment.POWER, 1, true);
-        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         item.setItemMeta(meta);
+        generateUniqueModelNumber(item);
         return item;
     }
 }

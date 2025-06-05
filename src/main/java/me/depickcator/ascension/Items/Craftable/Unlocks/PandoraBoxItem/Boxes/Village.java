@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.Boxes;
 
+import me.depickcator.ascension.Interfaces.CustomChestLootPool;
+import me.depickcator.ascension.Interfaces.LootPoolItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -24,22 +26,13 @@ public class Village extends PandoraBoxes {
     }
 
     @Override
-    protected List<ItemStack> initSpecialItems() {
-//        List<Enchantment> enchants = new ArrayList<>(List.of(
-//                Enchantment.SHARPNESS,
-//                Enchantment.INFINITY,
-//                Enchantment.POWER,
-//                Enchantment.FLAME,
-//                Enchantment.FIRE_ASPECT,
-//                Enchantment.UNBREAKING
-//        ));
-        List<ItemStack> list = new ArrayList<>(List.of(
-                new ItemStack(Material.BEETROOT_SEEDS, rand.nextInt(1, 5)),
-                new ItemStack(Material.BREWING_STAND, 1),
-                new ItemStack(Material.EMERALD, rand.nextInt(1, 4)),
-                new ItemStack(Material.BELL, 1),
-                new ItemStack(Material.DIAMOND_HOE, 1)
-        ));
-        return list;
+    protected CustomChestLootPool initSpecialItems() {
+        return new CustomChestLootPool(
+                new LootPoolItem(new ItemStack(Material.BEETROOT_SEEDS, rand.nextInt(1, 5))),
+                new LootPoolItem(Material.BREWING_STAND),
+                new LootPoolItem(new ItemStack(Material.EMERALD, rand.nextInt(1, 5)), 2),
+                new LootPoolItem(Material.BELL),
+                new LootPoolItem(Material.DIAMOND_HOE)
+        );
     }
 }

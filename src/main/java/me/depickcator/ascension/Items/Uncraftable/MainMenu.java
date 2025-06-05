@@ -38,13 +38,11 @@ public class MainMenu extends CustomItem implements ItemClick {
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         itemMeta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA).append(TextUtil.rightClickText()));
-        itemMeta.setCustomModelDataComponent(generateUniqueModelNumber(itemMeta.getCustomModelDataComponent()));
         itemMeta.setMaxStackSize(1);
         itemMeta.setEnchantmentGlintOverride(true);
         item.setItemMeta(itemMeta);
-        item.setData(DataComponentTypes.USE_COOLDOWN,
-                UseCooldown.useCooldown(0.01f)
-                        .cooldownGroup(Key.key(Ascension.getInstance().getName().toLowerCase()+ ":" + getKey())));
+        addCooldownGroup(item);
+        generateUniqueModelNumber(item);
         return item;
     }
 

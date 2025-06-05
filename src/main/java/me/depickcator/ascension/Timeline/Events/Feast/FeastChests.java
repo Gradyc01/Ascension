@@ -26,10 +26,12 @@ public class FeastChests {
     private final int z;
     private final int y;
     private final boolean launchFireball;
+    private final Random random;
     public FeastChests(Location location, CustomChestLoot lootTable, int delay, boolean createNewYValue, boolean launchFireball) {
         this.location = location;
         this.loot = lootTable;
         this.delay = delay;
+        random = new Random();
         this.launchFireball = launchFireball;
         plugin = Ascension.getInstance();
         x = location.getBlockX();
@@ -73,7 +75,6 @@ public class FeastChests {
                 block.setType(Material.CHEST);
                 BlockState state = block.getState();
                 Chest chest = (Chest) state;
-                Random random = new Random();
                 loot.populateLoot(chest.getBlockInventory(), random, 1);
                 lightningStrike();
             }
@@ -88,9 +89,23 @@ public class FeastChests {
     }
 
     private void fireBall() {
-        Fireball fireball = (Fireball) plugin.getWorld().spawnEntity(new Location(location.getWorld(), x, y + 100, z), EntityType.FIREBALL);
-        Vector v = new Vector(0, -0.5, 0);
-        fireball.setDirection(v);
+        Fireball fireball = (Fireball) plugin.getWorld().spawnEntity(new Location(location.getWorld(),
+                x,
+                y + 250,
+                z),
+                EntityType.FIREBALL);
+        Vector v = new Vector(0, -0.1, 0);
+//        fireball.setDirection(v);
+        fireball.setVelocity(v);
         fireball.setInvulnerable(true);
+
+        Fireball fireball2 = (Fireball) plugin.getWorld().spawnEntity(new Location(location.getWorld(),
+                        x + random.nextInt(-10, 10),
+                        y + 100,
+                        z + random.nextInt(- 10, 10)),
+                EntityType.FIREBALL);
+        Vector v2 = new Vector(0, -0.1, 0);
+        fireball2.setVelocity(v2);
+        fireball2.setInvulnerable(true);
     }
 }

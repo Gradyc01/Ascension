@@ -5,6 +5,7 @@ import io.papermc.paper.datacomponent.item.UseCooldown;
 import me.depickcator.ascension.Ascension;
 import net.kyori.adventure.key.Key;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 
 import java.util.ArrayList;
@@ -28,18 +29,28 @@ public abstract class CustomItem {
     /*Initialize the Custom Item Result and Returns the ItemStack*/
     protected abstract ItemStack initResult();
 
-    protected CustomModelDataComponent generateUniqueModelNumber(CustomModelDataComponent model) {
-        model.setFloats(new ArrayList<>(List.of((float) Ascension.getInstance().generateModelNumber())));
-        return model;
-    }
+//    protected CustomModelDataComponent generateUniqueModelNumber(CustomModelDataComponent model) {
+//        model.setFloats(new ArrayList<>(List.of((float) Ascension.getInstance().generateModelNumber())));
+//        return model;
+//    }
 
     protected void addCooldownGroup(ItemStack item, float seconds) {
         item.setData(DataComponentTypes.USE_COOLDOWN,
                 UseCooldown.useCooldown(seconds)
                         .cooldownGroup(Key.key(Ascension.getInstance().getName().toLowerCase()+ ":" + getKey())));
     }
+
     protected void addCooldownGroup(ItemStack item) {
         addCooldownGroup(item, 0.01f);
+    }
+
+    /*Generates a unique model number for ItemStack item*/
+    protected void generateUniqueModelNumber(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        CustomModelDataComponent component = meta.getCustomModelDataComponent();
+        component.setFloats(new ArrayList<>(List.of((float) Ascension.getInstance().generateModelNumber())));
+        meta.setCustomModelDataComponent(component);
+        item.setItemMeta(meta);
     }
 
     public String getDisplayName() {

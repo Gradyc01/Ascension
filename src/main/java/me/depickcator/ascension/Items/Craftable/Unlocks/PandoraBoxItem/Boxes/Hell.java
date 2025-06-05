@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.Boxes;
 
+import me.depickcator.ascension.Interfaces.CustomChestLootPool;
+import me.depickcator.ascension.Interfaces.LootPoolItem;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -25,22 +27,22 @@ public class Hell extends PandoraBoxes {
     }
 
     @Override
-    protected List<ItemStack> initSpecialItems() {
+    protected CustomChestLootPool initSpecialItems() {
         List<Enchantment> enchants = new ArrayList<>(List.of(
                 Enchantment.QUICK_CHARGE,
                 Enchantment.SOUL_SPEED
         ));
-        List<ItemStack> list = new ArrayList<>(List.of(
-                new ItemStack(Material.BLAZE_ROD, 1),
-                new ItemStack(Material.NETHERITE_INGOT, 1),
-                new ItemStack(Material.GHAST_TEAR, 1),
-                new ItemStack(Material.OBSIDIAN, rand.nextInt(2, 8)),
-                randomlyEnchantedBook(enchants, rand),
-                new ItemStack(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1),
-                new ItemStack(Material.WITHER_SKELETON_SKULL, 1),
-                new ItemStack(Material.MAGMA_CREAM, rand.nextInt(1, 4)),
-                new ItemStack(Material.SOUL_SAND, rand.nextInt(2, 8))
-        ));
-        return list;
+        CustomChestLootPool pool = new CustomChestLootPool(
+                new LootPoolItem(randomlyEnchantedBook(enchants, rand)),
+                new LootPoolItem(Material.BLAZE_ROD, 2),
+                new LootPoolItem(Material.NETHERITE_INGOT),
+                new LootPoolItem(Material.GHAST_TEAR, 2),
+                new LootPoolItem(new ItemStack(Material.OBSIDIAN, 8)),
+                new LootPoolItem(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                new LootPoolItem(Material.WITHER_SKELETON_SKULL),
+                new LootPoolItem(Material.MAGMA_CREAM, 2),
+                new LootPoolItem(new ItemStack(Material.SOUL_SAND, 8))
+        );
+        return pool;
     }
 }

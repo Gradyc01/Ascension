@@ -2,13 +2,14 @@ package me.depickcator.ascension.Timeline.Events.Feast;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamUtil;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.WorldBorder;
+import net.kyori.adventure.audience.Audience;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -99,7 +100,11 @@ public class Feast {
                     return;
                 }
                 if (time <= 5 || time % 5 == 0) {
-                    TextUtil.broadcastMessage(TextUtil.makeText(time + "", TextUtil.AQUA));
+                    TextUtil.broadcastMessage(
+                            TextUtil.makeText("The Feast", TextUtil.GOLD)
+                                    .append(TextUtil.makeText(" begins in ", TextUtil.AQUA))
+                                    .append(TextUtil.makeText(time + " Seconds", TextUtil.GREEN)));
+                    SoundUtil.broadcastSound(Sound.UI_BUTTON_CLICK, 5, 1);
                 }
                 time--;
             }
@@ -128,7 +133,7 @@ public class Feast {
             public void run() {
                 if (time <= 0 || !Ascension.getInstance().getGameState().inGame()) {
                     TextUtil.debugText("Random Chests Stopped");
-                    border.setSize(Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize(), 0);
+                    border.setSize(Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize(), 600);
                     cancel();
                     return;
                 }

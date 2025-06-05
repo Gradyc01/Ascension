@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Interfaces;
 
+import me.depickcator.ascension.Utility.TextUtil;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
@@ -21,9 +23,14 @@ public class CustomChestLootPool {
 
     /*Adds Loot pool items to the CustomChestLootPool*/
     public void addLootPoolItem(LootPoolItem... lootPoolItems) {
+        addLootPoolItem(Arrays.asList(lootPoolItems));
+    }
+
+    /*Adds Loot pool items to the CustomChestLootPool*/
+    public void addLootPoolItem(List<LootPoolItem> lootPoolItems) {
         for (LootPoolItem lootPoolItem : lootPoolItems) {
             this.lootPool.add(lootPoolItem);
-            this.totalWeight+= lootPoolItem.weight();
+            this.totalWeight+= lootPoolItem.getWeight();
         }
     }
 
@@ -35,6 +42,19 @@ public class CustomChestLootPool {
         return getRandomItemFromList(r, count, min, max, true);
     }
 
+
+    /*Generate num number of items with the first stack being base amount and then incrementing up by increment*/
+    public void generateItems(Material material, int base, int num, int increment, int weight) {
+        for (int i = 0; i < num; i++) {
+            ItemStack item = new ItemStack(material, base + i * increment);
+            addLootPoolItem(new LootPoolItem(item, weight));
+        }
+    }
+
+    public void generateItems(Material material, int base, int num, int increment) {
+        generateItems(material, base, num, increment, 1);
+    }
+
     /* Gets a number of random items from arr and randomly sets the amount between min and max if changeItemAmount is true
      * Returns a Collection of ItemStacks*/
     private Collection<ItemStack> getRandomItemFromList(Random r, int count, int min, int max, boolean changeItemAmount) {
@@ -43,10 +63,11 @@ public class CustomChestLootPool {
         List<ItemStack> ans = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             int weight = r.nextInt(totalWeight);
+            TextUtil.debugText("Random Weight number is " + weight);
             LootPoolItem lootPoolItem = getWeightedItem(items, weight);
             if (lootPoolItem == null) throw new IllegalArgumentException("Illegal argument too much weight");
 
-            ItemStack itemStack = lootPoolItem.item();
+            ItemStack itemStack = lootPoolItem.getItem();
             if (changeItemAmount) {
                 itemStack.setAmount(r.nextInt(max - min + min) + 1);
             }
@@ -61,13 +82,24 @@ public class CustomChestLootPool {
     * Returns the item or null if it doesn't find one*/
     private LootPoolItem getWeightedItem(List<LootPoolItem> items, int weight) {
         int indexWeight = 0;
+        String debugString = "Obtaining Process: ";
         for (LootPoolItem item : items) {
-            indexWeight += item.weight();
-            if (weight > indexWeight) {
+            indexWeight += item.getWeight();
+            debugString += indexWeight + " --> ";
+            if (indexWeight > weight) {
+                TextUtil.debugText(debugString + "Item is " + item.getItem().getType().name());
                 return item;
             }
         }
         return null;
+    }
+
+    public List<ItemStack> getAllItemsInPool() {
+        List<ItemStack> items = new ArrayList<>();
+        for (LootPoolItem item : lootPool) {
+            items.add(item.getItem());
+        }
+        return items;
     }
 
 

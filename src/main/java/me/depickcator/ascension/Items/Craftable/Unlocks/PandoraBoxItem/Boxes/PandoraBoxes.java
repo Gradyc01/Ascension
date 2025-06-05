@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.Boxes;
 
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
+import me.depickcator.ascension.Interfaces.CustomChestLootPool;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
@@ -16,7 +17,7 @@ public abstract class PandoraBoxes extends CustomChestLoot {
     private final Material icon;
     private final String displayName;
     private final List<ItemStack> constantItems;
-    private final List<ItemStack> specialItems;
+    private final CustomChestLootPool specialItems;
     protected final Random rand;
     public PandoraBoxes(String displayName, Material icon) {
         rand = new Random();
@@ -38,12 +39,12 @@ public abstract class PandoraBoxes extends CustomChestLoot {
 
     public Collection<ItemStack> populateLoot(Inventory inv, Random r, double luck) {
         List<ItemStack> items = new ArrayList<>();
-        items.addAll(getRandomItemFromList(constantItems, r, constantItems.size()));
-        items.addAll(getRandomItemFromList(specialItems, r, 1));
+        items.addAll(getConstantItems());
+        items.addAll(specialItems.getRandomItemFromList(r, 1));
         return placeInInventory(inv, r, items);
     }
     protected abstract List<ItemStack> initConstantItems();
-    protected abstract List<ItemStack> initSpecialItems();
+    protected abstract CustomChestLootPool initSpecialItems();
 
     public Material getIcon() {
         return icon;
@@ -58,6 +59,6 @@ public abstract class PandoraBoxes extends CustomChestLoot {
     }
 
     public List<ItemStack> getSpecialItems() {
-        return specialItems;
+        return specialItems.getAllItemsInPool();
     }
 }

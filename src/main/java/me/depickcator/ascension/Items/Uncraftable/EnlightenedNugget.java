@@ -53,7 +53,6 @@ public class EnlightenedNugget extends CustomItem implements ItemClick {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.IRON_NUGGET);
         ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         meta.lore(new ArrayList<>(List.of(
                 TextUtil.makeText("Enlightened I", TextUtil.GRAY),
                 TextUtil.makeText("", TextUtil.GRAY),
@@ -63,6 +62,7 @@ public class EnlightenedNugget extends CustomItem implements ItemClick {
         meta.setEnchantmentGlintOverride(true);
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.DARK_GRAY).append(TextUtil.rightClickText()));
         item.setItemMeta(meta);
+        generateUniqueModelNumber(item);
         return item;
     }
 }

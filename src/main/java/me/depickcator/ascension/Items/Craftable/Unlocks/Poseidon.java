@@ -60,7 +60,6 @@ public class Poseidon extends Craft implements ShootsProjectiles {
         ItemStack item = new ItemStack(Material.TRIDENT);
         Damageable meta = (Damageable) item.getItemMeta();
         meta.setMaxDamage(32);
-        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         meta.setEnchantmentGlintOverride(true);
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.YELLOW));
         meta.addEnchant(Enchantment.LOYALTY, 1, true);
@@ -76,9 +75,8 @@ public class Poseidon extends Craft implements ShootsProjectiles {
         Repairable meta2 = (Repairable) item.getItemMeta();
         meta2.setRepairCost(999);
         item.setItemMeta(meta2);
-        item.setData(DataComponentTypes.USE_COOLDOWN,
-                UseCooldown.useCooldown(10.0f)
-                        .cooldownGroup(Key.key(plugin.getName().toLowerCase()+ ":" + getKey())));
+        addCooldownGroup(item, 10f);
+        generateUniqueModelNumber(item);
         return item;
     }
 

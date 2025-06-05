@@ -64,11 +64,11 @@ public class LumberjackAxe extends Craft implements LootTableChanger {
         meta.setEnchantmentGlintOverride(true);
         lore.addAll(meta.lore());
         meta.lore(lore);
-        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         if (meta instanceof Repairable repairable) {
             repairable.setRepairCost(999);
         }
         item.setItemMeta(meta);
+        generateUniqueModelNumber(item);
         LootTableChanger.addPersistentDataForItems(item, KEY);
         return item;
     }

@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.Boxes;
 
+import me.depickcator.ascension.Interfaces.CustomChestLootPool;
+import me.depickcator.ascension.Interfaces.LootPoolItem;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -25,7 +27,7 @@ public class OverWorld extends PandoraBoxes {
     }
 
     @Override
-    protected List<ItemStack> initSpecialItems() {
+    protected CustomChestLootPool initSpecialItems() {
         List<Enchantment> enchants = new ArrayList<>(List.of(
                 Enchantment.SILK_TOUCH,
                 Enchantment.FORTUNE,
@@ -33,18 +35,21 @@ public class OverWorld extends PandoraBoxes {
                 Enchantment.MENDING,
                 Enchantment.UNBREAKING
         ));
-        List<ItemStack> list = new ArrayList<>(List.of(
-                new ItemStack(Material.VINE, rand.nextInt(3, 8)),
-                new ItemStack(Material.LILY_PAD, rand.nextInt(3, 8)),
-                new ItemStack(Material.CACTUS, rand.nextInt(3, 8)),
-                randomlyEnchantedBook(enchants, rand),
-                new ItemStack(Material.MANGROVE_LOG, rand.nextInt(6, 9)),
-                new ItemStack(Material.COCOA_BEANS, rand.nextInt(3, 9)),
-                new ItemStack(Material.RED_MUSHROOM, rand.nextInt(3, 9)),
-                new ItemStack(Material.BROWN_MUSHROOM, rand.nextInt(3, 9)),
-                new ItemStack(Material.RABBIT_FOOT, 1),
-                new ItemStack(Material.ENDER_PEARL, rand.nextInt(1, 4))
-        ));
-        return list;
+        return new CustomChestLootPool(
+                new LootPoolItem(new ItemStack(Material.VINE, rand.nextInt(3, 8)), 5),
+                new LootPoolItem(new ItemStack(Material.LILY_PAD, rand.nextInt(3, 8)), 5),
+                new LootPoolItem(new ItemStack(Material.CACTUS, rand.nextInt(3, 8)), 2),
+                new LootPoolItem(new ItemStack(Material.MANGROVE_LOG, rand.nextInt(16, 32)), 2),
+                new LootPoolItem(new ItemStack(Material.COCOA_BEANS, rand.nextInt(3, 9)), 3),
+                new LootPoolItem(new ItemStack(Material.RED_MUSHROOM, rand.nextInt(3, 9)), 3),
+                new LootPoolItem(new ItemStack(Material.BROWN_MUSHROOM, rand.nextInt(3, 9)), 3),
+                new LootPoolItem(Material.RABBIT_FOOT, 2),
+                new LootPoolItem(new ItemStack(Material.ENDER_PEARL, rand.nextInt(1, 4)), 2),
+                new LootPoolItem(randomlyEnchantedBook(enchants, rand), 3)
+        );
+
+
+
+//        return customChestLootPool;
     }
 }

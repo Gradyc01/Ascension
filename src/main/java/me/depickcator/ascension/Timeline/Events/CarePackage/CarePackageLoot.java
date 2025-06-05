@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Timeline.Events.CarePackage;
 
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
+import me.depickcator.ascension.Interfaces.CustomChestLootPool;
+import me.depickcator.ascension.Interfaces.LootPoolItem;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
@@ -17,8 +19,8 @@ import java.util.Random;
 
 
 public class CarePackageLoot extends CustomChestLoot {
-    private ArrayList<ItemStack> netheriteItems;
-    private ArrayList<ItemStack> netherItems;
+    private CustomChestLootPool netheriteItems;
+    private CustomChestLootPool netherItems;
 
     public CarePackageLoot() {
         super();
@@ -27,41 +29,39 @@ public class CarePackageLoot extends CustomChestLoot {
     }
 
     private void initNetheriteItems() {
-
-        netheriteItems = new ArrayList<>(List.of(
-                NetheriteAxe.getInstance().getResult(),
-                NetheriteSword.getInstance().getResult(),
-                new ItemStack(Material.NETHERITE_HOE),
-                new ItemStack(Material.NETHERITE_PICKAXE),
-                new ItemStack(Material.NETHERITE_SHOVEL),
-                new ItemStack(Material.NETHERITE_HELMET),
-                new ItemStack(Material.NETHERITE_CHESTPLATE),
-                new ItemStack(Material.NETHERITE_LEGGINGS),
-                new ItemStack(Material.NETHERITE_BOOTS),
-                new ItemStack(Material.NETHERITE_INGOT)
-        ));
+        netheriteItems = new CustomChestLootPool(
+                new LootPoolItem(NetheriteAxe.getInstance().getResult()),
+                new LootPoolItem(NetheriteSword.getInstance().getResult()),
+                new LootPoolItem(Material.NETHERITE_HOE),
+                new LootPoolItem(Material.NETHERITE_PICKAXE),
+                new LootPoolItem(Material.NETHERITE_SHOVEL),
+                new LootPoolItem(Material.NETHERITE_HELMET),
+                new LootPoolItem(Material.NETHERITE_CHESTPLATE),
+                new LootPoolItem(Material.NETHERITE_LEGGINGS),
+                new LootPoolItem(Material.NETHERITE_BOOTS),
+                new LootPoolItem(Material.NETHERITE_INGOT)
+        );
 
     }
 
     private void initNetherItems() {
-        netherItems = new ArrayList<>(List.of(
-                new ItemStack(Material.BLAZE_ROD),
-                new ItemStack(Material.MAGMA_CREAM),
-                new ItemStack(Material.NETHER_WART),
-                new ItemStack(Material.GHAST_TEAR),
-                new ItemStack(Material.BONE),
-                new ItemStack(Material.COAL)
-        ));
+        netherItems = new CustomChestLootPool(
+                new LootPoolItem(Material.BLAZE_ROD, 4),
+                new LootPoolItem(Material.MAGMA_CREAM, 3),
+                new LootPoolItem(Material.NETHER_WART, 1),
+                new LootPoolItem(Material.GHAST_TEAR, 2),
+                new LootPoolItem(Material.BONE, 3),
+                new LootPoolItem(Material.COAL, 2)
+        );
     }
 
     public Collection<ItemStack> populateLoot(Inventory inv, Random r,  double luck) {
         ArrayList<ItemStack> items = new ArrayList<>();
-        items.addAll(getRandomItemFromList(netheriteItems, r, 1));
-        items.addAll(getRandomItemFromList(netherItems, r, 3, 2, 3));
+        items.addAll(netheriteItems.getRandomItemFromList(r, 1));
+        items.addAll(netherItems.getRandomItemFromList(r, 3, 2, 3));
         items.add(MakeshiftSkull.getInstance().getResult());
         items.add(NetherStar.getInstance().getResult(2));
-        items.add(EnlightenedNugget.getInstance().getResult());
-        items.add(EnlightenedNugget.getInstance().getResult());
+        items.add(EnlightenedNugget.getInstance().getResult(2));
 
         return placeInInventory(inv, r, items);
     }

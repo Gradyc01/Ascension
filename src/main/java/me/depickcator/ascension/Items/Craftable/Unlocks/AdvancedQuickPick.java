@@ -58,12 +58,12 @@ public class AdvancedQuickPick extends Craft implements ItemClick {
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
         meta.addEnchant(Enchantment.EFFICIENCY, 4, true);
         meta.addEnchant(Enchantment.UNBREAKING, 2, true);
-        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText("Gives haste when mining", TextUtil.DARK_PURPLE)
         ));
         meta.lore(lore);
         item.setItemMeta(meta);
+        generateUniqueModelNumber(item);
         return item;
     }
 

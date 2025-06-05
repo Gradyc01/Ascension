@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Timeline.Events.Feast;
 
 import me.depickcator.ascension.Interfaces.CustomChestLoot;
+import me.depickcator.ascension.Interfaces.CustomChestLootPool;
+import me.depickcator.ascension.Interfaces.LootPoolItem;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -15,8 +17,8 @@ import java.util.Random;
 
 public class FeastRegularChestLoot extends CustomChestLoot {
     private static FeastRegularChestLoot instance;
-    private List<ItemStack> combatItems;
-    private List<ItemStack> enchantedBooks;
+    private CustomChestLootPool combatItems;
+    private CustomChestLootPool enchantedBooks;
     private FeastRegularChestLoot() {
         initCombatItems();
         initEnchantedBooks();
@@ -25,60 +27,46 @@ public class FeastRegularChestLoot extends CustomChestLoot {
     public Collection<ItemStack> populateLoot(Inventory inv, Random r, double luck) {
         ArrayList<ItemStack> items = new ArrayList<>();
 
-        items.addAll(getRandomItemFromList(combatItems, r, 2));
-        items.addAll(getRandomItemFromList(enchantedBooks, r, 1));
+        items.addAll(combatItems.getRandomItemFromList(r, 2));
+        items.addAll(enchantedBooks.getRandomItemFromList(r, 1));
 
         return placeInInventory(inv, r, items);
     }
 
     private void initCombatItems() {
-//        ItemStack shard = ShardOfTheFallen.result().clone();
-        combatItems = new ArrayList<>(List.of(
-                ShardOfTheFallen.getInstance().getResult(),
-                ShardOfTheFallen.getInstance().getResult(),
-                new ItemStack(Material.ARROW, 8),
-                new ItemStack(Material.ARROW, 16),
-                new ItemStack(Material.ARROW, 24),
-                new ItemStack(Material.ARROW, 32),
-                new ItemStack(Material.GOLDEN_APPLE, 1),
-                new ItemStack(Material.GOLDEN_APPLE, 1),
-                new ItemStack(Material.GOLDEN_APPLE, 1),
-                new ItemStack(Material.GOLDEN_APPLE, 2)
-        ));
+        combatItems = new CustomChestLootPool(
+                new LootPoolItem(ShardOfTheFallen.getInstance().getResult(1), 3),
+                new LootPoolItem(ShardOfTheFallen.getInstance().getResult(2), 1),
+                new LootPoolItem(Material.GOLDEN_APPLE, 4),
+                new LootPoolItem(Material.GOLDEN_APPLE, 2)
+        );
+        combatItems.generateItems(Material.ARROW, 8, 4, 8, 2);
     }
 
     private void initEnchantedBooks() {
-        enchantedBooks = new ArrayList<>(List.of(
-                makeEnchantedBook(Enchantment.EFFICIENCY, 1),
-                makeEnchantedBook(Enchantment.EFFICIENCY, 2),
-                makeEnchantedBook(Enchantment.EFFICIENCY, 3),
-                makeEnchantedBook(Enchantment.SHARPNESS, 1),
-                makeEnchantedBook(Enchantment.SHARPNESS, 2),
-                makeEnchantedBook(Enchantment.SHARPNESS, 3),
-                makeEnchantedBook(Enchantment.POWER, 1),
-                makeEnchantedBook(Enchantment.POWER, 2),
-                makeEnchantedBook(Enchantment.POWER, 3),
-                makeEnchantedBook(Enchantment.FORTUNE, 1),
-                makeEnchantedBook(Enchantment.FORTUNE, 2),
-                makeEnchantedBook(Enchantment.FORTUNE, 3),
-                makeEnchantedBook(Enchantment.UNBREAKING, 1),
-                makeEnchantedBook(Enchantment.UNBREAKING, 2),
-                makeEnchantedBook(Enchantment.UNBREAKING, 3),
-                makeEnchantedBook(Enchantment.PROTECTION, 1),
-                makeEnchantedBook(Enchantment.PROTECTION, 2),
-                makeEnchantedBook(Enchantment.PROTECTION, 3),
-                makeEnchantedBook(Enchantment.PROJECTILE_PROTECTION, 1),
-                makeEnchantedBook(Enchantment.PROJECTILE_PROTECTION, 2),
-                makeEnchantedBook(Enchantment.PROJECTILE_PROTECTION, 3)
-        ));
+        enchantedBooks = new CustomChestLootPool();
+        enchantedBooks.addLootPoolItem(makeEnchantedBooks(Enchantment.EFFICIENCY, 1, 1, 3));
+        enchantedBooks.addLootPoolItem(makeEnchantedBooks(Enchantment.SHARPNESS, 2, 2, 3));
+        enchantedBooks.addLootPoolItem(makeEnchantedBooks(Enchantment.POWER, 2, 2, 3));
+        enchantedBooks.addLootPoolItem(makeEnchantedBooks(Enchantment.FORTUNE, 1, 1, 3));
+        enchantedBooks.addLootPoolItem(makeEnchantedBooks(Enchantment.UNBREAKING, 1, 1, 3));
+        enchantedBooks.addLootPoolItem(makeEnchantedBooks(Enchantment.PROTECTION, 1, 2, 4));
+        enchantedBooks.addLootPoolItem(makeEnchantedBooks(Enchantment.PROJECTILE_PROTECTION, 1, 2, 4));
     }
 
-    private ItemStack makeEnchantedBook(Enchantment enchantment, int level) {
-        ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
-        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) item.getItemMeta();
-        meta.addStoredEnchant(enchantment, level, true);
-        item.setItemMeta(meta);
-        return item;
+    private List<LootPoolItem> makeEnchantedBooks(Enchantment enchantment, int baseWeight, int incrementWeight, int maxLevel) {
+        List<LootPoolItem> lootPoolItems = new ArrayList<>();
+        int increment = 0;
+        for (int i = maxLevel; i > 0; i--) {
+            ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
+            EnchantmentStorageMeta meta = (EnchantmentStorageMeta) item.getItemMeta();
+            meta.addStoredEnchant(enchantment, i, true);
+            item.setItemMeta(meta);
+
+            lootPoolItems.add(new LootPoolItem(item, baseWeight + increment * incrementWeight));
+            increment++;
+        }
+        return lootPoolItems;
     }
 
     public static FeastRegularChestLoot getInstance() {

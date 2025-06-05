@@ -1,5 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.Boxes;
 
+import me.depickcator.ascension.Interfaces.CustomChestLootPool;
+import me.depickcator.ascension.Interfaces.LootPoolItem;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -26,20 +28,20 @@ public class Underground extends PandoraBoxes {
     }
 
     @Override
-    protected List<ItemStack> initSpecialItems() {
+    protected CustomChestLootPool initSpecialItems() {
         List<Enchantment> enchants = new ArrayList<>(List.of(
                 Enchantment.FORTUNE,
                 Enchantment.EFFICIENCY,
                 Enchantment.UNBREAKING
         ));
-        List<ItemStack> list = new ArrayList<>(List.of(
-                new ItemStack(Material.DIAMOND, rand.nextInt(3, 6)),
-                new ItemStack(Material.EMERALD, rand.nextInt(1, 4)),
-                new ItemStack(Material.SPAWNER, 1),
-                randomlyEnchantedBook(enchants, rand),
-                new ItemStack(Material.SPIDER_EYE, rand.nextInt(1, 6)),
-                new ItemStack(Material.OBSIDIAN, rand.nextInt(3, 6))
-        ));
-        return list;
+
+        return new CustomChestLootPool(
+                new LootPoolItem(new ItemStack(Material.DIAMOND, rand.nextInt(3, 6)), 5),
+                new LootPoolItem(new ItemStack(Material.EMERALD, rand.nextInt(2, 5)), 5),
+                new LootPoolItem(Material.SPAWNER, 3),
+                new LootPoolItem(randomlyEnchantedBook(enchants, rand), 3),
+                new LootPoolItem(new ItemStack(Material.SPIDER_EYE, rand.nextInt(3, 6)), 3),
+                new LootPoolItem(new ItemStack(Material.OBSIDIAN, rand.nextInt(3, 6)), 3)
+        );
     }
 }

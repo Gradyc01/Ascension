@@ -46,7 +46,6 @@ public class ToolVoucher extends CustomItem implements ItemClick {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.NAME_TAG);
         ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.GOLD).append(TextUtil.rightClickText()));
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText("Exchanges souls for a Tool", TextUtil.DARK_PURPLE),
@@ -60,6 +59,7 @@ public class ToolVoucher extends CustomItem implements ItemClick {
         meta.setEnchantmentGlintOverride(true);
         meta.setMaxStackSize(1);
         item.setItemMeta(meta);
+        generateUniqueModelNumber(item);
         return item;
     }
 

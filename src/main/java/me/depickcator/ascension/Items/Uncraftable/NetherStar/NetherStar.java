@@ -51,10 +51,10 @@ public class NetherStar extends CustomItem implements ItemClick {
                 TextUtil.makeText("Can be exchanged for raw materials with", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("more quantity unlocking more trades", TextUtil.DARK_PURPLE)
         ));
-        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         meta.lore(lore);
         meta.setMaxStackSize(4);
         item.setItemMeta(meta);
+        generateUniqueModelNumber(item);
         return item;
     }
 

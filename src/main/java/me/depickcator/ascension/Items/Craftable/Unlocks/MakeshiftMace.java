@@ -44,9 +44,9 @@ public class MakeshiftMace extends Weapons implements ItemClick {
         Damageable meta = (Damageable) item.getItemMeta();
         meta.setMaxDamage(50);
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.YELLOW).append(TextUtil.rightClickText()));
-        meta.setCustomModelDataComponent(generateUniqueModelNumber(meta.getCustomModelDataComponent()));
         item.setItemMeta(Vanilla.addModifiers(meta, getAttackDamage(), getAttackSpeed(), KEY));
         addCooldownGroup(item);
+        generateUniqueModelNumber(item);
         return item;
     }
 
