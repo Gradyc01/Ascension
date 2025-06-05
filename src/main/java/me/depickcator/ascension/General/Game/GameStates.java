@@ -89,4 +89,11 @@ public class GameStates {
     public boolean canNotPVP() {
         return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_ENDING, GAME_FEAST_LOADING, GAME_PAUSED);
     }
+
+    /*Check if Game is in a state where players can not drop items
+     * Returns True if Yes
+     * Returns False Otherwise*/
+    public boolean canNotDropItems() {
+        return checkState(LOBBY_NORMAL, LOBBY_QUEUE);
+    }
 }

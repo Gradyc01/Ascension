@@ -145,7 +145,8 @@ public class UnlocksData {
                 Panacea.getInstance(),
                 TabletsOfDestiny.getInstance(),
                 Daredevil.getInstance(),
-                Poseidon.getInstance()
+                Poseidon.getInstance(),
+                MakeshiftMace.getInstance()
         ));
     }
 
@@ -168,6 +169,7 @@ public class UnlocksData {
         DiamondAxe.getInstance();
         NetheriteAxe.getInstance();
         Shield.getInstance();
+        Mace.getInstance();
     }
 
     /*Returns the Craft and the Tier it is in for Unlock with displayName 'displayName'*/

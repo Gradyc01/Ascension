@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Items.ItemLists;
 
+import me.depickcator.ascension.Items.Craftable.Vanilla.Mace;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
 import org.bukkit.Material;
@@ -37,7 +38,8 @@ public class HardItems extends ItemLists {
         //Monument
         addItems(parseMaterials(Material.SPONGE, Material.SEA_LANTERN, Material.PRISMARINE_SHARD), Structure.MONUMENT);
         //Trials
-        addItems(parseMaterials(Material.OMINOUS_TRIAL_KEY, Material.HEAVY_CORE/*, Material.MACE*/), Structure.TRIAL_CHAMBERS);
+        addItems(parseMaterials(Material.OMINOUS_TRIAL_KEY, Material.HEAVY_CORE), Structure.TRIAL_CHAMBERS);
+        addItems(parseCustomItems(Mace.getInstance()), Structure.TRIAL_CHAMBERS);
         //Ancient City
         addItems(parseMaterials(
                 Material.RECOVERY_COMPASS,

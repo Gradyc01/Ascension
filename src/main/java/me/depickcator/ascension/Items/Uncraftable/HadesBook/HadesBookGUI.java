@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Uncraftable.HadesBook;
 
 
 
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
@@ -35,8 +36,9 @@ public class HadesBookGUI extends AscensionGUI {
     public void interactWithGUIButtons(InventoryClickEvent event) {
         if (event.getCurrentItem() != null && event.isLeftClick() && items.contains(event.getCurrentItem())) {
             if (player.getInventory().getItemInMainHand().equals(HadesBook.getInstance().getItem())) {
-                player.getWorld().dropItem(player.getLocation(), event.getCurrentItem());
+//                player.getWorld().dropItem(player.getLocation(), event.getCurrentItem());
                 successfulPurchase(event);
+                PlayerUtil.giveItem(player, event.getCurrentItem());
             }
         }
     }

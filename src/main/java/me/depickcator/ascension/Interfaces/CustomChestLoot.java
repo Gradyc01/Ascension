@@ -38,6 +38,7 @@ public abstract class CustomChestLoot {
         return items;
     }
 
+    /*Generate num number of items with the first stack being base amount and then incrementing up by increment*/
     protected List<ItemStack> generateItems(Material material, int base, int num, int increment) {
         List<ItemStack> items = new ArrayList<>();
         for (int i = 0; i < num; i++) {

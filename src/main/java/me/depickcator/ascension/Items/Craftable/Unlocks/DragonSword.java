@@ -20,7 +20,7 @@ import java.util.List;
 public class DragonSword extends Weapons {
     private static DragonSword instance;
     private DragonSword() {
-        super(UnlocksData.COST_250, 2, "Dragon's Sword", "dragon_sword", 14.25, -2.4);
+        super(UnlocksData.COST_250, 1, "Dragon's Sword", "dragon_sword", 14.25, -2.4);
     }
 
     @Override

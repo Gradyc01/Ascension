@@ -55,9 +55,11 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Gener
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\ResetGame.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\AscensionGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\CustomChestLoot.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\CustomChestLootPool.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\EntityInteraction.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemClick.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\ItemComparison.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\LootPoolItem.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Craft.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\AdvancedQuickPick.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\AncientArtifact.java
@@ -127,6 +129,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightApple.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LightEnchantingTable.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\LumberjackAxe.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftMace.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftSkull.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\CompassAbilities.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\GUIs\MasterCompassAddFuel.java
@@ -169,6 +172,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\DiamondSword.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\IronAxe.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\IronSword.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\Mace.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteAxe.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteSword.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Craftable\Vanilla\Shield.java
@@ -227,6 +231,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\liste
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\ChestLootTable.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\BastionBridge.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\BastionTreasure.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\CommonTrialsLoot.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\DesertPyramid.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\Dungeon.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\ChestGeneration\Tables\Mineshaft.java
@@ -239,8 +244,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\liste
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\Combat\ProjectileAttacks.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\Combat\ShootsProjectiles.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\FastSmelt.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\InventoryClickListener.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\InventoryClose.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\InventoryListener.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\LootTableGeneration.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\MobSpawning.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\listeners\onInventoryChange.java
@@ -270,6 +274,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\Bingo\BingoNPCGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\EventsNPC.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\LobbyNPCs.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\ParkourNPC.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\ViewBoard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\ViewKits.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Lobby\NPCs\ViewMap.java

@@ -2,6 +2,7 @@ me\depickcator\ascension\Player\Cooldowns\Cooldowns.class
 me\depickcator\ascension\Skills\SkillRewards.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LightApple.class
 me\depickcator\ascension\General\Game\Delete\GameDelete.class
+me\depickcator\ascension\Interfaces\LootPoolItem.class
 me\depickcator\ascension\Items\Craftable\Unlocks\DiamondPack.class
 me\depickcator\ascension\Kits\KitBookGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Plains.class
@@ -27,7 +28,6 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Struc
 me\depickcator\ascension\Items\Craftable\Unlocks\WeaverSilk.class
 me\depickcator\ascension\General\Game\Reset\Sequences\ResetPlayers$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\MasterCompass\MasterCompass.class
-me\depickcator\ascension\listeners\InventoryClose.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\DarkForest.class
 me\depickcator\ascension\Settings\BuildCustom\BuildCustom.class
 me\depickcator\ascension\General\Game\Reset\Sequences\ReloadLobby.class
@@ -237,6 +237,7 @@ me\depickcator\ascension\Skills\Foraging.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\EcholocatorGUI.class
 me\depickcator\ascension\Settings\Presets\Custom.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\PandoraBox.class
+me\depickcator\ascension\Lobby\NPCs\ParkourNPC.class
 me\depickcator\ascension\Settings\GUIs\SettingsPresetGUI.class
 me\depickcator\ascension\Teams\TeamStats.class
 me\depickcator\ascension\General\Game\Start\StartGame$1.class
@@ -274,6 +275,7 @@ me\depickcator\ascension\Timeline\Events\Feast\FeastResourceChestLoot.class
 me\depickcator\ascension\General\Game\Start\Sequences\GiveBrawlItems$1.class
 me\depickcator\ascension\General\Game\Start\Sequences\ResetPlayers.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfSharpness.class
+me\depickcator\ascension\Items\Craftable\Vanilla\Mace.class
 me\depickcator\ascension\General\Game\Pause\PauseGame.class
 me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteSword.class
 me\depickcator\ascension\listeners\Combat\PlayerCombat.class
@@ -289,6 +291,7 @@ me\depickcator\ascension\Interfaces\CustomChestLoot.class
 me\depickcator\ascension\LootTables\Entities\Entities\Pig.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfProjectileProtection.class
 me\depickcator\ascension\Lobby\StatsBoard$2.class
+me\depickcator\ascension\listeners\InventoryListener.class
 me\depickcator\ascension\LootTables\Entities\Entities\CreeperEntity.class
 me\depickcator\ascension\Lobby\Boards.class
 me\depickcator\ascension\Items\Craftable\Vanilla\WoodenAxe.class
@@ -358,7 +361,6 @@ me\depickcator\ascension\Kits\Kits\Ecologist.class
 me\depickcator\ascension\Items\Craftable\Vanilla\StoneAxe.class
 me\depickcator\ascension\Utility\AttributeUtil.class
 me\depickcator\ascension\Timeline\Events\CarePackage\CarePackage$1.class
-me\depickcator\ascension\listeners\InventoryClickListener.class
 me\depickcator\ascension\General\Game\Start\Sequences\AdjustStartingGameScore$1.class
 me\depickcator\ascension\listeners\Combat\ProjectileAttacks$1.class
 me\depickcator\ascension\Lobby\BingoBoard\DisplayBox.class
@@ -437,6 +439,7 @@ me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent$1.class
 me\depickcator\ascension\Items\ItemLists\CustomItems.class
 me\depickcator\ascension\Lobby\BingoBoard\BoardDisplay.class
 me\depickcator\ascension\listeners\MobSpawning.class
+me\depickcator\ascension\Interfaces\CustomChestLootPool.class
 me\depickcator\ascension\LootTables\Blocks\Ores\EmeraldOre.class
 me\depickcator\ascension\Items\Craftable\Vanilla\NetheriteAxe.class
 me\depickcator\ascension\Kits\ViewKitGUI.class
@@ -460,6 +463,7 @@ me\depickcator\ascension\Settings\BuildCustom\Buttons\CustomItems.class
 me\depickcator\ascension\Settings\BuildCustom\Buttons\WorldBorderSize.class
 me\depickcator\ascension\General\Game\Reset\Sequences\SaveGameStatistics.class
 me\depickcator\ascension\Teams\TeamBackpack.class
+me\depickcator\ascension\Items\Craftable\Unlocks\MakeshiftMace.class
 me\depickcator\ascension\Items\UnlockUtil.class
 me\depickcator\ascension\Items\Craftable\Unlocks\QuickPick.class
 me\depickcator\ascension\testingCommands\giveCustomItem.class
@@ -476,6 +480,7 @@ me\depickcator\ascension\Timeline\Timelines\BrawlTimeline.class
 me\depickcator\ascension\LootTables\Blocks\ForageBlocks\ForageBlocks.class
 me\depickcator\ascension\Items\Craftable\Unlocks\PandoraBoxItem\PandoraBoxGUI.class
 me\depickcator\ascension\Settings\BuildCustom\Buttons\GameScoreRequirement.class
+me\depickcator\ascension\listeners\ChestGeneration\Tables\CommonTrialsLoot.class
 me\depickcator\ascension\listeners\Combat\ProjectileAttacks.class
 me\depickcator\ascension\Lobby\NPCs\Bingo\BingoNPC.class
 me\depickcator\ascension\Items\Craftable\Unlocks\SoulArtifact.class

@@ -68,8 +68,8 @@ public class Poseidon extends Craft implements ShootsProjectiles {
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText("Nature's Wrath I", TextUtil.GRAY),
                 TextUtil.makeText(""),
-                TextUtil.makeText("Smites down the enemy", TextUtil.DARK_PURPLE),
-                TextUtil.makeText("[32 Uses]", TextUtil.GOLD)
+                TextUtil.makeText("Smites down the enemy", TextUtil.DARK_PURPLE)
+//                TextUtil.makeText("[32 Uses]", TextUtil.GOLD)
         ));
         meta.lore(lore);
         item.setItemMeta(meta);

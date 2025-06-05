@@ -107,7 +107,8 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 IronAxe.getInstance(),
                 DiamondAxe.getInstance(),
                 NetheriteAxe.getInstance(),
-                Shield.getInstance()
+                Shield.getInstance(),
+                Mace.getInstance()
         )));
         List<CustomItem> items = new ArrayList<>(List.of(
                 HadesBook.getInstance(),

@@ -29,6 +29,7 @@ public class ChestLootModifier implements Listener {
         addLootTable(new BastionBridge());
         addLootTable(new BastionTreasure());
         addLootTable(new DesertPyramid());
+        addLootTable(new CommonTrialsLoot());
     }
 
     private void addLootTable(ChestLootTable table) {

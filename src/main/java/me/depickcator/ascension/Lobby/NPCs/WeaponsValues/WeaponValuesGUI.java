@@ -1,6 +1,9 @@
 package me.depickcator.ascension.Lobby.NPCs.WeaponsValues;
 
 import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Items.Craftable.Unlocks.DragonSword;
+import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftMace;
+import me.depickcator.ascension.Items.Craftable.Unlocks.Poseidon;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -9,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class WeaponValuesGUI extends AscensionGUI {
     public WeaponValuesGUI(PlayerData playerData) {
-        super(playerData, (char) 4, TextUtil.makeText("Weapon Damage Values", TextUtil.AQUA), true);
+        super(playerData, (char) 5, TextUtil.makeText("Weapon Damage Values", TextUtil.AQUA), true);
         inventory.setItem(31, getCloseButton());
         initWeapons();
     }
@@ -25,6 +28,10 @@ public class WeaponValuesGUI extends AscensionGUI {
         inventory.setItem(22, IronAxe.getInstance().getResult());
         inventory.setItem(23, DiamondAxe.getInstance().getResult());
         inventory.setItem(24, NetheriteAxe.getInstance().getResult());
+        inventory.setItem(29, DragonSword.getInstance().getResult());
+        inventory.setItem(30, Mace.getInstance().getResult());
+        inventory.setItem(31, MakeshiftMace.getInstance().getResult());
+        inventory.setItem(32, Poseidon.getInstance().getResult());
     }
 
     @Override
