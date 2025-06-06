@@ -6,6 +6,7 @@ import java.util.List;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echolocator;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MasterCompass.MasterCompass;
+import me.depickcator.ascension.Items.Craftable.Unlocks.NetheriteInfusionItem.NetheriteInfusion;
 import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.PandoraBox;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
@@ -128,7 +129,8 @@ public class UnlocksData {
                 CrimsonArtifact.getInstance(),
                 Echolocator.getInstance(),
                 Ghost.getInstance(),
-                MinerBlessing.getInstance()
+                MinerBlessing.getInstance(),
+                NetheriteInfusion.getInstance()
         ));
     }
 

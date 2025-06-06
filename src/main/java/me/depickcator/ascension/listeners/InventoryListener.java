@@ -52,10 +52,10 @@ public class InventoryListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void onPlayerDropItemEvent(PlayerDropItemEvent e) {
-        if (Ascension.getInstance().getGameState().canNotDropItems()) {
-            e.setCancelled(true);
-        }
-    }
+//    @EventHandler
+//    public void onPlayerDropItemEvent(PlayerDropItemEvent e) {
+//        if (Ascension.getInstance().getGameState().canNotDropItems()) {
+//            e.setCancelled(true);
+//        }
+//    }
 }

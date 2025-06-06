@@ -15,6 +15,7 @@ me\depickcator\ascension\General\Game\Reset\Sequences\ResetPlayers$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\DarkForest.class
 me\depickcator\ascension\General\Game\Reset\Sequences\ReloadLobby.class
 me\depickcator\ascension\General\Game\Start\Sequences\SpreadPlayers.class
+me\depickcator\ascension\Items\Craftable\Unlocks\NetheriteInfusionItem\CustomInfusion.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ApolloGlare.class
 me\depickcator\ascension\General\Game\Start\Sequences\SetWorldBorder.class
 me\depickcator\ascension\Player\Data\PlayerData.class
@@ -81,6 +82,7 @@ me\depickcator\ascension\General\Game\Start\Sequences\SpreadPlayers$1.class
 me\depickcator\ascension\Timeline\Timeline.class
 me\depickcator\ascension\General\Game\Load\Sequences\SetSpawn.class
 me\depickcator\ascension\Items\Craftable\Unlocks\AdvancedQuickPick.class
+me\depickcator\ascension\Items\Craftable\Unlocks\NetheriteInfusionItem\NetheriteInfusion$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\Jungle.class
 me\depickcator\ascension\General\Game\Start\Sequences\ResetWorld.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EnlighteningPack.class
@@ -127,6 +129,7 @@ me\depickcator\ascension\Lobby\StatsBoard$2.class
 me\depickcator\ascension\Lobby\Boards.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfThoth.class
 me\depickcator\ascension\Items\Craftable\Unlocks\GoldPack.class
+me\depickcator\ascension\Items\Craftable\Unlocks\NetheriteInfusionItem\NetheriteInfusion.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\DesertPyramid.class
 me\depickcator\ascension\General\Game\Start\Sequences\InitBingoBoard.class
 me\depickcator\ascension\General\Game\Start\Sequences\TextSequence$1.class

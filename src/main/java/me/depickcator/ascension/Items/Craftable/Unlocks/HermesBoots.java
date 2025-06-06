@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Unlocks.NetheriteInfusionItem.CustomInfusion;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
@@ -10,18 +11,20 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ArmorMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.inventory.meta.trim.ArmorTrim;
 import org.bukkit.inventory.meta.trim.TrimMaterial;
 import org.bukkit.inventory.meta.trim.TrimPattern;
 
 
-public class HermesBoots extends Craft {
+public class HermesBoots extends Craft implements CustomInfusion {
     private static HermesBoots instance;
     private HermesBoots() {
         super(UnlocksData.COST_375, 1, "Hermes' Boots" ,"hermes_boots");
@@ -69,5 +72,18 @@ public class HermesBoots extends Craft {
     public static HermesBoots getInstance() {
         if (instance == null) instance = new HermesBoots();
         return instance;
+    }
+
+    @Override
+    public void customInfusion(ItemStack item, Player p) {
+        ItemMeta meta = item.getItemMeta();
+        meta.removeAttributeModifier(Attribute.ARMOR_TOUGHNESS);
+        AttributeModifier toughness = new AttributeModifier(
+                new NamespacedKey(KEY, "toughness"),
+                3,
+                AttributeModifier.Operation.ADD_NUMBER,
+                EquipmentSlotGroup.FEET);
+        meta.addAttributeModifier(Attribute.ARMOR_TOUGHNESS, toughness);
+        item.setItemMeta(meta);
     }
 }

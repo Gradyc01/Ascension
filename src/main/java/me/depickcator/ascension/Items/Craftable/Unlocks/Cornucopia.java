@@ -54,9 +54,10 @@ public class Cornucopia extends Craft implements ItemClick {
         );
         meta.lore(lore);
         meta.setEnchantmentGlintOverride(true);
-        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         item.setItemMeta(meta);
+        generateUniqueModelNumber(item);
+        addCooldownGroup(item, 2);
         return item;
     }
 
@@ -69,10 +70,11 @@ public class Cornucopia extends Craft implements ItemClick {
     @Override
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         Player p = e.getPlayer();
-        if (isMainHandRightClick(e)) {
-            ItemStack item = p.getInventory().getItemInMainHand();
+        ItemStack item = e.getItem();
+        if (e.getAction().isRightClick() && !p.hasCooldown(item)) {
             item.setAmount(item.getAmount() - 1);
             p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 15 * 20, 0));
+            p.setCooldown(item, 2 * 20);
             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_BURP, 1f, 1f);
             return true;
         }

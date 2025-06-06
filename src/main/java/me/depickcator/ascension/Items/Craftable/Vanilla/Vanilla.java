@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Vanilla;
 
+import io.papermc.paper.datacomponent.item.ItemAttributeModifiers;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -16,6 +17,8 @@ public interface Vanilla {
 //    void removeVanillaRecipe();
     /*Adds modifiers to ItemMeta 'meta' with a certain attackDamage and attackSpeed*/
     static ItemMeta addModifiers(ItemMeta meta, double attackDamage, double attackSpeed, String KEY) {
+        meta.removeAttributeModifier(Attribute.ATTACK_SPEED);
+        meta.removeAttributeModifier(Attribute.ATTACK_DAMAGE);
         meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, Vanilla.makeAttackDamageModifier(KEY, attackDamage));
         meta.addAttributeModifier(Attribute.ATTACK_SPEED, Vanilla.makeAttackSpeedModifier(KEY, attackSpeed));
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);

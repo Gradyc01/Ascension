@@ -1,6 +1,8 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
+import com.google.common.collect.Multimap;
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Unlocks.NetheriteInfusionItem.CustomInfusion;
 import me.depickcator.ascension.Items.Craftable.Vanilla.Vanilla;
 import me.depickcator.ascension.Items.Craftable.Vanilla.Weapons;
 import me.depickcator.ascension.Items.UnlockUtil;
@@ -17,7 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class DragonSword extends Weapons {
+public class DragonSword extends Weapons implements CustomInfusion {
     private static DragonSword instance;
     private DragonSword() {
         super(UnlocksData.COST_250, 1, "Dragon's Sword", "dragon_sword", 14.25, -2.4);
@@ -63,5 +65,17 @@ public class DragonSword extends Weapons {
             instance = new DragonSword();
         }
         return instance;
+    }
+
+    @Override
+    public void customInfusion(ItemStack item, Player p) {
+        ItemMeta meta = item.getItemMeta();
+        item.setItemMeta(Vanilla.addModifiers(meta, getAttackDamage() + 2.75, getAttackSpeed(), KEY));
+        meta = item.getItemMeta();
+        List<Component> lore = meta.lore();
+        lore.addFirst(TextUtil.makeText("Crafted by ", TextUtil.YELLOW)
+                .append(TextUtil.makeText(p.getName(), TextUtil.AQUA, false, true)));
+        meta.lore(lore);
+        item.setItemMeta(meta);
     }
 }

@@ -5,6 +5,7 @@ import io.papermc.paper.datacomponent.item.UseCooldown;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Items.Craftable.Craft;
+import me.depickcator.ascension.Items.Craftable.Unlocks.NetheriteInfusionItem.CustomInfusion;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -22,11 +23,12 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinerBlessing extends Craft implements ItemClick {
+public class MinerBlessing extends Craft implements ItemClick, CustomInfusion {
     private static MinerBlessing instance;
     private MinerBlessing() {
         super(UnlocksData.COST_325, 1, "Miner's Blessing", "miner_blessing");
@@ -132,5 +134,13 @@ public class MinerBlessing extends Craft implements ItemClick {
     @Override
     public void registerItem() {
         addItem(getResult(), this);
+    }
+
+    @Override
+    public void customInfusion(ItemStack item, Player p) {
+        Damageable meta = (Damageable) item.getItemMeta();
+        meta.setMaxDamage(2000);
+        meta.setDamage(Integer.max(meta.getDamage() - 500, 0));
+        item.setItemMeta(meta);
     }
 }
