@@ -2,6 +2,7 @@ package me.depickcator.ascension.LootTables.Entities.Entities;
 
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
+import me.depickcator.ascension.Player.Data.PlayerStats;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.entity.EntityType;
@@ -25,7 +26,7 @@ public class Pig implements LootTableChanger, EntityLootTable {
         try {
             EntityDeathEvent e = getEntityDeathEvent(event);
             giveForagingExp(p, SkillExpAmount.FORAGING_UNCOMMON.getExp());
-            if (!PlayerUtil.getPlayerData(p).getPlayerStats().isFoodDrops()) {
+            if (!PlayerUtil.getPlayerData(p).getPlayerStats().getSetting(PlayerStats.foodDropsKey)) {
                 e.getDrops().clear();
             }
 

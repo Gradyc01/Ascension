@@ -1,10 +1,10 @@
 package me.depickcator.ascension.Persistence;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerStats;
+import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamStats;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.entity.Player;
@@ -14,12 +14,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 public class PlayerDataWriter {
     private final HashMap<String, Integer> intDataMap;
     private final HashMap<String, String> stringDataMap;
+    private final HashMap<String, Boolean> booleanDataMap;
     private final PlayerData playerData;
     private final Player player;
     private final String destination;
@@ -29,21 +29,29 @@ public class PlayerDataWriter {
         this.player = playerData.getPlayer();
         intDataMap = initIntDataMap(this.playerData);
         stringDataMap = initStringDataMap(this.playerData);
+        booleanDataMap = initBooleanDataMap(this.playerData);
         this.destination = "./plugins/Ascension/PlayerData/" + this.player.getUniqueId() + ".json";
         initializeWriter();
     }
 
     private HashMap<String, Integer> initIntDataMap(PlayerData playerData) {
-        TeamStats teamStats = playerData.getPlayerTeam().getTeam().getTeamStats();
         PlayerStats pDStats = playerData.getPlayerStats();
 
         HashMap<String, Integer> intDataMap = new HashMap<>();
         intDataMap.put("deaths", pDStats.getDeaths());
         intDataMap.put("kills", pDStats.getKills());
         intDataMap.put("items_obtained", pDStats.getItemsObtained());
-        intDataMap.put("wins", teamStats.isWin() ? 1 : 0);
-        intDataMap.put("losses", teamStats.isWin() ? 0 : 1);
-        intDataMap.put("total_game_score", teamStats.getGameScore());
+        Team team = playerData.getPlayerTeam().getTeam();
+        if (team != null) {
+            TeamStats teamStats = team.getTeamStats();
+            intDataMap.put("wins", teamStats.isWin() ? 1 : 0);
+            intDataMap.put("losses", teamStats.isWin() ? 0 : 1);
+            intDataMap.put("total_game_score", teamStats.getGameScore());
+        } else {
+            intDataMap.put("wins", 0);
+            intDataMap.put("losses", 0);
+            intDataMap.put("total_game_score", 0);
+        }
         return intDataMap;
     }
 
@@ -51,6 +59,15 @@ public class PlayerDataWriter {
         HashMap<String, String> stringDataMap = new HashMap<>();
         stringDataMap.put("name", playerData.getPlayer().getName());
         return stringDataMap;
+    }
+
+    private HashMap<String, Boolean> initBooleanDataMap(PlayerData playerData) {
+        HashMap<String, Boolean> booleanDataMap = new HashMap<>();
+        PlayerStats pDStats = playerData.getPlayerStats();
+        booleanDataMap.put(PlayerStats.foodDropsKey, pDStats.getSetting(PlayerStats.foodDropsKey));
+        booleanDataMap.put(PlayerStats.nightVisionKey, pDStats.getSetting(PlayerStats.nightVisionKey));
+        booleanDataMap.put(PlayerStats.autoPurchaseUnlocks, pDStats.getSetting(PlayerStats.autoPurchaseUnlocks));
+        return booleanDataMap;
     }
 
     public void writeNewData() {
@@ -76,6 +93,9 @@ public class PlayerDataWriter {
         for (HashMap.Entry<String, String> entry : stringDataMap.entrySet()) {
             json.addProperty(entry.getKey(), entry.getValue());
         }
+        for (HashMap.Entry<String, Boolean> entry : booleanDataMap.entrySet()) {
+            json.addProperty(entry.getKey(), entry.getValue());
+        }
         JsonWriter jsonWriter = new JsonWriter(destination);
         try {
             jsonWriter.open();
@@ -84,7 +104,6 @@ public class PlayerDataWriter {
         } catch (IOException e) {
             TextUtil.debugText("Failed to write stats to file");
         }
-
     }
 
     private void readStats(JsonObject jsonObject) {

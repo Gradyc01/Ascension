@@ -1,14 +1,12 @@
 package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -137,7 +135,7 @@ public class PlayerUtil {
     public static void clearEffects(PlayerData pD) {
         Player p = pD.getPlayer();
         p.clearActivePotionEffects();
-        if (pD.getPlayerStats().isNightVision()) {
+        if (pD.getPlayerStats().getSetting(PlayerStats.nightVisionKey)) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, -1, 0, false, false));
         }
     }

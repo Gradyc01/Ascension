@@ -2,6 +2,7 @@ package me.depickcator.ascension.LootTables.Entities.Entities;
 
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
+import me.depickcator.ascension.Player.Data.PlayerStats;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
@@ -43,7 +44,7 @@ public class Sheep implements LootTableChanger, EntityLootTable {
 //            if (PlayerUtil.getPlayerData(p).getPlayerStats().isFoodDrops()) {
 //                e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.MUTTON, rawMuttonCount));
 //            }
-            if (!PlayerUtil.getPlayerData(p).getPlayerStats().isFoodDrops()) {
+            if (!PlayerUtil.getPlayerData(p).getPlayerStats().getSetting(PlayerStats.foodDropsKey)) {
                 e.getDrops().removeIf(item -> item.getType().equals(Material.MUTTON));
             }
         } catch (Exception ignored) {

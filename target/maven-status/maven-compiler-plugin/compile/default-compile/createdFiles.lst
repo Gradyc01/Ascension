@@ -5,6 +5,7 @@ me\depickcator\ascension\Interfaces\LootPoolItem.class
 me\depickcator\ascension\Items\Craftable\Unlocks\DiamondPack.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Plains.class
 me\depickcator\ascension\Lobby\EventsBoard\EventBoard.class
+me\depickcator\ascension\MainMenuUI\Command\Commands\AutoPurchaseUnlocks.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HermesBoots.class
 me\depickcator\ascension\General\Game\GameLauncher.class
 me\depickcator\ascension\Lobby\StatsBoard$3.class
@@ -181,6 +182,7 @@ me\depickcator\ascension\General\Game\Load\Sequences\BuildPlatform.class
 me\depickcator\ascension\Lobby\StatsBoard$1.class
 me\depickcator\ascension\Lobby\EventsBoard\Boards\Events.class
 me\depickcator\ascension\Interfaces\ItemClick.class
+me\depickcator\ascension\Persistence\PlayerDataFileReader.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionEvent$1.class
 me\depickcator\ascension\Lobby\BingoBoard\BoardDisplay.class
 me\depickcator\ascension\Interfaces\CustomChestLootPool.class

@@ -1,5 +1,6 @@
 package me.depickcator.ascension.MainMenuUI.Command.Commands;
 
+import me.depickcator.ascension.Player.Data.PlayerStats;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -11,7 +12,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class FoodDrops implements Commands {
-    public final static String NAME = "food_drops";
     private final ItemStack item;
     public FoodDrops() {
         item = makeButton();
@@ -20,14 +20,14 @@ public class FoodDrops implements Commands {
     public void uponEvent(InventoryClickEvent event, PlayerData playerData) {
         Player p = playerData.getPlayer();
         Component bool;
-        if (!playerData.getPlayerStats().isFoodDrops()) {
+        if (!playerData.getPlayerStats().getSetting(PlayerStats.foodDropsKey)) {
 //            p.getPersistentDataContainer().set(namespaceKey, PersistentDataType.BOOLEAN, true);
             bool = TextUtil.makeText("Enabled", TextUtil.GREEN);
-            playerData.getPlayerStats().foodDropsSwitch();
+            playerData.getPlayerStats().booleanSwitch(PlayerStats.foodDropsKey);
         } else {
 //            p.getPersistentDataContainer().set(namespaceKey, PersistentDataType.BOOLEAN, false);
             bool = TextUtil.makeText("Disabled", TextUtil.RED);
-            playerData.getPlayerStats().foodDropsSwitch();
+            playerData.getPlayerStats().booleanSwitch(PlayerStats.foodDropsKey);
         }
         p.sendMessage(TextUtil.makeText("Food Drops is now ", TextUtil.AQUA).append(bool));
         SoundUtil.playHighPitchPling(p);

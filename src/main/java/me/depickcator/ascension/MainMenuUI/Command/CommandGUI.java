@@ -1,5 +1,6 @@
 package me.depickcator.ascension.MainMenuUI.Command;
 
+import me.depickcator.ascension.Player.Data.PlayerStats;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.MainMenuUI.Command.Commands.*;
@@ -16,12 +17,13 @@ public class CommandGUI extends AscensionGUI {
     public CommandGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Commands", TextUtil.AQUA), true);
         map = new HashMap<>();
-        initializeButtons(new NightVision(), 24, true, playerData.getPlayerStats().isNightVision());
-        initializeButtons(new FoodDrops(), 25, true, playerData.getPlayerStats().isFoodDrops());
+        initializeButtons(new NightVision(), 24, true, playerData.getPlayerStats().getSetting(PlayerStats.nightVisionKey));
+        initializeButtons(new FoodDrops(), 25, true, playerData.getPlayerStats().getSetting(PlayerStats.foodDropsKey));
+        initializeButtons(new AutoPurchaseUnlocks(), 33, true, playerData.getPlayerStats().getSetting(PlayerStats.autoPurchaseUnlocks));
         initializeButtons(new SendCoords(), 19);
         initializeButtons(new SpawnTravel(), 21);
         initializeButtons(new Surface(), 22);
-        initializeButtons(new AscensionTravel(), 23);
+        initializeButtons(new AscensionTravel(), 30);
         inventory.setItem(48, goBackItem());
         playerHeadButton(49);
 

@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Interfaces;
 
-import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -13,8 +12,8 @@ public class ItemComparison {
     protected boolean equalItems(ItemStack inv, ItemStack board) {
         String invItemStr = itemParser(inv);
         String boardItemStr = itemParser(board);
-        TextUtil.debugText("Inventory item:   " + invItemStr);
-        TextUtil.debugText("Board item:     " + boardItemStr);
+//        TextUtil.debugText("Inventory item:   " + invItemStr);
+//        TextUtil.debugText("Board item:     " + boardItemStr);
         return invItemStr.equals(boardItemStr);
     }
 

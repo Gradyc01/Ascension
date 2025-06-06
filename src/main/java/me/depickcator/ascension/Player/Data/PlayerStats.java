@@ -3,6 +3,7 @@ package me.depickcator.ascension.Player.Data;
 
 import com.google.gson.JsonObject;
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Persistence.PlayerDataFileReader;
 import me.depickcator.ascension.Persistence.Writeable;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -18,34 +19,39 @@ public class PlayerStats implements PlayerDataObservers, Writeable {
     private int itemsObtained;
 
     //Keys
-    private static final String nightVisionKey = "night_vision";
-    private static final String foodDropsKey = "food_drops";
+    public static final String nightVisionKey = "night_vision";
+    public static final String foodDropsKey = "food_drops";
+    public static final String autoPurchaseUnlocks = "auto_purchase_unlocks";
     public PlayerStats(PlayerData playerData) {
         this.playerData = playerData;
         this.player = playerData.getPlayer();
         kills = 0;
+
     }
 
-    private boolean getNamespacedKey(String key) {
+    public boolean getSetting(String key) {
         NamespacedKey k = new NamespacedKey(Ascension.getInstance(), key);
         boolean result;
         try {
             result = player.getPersistentDataContainer().get(k, PersistentDataType.BOOLEAN);
         } catch (NullPointerException e) {
             result = false;
-            setNamespacedKey(key, false);
+            setSetting(key, false);
+            PlayerDataFileReader reader = new PlayerDataFileReader(player);
+            if (reader.read()) {
+                reader.setPlayerSettings(this);
+            }
         }
         return result;
     }
 
-    private void setNamespacedKey(String key, boolean value) {
+    public void setSetting(String key, boolean value) {
         NamespacedKey k = new NamespacedKey(Ascension.getInstance(), key);
         player.getPersistentDataContainer().set(k, PersistentDataType.BOOLEAN, value);
     }
 
-    private void booleanSwitch(String key) {
-        setNamespacedKey(key, !getNamespacedKey(key));
-
+    public void booleanSwitch(String key) {
+        setSetting(key, !getSetting(key));
     }
 
     public void addKill() {
@@ -65,21 +71,29 @@ public class PlayerStats implements PlayerDataObservers, Writeable {
         itemsObtained++;
     }
 
-    public void nightVisionSwitch() {
-        booleanSwitch(nightVisionKey);
-    }
-
-    public boolean isNightVision() {
-        return getNamespacedKey(nightVisionKey);
-    }
-
-    public void foodDropsSwitch() {
-        booleanSwitch(foodDropsKey);
-    }
-
-    public boolean isFoodDrops() {
-        return getNamespacedKey(foodDropsKey);
-    }
+//    public void nightVisionSwitch() {
+//        booleanSwitch(nightVisionKey);
+//    }
+//
+//    public boolean isNightVision() {
+//        return getNamespacedKey(nightVisionKey);
+//    }
+//
+//    public void foodDropsSwitch() {
+//        booleanSwitch(foodDropsKey);
+//    }
+//
+//    public boolean isFoodDrops() {
+//        return getNamespacedKey(foodDropsKey);
+//    }
+//
+//    public void autoPurchaseUnlocksSwitch() {
+//        booleanSwitch(autoPurchaseUnlocks);
+//    }
+//
+//    public boolean isAutoPurchaseUnlocks() {
+//        return getNamespacedKey(autoPurchaseUnlocks);
+//    }
 
 
     //Deaths

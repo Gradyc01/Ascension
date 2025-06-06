@@ -3,6 +3,7 @@ package me.depickcator.ascension.listeners;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.General.Queue.Queue;
+import me.depickcator.ascension.Persistence.PlayerDataWriter;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -122,6 +123,7 @@ public class PlayerJoinLeave implements Listener {
         PlayerData playerData = PlayerUtil.getPlayerData(player);
         if (playerData != null) {
             playerData.getPlayerTeam().leaveTeam();
+            new PlayerDataWriter(playerData).writeNewData();
         }
         PlayerUtil.removePlayerData(player);
         event.quitMessage(null);

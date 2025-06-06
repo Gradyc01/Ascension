@@ -46,7 +46,8 @@ public class Output_Quickplay extends ItemLists {
                 CupidBow.getInstance(),
                 MinerBlessing.getInstance(),
                 Poseidon.getInstance(),
-                ToolVoucher.getInstance()
+                ToolVoucher.getInstance(),
+                MakeshiftMace.getInstance()
         ), 1));
         items.addAll(getRandomItemInList(List.of(
                 Nectar.getInstance().getResult(),

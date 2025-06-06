@@ -332,6 +332,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainM
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\BingoBoard\BingoData.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\CommandGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\AscensionTravel.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\AutoPurchaseUnlocks.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\Commands.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\FoodDrops.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\NightVision.java
@@ -350,6 +351,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainM
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\AscensionStats.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\DeleteSettings.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\JsonWriter.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\PlayerDataFileReader.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\PlayerDataWriter.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\PlayerStats.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Persistence\Readers.java

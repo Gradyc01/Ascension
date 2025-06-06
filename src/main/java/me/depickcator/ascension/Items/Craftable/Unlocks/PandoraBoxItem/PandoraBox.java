@@ -35,9 +35,7 @@ public class PandoraBox extends Craft implements ItemClick {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
         ShapedRecipe recipe = new ShapedRecipe(key, result);
 
-        recipe.shape("BCB", "CDC", "BCB");
-//        recipe.setIngredient('A', Material.NETHER_STAR);
-        recipe.setIngredient('B', ShardOfTheFallen.getInstance().getResult());
+        recipe.shape("CCC", "CDC", "CCC");
         recipe.setIngredient('C', Material.CHEST);
         recipe.setIngredient('D', Material.PLAYER_HEAD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);

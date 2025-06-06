@@ -6,6 +6,7 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echoloca
 import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
 import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
+import me.depickcator.ascension.Items.Craftable.Vanilla.Mace;
 import me.depickcator.ascension.Items.ItemLists.HardItems;
 import me.depickcator.ascension.Items.ItemLists.ItemLists;
 import me.depickcator.ascension.Items.Uncraftable.ToolVoucher.ToolVoucher;
@@ -45,7 +46,8 @@ public class Output_Standard extends ItemLists {
                 CupidBow.getInstance(),
                 MinerBlessing.getInstance(),
                 ToolVoucher.getInstance(),
-                Poseidon.getInstance()
+                Poseidon.getInstance(),
+                Mace.getInstance()
         ), 1));
         items.addAll(getRandomItemInList(List.of(
                 Nectar.getInstance().getResult(),

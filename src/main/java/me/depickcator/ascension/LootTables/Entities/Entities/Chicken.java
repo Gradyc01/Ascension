@@ -2,6 +2,7 @@ package me.depickcator.ascension.LootTables.Entities.Entities;
 
 import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
+import me.depickcator.ascension.Player.Data.PlayerStats;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
@@ -36,7 +37,7 @@ public class Chicken implements LootTableChanger, EntityLootTable {
             e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.FEATHER, featherCount));
 
             int rawChickenCount = (int) (calculateUniformRandom(r, 1, 2) + calculateLootingBonus(r, lootingLevel, 0.5, 1));
-            if (PlayerUtil.getPlayerData(p).getPlayerStats().isFoodDrops()) {
+            if (PlayerUtil.getPlayerData(p).getPlayerStats().getSetting(PlayerStats.foodDropsKey)) {
                 e.getEntity().getWorld().dropItem(e.getEntity().getLocation(), new ItemStack(Material.CHICKEN, rawChickenCount));
             }
         } catch (Exception ignored) {

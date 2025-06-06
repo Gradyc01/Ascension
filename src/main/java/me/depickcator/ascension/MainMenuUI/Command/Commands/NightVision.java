@@ -1,6 +1,7 @@
 package me.depickcator.ascension.MainMenuUI.Command.Commands;
 
 
+import me.depickcator.ascension.Player.Data.PlayerStats;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -15,7 +16,6 @@ import org.bukkit.potion.PotionEffectType;
 
 
 public class NightVision implements Commands {
-    public final static String NAME = "night_vision";
     private final ItemStack item;
     public NightVision() {
         item = makeButton();
@@ -25,7 +25,7 @@ public class NightVision implements Commands {
         Player p = playerData.getPlayer();
 //        PersistentDataContainer container = p.getPersistentDataContainer();
         Component bool;
-        if (!playerData.getPlayerStats().isNightVision()) {
+        if (!playerData.getPlayerStats().getSetting(PlayerStats.nightVisionKey)) {
             bool = giveNightVision(playerData);
         } else {
             bool = removeNightVision(playerData);
@@ -51,7 +51,7 @@ public class NightVision implements Commands {
         Player p = playerData.getPlayer();
 //        p.getPersistentDataContainer().set(nightVisionKey, PersistentDataType.BOOLEAN, true);
         p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, PotionEffect.INFINITE_DURATION, 0, false, false));
-        playerData.getPlayerStats().nightVisionSwitch();
+        playerData.getPlayerStats().booleanSwitch(PlayerStats.nightVisionKey);
         return TextUtil.makeText("Enabled", TextUtil.GREEN);
     }
 
@@ -59,7 +59,7 @@ public class NightVision implements Commands {
         Player p = playerData.getPlayer();
 //        p.getPersistentDataContainer().set(nightVisionKey, PersistentDataType.BOOLEAN, false);
         p.removePotionEffect(PotionEffectType.NIGHT_VISION);
-        playerData.getPlayerStats().nightVisionSwitch();
+        playerData.getPlayerStats().booleanSwitch(PlayerStats.nightVisionKey);
         return TextUtil.makeText("Disabled", TextUtil.RED);
     }
 }
