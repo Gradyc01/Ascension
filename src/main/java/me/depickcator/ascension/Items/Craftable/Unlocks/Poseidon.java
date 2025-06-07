@@ -8,6 +8,7 @@ import me.depickcator.ascension.Effects.NatureWrath;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.listeners.Combat.ShootsProjectiles;
@@ -95,8 +96,13 @@ public class Poseidon extends Craft implements ShootsProjectiles {
         if (victim instanceof Player) {
             Player v = (Player) victim;
             Player a = (Player) ((Trident) event.getDamager()).getShooter();
+            PlayerData aD = PlayerUtil.getPlayerData(a);
+            if (aD.getPlayerTeam().getTeam().getTeamMembers().contains(v)) {
+                event.setCancelled(true);
+            }
+            double distance = v.getLocation().distance(a.getLocation());
             new NatureWrath(PlayerUtil.getPlayerData(v), PlayerUtil.getPlayerData(a),
-                    Integer.min(8, Integer.max(3, (int) v.getLocation().distance(a.getLocation())/ 2)));
+                    Integer.min(8, Integer.max(2, (int) distance/7)));
         }
         return -1;
     }

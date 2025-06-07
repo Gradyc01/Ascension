@@ -1,8 +1,11 @@
 package me.depickcator.ascension.Player.Cooldowns.Death;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.UseCooldown;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Cooldowns;
+import net.kyori.adventure.key.Key;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -16,10 +19,9 @@ public class DeathTimer extends Cooldowns {
     @Override
     public ItemStack makeItem() {
         ItemStack item = new ItemStack(Material.BEDROCK);
-        ItemMeta meta = item.getItemMeta();
-        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
-        meta.displayName(TextUtil.makeText("Death Timer"));
-        item.setItemMeta(meta);
+        item.setData(DataComponentTypes.USE_COOLDOWN,
+                UseCooldown.useCooldown(0.01f)
+                        .cooldownGroup(Key.key("cooldown:death")));
         return item;
     }
 

@@ -51,6 +51,8 @@ commands:
   giveCustomItem:
     description: testing purposes only
     permission: ascension.startEvent
+depend:
+  - Apollo-Bukkit
 #  give-main-menu:
 #    description: This command gives the main menu item
 #    permission: ascension.give-main-menu

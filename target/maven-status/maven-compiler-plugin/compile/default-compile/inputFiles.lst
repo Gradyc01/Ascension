@@ -47,12 +47,10 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Gener
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Start\Sequences\SpreadPlayers.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Start\Sequences\TextSequence.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Game\Start\StartGame.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\LoadGame.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\LocationChecker\LocationCheck.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\LocationChecker\LocationStorage.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Queue\Queue.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\Queue\QueueCommand.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\General\ResetGame.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\AscensionGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\CustomChestLoot.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Interfaces\CustomChestLootPool.java

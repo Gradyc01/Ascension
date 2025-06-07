@@ -137,6 +137,7 @@ public class PlayerDeath {
     }
 
     private Location getRespawnLocation() {
+        String debugString = "Attempting to get respawn location...  ";
         WorldBorder border = plugin.getWorld().getWorldBorder();
         Location spawn = border.getCenter();
         Random r = new Random();
@@ -145,13 +146,18 @@ public class PlayerDeath {
             spawn = plugin.getSettingsUI().getSettings().getTimeline().getAscensionEvent().getAscendingLocation().getSpawnLocation();
             worldBorderDiameter = 1250;
         }
-        int x = spawn.getBlockX() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
-        int z = spawn.getBlockZ() + (int) (r.nextDouble(50, worldBorderDiameter) - (worldBorderDiameter/2));
+        int bX = r.nextBoolean() ? 1 : - 1;
+        int bZ = r.nextBoolean() ? 1 : - 1;
+        int x = spawn.getBlockX()  + (int) (r.nextDouble(50, worldBorderDiameter/2) * bX);
+        int z = spawn.getBlockZ()  + (int) (r.nextDouble(50, worldBorderDiameter/2) * bZ);
         int y = spawn.getWorld().getHighestBlockYAt(x, z);
         Location spawnLocation = new Location(spawn.getWorld(), x, y, z);
+        debugString += "trying coords (" + x + "," + y + "," + z + ")...  ";
         if (border.isInside(spawnLocation)) {
+            TextUtil.debugText(debugString + " SUCCESS!");
             return spawnLocation;
         } else {
+            TextUtil.debugText(debugString + " Not in border. Retrying...");
             return getRespawnLocation();
         }
     }

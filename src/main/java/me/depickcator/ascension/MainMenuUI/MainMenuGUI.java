@@ -31,7 +31,7 @@ public class MainMenuGUI extends AscensionGUI {
 
         inventory.setItem(21, makeMainMenuBoardButton(Material.CRAFTING_TABLE, "Unlocks"));
         inventory.setItem(22, makeMainMenuBoardButton(Material.ENCHANTED_BOOK, "Board"));
-        inventory.setItem(23, makeMainMenuBoardButton(Material.COMPARATOR, "Commands"));
+        inventory.setItem(23, makeMainMenuBoardButton(Material.COMPARATOR, "Commands & Settings"));
         inventory.setItem(30, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Skills"));
         inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
         inventory.setItem(32, makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));

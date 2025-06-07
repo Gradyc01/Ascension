@@ -60,7 +60,7 @@ public class NatureWrath {
                 player.sendMessage(text);
                 Location loc = player.getLocation();
                 player.playSound(loc, Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 2.0f);
-                player.setHealth(Double.max(0.1, player.getHealth() - 3));
+                player.setHealth(Double.max(0.1, player.getHealth() - 2.5));
                 world.strikeLightningEffect(loc);
                 world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0F, 1.0F);
                 world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0F, 0.0F);
