@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Craftable.Unlocks.PandoraBoxItem.Boxes.*;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.SoundUtil;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class PandoraBoxGUI extends AscensionGUI {
+public class PandoraBoxGUI extends AscensionMenuGUI {
     private final HashMap<ItemStack, PandoraBoxes> boxes;
     private final ItemStack claimBox;
     private final PandoraBoxes displayBox;

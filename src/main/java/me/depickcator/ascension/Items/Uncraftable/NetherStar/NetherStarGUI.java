@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Items.Uncraftable.NetherStar;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NetherStarGUI extends AscensionGUI {
+public class NetherStarGUI extends AscensionMenuGUI {
     private final List<ItemStack> items;
     private final int tier;
     public NetherStarGUI(PlayerData playerData, ItemStack item) {

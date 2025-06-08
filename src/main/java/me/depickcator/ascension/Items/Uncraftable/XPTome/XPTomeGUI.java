@@ -4,7 +4,7 @@ package me.depickcator.ascension.Items.Uncraftable.XPTome;
 
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XPTomeGUI extends AscensionGUI {
+public class XPTomeGUI extends AscensionMenuGUI {
     public final static String menuName = "XPTomeGUI";
 
     // private Ascension plugin;

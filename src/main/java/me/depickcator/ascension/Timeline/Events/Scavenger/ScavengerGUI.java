@@ -2,7 +2,7 @@ package me.depickcator.ascension.Timeline.Events.Scavenger;
 
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamStats;
@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class ScavengerGUI extends AscensionGUI {
+public class ScavengerGUI extends AscensionMenuGUI {
     public final static String menuName = "Scavenger-GUI";
 
     private final Scavenger scavenger;

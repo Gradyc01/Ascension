@@ -5,14 +5,14 @@ package me.depickcator.ascension.Items.Uncraftable.HadesBook;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-public class HadesBookGUI extends AscensionGUI {
+public class HadesBookGUI extends AscensionMenuGUI {
     private List<ItemStack> items;
     public HadesBookGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Hades' Book", TextUtil.GOLD), true);

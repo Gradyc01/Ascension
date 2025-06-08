@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Lobby.EventsBoard;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.apache.commons.lang3.tuple.Pair;
@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-public class EventBoardGUI extends AscensionGUI {
+public class EventBoardGUI extends AscensionMenuGUI {
     private final EventBoard eventBoard;
     public EventBoardGUI(PlayerData playerData) {
         super(playerData, (char) 3, TextUtil.makeText("Choose an Event", TextUtil.YELLOW), true);

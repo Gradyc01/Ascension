@@ -3,7 +3,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem;
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locations.Structures.Villages.*;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locations.Biomes.*;
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Locations.Structures.*;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class EcholocatorGUI extends AscensionGUI {
+public class EcholocatorGUI extends AscensionMenuGUI {
 
     private HashMap<ItemStack, EcholocatorLocations> map;
     public EcholocatorGUI(PlayerData playerData) {

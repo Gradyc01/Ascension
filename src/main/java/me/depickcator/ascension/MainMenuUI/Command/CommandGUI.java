@@ -2,7 +2,7 @@ package me.depickcator.ascension.MainMenuUI.Command;
 
 import me.depickcator.ascension.Player.Data.PlayerStats;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.MainMenuUI.Command.Commands.*;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class CommandGUI extends AscensionGUI {
+public class CommandGUI extends AscensionMenuGUI {
     private final HashMap<ItemStack, Commands> map;
     public CommandGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Commands", TextUtil.AQUA), true);

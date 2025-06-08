@@ -4,7 +4,7 @@ import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import me.depickcator.ascension.Timeline.Events.Scavenger.ScavengerTrades;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Cooldowns.ScanBoardCooldown;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
@@ -19,7 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BingoBoardGUI extends AscensionGUI {
+public class BingoBoardGUI extends AscensionMenuGUI {
     private final int[] boardSlots = {
              2,  3,  4,  5,  6,
             11, 12, 13, 14, 15,
@@ -195,9 +195,6 @@ public class BingoBoardGUI extends AscensionGUI {
                 }
                 TextUtil.errorMessage(player, "You do not have enough Souls to do this!");
             }
-
         }
-
-
     }
 }

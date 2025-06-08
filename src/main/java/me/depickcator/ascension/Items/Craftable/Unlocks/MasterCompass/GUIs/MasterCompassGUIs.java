@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.MasterCompass.GUIs;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MasterCompass.CompassAbilities;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
@@ -9,7 +9,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public abstract class MasterCompassGUIs extends AscensionGUI {
+public abstract class MasterCompassGUIs extends AscensionMenuGUI {
     private final CompassAbilities masterCompassAbilities;
     protected final int trackSpecificPlayerCost = 1000;
     protected final int trackNearestPlayerCost = 300;

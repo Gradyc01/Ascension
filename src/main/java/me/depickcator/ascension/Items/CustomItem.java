@@ -53,6 +53,15 @@ public abstract class CustomItem {
         item.setItemMeta(meta);
     }
 
+    /*Sets a model number for ItemStack item*/
+    protected void setModelNumber(ItemStack item, int modelNumber) {
+        ItemMeta meta = item.getItemMeta();
+        CustomModelDataComponent component = meta.getCustomModelDataComponent();
+        component.setFloats(new ArrayList<>(List.of((float) modelNumber)));
+        meta.setCustomModelDataComponent(component);
+        item.setItemMeta(meta);
+    }
+
     public String getDisplayName() {
         return DISPLAY_NAME;
     }

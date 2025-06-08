@@ -9,7 +9,7 @@ import me.depickcator.ascension.MainMenuUI.Skills.SkillsGUI;
 import me.depickcator.ascension.MainMenuUI.Unlocks.UnlocksGUI;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import me.depickcator.ascension.Timeline.Events.Scavenger.ScavengerGUI;
@@ -24,7 +24,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class MainMenuGUI extends AscensionGUI {
+public class MainMenuGUI extends AscensionMenuGUI {
 
     public MainMenuGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Ascension", TextUtil.AQUA), true);

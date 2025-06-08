@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Settings.GUIs;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.Presets.Brawl;
 import me.depickcator.ascension.Settings.Presets.InstantAscension;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SettingsPresetGUI extends AscensionGUI {
+public class SettingsPresetGUI extends AscensionMenuGUI {
     private final HashMap<ItemStack, Settings> presets;
     public SettingsPresetGUI(PlayerData playerData) {
         super(playerData, (char) 3 , TextUtil.makeText("Presets", TextUtil.AQUA), true);

@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Lobby.NPCs.Bingo;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BingoNPCGUI extends AscensionGUI {
+public class BingoNPCGUI extends AscensionMenuGUI {
     private final List<PlayerData> playerDataList;
     private final int pageNum;
     private final int playersPerGUI;

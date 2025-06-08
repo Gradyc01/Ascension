@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Settings.GUIs;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.BuildCustom.*;
 import me.depickcator.ascension.Utility.SoundUtil;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SettingsCustomGUI extends AscensionGUI {
+public class SettingsCustomGUI extends AscensionMenuGUI {
     private final AllButtons buttons;
     private final HashMap<ItemStack, Button> customButtons;
     private final ItemStack buildSettingsItem;

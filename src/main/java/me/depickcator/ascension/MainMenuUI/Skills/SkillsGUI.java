@@ -2,7 +2,7 @@ package me.depickcator.ascension.MainMenuUI.Skills;
 
 import me.depickcator.ascension.Skills.Skills;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerSkills;
@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SkillsGUI extends AscensionGUI {
+public class SkillsGUI extends AscensionMenuGUI {
     private final PlayerSkills playerSkills;
     public SkillsGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Skills", TextUtil.AQUA), true);

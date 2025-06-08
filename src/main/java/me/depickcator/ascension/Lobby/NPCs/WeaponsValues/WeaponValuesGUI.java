@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Lobby.NPCs.WeaponsValues;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Craftable.Unlocks.DragonSword;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftMace;
 import me.depickcator.ascension.Items.Craftable.Unlocks.Poseidon;
@@ -10,7 +10,7 @@ import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class WeaponValuesGUI extends AscensionGUI {
+public class WeaponValuesGUI extends AscensionMenuGUI {
     public WeaponValuesGUI(PlayerData playerData) {
         super(playerData, (char) 5, TextUtil.makeText("Weapon Damage Values", TextUtil.AQUA), true);
         inventory.setItem(31, getCloseButton());

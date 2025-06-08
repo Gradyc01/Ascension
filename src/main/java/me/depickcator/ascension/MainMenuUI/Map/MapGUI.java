@@ -2,7 +2,7 @@ package me.depickcator.ascension.MainMenuUI.Map;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapGUI extends AscensionGUI {
+public class MapGUI extends AscensionMenuGUI {
     private final MapItems mapItems;
     public MapGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Map", TextUtil.AQUA), true);

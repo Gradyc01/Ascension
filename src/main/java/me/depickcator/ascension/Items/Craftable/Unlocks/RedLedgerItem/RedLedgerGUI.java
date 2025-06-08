@@ -3,7 +3,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem;
 import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Effects.TeleportSequence;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RedLedgerGUI extends AscensionGUI {
+public class RedLedgerGUI extends AscensionMenuGUI {
     private HashMap<ItemStack, Team> teams;
     private HashMap<ItemStack, Player> players;
     public RedLedgerGUI(PlayerData playerData) {

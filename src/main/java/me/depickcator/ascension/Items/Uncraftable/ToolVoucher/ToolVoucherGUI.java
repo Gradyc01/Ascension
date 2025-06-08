@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Items.Uncraftable.ToolVoucher;
 
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ToolVoucherGUI extends AscensionGUI {
+public class ToolVoucherGUI extends AscensionMenuGUI {
     private HashMap<ItemStack, VouchableTool> items;
 
     // private Ascension plugin;

@@ -5,7 +5,7 @@ import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import net.kyori.adventure.text.Component;
@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KitBookGUI extends AscensionGUI {
+public class KitBookGUI extends AscensionMenuGUI {
     private final KitBook kitBook;
     public KitBookGUI(PlayerData playerData) {
         super(playerData, (char) 3, TextUtil.makeText("Choose a Kit", TextUtil.AQUA), true);

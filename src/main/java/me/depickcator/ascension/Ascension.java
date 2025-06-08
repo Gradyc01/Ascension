@@ -6,6 +6,7 @@ import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.General.Queue.QueueCommand;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Lobby.Lobby;
 import me.depickcator.ascension.LootTables.Blocks.BlockUtil;

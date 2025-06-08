@@ -3,10 +3,7 @@ package me.depickcator.ascension.General.Game.Start.Sequences;
 import me.depickcator.ascension.General.Game.GameLauncher;
 import me.depickcator.ascension.General.Game.GameSequences;
 import me.depickcator.ascension.Items.Craftable.Unlocks.*;
-import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondAxe;
-import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondSword;
-import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
-import me.depickcator.ascension.Items.Craftable.Vanilla.Shield;
+import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.CreeperHead;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.SkeletonSkull;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.ZombieHead;
@@ -24,6 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+import javax.crypto.Mac;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -214,7 +212,9 @@ public class GiveBrawlItems2 extends GameSequences {
     }
     private List<Pair<ItemStack, Integer>> initSpecial() {
         return new ArrayList<>(List.of(
-                new ImmutablePair<>(CupidBow.getInstance().getResult(), 10),
+                new ImmutablePair<>(Poseidon.getInstance().getResult(), 11),
+                new ImmutablePair<>(Mace.getInstance().getResult(), 10),
+                new ImmutablePair<>(CupidBow.getInstance().getResult(), 9),
                 new ImmutablePair<>(MinerBlessing.getInstance().getResult(), 7),
                 new ImmutablePair<>(HeliosCurse.getInstance().getResult(), 6),
                 new ImmutablePair<>(ApolloGlare.getInstance().getResult(), 5),

@@ -1,7 +1,7 @@
 package me.depickcator.ascension.MainMenuUI.Unlocks;
 
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class UnlocksGUI extends AscensionGUI {
+public class UnlocksGUI extends AscensionMenuGUI {
     private final Integer[] barrierNums = {47, 46, 37, 28, 19, 10, 11, 12, 13, 14, 15, 16, 25, 34, 43, 52, 51};
     private final char pageNumber;
     private ArrayList<ItemStack> pages;

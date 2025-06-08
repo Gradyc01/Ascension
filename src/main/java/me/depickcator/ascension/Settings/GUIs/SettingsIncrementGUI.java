@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Settings.GUIs;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.BuildCustom.ScalarButton;
 import me.depickcator.ascension.Settings.BuildCustom.IncrementButton;
@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.List;
 
-public class SettingsIncrementGUI extends AscensionGUI {
+public class SettingsIncrementGUI extends AscensionMenuGUI {
     private final HashMap<ItemStack, IncrementButton> incrementButtons;
     private final ScalarButton button;
     private final AllButtons allButtons;

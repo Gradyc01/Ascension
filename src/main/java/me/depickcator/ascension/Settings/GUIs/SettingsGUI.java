@@ -1,6 +1,6 @@
 package me.depickcator.ascension.Settings.GUIs;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Settings.BuildCustom.AllButtons;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-public class SettingsGUI extends AscensionGUI {
+public class SettingsGUI extends AscensionMenuGUI {
     private final ItemStack presetsButton;
     private final ItemStack customButton;
     public SettingsGUI(PlayerData playerData) {

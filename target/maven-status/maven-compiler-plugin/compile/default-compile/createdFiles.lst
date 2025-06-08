@@ -7,6 +7,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Struc
 me\depickcator\ascension\Lobby\EventsBoard\EventBoard.class
 me\depickcator\ascension\MainMenuUI\Command\Commands\AutoPurchaseUnlocks.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HermesBoots.class
+me\depickcator\ascension\Interfaces\AscensionMenuGUI.class
 me\depickcator\ascension\General\Game\GameLauncher.class
 me\depickcator\ascension\Lobby\StatsBoard$3.class
 me\depickcator\ascension\MainMenuUI\Map\MapItems.class
@@ -60,6 +61,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect$1.class
 me\depickcator\ascension\General\Game\Load\Sequences\ClearEntityInteractions.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Trials.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ApprenticeHelmet.class
+me\depickcator\ascension\Interfaces\BackpackGUI.class
 me\depickcator\ascension\General\Game\ReSeed\ReSeed.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionLocation.class
 me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class

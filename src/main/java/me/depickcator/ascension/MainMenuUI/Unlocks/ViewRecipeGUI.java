@@ -1,6 +1,6 @@
 package me.depickcator.ascension.MainMenuUI.Unlocks;
 
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ViewRecipeGUI extends AscensionGUI {
+public class ViewRecipeGUI extends AscensionMenuGUI {
     private final int[] craftingGridSlots = {
             11, 12, 13,
             20, 21, 22,

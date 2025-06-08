@@ -3,7 +3,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem;
 import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.AscensionGUI;
+import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Cooldowns.TeleportCooldown;
 import me.depickcator.ascension.Effects.TeleportSequence;
@@ -18,7 +18,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.HashMap;
 import java.util.List;
 
-public class TeamPortalGUI extends AscensionGUI {
+public class TeamPortalGUI extends AscensionMenuGUI {
 
     private HashMap<ItemStack, Player> skullMap;
     public TeamPortalGUI(PlayerData playerData) {
