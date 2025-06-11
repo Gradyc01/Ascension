@@ -65,10 +65,12 @@ me\depickcator\ascension\Interfaces\BackpackGUI.class
 me\depickcator\ascension\General\Game\ReSeed\ReSeed.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionLocation.class
 me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class
+me\depickcator\ascension\Player\Data\PlayerInventoryTracker.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\CherryGrove.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Cornucopia.class
 me\depickcator\ascension\General\Game\Load\Sequences\CallLocationCheck.class
 me\depickcator\ascension\Persistence\Writeable.class
+me\depickcator\ascension\commands\CraftCommand.class
 me\depickcator\ascension\Lobby\StatsBoard.class
 me\depickcator\ascension\General\Game\GameCommand.class
 me\depickcator\ascension\General\Game\Load\Sequences\CallResetGame.class
@@ -136,6 +138,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\NetheriteInfusionItem\Netherite
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\DesertPyramid.class
 me\depickcator\ascension\General\Game\Start\Sequences\InitBingoBoard.class
 me\depickcator\ascension\General\Game\Start\Sequences\TextSequence$1.class
+me\depickcator\ascension\MainMenuUI\Command\Commands\NotifyCrafts.class
 me\depickcator\ascension\General\Game\Reset\Sequences\ResetPlayers.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Echolocator.class
 me\depickcator\ascension\Items\Craftable\Unlocks\DustOfLight.class
@@ -178,6 +181,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\BookOfPower.class
 me\depickcator\ascension\Effects\TeleportSequence$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Taiga.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\AncientCity.class
+me\depickcator\ascension\Items\UnlockRecommender.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CupidBow.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Bastion.class
 me\depickcator\ascension\General\Game\Load\Sequences\BuildPlatform.class
@@ -200,4 +204,5 @@ me\depickcator\ascension\Teams\TeamBackpack.class
 me\depickcator\ascension\Skills\Global.class
 me\depickcator\ascension\General\Game\Reset\Sequences\ResetBackpacks.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CubeConverter.class
+me\depickcator\ascension\Player\Data\PlayerInventoryTracker$1.class
 me\depickcator\ascension\Teams\Team.class

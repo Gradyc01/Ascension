@@ -1,7 +1,9 @@
 package me.depickcator.ascension.Items;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.depickcator.ascension.Items.Craftable.Unlocks.EcholocatorItem.Echolocator;
 import me.depickcator.ascension.Items.Craftable.Unlocks.GhostItem.Ghost;
@@ -22,11 +24,8 @@ import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 
 public class UnlocksData {
-    private ArrayList<Craft> tier1Unlocks;
-    private ArrayList<Craft> tier2Unlocks;
-    private ArrayList<Craft> tier3Unlocks;
-    private ArrayList<Craft> tier4Unlocks;
-    private ArrayList<Craft> tier5Unlocks;
+    private final Map<String, Pair<Craft, Integer>> unlocksMap;
+    private final List<List<Craft>> allUnlocks;
     public static int COST_75 = 75;
     public static int COST_100 = 100;
     public static int COST_125 = 125;
@@ -48,6 +47,9 @@ public class UnlocksData {
 
     /*Initializes all Unlocks and Custom Items */
     public UnlocksData() {
+        unlocksMap = new HashMap<>();
+        allUnlocks = new ArrayList<>();
+
         Tier1Unlocks();
         Tier2Unlocks();
         Tier3Unlocks();
@@ -56,11 +58,21 @@ public class UnlocksData {
         Uncraftable();
         Vanilla();
         new RecipeBookModifier();
+        addToUnlockRecommender();
+    }
+
+    private void addToUnlockRecommender() {
+        UnlockRecommender recommender =  UnlockRecommender.getInstance();
+        for (List<Craft> crafts: getAllUnlocks()) {
+            for (Craft c: crafts) {
+                recommender.addCraft(c);
+            }
+        }
     }
 
 
     private void Tier1Unlocks() {
-        tier1Unlocks = new ArrayList<>(List.of(
+        addUnlock(1,
                 IronPack.getInstance(),
                 GoldPack.getInstance(),
                 QuickPick.getInstance(),
@@ -74,13 +86,13 @@ public class UnlocksData {
                 QuickBow.getInstance(),
                 VorpalSword.getInstance(),
                 DustOfLight.getInstance()
-        ));
+        );
     }
 
     private void Tier2Unlocks() {
-        tier2Unlocks = new ArrayList<>(List.of(
-                DiamondPack.getInstance(),
+        addUnlock(2,
                 FlamingArtifact.getInstance(),
+                AdvancedQuickPick.getInstance(),
                 PhilosopherPickaxe.getInstance(),
                 LightAnvil.getInstance(),
                 LightEnchantingTable.getInstance(),
@@ -93,14 +105,14 @@ public class UnlocksData {
                 BookOfProtection.getInstance(),
                 BookOfPower.getInstance(),
                 BookOfSharpness.getInstance()
-        ));
+        );
     }
 
     private void Tier3Unlocks() {
-        tier3Unlocks = new ArrayList<>(List.of(
+        addUnlock(3,
                 Tarnhelm.getInstance(),
                 KingsRod.getInstance(),
-                AdvancedQuickPick.getInstance(),
+                DiamondPack.getInstance(),
                 AncientArtifact.getInstance(),
                 SoulArtifact.getInstance(),
                 MakeshiftSkull.getInstance(),
@@ -112,11 +124,11 @@ public class UnlocksData {
                 PandoraBox.getInstance(),
                 MasterCompass.getInstance(),
                 NotchApple.getInstance()
-        ));
+        );
     }
 
     private void Tier4Unlocks() {
-        tier4Unlocks = new ArrayList<>(List.of(
+        addUnlock(4,
                 DragonArmor.getInstance(),
                 HideOfLeviathan.getInstance(),
                 SevenLeagueBoots.getInstance(),
@@ -131,11 +143,11 @@ public class UnlocksData {
                 Ghost.getInstance(),
                 MinerBlessing.getInstance(),
                 NetheriteInfusion.getInstance()
-        ));
+        );
     }
 
     private void Tier5Unlocks() {
-        tier5Unlocks = new ArrayList<>(List.of(
+        addUnlock(5,
                 AscensionKey.getInstance(),
                 Resurrection.getInstance(),
                 CupidBow.getInstance(),
@@ -149,7 +161,7 @@ public class UnlocksData {
                 Daredevil.getInstance(),
                 Poseidon.getInstance(),
                 MakeshiftMace.getInstance()
-        ));
+        );
     }
 
     private void Uncraftable() {
@@ -176,48 +188,23 @@ public class UnlocksData {
 
     /*Returns the Craft and the Tier it is in for Unlock with displayName 'displayName'*/
     public Pair<Craft, Integer> findUnlock(String displayName) {
-        ArrayList<ArrayList<Craft>> arr = Ascension.getInstance().getUnlocksData().getAllUnlocks();
-        for (int i = 0; i < arr.size(); i++) {
-            for (Craft c : arr.get(i)) {
-                if(c.getDisplayName().equals(displayName)) {
-                    return Pair.of(c, i + 1);
-                }
-            }
-        }
-        return null;
+        return unlocksMap.get(displayName);
     }
 
-    public ArrayList<Craft> getTier1Unlocks() {
-        return tier1Unlocks;
-    }
 
-    public ArrayList<Craft> getTier2Unlocks() {
-        return tier2Unlocks;
-    }
-
-    public ArrayList<Craft> getTier3Unlocks() {
-        return tier3Unlocks;
-    }
-
-    public ArrayList<Craft> getTier4Unlocks() {
-        return tier4Unlocks;
-    }
-
-    public ArrayList<Craft> getTier5Unlocks() {
-        return tier5Unlocks;
-    }
-
-    public ArrayList<ArrayList<Craft>> getAllUnlocks() {
-        ArrayList<ArrayList<Craft>> allUnlocks = new ArrayList<>();
-        allUnlocks.add(tier1Unlocks);
-        allUnlocks.add(tier2Unlocks);
-        allUnlocks.add(tier3Unlocks);
-        allUnlocks.add(tier4Unlocks);
-        allUnlocks.add(tier5Unlocks);
+    public List<List<Craft>> getAllUnlocks() {
         return allUnlocks;
     }
 
-    public ArrayList<Craft> getUnlocksTier(int tier) {
+    /*Add Craft craft into the UnlockMap with Tier tier*/
+    private void addUnlock(int tier, Craft... craft) {
+        allUnlocks.add(new ArrayList<>(List.of(craft)));
+        for (Craft c : craft) {
+            unlocksMap.put(c.getDisplayName(), Pair.of(c, tier));
+        }
+    }
+
+    public List<Craft> getUnlocksTier(int tier) {
         return getAllUnlocks().get(tier - 1);
     }
 }

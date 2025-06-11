@@ -95,7 +95,7 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
     }
 
     private List<CustomItem> getAllCustomItems() {
-        ArrayList<ArrayList<Craft>> allCraft = plugin.getUnlocksData().getAllUnlocks();
+        List<List<Craft>> allCraft = plugin.getUnlocksData().getAllUnlocks();
         allCraft.add(new ArrayList<>(List.of(
                 WoodenSword.getInstance(),
                 StoneSword.getInstance(),
@@ -127,7 +127,7 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 NetherStar.getInstance(),
                 Anduril.getInstance()
                 ));
-        for (ArrayList<Craft> craft : allCraft) {
+        for (List<Craft> craft : allCraft) {
             items.addAll(craft);
         }
         return items;

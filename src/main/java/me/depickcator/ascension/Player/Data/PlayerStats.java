@@ -17,11 +17,13 @@ public class PlayerStats implements PlayerDataObservers, Writeable {
     private int kills;
     private int deaths;
     private int itemsObtained;
+    private int inventoryRefreshes;
 
     //Keys
     public static final String nightVisionKey = "night_vision";
     public static final String foodDropsKey = "food_drops";
     public static final String autoPurchaseUnlocks = "auto_purchase_unlocks";
+    public static final String craftNotifications = "craft_notifications";
     public PlayerStats(PlayerData playerData) {
         this.playerData = playerData;
         this.player = playerData.getPlayer();
@@ -35,8 +37,8 @@ public class PlayerStats implements PlayerDataObservers, Writeable {
         try {
             result = player.getPersistentDataContainer().get(k, PersistentDataType.BOOLEAN);
         } catch (NullPointerException e) {
-            result = false;
-            setSetting(key, false);
+            result = true;
+            setSetting(key, true);
             PlayerDataFileReader reader = new PlayerDataFileReader(player);
             if (reader.read()) {
                 reader.setPlayerSettings(this);
@@ -57,6 +59,14 @@ public class PlayerStats implements PlayerDataObservers, Writeable {
     public void addKill() {
         kills++;
         playerData.getPlayerScoreboard().update();
+    }
+
+    public void addInventoryRefresh() {
+        inventoryRefreshes++;
+    }
+
+    public int getInventoryRefreshes() {
+        return inventoryRefreshes;
     }
 
     public int getKills() {

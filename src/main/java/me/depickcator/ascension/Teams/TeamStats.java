@@ -83,7 +83,7 @@ public class TeamStats {
     }
 
     public int getGameScorePercentage() {
-        TextUtil.debugText(gameScore + " Game Score     ");
+        // TextUtil.debugText(gameScore + " Game Score     ");
         int round2Requirement = 2 * gameScoreRequirement / 3;
         double percentage;
         if (ascensionAttempts == 0) {
@@ -92,7 +92,7 @@ public class TeamStats {
             int attemptsRemaining = ascensionAttempts - 1;
             percentage = (double) (gameScore - gameScoreRequirement - (round2Requirement * attemptsRemaining)) / round2Requirement;
         }
-        TextUtil.debugText(Math.round(percentage * 100) + "%");
+        // TextUtil.debugText(Math.round(percentage * 100) + "%");
         return (int) Math.round(percentage * 100);
 
     }

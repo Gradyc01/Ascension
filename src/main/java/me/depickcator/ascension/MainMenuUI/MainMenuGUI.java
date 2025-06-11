@@ -48,7 +48,7 @@ public class MainMenuGUI extends AscensionMenuGUI {
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {
         ItemStack item = event.getCurrentItem();
-        if (item == null || !event.isLeftClick()) {
+        if (item == null) {
             return;
         }
         switch (item.getType()) {

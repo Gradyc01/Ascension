@@ -121,6 +121,7 @@ public final class Ascension extends JavaPlugin {
         getCommand("printWorldInfo").setExecutor(new printWorldInformation());
         getCommand("settings").setExecutor(new SetSetting());
         getCommand("bp").setExecutor(new Backpack());
+        getCommand("craft").setExecutor(new CraftCommand());
     }
     private void registerListeners() {
         Server server = getServer();

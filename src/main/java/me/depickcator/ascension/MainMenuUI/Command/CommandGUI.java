@@ -17,9 +17,11 @@ public class CommandGUI extends AscensionMenuGUI {
     public CommandGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Commands", TextUtil.AQUA), true);
         map = new HashMap<>();
-        initializeButtons(new NightVision(), 24, true, playerData.getPlayerStats().getSetting(PlayerStats.nightVisionKey));
-        initializeButtons(new FoodDrops(), 25, true, playerData.getPlayerStats().getSetting(PlayerStats.foodDropsKey));
-        initializeButtons(new AutoPurchaseUnlocks(), 33, true, playerData.getPlayerStats().getSetting(PlayerStats.autoPurchaseUnlocks));
+        PlayerStats playerStats = playerData.getPlayerStats();
+        initializeButtons(new NightVision(), 24, true, playerStats.getSetting(PlayerStats.nightVisionKey));
+        initializeButtons(new FoodDrops(), 25, true, playerStats.getSetting(PlayerStats.foodDropsKey));
+        initializeButtons(new AutoPurchaseUnlocks(), 33, true, playerStats.getSetting(PlayerStats.autoPurchaseUnlocks));
+        initializeButtons(new NotifyCrafts(), 34, true, playerStats.getSetting(PlayerStats.craftNotifications));
         initializeButtons(new SendCoords(), 19);
         initializeButtons(new SpawnTravel(), 21);
         initializeButtons(new Surface(), 22);

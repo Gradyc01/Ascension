@@ -1,5 +1,6 @@
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Ascension.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\commands\Backpack.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\commands\CraftCommand.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\commands\Info.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\commands\SetSetting.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\commands\Shout.java
@@ -219,6 +220,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\ToolVoucher\VouchableTool.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\XPTome\XPTome.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\Uncraftable\XPTome\XPTomeGUI.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\UnlockRecommender.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\UnlocksData.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Items\UnlockUtil.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Kits\KitBookGUI.java
@@ -336,6 +338,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainM
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\Commands.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\FoodDrops.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\NightVision.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\NotifyCrafts.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\SendCoords.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\SpawnTravel.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\Surface.java
@@ -368,6 +371,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Playe
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Cooldowns\TeleportCooldown.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerData.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerDataObservers.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerInventoryTracker.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerScoreboard.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerSkills.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\Player\Data\PlayerStats.java

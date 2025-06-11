@@ -37,6 +37,7 @@ public class PlayerData {
     private final PlayerTeam playerTeam;
     private final PlayerSkills playerSkills;
     private final PlayerStats playerStats;
+    private final PlayerInventoryTracker playerInventoryTracker;
 
     private final List<PlayerDataObservers> observers;
 
@@ -51,6 +52,7 @@ public class PlayerData {
         playerSkills = new PlayerSkills(this);
         playerStats = new PlayerStats(this);
         playerScoreboard = new PlayerScoreboard(this);
+        playerInventoryTracker = new PlayerInventoryTracker(this);
         initPlayerState();
 
         observers = new ArrayList<>(List.of(
@@ -58,7 +60,8 @@ public class PlayerData {
                 playerTeam,
                 playerSkills,
                 playerStats,
-                playerScoreboard
+                playerScoreboard,
+                playerInventoryTracker
         ));
     }
 
@@ -181,6 +184,10 @@ public class PlayerData {
 
     public PlayerStats getPlayerStats() {
         return playerStats;
+    }
+
+    public PlayerInventoryTracker getPlayerInventoryTracker() {
+        return playerInventoryTracker;
     }
 
     public int getPlayerState() {

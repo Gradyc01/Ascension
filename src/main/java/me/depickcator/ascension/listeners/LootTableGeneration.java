@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.KingsRod;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.LootTables.Blocks.ForageBlocks.ForageBlocks;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Skills.SkillExpAmount;
 import org.bukkit.Material;
@@ -58,6 +59,15 @@ public class LootTableGeneration implements Listener {
                 ForageBlocks forageBlocks = (ForageBlocks) lootTableChanger;
                 forageBlocks.onPlacedForagingBlock(event);
             }
+        }
+        if (!event.isCancelled()) {
+            Player p = event.getPlayer();
+            PlayerData playerData = PlayerUtil.getPlayerData(p);
+            Material type = b.getType();
+            if (type.isItem()) {
+                playerData.getPlayerInventoryTracker().removeItems(new ItemStack(type));
+            }
+
         }
     }
 
@@ -116,6 +126,7 @@ public class LootTableGeneration implements Listener {
 
             FishHook hook = (FishHook) e.getEntity();
             Player hookShooter = (Player) hook.getShooter();
+            if (!(e.getHitEntity() instanceof LivingEntity)) return;
             LivingEntity hitEntity = (LivingEntity) e.getHitEntity();
 
             double kx = hook.getLocation().getDirection().getX() / 2.5;

@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.UnlockRecommender;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -70,6 +71,9 @@ public class PlayerUtil {
 
     public static void giveItem(Player p, List<ItemStack> items) {
         PlayerInventory inv = p.getInventory();
+        PlayerData pD = getPlayerData(p);
+        UnlockRecommender recommender = UnlockRecommender.getInstance();
+        PlayerInventoryTracker tracker = pD.getPlayerInventoryTracker();
         List<ItemStack> itemsLeft = new ArrayList<>(); // Items Left to give
         for (ItemStack item : items) {
             itemsLeft.add(item.clone());
@@ -89,14 +93,23 @@ public class PlayerUtil {
                         if (maxSize >= invItemAmount + itemAmount) {
                             invItem.setAmount(invItemAmount + itemAmount);
                             itemsLeft.remove(item);
+                            //Adds to tracker and recommender
+                            tracker.addItems(invItem, itemAmount);
+                            recommender.checkMaterial(new ItemStack(invItem.getType(), itemAmount), p);
                         } else {
                             invItem.setAmount(maxSize);
                             item.setAmount(itemAmount - (maxSize - invItemAmount));
+                            //Adds to tracker and recommender
+                            if (maxSize - invItemAmount > 0) {
+                                tracker.addItems(invItem, (maxSize - invItemAmount));
+                                recommender.checkMaterial(new ItemStack(invItem.getType(), (maxSize - invItemAmount)), p);
+                            }
                         }
                     }
                 }
             }
         }
+        boolean dropped = false;
         for (ItemStack item : itemsLeft) {
             try {
                 int slot = emptySlots.getFirst();
@@ -104,10 +117,17 @@ public class PlayerUtil {
                 p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 0.5f, 2);
                 inv.setItem(slot, item);
                 emptySlots.removeFirst();
+                //Adds to tracker and recommender
+                tracker.addItems(item);
+                recommender.checkMaterial(item, p);
 
             } catch (NoSuchElementException ignored) {
+                dropped = true;
                 p.getWorld().dropItem(p.getLocation(), item);
             }
+        }
+        if (dropped) {
+            p.sendMessage(TextUtil.makeText("Some items were dropped onto the floor make sure you pick those up", TextUtil.RED));
         }
     }
 

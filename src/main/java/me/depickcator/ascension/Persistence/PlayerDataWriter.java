@@ -41,6 +41,7 @@ public class PlayerDataWriter {
         intDataMap.put("deaths", pDStats.getDeaths());
         intDataMap.put("kills", pDStats.getKills());
         intDataMap.put("items_obtained", pDStats.getItemsObtained());
+        intDataMap.put("inventory_refreshes", pDStats.getInventoryRefreshes());
         Team team = playerData.getPlayerTeam().getTeam();
         if (team != null) {
             TeamStats teamStats = team.getTeamStats();
@@ -67,6 +68,7 @@ public class PlayerDataWriter {
         booleanDataMap.put(PlayerStats.foodDropsKey, pDStats.getSetting(PlayerStats.foodDropsKey));
         booleanDataMap.put(PlayerStats.nightVisionKey, pDStats.getSetting(PlayerStats.nightVisionKey));
         booleanDataMap.put(PlayerStats.autoPurchaseUnlocks, pDStats.getSetting(PlayerStats.autoPurchaseUnlocks));
+        booleanDataMap.put(PlayerStats.craftNotifications, pDStats.getSetting(PlayerStats.craftNotifications));
         return booleanDataMap;
     }
 

@@ -1,10 +1,14 @@
 package me.depickcator.ascension.Interfaces;
 
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerInventoryTracker;
+import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -57,9 +61,17 @@ public class BackpackGUI extends AscensionGUI {
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {
         ItemStack item = event.getCurrentItem();
+        PlayerInventoryTracker tracker = PlayerUtil.getPlayerData((Player) event.getWhoClicked()).getPlayerInventoryTracker();
         if (item == null) return;
         if (equalItems(item, backpackItem) || item.equals(barrierItem)) {
             event.setCancelled(true);
         }
+        if (event.getCurrentItem() != null && event.getCurrentItem().getType() != Material.AIR) tracker.needsUpdate();
+    }
+
+    @Override
+    public boolean runWhenCloseGUI(InventoryCloseEvent event) {
+        PlayerInventoryTracker tracker = PlayerUtil.getPlayerData((Player) event.getPlayer()).getPlayerInventoryTracker();
+        return true;
     }
 }

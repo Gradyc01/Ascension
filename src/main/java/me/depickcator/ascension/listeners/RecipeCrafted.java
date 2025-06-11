@@ -36,8 +36,8 @@ public class RecipeCrafted implements EventListener, Listener {
         if (!UnlockUtil.isAUnlock(recipeKey)) {
             return;
         }
-        Player player = (Player) event.getView().getPlayer();
-        PlayerUnlocks playerUnlocks = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks();
+//        Player player = (Player) event.getView().getPlayer();
+//        PlayerUnlocks playerUnlocks = Objects.requireNonNull(PlayerUtil.getPlayerData(player)).getPlayerUnlocks();
 
 //        int currentCrafts;
 //        if (playerUnlocks.hasUnlock(recipeKey)) {
@@ -57,6 +57,16 @@ public class RecipeCrafted implements EventListener, Listener {
         Recipe recipe = event.getRecipe();
         if (!isCraftingRecipe(recipe)) return;
         String recipeKey = getKey(recipe);
+        craftingCustomItemEvent(event, recipeKey);
+        if (!event.isCancelled() && event.getCurrentItem() != null) {
+            Player p = (Player) event.getWhoClicked();
+            PlayerData playerData = PlayerUtil.getPlayerData(p);
+            playerData.getPlayerInventoryTracker().needsUpdate();
+        }
+    }
+
+    /*Handles everything to do with crafting a custom item (Unlocks mostly)*/
+    private void craftingCustomItemEvent(CraftItemEvent event, String recipeKey) {
         if (!UnlockUtil.isAUnlock(recipeKey)) return;
 
         Player player = (Player) event.getWhoClicked();

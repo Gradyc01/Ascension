@@ -101,7 +101,7 @@ public class GameBoard extends Boards {
         Component red = TextUtil.makeText(":", TextUtil.RED);
         Component green = TextUtil.makeText(":", TextUtil.GREEN);
         int score = (int) Math.round(25 * percentage/100);
-        TextUtil.debugText("Percentage: " + percentage + " Green Bars amount: " + score);
+        // TextUtil.debugText("Percentage: " + percentage + " Green Bars amount: " + score);
         if (score >= 25) return TextUtil.makeText(" ASCENSION READY", TextUtil.GREEN);
 
         for (int i = 0; i < 25; i++) {

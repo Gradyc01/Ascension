@@ -25,7 +25,7 @@ public class QuickBow extends Craft {
         NamespacedKey key = new NamespacedKey(plugin, KEY);
 
         ShapedRecipe recipe = new ShapedRecipe(key, result);
-        recipe.shape(" AC", "ABV", " AC");
+        recipe.shape(" AC", "AB ", " AC");
         recipe.setIngredient('A', Material.STICK);
         recipe.setIngredient('B', Material.IRON_INGOT);
         recipe.setIngredient('C', Material.REDSTONE_TORCH);

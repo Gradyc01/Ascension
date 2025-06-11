@@ -22,7 +22,7 @@ public class PlayerUnlocks implements PlayerDataObservers {
     private Player player;
     private final PlayerData playerData;
     private final List<Integer> amountNeeded = new ArrayList<>(List.of(
-            0, 6, 5, 4, 3
+            0, 5, 3, 3, 2
 ));
     private final List<Integer> unlockTiers;
     private final List<Boolean> canUnlockTiers;
@@ -90,7 +90,7 @@ public class PlayerUnlocks implements PlayerDataObservers {
         unlockTiers.set(tier - 1, unlockTiers.get(tier - 1) + 1);
     }
 
-    private boolean canBeUnlocked(Craft craft, Integer tier) {
+    public boolean canBeUnlocked(Craft craft, Integer tier) {
         String key = craft.getKey();
         if (UnlockUtil.isAUnlock(key) && unlockTokens >= craft.getCraftCost() && UnlocksMap.get(craft.getKey()) == null) {
             if (tier == -1) return true;
@@ -99,7 +99,7 @@ public class PlayerUnlocks implements PlayerDataObservers {
         return false;
     }
 
-    public boolean canUnlockTier(int tier) {
+    private boolean canUnlockTier(int tier) {
         initCanUnlockTiers();
         return canUnlockTiers.get(tier - 1);
     }
