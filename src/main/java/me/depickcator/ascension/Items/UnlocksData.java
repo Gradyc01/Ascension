@@ -169,6 +169,7 @@ public class UnlocksData {
         KitBook.getInstance();
         EnderPearl.getInstance();
         ToolVoucher.getInstance();
+        LeapingSword.getInstance();
     }
 
     private void Vanilla() {

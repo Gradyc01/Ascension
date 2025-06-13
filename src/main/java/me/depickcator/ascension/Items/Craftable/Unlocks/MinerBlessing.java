@@ -62,7 +62,7 @@ public class MinerBlessing extends Craft implements ItemClick, CustomInfusion {
         recipe.setIngredient('A', Material.TNT);
         recipe.setIngredient('B', Material.DIAMOND);
         recipe.setIngredient('C', makeRecipeChoice());
-        recipe.setIngredient('D', MakeshiftSkull.getInstance().getResult());
+        recipe.setIngredient('D', Material.PLAYER_HEAD);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

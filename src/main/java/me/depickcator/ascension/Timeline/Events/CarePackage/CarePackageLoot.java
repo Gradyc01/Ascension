@@ -46,19 +46,19 @@ public class CarePackageLoot extends CustomChestLoot {
 
     private void initNetherItems() {
         netherItems = new CustomChestLootPool(
-                new LootPoolItem(Material.BLAZE_ROD, 4),
+                new LootPoolItem(Material.BLAZE_ROD, 3),
                 new LootPoolItem(Material.MAGMA_CREAM, 3),
-                new LootPoolItem(Material.NETHER_WART, 1),
-                new LootPoolItem(Material.GHAST_TEAR, 2),
-                new LootPoolItem(Material.BONE, 3),
-                new LootPoolItem(Material.COAL, 2)
+                new LootPoolItem(new ItemStack(Material.NETHER_WART, 2), 1),
+                new LootPoolItem(new ItemStack(Material.GHAST_TEAR, 2), 2),
+                new LootPoolItem(new ItemStack(Material.BONE, 3), 3),
+                new LootPoolItem(new ItemStack(Material.COAL, 4), 2)
         );
     }
 
     public Collection<ItemStack> populateLoot(Inventory inv, Random r,  double luck) {
         ArrayList<ItemStack> items = new ArrayList<>();
         items.addAll(netheriteItems.getRandomItemFromList(r, 1));
-        items.addAll(netherItems.getRandomItemFromList(r, 3, 2, 3));
+        items.addAll(netherItems.getRandomItemFromList(r, 3));
         items.add(MakeshiftSkull.getInstance().getResult());
         items.add(NetherStar.getInstance().getResult(2));
         items.add(EnlightenedNugget.getInstance().getResult(2));

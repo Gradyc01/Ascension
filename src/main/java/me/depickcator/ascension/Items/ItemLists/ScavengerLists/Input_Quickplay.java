@@ -75,9 +75,10 @@ public class Input_Quickplay extends ItemLists {
                 Material.ENDER_PEARL,
                 Material.FIREWORK_STAR,
                 Material.FIREWORK_ROCKET,
-//                Material.CLOCK, //Todo: Maybe
+                Material.CLOCK,
                 Material.SUNFLOWER,
-                Material.WILDFLOWERS
+                Material.WILDFLOWERS,
+                Material.REDSTONE_LAMP
         ), 3));
         return items;
     }

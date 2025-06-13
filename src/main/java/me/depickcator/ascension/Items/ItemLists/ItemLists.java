@@ -3,7 +3,6 @@ package me.depickcator.ascension.Items.ItemLists;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
 import me.depickcator.ascension.Items.CustomItem;
-import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.structure.Structure;
