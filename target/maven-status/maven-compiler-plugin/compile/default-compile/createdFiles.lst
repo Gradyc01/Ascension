@@ -6,6 +6,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\DiamondPack.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Plains.class
 me\depickcator\ascension\Lobby\EventsBoard\EventBoard.class
 me\depickcator\ascension\MainMenuUI\Command\Commands\AutoPurchaseUnlocks.class
+me\depickcator\ascension\Items\Uncraftable\AscensionRewardBundle.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HermesBoots.class
 me\depickcator\ascension\Interfaces\AscensionMenuGUI.class
 me\depickcator\ascension\General\Game\GameLauncher.class
@@ -73,6 +74,7 @@ me\depickcator\ascension\Persistence\Writeable.class
 me\depickcator\ascension\commands\CraftCommand.class
 me\depickcator\ascension\Lobby\StatsBoard.class
 me\depickcator\ascension\General\Game\GameCommand.class
+me\depickcator\ascension\Teams\TeamAscension.class
 me\depickcator\ascension\General\Game\Load\Sequences\CallResetGame.class
 me\depickcator\ascension\General\Game\Reset\Sequences\SaveGameStatistics$1.class
 me\depickcator\ascension\General\Game\Load\LoadGame.class
@@ -113,6 +115,7 @@ me\depickcator\ascension\Skills\Mining.class
 me\depickcator\ascension\General\Queue\Queue.class
 me\depickcator\ascension\Interfaces\AscensionGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ExplosivePropulsion.class
+me\depickcator\ascension\Timeline\Events\Ascension\Rewards\AscensionRewards.class
 me\depickcator\ascension\General\LocationChecker\LocationCheck.class
 me\depickcator\ascension\Effects\NatureWrath$1.class
 me\depickcator\ascension\General\Game\Reset\Sequences\ResetTeams.class

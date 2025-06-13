@@ -20,6 +20,7 @@ public class Team {
     private final Ascension plugin;
     private final TeamStats teamStats;
     private final TeamBackpack teamBackpack;
+    private final TeamAscension teamAscension;
     private int STATE;
     /*Initializes a team with PlayerData playerData as the leader*/
     public Team(PlayerData playerData) {
@@ -34,6 +35,7 @@ public class Team {
         STATE = STATE_ACTIVE;
         teamStats = new TeamStats(this);
         teamBackpack = new TeamBackpack(this);
+        teamAscension = new TeamAscension(this);
     }
 
     /*Adds PlayerData pD to this Team*/
@@ -138,6 +140,10 @@ public class Team {
 
     public TeamBackpack getTeamBackpack() {
         return teamBackpack;
+    }
+
+    public TeamAscension getTeamAscension() {
+        return teamAscension;
     }
 
     public boolean checkSTATE(int state) {

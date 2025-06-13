@@ -85,7 +85,7 @@ public class GameBoard extends Boards {
 
     private void updateAscensionTimer() {
         AscensionLocation ascensionLocation = timeline.getAscensionEvent().getAscendingLocation();
-        int time = ascensionLocation.getAscendingTeam().getTeamStats().getAscensionTimer();
+        int time = ascensionLocation.getAscendingTeam().getTeamAscension().getAscensionTimer();
         int healthPercentage = (int) (ascensionLocation.getEntity().getHealth() / ascensionLocation.getEntity().getAttribute(Attribute.MAX_HEALTH).getBaseValue() * 100);
         String minutes = time/60 + "";
         String seconds = time%60 <= 9 ? "0" + time%60 : time%60 + "";

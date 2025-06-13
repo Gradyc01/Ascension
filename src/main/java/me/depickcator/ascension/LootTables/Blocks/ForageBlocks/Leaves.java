@@ -17,8 +17,10 @@ import java.util.Random;
 public class Leaves implements LootTableChanger, BlockLootTable, ForageBlocks {
 
     private final Ascension plugin;
+    private final Random r;
     public Leaves() {
         this.plugin = Ascension.getInstance();
+        r = new Random();
         registerItem();
     }
     @Override
@@ -33,7 +35,6 @@ public class Leaves implements LootTableChanger, BlockLootTable, ForageBlocks {
         if (!event.getBlock().hasMetadata(PLACED_BY_PLAYER)
                 && mainHandItem.getType() == Material.SHEARS
                 && !mainHandItem.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-            Random r = new Random();
             if (r.nextInt(0, 20) == 1) {
                 event.setDropItems(false);
                 p.getWorld().dropItem(event.getBlock().getLocation(), new ItemStack(Material.APPLE));

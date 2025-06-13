@@ -53,9 +53,8 @@ public class UnlockRecommender {
         Material material = item.getType();
         PlayerData playerData = PlayerUtil.getPlayerData(player);
         if (!playerData.getPlayerStats().getSetting(PlayerStats.craftNotifications)) return;
-        String debugText = "Triggered check for material " + material.name() + "    ";
         findCraftableUnlocks(item, playerData);
-        TextUtil.debugText(debugText);
+        TextUtil.debugText("Player " + player.getName() + " Triggered check for material " + material.name());
     }
 
     /*Used to reset the craftCodeMap typically called at the end of the game*/
@@ -73,21 +72,18 @@ public class UnlockRecommender {
 
     /*Finds Craftable unlocks with the new addition of the new ItemStack item for Player player*/
     private List<Craft> findCraftableUnlocks(ItemStack item, PlayerData playerData) {
-        String debugText = "";
         List<Craft> crafts = ingredients.get(item.getType());
         List<Craft> craftsToUnlock = new ArrayList<>();
         if (crafts == null) return craftsToUnlock;
         PlayerUnlocks playerUnlocks = playerData.getPlayerUnlocks();
         Player player = playerData.getPlayer();
         for (Craft craft : crafts) {
-            debugText += "Checking craft " + craft.getDisplayName()+ "    ";
             if (shouldBeShown(playerUnlocks, craft) &&
                 canCraftRecipe(craft.getRecipe(), player, item)) {
                 craftsToUnlock.add(craft);
                 sendPlayerCraftableMessage(craft, player);
             }
         }
-        TextUtil.debugText(debugText);
         return craftsToUnlock;
     }
 

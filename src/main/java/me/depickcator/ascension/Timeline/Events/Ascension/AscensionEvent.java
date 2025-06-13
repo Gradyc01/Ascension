@@ -3,12 +3,12 @@ package me.depickcator.ascension.Timeline.Events.Ascension;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Player.Cooldowns.EntityInteractionCooldown;
+import me.depickcator.ascension.Teams.TeamAscension;
 import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Unlocks.AscensionKey;
 import me.depickcator.ascension.Player.Data.PlayerData;
-import me.depickcator.ascension.Teams.TeamStats;
 import me.depickcator.ascension.Timeline.Events.Winner.Winner;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -56,7 +56,7 @@ public class AscensionEvent {
         eventOngoing = true;
         locations.remove(ascensionLocation);
         ascensionLocation.startAnimation();
-        ascensionLocation.getAscendingTeam().getTeamStats().addAscensionAttempts();
+        ascensionLocation.getAscendingTeam().getTeamAscension().startAscension();
         plugin.getGameState().setCurrentState(GameStates.GAME_ASCENSION);
         loop(ascensionLocation);
         timeline.pauseTimeline();
@@ -64,8 +64,8 @@ public class AscensionEvent {
 
     private void loop(AscensionLocation ascensionLocation) {
         new BukkitRunnable() {
-            final TeamStats teamStats = ascensionLocation.getAscendingTeam().getTeamStats();
-            int timer = teamStats.getAscensionTimer();
+            final TeamAscension team = ascensionLocation.getAscendingTeam().getTeamAscension();
+            int timer = team.getAscensionTimer();
             final Wither e = (Wither) ascensionLocation.getEntity();
             @Override
             public void run() {
@@ -79,18 +79,15 @@ public class AscensionEvent {
                     cancel();
                     return;
                 }
-                if (timer % 60 == 0) {
-                    teamStats.addGameScore(1);
-                }
                 if (timer % 60 == 2 && !e.isCharged()) {
                     e.getWorld().createExplosion(e, e.getLocation(), 4f, false, true, true);
 //                    e.getHealth()
                 }
                 timer--;
-                TextUtil.debugText("Ascension Timer: " + timer);
                 timeline.updatePlayers();
                 ascensionLocation.updateBossBarHealth();
-                teamStats.addAscensionTimer(-1);
+//                team.addAscensionTimer(-1);
+                team.checkForRewards();
             }
         }.runTaskTimer(Ascension.getInstance(), 0, 20);
     }
@@ -106,10 +103,11 @@ public class AscensionEvent {
         plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
         checkForAscensionRemaining();
         timeline.startTimeline();
-        TeamStats teamStats = ascendingLocation.getAscendingTeam().getTeamStats();
-//        teamStats.addAscensionTimer((int) (teamStats.getAscensionTimer() * 0.3));
-        teamStats.setAscensionTimer(Integer.max((int) (teamStats.getAscensionTimer() * 1.3), 300));
         failedText();
+        ascendingLocation.getAscendingTeam().getTeamAscension().failedAscension();
+//        TeamAscension teamStats = ascendingLocation.getAscendingTeam().getTeamStats();
+//        teamStats.addAscensionTimer((int) (teamStats.getAscensionTimer() * 0.3));
+//        teamStats.setAscensionTimer(Integer.max((int) (teamStats.getAscensionTimer() * 1.3), 300));
         stop();
         TextUtil.debugText("Ascension Failed");
     }

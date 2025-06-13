@@ -43,9 +43,7 @@ public class SkillRewards {
 
     private void giveItems(PlayerData pD) {
         Player p = pD.getPlayer();
-        for (ItemStack i : items) {
-            PlayerUtil.giveItem(p, i);
-        }
+        PlayerUtil.giveItem(p, items);
 
     }
 
