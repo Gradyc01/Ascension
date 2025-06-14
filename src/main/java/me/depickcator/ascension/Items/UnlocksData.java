@@ -16,7 +16,6 @@ import me.depickcator.ascension.Items.Uncraftable.EnderPearl;
 import me.depickcator.ascension.Items.Uncraftable.ToolVoucher.ToolVoucher;
 import org.apache.commons.lang3.tuple.Pair;
 
-import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.Craftable.Unlocks.*;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
@@ -85,7 +84,8 @@ public class UnlocksData {
                 LeatherEconomy.getInstance(),
                 QuickBow.getInstance(),
                 VorpalSword.getInstance(),
-                DustOfLight.getInstance()
+                DustOfLight.getInstance(),
+                ApprenticeHelmet.getInstance()
         );
     }
 
@@ -99,8 +99,8 @@ public class UnlocksData {
                 EnlighteningPack.getInstance(),
                 LightApple.getInstance(),
                 GoldenHead.getInstance(),
-                ApprenticeHelmet.getInstance(),
                 Obsidian.getInstance(),
+                PotionOfVelocity.getInstance(),
                 BookOfProjectileProtection.getInstance(),
                 BookOfProtection.getInstance(),
                 BookOfPower.getInstance(),
@@ -117,8 +117,8 @@ public class UnlocksData {
                 SoulArtifact.getInstance(),
                 MakeshiftSkull.getInstance(),
                 Nectar.getInstance(),
-                PotionOfVelocity.getInstance(),
                 BookOfThoth.getInstance(),
+                LeapingAxe.getInstance(),
                 DragonSword.getInstance(),
                 Cornucopia.getInstance(),
                 PandoraBox.getInstance(),
@@ -169,7 +169,7 @@ public class UnlocksData {
         KitBook.getInstance();
         EnderPearl.getInstance();
         ToolVoucher.getInstance();
-        LeapingSword.getInstance();
+        LeapingAxe.getInstance();
     }
 
     private void Vanilla() {

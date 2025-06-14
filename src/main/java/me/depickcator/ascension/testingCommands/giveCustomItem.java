@@ -1,7 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Items.Craftable.Unlocks.LeapingSword;
+import me.depickcator.ascension.Items.Craftable.Unlocks.LeapingAxe;
 import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Items.Uncraftable.*;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
@@ -127,7 +127,7 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 RejuvenationBook.getInstance(),
                 NetherStar.getInstance(),
                 Anduril.getInstance(),
-                LeapingSword.getInstance()
+                LeapingAxe.getInstance()
                 ));
         for (List<Craft> craft : allCraft) {
             items.addAll(craft);

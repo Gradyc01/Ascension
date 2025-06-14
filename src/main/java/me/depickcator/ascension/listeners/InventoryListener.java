@@ -69,6 +69,7 @@ public class InventoryListener implements Listener {
         if (!(e.getEntity() instanceof Player)) return;
         Player player = (Player) e.getEntity();
         PlayerData playerData = PlayerUtil.getPlayerData(player);
+        if (playerData == null) return;
         playerData.getPlayerInventoryTracker().addItems(e.getItem().getItemStack());
         UnlockRecommender.getInstance().checkMaterial(e.getItem().getItemStack(), player);
     }
@@ -77,6 +78,7 @@ public class InventoryListener implements Listener {
     public void onPlayerDropItemEvent(PlayerDropItemEvent e) {
         if (!Ascension.getInstance().getGameState().inGame()) return;
         PlayerData playerData = PlayerUtil.getPlayerData(e.getPlayer());
+        if (playerData == null) return;
         playerData.getPlayerInventoryTracker().removeItems(e.getItemDrop().getItemStack());
     }
 }

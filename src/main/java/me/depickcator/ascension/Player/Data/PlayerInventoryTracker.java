@@ -108,8 +108,7 @@ public class PlayerInventoryTracker implements PlayerDataObservers{
             RecipeChoice.ExactChoice exact = (RecipeChoice.ExactChoice) choice;
             for (ItemStack item : exact.getChoices()) {
                 if (item == null) continue;
-                int count = inventoryMaterials.getOrDefault(item.getType(), -1);
-                if (count >= amountRequired && (item.getType() != newItem.getType() || count - newItem.getAmount() < amountRequired)) {
+                if (checkForRequireAmount(item.getType(), exact, amountRequired, newItem)) {
                     return true;
                 }
             }
@@ -117,13 +116,28 @@ public class PlayerInventoryTracker implements PlayerDataObservers{
         } else {
             RecipeChoice.MaterialChoice material = (RecipeChoice.MaterialChoice) choice;
             for (Material mat : material.getChoices()) {
-                int count = inventoryMaterials.getOrDefault(mat, -1);
-                if (count >= amountRequired && (mat != newItem.getType() || count - newItem.getAmount() < amountRequired)) {
+                if (checkForRequireAmount(mat, material, amountRequired, newItem)) {
                     return true;
                 }
             }
             return false;
         }
+    }
+
+    /*Checks thats the RecipeChoice is satisfied properly for the material mat*/
+    private boolean checkForRequireAmount(Material mat, RecipeChoice choice, int amountRequired, ItemStack newItem) {
+        int count = inventoryMaterials.getOrDefault(mat, -1);
+//        TextUtil.debugText("Count: " + count
+//                + " Mat: " + mat.name()
+//                + " New Item: " + newItem.getType().name()
+//                + " Required: " + amountRequired+ " Minus: " + (count - newItem.getAmount()));
+        boolean isThereEnoughOfMaterial = count >= amountRequired;
+        //Checks to see if the material being tested is the same as the item the just came in the inventory if not the same the
+        //newItem also can't be a part of the recipe choice
+        boolean notSameMatOrInChoice = (mat != newItem.getType() && !choice.test(newItem));
+        boolean firstTimeSatisfied = mat == newItem.getType() && (count - newItem.getAmount()) < amountRequired;
+//        TextUtil.debugText(isThereEnoughOfMaterial + " && (" + notSameMatOrInChoice + " || " + firstTimeSatisfied + ")");
+        return isThereEnoughOfMaterial && (notSameMatOrInChoice || firstTimeSatisfied);
     }
 
     public boolean isNeedsUpdate() {

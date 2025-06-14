@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -26,7 +27,7 @@ public class SetSetting implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         boolean update = true;
-        if (strings.length == 2 && strings[1].equals("false")) {
+        if (strings.length >= 2 && strings[strings.length - 1].equals("false")) {
             update = false;
         } else if (!Ascension.getInstance().getGameState().checkState(GameStates.LOBBY_NORMAL)) return false;
 
@@ -34,12 +35,14 @@ public class SetSetting implements CommandExecutor, TabCompleter {
             new SettingsGUI(PlayerUtil.getPlayerData((Player) commandSender));
             return true;
         }
-        String mode = strings[0];
+
+        String mode = String.join("", Arrays.copyOfRange(strings, 0, strings.length - 1));
+        if (update) mode += strings[strings.length - 1];
         switch (mode.toLowerCase()) {
             case "standard" -> settingUI.setSettings(new Standard(), update);
             case "quickplay" -> settingUI.setSettings(new Quickplay(), update);
             case "brawl" -> settingUI.setSettings(new Brawl(), update);
-            case "instant" -> settingUI.setSettings(new InstantAscension(), update);
+            case "instant", "boardonly" -> settingUI.setSettings(new InstantAscension(), update);
             case "testing" -> settingUI.setSettings(new Testing(), update);
         }
         return false;

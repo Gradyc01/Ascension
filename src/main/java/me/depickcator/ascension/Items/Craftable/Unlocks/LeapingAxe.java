@@ -23,15 +23,15 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeapingSword extends Weapons implements ItemClick {
-    private static LeapingSword instance;
-    private LeapingSword() {
+public class LeapingAxe extends Weapons implements ItemClick {
+    private static LeapingAxe instance;
+    private LeapingAxe() {
         super(UnlocksData.COST_325, 1, "Leaping Axe", "leaping_axe", 11, -3);
         registerItem();
     }
 
-    public static LeapingSword getInstance() {
-        if (instance == null) instance = new LeapingSword();
+    public static LeapingAxe getInstance() {
+        if (instance == null) instance = new LeapingAxe();
         return instance;
     }
 
@@ -54,12 +54,8 @@ public class LeapingSword extends Weapons implements ItemClick {
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.YELLOW).append(TextUtil.rightClickText()));
         meta.setMaxDamage(1561);
         NamespacedKey key = new NamespacedKey(plugin, KEY);
-        AttributeModifier modifier = new AttributeModifier(key, -0.7, AttributeModifier.Operation.ADD_SCALAR);
+        AttributeModifier modifier = new AttributeModifier(key, -0.75, AttributeModifier.Operation.ADD_SCALAR);
         meta.addAttributeModifier(Attribute.FALL_DAMAGE_MULTIPLIER, modifier);
-        List<Component> lore = new ArrayList<>(List.of(
-                TextUtil.makeText("Yeet", TextUtil.DARK_PURPLE)
-        ));
-        meta.lore(lore);
         item.setItemMeta(Vanilla.addModifiers(meta, getAttackDamage(), getAttackSpeed(), getKey()));
         addCooldownGroup(item);
         generateUniqueModelNumber(item);
@@ -70,7 +66,6 @@ public class LeapingSword extends Weapons implements ItemClick {
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         if (!e.getAction().isRightClick()) return false;
         ItemStack item = e.getItem();
-        Damageable meta = (Damageable) item.getItemMeta();
         Player p = pD.getPlayer();
         if (checkCooldown(p, item)) {
             p.getWorld().playSound(p.getLocation(), Sound.ENTITY_SPIDER_AMBIENT, 2.0F, 1.0F);

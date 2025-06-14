@@ -58,6 +58,7 @@ me\depickcator\ascension\listeners\Combat\ShootsProjectiles.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Snowy.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HideOfLeviathan.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.class
+me\depickcator\ascension\Items\Craftable\Unlocks\LeapingAxe.class
 me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect$1.class
 me\depickcator\ascension\General\Game\Load\Sequences\ClearEntityInteractions.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Trials.class
@@ -102,7 +103,6 @@ me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfProtection.class
 me\depickcator\ascension\MainMenuUI\BingoBoard\BingoData.class
-me\depickcator\ascension\Items\Craftable\Unlocks\LeapingSword.class
 me\depickcator\ascension\Items\Craftable\Unlocks\FlamingArtifact.class
 me\depickcator\ascension\General\Game\Load\Sequences\CenterSettingsConfigurations.class
 me\depickcator\ascension\Skills\Foraging.class

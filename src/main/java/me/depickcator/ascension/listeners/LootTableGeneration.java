@@ -63,6 +63,7 @@ public class LootTableGeneration implements Listener {
         if (!event.isCancelled()) {
             Player p = event.getPlayer();
             PlayerData playerData = PlayerUtil.getPlayerData(p);
+            if (playerData == null) return;
             Material type = b.getType();
             if (type.isItem()) {
                 playerData.getPlayerInventoryTracker().removeItems(new ItemStack(type));
