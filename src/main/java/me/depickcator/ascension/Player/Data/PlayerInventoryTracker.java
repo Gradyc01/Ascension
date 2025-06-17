@@ -1,6 +1,5 @@
 package me.depickcator.ascension.Player.Data;
 
-import it.unimi.dsi.fastutil.Pair;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.UnlockRecommender;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -10,10 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PlayerInventoryTracker implements PlayerDataObservers{
     private final PlayerData playerData;
@@ -33,14 +29,14 @@ public class PlayerInventoryTracker implements PlayerDataObservers{
             @Override
             public void run() {
                 Map<Material, Integer> newInventoryMaterials = new HashMap<>();
-                List<Pair<Material, Integer>> materialChecks = new ArrayList<>();
+                Map<Material, Integer> materialChecks = new HashMap<>();
                 for (ItemStack item : player.getInventory().getContents()) {
                     if (item == null) continue;
                     shouldMatCheck(item, newInventoryMaterials, materialChecks);
                 }
                 inventoryMaterials = newInventoryMaterials;
-                for (Pair<Material, Integer> pair : materialChecks) {
-                    UnlockRecommender.getInstance().checkMaterial(new ItemStack(pair.left(), pair.right()), player);
+                for (Map.Entry<Material, Integer> pair : materialChecks.entrySet()) {
+                    UnlockRecommender.getInstance().checkMaterial(new ItemStack(pair.getKey(), pair.getValue()), player);
                 }
                 needsUpdate = false;
                 playerData.getPlayerStats().addInventoryRefresh();
@@ -50,11 +46,15 @@ public class PlayerInventoryTracker implements PlayerDataObservers{
 
     /*Adds item using addItems() and then runs to check if the number of the item has increased
     * If it has increased add this item's material into matChecks with the amount it changed by*/
-    private void shouldMatCheck(ItemStack item, Map<Material, Integer> invMats, List<Pair<Material, Integer>> matChecks) {
+    private void shouldMatCheck(ItemStack item, Map<Material, Integer> invMats, Map<Material, Integer> matChecks) {
         addItems(item, item.getAmount(), invMats);
         int amountInOldInv = this.inventoryMaterials.getOrDefault(item.getType(), 0);
         int amountInNewInv = invMats.get(item.getType());
-        if (amountInNewInv > amountInOldInv) matChecks.add(Pair.of(item.getType(), amountInNewInv - amountInOldInv));
+        TextUtil.debugText(amountInOldInv + "        " + amountInNewInv);
+        if (amountInNewInv > amountInOldInv) {
+            matChecks.put(item.getType(), amountInNewInv - amountInOldInv);
+            TextUtil.debugText("added Mat " + item.getType().name());
+        }
     }
 
     /*Adds ItemStack item to be accounted for in the inventory tracker

@@ -5,7 +5,6 @@ me\depickcator\ascension\Interfaces\LootPoolItem.class
 me\depickcator\ascension\Items\Craftable\Unlocks\DiamondPack.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Plains.class
 me\depickcator\ascension\Lobby\EventsBoard\EventBoard.class
-me\depickcator\ascension\MainMenuUI\Command\Commands\AutoPurchaseUnlocks.class
 me\depickcator\ascension\Items\Uncraftable\AscensionRewardBundle.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HermesBoots.class
 me\depickcator\ascension\Interfaces\AscensionMenuGUI.class
@@ -45,6 +44,7 @@ me\depickcator\ascension\Player\Data\PlayerSkills.class
 me\depickcator\ascension\Items\Craftable\Unlocks\FlintShovel.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\MushroomIsland.class
 me\depickcator\ascension\Settings\SettingObserver.class
+me\depickcator\ascension\MainMenuUI\Settings\Settings\SettingButton.class
 me\depickcator\ascension\Items\Craftable\Craft.class
 me\depickcator\ascension\General\Game\Start\StartGame.class
 me\depickcator\ascension\Settings\Settings.class
@@ -58,6 +58,7 @@ me\depickcator\ascension\listeners\Combat\ShootsProjectiles.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\Villages\Village_Snowy.class
 me\depickcator\ascension\Items\Craftable\Unlocks\HideOfLeviathan.class
 me\depickcator\ascension\Timeline\Events\Scavenger\ScavengerTrades.class
+me\depickcator\ascension\MainMenuUI\Settings\Settings\FoodDrops.class
 me\depickcator\ascension\Items\Craftable\Unlocks\LeapingAxe.class
 me\depickcator\ascension\Items\Craftable\Unlocks\GhostItem\GhostEffect$1.class
 me\depickcator\ascension\General\Game\Load\Sequences\ClearEntityInteractions.class
@@ -68,6 +69,7 @@ me\depickcator\ascension\General\Game\ReSeed\ReSeed.class
 me\depickcator\ascension\Timeline\Events\Ascension\AscensionLocation.class
 me\depickcator\ascension\Items\Craftable\Unlocks\KingsRod.class
 me\depickcator\ascension\Player\Data\PlayerInventoryTracker.class
+me\depickcator\ascension\MainMenuUI\Settings\SettingGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\CherryGrove.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Cornucopia.class
 me\depickcator\ascension\General\Game\Load\Sequences\CallLocationCheck.class
@@ -101,6 +103,7 @@ me\depickcator\ascension\Items\Craftable\Unlocks\IronPack.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\PaleGarden.class
 me\depickcator\ascension\Timeline\Events\Scavenger\Scavenger$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\CrimsonArtifact.class
+me\depickcator\ascension\MainMenuUI\Settings\Settings\AutoTome.class
 me\depickcator\ascension\Items\Craftable\Unlocks\BookOfProtection.class
 me\depickcator\ascension\MainMenuUI\BingoBoard\BingoData.class
 me\depickcator\ascension\Items\Craftable\Unlocks\FlamingArtifact.class
@@ -112,6 +115,7 @@ me\depickcator\ascension\General\Game\Start\StartGame$1.class
 me\depickcator\ascension\Items\Craftable\Unlocks\Exodus.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Biomes\LushCaves.class
 me\depickcator\ascension\Skills\Mining.class
+me\depickcator\ascension\MainMenuUI\Settings\Settings\AutoPurchaseUnlocks.class
 me\depickcator\ascension\General\Queue\Queue.class
 me\depickcator\ascension\Interfaces\AscensionGUI.class
 me\depickcator\ascension\Items\Craftable\Unlocks\ExplosivePropulsion.class
@@ -142,13 +146,14 @@ me\depickcator\ascension\Items\Craftable\Unlocks\NetheriteInfusionItem\Netherite
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Locations\Structures\DesertPyramid.class
 me\depickcator\ascension\General\Game\Start\Sequences\InitBingoBoard.class
 me\depickcator\ascension\General\Game\Start\Sequences\TextSequence$1.class
-me\depickcator\ascension\MainMenuUI\Command\Commands\NotifyCrafts.class
 me\depickcator\ascension\General\Game\Reset\Sequences\ResetPlayers.class
 me\depickcator\ascension\Items\Craftable\Unlocks\EcholocatorItem\Echolocator.class
 me\depickcator\ascension\Items\Craftable\Unlocks\DustOfLight.class
 me\depickcator\ascension\Player\Data\PlayerStats.class
 me\depickcator\ascension\General\Game\Start\Sequences\GiveBrawlItems2$1.class
 me\depickcator\ascension\Items\Craftable\Vanilla\Weapons.class
+me\depickcator\ascension\MainMenuUI\Settings\Settings\CraftNotifications.class
+me\depickcator\ascension\MainMenuUI\Settings\Settings\NightVision.class
 me\depickcator\ascension\General\Game\GameStates.class
 me\depickcator\ascension\General\Game\Relaunch\Sequences\KickPlayers.class
 me\depickcator\ascension\Items\CustomItem.class

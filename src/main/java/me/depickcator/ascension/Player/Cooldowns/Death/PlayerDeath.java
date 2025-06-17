@@ -31,12 +31,10 @@ public class PlayerDeath {
         GameStates gameState = plugin.getGameState();
         if (gameState.inGame()) {
             if (!gameState.checkState(GameStates.GAME_FINAL_ASCENSION)) {
-//                playerData.setPlayerState(PlayerData.STATE_DEAD);
                 setRespawningLater(playerData);
 
             } else {
                 setPlayerSpectating(playerData);
-//                playerData.setPlayerState(PlayerData.STATE_SPECTATING);
                 playerData.getPlayerTeam().getTeam().updateState();
                 Player p = playerData.getPlayer();
                 p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 100f, 1f);
@@ -73,7 +71,7 @@ public class PlayerDeath {
                         continue;
                     }
                     teleportBackToDeathLocation(p);
-                    Component text = TextUtil.makeText("Respawning In: " + deathTimer.getCooldownTimer(p)  + "s", TextUtil.AQUA);
+                    Component text = TextUtil.makeText("Respawning In: " + (int) deathTimer.getCooldownTimer(p)  + "s", TextUtil.AQUA);
                     TextUtil.sendActionBar(p, text, 24, plugin);
                 }
             }
@@ -124,8 +122,8 @@ public class PlayerDeath {
     }
 
     private void changePlayerVisibility(PlayerData playerData) {
-        for (PlayerData pD : PlayerUtil.getAllPlayingPlayers()) {
-            Player p = pD.getPlayer();
+        //Changed from PlayerUtil.getAllPlayingPlayers()
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if (playerData.checkState(PlayerData.STATE_ALIVE)) {
                 p.showPlayer(plugin, playerData.getPlayer());
                 TextUtil.debugText(playerData.getPlayer().getName() + " is now shown to " + p.getName());

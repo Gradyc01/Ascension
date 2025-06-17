@@ -69,6 +69,7 @@ public class PlayerDataWriter {
         booleanDataMap.put(PlayerStats.nightVisionKey, pDStats.getSetting(PlayerStats.nightVisionKey));
         booleanDataMap.put(PlayerStats.autoPurchaseUnlocks, pDStats.getSetting(PlayerStats.autoPurchaseUnlocks));
         booleanDataMap.put(PlayerStats.craftNotifications, pDStats.getSetting(PlayerStats.craftNotifications));
+        booleanDataMap.put(PlayerStats.autoTome, pDStats.getSetting(PlayerStats.autoTome));
         return booleanDataMap;
     }
 

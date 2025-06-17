@@ -17,46 +17,44 @@ public class CommandGUI extends AscensionMenuGUI {
     public CommandGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Commands", TextUtil.AQUA), true);
         map = new HashMap<>();
-        PlayerStats playerStats = playerData.getPlayerStats();
-        initializeButtons(new NightVision(), 24, true, playerStats.getSetting(PlayerStats.nightVisionKey));
-        initializeButtons(new FoodDrops(), 25, true, playerStats.getSetting(PlayerStats.foodDropsKey));
-        initializeButtons(new AutoPurchaseUnlocks(), 33, true, playerStats.getSetting(PlayerStats.autoPurchaseUnlocks));
-        initializeButtons(new NotifyCrafts(), 34, true, playerStats.getSetting(PlayerStats.craftNotifications));
-        initializeButtons(new SendCoords(), 19);
-        initializeButtons(new SpawnTravel(), 21);
-        initializeButtons(new Surface(), 22);
-        initializeButtons(new AscensionTravel(), 30);
+        initializeButtons(new SendCoords(), 20);
+        initializeButtons(new SpawnTravel(), 22);
+        initializeButtons(new Surface(), 23);
+        initializeButtons(new AscensionTravel(), 24);
         inventory.setItem(48, goBackItem());
         playerHeadButton(49);
 
     }
 
     private void initializeButtons(Commands c, int index) {
-        initializeButtons(c, index, false, false);
-    }
-    private void initializeButtons(Commands c, int index, boolean addLore, boolean isEnabled) {
+//        initializeButtons(c, index, false, false);
         ItemStack item = c.getButton().clone();
-        item.setItemMeta(addTitleAndLore(item, addLore, isEnabled));
         map.put(item, c);
         inventory.setItem(index, item);
     }
-
-    private ItemMeta addTitleAndLore(ItemStack item, boolean addLore, boolean isEnabled) {
-        ItemMeta meta = item.getItemMeta();
-        if (addLore) {
-            meta.lore(addOnOffLore(isEnabled));
-        }
-        return meta;
-    }
-    private List<Component> addOnOffLore(boolean onOff) {
-        List<Component> lore = new ArrayList<>();
-        if (onOff) {
-            lore.add(TextUtil.makeText("[Enabled]", TextUtil.GREEN));
-        } else {
-            lore.add(TextUtil.makeText("[Disabled]", TextUtil.RED));
-        }
-        return lore;
-    }
+//    private void initializeButtons(Commands c, int index, boolean addLore, boolean isEnabled) {
+//        ItemStack item = c.getButton().clone();
+//        item.setItemMeta(addTitleAndLore(item, addLore, isEnabled));
+//        map.put(item, c);
+//        inventory.setItem(index, item);
+//    }
+//
+//    private ItemMeta addTitleAndLore(ItemStack item, boolean addLore, boolean isEnabled) {
+//        ItemMeta meta = item.getItemMeta();
+//        if (addLore) {
+//            meta.lore(addOnOffLore(isEnabled));
+//        }
+//        return meta;
+//    }
+//    private List<Component> addOnOffLore(boolean onOff) {
+//        List<Component> lore = new ArrayList<>();
+//        if (onOff) {
+//            lore.add(TextUtil.makeText("[Enabled]", TextUtil.GREEN));
+//        } else {
+//            lore.add(TextUtil.makeText("[Disabled]", TextUtil.RED));
+//        }
+//        return lore;
+//    }
 
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {

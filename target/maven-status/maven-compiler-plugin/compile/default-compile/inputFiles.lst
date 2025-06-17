@@ -336,11 +336,7 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainM
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\BingoBoard\BingoData.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\CommandGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\AscensionTravel.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\AutoPurchaseUnlocks.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\Commands.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\FoodDrops.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\NightVision.java
-C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\NotifyCrafts.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\SendCoords.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\SpawnTravel.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Command\Commands\Surface.java
@@ -350,6 +346,13 @@ C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainM
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Map\MapItem.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Map\MapItems.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\OpenMainMenuCommand.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Settings\SettingGUI.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Settings\Settings\AutoPurchaseUnlocks.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Settings\Settings\AutoTome.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Settings\Settings\CraftNotifications.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Settings\Settings\FoodDrops.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Settings\Settings\NightVision.java
+C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Settings\Settings\SettingButton.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Skills\SkillsGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Unlocks\UnlocksGUI.java
 C:\Users\Dep\IdeaProjects\Ascension\src\main\java\me\depickcator\ascension\MainMenuUI\Unlocks\ViewRecipeGUI.java

@@ -80,8 +80,8 @@ public abstract class Skills {
 
 
 
-    public String getExp() {
-        return experience + "";
+    public int getExp() {
+        return experience;
     }
 
     public String getExpLevel() {

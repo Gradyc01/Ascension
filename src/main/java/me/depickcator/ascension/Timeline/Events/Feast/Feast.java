@@ -25,8 +25,10 @@ public class Feast {
     private final Location spawn;
     private final List<Location> locations;
     private final WorldBorder border;
+    private final Ascension plugin;
     public Feast() {
         spawn = Ascension.getSpawn();
+        plugin = Ascension.getInstance();
         locations = new ArrayList<>();
         PlayerDeath.getInstance().respawnEveryone();
         initLocations();
@@ -34,7 +36,7 @@ public class Feast {
         loop();
         border = spawn.getWorld().getWorldBorder();
         border.setSize(205, 15);
-        Ascension.getInstance().getGameState().setCurrentState(GameStates.GAME_FEAST_LOADING);
+        plugin.getGameState().setCurrentState(GameStates.GAME_FEAST_LOADING);
         TextUtil.debugText("Feast");
     }
 
@@ -108,7 +110,7 @@ public class Feast {
                 }
                 time--;
             }
-        }.runTaskTimer(Ascension.getInstance(), 0, 20);
+        }.runTaskTimer(plugin, 0, 20);
     }
 
     private void launch() {
@@ -120,7 +122,7 @@ public class Feast {
                 p.getAttribute(Attribute.JUMP_STRENGTH).setBaseValue(0.41999998688697815);
             }
         }
-        Ascension.getInstance().getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
+        plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
         new FeastChests(new Location(spawn.getWorld(), spawn.getX(), spawn.getY() + 3, spawn.getZ()), FeastSpecialChestLoot.getInstance(), 60, false, false);
         spawnRandomChests();
     }
@@ -131,9 +133,10 @@ public class Feast {
             Random r = new Random();
             @Override
             public void run() {
-                if (time <= 0 || !Ascension.getInstance().getGameState().inGame()) {
+                if (time <= 0 || !plugin.getGameState().inGame()) {
                     TextUtil.debugText("Random Chests Stopped");
-                    border.setSize(Ascension.getInstance().getSettingsUI().getSettings().getWorldBorderSize(), 600);
+                    int worldBorderSize = plugin.getSettingsUI().getSettings().getWorldBorderSize();
+                    border.setSize(worldBorderSize * 2, (int) (worldBorderSize - (border.getSize()/2)));
                     cancel();
                     return;
                 }
@@ -151,7 +154,7 @@ public class Feast {
                 }
                 time--;
             }
-        }.runTaskTimer(Ascension.getInstance(), 0, 20);
+        }.runTaskTimer(plugin, 0, 20);
     }
 
 

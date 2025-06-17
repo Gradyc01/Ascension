@@ -39,6 +39,8 @@ public class PlayerDataFileReader {
         playerStats.setSetting(PlayerStats.foodDropsKey, readBoolean(playerData, PlayerStats.foodDropsKey));
         playerStats.setSetting(PlayerStats.nightVisionKey, readBoolean(playerData, PlayerStats.nightVisionKey));
         playerStats.setSetting(PlayerStats.autoPurchaseUnlocks, readBoolean(playerData, PlayerStats.autoPurchaseUnlocks));
+        playerStats.setSetting(PlayerStats.craftNotifications, readBoolean(playerData, PlayerStats.craftNotifications));
+        playerStats.setSetting(PlayerStats.autoTome, readBoolean(playerData, PlayerStats.autoTome));
     }
 
     private boolean readBoolean(JsonObject jsonObject, String key) {

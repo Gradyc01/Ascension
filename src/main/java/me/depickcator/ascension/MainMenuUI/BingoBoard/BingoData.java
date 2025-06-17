@@ -3,13 +3,12 @@ package me.depickcator.ascension.MainMenuUI.BingoBoard;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftSkull;
 import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
+import me.depickcator.ascension.Player.Data.*;
+import me.depickcator.ascension.Skills.Skills;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
-import me.depickcator.ascension.Player.Data.PlayerData;
-import me.depickcator.ascension.Player.Data.PlayerUnlocks;
-import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -67,8 +66,8 @@ public class BingoData extends ItemComparison {
 
 
     public void claimItem(Player p) {
-        ArrayList<ItemStack> items = getItems();
-        ArrayList<Boolean> hasItems = getItemsCompleted(p);
+        List<ItemStack> items = getItems();
+        List<Boolean> hasItems = getItemsCompleted(p);
 
         if (items.size() != 25) {
             TextUtil.errorMessage(p, "The board has not been initialized yet");
@@ -98,7 +97,7 @@ public class BingoData extends ItemComparison {
                 }
                 pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
                 pD.getPlayerStats().addItemsObtained();
-                sendItemObtainedMessage(p, item);
+                sendItemObtainedMessage(p, item, removeItem);
                 addScore(24 - items.indexOf(item), p);
                 checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)
                 updateScoreboard(p);
@@ -121,10 +120,12 @@ public class BingoData extends ItemComparison {
         return false;
     }
 
-    private void sendItemObtainedMessage(Player p, ItemStack item) {
+    private void sendItemObtainedMessage(Player p, ItemStack item, boolean itemRemoved) {
         Component obtainedItemTextSolo = TextUtil.makeText("You have obtained an Item! ", TextUtil.GREEN);
         Component obtainedItemTextItem = item.displayName().color(TextUtil.GOLD);
-        Component obtainedItemTextTeam = TextUtil.makeText(p.getName() + " obtained an Item! ", TextUtil.GREEN);
+        Component obtainedItemTextTeam = TextUtil.makeText(p.getName() + " obtained an Item", TextUtil.GREEN);
+        obtainedItemTextTeam = itemRemoved ? obtainedItemTextTeam.append(TextUtil.makeText("! ", TextUtil.GREEN)) :
+                obtainedItemTextTeam.append(TextUtil.makeText(" and maintained it! ", TextUtil.GREEN));
         p.sendMessage(obtainedItemTextSolo.append(obtainedItemTextItem));
         PlayerData pD = PlayerUtil.getPlayerData(p);
         List<Player> teamMembers =pD.getPlayerTeam().getTeam().getOtherTeamMembers(p);
@@ -205,16 +206,38 @@ public class BingoData extends ItemComparison {
     private void soloRewards(PotionEffect effect, Player p, PlayerData pD) {
         p.giveExp(7);
         pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_RARE, true);
-        PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
+        giveXPTome(pD);
         p.addPotionEffect(effect);
     }
 
     private void teamRewards(PotionEffect effect, PlayerData pD) {
         List<Player> otherTeamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(pD.getPlayer());
         for (Player p : otherTeamMembers) {
-            PlayerUtil.giveItem(p, XPTome.getInstance().getItem());
             PlayerUtil.getPlayerData(p).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_UNCOMMON, true);
+            giveXPTome(PlayerUtil.getPlayerData(p));
             p.addPotionEffect(effect);
+        }
+    }
+
+    private void giveXPTome(PlayerData pD) {
+        Player p = pD.getPlayer();
+        if (pD.getPlayerStats().getSetting(PlayerStats.autoTome)) {
+            PlayerSkills skills = pD.getPlayerSkills();
+            int exp = Integer.MAX_VALUE;
+            Skills lowestSkill = null;
+            for (Skills skill : List.of(skills.getCombat(), skills.getForaging(), skills.getMining())) {
+                if (skill.getExp() < exp) {
+                    exp = skill.getExp();
+                    lowestSkill = skill;
+                }
+            }
+            if (lowestSkill == null) return;
+            lowestSkill.addExp(70);
+            p.sendMessage(TextUtil.makeText("[Auto Tome] ", TextUtil.BLUE)
+                    .append(TextUtil.makeText("XP Tome from the Board has been auto claimed into ", TextUtil.DARK_GREEN))
+                    .append(TextUtil.makeText(lowestSkill.getSkillName(), TextUtil.GOLD)));
+        } else {
+            PlayerUtil.giveItem(p, XPTome.getInstance().getResult());
         }
     }
 

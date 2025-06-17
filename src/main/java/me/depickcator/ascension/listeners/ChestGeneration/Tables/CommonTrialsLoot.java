@@ -18,7 +18,7 @@ public class CommonTrialsLoot extends ChestLootTable {
     @Override
     public void addLootToTable(PlayerData pD, List<ItemStack> lootList) {
         Random r = new Random();
-        if (r.nextInt(0, 2) == 0) lootList.add(new ItemStack(Material.OMINOUS_BOTTLE, 1));
+        if (r.nextInt(0, 5) == 0) lootList.add(new ItemStack(Material.OMINOUS_BOTTLE, 1));
         lootList.add(new ItemStack(Material.BREEZE_ROD, 1));
         addShardsOfTheFallen(3, lootList);
         givePlayerForagingExp(pD, SkillExpAmount.FORAGING_VERY_RARE.getExp());

@@ -54,6 +54,9 @@ public class onDeath extends PlayerCombat {
     private void playerKillRewards(PlayerDeathEvent e, PlayerData victim) {
         Player v = victim.getPlayer();
         dropHead(e, v);
+        ExperienceOrb entity = (ExperienceOrb) v.getWorld().spawnEntity(v.getLocation(), EntityType.EXPERIENCE_ORB);
+        entity.setExperience(v.calculateTotalExperiencePoints() / 2);
+        v.setExperienceLevelAndProgress(0);
         for (ItemStack item : plugin.getSettingsUI().getSettings().getKillReward(e, victim)) {
             v.getWorld().dropItem(v.getLocation(), item);
         }

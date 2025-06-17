@@ -30,6 +30,7 @@ public class CustomItems extends ItemLists{
                 MasterCompass.getInstance(),
                 MinerBlessing.getInstance(),
                 DragonSword.getInstance(),
+                LeapingAxe.getInstance(),
                 //Combat
                 PlayerHead.getInstance(),
                 MakeshiftSkull.getInstance(),
@@ -61,7 +62,6 @@ public class CustomItems extends ItemLists{
                 Dread.getInstance(),
                 //Books
                 BookOfThoth.getInstance(),
-                XPTome.getInstance(),
                 TabletsOfDestiny.getInstance(),
                 WeaverSilk.getInstance(),
                 RejuvenationBook.getInstance()

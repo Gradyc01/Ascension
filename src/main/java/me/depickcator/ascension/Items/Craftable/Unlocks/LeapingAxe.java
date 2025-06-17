@@ -8,7 +8,6 @@ import me.depickcator.ascension.Items.UnlocksData;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Utility.TextUtil;
-import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -19,9 +18,6 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.util.Vector;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LeapingAxe extends Weapons implements ItemClick {
     private static LeapingAxe instance;
@@ -77,7 +73,7 @@ public class LeapingAxe extends Weapons implements ItemClick {
     /*Returns true if not on cooldown and sets the cooldown, False otherwise*/
     private boolean checkCooldown(Player p, ItemStack item) {
         if (!p.hasCooldown(item) && plugin.getGameState().inGame()) {
-            int sec = CombatTimer.getInstance().isOnCooldown(p) ? 10 : 5;
+            int sec = CombatTimer.getInstance().isOnCooldown(p) ? 15 : 5;
             p.setCooldown(item, sec * 20);
             launchAnimation(p.getLocation());
             return true;

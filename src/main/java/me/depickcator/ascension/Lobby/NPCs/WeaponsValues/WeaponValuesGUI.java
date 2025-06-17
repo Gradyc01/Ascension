@@ -2,6 +2,7 @@ package me.depickcator.ascension.Lobby.NPCs.WeaponsValues;
 
 import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Items.Craftable.Unlocks.DragonSword;
+import me.depickcator.ascension.Items.Craftable.Unlocks.LeapingAxe;
 import me.depickcator.ascension.Items.Craftable.Unlocks.MakeshiftMace;
 import me.depickcator.ascension.Items.Craftable.Unlocks.Poseidon;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
@@ -29,9 +30,10 @@ public class WeaponValuesGUI extends AscensionMenuGUI {
         inventory.setItem(23, DiamondAxe.getInstance().getResult());
         inventory.setItem(24, NetheriteAxe.getInstance().getResult());
         inventory.setItem(29, DragonSword.getInstance().getResult());
-        inventory.setItem(30, Mace.getInstance().getResult());
-        inventory.setItem(31, MakeshiftMace.getInstance().getResult());
-        inventory.setItem(32, Poseidon.getInstance().getResult());
+        inventory.setItem(30, LeapingAxe.getInstance().getResult());
+        inventory.setItem(31, Mace.getInstance().getResult());
+        inventory.setItem(32, MakeshiftMace.getInstance().getResult());
+        inventory.setItem(33, Poseidon.getInstance().getResult());
     }
 
     @Override

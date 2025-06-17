@@ -19,6 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,19 +34,25 @@ public class ProjectileAttacks implements Listener {
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
-        Player p = (Player) event.getEntity();
-        Entity e = event.getProjectile();
         ShootsProjectiles item = ShootsProjectiles.getProjectile(event.getBow());
         if (item != null) item.applyKey(event);
-        p.hideEntity(plugin, e);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                p.showEntity(plugin, e);
-            }
+    }
 
-        }.runTaskLater(plugin, 1);
+    @EventHandler
+    public void onProjectileLaunch(ProjectileLaunchEvent event) {
+        Projectile projectile = event.getEntity();
+        ProjectileSource source = projectile.getShooter();
+        if (source instanceof Player) {
+            Player p = (Player) source;
+            p.hideEntity(plugin, projectile);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    p.showEntity(plugin, projectile);
+                }
 
+            }.runTaskLater(plugin, 1);
+        }
     }
 
 }

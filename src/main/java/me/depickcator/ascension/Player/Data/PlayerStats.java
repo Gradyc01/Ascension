@@ -24,6 +24,7 @@ public class PlayerStats implements PlayerDataObservers, Writeable {
     public static final String foodDropsKey = "food_drops";
     public static final String autoPurchaseUnlocks = "auto_purchase_unlocks";
     public static final String craftNotifications = "craft_notifications";
+    public static final String autoTome = "auto_tome";
     public PlayerStats(PlayerData playerData) {
         this.playerData = playerData;
         this.player = playerData.getPlayer();

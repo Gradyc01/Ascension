@@ -4,6 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Interfaces.ItemClick;
 import me.depickcator.ascension.Interfaces.EntityInteraction;
+import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import org.bukkit.GameMode;
 import org.bukkit.entity.LivingEntity;
@@ -26,8 +27,9 @@ public class PlayerInteractListener implements Listener {
         if (plugin.getGameState().checkState(GameStates.UNLOADED)) return;
         if (e.getItem() == null) return;
         ItemClick itemClick = ItemClick.findClickItem(e.getItem());
-        if (itemClick != null) {
-            itemClick.uponClick(e, PlayerUtil.getPlayerData(p));
+        PlayerData pD = PlayerUtil.getPlayerData(p);
+        if (itemClick != null && pD != null) {
+            itemClick.uponClick(e, pD);
         }
     }
 

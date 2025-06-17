@@ -5,6 +5,7 @@ import me.depickcator.ascension.Kits.KitBookGUI;
 import me.depickcator.ascension.MainMenuUI.BingoBoard.BingoBoardGUI;
 import me.depickcator.ascension.MainMenuUI.Command.CommandGUI;
 import me.depickcator.ascension.MainMenuUI.Map.MapGUI;
+import me.depickcator.ascension.MainMenuUI.Settings.SettingGUI;
 import me.depickcator.ascension.MainMenuUI.Skills.SkillsGUI;
 import me.depickcator.ascension.MainMenuUI.Unlocks.UnlocksGUI;
 import me.depickcator.ascension.Teams.Team;
@@ -31,12 +32,13 @@ public class MainMenuGUI extends AscensionMenuGUI {
 
         inventory.setItem(21, makeMainMenuBoardButton(Material.CRAFTING_TABLE, "Unlocks"));
         inventory.setItem(22, makeMainMenuBoardButton(Material.ENCHANTED_BOOK, "Board"));
-        inventory.setItem(23, makeMainMenuBoardButton(Material.COMPARATOR, "Commands & Settings"));
+        inventory.setItem(23, makeMainMenuBoardButton(Material.COMPARATOR, "Commands"));
         inventory.setItem(30, makeMainMenuBoardButton(Material.DIAMOND_SWORD, "Skills"));
         inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
         inventory.setItem(32, makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));
         inventory.setItem(20, makeMainMenuBoardButton(Material.CHEST, "Team Backpack", "Grace Period Only!"));
         inventory.setItem(24, makeMainMenuBoardButton(Material.ANVIL, "Coming Soon..."));
+        inventory.setItem(45, makeMainMenuBoardButton(Material.COMMAND_BLOCK, "Settings"));
         if (plugin.getGameState().inLobby())
             inventory.setItem(40, makeMainMenuBoardButton(Material.IRON_CHESTPLATE, "Kits"));
 
@@ -77,6 +79,9 @@ public class MainMenuGUI extends AscensionMenuGUI {
             }
             case Material.IRON_CHESTPLATE -> {
                 new KitBookGUI(playerData);
+            }
+            case Material.COMMAND_BLOCK -> {
+                new SettingGUI(playerData);
             }
             case Material.ANVIL -> {
                 TextUtil.errorMessage(player, "Future feature currently not available!");;
