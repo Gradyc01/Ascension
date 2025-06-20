@@ -11,6 +11,7 @@ public class EasyItems extends ItemLists {
     @Override
     protected void initItemList() {
         addItems(parseMaterials(
+                Material.SADDLE,
                 Material.LIGHTNING_ROD,
                 Material.ANVIL,
                 Material.LECTERN,
@@ -62,7 +63,8 @@ public class EasyItems extends ItemLists {
                 getRandomItemInList(getGlass()),
                 getRandomItemInList(getBanner()),
                 getRandomItemInList(getConcrete()),
-                getRandomItemInList(getWool())
+                getRandomItemInList(getWool()),
+                getRandomItemInList(getHarness())
         ));
     }
 
@@ -174,6 +176,28 @@ public class EasyItems extends ItemLists {
         items.add(new ItemStack(Material.PURPLE_WOOL));
         items.add(new ItemStack(Material.MAGENTA_WOOL));
         items.add(new ItemStack(Material.PINK_WOOL));
+
+        return items;
+    }
+
+    private List<ItemStack> getHarness() {
+        List<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Material.WHITE_HARNESS));
+        items.add(new ItemStack(Material.GRAY_HARNESS));
+        items.add(new ItemStack(Material.LIGHT_GRAY_HARNESS));
+        items.add(new ItemStack(Material.BLACK_HARNESS));
+        items.add(new ItemStack(Material.BROWN_HARNESS));
+        items.add(new ItemStack(Material.RED_HARNESS));
+        items.add(new ItemStack(Material.ORANGE_HARNESS));
+        items.add(new ItemStack(Material.YELLOW_HARNESS));
+        items.add(new ItemStack(Material.LIME_HARNESS));
+        items.add(new ItemStack(Material.GREEN_HARNESS));
+        items.add(new ItemStack(Material.CYAN_HARNESS));
+        items.add(new ItemStack(Material.LIGHT_BLUE_HARNESS));
+        items.add(new ItemStack(Material.BLUE_HARNESS));
+        items.add(new ItemStack(Material.PURPLE_HARNESS));
+        items.add(new ItemStack(Material.MAGENTA_HARNESS));
+        items.add(new ItemStack(Material.PINK_HARNESS));
 
         return items;
     }

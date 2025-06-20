@@ -53,8 +53,9 @@ public class RecipeBookModifier {
     }
 
     private Set<String> initRecipes() {
-        return new HashSet<>(Set.of(
+        Set<String> set = new HashSet<>(Set.of(
                 "bundle",
+                "saddle",
                 "turtle_helmet",
                 "wolf_armor",
                 "spyglass",
@@ -71,22 +72,6 @@ public class RecipeBookModifier {
                 "fishing_rod",
                 "flint_and_steel",
                 "mace",
-                "white_bundle",
-                "gray_bundle",
-                "light_gray_bundle",
-                "black_bundle",
-                "brown_bundle",
-                "red_bundle",
-                "orange_bundle",
-                "yellow_bundle",
-                "lime_bundle",
-                "green_bundle",
-                "cyan_bundle",
-                "light_blue_bundle",
-                "blue_bundle",
-                "purple_bundle",
-                "magenta_bundle",
-                "pink_bundle",
                 "leather_helmet",
                 "leather_chestplate",
                 "leather_leggings",
@@ -129,6 +114,28 @@ public class RecipeBookModifier {
                 "wooden_shovel",
                 "wooden_pickaxe"
         ));
+        set.addAll(initColoredRecipes("bundle"));
+        set.addAll(initColoredRecipes("harness"));
+        set.addAll(initColoredRecipes("dye", "harness"));
+        return set;
+    }
+
+    private Set<String> initColoredRecipes(String recipeID) {
+        return initColoredRecipes("",  recipeID);
+    }
+
+    private Set<String> initColoredRecipes(String recipePrefix, String recipeSuffix) {
+        Set<String> colors = Set.of("white", "gray", "light_gray", "black", "brown", "red", "orange",
+                "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink");
+        Set<String> set = new HashSet<>();
+        for  (String color : colors) {
+            String str = color;
+            if (recipePrefix != null && !recipePrefix.isEmpty()) str = recipePrefix + "_" + str;
+
+            if (recipeSuffix != null && !recipeSuffix.isEmpty()) str = str + "_" + recipeSuffix;
+            set.add(str);
+        }
+        return set;
     }
 }
 

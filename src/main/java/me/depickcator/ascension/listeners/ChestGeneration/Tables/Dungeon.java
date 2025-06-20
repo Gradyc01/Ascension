@@ -1,5 +1,6 @@
 package me.depickcator.ascension.listeners.ChestGeneration.Tables;
 
+import me.depickcator.ascension.Items.Uncraftable.HardenedSaddle;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Skills.SkillExpAmount;
 import me.depickcator.ascension.listeners.ChestGeneration.ChestLootTable;
@@ -15,7 +16,7 @@ public class Dungeon extends ChestLootTable {
 
     @Override
     public void addLootToTable(PlayerData pD, List<ItemStack> lootList) {
-        lootList.add(new ItemStack(Material.SADDLE, 1));
+        lootList.add(HardenedSaddle.getInstance().getResult());
         addShardsOfTheFallen(1, 2, lootList);
         givePlayerForagingExp(pD, SkillExpAmount.FORAGING_VERY_RARE.getExp());
     }

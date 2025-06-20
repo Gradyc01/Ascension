@@ -22,6 +22,7 @@ public class LoadGameRules extends GameSequences {
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         // world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, true);
         world.setGameRule(GameRule.DO_INSOMNIA, false);
+        world.setGameRule(GameRule.LOCATOR_BAR,false); //TODO: False For Now
         world.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
         world.setTime(1000);
     }

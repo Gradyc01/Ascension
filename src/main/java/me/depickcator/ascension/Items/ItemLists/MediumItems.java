@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.ItemLists;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.LocationChecker.LocationCheck;
+import me.depickcator.ascension.Items.Uncraftable.HardenedSaddle;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.CreeperHead;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.SkeletonSkull;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.ZombieHead;
@@ -43,7 +44,6 @@ public class MediumItems extends ItemLists {
         //Shipwreck
         addItems(parseMaterials(Material.HEART_OF_THE_SEA), Structure.SHIPWRECK, Structure.SHIPWRECK_BEACHED);
         addItems(parseMaterials(
-                        Material.SADDLE,
                         Material.NAME_TAG,
                         Material.NETHERITE_SCRAP,
                         Material.AMETHYST_SHARD,
@@ -102,12 +102,14 @@ public class MediumItems extends ItemLists {
                         Material.RABBIT_FOOT,
                         Material.DAYLIGHT_DETECTOR,
                         Material.FIREFLY_BUSH,
-                        Material.BUSH
+                        Material.BUSH,
+                        Material.DRIED_GHAST
                 ));
         addItems(List.of(
                 ZombieHead.getInstance().getResult(),
                 SkeletonSkull.getInstance().getResult(),
                 CreeperHead.getInstance().getResult(),
+                HardenedSaddle.getInstance().getResult(),
                 getRandomItemInList(getCandle()),
                 getRandomItemInList(getHangingSign()),
                 getRandomItemInList(getOre())));
