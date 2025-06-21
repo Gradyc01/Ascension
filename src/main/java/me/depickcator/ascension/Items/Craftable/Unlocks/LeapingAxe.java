@@ -22,7 +22,7 @@ import org.bukkit.util.Vector;
 public class LeapingAxe extends Weapons implements ItemClick {
     private static LeapingAxe instance;
     private LeapingAxe() {
-        super(UnlocksData.COST_325, 1, "Leaping Axe", "leaping_axe", 11, -3);
+        super(475, 1, "Leaping Axe", "leaping_axe", 11, -3);
         registerItem();
     }
 

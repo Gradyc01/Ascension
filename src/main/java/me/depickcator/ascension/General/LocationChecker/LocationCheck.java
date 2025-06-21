@@ -189,12 +189,14 @@ public class LocationCheck {
     }
 
     private boolean checkLocation(Structure structure, LocationStorage storage, World world) {
-        StructureSearchResult result = world.locateNearestStructure(spawn, structure, worldBorderSize, false);
+        int checkSize = world.getEnvironment() == World.Environment.NORMAL ? worldBorderSize : worldBorderSize/4;
+        StructureSearchResult result = world.locateNearestStructure(spawn, structure, checkSize, false);
+
         boolean ans;
         if (result == null) {
             ans = false;
         } else {
-            ans = calculateEuclideanDistance(result.getLocation(), spawn) <= worldBorderSize;
+            ans = calculateEuclideanDistance(result.getLocation(), spawn) <= checkSize;
         }
         storage.setInWorld(ans);
         structures.put(structure, storage);

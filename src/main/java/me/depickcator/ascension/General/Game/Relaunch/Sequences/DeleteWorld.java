@@ -7,12 +7,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DeleteWorld extends GameSequences {
     private final List<World> worlds;
+    private final Set<String> whitelistedFiles;
     public DeleteWorld(List<World> worlds) {
         this.worlds = worlds;
+        this.whitelistedFiles = Set.of("raids.dat", "random_sequences.dat", "scoreboard.dat", "chunks.dat");
     }
 
     @Override
@@ -30,6 +34,8 @@ public class DeleteWorld extends GameSequences {
             File[] files = directory.listFiles();
             if (files != null) {
                 for (File file : files) {
+                    if (whitelistedFiles.contains(file.getName())) continue;
+                    TextUtil.debugText("Deleting file: " + file.getName());
                     if (file.isDirectory()) {
                         deleteDirectory(file);  // Recursively delete subdirectories
                     } else {
@@ -39,5 +45,6 @@ public class DeleteWorld extends GameSequences {
             }
         }
         return directory.delete();  // Finally delete the directory itself
+//        return true;
     }
 }

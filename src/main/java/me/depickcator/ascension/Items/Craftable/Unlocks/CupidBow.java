@@ -31,7 +31,7 @@ import org.bukkit.persistence.PersistentDataType;
 public class CupidBow extends Craft implements ShootsProjectiles {
     private static CupidBow instance;
     private CupidBow() {
-        super(UnlocksData.COST_400, 1, "Cupid's Bow", "cupid_bow");
+        super(850, 1, "Cupid's Bow", "cupid_bow");
         addProjectile(KEY, this);
     }
     @Override

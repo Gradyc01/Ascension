@@ -82,31 +82,6 @@ public class PlayerStats implements PlayerDataObservers, Writeable {
         itemsObtained++;
     }
 
-//    public void nightVisionSwitch() {
-//        booleanSwitch(nightVisionKey);
-//    }
-//
-//    public boolean isNightVision() {
-//        return getNamespacedKey(nightVisionKey);
-//    }
-//
-//    public void foodDropsSwitch() {
-//        booleanSwitch(foodDropsKey);
-//    }
-//
-//    public boolean isFoodDrops() {
-//        return getNamespacedKey(foodDropsKey);
-//    }
-//
-//    public void autoPurchaseUnlocksSwitch() {
-//        booleanSwitch(autoPurchaseUnlocks);
-//    }
-//
-//    public boolean isAutoPurchaseUnlocks() {
-//        return getNamespacedKey(autoPurchaseUnlocks);
-//    }
-
-
     //Deaths
 
     public int getDeaths() {

@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 public class Exodus extends Craft {
     private static Exodus instance;
     private Exodus() {
-        super(UnlocksData.COST_450, 1, "Exodus" ,"exodus");
+        super(875, 1, "Exodus" ,"exodus");
     }
 
     @Override

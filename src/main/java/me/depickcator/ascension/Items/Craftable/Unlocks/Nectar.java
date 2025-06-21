@@ -18,7 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 public class Nectar extends Craft {
     private static Nectar instance;
     public Nectar() {
-        super(UnlocksData.COST_150, 3,  "Nectar", "nectar");
+        super(UnlocksData.COST_350, 3,  "Nectar", "nectar");
     }
 
     @Override

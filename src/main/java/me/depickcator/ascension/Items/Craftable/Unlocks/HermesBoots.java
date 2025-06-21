@@ -27,7 +27,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 public class HermesBoots extends Craft implements CustomInfusion {
     private static HermesBoots instance;
     private HermesBoots() {
-        super(UnlocksData.COST_375, 1, "Hermes' Boots" ,"hermes_boots");
+        super(700, 1, "Hermes' Boots" ,"hermes_boots");
     }
 
     @Override

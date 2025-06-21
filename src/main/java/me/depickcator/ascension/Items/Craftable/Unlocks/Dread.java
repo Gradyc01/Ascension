@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.OminousBottleMeta;
 public class Dread extends Craft {
     private static Dread instance;
     private Dread() {
-        super(UnlocksData.COST_250, 3, "Dread", "dread");
+        super(550, 3, "Dread", "dread");
     }
 
 

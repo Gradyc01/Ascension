@@ -23,7 +23,7 @@ import java.util.List;
 public class Ghost extends Craft implements ItemClick {
     private static Ghost instance;
     private Ghost() {
-        super(UnlocksData.COST_375, 1, "Ghost", "ghost");
+        super(600, 1, "Ghost", "ghost");
         registerItem();
     }
 

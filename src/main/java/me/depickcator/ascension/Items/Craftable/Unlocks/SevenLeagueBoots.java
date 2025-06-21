@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 public class SevenLeagueBoots extends Craft {
     private static SevenLeagueBoots instance;
     private SevenLeagueBoots() {
-        super(UnlocksData.COST_300, 2, "Seven League Boots", "seven_league_boots");
+        super(600, 2, "Seven League Boots", "seven_league_boots");
     }
 
     public static SevenLeagueBoots getInstance() {

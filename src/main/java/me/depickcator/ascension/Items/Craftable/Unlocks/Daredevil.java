@@ -23,7 +23,7 @@ import java.util.List;
 public class Daredevil extends Craft {
     private static Daredevil instance;
     private Daredevil() {
-        super(UnlocksData.COST_350, 1, "Daredevil" ,"daredevil");
+        super(725, 1, "Daredevil" ,"daredevil");
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Daredevil extends Craft {
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText("Type: Skeleton Horse", TextUtil.GREEN),
                 TextUtil.makeText("Health: 25 Hearts", TextUtil.GREEN),
-                TextUtil.makeText("Speed: Max", TextUtil.GREEN),
+                TextUtil.makeText("Speed: Very Fast", TextUtil.GREEN),
                 TextUtil.makeText("Jump: 3 Blocks", TextUtil.GREEN),
                 TextUtil.makeText(" ", TextUtil.GREEN)
         ));

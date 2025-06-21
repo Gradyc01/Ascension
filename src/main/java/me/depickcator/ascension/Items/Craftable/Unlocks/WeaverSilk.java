@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class WeaverSilk extends Craft {
     private static WeaverSilk instance;
     private WeaverSilk() {
-        super(UnlocksData.COST_275, 1, "A Weaver's Silk", "weaver_silk");
+        super(575, 1, "A Weaver's Silk", "weaver_silk");
     }
 
     public static WeaverSilk getInstance() {

@@ -22,7 +22,7 @@ import java.util.List;
 public class DragonSword extends Weapons implements CustomInfusion {
     private static DragonSword instance;
     private DragonSword() {
-        super(UnlocksData.COST_250, 1, "Dragon's Sword", "dragon_sword", 14.25, -2.4);
+        super(500, 1, "Dragon's Sword", "dragon_sword", 14.25, -2.4);
     }
 
     @Override

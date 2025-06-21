@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfPower extends Craft {
     private static BookOfPower instance;
     private BookOfPower() {
-        super(UnlocksData.COST_125, 4, "Book of Power", "book_of_power");
+        super(UnlocksData.COST_225, 4, "Book of Power", "book_of_power");
     }
 
     @Override

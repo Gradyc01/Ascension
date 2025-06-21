@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class LightApple extends Craft {
     private static LightApple instance;
     public LightApple() {
-        super(UnlocksData.COST_125, 2, "Light Apple", "light_apple");
+        super(UnlocksData.COST_200, 2, "Light Apple", "light_apple");
     }
 
     public static LightApple getInstance() {

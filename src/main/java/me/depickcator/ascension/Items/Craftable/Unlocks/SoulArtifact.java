@@ -13,7 +13,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class SoulArtifact extends Craft {
     private static SoulArtifact instance;
     private SoulArtifact() {
-        super(UnlocksData.COST_125, 4, "Soul Artifact", "soul_artifact");
+        super(UnlocksData.COST_325, 4, "Soul Artifact", "soul_artifact");
     }
 
     public static SoulArtifact getInstance() {
@@ -36,7 +36,7 @@ public class SoulArtifact extends Craft {
 
     @Override
     protected ItemStack initResult() {
-        return new ItemStack(Material.GHAST_TEAR, 3);
+        return new ItemStack(Material.GHAST_TEAR, 4);
     }
 
 }

@@ -157,7 +157,7 @@ public class PlayerTeam implements PlayerDataObservers {
     }
 
     private void leaveTeamMessage() {
-        player.sendMessage(makeTeamMessage("You have left the party", TextUtil.BLUE));
+        player.sendMessage(makeTeamMessage("You have left the party", TextUtil.YELLOW));
     }
 
     private void errorMessage(String message) {

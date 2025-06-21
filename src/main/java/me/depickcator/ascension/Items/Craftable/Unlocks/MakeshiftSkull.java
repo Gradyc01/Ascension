@@ -21,7 +21,7 @@ import java.util.UUID;
 public class MakeshiftSkull extends Craft {
     private static MakeshiftSkull instance;
     private MakeshiftSkull() {
-        super(UnlocksData.COST_200, 999,"Makeshift Skull", "makeshift_skull");
+        super(UnlocksData.COST_500, 999,"Makeshift Skull", "makeshift_skull");
     }
 
     public static MakeshiftSkull getInstance() {

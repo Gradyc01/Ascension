@@ -21,7 +21,7 @@ public class SetWorldBorder extends GameSequences {
         worldBorder.setCenter(loc.getX(), loc.getZ());
         worldBorder.setSize(radius * 2, 0); // Ex 6k would be 3k x 3k
         netherWorldBorder.setCenter(loc.getX()/8, loc.getZ()/8);
-        netherWorldBorder.setSize(radius * 2, 0); // Ex 6k would be 3k x 3k
+        netherWorldBorder.setSize((double) (radius * 2) / 8, 0); // Ex 6k would be 3k x 3k
         game.callback();
     }
 }

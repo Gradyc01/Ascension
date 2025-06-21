@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class TabletsOfDestiny extends Craft {
     private static TabletsOfDestiny instance;
     private TabletsOfDestiny() {
-        super(UnlocksData.COST_375, 1, "Tablets of Destiny", "tablets_of_destiny");
+        super(800, 1, "Tablets of Destiny", "tablets_of_destiny");
     }
     @Override
     protected Recipe initRecipe() {

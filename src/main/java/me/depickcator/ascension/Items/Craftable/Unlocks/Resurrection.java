@@ -14,7 +14,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class Resurrection extends Craft {
     private static Resurrection instance;
     private Resurrection() {
-        super(UnlocksData.COST_450, 1, "Resurrection", "resurrection");
+        super(700, 1, "Resurrection", "resurrection");
     }
 
     public static Resurrection getInstance() {

@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.Repairable;
 public class WingsOfIcarus extends Craft {
     private static WingsOfIcarus instance;
     private WingsOfIcarus() {
-        super(UnlocksData.COST_500, 1, "Wings of Icarus", "wings_of_icarus");
+        super(900, 1, "Wings of Icarus", "wings_of_icarus");
     }
 
     public static WingsOfIcarus getInstance() {

@@ -21,7 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class MakeshiftMace extends Weapons implements ItemClick {
     private static MakeshiftMace instance;
     private MakeshiftMace() {
-        super(UnlocksData.COST_425, 1, "Well Worn Mace", "makeshift_mace", 8, -3.4);
+        super(850, 1, "Well Worn Mace", "makeshift_mace", 8, -3.4);
         registerItem();
     }
 

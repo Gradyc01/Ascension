@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 public class ExplosivePropulsion extends Craft {
     private static ExplosivePropulsion instance;
     private ExplosivePropulsion() {
-        super(UnlocksData.COST_325, 2, "Explosive Propulsion", "explosive_propulsion");
+        super(625, 2, "Explosive Propulsion", "explosive_propulsion");
     }
 
     @Override

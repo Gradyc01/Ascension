@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfSharpness extends Craft {
     private static BookOfSharpness instance;
     private BookOfSharpness() {
-        super(UnlocksData.COST_125, 4, "Book of Sharpness", "book_of_sharpness");
+        super(UnlocksData.COST_225, 4, "Book of Sharpness", "book_of_sharpness");
     }
 
     @Override

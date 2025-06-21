@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class DiamondPack extends Craft {
     private static DiamondPack instance;
     private DiamondPack() {
-        super(UnlocksData.COST_150, 4, "Diamond Pack", "diamond_pack");
+        super(UnlocksData.COST_350, 4, "Diamond Pack", "diamond_pack");
     }
 
     @Override

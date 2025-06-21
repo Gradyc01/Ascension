@@ -55,7 +55,8 @@ public class EasyItems extends ItemLists {
                 Material.CRAFTER,
                 Material.LEAF_LITTER,
                 Material.WILDFLOWERS,
-                Material.REDSTONE_LAMP
+                Material.REDSTONE_LAMP,
+                Material.LEAD
         ));
         addItems(List.of(
                 getRandomItemInList(getCraftTable()),

@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class NotchApple extends Craft {
     private static NotchApple instance;
     private NotchApple() {
-        super(UnlocksData.COST_250, 1, "Notch Apple", "notch_apple");
+        super(UnlocksData.COST_350, 1, "Notch Apple", "notch_apple");
     }
 
     public static NotchApple getInstance() {

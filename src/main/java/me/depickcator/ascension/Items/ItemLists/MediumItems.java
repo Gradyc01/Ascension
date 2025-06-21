@@ -93,7 +93,6 @@ public class MediumItems extends ItemLists {
                         Material.MAGMA_BLOCK,
                         Material.GLOW_ITEM_FRAME,
                         Material.TURTLE_HELMET,
-                        Material.LEAD,
                         Material.SPECTRAL_ARROW,
                         Material.BLAZE_ROD,
                         Material.SOUL_LANTERN,

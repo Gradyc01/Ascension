@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffectType;
 public class CubeConverter extends Craft {
     private static CubeConverter instance;
     private CubeConverter() {
-        super(UnlocksData.COST_200, 3, "Cube Converter", "cube_converter");
+        super(UnlocksData.COST_500, 3, "Cube Converter", "cube_converter");
     }
 
     public void recipe() {

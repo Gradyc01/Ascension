@@ -29,7 +29,7 @@ import java.util.UUID;
 public class GoldenHead extends Craft implements ItemClick {
     private static GoldenHead instance;
     private GoldenHead() {
-        super(UnlocksData.COST_200, 4, "Golden Head", "golden_head");
+        super(UnlocksData.COST_300, 4, "Golden Head", "golden_head");
         registerItem();
     }
 

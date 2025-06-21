@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfProtection extends Craft {
     private static BookOfProtection instance;
     private BookOfProtection() {
-        super(UnlocksData.COST_125, 4, "Book of Protection", "book_of_protection");
+        super(UnlocksData.COST_200, 4, "Book of Protection", "book_of_protection");
     }
 
 

@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 public class HideOfLeviathan extends Craft {
     private static HideOfLeviathan instance;
     private HideOfLeviathan() {
-        super(UnlocksData.COST_300, 2, "Hide of Leviathan", "hide_of_leviathan");
+        super(600, 2, "Hide of Leviathan", "hide_of_leviathan");
     }
 
     public static HideOfLeviathan getInstance() {

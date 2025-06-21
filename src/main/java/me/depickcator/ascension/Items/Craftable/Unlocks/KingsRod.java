@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.Repairable;
 public class KingsRod extends Craft {
     private static KingsRod instance;
     private KingsRod() {
-        super(UnlocksData.COST_150, 1, "Kings Rod", "kings_rod");
+        super(UnlocksData.COST_350, 1, "Kings Rod", "kings_rod");
     }
 
     public static KingsRod getInstance() {

@@ -31,7 +31,7 @@ import java.util.List;
 public class HeliosCurse extends Craft implements ShootsProjectiles {
     private static HeliosCurse instance;
     private HeliosCurse() {
-        super(UnlocksData.COST_400, 1, "Helios' Curse" ,"helios_curse");
+        super(775, 1, "Helios' Curse" ,"helios_curse");
         addProjectile(KEY, this);
     }
 

@@ -18,7 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 public class PotionOfVelocity extends Craft {
     private static PotionOfVelocity instance;
     public PotionOfVelocity() {
-        super(UnlocksData.COST_150, 3, "Potion of Velocity", "potion_of_velocity");
+        super(UnlocksData.COST_225, 3, "Potion of Velocity", "potion_of_velocity");
     }
 
     public static PotionOfVelocity getInstance() {

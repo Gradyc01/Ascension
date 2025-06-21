@@ -17,7 +17,7 @@ import me.depickcator.ascension.Items.UnlockUtil;
 public class AscensionKey extends Craft {
     private static AscensionKey instance;
     private AscensionKey() {
-        super(UnlocksData.COST_500, 999, "Ascension Key", "ascension_key");
+        super(1000, 999, "Ascension Key", "ascension_key");
     }
 
     @Override

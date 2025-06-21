@@ -22,7 +22,7 @@ import java.util.List;
 public class Echolocator extends Craft implements ItemClick {
     private static Echolocator instance;
     private Echolocator() {
-        super(UnlocksData.COST_325, 2, "Echolocator", "echolocator");
+        super(625, 2, "Echolocator", "echolocator");
         registerItem();
     }
 

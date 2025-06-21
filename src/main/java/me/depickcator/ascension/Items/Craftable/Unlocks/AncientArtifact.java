@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class AncientArtifact extends Craft {
     private static AncientArtifact instance;
     private AncientArtifact() {
-        super(UnlocksData.COST_175, 2, "Ancient Artifact", "ancient_artifact");
+        super(UnlocksData.COST_375, 2, "Ancient Artifact", "ancient_artifact");
     }
 
     @Override

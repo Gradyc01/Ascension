@@ -10,6 +10,7 @@ import me.depickcator.ascension.Items.ItemLists.HardItems;
 import me.depickcator.ascension.Items.ItemLists.ItemLists;
 import me.depickcator.ascension.Items.Uncraftable.ToolVoucher.ToolVoucher;
 import org.bukkit.Material;
+import org.bukkit.block.data.type.DriedGhast;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;

@@ -24,7 +24,7 @@ public class MasterCompass extends Craft implements ItemClick {
 
     private static MasterCompass instance;
     private MasterCompass() {
-        super(UnlocksData.COST_300, 1, "Master's Compass", "master_compass");
+        super(UnlocksData.COST_425, 1, "Master's Compass", "master_compass");
         registerItem();
     }
 

@@ -39,7 +39,7 @@ public class Poseidon extends Craft implements ShootsProjectiles {
     private static Poseidon instance;
     private final NamespacedKey key;
     private Poseidon() {
-        super(UnlocksData.COST_425, 1, "Poseidon", "poseidon");
+        super(850, 1, "Poseidon", "poseidon");
         key = new NamespacedKey(plugin, KEY);
         addProjectile(getKey(), this);
     }

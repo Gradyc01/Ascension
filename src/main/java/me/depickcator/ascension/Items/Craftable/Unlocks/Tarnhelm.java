@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 public class Tarnhelm extends Craft {
     private static Tarnhelm instance;
     private Tarnhelm() {
-        super(UnlocksData.COST_150, 2, "Tarnhelm", "tarnhelm");
+        super(UnlocksData.COST_400, 2, "Tarnhelm", "tarnhelm");
     }
 
     public static Tarnhelm getInstance() {

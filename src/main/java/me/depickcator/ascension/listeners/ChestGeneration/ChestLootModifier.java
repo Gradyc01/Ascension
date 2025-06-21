@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseLootEvent;
+import org.bukkit.event.entity.PiglinBarterEvent;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,8 +23,10 @@ import java.util.HashMap;
 
 public class ChestLootModifier implements Listener {
     private HashMap<String, ChestLootTable> tables;
+    private final ChestLootTable piglinBarterTrade;
     public ChestLootModifier() {
         initChestLootTables();
+        piglinBarterTrade = new PiglinBarterTrade();
     }
 
     private void initChestLootTables() {
@@ -71,7 +74,6 @@ public class ChestLootModifier implements Listener {
             Block b = event.getBlock();
             b.getLocation().getWorld().dropItem(b.getLocation().add(0, 2, 0), new ItemStack(Material.TRIAL_KEY));
         }
-
     }
 
     private void modifyVaultLootTables(BlockDispenseLootEvent event, PlayerData playerData) {
@@ -86,5 +88,10 @@ public class ChestLootModifier implements Listener {
         }
         TextUtil.debugText("Table found");
         table.addLootToTable(playerData, event.getDispensedLoot());
+    }
+
+    @EventHandler
+    public void onPiglinBartered(PiglinBarterEvent event) {
+        piglinBarterTrade.addLootToTable(null, event.getOutcome());
     }
 }

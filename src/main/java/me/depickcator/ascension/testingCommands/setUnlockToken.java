@@ -34,11 +34,6 @@ public class setUnlockToken implements CommandExecutor {
         }
 //        p.getInventory().addItem();
 
-        ItemStack item = EnlightenedNugget.getInstance().getItem();
-        item.setAmount(25);
-        p.getInventory().addItem(item);
-
-
         Player player = plugin.getServer().getPlayer(name);
         if (player == null) {
             return false;

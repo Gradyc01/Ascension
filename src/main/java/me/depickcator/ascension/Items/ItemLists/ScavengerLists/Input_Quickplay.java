@@ -78,7 +78,8 @@ public class Input_Quickplay extends ItemLists {
                 Material.CLOCK,
                 Material.SUNFLOWER,
                 Material.WILDFLOWERS,
-                Material.REDSTONE_LAMP
+                Material.REDSTONE_LAMP,
+                Material.LEAD
         ), 3));
         return items;
     }

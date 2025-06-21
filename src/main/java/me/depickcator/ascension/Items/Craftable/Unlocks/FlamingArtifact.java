@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class FlamingArtifact extends Craft {
     private static FlamingArtifact instance;
     private FlamingArtifact() {
-        super(UnlocksData.COST_125,2 ,"Flaming Artifact", "flaming_artifact");
+        super(UnlocksData.COST_200,2 ,"Flaming Artifact", "flaming_artifact");
     }
 
     @Override

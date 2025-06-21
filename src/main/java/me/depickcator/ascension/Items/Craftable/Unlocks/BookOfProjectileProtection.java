@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class BookOfProjectileProtection extends Craft {
     private static BookOfProjectileProtection instance;
     private BookOfProjectileProtection() {
-        super(UnlocksData.COST_100, 4, "Artemis's Book", "book_of_projectile_protection");
+        super(UnlocksData.COST_175, 4, "Artemis's Book", "book_of_projectile_protection");
     }
 
     @Override

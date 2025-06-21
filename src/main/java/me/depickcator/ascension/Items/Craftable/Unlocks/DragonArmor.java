@@ -23,7 +23,7 @@ public class DragonArmor extends Craft {
     private static DragonArmor instance;
 
     private DragonArmor() {
-        super(UnlocksData.COST_300, 2, "Dragon Armor", "dragon_armor");
+        super(600, 2, "Dragon Armor", "dragon_armor");
     }
 
 

@@ -11,6 +11,7 @@ import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import me.depickcator.ascension.Teams.Team;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -144,16 +145,7 @@ public class BingoData extends ItemComparison {
         if (newLines > oldLines) {
             Team team = playerData.getPlayerTeam().getTeam();
             for (int i = 0; i < newLines - oldLines; i++) {
-                playerData.getPlayerTeam().getTeam().getTeamStats().addGameScore(5);
-                List<Player> teamMembers = team.getTeamMembers();
-                for (Player teamMember : teamMembers) {
-                    teamMember.sendMessage(TextUtil.topBorder(TextUtil.YELLOW));
-                    teamMember.sendMessage(TextUtil.makeText("Your team has completed a line!", TextUtil.BLUE));
-                    teamMember.sendMessage(TextUtil.bottomBorder(TextUtil.YELLOW));
-                    teamMember.playSound(teamMember.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
-                    PlayerUtil.giveItem(teamMember, MakeshiftSkull.getInstance().getResult());
-                    PlayerUtil.giveItem(teamMember, NetherStar.getInstance().getResult(2));
-                }
+                giveLineRewards(team);
             }
             team.getTeamStats().setLinesObtained(newLines);
         }
@@ -194,7 +186,6 @@ public class BingoData extends ItemComparison {
 
 
     private void giveRewards(Player p) {
-
         PotionEffect rewardEffect = new PotionEffect(PotionEffectType.REGENERATION, 16 * 20, 0);
         PlayerData pD = PlayerUtil.getPlayerData(p);
         //Individual Rewards
@@ -216,6 +207,25 @@ public class BingoData extends ItemComparison {
             PlayerUtil.getPlayerData(p).getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_UNCOMMON, true);
             giveXPTome(PlayerUtil.getPlayerData(p));
             p.addPotionEffect(effect);
+        }
+    }
+
+    private void giveLineRewards(Team team) {
+        team.getTeamStats().addGameScore(5);
+        Component text = TextUtil.topBorder(TextUtil.YELLOW)
+                .append(TextUtil.makeText("\nYour team has completed a line!\n", TextUtil.BLUE))
+                .append(TextUtil.bottomBorder(TextUtil.YELLOW));
+        Title title = TextUtil.makeTitle(TextUtil.makeText("LINE COMPLETED!", TextUtil.GOLD),
+                1, 2,0.5);
+        for (Player teamMember : team.getTeamMembers()) {
+            teamMember.sendMessage(text);
+            teamMember.showTitle(title);
+            teamMember.playSound(teamMember.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
+            PlayerUtil.giveItem(teamMember,
+                    MakeshiftSkull.getInstance().getResult(),
+                    NetherStar.getInstance().getResult(2));
+            PlayerData pD = PlayerUtil.getPlayerData(teamMember);
+            pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_LEGENDARY * 2);
         }
     }
 

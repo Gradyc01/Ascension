@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class LightEnchantingTable extends Craft {
     private static LightEnchantingTable instance;
     private LightEnchantingTable() {
-        super(UnlocksData.COST_100, 2,"Light Enchanting Table", "light_enchanting_table");
+        super(UnlocksData.COST_175, 2,"Light Enchanting Table", "light_enchanting_table");
     }
 
     public static LightEnchantingTable getInstance() {

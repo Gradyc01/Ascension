@@ -31,7 +31,7 @@ import java.util.List;
 public class ApolloGlare extends Craft implements ShootsProjectiles  {
     private static ApolloGlare instance;
     private ApolloGlare() {
-        super(UnlocksData.COST_375, 1, "Apollo's Glare", "apollo_glare");
+        super(750, 1, "Apollo's Glare", "apollo_glare");
 
         addProjectile(KEY, this);
     }

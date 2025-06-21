@@ -29,7 +29,7 @@ public class AdvancedQuickPick extends Craft implements ItemClick {
     private static AdvancedQuickPick instance;
     private final Set<Material> ores;
     private AdvancedQuickPick() {
-        super(UnlocksData.COST_175, 1, "Advanced Quick Pick", "advanced_quick_pick");
+        super(UnlocksData.COST_250, 1, "Advanced Quick Pick", "advanced_quick_pick");
         ores = initOres();
         registerItem();
     }

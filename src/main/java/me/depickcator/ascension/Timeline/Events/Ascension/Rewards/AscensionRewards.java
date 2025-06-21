@@ -5,6 +5,7 @@ import me.depickcator.ascension.Items.Uncraftable.AscensionRewardBundle;
 import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -27,6 +28,7 @@ public class AscensionRewards {
     private final List<List<ItemStack>> teamBasedItems; // Items only given to the team leader
     private final List<List<ItemStack>> playerBasedItems; // Items given to all team members
     private int gameScore;
+    private int unlockTokens;
     private final Team team;
     public AscensionRewards(Team team) {
         this.team = team;
@@ -48,13 +50,15 @@ public class AscensionRewards {
     }
 
     public void giveRewards() {
-        giveGameScore(team);
+
         ItemStack item = AscensionRewardBundle.getInstance().getResult(this);
         if (playerBasedItemNames.isEmpty()) return;
         sendRewardText();
         for (Player p : team.getTeamMembers()) {
             PlayerUtil.giveItem(p, item);
         }
+        giveGameScore(team);
+        giveUnlockTokens(team);
     }
 
     private void addRewards(Map<ItemStack, Integer> names, List<List<ItemStack>> rewardItems, ItemStack... items) {
@@ -70,9 +74,6 @@ public class AscensionRewards {
     }
 
     public void giveItems(PlayerData pD) {
-//        for (Player p : team.getTeamMembers()) {
-//
-//        }
         Player p = pD.getPlayer();
         for (List<ItemStack> items : playerBasedItems) {
             PlayerUtil.giveItem(p, items);
@@ -88,6 +89,13 @@ public class AscensionRewards {
     private void giveGameScore(Team team) {
         if (gameScore == 0) return;
         team.getTeamStats().addGameScore(gameScore);
+    }
+
+    private void giveUnlockTokens(Team team) {
+        for (Player p : team.getTeamMembers()) {
+            PlayerData pD = PlayerUtil.getPlayerData(p);
+            pD.getPlayerUnlocks().addUnlockTokens(unlockTokens);
+        }
     }
 
     private void sendRewardAchievedText(int tier) {
@@ -126,6 +134,7 @@ public class AscensionRewards {
                 NetherStar.getInstance().getResult(1),
                 ShardOfTheFallen.getInstance().getResult(3));
         gameScore += 1;
+        unlockTokens += PlayerUnlocks.AMOUNT_RARE;
     }
 
     private void addTier1Rewards() {
@@ -139,6 +148,7 @@ public class AscensionRewards {
         addRewards(teamBasedItemNames, teamBasedItems,
                 MakeshiftSkull.getInstance().getResult());
         gameScore += 2;
+        unlockTokens += PlayerUnlocks.AMOUNT_VERY_RARE;
     }
 
     private void addTier2Rewards() {
@@ -152,6 +162,7 @@ public class AscensionRewards {
                 MakeshiftSkull.getInstance().getResult(),
                 NotchApple.getInstance().getResult());
         gameScore += 2;
+        unlockTokens += PlayerUnlocks.AMOUNT_VERY_RARE;
     }
 
     private void addTier3Rewards() {
@@ -166,6 +177,7 @@ public class AscensionRewards {
                 GoldenHead.getInstance().getResult(),
                 NotchApple.getInstance().getResult());
         gameScore += 2;
+        unlockTokens += PlayerUnlocks.AMOUNT_LEGENDARY;
     }
 
     private void addTier4Rewards() {
@@ -179,6 +191,7 @@ public class AscensionRewards {
         addRewards(teamBasedItemNames, teamBasedItems,
                 Resurrection.getInstance().getResult());
         gameScore += 2;
+        unlockTokens += PlayerUnlocks.AMOUNT_LEGENDARY;
     }
 
 

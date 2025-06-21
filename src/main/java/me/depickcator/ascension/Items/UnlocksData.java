@@ -159,6 +159,7 @@ public class UnlocksData {
                 Panacea.getInstance(),
                 TabletsOfDestiny.getInstance(),
                 Daredevil.getInstance(),
+                Mothership.getInstance(),
                 Poseidon.getInstance(),
                 MakeshiftMace.getInstance()
         );

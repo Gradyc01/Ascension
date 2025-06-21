@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class LightAnvil extends Craft {
     private static LightAnvil instance;
     private LightAnvil() {
-        super(UnlocksData.COST_125, 2,"Light Anvil", "light_anvil");
+        super(UnlocksData.COST_200, 2,"Light Anvil", "light_anvil");
     }
 
     public static LightAnvil getInstance() {

@@ -31,7 +31,7 @@ import java.util.List;
 public class MinerBlessing extends Craft implements ItemClick, CustomInfusion {
     private static MinerBlessing instance;
     private MinerBlessing() {
-        super(UnlocksData.COST_325, 1, "Miner's Blessing", "miner_blessing");
+        super(625, 1, "Miner's Blessing", "miner_blessing");
         registerItem();
     }
 

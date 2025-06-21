@@ -49,7 +49,8 @@ public class CarePackageLoot extends CustomChestLoot {
                 new LootPoolItem(Material.BLAZE_ROD, 3),
                 new LootPoolItem(Material.MAGMA_CREAM, 3),
                 new LootPoolItem(new ItemStack(Material.NETHER_WART, 2), 1),
-                new LootPoolItem(new ItemStack(Material.GHAST_TEAR, 2), 2),
+                new LootPoolItem(new ItemStack(Material.GHAST_TEAR, 3), 3),
+                new LootPoolItem(new ItemStack(Material.SOUL_SAND, 2), 3),
                 new LootPoolItem(new ItemStack(Material.BONE, 3), 3),
                 new LootPoolItem(new ItemStack(Material.COAL, 4), 2)
         );

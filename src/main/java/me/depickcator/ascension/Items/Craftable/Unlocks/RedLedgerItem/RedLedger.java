@@ -25,7 +25,7 @@ import java.util.List;
 public class RedLedger extends Craft implements ItemClick {
     private static RedLedger instance;
     private RedLedger() {
-        super(UnlocksData.COST_400, 4, "Red Ledger", "red_ledger");
+        super(600, 4, "Red Ledger", "red_ledger");
         registerItem();
     }
 

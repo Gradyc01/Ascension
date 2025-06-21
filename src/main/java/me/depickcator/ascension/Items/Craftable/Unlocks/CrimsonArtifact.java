@@ -13,7 +13,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class CrimsonArtifact extends Craft {
     private static CrimsonArtifact instance;
     private CrimsonArtifact() {
-        super(UnlocksData.COST_275, 1, "Crimson Artifact", "crimson_artifact");
+        super(500, 1, "Crimson Artifact", "crimson_artifact");
     }
 
     @Override

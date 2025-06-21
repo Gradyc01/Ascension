@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 public class Obsidian extends Craft {
     private static Obsidian instance;
     private Obsidian() {
-        super(UnlocksData.COST_125, 4, "Obsidian", "obsidian");
+        super(UnlocksData.COST_175, 4, "Obsidian", "obsidian");
     }
 
 

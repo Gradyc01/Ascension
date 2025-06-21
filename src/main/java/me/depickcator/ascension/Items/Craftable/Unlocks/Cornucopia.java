@@ -27,7 +27,7 @@ import java.util.List;
 public class Cornucopia extends Craft implements ItemClick {
     private static Cornucopia instance;
     private Cornucopia() {
-        super(UnlocksData.COST_225, 1, "Cornucopia", "cornucopia");
+        super(UnlocksData.COST_375, 1, "Cornucopia", "cornucopia");
         registerItem();
     }
     @Override

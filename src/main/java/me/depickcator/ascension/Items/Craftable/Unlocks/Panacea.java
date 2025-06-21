@@ -18,7 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 public class Panacea extends Craft {
     private static Panacea instance;
     private Panacea() {
-        super(UnlocksData.COST_350, 1, "Panacea", "panacea");
+        super(750, 1, "Panacea", "panacea");
     }
 
     public static Panacea getInstance() {

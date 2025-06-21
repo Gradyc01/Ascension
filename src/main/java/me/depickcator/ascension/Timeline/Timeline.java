@@ -31,6 +31,7 @@ public abstract class Timeline {
     private AscensionEvent ascensionEvent;
     private Scavenger scavenger;
     private BukkitTask timeline;
+    private final PeriodicChecks periodicChecks;
     private final int STARTING_MINUTES;
     private MapItems mapItems;
     private List<Pair<String, Integer>> nextBigEvent;
@@ -39,6 +40,7 @@ public abstract class Timeline {
         STARTING_MINUTES = startingMinutes;
         this.MINUTES = STARTING_MINUTES;
         mapItems = new MapItems();
+        periodicChecks = new PeriodicChecks();
     }
 
     public void resetTimeline() {
@@ -49,18 +51,19 @@ public abstract class Timeline {
         removeAscensionElements();
         mapItems = new MapItems();
         mapItems.addMapItem(new MapItem("Spawn", Ascension.getSpawn(), MapItem.SPAWN));
+        periodicChecks.stop();
     }
 
     public void startTimeline() {
         keepRunning = true;
         mainTimelineMinutes();
         TextUtil.debugText("Started Timeline");
+        periodicChecks.start();
     }
 
     public void pauseTimeline() {
         keepRunning = false;
         timeline.cancel();
-
         TextUtil.debugText("Paused Timeline");
     }
 
@@ -139,7 +142,6 @@ public abstract class Timeline {
         }.runTaskTimer(plugin, 0, 20);
     }
 
-
     public Component getTime() {
         if (getTimeTillNextBigEvent() > 1) {
             return TextUtil.makeText("    " + (getTimeTillNextBigEvent()) + " Minutes", TextUtil.WHITE);
@@ -174,41 +176,33 @@ public abstract class Timeline {
         }
     }
 
-    public AscensionEvent getAscensionEvent() {
-        return ascensionEvent;
-    }
-
-    public Scavenger getScavenger() {
-        return scavenger;
-    }
-
-    protected void setScavenger(Scavenger scavenger) {
-        this.scavenger = scavenger;
-    }
-
-    protected void setAscensionEvent(AscensionEvent ascensionEvent) {
-        this.ascensionEvent = ascensionEvent;
-    }
-
-    public int getStartingMinutes() {
-        return STARTING_MINUTES;
-    }
-
-    public MapItems getMapItems() {
-        return mapItems;
-    }
-
     public Pair<String, Integer> getNextBigEvent() {
         if (nextBigEvent.isEmpty()) {
             return new MutablePair<>("Final Ascension", STARTING_MINUTES);
         }
         return nextBigEvent.getFirst();
     }
-
+    public AscensionEvent getAscensionEvent() {
+        return ascensionEvent;
+    }
+    public Scavenger getScavenger() {
+        return scavenger;
+    }
+    protected void setScavenger(Scavenger scavenger) {
+        this.scavenger = scavenger;
+    }
+    protected void setAscensionEvent(AscensionEvent ascensionEvent) {
+        this.ascensionEvent = ascensionEvent;
+    }
+    public int getStartingMinutes() {
+        return STARTING_MINUTES;
+    }
+    public MapItems getMapItems() {
+        return mapItems;
+    }
     public int getTimePassed() {
         return STARTING_MINUTES - MINUTES;
     }
-
     public int getTimeTillNextBigEvent() {
         return MINUTES - (STARTING_MINUTES - getNextBigEvent().getRight());
     }

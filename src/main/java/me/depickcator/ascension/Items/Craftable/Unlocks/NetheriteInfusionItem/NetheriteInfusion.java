@@ -26,7 +26,7 @@ public class NetheriteInfusion extends Craft{
     private final Map<Float, CustomInfusion> customInfusions;
 
     private NetheriteInfusion() {
-        super(UnlocksData.COST_350, 1, "Netherite Infusion", "netherite_infusion");
+        super(650, 1, "Netherite Infusion", "netherite_infusion");
         customInfusions = initCustomModelNumbers();
     }
 

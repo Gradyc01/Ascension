@@ -12,7 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 public class EnlighteningPack extends Craft {
     private static EnlighteningPack instance;
     private EnlighteningPack() {
-        super(UnlocksData.COST_100, 4, "Enlightening Pack", "enlightening_pack");
+        super(UnlocksData.COST_175, 4, "Enlightening Pack", "enlightening_pack");
     }
 
     @Override
