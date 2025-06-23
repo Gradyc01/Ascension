@@ -16,7 +16,8 @@ public class DeleteWorld extends GameSequences {
     private final Set<String> whitelistedFiles;
     public DeleteWorld(List<World> worlds) {
         this.worlds = worlds;
-        this.whitelistedFiles = Set.of("raids.dat", "random_sequences.dat", "scoreboard.dat", "chunks.dat");
+//        this.whitelistedFiles = Set.of("raids.dat", "random_sequences.dat", "scoreboard.dat", "chunks.dat");\
+        this.whitelistedFiles = Set.of();
     }
 
     @Override

@@ -197,6 +197,7 @@ public class BingoData extends ItemComparison {
     private void soloRewards(PotionEffect effect, Player p, PlayerData pD) {
         p.giveExp(7);
         pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_RARE, true);
+        pD.getPlayerSkills().getBoardEfficiency().addExp(1);
         giveXPTome(pD);
         p.addPotionEffect(effect);
     }

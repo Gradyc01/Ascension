@@ -89,15 +89,7 @@ public final class Ascension extends JavaPlugin {
     @Override
     public void onDisable() {
         logger.info("Ascension has been Disabled!");
-//        deleteWorld(world);
-//        deleteWorld(nether);
-//        deleteWorld(Bukkit.getWorld("world_the_end"));
-
     }
-//    private void deleteWorld(World world) {
-//        Bukkit.unloadWorld(world, false);
-//        deleteDirectory(world.getWorldFolder());
-//    }
 
     private void registerCommands() {
         getCommand("open-main-menu").setExecutor(new OpenMainMenuCommand());
@@ -136,7 +128,6 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new onDamage(), this);
         manager.registerEvents(new onDeath(), this);
         manager.registerEvents(new onElytraFlight(), this);
-
         manager.registerEvents(new RecipeCrafted(), this);
         manager.registerEvents(new PlayerInteractListener(), this);
         manager.registerEvents(new LootTableGeneration(), this);

@@ -22,19 +22,23 @@ public class SkillsGUI extends AscensionMenuGUI {
         playerSkills = playerData.getPlayerSkills();
         initSkillColumns();
         inventory.setItem(45, goBackItem());
-        playerHeadButton(49);
+        playerHeadButton(53);
     }
 
     private void initSkillColumns() {
+        makeSkillColumns(playerSkills.getBoardEfficiency(), new ArrayList<>(List.of(
+                TextUtil.makeText("Gain Board Exp by: ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("  -Claiming Items", TextUtil.DARK_PURPLE)
+        )), 2, Material.ENCHANTED_BOOK);
         makeSkillColumns(playerSkills.getMining(), new ArrayList<>(List.of(
                 TextUtil.makeText("Gain Mining Exp by: ", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("  -Mining Ores", TextUtil.DARK_PURPLE)
-        )), 1, Material.IRON_PICKAXE);
+        )), 3, Material.IRON_PICKAXE);
         makeSkillColumns(playerSkills.getCombat(), new ArrayList<>(List.of(
                 TextUtil.makeText("Gain Combat Exp by: ", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("  -Killing Mobs", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("  -Killing Players", TextUtil.DARK_PURPLE)
-        )), 3, Material.IRON_SWORD);
+        )), 4, Material.IRON_SWORD);
         makeSkillColumns(playerSkills.getForaging(), new ArrayList<>(List.of(
                 TextUtil.makeText("Gain Foraging Exp by: ", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("  -Killing Farm Animals", TextUtil.DARK_PURPLE),
@@ -48,7 +52,7 @@ public class SkillsGUI extends AscensionMenuGUI {
                 TextUtil.makeText("to the same level", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("Ex: Having All Level IIs ", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("will grant you Global II", TextUtil.DARK_PURPLE)
-        )), 7, Material.GRASS_BLOCK);
+        )), 6, Material.GRASS_BLOCK);
     }
 
     private void makeSkillColumns(Skills skill, List<Component> lore, int column, Material icon) {

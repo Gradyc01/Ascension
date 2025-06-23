@@ -52,7 +52,7 @@ public class PeriodicChecks {
                         }
 
                         PlayerData pD = players.getFirst();
-                        if (pD.checkState(PlayerData.STATE_ALIVE)) checkPlayerHeight(pD.getPlayer(), false);
+                        if (pD.checkState(PlayerData.STATE_ALIVE)) checkPlayerHeight(pD, false);
                         players.remove(pD);
                     }
                 }.runTaskTimer(plugin, 0, 10);
@@ -61,12 +61,13 @@ public class PeriodicChecks {
         }.runTaskLater(plugin,  delay * 20);
     }
 
-    private void checkPlayerHeight(Player player, boolean warned) {
+    private void checkPlayerHeight(PlayerData playerData, boolean warned) {
+        Player player = playerData.getPlayer();
         TextUtil.debugText("Checking Player Height " +  player.getName());
         Location loc = player.getLocation();
         int maxHeight = Integer.min(loc.getWorld().getHighestBlockAt(loc).getLocation().getBlockY() + heightLimit, 300);
         int delay = 1;
-        if (player.getLocation().getY() > maxHeight) {
+        if (player.getLocation().getY() > maxHeight && playerData.checkState(PlayerData.STATE_ALIVE)) {
             if (warned) {
                 player.damage(2, DamageSource.builder(DamageType.OUT_OF_WORLD).build());
                 TextUtil.sendActionBar(player,
@@ -80,9 +81,11 @@ public class PeriodicChecks {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    checkPlayerHeight(player, true);
+                    checkPlayerHeight(playerData, true);
                 }
             }.runTaskLater(plugin, delay * 20);
+        } else if (warned) {
+            player.sendMessage(TextUtil.makeText("You are now below the height limit", TextUtil.GREEN));
         }
 
     }

@@ -43,6 +43,7 @@ public class SetSetting implements CommandExecutor, TabCompleter {
             case "quickplay" -> settingUI.setSettings(new Quickplay(), update);
             case "brawl" -> settingUI.setSettings(new Brawl(), update);
             case "instant", "boardonly" -> settingUI.setSettings(new InstantAscension(), update);
+            case "quickboard" -> settingUI.setSettings(new QuickBoard(), update);
             case "testing" -> settingUI.setSettings(new Testing(), update);
         }
         return false;
@@ -55,7 +56,8 @@ public class SetSetting implements CommandExecutor, TabCompleter {
                 "quickplay",
                 "brawl",
                 "testing",
-                "instant"
+                "instant",
+                "quickboard"
         );
     }
 }

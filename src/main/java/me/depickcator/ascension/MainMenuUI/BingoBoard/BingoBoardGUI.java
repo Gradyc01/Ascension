@@ -14,6 +14,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
@@ -168,7 +169,7 @@ public class BingoBoardGUI extends AscensionMenuGUI {
     @Override
     public void interactWithGUIButtons(InventoryClickEvent event) {
         ItemStack item = event.getCurrentItem();
-        if (item == null) return;
+        if (item == null || event.getClickedInventory() instanceof PlayerInventory) return;
         BingoData bingoData = plugin.getBingoData();
         if (item.equals(initClaimItem())) {
             bingoData.claimItem(player);

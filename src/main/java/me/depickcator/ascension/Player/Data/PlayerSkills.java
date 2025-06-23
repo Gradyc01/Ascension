@@ -10,6 +10,7 @@ public class PlayerSkills implements PlayerDataObservers {
     private final Combat combat;
     private final Mining mining;
     private final Foraging foraging;
+    private final BoardEfficiency boardEfficiency;
     private final Global global;
     private final List<Skills> allSkills;
     public PlayerSkills(PlayerData playerData) {
@@ -18,11 +19,13 @@ public class PlayerSkills implements PlayerDataObservers {
         mining = new Mining(this.playerData);
         foraging = new Foraging(this.playerData);
         global = new Global(this.playerData);
+        boardEfficiency = new BoardEfficiency(this.playerData);
         allSkills = new ArrayList<>(List.of(
                 combat,
                 mining,
                 foraging,
-                global
+                global,
+                boardEfficiency
         ));
     }
 
@@ -41,6 +44,8 @@ public class PlayerSkills implements PlayerDataObservers {
     public Global getGlobal() {
         return global;
     }
+
+    public BoardEfficiency getBoardEfficiency() {return boardEfficiency;}
 
     @Override
     public void updatePlayer() {

@@ -123,7 +123,7 @@ public class Feast {
             }
         }
         plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
-        new FeastChests(new Location(spawn.getWorld(), spawn.getX(), spawn.getY() + 3, spawn.getZ()), FeastSpecialChestLoot.getInstance(), 60, false, false);
+        new FeastChests(new Location(spawn.getWorld(), spawn.getX(), spawn.getY() + 1, spawn.getZ()), FeastSpecialChestLoot.getInstance(), 60, false, false);
         spawnRandomChests();
     }
 

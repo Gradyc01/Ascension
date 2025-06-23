@@ -82,8 +82,9 @@ public class PlayerDeath {
     private void teleportBackToDeathLocation(Player p) {
         Location loc = p.getLocation();
         Location deathLoc = p.getLastDeathLocation();
-        double euclidean = Math.pow(Math.pow(loc.getBlockX() - deathLoc.getBlockX(), 2) + Math.pow(loc.getY() - deathLoc.getY(), 2) + Math.pow(loc.getBlockZ() - deathLoc.getBlockZ(), 2), 0.5);
-        if (euclidean > 30) {
+//        double euclidean = Math.pow(Math.pow(loc.getBlockX() - deathLoc.getBlockX(), 2) +
+//                Math.pow(loc.getY() - deathLoc.getY(), 2) + Math.pow(loc.getBlockZ() - deathLoc.getBlockZ(), 2), 0.5);
+        if (loc.distance(deathLoc) > 30) {
             p.teleport(p.getLastDeathLocation());
         }
     }
@@ -114,7 +115,7 @@ public class PlayerDeath {
         p.setGameMode(GameMode.SURVIVAL);
         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 3, false, false));
         p.removePotionEffect(PotionEffectType.DARKNESS);
-        Location loc = getRespawnLocation();
+        Location loc = !plugin.getGameState().checkState(GameStates.GAME_BEFORE_GRACE) ? getRespawnLocation() : p.getLastDeathLocation();
         loc.getWorld().getBlockAt(loc).setType(Material.GLASS);
         p.teleport(loc.add(0.5, 1, 0.5));
         playerData.freezePlayer(plugin.getGameState().checkState(GameStates.GAME_PAUSED));
