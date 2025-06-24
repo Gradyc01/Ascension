@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Timeline;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Timeline.Events.SoulShop.SoulShops;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.MainMenuUI.Map.MapItem;
@@ -30,6 +31,7 @@ public abstract class Timeline {
     private boolean keepRunning;
     private AscensionEvent ascensionEvent;
     private Scavenger scavenger;
+    private final SoulShops soulShops;
     private BukkitTask timeline;
     private final PeriodicChecks periodicChecks;
     private final int STARTING_MINUTES;
@@ -41,6 +43,7 @@ public abstract class Timeline {
         this.MINUTES = STARTING_MINUTES;
         mapItems = new MapItems();
         periodicChecks = new PeriodicChecks();
+        soulShops = new SoulShops();
     }
 
     public void resetTimeline() {
@@ -187,6 +190,9 @@ public abstract class Timeline {
     }
     public Scavenger getScavenger() {
         return scavenger;
+    }
+    public SoulShops getSoulShops() {
+        return soulShops;
     }
     protected void setScavenger(Scavenger scavenger) {
         this.scavenger = scavenger;

@@ -3,6 +3,7 @@ package me.depickcator.ascension.Interfaces;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerInventoryTracker;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -63,7 +64,7 @@ public class BackpackGUI extends AscensionGUI {
         ItemStack item = event.getCurrentItem();
         PlayerInventoryTracker tracker = PlayerUtil.getPlayerData((Player) event.getWhoClicked()).getPlayerInventoryTracker();
         if (item == null) return;
-        if (equalItems(item, backpackItem) || item.equals(barrierItem)) {
+        if (ItemComparison.equalItems(item, backpackItem) || item.equals(barrierItem)) {
             event.setCancelled(true);
         }
         if (event.getCurrentItem() != null && event.getCurrentItem().getType() != Material.AIR) tracker.needsUpdate();

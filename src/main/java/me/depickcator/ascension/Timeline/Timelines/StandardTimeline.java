@@ -28,8 +28,11 @@ public class StandardTimeline extends Timeline {
             case 20 -> {
                 new GracePeriodEnds();
             }
-            case 25 -> {
+            case 10 -> {
                 setAscensionEvent(new AscensionEvent(500));
+            }
+            case 25, 50, 73, 100 -> {
+                getSoulShops().generateShops();
             }
             case 30, 55, 75, 90 -> {
                 new CarePackage(500);

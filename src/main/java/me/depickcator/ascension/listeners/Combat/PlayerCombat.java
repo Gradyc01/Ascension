@@ -2,7 +2,6 @@ package me.depickcator.ascension.listeners.Combat;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
-import me.depickcator.ascension.Interfaces.ItemComparison;
 import me.depickcator.ascension.Items.Craftable.Vanilla.*;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import org.bukkit.Material;
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PlayerCombat extends ItemComparison implements Listener {
+public class PlayerCombat implements Listener {
     protected final Ascension plugin;
     private final String damageSourceKey = "lastDamageSource";
     private final String PLAYER_DAMAGE = "PLAYER_DAMAGE";

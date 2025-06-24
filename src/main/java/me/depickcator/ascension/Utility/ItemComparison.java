@@ -1,6 +1,5 @@
-package me.depickcator.ascension.Interfaces;
+package me.depickcator.ascension.Utility;
 
-import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -10,7 +9,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 
 public class ItemComparison {
     /* Returns True if they are equal items, False Otherwise */
-    protected boolean equalItems(ItemStack inv, ItemStack board) {
+    public static boolean equalItems(ItemStack inv, ItemStack board) {
         String invItemStr = itemParser(inv);
         String boardItemStr = itemParser(board);
 //        TextUtil.debugText("Inventory item:   " + invItemStr);
@@ -19,7 +18,7 @@ public class ItemComparison {
     }
 
     /* Parses items into an identifiable string and returns the string */
-    private String itemParser(ItemStack item) {
+    public static String itemParser(ItemStack item) {
         int customModelNumber = getItemModelNumber(item);
 
         if (item.getType().equals(Material.ENCHANTED_BOOK) && !item.getItemMeta().hasCustomModelData()) {
@@ -41,7 +40,7 @@ public class ItemComparison {
     }
 
     /* Gets the customModelNumber of an item returns 0 if there is none */
-    private int getItemModelNumber(ItemStack item) {
+    public static int getItemModelNumber(ItemStack item) {
         int customModelNumber;
         ItemMeta meta = item.getItemMeta();
         try {

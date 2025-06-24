@@ -9,6 +9,7 @@ import me.depickcator.ascension.MainMenuUI.Settings.SettingGUI;
 import me.depickcator.ascension.MainMenuUI.Skills.SkillsGUI;
 import me.depickcator.ascension.MainMenuUI.Unlocks.UnlocksGUI;
 import me.depickcator.ascension.Teams.Team;
+import me.depickcator.ascension.Timeline.Events.SoulShop.SoulShopGUI;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -37,7 +38,7 @@ public class MainMenuGUI extends AscensionMenuGUI {
         inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
         inventory.setItem(32, makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));
         inventory.setItem(20, makeMainMenuBoardButton(Material.CHEST, "Team Backpack", "Grace Period Only!"));
-        inventory.setItem(24, makeMainMenuBoardButton(Material.ANVIL, "Coming Soon..."));
+        inventory.setItem(24, makeMainMenuBoardButton(Material.ANVIL, "Soul Shop"));
         inventory.setItem(45, makeMainMenuBoardButton(Material.COMMAND_BLOCK, "Settings"));
         if (plugin.getGameState().inLobby())
             inventory.setItem(40, makeMainMenuBoardButton(Material.IRON_CHESTPLATE, "Kits"));
@@ -84,7 +85,8 @@ public class MainMenuGUI extends AscensionMenuGUI {
                 new SettingGUI(playerData);
             }
             case Material.ANVIL -> {
-                TextUtil.errorMessage(player, "Future feature currently not available!");;
+//                TextUtil.errorMessage(player, "Future feature currently not available!");;
+                new SoulShopGUI(playerData);
             }
             case Material.CHEST -> {
                 Team team = playerData.getPlayerTeam().getTeam();

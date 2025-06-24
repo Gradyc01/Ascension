@@ -36,15 +36,15 @@ public class Anduril extends CustomItem {
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA));
         List<Component> lore = new ArrayList<>(meta.lore());
         lore.addAll(List.of(
-                TextUtil.makeText(" +20% Movement Speed", TextUtil.BLUE),
-                TextUtil.makeText(" +4 Armor", TextUtil.BLUE)
+                TextUtil.makeText(" +20% Movement Speed", TextUtil.BLUE)
+//                TextUtil.makeText(" +4 Armor", TextUtil.BLUE)
         ));
         meta.lore(lore);
 
         NamespacedKey key = new NamespacedKey(Ascension.getInstance(), getKey());
         meta.addAttributeModifier(Attribute.MOVEMENT_SPEED, new AttributeModifier(key, 0.20, AttributeModifier.Operation.ADD_SCALAR));
-        meta.addAttributeModifier(Attribute.ARMOR, new AttributeModifier(key, 4, AttributeModifier.Operation.ADD_NUMBER));
-        meta.addEnchant(Enchantment.SHARPNESS, 2, true);
+//        meta.addAttributeModifier(Attribute.ARMOR, new AttributeModifier(key, 4, AttributeModifier.Operation.ADD_NUMBER));
+        meta.addEnchant(Enchantment.SHARPNESS, 3, true);
         item.setItemMeta(meta);
         return item;
     }

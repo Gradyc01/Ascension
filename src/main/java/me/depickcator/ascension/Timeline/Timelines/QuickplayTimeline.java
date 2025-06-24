@@ -16,12 +16,8 @@ import java.util.List;
 
 public class QuickplayTimeline extends Timeline {
 
-//    private final List<ItemStack> scavInput;
-//    private final List<ItemStack> scavOutput;
     public QuickplayTimeline() {
         super(70);
-//        scavInput = new ArrayList<>(new Input_Quickplay().getItems(5));
-//        scavOutput = new ArrayList<>(new Output_Quickplay().getItems(5));
     }
 
     @Override
@@ -36,6 +32,9 @@ public class QuickplayTimeline extends Timeline {
             }
             case 11 -> {
                 setAscensionEvent(new AscensionEvent(200));
+            }
+            case 20, 50 -> {
+                getSoulShops().generateShops();
             }
             case 16, 32, 45, 60  -> {
                 new CarePackage(500);

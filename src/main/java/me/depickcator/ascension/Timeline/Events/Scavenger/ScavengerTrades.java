@@ -4,7 +4,7 @@ import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Input_Standard;
 import me.depickcator.ascension.Items.ItemLists.ScavengerLists.Output_Standard;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.ItemComparison;
+import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Items.Uncraftable.EnlightenedNugget;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class ScavengerTrades extends ItemComparison {
+public class ScavengerTrades {
     /*Input on the Left Output on the Right*/
     private List<Pair<ItemStack, ItemStack>> trades;
     private final List<ItemStack> input;
@@ -69,7 +69,7 @@ public class ScavengerTrades extends ItemComparison {
                         .toList());
         for (ItemStack item: inventory.getContents()) {
             if (armor.contains(item) || item == null) continue;
-            if (equalItems(item, input)) return item;
+            if (ItemComparison.equalItems(item, input)) return item;
         }
         return null;
     }
@@ -78,7 +78,7 @@ public class ScavengerTrades extends ItemComparison {
     //Returns the output of the other trade or null if not found
     private ItemStack doesTradeExist(ItemStack input) {
         for (Pair<ItemStack, ItemStack> pair : trades) {
-            if (equalItems(pair.getLeft(), input)) {
+            if (ItemComparison.equalItems(pair.getLeft(), input)) {
                 return pair.getRight();
             }
         }

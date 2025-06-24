@@ -7,13 +7,12 @@ import me.depickcator.ascension.Player.Data.*;
 import me.depickcator.ascension.Skills.Skills;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
-import me.depickcator.ascension.Interfaces.ItemComparison;
+import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
 import me.depickcator.ascension.Teams.Team;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -27,7 +26,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-public class BingoData extends ItemComparison {
+public class BingoData{
     private ScoreboardManager scoreboardManager;
     private Scoreboard bingoScoreboard;
     @SuppressWarnings("unused")
@@ -91,7 +90,7 @@ public class BingoData extends ItemComparison {
     public boolean claimItem(Player p, ItemStack item, boolean displayErrorText, boolean removeItem) {
         PlayerData pD = PlayerUtil.getPlayerData(p);
         for (ItemStack j : p.getInventory().getContents()) {
-            if (j != null && equalItems(j, item)) {
+            if (j != null && ItemComparison.equalItems(j, item)) {
                 if (removeItem) {
                     j.setAmount(j.getAmount() - 1);
                     giveRewards(p);
@@ -114,7 +113,7 @@ public class BingoData extends ItemComparison {
 
     public boolean canUnlockItem(Player p, ItemStack item) {
         for (ItemStack j : p.getInventory().getContents()) {
-            if (j != null && equalItems(j, item)) {
+            if (j != null && ItemComparison.equalItems(j, item)) {
                 return true;
             }
         }

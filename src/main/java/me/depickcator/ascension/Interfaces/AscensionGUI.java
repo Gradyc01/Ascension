@@ -2,19 +2,17 @@ package me.depickcator.ascension.Interfaces;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Player.Data.PlayerData;
+import me.depickcator.ascension.Utility.ItemComparison;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 
-public abstract class AscensionGUI extends ItemComparison{
+public abstract class AscensionGUI{
     protected final int GUISize;
     protected final Inventory inventory;
     protected final Ascension plugin;
@@ -38,7 +36,7 @@ public abstract class AscensionGUI extends ItemComparison{
     protected boolean isHolding(Player p, ItemStack item) {
         ItemStack held = p.getInventory().getItemInMainHand();
 //        return held.equals(item);
-        return equalItems(held, item);
+        return ItemComparison.equalItems(held, item);
     }
 
     /* Triggers when a player interacts with an item in the GUI */

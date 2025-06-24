@@ -1,7 +1,7 @@
 package me.depickcator.ascension.listeners.Combat;
 
-import me.depickcator.ascension.Effects.NatureWrath;
 import me.depickcator.ascension.General.Game.GameStates;
+import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Items.Craftable.Unlocks.Exodus;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Player.Data.PlayerData;
@@ -15,7 +15,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Trident;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -104,7 +103,7 @@ public class onDamage extends PlayerCombat{
         }
 
         //TODO: Remove later too lazy to make it a class
-        if (equalItems(attacker.getInventory().getItem(EquipmentSlot.HEAD), Exodus.getInstance().getResult())) {
+        if (ItemComparison.equalItems(attacker.getInventory().getItem(EquipmentSlot.HEAD), Exodus.getInstance().getResult())) {
             attacker.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,  5 * 20, 0));
         }
 
