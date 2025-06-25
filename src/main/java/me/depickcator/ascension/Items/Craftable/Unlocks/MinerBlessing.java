@@ -118,7 +118,7 @@ public class MinerBlessing extends Craft implements ItemClick, CustomInfusion {
         World world = p.getWorld();
         Location loc = p.getEyeLocation();
         TNTPrimed tnt = (TNTPrimed) world.spawnEntity(loc, EntityType.TNT);
-        tnt.setFuseTicks(3 * 20);
+        tnt.setFuseTicks(2 * 20);
         tnt.setYield(7);
         tnt.setSource(p);
         tnt.setVelocity(loc.getDirection().normalize().multiply(1.8));

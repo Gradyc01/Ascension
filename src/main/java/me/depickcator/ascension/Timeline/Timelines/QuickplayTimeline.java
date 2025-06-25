@@ -54,11 +54,6 @@ public class QuickplayTimeline extends Timeline {
     }
 
     @Override
-    protected int getFinalAscensionBorderShrinkSize() {
-        return 250;
-    }
-
-    @Override
     protected List<Pair<String, Integer>> initNextBigEvents() {
         return new ArrayList<>(List.of(
                 new MutablePair<>("Grace Period Ends", 15),

@@ -55,7 +55,6 @@ public class CupidBow extends Craft implements ShootsProjectiles {
         meta.setRepairCost(999);
         meta.addEnchant(Enchantment.POWER, 2, true);
         meta.addEnchant(Enchantment.FLAME, 1, true);
-        meta.setCustomModelData(plugin.generateModelNumber());
         meta.setMaxStackSize(1);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.DARK_RED));
 //        meta.getUseCooldown().setCooldownGroup(key);
@@ -66,9 +65,8 @@ public class CupidBow extends Craft implements ShootsProjectiles {
         item.setItemMeta(meta1);
 //        UseCooldownComponent component = UseCooldown.useCooldown(1).build().;
 //        /
-        item.setData(DataComponentTypes.USE_COOLDOWN,
-                UseCooldown.useCooldown(0.01f)
-                .cooldownGroup(Key.key(plugin.getName().toLowerCase()+ ":" + getKey())));
+        generateUniqueModelNumber(item);
+        addCooldownGroup(item);
         return item;
     }
 
@@ -79,7 +77,6 @@ public class CupidBow extends Craft implements ShootsProjectiles {
 
     @Override
     public void applyKey(EntityShootBowEvent event) {
-        /*Empty on Purpose*/
         Player player = (Player) event.getEntity();
         ItemStack bow = event.getBow();
         player.setCooldown(bow, 8 * 20);

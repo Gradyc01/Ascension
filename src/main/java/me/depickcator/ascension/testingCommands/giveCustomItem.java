@@ -126,7 +126,8 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
                 RejuvenationBook.getInstance(),
                 NetherStar.getInstance(),
                 Anduril.getInstance(),
-                HardenedSaddle.getInstance()
+                HardenedSaddle.getInstance(),
+                RepairKit.getInstance()
                 ));
         for (List<Craft> craft : allCraft) {
             items.addAll(craft);

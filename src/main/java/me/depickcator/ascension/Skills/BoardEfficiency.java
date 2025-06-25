@@ -24,7 +24,7 @@ public class BoardEfficiency extends Skills {
     @Override
     public List<Integer> initLevelRequirements() {
         return new ArrayList<>(List.of(
-                2, 4, 6, 8, 10
+                3, 5, 8, 11, 14
         ));
     }
 

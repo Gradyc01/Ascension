@@ -4,6 +4,7 @@ package me.depickcator.ascension.listeners;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Interfaces.AscensionGUI;
 import me.depickcator.ascension.Interfaces.AscensionMenuGUI;
+import me.depickcator.ascension.Interfaces.ItemDrop;
 import me.depickcator.ascension.Items.UnlockRecommender;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerInventoryTracker;
@@ -33,6 +34,12 @@ public class InventoryListener implements Listener {
         Player player = (Player) e.getWhoClicked();
         Inventory inventory = e.getInventory();
         Pair<Inventory, AscensionGUI> playerGUI = Ascension.getInstance().findInventory(player);
+        if (playerGUI == null) {
+            ItemDrop itemDrop = ItemDrop.findDropItem(e.getCursor());
+            if (itemDrop != null && e.getCurrentItem() !=null && e.getCurrentItem().getType() != Material.AIR) {
+                itemDrop.uponApply(e, e.getCurrentItem(), e.getCursor(), PlayerUtil.getPlayerData(player));
+            }
+        }
         if (playerGUI == null && e.getCurrentItem() != null
                 && e.getCurrentItem().getType() != Material.AIR && e.getInventory().getType() == InventoryType.CHEST) {
             PlayerInventoryTracker tracker = PlayerUtil.getPlayerData(player).getPlayerInventoryTracker();

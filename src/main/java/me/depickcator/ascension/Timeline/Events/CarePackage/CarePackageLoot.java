@@ -59,7 +59,7 @@ public class CarePackageLoot extends CustomChestLoot {
     public Collection<ItemStack> populateLoot(Inventory inv, Random r,  double luck) {
         ArrayList<ItemStack> items = new ArrayList<>();
         items.addAll(netheriteItems.getRandomItemFromList(r, 1));
-        items.addAll(netherItems.getRandomItemFromList(r, 3));
+        items.addAll(netherItems.getRandomItemFromList(r, 3, true));
         items.add(MakeshiftSkull.getInstance().getResult());
         items.add(NetherStar.getInstance().getResult(2));
         items.add(EnlightenedNugget.getInstance().getResult(2));

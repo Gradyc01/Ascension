@@ -101,20 +101,24 @@ public class AscensionEvent {
 
     public void failed() {
         plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
-        checkForAscensionRemaining();
-        timeline.startTimeline();
         failedText();
         ascendingLocation.getAscendingTeam().getTeamAscension().failedAscension();
 //        TeamAscension teamStats = ascendingLocation.getAscendingTeam().getTeamStats();
 //        teamStats.addAscensionTimer((int) (teamStats.getAscensionTimer() * 0.3));
 //        teamStats.setAscensionTimer(Integer.max((int) (teamStats.getAscensionTimer() * 1.3), 300));
         stop();
+        checkForAscensionRemaining();
+        timeline.startTimeline();
         TextUtil.debugText("Ascension Failed");
     }
 
     private void checkForAscensionRemaining() {
-        if (locations.isEmpty()) {
+        int numberOfAscensionsBeforeFinal = plugin.getSettingsUI().getSettings().getAscensionsBeforeFinal();
+        if (4 - locations.size() <= numberOfAscensionsBeforeFinal) {
             timeline.setTime(5);
+            for (AscensionLocation ascensionLocation : locations) {
+                ascensionLocation.closeLocation();
+            }
         }
     }
 

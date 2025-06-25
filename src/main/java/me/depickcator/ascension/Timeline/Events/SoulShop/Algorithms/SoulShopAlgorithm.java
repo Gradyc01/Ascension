@@ -1,6 +1,10 @@
 package me.depickcator.ascension.Timeline.Events.SoulShop.Algorithms;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondAxe;
+import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondSword;
+import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
+import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
 import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Timeline.Events.SoulShop.Shop;
 import me.depickcator.ascension.Timeline.Events.SoulShop.SoulShopItem;
@@ -18,6 +22,7 @@ public abstract class SoulShopAlgorithm {
     protected final Set<Material> commonSingleBlocks;
     protected final Set<String> expensiveList;
     protected final Set<String> cheapList;
+    protected final Map<Material, ItemStack> manualOverrideList;
     public SoulShopAlgorithm() {
         plugin = Ascension.getInstance();
         items = new ArrayList<>();
@@ -28,27 +33,48 @@ public abstract class SoulShopAlgorithm {
                 Material.PAPER, Material.GLASS, Material.COBBLESTONE, Material.COBBLED_DEEPSLATE,
                 Material.GRAVEL, Material.SAND, Material.GOLD_NUGGET, Material.IRON_NUGGET, Material.BOW);
         commonSingleBlocks = Set.of(Material.ANVIL, Material.HEAVY_CORE, Material.DRIED_GHAST,
-                Material.ZOMBIE_HEAD, Material.SKELETON_SKULL, Material.CREEPER_HEAD, Material.LILY_PAD);
+                Material.ZOMBIE_HEAD, Material.SKELETON_SKULL, Material.CREEPER_HEAD, Material.LILY_PAD,
+                Material.GOLD_BLOCK);
+        manualOverrideList = Map.of(Material.DIAMOND_SWORD, DiamondSword.getInstance().getResult(),
+                Material.DIAMOND_AXE, DiamondAxe.getInstance().getResult(),
+                Material.NETHERITE_AXE, NetheriteAxe.getInstance().getResult(),
+                Material.NETHERITE_SWORD, NetheriteSword.getInstance().getResult());
         expensiveList = Set.of("sword", "axe", "ascension", "helmet", "chestplate", "leggings",
-                "boots", "breeze_rod", "heavy_core", "blaze_rod");
-        cheapList = Set.of("gold", "iron", "leather", "planks");
-
+                "boots", "breeze_rod", "heavy_core", "blaze_rod", "golden_apple", "name_tag");
+        cheapList = Set.of("gold", "iron", "leather", "planks", "log", "stem", "slab", "redstone", "lapis_lazuli", "copper_ingot");
     }
 
-    protected void buildSoulShopItemsFromItemStacks(List<ItemStack> items, List<Shop> shops) {
+    protected void buildSoulShopItemsFromItemStacks(Collection<ItemStack> items, List<Shop> shops) {
         for (ItemStack item : items) {
             String displayName = PlainTextComponentSerializer.plainText().serialize(item.displayName());
             displayName = displayName.substring(1, displayName.length() - 1);
-            int price = r.nextInt(5, 31) * 25;
 
-            boolean containsString = containsString(item.getType().name(), expensiveList);
-            price = containsString ? r.nextInt(20, 41) * 25 : price;
-            price = containsString(item.getType().name(), cheapList) ? r.nextInt(5, 16) * 25 : price;
-            int quantity = containsString ? 1 : r.nextInt(1, 6);
+            if (manualOverrideList.containsKey(item.getType())) item = manualOverrideList.get(item.getType()).clone();
+
+            int price = getPrice(item);
+            int quantity = containsString(item.getType().name(), expensiveList) ? 1 : r.nextInt(1, 6);
             for (Shop shop : shops) {
                 addItem(new SoulShopItem(displayName, price, quantity, item, shop));
             }
         }
+    }
+
+    /*Gets the price for ItemStack item*/
+    private int getPrice(ItemStack item) {
+        String type =  item.getType().name();
+        if (containsString(type, expensiveList)) {
+            return choosePrice(1000, 1500);
+        } else if (containsString(type, cheapList)) {
+            return choosePrice(125, 400);
+        } else {
+            return choosePrice(500, 900);
+        }
+    }
+
+    /*Chooses a price between min and max that is divisible by 25
+    * min and max also need to be divisible by 25*/
+    private int choosePrice(int min, int max) {
+        return (r.nextInt(min, max + 1) / 25) * 25;
     }
 
     protected boolean containsString(String text, Set<String> strings) {

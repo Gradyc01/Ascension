@@ -9,6 +9,7 @@ import me.depickcator.ascension.Items.Craftable.Unlocks.RedLedgerItem.RedLedger;
 import me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem.TeamPortal;
 import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;
 import me.depickcator.ascension.Items.Uncraftable.RejuvenationBook;
+import me.depickcator.ascension.Items.Uncraftable.RepairKit;
 import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Items.Uncraftable.Skulls.PlayerHead;
 import me.depickcator.ascension.Items.Uncraftable.XPTome.XPTome;
@@ -46,6 +47,7 @@ public class CustomItems extends ItemLists{
                 AscensionKey.getInstance(),
                 Resurrection.getInstance(),
                 //Tools
+                RepairKit.getInstance(),
                 QuickPick.getInstance(),
                 LumberjackAxe.getInstance(),
                 FlintShovel.getInstance(),

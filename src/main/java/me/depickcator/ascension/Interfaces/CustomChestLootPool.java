@@ -34,12 +34,18 @@ public class CustomChestLootPool {
         }
     }
 
+
+
     public Collection<ItemStack> getRandomItemFromList(Random r, int count) {
-        return getRandomItemFromList(r, count, 1, 1, false);
+        return getRandomItemFromList(r, count, false);
+    }
+
+    public Collection<ItemStack> getRandomItemFromList(Random r, int count, boolean uniqueItems) {
+        return getRandomItemFromList(r, count, 1, 1, false, uniqueItems);
     }
 
     public Collection<ItemStack> getRandomItemFromList(Random r, int count, int min, int max) {
-        return getRandomItemFromList(r, count, min, max, true);
+        return getRandomItemFromList(r, count, min, max, true, false);
     }
 
 
@@ -57,10 +63,13 @@ public class CustomChestLootPool {
 
     /* Gets a number of random items from arr and randomly sets the amount between min and max if changeItemAmount is true
      * Returns a Collection of ItemStacks*/
-    private Collection<ItemStack> getRandomItemFromList(Random r, int count, int min, int max, boolean changeItemAmount) {
+    private Collection<ItemStack> getRandomItemFromList(Random r, int count, int min, int max, boolean changeItemAmount, boolean uniqueItems) {
         int totalWeight = this.totalWeight;
         List<LootPoolItem> items = new ArrayList<>(lootPool);
         List<ItemStack> ans = new ArrayList<>();
+        if (uniqueItems && count > items.size()) {
+            throw new IllegalArgumentException("Not enough unique items to satisfy the count.");
+        }
         for (int i = 0; i < count; i++) {
             int weight = r.nextInt(totalWeight);
             TextUtil.debugText("Random Weight number is " + weight);
@@ -72,6 +81,11 @@ public class CustomChestLootPool {
                 itemStack.setAmount(r.nextInt(max - min + min) + 1);
             }
             ans.add(itemStack);
+
+            if (uniqueItems) {
+                totalWeight -= lootPoolItem.getWeight(); // Update totalWeight
+                items.remove(lootPoolItem); // Remove selected item to prevent reuse
+            }
         }
         return ans;
     }

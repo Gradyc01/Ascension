@@ -1,6 +1,7 @@
 
 package me.depickcator.ascension.MainMenuUI;
 
+import me.depickcator.ascension.Timeline.Events.SoulShop.SoulShopGUI;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.MainMenuUI.Map.MapGUI;
 import me.depickcator.ascension.MainMenuUI.Skills.SkillsGUI;
@@ -67,6 +68,9 @@ public class mainMenuCommands implements CommandExecutor, TabCompleter {
             case "events" -> {
                 new MapGUI(pD);
             }
+            case "shop" -> {
+                new SoulShopGUI(pD);
+            }
             default -> {
                 return false;
             }
@@ -77,6 +81,6 @@ public class mainMenuCommands implements CommandExecutor, TabCompleter {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        return List.of("board", "unlocks", "commands", "skills", "events");
+        return List.of("board", "unlocks", "commands", "skills", "events", "shop");
     }
 }

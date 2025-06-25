@@ -143,6 +143,10 @@ public class TextUtil {
         return TextUtil.makeText(" [Right Click]", TextUtil.GRAY);
     }
 
+    public static Component applyText() {
+        return TextUtil.makeText(" [Apply]", TextUtil.GRAY);
+    }
+
     public static Component clickText() {
         return TextUtil.makeText(" [Click]", TextUtil.GRAY);
     }

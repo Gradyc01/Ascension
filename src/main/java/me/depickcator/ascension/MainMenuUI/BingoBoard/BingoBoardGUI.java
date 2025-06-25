@@ -69,8 +69,8 @@ public class BingoBoardGUI extends AscensionMenuGUI {
 
     private void boardItems() {
         BingoData bingoData = plugin.getBingoData();
-        ArrayList<ItemStack> items = bingoData.getItems();
-        ArrayList<Boolean> hasItems = bingoData.getItemsCompleted(player);
+        List<ItemStack> items = bingoData.getItems();
+        List<Boolean> hasItems = bingoData.getItemsCompleted(player);
         if (items.size() != 25) {
             items.clear();
             ItemStack item = initUnsetItem("UNSET");
@@ -156,7 +156,6 @@ public class BingoBoardGUI extends AscensionMenuGUI {
         ItemStack item = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(TextUtil.makeText(""));
-        meta.setCustomModelData(0);
         item.setItemMeta(meta);
         for (ItemStack i : bingoData.getItems()) {
             if (!bingoData.canUnlockItem(player, i)) {

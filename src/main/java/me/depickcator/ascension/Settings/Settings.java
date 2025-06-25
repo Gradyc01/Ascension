@@ -24,6 +24,7 @@ public abstract class Settings {
     private final int ascensionGameScoreRequirement;
     private final int teamSize;
     private final boolean countsTowardLeaderboards;
+    private final int ascensionsBeforeFinal;
     /*Settings controls the settings of the Game
     * This includes:
     *   World Border Size
@@ -57,6 +58,7 @@ public abstract class Settings {
         this.teamSize = teamSize;
         this.sequence = initSequence();
         this.countsTowardLeaderboards = countsTowardLeaderboards;
+        this.ascensionsBeforeFinal = 1;
     }
 
     protected Settings(String name,
@@ -75,6 +77,7 @@ public abstract class Settings {
         this.ascensionGameScoreRequirement = ascensionGameScoreRequirement;
         this.teamSize = teamSize;
         this.countsTowardLeaderboards = countsTowardLeaderboards;
+        this.ascensionsBeforeFinal = 1;
 
         this.sequence = initSequence();
     }
@@ -148,6 +151,10 @@ public abstract class Settings {
 
     public String getName() {
         return name;
+    }
+
+    public int getAscensionsBeforeFinal() {
+        return ascensionsBeforeFinal;
     }
 
     public int getAscensionGameScoreRequirement() {

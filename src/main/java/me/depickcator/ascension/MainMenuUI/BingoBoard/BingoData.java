@@ -33,7 +33,7 @@ public class BingoData{
     private Objective bingodata;
     // private Objective bingoLines;
     // private Objective bingoItemsObtained;
-    private ArrayList<ItemStack> items;
+    private List<ItemStack> items;
 //    private ItemList itemList;
     private final Ascension plugin;
 
@@ -89,14 +89,16 @@ public class BingoData{
 
     public boolean claimItem(Player p, ItemStack item, boolean displayErrorText, boolean removeItem) {
         PlayerData pD = PlayerUtil.getPlayerData(p);
+
         for (ItemStack j : p.getInventory().getContents()) {
-            if (j != null && ItemComparison.equalItems(j, item)) {
+            if (j != null && ItemComparison.equalItems(j, item) && !doesHaveThisItem(24 - items.indexOf(item), getItemsCompleted(p))) {
                 if (removeItem) {
                     j.setAmount(j.getAmount() - 1);
                     giveRewards(p);
                 }
                 pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
                 pD.getPlayerStats().addItemsObtained();
+                pD.getPlayerSkills().getBoardEfficiency().addExp(1);
                 sendItemObtainedMessage(p, item, removeItem);
                 addScore(24 - items.indexOf(item), p);
                 checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)
@@ -137,7 +139,7 @@ public class BingoData{
     private void checkForLineCompletion(Player p) {
         PlayerData playerData = PlayerUtil.getPlayerData(p);
         playerData.getPlayerTeam().getTeam().getTeamStats().addItemObtained();
-        ArrayList<Boolean> hasItems = getItemsCompleted(playerData.getPlayer());
+        List<Boolean> hasItems = getItemsCompleted(playerData.getPlayer());
 
         int oldLines = playerData.getPlayerTeam().getTeam().getTeamStats().getLinesObtained();
         int newLines = calculateTotalLines(hasItems);
@@ -158,7 +160,7 @@ public class BingoData{
         }
     }
 
-    private int calculateTotalLines(ArrayList<Boolean> hasItems) {
+    private int calculateTotalLines(List<Boolean> hasItems) {
         int lines = 0;
         lines += checkLine(0, 1, 2, 3, 4, hasItems);
         lines += checkLine(5, 6, 7, 8, 9, hasItems);
@@ -175,7 +177,7 @@ public class BingoData{
         return lines;
     }
 
-    private int checkLine(int one, int two, int three, int four, int five,ArrayList<Boolean> hasItems) {
+    private int checkLine(int one, int two, int three, int four, int five,List<Boolean> hasItems) {
         if (hasItems.get(one) && hasItems.get(two) && hasItems.get(three) && hasItems.get(four) && hasItems.get(five)) {
             return 1;
         }
@@ -196,7 +198,6 @@ public class BingoData{
     private void soloRewards(PotionEffect effect, Player p, PlayerData pD) {
         p.giveExp(7);
         pD.getPlayerUnlocks().addUnlockTokens(PlayerUnlocks.AMOUNT_RARE, true);
-        pD.getPlayerSkills().getBoardEfficiency().addExp(1);
         giveXPTome(pD);
         p.addPotionEffect(effect);
     }
@@ -312,7 +313,7 @@ public class BingoData{
         return arr;
     }
 
-    public void printArray(ArrayList<Boolean> arr, Player player) {
+    public void printArray(List<Boolean> arr, Player player) {
         int index = 0;
         for (int i = 0; i < 5; i++) {
             String str = "";
@@ -328,15 +329,15 @@ public class BingoData{
         return num / check == 1;
     }
 
-    public Boolean doesHaveThisItem(int index, ArrayList<Boolean> arr) {
+    public Boolean doesHaveThisItem(int index, List<Boolean> arr) {
         return arr.get(24 - index);
     }
 
-    public ArrayList<ItemStack> getItems() {
+    public List<ItemStack> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<ItemStack> items) {
+    public void setItems(List<ItemStack> items) {
         this.items = items;
     }
 
@@ -344,7 +345,7 @@ public class BingoData{
 //        return itemList;
 //    }
 
-    public ArrayList<Boolean> getItemsCompleted(Player player) {
+    public List<Boolean> getItemsCompleted(Player player) {
         return setArray(plugin.getServer().getScoreboardManager().getMainScoreboard().getObjective("bingo").getScore(player.getName()));
     }
 

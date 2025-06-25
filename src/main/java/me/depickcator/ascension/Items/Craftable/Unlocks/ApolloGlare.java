@@ -16,8 +16,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.CrossbowMeta;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -53,13 +55,10 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
         ItemStack item = new ItemStack(Material.CROSSBOW);
         Damageable meta = (Damageable) item.getItemMeta();
         meta.setMaxDamage(24);
-        meta.setCustomModelData(Ascension.getInstance().generateModelNumber());
         meta.setEnchantmentGlintOverride(true);
         meta.displayName(TextUtil.makeText(DISPLAY_NAME, TextUtil.YELLOW));
         meta.getPersistentDataContainer().set(ShootsProjectiles.key, PersistentDataType.STRING, KEY);
         ArrayList<Component> lore = new ArrayList<>(List.of(
-//                TextUtil.makeText(""),
-//                TextUtil.makeText(""),
                 TextUtil.makeText("Nearsights players that are hit", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("[24 Uses]", TextUtil.GOLD)
         ));
@@ -68,6 +67,8 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
         Repairable meta2 = (Repairable) item.getItemMeta();
         meta2.setRepairCost(999);
         item.setItemMeta(meta2);
+        generateUniqueModelNumber(item);
+        addCooldownGroup(item);
         return item;
     }
 
@@ -79,7 +80,17 @@ public class ApolloGlare extends Craft implements ShootsProjectiles  {
 
     @Override
     public void applyKey(EntityShootBowEvent event) {
-        /*Empty on Purpose*/
+        Player player = (Player) event.getEntity();
+        ItemStack bow = event.getBow();
+        player.setCooldown(bow, 7 * 20);
+        PlayerInventory inv = player.getInventory();
+        if (inv.contains(Material.ARROW)) {
+            ItemStack item = inv.getItem(inv.first(Material.ARROW));
+            item.setAmount(item.getAmount() - 1);
+            CrossbowMeta bowMeta = (CrossbowMeta) bow.getItemMeta();
+            bowMeta.addChargedProjectile(item);
+            bow.setItemMeta(bowMeta);
+        }
     }
 
     @Override

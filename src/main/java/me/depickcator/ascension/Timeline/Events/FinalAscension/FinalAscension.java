@@ -14,7 +14,9 @@ import me.depickcator.ascension.Teams.TeamUtil;
 import me.depickcator.ascension.Timeline.Events.Winner.Winner;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
+import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -31,7 +33,8 @@ public class FinalAscension {
         calculateTeamTimers();
         finalAscensionStartAnnouncement();
         timer();
-        plugin.getWorld().getWorldBorder().setSize(initialBorderShrinkSize, 300);
+        WorldBorder worldBorder = plugin.getWorld().getWorldBorder();
+        worldBorder.setSize(initialBorderShrinkSize * 2, (int) (worldBorder.getSize() - initialBorderShrinkSize * 2) / 4);
     }
 
     private void setGameState() {
