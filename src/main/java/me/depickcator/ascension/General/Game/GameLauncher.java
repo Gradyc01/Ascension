@@ -15,7 +15,7 @@ public abstract class GameLauncher {
     public GameLauncher() {
         plugin = Ascension.getInstance();
         settings = plugin.getSettingsUI().getSettings();
-        this.sequence = new ArrayList<>(initSequence());
+        this.sequence = new ArrayList<>();
 //        sequence = new ArrayList<>(settings.getSequence());
 
     }
@@ -24,6 +24,8 @@ public abstract class GameLauncher {
 
     public void start() {
         if (canStart()) {
+            this.sequence.clear();
+            this.sequence.addAll(initSequence());
             loop();
         }
     }

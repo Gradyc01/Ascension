@@ -51,9 +51,19 @@ public class SoulShopGUI extends AscensionMenuGUI {
     }
 
     private void createShopIcons() {
-        if (GUIState != 1) return;
-        shopIcons.clear();
         int index = 20;
+        if (GUIState != 1) {
+            ItemStack item = new ItemStack(Material.BARRIER);
+            ItemMeta meta = item.getItemMeta();
+            meta.displayName(TextUtil.makeText("Shop not open!", TextUtil.RED));
+            item.setItemMeta(meta);
+            for (int i = 0; i < 15; i++) {
+                inventory.setItem(index++, item);
+                if (index % 9 == 7) index += 4;
+            }
+            return;
+        };
+        shopIcons.clear();
         for (Map.Entry<UUID, ItemStack> entry : shop.getIconMappings().entrySet()) {
             inventory.setItem(index++, entry.getValue());
             shopIcons.put(entry.getValue(), entry.getKey());

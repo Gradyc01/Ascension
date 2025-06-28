@@ -1,5 +1,6 @@
 package me.depickcator.ascension.General.Game.Load.Sequences;
 
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameLauncher;
 import me.depickcator.ascension.General.Game.GameSequences;
 import me.depickcator.ascension.General.Game.Load.LoadGame;
@@ -15,10 +16,10 @@ import static me.depickcator.ascension.General.BuildLobby.fillArea;
 public class BuildPlatform extends GameSequences {
     @Override
     public void run(GameLauncher game) {
-        if (!(game instanceof LoadGame)) throw new IllegalArgumentException();
-        LoadGame g = (LoadGame) game;
-        ArmorStand spawnCoordsArmorStand = g.getSpawnCoordsArmorStand();
-        Location spawnCoordsLocation = spawnCoordsArmorStand.getLocation();
+//        if (!(game instanceof LoadGame)) throw new IllegalArgumentException();
+//        LoadGame g = (LoadGame) game;
+//        Location spawnCoordsLocation = g.getSpawnCoordsLocation();
+        Location spawnCoordsLocation = Ascension.getSpawn();
         String quartzBlock = "quartz_block";
 //        fillArea(2, 2, 2, -2, 2, -2, quartzBlock, spawnCoordsArmorStand);
 //        fillArea(1, 2, 3, -1, 2, 3, quartzBlock, spawnCoordsArmorStand);
@@ -63,7 +64,8 @@ public class BuildPlatform extends GameSequences {
         Block block = loc.getWorld().getBlockAt(loc);
         if (block.getType() == Material.END_STONE
                 || block.getType() == Material.OBSIDIAN
-                || block.getType() == Material.AIR) return;
+                || block.getType() == Material.AIR
+                || block.getType() == Material.SNOW) return;
         Material type = r.nextDouble() <= 0.95 ? Material.END_STONE : Material.OBSIDIAN;
         block.setType(type);
 //        block.setBlockData(b.getBlockData());

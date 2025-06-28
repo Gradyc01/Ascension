@@ -57,4 +57,9 @@ public class Brawl extends Settings {
         rewards.add(shards);
         return rewards;
     }
+
+    @Override
+    public boolean isReseedAfterGame() {
+        return false;
+    }
 }

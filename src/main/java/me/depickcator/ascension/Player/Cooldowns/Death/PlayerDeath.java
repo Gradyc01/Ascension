@@ -110,14 +110,16 @@ public class PlayerDeath {
 
     public void respawnPlayer(PlayerData playerData) {
         players.remove(playerData);
-        playerData.setPlayerState(PlayerData.STATE_ALIVE);
         Player p = playerData.getPlayer();
         p.setGameMode(GameMode.SURVIVAL);
         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * 20, 3, false, false));
         p.removePotionEffect(PotionEffectType.DARKNESS);
-        Location loc = !plugin.getGameState().checkState(GameStates.GAME_BEFORE_GRACE) ? getRespawnLocation() : p.getLastDeathLocation();
-        loc.getWorld().getBlockAt(loc).setType(Material.GLASS);
-        p.teleport(loc.add(0.5, 1, 0.5));
+        if (!playerData.checkState(PlayerData.STATE_ALIVE)) {
+            Location loc = !plugin.getGameState().checkState(GameStates.GAME_BEFORE_GRACE) ? getRespawnLocation() : p.getLastDeathLocation();
+            loc.getWorld().getBlockAt(loc).setType(Material.GLASS);
+            p.teleport(loc.add(0.5, 1, 0.5));
+        }
+        playerData.setPlayerState(PlayerData.STATE_ALIVE);
         playerData.freezePlayer(plugin.getGameState().checkState(GameStates.GAME_PAUSED));
         changePlayerVisibility(playerData);
     }

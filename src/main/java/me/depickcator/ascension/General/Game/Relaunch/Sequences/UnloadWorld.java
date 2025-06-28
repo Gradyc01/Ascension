@@ -21,6 +21,6 @@ public class UnloadWorld extends GameSequences {
             TextUtil.debugText("Unloading world: " + world.getName());
         }
 
-        game.callback(80 * 20);
+        game.callback(5 * 20);
     }
 }

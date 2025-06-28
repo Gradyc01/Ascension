@@ -38,14 +38,14 @@ public class Scavenger extends Events {
                         .append(TextUtil.makeText(" as a treat for doing so much business with him", TextUtil.AQUA))
 
         ));
-        Location loc = new Location(plugin.getWorld(), getX() ,getY() - 1.5, getZ());
+        Location loc = new Location(plugin.getSpawnWorld(), getX() ,getY() - 1.5, getZ());
 
         return DisplayUtil.makeTextDisplay(loc, text, 270, 0, 440);
     }
 
     @Override
     protected ItemDisplay initItemDisplay() {
-        return DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), getX(), getY() - 2.5, getZ() ),
+        return DisplayUtil.makeItemDisplay(new Location(plugin.getSpawnWorld(), getX(), getY() - 2.5, getZ() ),
                         new ItemStack(getMaterial()), 0, 270, 1);
     }
 }

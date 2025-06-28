@@ -5,6 +5,9 @@ import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.DiamondSword;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteAxe;
 import me.depickcator.ascension.Items.Craftable.Vanilla.NetheriteSword;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.CreeperHead;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.SkeletonSkull;
+import me.depickcator.ascension.Items.Uncraftable.Skulls.ZombieHead;
 import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Timeline.Events.SoulShop.Shop;
 import me.depickcator.ascension.Timeline.Events.SoulShop.SoulShopItem;
@@ -38,9 +41,12 @@ public abstract class SoulShopAlgorithm {
         manualOverrideList = Map.of(Material.DIAMOND_SWORD, DiamondSword.getInstance().getResult(),
                 Material.DIAMOND_AXE, DiamondAxe.getInstance().getResult(),
                 Material.NETHERITE_AXE, NetheriteAxe.getInstance().getResult(),
-                Material.NETHERITE_SWORD, NetheriteSword.getInstance().getResult());
+                Material.NETHERITE_SWORD, NetheriteSword.getInstance().getResult(),
+                Material.CREEPER_HEAD, CreeperHead.getInstance().getResult(),
+                Material.SKELETON_SKULL, SkeletonSkull.getInstance().getResult(),
+                Material.ZOMBIE_HEAD, ZombieHead.getInstance().getResult());
         expensiveList = Set.of("sword", "axe", "ascension", "helmet", "chestplate", "leggings",
-                "boots", "breeze_rod", "heavy_core", "blaze_rod", "golden_apple", "name_tag");
+                "boots", "breeze_rod", "heavy_core", "blaze_rod", "golden_apple", "name_tag", "_skull", "_head");
         cheapList = Set.of("gold", "iron", "leather", "planks", "log", "stem", "slab", "redstone", "lapis_lazuli", "copper_ingot");
     }
 

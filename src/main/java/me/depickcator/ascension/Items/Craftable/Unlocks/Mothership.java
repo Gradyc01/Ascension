@@ -86,7 +86,8 @@ public class Mothership extends Craft {
         HappyGhast entity = (HappyGhast) loc.getWorld().spawnEntity(loc, EntityType.HAPPY_GHAST);
         entity.addPassenger(p);
         entity.getEquipment().setItem(EquipmentSlot.BODY, harness);
-        entity.getAttribute(Attribute.FLYING_SPEED).setBaseValue(0.1);
+        entity.getAttribute(Attribute.FLYING_SPEED).setBaseValue(0.15);
+        entity.getAttribute(Attribute.ARMOR).setBaseValue(5.0);
         entity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(60.0);
         entity.setHealth(60.0);
         entity.customName(TextUtil.makeText(getDisplayName(), TextUtil.GOLD));

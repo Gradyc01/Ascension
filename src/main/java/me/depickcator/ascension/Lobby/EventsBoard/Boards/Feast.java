@@ -30,13 +30,13 @@ public class Feast extends Events {
                         .append(TextUtil.makeText(" and ", TextUtil.AQUA))
                         .append(TextUtil.makeText("First Aid.", TextUtil.DARK_GRAY))
         ));
-        Location loc = new Location(plugin.getWorld(), getX() ,getY() - 1.5, getZ());
+        Location loc = new Location(plugin.getSpawnWorld(), getX() ,getY() - 1.5, getZ());
 
         return DisplayUtil.makeTextDisplay(loc, text, 270, 0, 280);
     }
 
     @Override
     protected ItemDisplay initItemDisplay() {
-        return DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), getX(), getY() - 2.3, getZ()), new ItemStack(Material.CAMPFIRE), 0, 270, 1);
+        return DisplayUtil.makeItemDisplay(new Location(plugin.getSpawnWorld(), getX(), getY() - 2.3, getZ()), new ItemStack(Material.CAMPFIRE), 0, 270, 1);
     }
 }

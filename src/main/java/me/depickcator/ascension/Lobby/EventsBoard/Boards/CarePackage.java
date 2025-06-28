@@ -32,7 +32,7 @@ public class CarePackage extends Events {
                         .append(TextUtil.makeText("Enlightenment Nuggets. ", TextUtil.WHITE)),
                 TextUtil.makeText("\nThese items will be of great use in your journey towards Ascension", TextUtil.AQUA)
         ));
-        Location loc = new Location(plugin.getWorld(), getX() ,getY() - 1.7, getZ());
+        Location loc = new Location(plugin.getSpawnWorld(), getX() ,getY() - 1.7, getZ());
 
         return DisplayUtil.makeTextDisplay(loc, text, 270, 0, 300);
     }
@@ -40,7 +40,7 @@ public class CarePackage extends Events {
     @Override
     protected ItemDisplay initItemDisplay() {
         return
-                DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), getX(), getY() - 2.5, getZ()),
+                DisplayUtil.makeItemDisplay(new Location(plugin.getSpawnWorld(), getX(), getY() - 2.5, getZ()),
                         new ItemStack(Material.CHEST), 0, 270, 1.5);
     }
 }

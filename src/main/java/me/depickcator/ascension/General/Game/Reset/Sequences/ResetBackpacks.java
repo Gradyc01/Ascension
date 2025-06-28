@@ -12,6 +12,7 @@ public class ResetBackpacks extends GameSequences {
         Backpack.getInstance().resetBackpacks();
         UnlockRecommender.getInstance().resetCraftCodes();
         AscensionRewardBundle.getInstance().resetRewardBundles();
+        plugin.getSettingsUI().getSettings().getTimeline().resetTimeline();
         plugin.getSettingsUI().getSettings().getTimeline().getSoulShops().reset();
         game.callback(5);
     }

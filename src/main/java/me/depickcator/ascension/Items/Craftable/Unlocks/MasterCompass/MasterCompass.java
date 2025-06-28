@@ -49,7 +49,7 @@ public class MasterCompass extends Craft implements ItemClick {
         meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.RED)
                 .append(TextUtil.clickText()));
         meta.setLodestoneTracked(false);
-        meta.setLodestone(Ascension.getSpawn());
+//        meta.setLodestone(Ascension.getSpawn());
         List<Component> lore = new ArrayList<>(List.of(
                 TextUtil.makeText("Points in the direction of your chosen target", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("Costs Redstone to power", TextUtil.DARK_PURPLE)

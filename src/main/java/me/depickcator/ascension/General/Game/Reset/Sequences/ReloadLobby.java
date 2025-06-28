@@ -9,7 +9,6 @@ public class ReloadLobby extends GameSequences {
     @Override
     public void run(GameLauncher game) {
         plugin.getLobby().updateLobby();
-
         game.callback();
     }
 }

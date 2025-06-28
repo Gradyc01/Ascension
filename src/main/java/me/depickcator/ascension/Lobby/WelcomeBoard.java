@@ -25,8 +25,7 @@ public class WelcomeBoard extends Boards {
                         .append(TextUtil.makeText("the Gatekeeper", TextUtil.GRAY))
                         .append(TextUtil.makeText(" to began your Ascension", TextUtil.AQUA))
         ));
-        Location spawn = Ascension.getSpawn();
-        Location loc = new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102.2, spawn.getZ() + 18.45);
+        Location loc = new Location(plugin.getSpawnWorld(), spawn.getX(), spawn.getY() + 102.2, spawn.getZ() + 18.45);
         return DisplayUtil.makeTextDisplay(loc, text, 180, 0, 450);
 //        ArmorStandUtil.
     }

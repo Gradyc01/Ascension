@@ -26,4 +26,9 @@ public class Testing extends Settings {
                 new LaunchSequence()
         ));
     }
+
+    @Override
+    public boolean isReseedAfterGame() {
+        return false;
+    }
 }

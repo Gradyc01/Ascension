@@ -17,10 +17,10 @@ public abstract class Events extends Boards {
     private final double z;
     public Events(String key, Material material, double x, double y, double z) {
         super(false);
-        Location loc = Ascension.getSpawn();
-        this.x = loc.getX() + x;
-        this.y = loc.getY() + y;
-        this.z = loc.getZ() + z;
+//        Location loc = Ascension.getSpawn();
+        this.x = spawn.getX() + x;
+        this.y = spawn.getY() + y;
+        this.z = spawn.getZ() + z;
         this.key = key;
         this.material = material;
         itemDisplay = initItemDisplay();

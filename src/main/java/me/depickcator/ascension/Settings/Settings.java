@@ -164,4 +164,8 @@ public abstract class Settings {
     public int getTeamSize() {
         return teamSize;
     }
+
+    public boolean isReseedAfterGame() {
+        return true;
+    }
 }

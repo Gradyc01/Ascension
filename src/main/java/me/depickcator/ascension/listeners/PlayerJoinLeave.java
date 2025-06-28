@@ -79,9 +79,10 @@ public class PlayerJoinLeave implements Listener {
         PlayerData playerData = PlayerUtil.assignNewPlayerData(player);
         plugin.getBingoData().resetPlayer(player);
         PlayerUtil.clearEffects(playerData);
-        Location spawn = Ascension.getSpawn();
+//        Location spawn = Ascension.getSpawn();
+//        Location spawn = plugin.getSpawn();
         playerData.resetToLobby();
-        player.teleport(new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102, spawn.getZ()));
+//        player.teleport(new Location(plugin.getWorld(), spawn.getX(), spawn.getY() + 102, spawn.getZ()));
         event.joinMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
                 .append(TextUtil.makeText( " has joined the lobby!", TextUtil.GOLD)));
     }

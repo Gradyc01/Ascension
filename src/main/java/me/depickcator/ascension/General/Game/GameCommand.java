@@ -50,6 +50,9 @@ public class GameCommand implements CommandExecutor, TabCompleter {
             case "reset-" -> {
                 new ResetGame(true);
             }
+            case "reset--" -> {
+                new ResetGame(false, Ascension.getSpawn(), Ascension.getInstance().getWorld().getSeed());
+            }
             case "pause" -> {
                 new PauseGame();
             }
@@ -60,7 +63,7 @@ public class GameCommand implements CommandExecutor, TabCompleter {
                 new GameDelete();
             }
             case "reseed" -> {
-//                new ReSeed();
+                new ReSeed();
             }
             case "load" -> {
                 if (strings.length == 4) {
@@ -103,7 +106,7 @@ public class GameCommand implements CommandExecutor, TabCompleter {
 
     private void loadGame(Location loc) {
 //        new LoadGame(loc);
-        new LoadGame(loc);
+        new LoadGame(loc, loc, loc.getWorld().getSeed());
         String text = "Successfully loaded game at ("
                 + loc.getBlockX() + ", "
                 + loc.getBlockY() + ", "
@@ -128,7 +131,8 @@ public class GameCommand implements CommandExecutor, TabCompleter {
                 "reset",
                 "pause",
                 "relaunch",
-                "delete"
+                "delete",
+                "reseed"
         );
     }
 

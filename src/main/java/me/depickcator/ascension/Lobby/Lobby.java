@@ -13,12 +13,17 @@ import org.bukkit.Location;
 import java.util.List;
 
 public class Lobby {
-    private final EventBoard eventBoard;
-    private final BoardDisplay boardDisplay;
-    private final StatsBoard statsBoard;
+    private EventBoard eventBoard;
+    private BoardDisplay boardDisplay;
+    private StatsBoard statsBoard;
+    private final Location spawn;
     public Lobby(Location loc) {
         Ascension.getInstance().getWorld().setDifficulty(Difficulty.NORMAL);
-        new BuildLobby(loc);
+        spawn = loc;
+    }
+
+    public void build() {
+        new BuildLobby(spawn);
         initLobbyBoards();
         initMiscNPCs();
         eventBoard = new EventBoard();
@@ -36,7 +41,7 @@ public class Lobby {
     }
 
     private void initMiscNPCs() {
-        Location spawn = Ascension.getSpawn();
+//        Location spawn = Ascension.getInstance().get();
         new ParkourNPC(spawn.getX() + 19, spawn.getY() + 101 + 17, spawn.getZ() - 19, new ImmutablePair<>(45, 0));
     }
 
@@ -57,5 +62,9 @@ public class Lobby {
         eventBoard.showDefaultBoard(playerData);
         boardDisplay.displayBoard(playerData.getPlayer(), playerData.getPlayer());
         statsBoard.setupLoginPlayer(playerData.getPlayer());
+    }
+
+    public Location getSpawn() {
+        return spawn;
     }
 }

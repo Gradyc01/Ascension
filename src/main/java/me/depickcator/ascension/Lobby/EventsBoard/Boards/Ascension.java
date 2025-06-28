@@ -31,7 +31,7 @@ public class Ascension extends Events {
                         .append(TextUtil.makeText(" the Gatekeeper for him to begin the ritual.", TextUtil.AQUA)),
                 TextUtil.makeText("\nOnce Ascension begins, protect the Gatekeeper until the ritual is complete", TextUtil.AQUA)
         ));
-        Location loc = new Location(plugin.getWorld(), getX() ,getY() - 1.5, getZ()/* + 1.5*/);
+        Location loc = new Location(plugin.getSpawnWorld(), getX() ,getY() - 1.5, getZ()/* + 1.5*/);
 
         return
                 DisplayUtil.makeTextDisplay(loc, text, 270, 0, 300);
@@ -40,7 +40,7 @@ public class Ascension extends Events {
     @Override
     protected ItemDisplay initItemDisplay() {
         return
-                DisplayUtil.makeItemDisplay(new Location(plugin.getWorld(), getX() + 0.5, getY() - 2.5, getZ() /*- 4*/),
+                DisplayUtil.makeItemDisplay(new Location(plugin.getSpawnWorld(), getX() + 0.5, getY() - 2.5, getZ() /*- 4*/),
                         new ItemStack(getMaterial()), 0, 270, 1.5);
     }
 }

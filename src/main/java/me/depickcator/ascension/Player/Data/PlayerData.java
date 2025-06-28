@@ -94,8 +94,10 @@ public class PlayerData {
 
         plugin.getLobby().resetToLobby(this);
 
-        Location loc = new Location(plugin.getWorld(), Ascension.getSpawn().getX(), Ascension.getSpawn().getY(), Ascension.getSpawn().getZ());
-        loc.setY(loc.getBlockY() + 104);
+        Location loc = plugin.getLobby().getSpawn().clone();
+        loc.setY(loc.getY() + 102);
+//        Location loc = new Location(plugin.getSpawnWorld(), Ascension.getSpawn().getX(), Ascension.getSpawn().getY(), Ascension.getSpawn().getZ());
+//        loc.setY(loc.getBlockY() + 104);
         player.teleport(loc);
         player.setGameMode(GameMode.SURVIVAL);
     }

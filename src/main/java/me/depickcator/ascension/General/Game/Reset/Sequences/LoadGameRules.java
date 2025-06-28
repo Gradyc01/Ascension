@@ -8,6 +8,8 @@ import org.bukkit.World;
 public class LoadGameRules extends GameSequences {
     @Override
     public void run(GameLauncher game) {
+        loadGameRules(plugin.getSpawnWorld());
+        plugin.getSpawnWorld().setGameRule(GameRule.DO_MOB_SPAWNING, false);
         loadGameRules(plugin.getWorld());
         loadGameRules(plugin.getNether());
 

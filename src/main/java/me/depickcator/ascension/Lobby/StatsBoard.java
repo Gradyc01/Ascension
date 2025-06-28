@@ -34,8 +34,7 @@ public class StatsBoard extends Boards {
         List<Component> text = new ArrayList<>(List.of(
                 TextUtil.makeText("Leaderboards", TextUtil.YELLOW, true, false)
         ));
-        Location spawn = Ascension.getSpawn();
-        Location loc = new Location(plugin.getWorld(), spawn.getX() - 13.3 , spawn.getY() + 105.1, spawn.getZ() - 13.3);
+        Location loc = new Location(plugin.getSpawnWorld(), spawn.getX() - 13.3 , spawn.getY() + 105.1, spawn.getZ() - 13.3);
 
         return DisplayUtil.makeTextDisplay(loc, text, 315, 0, 450);
     }
@@ -175,9 +174,8 @@ public class StatsBoard extends Boards {
         playerDisplays.clear();
     }
     private Location buildLocation(double offsetX, double offsetY, double offsetZ) {
-        Location spawn = Ascension.getSpawn();
         return new Location(
-                plugin.getWorld(),
+                plugin.getSpawnWorld(),
                 spawn.getX() + offsetX ,
                 spawn.getY() + offsetY,
                 spawn.getZ() + offsetZ);

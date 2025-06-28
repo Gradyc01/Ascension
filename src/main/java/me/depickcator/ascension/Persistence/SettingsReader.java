@@ -18,6 +18,8 @@ public class SettingsReader extends Readers  {
     private final String saved;
     private String settingsName;
     private Location spawnCoords;
+    private Location lobbyCoords;
+    private long seed;
 
     //makes reader
     public SettingsReader() {
@@ -35,7 +37,7 @@ public class SettingsReader extends Readers  {
     }
 
     private void launch() {
-        new LoadGame(spawnCoords);
+        new LoadGame(spawnCoords, lobbyCoords, seed);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "settings " + settingsName + " false");
 //        plugin.getSettingsUI().setSettings();
 
@@ -49,6 +51,9 @@ public class SettingsReader extends Readers  {
         settingsName = jsonObject.get("Settings").getAsString();
         JsonArray coords = jsonObject.getAsJsonArray("Spawn");
         spawnCoords = parseOutLocation(coords);
+        JsonArray lobby = jsonObject.getAsJsonArray("Lobby");
+        lobbyCoords = parseOutLocation(lobby);
+        seed = jsonObject.getAsJsonPrimitive("Seed").getAsLong();
     }
 
 

@@ -51,7 +51,9 @@ public class SettingsWriter {
     public void write() {
         JsonObject json = new JsonObject();
         json.add("Spawn", writeCoordinates(location));
+        json.add("Lobby", writeCoordinates(Ascension.getInstance().getLobby().getSpawn()));
         json.add("Settings", new JsonPrimitive(settings.getName()));
+        json.add("Seed", new JsonPrimitive(location.getWorld().getSeed()));
 
         saveToFile(json.toString());
     }

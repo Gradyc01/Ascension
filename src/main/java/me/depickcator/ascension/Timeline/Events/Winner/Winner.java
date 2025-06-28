@@ -3,11 +3,15 @@ package me.depickcator.ascension.Timeline.Events.Winner;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.General.Game.Reset.ResetGame;
+import me.depickcator.ascension.Persistence.SeedChooser;
+import me.depickcator.ascension.Settings.Settings;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Teams.Team;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
+import org.apache.commons.lang3.tuple.Pair;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -68,7 +72,17 @@ public class Winner {
         new BukkitRunnable() {
             @Override
             public void run() {
-                new ResetGame(plugin.getSettingsUI().getSettings().isCountTowardsLeaderboards());
+                Settings settings = plugin.getSettingsUI().getSettings();
+                Location loc = Ascension.getSpawn();
+                long seed = plugin.getWorld().getSeed();
+                if (settings.isReseedAfterGame()) {
+                    Pair<Location, Long> newLocation = new SeedChooser().findSeed();
+                    if (newLocation != null) {
+                        loc = newLocation.getLeft();
+                        seed = newLocation.getRight();
+                    }
+                }
+                new ResetGame(settings.isCountTowardsLeaderboards(), loc, seed);
             }
         }.runTaskLater(Ascension.getInstance(), 60 * 20);
     }

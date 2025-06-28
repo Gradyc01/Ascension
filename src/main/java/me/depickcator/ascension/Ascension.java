@@ -52,6 +52,7 @@ public final class Ascension extends JavaPlugin {
     private Lobby lobby;
     private World world;
     private World nether;
+    private World spawnWorld;
     private Logger logger = getLogger();
     private int uniqueModelNumber;
     private Map<UUID, Pair<Inventory, AscensionGUI>> guiMap;
@@ -75,6 +76,7 @@ public final class Ascension extends JavaPlugin {
         new BlockUtil();
         scheduler = this.getServer().getScheduler();
         gameState = new GameStates();
+        spawnWorld =  Bukkit.getWorld("world");
         world = Bukkit.getWorld("world");
         nether = Bukkit.getWorld("world_nether");
         guiMap = new HashMap<>();
@@ -113,6 +115,7 @@ public final class Ascension extends JavaPlugin {
         getCommand("settings").setExecutor(new SetSetting());
         getCommand("bp").setExecutor(new Backpack());
         getCommand("craft").setExecutor(new CraftCommand());
+        getCommand("travel").setExecutor(new TravelWorlds());
     }
     private void registerListeners() {
         Server server = getServer();
@@ -134,6 +137,7 @@ public final class Ascension extends JavaPlugin {
         manager.registerEvents(new ChestLootModifier(), this);
         manager.registerEvents(new PlayerChatting(), this);
         manager.registerEvents(new FastSmelt(), this);
+        manager.registerEvents(new DimensionalTravel(), this);
     }
     private void registerCrafts() {
         unlocksData = new UnlocksData();
@@ -156,6 +160,9 @@ public final class Ascension extends JavaPlugin {
     public World getNether() {
         return nether;
     }
+    public World getSpawnWorld() {
+        return spawnWorld;
+    }
     public void setWorld(World world) {
         this.world = world;
     }
@@ -163,7 +170,7 @@ public final class Ascension extends JavaPlugin {
         this.nether = nether;
     }
     public static Location getSpawn() {
-        return spawn;
+        return spawn.clone();
     }
     public UnlocksData getUnlocksData() {
         return unlocksData;

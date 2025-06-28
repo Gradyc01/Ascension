@@ -24,7 +24,6 @@ public class BoardDisplay extends Boards {
     private final double z;
     private final List<DisplayBox> displayBoxes;
     public BoardDisplay() {
-        Location spawn = Ascension.getSpawn();
         x = spawn.getX() + 18.4;
         y = spawn.getY() + 105.3;
         z = spawn.getZ();
@@ -40,7 +39,6 @@ public class BoardDisplay extends Boards {
         List<Component> text = new ArrayList<>(List.of(
                 TextUtil.makeText("Board ", TextUtil.YELLOW, true, false)
         ));
-        Location spawn = Ascension.getSpawn();
         Location loc = new Location(plugin.getWorld(), spawn.getX() + 18.4 , spawn.getY() + 105.5, spawn.getZ());
         return DisplayUtil.makeTextDisplay(loc, text, 90, 0, 450);
     }
@@ -51,7 +49,7 @@ public class BoardDisplay extends Boards {
         double itemY = y - 0.3;
         double itemZ = startingZ;
         for (int i = 1; i <= 25; i++) {
-            Location loc = new Location(plugin.getWorld(), itemX, itemY, itemZ);
+            Location loc = new Location(plugin.getSpawnWorld(), itemX, itemY, itemZ);
             DisplayBox box = new DisplayBox(loc);
             displayBoxes.add(box);
 //            Player p = Bukkit.getPlayer("Depickcator");
@@ -78,7 +76,7 @@ public class BoardDisplay extends Boards {
                 List<ItemStack> items = plugin.getBingoData().getItems();
                 if (items.size() != 25) return;
                 for (int i = 1; i <= 25; i++) {
-                    Location loc = new Location(plugin.getWorld(), itemX, itemY, itemZ);
+                    Location loc = new Location(plugin.getSpawnWorld(), itemX, itemY, itemZ);
                     ItemStack item = items.get(i - 1);
                     double size = item.getType().isBlock() ? 0.7 : 0.45;
 //            double size = item.getType().isItem() ? 0.45 : 0.9;

@@ -23,14 +23,12 @@ public class NPCBoard2 extends Boards {
                 TextUtil.makeText("\n[Right Click] ", TextUtil.GRAY).append(TextUtil.makeText("to view Menus"))
 //                TextUtil.makeText("\n Items that can only be earned through different objectives", TextUtil.AQUA)
         ));
-        Location spawn = Ascension.getSpawn();
-        Location loc = new Location(plugin.getWorld(), spawn.getX() - 13.3 , spawn.getY() + 104.5, spawn.getZ() + 13.3);
+        Location loc = new Location(plugin.getSpawnWorld(), spawn.getX() - 13.3 , spawn.getY() + 104.5, spawn.getZ() + 13.3);
 
         return DisplayUtil.makeTextDisplay(loc, text, 225, 0, 450);
     }
 
     private void initOtherDisplays() {
-        Location spawn = Ascension.getSpawn();
         double x = spawn.getX();
         double y = spawn.getY() + 101;
         double z = spawn.getZ();

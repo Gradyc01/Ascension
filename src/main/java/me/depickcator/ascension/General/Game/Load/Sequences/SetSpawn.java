@@ -8,15 +8,27 @@ import me.depickcator.ascension.Utility.DisplayUtil;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 
+import java.util.UUID;
+
 
 public class SetSpawn extends GameSequences {
+
+    private final Location spawnCoordsLocation;
+    public SetSpawn(Location location) {
+        this.spawnCoordsLocation = location;
+    }
+
     @Override
     public void run(GameLauncher game) {
-        if (!(game instanceof LoadGame)) throw new IllegalArgumentException();
-        LoadGame g = (LoadGame) game;
-        g.setSpawnCoordsArmorStand(setSpawnCoordsArmorStand(g.getSpawnCoordsLocation()));
-        Ascension.setSpawn(g.getSpawnCoordsArmorStand().getLocation());
-
+//        if (!(game instanceof LoadGame)) throw new IllegalArgumentException();
+//        LoadGame g = (LoadGame) game;
+//        g.setSpawnCoordsArmorStand(setSpawnCoordsArmorStand(g.getSpawnCoordsLocation()));
+//        Ascension.setSpawn(g.getSpawnCoordsArmorStand().getLocation());
+//        Ascension.setSpawn(g.getSpawnCoordsLocation());
+        Location loc = spawnCoordsLocation.clone();
+        loc.setWorld(Ascension.getInstance().getWorld());
+//        g.setSpawnCoordsLocation(loc);
+        Ascension.setSpawn(loc);
         game.callback();
     }
 

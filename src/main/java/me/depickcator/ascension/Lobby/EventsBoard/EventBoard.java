@@ -31,8 +31,7 @@ public class EventBoard extends Boards {
         List<Component> text = new ArrayList<>(List.of(
                 TextUtil.makeText("Events", TextUtil.YELLOW, true, false)
         ));
-        Location spawn = Ascension.getSpawn();
-        Location loc = new Location(plugin.getWorld(), spawn.getX() - 18.4 , spawn.getY() + 105.3, spawn.getZ());
+        Location loc = new Location(plugin.getSpawnWorld(), spawn.getX() - 18.4 , spawn.getY() + 105.3, spawn.getZ());
         new EventsNPC(spawn.getX() - 17, spawn.getY() + 101, spawn.getZ() - 7, new ImmutablePair<>(315, 0));
         return DisplayUtil.makeTextDisplay(loc, text, 270, 0, 450);
     }

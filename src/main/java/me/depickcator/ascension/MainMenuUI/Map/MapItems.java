@@ -5,6 +5,7 @@ import com.lunarclient.apollo.common.location.ApolloBlockLocation;
 import com.lunarclient.apollo.module.waypoint.Waypoint;
 import com.lunarclient.apollo.module.waypoint.WaypointModule;
 import com.lunarclient.apollo.recipients.Recipients;
+import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Location;
 
@@ -63,7 +64,7 @@ public class MapItems {
         Color waypointColor = findLunarWaypointColor(mapItem);
         Waypoint waypoint = Waypoint.builder()
                 .location(ApolloBlockLocation.builder()
-                        .world("world") // The world the waypoint should display in
+                        .world(Ascension.getInstance().getWorld().getName()) // The world the waypoint should display in
                         .x(coords.getBlockX())
                         .y(coords.getBlockY())
                         .z(coords.getBlockZ())

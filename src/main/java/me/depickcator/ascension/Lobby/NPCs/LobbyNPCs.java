@@ -17,7 +17,7 @@ import org.bukkit.loot.Lootable;
 
 public abstract class LobbyNPCs extends EntityInteraction {
     public LobbyNPCs(double x, double y, double z, Pair<Integer, Integer> rotation, EntityType type, Component name) {
-        addInteraction(initEntity(new Location(Ascension.getInstance().getWorld(), x, y, z), type, name, rotation), this);
+        addInteraction(initEntity(new Location(Ascension.getInstance().getSpawnWorld(), x, y, z), type, name, rotation), this);
     }
 
     protected LivingEntity initEntity(Location loc, EntityType type, Component name, Pair<Integer, Integer> rotation) {
