@@ -5,6 +5,7 @@ import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Skills.SkillExpAmount;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
@@ -99,6 +100,8 @@ public class ZombieEntity implements LootTableChanger, EntityLootTable, Superabl
         e.getAttribute(Attribute.MAX_HEALTH).setBaseValue(30);
         e.getAttribute(Attribute.ATTACK_DAMAGE).setBaseValue(16);
         e.setHealth(30);
+        e.customName(TextUtil.makeText("Super Zombie", TextUtil.GOLD, true, false));
+        e.setCustomNameVisible(true);
         EntityEquipment equipment = e.getEquipment();
         equipment.setHelmet(new ItemStack(Material.NETHERITE_HELMET));
         equipment.setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE));

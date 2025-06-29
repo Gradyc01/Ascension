@@ -5,6 +5,7 @@ import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Skills.SkillExpAmount;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
@@ -99,6 +100,8 @@ public class SkeletonEntity implements LootTableChanger, EntityLootTable, Supera
         Skeleton skeleton = (Skeleton) e;
         skeleton.getAttribute(Attribute.ARMOR).setBaseValue(20);
         skeleton.getAttribute(Attribute.SCALE).setBaseValue(1.2);
+        skeleton.customName(TextUtil.makeText("Super Skeleton", TextUtil.GOLD, true, false));
+        skeleton.setCustomNameVisible(true);
         EntityEquipment equipment = skeleton.getEquipment();
         equipment.setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
         equipment.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));

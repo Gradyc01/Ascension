@@ -88,7 +88,7 @@ public class CarePackage {
 
 
     private void createStructure() {
-        BuildLobby.fillArea(-1, -1, -1, 1, 1, 1, "obsidian", armorStand);
+        BuildLobby.fillArea(-1, -1, -1, 1, 1, 1, Material.OBSIDIAN.createBlockData(), armorStand);
         Block block = plugin.getWorld().getBlockAt(armorStand.getLocation());
         block.setType(Material.CHEST);
         BlockState state = block.getState();

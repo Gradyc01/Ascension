@@ -4,6 +4,7 @@ import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Skills.SkillExpAmount;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
@@ -71,6 +72,8 @@ public class SpiderEntity implements LootTableChanger, EntityLootTable, Superabl
     @Override
     public void superEntity(Entity e) {
         Spider spider = (Spider) e;
+        spider.customName(TextUtil.makeText("Super Spider", TextUtil.GOLD, true, false));
+        spider.setCustomNameVisible(true);
         spider.getAttribute(Attribute.SCALE).setBaseValue(1.2);
         spider.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.5);
         tagSuperEntity(spider);

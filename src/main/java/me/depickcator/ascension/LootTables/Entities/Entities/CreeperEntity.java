@@ -5,6 +5,7 @@ import me.depickcator.ascension.LootTables.Entities.EntityLootTable;
 import me.depickcator.ascension.LootTables.Entities.Superable;
 import me.depickcator.ascension.LootTables.LootTableChanger;
 import me.depickcator.ascension.Skills.SkillExpAmount;
+import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Creeper;
@@ -88,6 +89,8 @@ public class CreeperEntity implements LootTableChanger, EntityLootTable, Superab
     @Override
     public void superEntity(Entity e) {
         Creeper creeper = (Creeper) e;
+        creeper.customName(TextUtil.makeText("Super Creeper", TextUtil.GOLD, true, false));
+        creeper.setCustomNameVisible(true);
         creeper.getAttribute(Attribute.ARMOR).setBaseValue(30);
         creeper.getAttribute(Attribute.SCALE).setBaseValue(1.2);
         creeper.setPowered(true);

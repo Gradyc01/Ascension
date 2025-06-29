@@ -74,4 +74,8 @@ public class LoadGame extends GameLauncher {
         this.spawnCoordsLocation = spawnCoordsLocation;
         TextUtil.debugText("SpawnCoordsLocation: " + spawnCoordsLocation.getWorld().getName());
     }
+
+    public Location getLobbyCoordsLocation() {
+        return lobbyCoordsLocation;
+    }
 }
