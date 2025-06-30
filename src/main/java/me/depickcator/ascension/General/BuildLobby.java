@@ -319,7 +319,7 @@ public class BuildLobby implements Runnable {
 
         fillArea(4, 102, 4, 4, 106, 4, Material.QUARTZ_PILLAR.createBlockData(), armorStand);
         placeBlock(4, 107, 4, Material.NETHERRACK.createBlockData(), armorStand);
-        placeBlock(4, 108, 4, Material.FIRE.createBlockData(), armorStand);
+        placeBlock(4, 108, 4, Material.GLOWSTONE.createBlockData(), armorStand);
 
         Stairs quartz_stairs_north_top = (Stairs) quartz_stairs_north.clone();
         quartz_stairs_north_top.setHalf(Stairs.Half.TOP);

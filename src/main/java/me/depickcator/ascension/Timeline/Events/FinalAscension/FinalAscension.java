@@ -14,27 +14,60 @@ import me.depickcator.ascension.Teams.TeamUtil;
 import me.depickcator.ascension.Timeline.Events.Winner.Winner;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
-import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FinalAscension {
     private final Ascension plugin;
+    private final WorldBorder worldBorder;
+    private final BukkitTask finalBorderShrinkTask;
     public FinalAscension(int initialBorderShrinkSize) {
         this.plugin = Ascension.getInstance();
         TextUtil.debugText("Final Ascension Ran");
         PlayerDeath.getInstance().respawnEveryone();
         setGameState();
         calculateTeamTimers();
+        worldBorder =plugin.getWorld().getWorldBorder();
+        finalBorderShrinkTask = initialSettings(initialBorderShrinkSize);
         finalAscensionStartAnnouncement();
         timer();
-        WorldBorder worldBorder = plugin.getWorld().getWorldBorder();
-        worldBorder.setSize(initialBorderShrinkSize * 2, (int) (worldBorder.getSize() - initialBorderShrinkSize * 2) / 4);
+    }
+
+    private BukkitTask initialSettings(int initialBorderShrinkSize) {
+//        worldBorder.setSize(initialBorderShrinkSize * 2, (int) (worldBorder.getSize() - initialBorderShrinkSize * 2) / 4);
+        worldBorder.setSize(initialBorderShrinkSize * 2, 0);
+        int time = (int) (worldBorder.getSize() - initialBorderShrinkSize);
+        worldBorder.setSize((double) initialBorderShrinkSize / 2, time);
+        Location center = worldBorder.getCenter();
+        for (PlayerData pD : PlayerUtil.getAllPlayingPlayers()) {
+            Player p = pD.getPlayer();
+            if (Math.abs(p.getX()) >= initialBorderShrinkSize + center.getX() ||
+            Math.abs(p.getZ()) >= initialBorderShrinkSize + center.getZ()) {
+                Location pLoc = p.getLocation().clone();
+                double newX = p.getX() < 0 ? Math.max(-initialBorderShrinkSize + center.getX() + 10, p.getX()) :
+                                             Math.min(initialBorderShrinkSize + center.getX() - 10, p.getX());
+                double newZ = p.getZ() < 0 ? Math.max(-initialBorderShrinkSize + center.getZ() + 10, p.getZ()) :
+                                             Math.min(initialBorderShrinkSize + center.getZ() - 10, p.getZ());
+                pLoc.setY(worldBorder.getWorld().getHighestBlockYAt((int) newX,(int) newZ) + 1);
+                pLoc.setX(newX);
+                pLoc.setZ(newZ);
+                p.teleport(pLoc);
+            }
+        }
+
+        return new BukkitRunnable() {
+            @Override
+            public void run() {
+                plugin.getWorld().getWorldBorder().setSize(25, 600);
+            }
+        }.runTaskLater(plugin, time * 20L);
     }
 
     private void setGameState() {
@@ -61,34 +94,18 @@ public class FinalAscension {
             public void run() {
                 if (!plugin.getGameState().checkState(GameStates.GAME_FINAL_ASCENSION)) {
                     cancel();
+                    finalBorderShrinkTask.cancel();
                     TextUtil.debugText("No Longer in the correct state");
                     return;
                 }
                 if (activeTeams.size() <= 1) {
                     cancel();
+                    finalBorderShrinkTask.cancel();
                     new Winner(activeTeams);
                     TextUtil.debugText("win");
                     return;
                 }
                 time++;
-                if (time == 300) {
-                    plugin.getWorld().getWorldBorder().setSize(50, 600);
-                }
-//                for (Team t : activeTeams) {
-//                    updateScoreboard(t);
-//                    if (t.checkSTATE(Team.STATE_DEPRECATED)) {
-//                        activeTeams.remove(t);
-//                        TextUtil.debugText("A TEAM LOST");
-//                        teamEliminatedMessage(t);
-//                        continue;
-//                    }
-//                    TeamStats teamStats = t.getTeamStats();
-//                    if (teamStats.getFinalAscensionTimer() <= 0) {
-//                        timerExpired(t);
-//                        continue;
-//                    }
-//                    teamStats.addFinalAscensionTimer(-1);
-//                }
                 activeTeams = updateTeams(activeTeams);
             }
 

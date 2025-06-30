@@ -33,6 +33,6 @@ public class BrawlTimeline extends Timeline {
 
     @Override
     protected int getFinalAscensionBorderShrinkSize() {
-        return 100;
+        return 300;
     }
 }

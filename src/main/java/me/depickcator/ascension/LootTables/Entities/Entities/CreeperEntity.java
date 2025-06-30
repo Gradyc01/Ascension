@@ -90,7 +90,7 @@ public class CreeperEntity implements LootTableChanger, EntityLootTable, Superab
     public void superEntity(Entity e) {
         Creeper creeper = (Creeper) e;
         creeper.customName(TextUtil.makeText("Super Creeper", TextUtil.GOLD, true, false));
-        creeper.setCustomNameVisible(true);
+        creeper.setCustomNameVisible(false);
         creeper.getAttribute(Attribute.ARMOR).setBaseValue(30);
         creeper.getAttribute(Attribute.SCALE).setBaseValue(1.2);
         creeper.setPowered(true);

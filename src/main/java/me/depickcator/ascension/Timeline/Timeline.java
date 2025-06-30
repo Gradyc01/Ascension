@@ -82,7 +82,7 @@ public abstract class Timeline {
     protected abstract void checkForMidGameEvents();
     protected abstract List<Pair<String, Integer>> initNextBigEvents();
     protected int getFinalAscensionBorderShrinkSize() {
-        return 250;
+        return 500;
     }
 
     private void mainTimelineMinutes() {

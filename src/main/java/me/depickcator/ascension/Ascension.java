@@ -182,7 +182,7 @@ public final class Ascension extends JavaPlugin {
         return settings;
     }
     public int generateModelNumber() {
-        logger.info("Current model number" + uniqueModelNumber);
+        logger.info("Generated a new model number " + uniqueModelNumber);
         return uniqueModelNumber++;
     }
     public static Ascension getInstance() {

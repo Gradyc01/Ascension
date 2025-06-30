@@ -73,7 +73,7 @@ public class SpiderEntity implements LootTableChanger, EntityLootTable, Superabl
     public void superEntity(Entity e) {
         Spider spider = (Spider) e;
         spider.customName(TextUtil.makeText("Super Spider", TextUtil.GOLD, true, false));
-        spider.setCustomNameVisible(true);
+        spider.setCustomNameVisible(false);
         spider.getAttribute(Attribute.SCALE).setBaseValue(1.2);
         spider.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.5);
         tagSuperEntity(spider);

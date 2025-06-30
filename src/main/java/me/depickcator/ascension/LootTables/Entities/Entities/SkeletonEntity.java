@@ -101,7 +101,7 @@ public class SkeletonEntity implements LootTableChanger, EntityLootTable, Supera
         skeleton.getAttribute(Attribute.ARMOR).setBaseValue(20);
         skeleton.getAttribute(Attribute.SCALE).setBaseValue(1.2);
         skeleton.customName(TextUtil.makeText("Super Skeleton", TextUtil.GOLD, true, false));
-        skeleton.setCustomNameVisible(true);
+        skeleton.setCustomNameVisible(false);
         EntityEquipment equipment = skeleton.getEquipment();
         equipment.setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
         equipment.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
