@@ -3,7 +3,6 @@ package me.depickcator.ascension.Interfaces;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerInventoryTracker;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
-import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;

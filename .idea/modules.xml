@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Ascension.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Ascension.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Ascension.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Ascension.test.iml" />
     </modules>
   </component>
 </project>

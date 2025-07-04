@@ -29,6 +29,7 @@ public class InventoryListener implements Listener {
 
 
     }
+
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
         Player player = (Player) e.getWhoClicked();

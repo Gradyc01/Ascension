@@ -50,18 +50,15 @@ public class GameCommand implements CommandExecutor, TabCompleter {
             case "reset-" -> {
                 new ResetGame(true);
             }
-            case "reset--" -> {
+            case "relaunch" -> {
                 new ResetGame(false, Ascension.getSpawn(), Ascension.getInstance().getWorld().getSeed());
             }
             case "pause" -> {
                 new PauseGame();
             }
-            case "relaunch" -> {
-                new GameRelaunch();
-            }
-            case "delete" -> {
-                new GameDelete();
-            }
+//            case "delete" -> {
+//                new GameDelete();
+//            }
             case "reseed" -> {
                 new ReSeed();
             }
@@ -131,7 +128,6 @@ public class GameCommand implements CommandExecutor, TabCompleter {
                 "reset",
                 "pause",
                 "relaunch",
-                "delete",
                 "reseed"
         );
     }
