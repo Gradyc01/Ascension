@@ -10,8 +10,6 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.bukkit.Difficulty;
 import org.bukkit.Location;
 
-import java.util.List;
-
 public class Lobby {
     private EventBoard eventBoard;
     private BoardDisplay boardDisplay;

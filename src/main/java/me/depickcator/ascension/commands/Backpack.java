@@ -17,13 +17,14 @@ public class Backpack implements CommandExecutor {
         if (!(commandSender instanceof Player)) return false;
         Player player = (Player) commandSender;
         PlayerData pD = PlayerUtil.getPlayerData(player);
-        Team team = pD.getPlayerTeam().getTeam();
-        if (team == null) {
-            TextUtil.errorMessage(player, "You are currently not in a party!");
-            return false;
-        }
+//        Team team = pD.getPlayerTeam().getTeam();
+//        if (team == null) {
+//            TextUtil.errorMessage(player, "You are currently not in a party!");
+//            return false;
+//        }
 
-        return team.getTeamBackpack().openInventory(pD);
+        pD.getPlayerBackpack().openBackpack();
+        return true;
     }
 
 }

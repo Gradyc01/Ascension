@@ -29,6 +29,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
@@ -94,28 +95,32 @@ public final class Ascension extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommand("open-main-menu").setExecutor(new OpenMainMenuCommand());
-        getCommand("game").setExecutor(new GameCommand());
-        getCommand("changeBingoScore").setExecutor(new changeBingoScore());
-        getCommand("openmenu").setExecutor(new mainMenuCommands());
-        getCommand("who").setExecutor(new Who());
-        getCommand("info").setExecutor(new Info());
-        TeamCommand teamCommand = new TeamCommand();
-        getCommand("party").setExecutor(teamCommand);
-        getCommand("p").setExecutor(teamCommand);
-        getCommand("debugger").setExecutor(new Debugger());
-        getCommand("timeline").setExecutor(new setTimeline());
-        getCommand("setUnlockTokens").setExecutor(new setUnlockToken());
-        getCommand("givePlayerExp").setExecutor(new giveExp());
-        getCommand("startEvent").setExecutor(new startEvents());
-        getCommand("giveCustomItem").setExecutor(new giveCustomItem());
-        getCommand("shout").setExecutor(new Shout());
-        getCommand("queue").setExecutor(new QueueCommand());
-        getCommand("printWorldInfo").setExecutor(new printWorldInformation());
-        getCommand("settings").setExecutor(new SetSetting());
-        getCommand("bp").setExecutor(new Backpack());
-        getCommand("craft").setExecutor(new CraftCommand());
-        getCommand("travel").setExecutor(new TravelWorlds());
+        registerCommand(new OpenMainMenuCommand(), "open-main-menu");
+        registerCommand(new GameCommand(), "game");
+        registerCommand(new changeBingoScore(), "changeBingoScore");
+        registerCommand(new mainMenuCommands(), "openmenu");
+        registerCommand(new Who(), "who");
+        registerCommand(new Info(), "info");
+        registerCommand(new TeamCommand(), "party", "p");
+        registerCommand(new Debugger(), "debugger");
+        registerCommand(new setTimeline(), "timeline");
+        registerCommand(new setUnlockToken(), "setUnlockTokens");
+        registerCommand(new giveExp(), "givePlayerExp");
+        registerCommand(new startEvents(), "startEvent");
+        registerCommand(new giveCustomItem(), "giveCustomItem");
+        registerCommand(new Shout(), "shout");
+        registerCommand(new QueueCommand(), "queue");
+        registerCommand(new printWorldInformation(), "printWorldInfo");
+        registerCommand(new SetSetting(), "settings");
+        registerCommand(new Backpack(), "bp");
+        registerCommand(new CraftCommand(), "craft");
+        registerCommand(new TravelWorlds(), "travel");
+    }
+
+    private void registerCommand(CommandExecutor commandExecutor, String... command) {
+        for (String s : command) {
+            getCommand(s).setExecutor(commandExecutor);
+        }
     }
     private void registerListeners() {
         Server server = getServer();

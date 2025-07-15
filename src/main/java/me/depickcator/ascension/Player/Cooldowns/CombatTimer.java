@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Player.Cooldowns;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Items.Uncraftable.MainMenu;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
@@ -32,7 +33,9 @@ public class CombatTimer extends Cooldowns {
             p.sendMessage(text);
             TextUtil.sendActionBar(p, text, 60, Ascension.getInstance());
         }
-        setCooldownTimer(p, cooldownTime, Material.IRON_SWORD);
+        int time = Ascension.getInstance().getGameState().checkState(GameStates.GAME_BEFORE_GRACE) ? cooldownTime/2 : cooldownTime;
+        setCooldownTimer(p, time, Material.IRON_SWORD);
+
     }
 
 

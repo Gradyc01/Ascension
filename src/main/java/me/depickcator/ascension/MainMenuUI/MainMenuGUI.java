@@ -38,10 +38,13 @@ public class MainMenuGUI extends AscensionMenuGUI {
         inventory.setItem(31, makeMainMenuBoardButton(Material.FEATHER, "Scavenger"));
         inventory.setItem(32, makeMainMenuBoardButton(Material.FILLED_MAP, "Events"));
         inventory.setItem(20, makeMainMenuBoardButton(Material.CHEST, "Team Backpack", "Grace Period Only!"));
-        inventory.setItem(24, makeMainMenuBoardButton(Material.ANVIL, "Soul Shop"));
+        inventory.setItem(40, makeMainMenuBoardButton(Material.ANVIL, "Soul Shop"));
         inventory.setItem(45, makeMainMenuBoardButton(Material.COMMAND_BLOCK, "Settings"));
-        if (plugin.getGameState().inLobby())
+        inventory.setItem(24, makeMainMenuBoardButton(Material.ENDER_CHEST, "Personal Backpack"));
+        if (plugin.getGameState().inLobby()) {
             inventory.setItem(40, makeMainMenuBoardButton(Material.IRON_CHESTPLATE, "Kits"));
+            inventory.setItem(53, makeMainMenuBoardButton(Material.ANVIL, "Soul Shop"));
+        }
 
 
         inventory.setItem(49, getCloseButton());
@@ -57,6 +60,9 @@ public class MainMenuGUI extends AscensionMenuGUI {
         switch (item.getType()) {
             case Material.ENCHANTED_BOOK -> {
                 new BingoBoardGUI(playerData);
+            }
+            case Material.ENDER_CHEST -> {
+                playerData.getPlayerBackpack().openBackpack();
             }
             case Material.COMPARATOR -> {
                 new CommandGUI(playerData);

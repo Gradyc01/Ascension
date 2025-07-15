@@ -22,7 +22,9 @@ commands:
   info:
     description: reveals the info of the game settings
   who:
-    description: reveals the info of the game settings
+    description: reveals the players and their teams
+  vote:
+    description: allows users to start a vote
 
   settings:
     description: changes settings of the game

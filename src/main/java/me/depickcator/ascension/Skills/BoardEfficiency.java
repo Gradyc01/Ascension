@@ -42,7 +42,7 @@ public class BoardEfficiency extends Skills {
     private static SkillRewards level1Rewards() {
         SkillRewards skillRewards = new SkillRewards();
         skillRewards.setItems(List.of(
-                ShardOfTheFallen.getInstance().getResult(2),
+//                ShardOfTheFallen.getInstance().getResult(2),
                 NetherStar.getInstance().getResult(),
                 new ItemStack(Material.DIAMOND, 2)
         ));
@@ -53,7 +53,7 @@ public class BoardEfficiency extends Skills {
     private static SkillRewards level2Rewards() {
         SkillRewards skillRewards = new SkillRewards();
         skillRewards.setItems(List.of(
-                ShardOfTheFallen.getInstance().getResult(3),
+//                ShardOfTheFallen.getInstance().getResult(3),
                 NetherStar.getInstance().getResult(),
                 new ItemStack(Material.DIAMOND, 5)
         ));
@@ -64,7 +64,7 @@ public class BoardEfficiency extends Skills {
     private static SkillRewards level3Rewards() {
         SkillRewards skillRewards = new SkillRewards();
         skillRewards.setItems(List.of(
-                ShardOfTheFallen.getInstance().getResult(5),
+//                ShardOfTheFallen.getInstance().getResult(5),
                 NetherStar.getInstance().getResult(2),
                 new ItemStack(Material.DIAMOND, 5)
         ));
@@ -75,7 +75,7 @@ public class BoardEfficiency extends Skills {
     private static SkillRewards level4Rewards() {
         SkillRewards skillRewards = new SkillRewards();
         skillRewards.setItems(List.of(
-                MakeshiftSkull.getInstance().getResult(),
+//                MakeshiftSkull.getInstance().getResult(),
                 NetherStar.getInstance().getResult(2),
                 new ItemStack(Material.DIAMOND, 7)
         ));
@@ -86,7 +86,7 @@ public class BoardEfficiency extends Skills {
     private static SkillRewards level5Rewards() {
         SkillRewards skillRewards = new SkillRewards();
         skillRewards.setItems(List.of(
-                MakeshiftSkull.getInstance().getResult(),
+//                MakeshiftSkull.getInstance().getResult(),
                 NetherStar.getInstance().getResult(2),
                 new ItemStack(Material.NETHERITE_INGOT, 1)
         ));

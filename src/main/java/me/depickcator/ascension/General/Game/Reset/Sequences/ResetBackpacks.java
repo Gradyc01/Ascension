@@ -9,7 +9,7 @@ import me.depickcator.ascension.Items.UnlockRecommender;
 public class ResetBackpacks extends GameSequences {
     @Override
     public void run(GameLauncher game) {
-        Backpack.getInstance().resetBackpacks();
+//        Backpack.getInstance().resetBackpacks();
         UnlockRecommender.getInstance().resetCraftCodes();
         AscensionRewardBundle.getInstance().resetRewardBundles();
         plugin.getSettingsUI().getSettings().getTimeline().resetTimeline();
