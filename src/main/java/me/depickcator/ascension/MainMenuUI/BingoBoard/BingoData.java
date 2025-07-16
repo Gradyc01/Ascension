@@ -98,7 +98,7 @@ public class BingoData{
                 }
                 pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
                 pD.getPlayerStats().addItemsObtained();
-                pD.getPlayerSkills().getBoardEfficiency().addExp(1);
+                giveExp(pD);
                 sendItemObtainedMessage(p, item, removeItem);
                 addScore(24 - items.indexOf(item), p);
                 checkForLineCompletion(p); //Also adds an item obtained (idk where else to put it)
@@ -193,6 +193,14 @@ public class BingoData{
         soloRewards(rewardEffect, p, pD);
         //Other Teammates rewards
         teamRewards(rewardEffect, pD);
+    }
+
+    private void giveExp(PlayerData pD) {
+        pD.getPlayerSkills().getBoardEfficiency().addExp(2);
+        List<Player> otherTeamMembers = pD.getPlayerTeam().getTeam().getOtherTeamMembers(pD.getPlayer());
+        for (Player p : otherTeamMembers) {
+            PlayerUtil.getPlayerData(p).getPlayerSkills().getBoardEfficiency().addExp(1);
+        }
     }
 
     private void soloRewards(PotionEffect effect, Player p, PlayerData pD) {

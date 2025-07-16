@@ -30,10 +30,10 @@ public class AscensionTravel implements Commands {
         this.plugin = Ascension.getInstance();
     }
     @Override
-    public void uponEvent(InventoryClickEvent event, PlayerData playerData) {
+    public boolean uponEvent(InventoryClickEvent event, PlayerData playerData) {
         Player p = playerData.getPlayer();
-        if (TeleportCooldown.getInstance().isOnCooldown(p)) return;
-        if (!inAscension(p)) return;
+        if (TeleportCooldown.getInstance().isOnCooldown(p)) return true;
+        if (!inAscension(p)) return true;
         if (canPurchase(playerData)) {
             Random rand = new Random();
             Location ascensionLocation = plugin.getSettingsUI().getSettings().getTimeline().getAscensionEvent().getAscendingLocation().getSpawnLocation();
@@ -50,7 +50,7 @@ public class AscensionTravel implements Commands {
             TextUtil.errorMessage(p, "You do not have the souls to purchase this teleport!");
         }
 
-
+        return true;
 
     }
 

@@ -24,10 +24,10 @@ public class SendCoords implements Commands {
         this.plugin = Ascension.getInstance();
     }
     @Override
-    public void uponEvent(InventoryClickEvent event, PlayerData playerData) {
+    public boolean uponEvent(InventoryClickEvent event, PlayerData playerData) {
         if (!plugin.getGameState().inGame()) {
             TextUtil.errorMessage(playerData.getPlayer(), "You can't currently use this command");
-            return;
+            return true;
         }
         Location loc = playerData.getPlayer().getLocation();
         for (Player p : playerData.getPlayerTeam().getTeam().getTeamMembers()) {
@@ -37,7 +37,7 @@ public class SendCoords implements Commands {
             p.sendMessage(prefix.append(main).append(coordsText));
             SoundUtil.playHighPitchPling(p);
         }
-
+        return true;
     }
 
     @Override

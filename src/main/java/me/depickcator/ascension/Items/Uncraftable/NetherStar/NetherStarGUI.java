@@ -53,14 +53,14 @@ public class NetherStarGUI extends AscensionMenuGUI {
         buildItem(new ItemStack(Material.LEATHER, 3), 21);
         buildItem(new ItemStack(Material.MELON_SLICE, 3), 22);
         buildItem(new ItemStack(Material.PUMPKIN, 1), 23);
-        buildItem(new ItemStack(Material.INK_SAC, 3), 24);
+        buildItem(new ItemStack(Material.SUGAR_CANE, 8), 24);
         buildItem(new ItemStack(Material.GUNPOWDER, 2), 25);
         /*Tier 3*/
         buildItem(new ItemStack(Material.EMERALD, 2), 28);
         buildItem(new ItemStack(Material.DIAMOND, 5), 29);
         buildItem(new ItemStack(Material.FEATHER, 5), 30);
         buildItem(new ItemStack(Material.CARROT, 8), 31);
-        buildItem(new ItemStack(Material.SUGAR_CANE, 8), 32);
+        buildItem(new ItemStack(Material.INK_SAC, 3), 32);
         buildItem(new ItemStack(Material.SPIDER_EYE, 2), 33);
         buildItem(new ItemStack(Material.ENDER_PEARL, 1), 34);
         /*Tier 4*/

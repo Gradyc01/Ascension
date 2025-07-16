@@ -27,6 +27,11 @@ public class TeleportCooldown extends Cooldowns{
         setCooldownTimer(p, 120, Material.ENDER_PEARL);
     }
 
+    @Override
+    public void setCooldownTimer(Player p, int seconds) {
+        setCooldownTimer(p, seconds, Material.ENDER_PEARL);
+    }
+
     public static TeleportCooldown getInstance() {
         if (instance == null) {
             instance = new TeleportCooldown();

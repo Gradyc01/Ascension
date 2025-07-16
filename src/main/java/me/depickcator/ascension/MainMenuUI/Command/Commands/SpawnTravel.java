@@ -26,12 +26,12 @@ public class SpawnTravel implements Commands {
         this.plugin = Ascension.getInstance();
     }
     @Override
-    public void uponEvent(InventoryClickEvent event, PlayerData playerData) {
+    public boolean uponEvent(InventoryClickEvent event, PlayerData playerData) {
         Player p = playerData.getPlayer();
         if (!plugin.getGameState().canTeleport(p) ||
                 TeleportCooldown.getInstance().isOnCooldown(p)) {
 //            TextUtil.errorMessage(p, "You can't currently use this command");
-            return;
+            return true;
         }
 
         Location spawn = Ascension.getSpawn();
@@ -44,7 +44,7 @@ public class SpawnTravel implements Commands {
         Location newLoc = plugin.getWorld().getHighestBlockAt(x, z).getLocation();
         TeleportCooldown.getInstance().setCooldownTimer(playerData.getPlayer());
         new TeleportSequence(playerData, newLoc.add(0, 1, 0), 15);
-
+        return true;
     }
 
     @Override
