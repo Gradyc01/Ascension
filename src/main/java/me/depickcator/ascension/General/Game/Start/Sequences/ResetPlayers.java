@@ -38,7 +38,7 @@ public class ResetPlayers extends GameSequences {
                 }
                 pD.resetBeforeStartGame();
 //                TextUtil.makeTitle(TextUtil.makeText(""), 10, 10, 10);
-                TextUtil.sendActionBar(p, TextUtil.makeText("Starting Game Please Be Patient", TextUtil.RED, true, false), 30 * 20, plugin);
+                TextUtil.sendActionBar(p, TextUtil.makeText("Starting Game Please Be Patient", TextUtil.RED, true, false), 30 * 20);
                 pD.getPlayerScoreboard().makeGameBoard();
             }
         }.runTaskTimer(plugin, 10, 10);

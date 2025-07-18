@@ -4,9 +4,7 @@ import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.KitBook;
 import me.depickcator.ascension.Items.Uncraftable.MainMenu;
 import me.depickcator.ascension.Items.Uncraftable.TeammateTracker;
-import me.depickcator.ascension.Lobby.Lobby;
 import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
-import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -30,6 +28,7 @@ public class PlayerData {
     public final static int STATE_ALIVE = 1;
     public final static int STATE_DEAD = 2;
     public final static int STATE_SPECTATING = 3;
+    public final static int STATE_RESPAWNING = 4;
 
     //Extra Player Data
     private final PlayerUnlocks playerUnlocks;
@@ -79,14 +78,16 @@ public class PlayerData {
         PlayerUtil.changePlayerVisibility(this);
     }
 
-    /*Re-initializes the Player after they re-login or obtained a new player instance*/
+    /*Re-initializes the Player after they re-login*/
     public void reInitPlayer(Player player) {
         this.player = player;
         for (PlayerDataObservers observer : observers) {
             observer.updatePlayer();
         }
-        setPlayerState(STATE_DEAD);
-        PlayerDeath.getInstance().setRespawningLater(this);
+        PlayerDeath.getInstance().playerDied(this);
+//        setPlayerState(STATE_DEAD);
+
+//        PlayerDeath.getInstance().setRespawningLater(this);
     }
 
     /*Resets the Player back to its lobby state*/
@@ -212,10 +213,14 @@ public class PlayerData {
     /*Sets the player to Player State playerState*/
     public void setPlayerState(int playerState) {
         this.playerState = playerState;
-        TextUtil.debugText(player.getName() + "is now State: " + playerState);
     }
 
-    public boolean checkState(int state) {
-        return playerState == state;
+    public boolean checkState(int... states) {
+        for (int state : states) {
+            if (state == this.playerState) {
+                return true;
+            }
+        }
+        return false;
     }
 }

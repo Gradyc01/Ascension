@@ -20,7 +20,7 @@ public class Testing extends Settings {
                 new SetWorldBorder(getWorldBorderSize()),
                 new SpreadPlayers(getWorldBorderSize()),
                 new InitBingoBoard(getItemDistribution()),
-                new AdjustStartingGameScore(12),
+                new AdjustStartingGameScore(1),
                 new TextSequence(1),
                 new ResetWorld(),
                 new LaunchSequence()

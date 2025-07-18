@@ -46,7 +46,8 @@ public abstract class SoulShopAlgorithm {
                 Material.SKELETON_SKULL, SkeletonSkull.getInstance().getResult(),
                 Material.ZOMBIE_HEAD, ZombieHead.getInstance().getResult());
         expensiveList = Set.of("sword", "axe", "ascension", "helmet", "chestplate", "leggings",
-                "boots", "breeze_rod", "heavy_core", "blaze_rod", "golden_apple", "name_tag", "_skull", "_head", "gold_block");
+                "boots", "breeze_rod", "heavy_core", "blaze_rod", "golden_apple", "name_tag", "_skull", "_head", "gold_block",
+                "nether_star");
         cheapList = Set.of("gold", "iron", "leather", "planks", "log", "stem", "slab", "redstone", "lapis_lazuli", "copper_ingot");
     }
 

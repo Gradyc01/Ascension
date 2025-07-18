@@ -74,7 +74,7 @@ public class Queue {
                     cancel();
                     return;
                 }
-                if (allPlayers.size() == readiedPlayers.size()) {
+                if ((float)readiedPlayers.size()/(float)allPlayers.size() >= 0.75 ) {
                     success();
                     cancel();
                     return;

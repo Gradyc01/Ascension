@@ -2,6 +2,7 @@ package me.depickcator.ascension.Player.Cooldowns.Death;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
+import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
@@ -12,6 +13,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -30,22 +32,42 @@ public class PlayerDeath {
     public void playerDied(PlayerData playerData) {
         GameStates gameState = plugin.getGameState();
         if (gameState.inGame()) {
-            if (!gameState.checkState(GameStates.GAME_FINAL_ASCENSION)) {
-                setRespawningLater(playerData);
-
-            } else {
-                setPlayerSpectating(playerData);
-                playerData.getPlayerTeam().getTeam().updateState();
+            Team team = playerData.getPlayerTeam().getTeam();
+            if (team.getTeamStats().getGameScore() <= 0 && !gameState.checkState(GameStates.GAME_BEFORE_GRACE)) {
+                setPlayerDead(playerData, PlayerData.STATE_DEAD);
                 Player p = playerData.getPlayer();
-                p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 100f, 1f);
-                p.sendMessage(TextUtil.makeText("You have been eliminated, but your team is still alive!", TextUtil.RED));
+                p.sendMessage(TextUtil.makeText("Your team is still alive! " +
+                        "If they become more enlightened you are able to be respawned", TextUtil.RED));
+                playerData.getPlayerTeam().getTeam().updateState();
+            } else if (gameState.checkState(GameStates.GAME_FINAL_ASCENSION)) {
+                setPlayerSpectating(playerData);
+            } else {
+                if (!gameState.checkState(GameStates.GAME_BEFORE_GRACE)) team.getTeamStats().addGameScore(-1);
+                setRespawningLater(playerData);
             }
         }
     }
 
-    public void setRespawningLater(PlayerData playerData) {
-        Player p = playerData.getPlayer();
+    public void setPlayerVaporized(PlayerData playerData) {
         setPlayerDead(playerData, PlayerData.STATE_DEAD);
+        TextUtil.broadcastMessage(TextUtil.makeText(playerData.getPlayer().getName() + " has been vaporized", TextUtil.DARK_RED));
+        playerData.getPlayerTeam().getTeam().updateState();
+    }
+
+    /*Sets Player playerData to the spectating state*/
+    public void setPlayerSpectating(PlayerData playerData) {
+        setPlayerDead(playerData, PlayerData.STATE_SPECTATING);
+        if (playerData.getPlayerTeam().getTeam() != null) {
+            playerData.getPlayerTeam().getTeam().updateState();
+            Player p = playerData.getPlayer();
+            p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 100f, 1f);
+            p.sendMessage(TextUtil.makeText("You have been eliminated, but your team is still alive!", TextUtil.RED));
+        }
+    }
+
+    private void setRespawningLater(PlayerData playerData) {
+        Player p = playerData.getPlayer();
+        setPlayerDead(playerData, PlayerData.STATE_RESPAWNING);
         p.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, PotionEffect.INFINITE_DURATION, 1, false, false));
         deathTimer.setCooldownTimer(p);
         players.add(playerData);
@@ -64,7 +86,7 @@ public class PlayerDeath {
                     cancel();
                     return;
                 }
-                for (PlayerData playerData : players) {
+                for (PlayerData playerData : new ArrayList<>(players)) {
                     Player p = playerData.getPlayer();
                     if (!deathTimer.isOnCooldown(p, false) || !plugin.getGameState().inGame()) {
                         respawnPlayer(playerData);
@@ -72,7 +94,7 @@ public class PlayerDeath {
                     }
                     teleportBackToDeathLocation(p);
                     Component text = TextUtil.makeText("Respawning In: " + (int) deathTimer.getCooldownTimer(p)  + "s", TextUtil.AQUA);
-                    TextUtil.sendActionBar(p, text, 24, plugin);
+                    TextUtil.sendActionBar(p, text, 24);
                 }
             }
 
@@ -94,8 +116,8 @@ public class PlayerDeath {
         Player p = playerData.getPlayer();
         PlayerUtil.clearEffects(playerData);
         p.setLastDeathLocation(p.getLocation());
+        if (!p.getGameMode().isInvulnerable()) strikeLightning(p);
         p.setGameMode(GameMode.SPECTATOR);
-        strikeLightning(p);
         p.sendMessage(TextUtil.makeText("You are Dead", TextUtil.DARK_RED));
         p.showTitle(TextUtil.makeTitle(TextUtil.makeText("You Died", TextUtil.DARK_RED), TextUtil.makeText(""), 0, 5, 1));
         changePlayerVisibility(playerData);
@@ -161,11 +183,6 @@ public class PlayerDeath {
             TextUtil.debugText(debugString + " Not in border. Retrying...");
             return getRespawnLocation();
         }
-    }
-
-    public void setPlayerSpectating(PlayerData playerData) {
-//        playerData.setPlayerState(PlayerData.STATE_SPECTATING);
-        setPlayerDead(playerData, PlayerData.STATE_SPECTATING);
     }
 
     public void respawnEveryone() {

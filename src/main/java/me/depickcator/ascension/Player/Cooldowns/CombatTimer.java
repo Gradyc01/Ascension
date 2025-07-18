@@ -31,7 +31,7 @@ public class CombatTimer extends Cooldowns {
             p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_HURT,20f, 0.8f);
             Component text = TextUtil.makeText("You are in Combat!", TextUtil.DARK_RED);
             p.sendMessage(text);
-            TextUtil.sendActionBar(p, text, 60, Ascension.getInstance());
+            TextUtil.sendActionBar(p, text, 60);
         }
         int time = Ascension.getInstance().getGameState().checkState(GameStates.GAME_BEFORE_GRACE) ? cooldownTime/2 : cooldownTime;
         setCooldownTimer(p, time, Material.IRON_SWORD);

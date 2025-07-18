@@ -112,7 +112,7 @@ public abstract class Settings {
         List<ItemStack> rewards = new ArrayList<>(List.of(
                 new ItemStack(Material.GOLD_NUGGET, 21)
         ));
-        ItemStack shards = ShardOfTheFallen.getInstance().getResult(7);
+        ItemStack shards = ShardOfTheFallen.getInstance().getResult(2);
         rewards.add(shards);
         PlayerInventory inv = victim.getPlayer().getInventory();
         for (ItemStack item : inv.getContents().clone()) {

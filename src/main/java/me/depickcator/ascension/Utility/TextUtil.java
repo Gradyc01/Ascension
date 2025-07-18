@@ -88,9 +88,6 @@ public class TextUtil {
     }
 
     public static void broadcastMessage(Component text, List<Player> players) {
-//        for (Player p: players) {
-//            p.sendMessage(text);
-//        }
         Audience.audience(players).sendMessage(text);
     }
 
@@ -114,7 +111,13 @@ public class TextUtil {
         return toRomanNumeral(Integer.parseInt(num));
     }
 
-    public static void sendActionBar(Player player, Component message, int ticks, Ascension plugin) {
+    public static void sendActionBar(List<Player> players, Component message, int ticks) {
+        for (Player p: players) {
+            TextUtil.sendActionBar(p, message, ticks);
+        }
+    }
+
+    public static void sendActionBar(Player player, Component message, int ticks) {
         // Duration is in ticks; 20 ticks = 1 second
         int interval = 20; // Send message every second to ensure it's displayed
         int repetitions = ticks / interval;
@@ -131,7 +134,7 @@ public class TextUtil {
                 player.sendActionBar(message); // Send the action bar message
                 count++;
             }
-        }.runTaskTimer(plugin, 0, interval); // Schedule to run every second
+        }.runTaskTimer(Ascension.getInstance(), 0, interval); // Schedule to run every second
     }
 
     public static void errorMessage(Player p, String msg) {

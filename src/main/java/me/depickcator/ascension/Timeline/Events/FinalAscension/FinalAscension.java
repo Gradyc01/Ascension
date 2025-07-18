@@ -101,7 +101,7 @@ public class FinalAscension {
                 if (activeTeams.size() <= 1) {
                     cancel();
                     finalBorderShrinkTask.cancel();
-                    new Winner(activeTeams);
+//                    new Winner(activeTeams);
                     TextUtil.debugText("win");
                     return;
                 }
@@ -123,7 +123,6 @@ public class FinalAscension {
             if (t.checkSTATE(Team.STATE_DEPRECATED)) {
                 activeTeams.remove(t);
                 TextUtil.debugText("team lost");
-                teamEliminatedMessage(t);
                 return updateTeams(activeTeams);
             }
 
@@ -155,18 +154,6 @@ public class FinalAscension {
             GameBoard b = (GameBoard) pD.getPlayerScoreboard().getBoards();
             b.updateTime();
         }
-    }
-
-    private void teamEliminatedMessage(Team t) {
-        Component lost = TextUtil.makeText("            YOU LOST   \n\n", TextUtil.RED, true, true);
-//        Component description = TextUtil.makeText(
-//                "      Your team has failed to ascend.      " +
-//                        "\n      You collapsed at the final hurdle and couldn't get up. " +
-//                        "\n      Maybe another day and another time.", TextUtil.AQUA);
-        Component description = TextUtil.makeText(
-                "      Your team has failed to ascend.      ",TextUtil.AQUA);
-        Component finalText = TextUtil.topBorder(TextUtil.YELLOW).append(lost).append(description).append(TextUtil.bottomBorder(TextUtil.YELLOW));
-        TextUtil.broadcastMessage(finalText, t.getTeamMembers());
     }
 
     private void finalAscensionStartAnnouncement() {

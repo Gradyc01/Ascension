@@ -25,6 +25,7 @@ public class Winner {
     private final Ascension plugin;
     public Winner(List<Team> teams) {
         this.plugin = Ascension.getInstance();
+        plugin.getSettingsUI().getSettings().getTimeline().pauseTimeline();
         if (teams.size() == 1) {
             this.team = teams.getFirst();
             team.getTeamStats().setWin();

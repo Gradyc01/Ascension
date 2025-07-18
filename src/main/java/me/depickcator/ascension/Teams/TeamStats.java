@@ -1,10 +1,14 @@
 package me.depickcator.ascension.Teams;
 
 
+import com.lunarclient.apollo.module.team.TeamMember;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.title.Title;
 import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,13 +77,27 @@ public class TeamStats {
         TextUtil.debugText(team.getLeader().getName() + "'s Team previous score : " + gameScore);
 
         gameScore += num;
-        if (num > 0) {
-            TextUtil.broadcastMessage(TextUtil.makeText("You feel a little more enlightened", TextUtil.GRAY), team.getTeamMembers());
-            SoundUtil.broadcastSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE, 100, 0, team.getTeamMembers());
+        if (gameScore <= 0) {
+            gameScore = 0;
+            Title title = TextUtil.makeTitle(TextUtil.makeText("No more Respawns", TextUtil.RED),
+                    TextUtil.makeText("Become more enlightened in order to respawn again", TextUtil.YELLOW),
+                    1, 5, 1);
+            Audience.audience(team.getTeamMembers()).showTitle(title);
         }
+        if (num > 0) {
+            gameScoreChangeText("You feel a little more enlightened", Sound.BLOCK_ENCHANTMENT_TABLE_USE, 0);
+        }
+        if (num < 0) gameScoreChangeText("You feel drained from your enlightenment", Sound.BLOCK_BEACON_DEACTIVATE, 1);
+
+        team.attemptToRespawnTeamMembers();
         team.updateTeamScoreboards();
 
         TextUtil.debugText(team.getLeader().getName() + "'s Team current score : " + gameScore);
+    }
+
+    private void gameScoreChangeText(String text, Sound sound, float pitch) {
+        TextUtil.broadcastMessage(TextUtil.makeText(text, TextUtil.GRAY), team.getTeamMembers());
+        SoundUtil.broadcastSound(sound, 100, pitch, team.getTeamMembers());
     }
 
     public int getGameScorePercentage() {

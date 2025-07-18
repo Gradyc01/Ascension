@@ -110,7 +110,7 @@ public abstract class Skills {
     private void playerGainedExpNotification(Player player, int amount, String skillName, Ascension plugin) {
         playGainedExpSound(player);
         Component message = TextUtil.makeText("+" + amount + " " + skillName + " " + getExpOverTotalNeeded(), TextUtil.AQUA);
-        TextUtil.sendActionBar(player, message, 20, plugin);
+        TextUtil.sendActionBar(player, message, 20);
     }
 
     private void playGainedExpSound(Player p) {

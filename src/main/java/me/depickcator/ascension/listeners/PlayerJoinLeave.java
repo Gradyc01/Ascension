@@ -89,10 +89,8 @@ public class PlayerJoinLeave implements Listener {
 
     private void onPlayerJoinDuringGame(PlayerJoinEvent event) {
         PlayerData pD = PlayerUtil.getPlayerData(event.getPlayer());
-        if (pD != null && !plugin.getGameState().checkState(GameStates.GAME_FINAL_ASCENSION, GameStates.GAME_LOADING)) {
+        if (pD != null && !plugin.getGameState().checkState(GameStates.GAME_FINAL_ASCENSION, GameStates.GAME_LOADING, GameStates.GAME_ENDING)) {
             TextUtil.debugText("Player Data is not null");
-            TextUtil.debugText("Same player? " + pD.getPlayer().equals(event.getPlayer()));
-            TextUtil.debugText("Same player instance? " + (pD.getPlayer() == event.getPlayer()));
             pD.reInitPlayer(event.getPlayer());
             pD.getPlayerTeam().getTeam().updateState();
             return;

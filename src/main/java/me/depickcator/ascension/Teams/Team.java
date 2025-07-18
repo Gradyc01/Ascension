@@ -1,13 +1,18 @@
 package me.depickcator.ascension.Teams;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.Game.GameStates;
+import me.depickcator.ascension.Player.Cooldowns.Death.PlayerDeath;
+import me.depickcator.ascension.Timeline.Events.Winner.Winner;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Team {
@@ -121,6 +126,17 @@ public class Team {
         return otherTeamMembers;
     }
 
+    public void attemptToRespawnTeamMembers() {
+        if (getTeamStats().getGameScore() <= 0) return;
+        for (PlayerData pD : teamMembers) {
+            if (pD.checkState(PlayerData.STATE_DEAD)) {
+                PlayerDeath.getInstance().playerDied(pD);
+                attemptToRespawnTeamMembers();
+            }
+        }
+
+    }
+
     /*Returns a list of teamMembers other than Player p*/
     public void updateTeamScoreboards() {
         for (PlayerData pD : teamMembers) {
@@ -153,6 +169,13 @@ public class Team {
     private void setSTATE(int STATE) {
         this.STATE = STATE;
         TextUtil.debugText(leader.getPlayer().getName() + "'s team is now State: " + STATE);
+        if (STATE == STATE_DEPRECATED) {
+            teamEliminatedMessage();
+            List<Team> teams = TeamUtil.getEveryTeam(true);
+            if (teams.size() <= 1) {
+                new Winner(teams);
+            }
+        }
     }
 
     public Player getLeader() {
@@ -161,9 +184,10 @@ public class Team {
 
     /*Changes the State of the team*/
     public void updateState() {
+        if (checkSTATE(STATE_DEPRECATED)) return;
         boolean active = false;
         for (PlayerData pD : teamMembers) {
-            if (!pD.checkState(PlayerData.STATE_SPECTATING)) {
+            if (!pD.checkState(PlayerData.STATE_SPECTATING, PlayerData.STATE_DEAD)) {
                 active = true;
                 break;
             }
@@ -173,5 +197,14 @@ public class Team {
         } else {
             setSTATE(STATE_DEPRECATED);
         }
+    }
+
+    private void teamEliminatedMessage() {
+        Component lost = TextUtil.makeText("\n            YOU LOST   \n\n", TextUtil.RED, true, true);
+        Component description = TextUtil.makeText(
+                "      Your team has failed to ascend.      \n",TextUtil.AQUA);
+        Component finalText = TextUtil.topBorder(TextUtil.YELLOW).append(lost).append(description).append(TextUtil.bottomBorder(TextUtil.YELLOW));
+        Audience.audience(getTeamMembers()).sendMessage(finalText);
+        TextUtil.broadcastMessage(TextUtil.makeText(leader.getPlayer().getName() + "'s Team has failed to complete Ascension", TextUtil.DARK_RED));
     }
 }

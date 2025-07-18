@@ -3,6 +3,7 @@ package me.depickcator.ascension.Player.Cooldowns.Death;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.UseCooldown;
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Player.Cooldowns.Cooldowns;
 import net.kyori.adventure.key.Key;
@@ -27,6 +28,11 @@ public class DeathTimer extends Cooldowns {
 
     @Override
     public void setCooldownTimer(Player p) {
-        setCooldownTimer(p, 60);
+        int seconds = switch (Ascension.getInstance().getGameState().getCurrentState()) {
+            case GameStates.GAME_BEFORE_GRACE -> 60;
+            case GameStates.GAME_ASCENSION -> 20;
+            default -> 30;
+        };
+        setCooldownTimer(p, seconds);
     }
 }

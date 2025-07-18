@@ -103,25 +103,18 @@ public abstract class AscensionMenuGUI extends AscensionGUI {
         Component title = Component.text("Your Stats").color(TextColor.color(TextUtil.GOLD));
         title = title.decoration(TextDecoration.ITALIC, false);
         headMeta.displayName(title);
+        headMeta.lore(List.of(
+                TextUtil.makeText("Souls:         " + playerData.getPlayerUnlocks().getUnlockTokens(), TextUtil.BLUE),
+                TextUtil.makeText("Combat:   " + TextUtil.toRomanNumeral(playerSkills.getCombat().getExpLevel()) +
+                "  "+ playerSkills.getCombat().getExpOverTotalNeeded(), TextUtil.BLUE),
+                TextUtil.makeText("Mining:     " + TextUtil.toRomanNumeral(playerSkills.getMining().getExpLevel()) +
+                "  "+ playerSkills.getMining().getExpOverTotalNeeded(), TextUtil.BLUE),
+                TextUtil.makeText("Foraging: " + TextUtil.toRomanNumeral(playerSkills.getForaging().getExpLevel()) +
+                "  "+ playerSkills.getForaging().getExpOverTotalNeeded(), TextUtil.BLUE),
+                TextUtil.makeText("Board:    " + TextUtil.toRomanNumeral(playerSkills.getBoardEfficiency().getExpLevel()) +
+                "  "+ playerSkills.getBoardEfficiency().getExpOverTotalNeeded(), TextUtil.BLUE)
 
-        List<Component> lore = new ArrayList<>();
-        Component unlockTokensText = TextUtil.makeText("Souls:         " + playerData.getPlayerUnlocks().getUnlockTokens(), TextUtil.BLUE);
-
-        Component combatText = TextUtil.makeText("Combat:   " +
-                TextUtil.toRomanNumeral(playerSkills.getCombat().getExpLevel()) +
-                "  "+ playerSkills.getCombat().getExpOverTotalNeeded(), TextUtil.BLUE);
-        Component miningText = TextUtil.makeText("Mining:     " +
-                TextUtil.toRomanNumeral(playerSkills.getMining().getExpLevel()) +
-                "  "+ playerSkills.getMining().getExpOverTotalNeeded(), TextUtil.BLUE);
-        Component foragingText = TextUtil.makeText("Foraging: " +
-                TextUtil.toRomanNumeral(playerSkills.getForaging().getExpLevel()) +
-                "  "+ playerSkills.getForaging().getExpOverTotalNeeded(), TextUtil.BLUE);
-        lore.add(unlockTokensText);
-        lore.add(combatText);
-        lore.add(miningText);
-        lore.add(foragingText);
-
-        headMeta.lore(lore);
+        ));
         button.setItemMeta(headMeta);
         inventory.setItem(index, button);
     }

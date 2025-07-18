@@ -72,8 +72,7 @@ public class PeriodicChecks {
                 player.damage(2, DamageSource.builder(DamageType.OUT_OF_WORLD).build());
                 TextUtil.sendActionBar(player,
                         TextUtil.makeText("You are over the height limit!", TextUtil.RED),
-                        20,
-                        plugin);
+                        20);
             } else {
                 player.sendMessage(TextUtil.makeText("You are over the height limit, you start taking damage in 15 seconds", TextUtil.RED));
                 delay = 15;

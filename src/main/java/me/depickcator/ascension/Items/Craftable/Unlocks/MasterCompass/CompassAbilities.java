@@ -117,7 +117,7 @@ public class CompassAbilities extends Cooldowns {
                 .append(distanceText)
                 .append(TextUtil.makeText( " blocks away", TextUtil.DARK_GREEN));
         tracker.playSound(tracker.getLocation(), Sound.UI_BUTTON_CLICK, 1.9f, 1.9f);
-        TextUtil.sendActionBar(tracker, text, 20, Ascension.getInstance());
+        TextUtil.sendActionBar(tracker, text, 20);
     }
 
     private void removeFuel(Player tracker) {
@@ -162,7 +162,7 @@ public class CompassAbilities extends Cooldowns {
     }
 
     private void sendFailedMessage(Player p, String text) {
-        TextUtil.sendActionBar(p, TextUtil.makeText(text, TextUtil.RED), 20, Ascension.getInstance());
+        TextUtil.sendActionBar(p, TextUtil.makeText(text, TextUtil.RED), 20);
         SoundUtil.playErrorSoundEffect(p);
     }
 

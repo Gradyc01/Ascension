@@ -1,6 +1,7 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks.TeamPortalItem;
 
 import me.depickcator.ascension.Interfaces.ItemClick;
+import me.depickcator.ascension.Items.Uncraftable.ShardOfTheFallen;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
@@ -35,11 +36,10 @@ public class TeamPortal extends Craft implements ItemClick {
         ShapedRecipe recipe = new ShapedRecipe(key, result);
 
 
-        recipe.shape(" D ", " B ", "ACA");
-        recipe.setIngredient('A', Material.GOLDEN_APPLE);
-        recipe.setIngredient('B', Material.PLAYER_HEAD);
-        recipe.setIngredient('C', Material.SHIELD);
-        recipe.setIngredient('D', Material.EMERALD);
+        recipe.shape("ACA", "ABA", "AAA");
+        recipe.setIngredient('A', ShardOfTheFallen.getInstance().getResult());
+        recipe.setIngredient('B', Material.GOLDEN_APPLE);
+        recipe.setIngredient('C', Material.ENDER_PEARL);
         UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
         return recipe;
     }

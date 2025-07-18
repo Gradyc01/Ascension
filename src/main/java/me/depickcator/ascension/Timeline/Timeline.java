@@ -1,7 +1,9 @@
 package me.depickcator.ascension.Timeline;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Timeline.Events.SoulShop.SoulShops;
+import me.depickcator.ascension.Timeline.Events.Vaporization.VaporizationChecks;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.MainMenuUI.Map.MapItem;
@@ -36,6 +38,7 @@ public abstract class Timeline {
     private final PeriodicChecks periodicChecks;
     private final int STARTING_MINUTES;
     private MapItems mapItems;
+    protected final VaporizationChecks vaporizationChecks;
     private List<Pair<String, Integer>> nextBigEvent;
     public Timeline(int startingMinutes) {
         this.plugin = Ascension.getInstance();
@@ -43,6 +46,7 @@ public abstract class Timeline {
         this.MINUTES = STARTING_MINUTES;
         mapItems = new MapItems();
         periodicChecks = new PeriodicChecks();
+        vaporizationChecks = new VaporizationChecks(this);
         soulShops = new SoulShops();
     }
 
@@ -55,6 +59,7 @@ public abstract class Timeline {
         mapItems = new MapItems();
         mapItems.addMapItem(new MapItem("Spawn", Ascension.getSpawn(), MapItem.SPAWN));
         periodicChecks.stop();
+        vaporizationChecks.reset();
     }
 
     public void startTimeline() {
@@ -97,6 +102,7 @@ public abstract class Timeline {
 
                 checkForMidGameEvents();
                 updatePlayers();
+                vaporizationChecks.sendWarningMessage();
                 if (getTimeTillNextBigEvent() == 1) {
                     mainTimelineSeconds();
                 }
@@ -145,8 +151,10 @@ public abstract class Timeline {
         }.runTaskTimer(plugin, 0, 20);
     }
 
-    public Component getTime() {
-        if (getTimeTillNextBigEvent() > 1) {
+    public Component getTime(PlayerData playerData) {
+        if (!vaporizationChecks.isAboveThreshold(playerData.getPlayerTeam().getTeam())) {
+            return TextUtil.makeText("    " + vaporizationChecks.getTimeTillEnforcement() + " Minutes", TextUtil.WHITE);
+        } else if (getTimeTillNextBigEvent() > 1) {
             return TextUtil.makeText("    " + (getTimeTillNextBigEvent()) + " Minutes", TextUtil.WHITE);
         } else {
             return TextUtil.makeText("    " + SECONDS + " Seconds", TextUtil.WHITE);
@@ -184,6 +192,25 @@ public abstract class Timeline {
             return new MutablePair<>("Final Ascension", STARTING_MINUTES);
         }
         return nextBigEvent.getFirst();
+    }
+
+    public Pair<String, Integer> getNextBigEvent(PlayerData playerData) {
+        if (!vaporizationChecks.isAboveThreshold(playerData.getPlayerTeam().getTeam())) {
+            return Pair.of("Vaporized", getTimePassed() + vaporizationChecks.getTimeTillEnforcement());
+        } else {
+            return getNextBigEvent();
+        }
+    }
+
+    public Pair<Component, Integer> getProgress(Team team) {
+        int percentage = vaporizationChecks.getPercentage(team);
+        if (percentage != -1) {
+            return Pair.of(TextUtil.makeText("  Below Threshold: ", TextUtil.RED),
+                    percentage);
+        } else {
+            return Pair.of(TextUtil.makeText("  Enlightenment: ", TextUtil.WHITE),
+                    team.getTeamStats().getGameScorePercentage());
+        }
     }
     public AscensionEvent getAscensionEvent() {
         return ascensionEvent;

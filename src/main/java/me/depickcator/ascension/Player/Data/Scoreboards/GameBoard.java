@@ -44,8 +44,11 @@ public class GameBoard extends Boards {
         Component killNum = TextUtil.makeText(playerData.getPlayerStats().getKills() + ",", TextUtil.GREEN);
         editLine(board, 6, killText.append(killNum).append(itemsText).append(itemsNum));
 
-        editLine(board, 10, TextUtil.makeText("  Enlightenment: ", TextUtil.WHITE));
-        editLine(board, 9, displayBar(playerData.getPlayerTeam().getTeam().getTeamStats().getGameScorePercentage()));
+//        editLine(board, 10, TextUtil.makeText("  Enlightenment: ", TextUtil.WHITE));
+//        editLine(board, 9, displayBar(playerData.getPlayerTeam().getTeam().getTeamStats().getGameScorePercentage()));
+        Pair<Component, Integer> progressBar = timeline.getProgress(playerData.getPlayerTeam().getTeam());
+        editLine(board, 10, progressBar.getLeft());
+        editLine(board, 9, displayBar(progressBar.getRight()));
 
         Component soulsText = TextUtil.makeText("  Souls: ", TextUtil.WHITE);
         Component soulsNum = TextUtil.makeText(playerData.getPlayerUnlocks().getUnlockTokens() + "", TextUtil.GREEN);
@@ -64,9 +67,9 @@ public class GameBoard extends Boards {
                 updateAscensionTimer();
             }
             default -> {
-                Pair<String, Integer> event = timeline.getNextBigEvent();
+                Pair<String, Integer> event = timeline.getNextBigEvent(playerData);
                 editLine(board, 13, TextUtil.makeText("  " + event.getLeft() +" In:  ", TextUtil.GOLD));
-                editLine(board, 12, timeline.getTime() );
+                editLine(board, 12, timeline.getTime(playerData) );
             }
         }
 
@@ -101,7 +104,6 @@ public class GameBoard extends Boards {
         Component red = TextUtil.makeText(":", TextUtil.RED);
         Component green = TextUtil.makeText(":", TextUtil.GREEN);
         int score = (int) Math.round(25 * percentage/100);
-        // TextUtil.debugText("Percentage: " + percentage + " Green Bars amount: " + score);
         if (score >= 25) return TextUtil.makeText(" ASCENSION READY", TextUtil.GREEN);
 
         for (int i = 0; i < 25; i++) {
@@ -111,6 +113,6 @@ public class GameBoard extends Boards {
                 text = text.append(red);
             }
         }
-        return text.append(endText);
+        return text.append(endText).append(TextUtil.makeText(" " + (int) percentage + "%", TextUtil.WHITE));
     }
 }
