@@ -7,9 +7,11 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.Duration;
@@ -162,4 +164,29 @@ public class TextUtil {
             logger.info(text);
         }
     }
+
+    public static String getItemNameString(ItemStack item) {
+        return getItemNameString(item, true);
+    }
+
+    public static String getItemNameString(ItemStack item, boolean removeItemTags) {
+        String displayName = getComponentString(item.displayName(), removeItemTags);
+        return displayName.substring(1, displayName.length() - 1);
+    }
+
+    public static String getComponentString(Component text) {
+        return getComponentString(text, false);
+    }
+
+    public static String getComponentString(Component text, boolean removeTags) {
+        String displayName = PlainTextComponentSerializer.plainText().serialize(text);
+        if (removeTags) {
+            List<Component> textComponents = List.of(rightClickText(), applyText(), clickText());
+            for (Component component : textComponents) {
+                displayName = displayName.replace(getComponentString(component), "");
+            }
+        }
+        return displayName;
+    }
+
 }

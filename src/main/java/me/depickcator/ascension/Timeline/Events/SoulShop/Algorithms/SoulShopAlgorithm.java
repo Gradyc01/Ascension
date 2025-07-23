@@ -11,6 +11,7 @@ import me.depickcator.ascension.Items.Uncraftable.Skulls.ZombieHead;
 import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Timeline.Events.SoulShop.Shop;
 import me.depickcator.ascension.Timeline.Events.SoulShop.SoulShopItem;
+import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.inventory.*;
@@ -53,9 +54,7 @@ public abstract class SoulShopAlgorithm {
 
     protected void buildSoulShopItemsFromItemStacks(Collection<ItemStack> items, List<Shop> shops) {
         for (ItemStack item : items) {
-            String displayName = PlainTextComponentSerializer.plainText().serialize(item.displayName());
-            displayName = displayName.substring(1, displayName.length() - 1);
-
+            String displayName = TextUtil.getItemNameString(item);
             if (manualOverrideList.containsKey(item.getType())) item = manualOverrideList.get(item.getType()).clone();
 
             int price = getPrice(item);

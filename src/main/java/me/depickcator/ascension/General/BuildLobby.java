@@ -180,8 +180,8 @@ public class BuildLobby implements Runnable {
     }
 
     private void buildBox() {
-        fillArea(20, 100, 20, -20, 110, -20, Material.BARRIER.createBlockData(), armorStand);
-        fillArea(20, 110, 20, -20, 120, -20, Material.BARRIER.createBlockData(), armorStand);
+//        fillArea(20, 100, 20, -20, 110, -20, Material.BARRIER.createBlockData(), armorStand);
+//        fillArea(20, 110, 20, -20, 120, -20, Material.BARRIER.createBlockData(), armorStand);
         fillArea(19, 101, 19, -19, 119, -19, Material.AIR.createBlockData(), armorStand);
     }
 

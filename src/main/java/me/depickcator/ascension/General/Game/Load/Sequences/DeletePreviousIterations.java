@@ -15,8 +15,7 @@ public class DeletePreviousIterations extends GameSequences {
         if (game instanceof LoadGame g) {
             World w = plugin.getSpawnWorld();
             Location l = g.getLobbyCoordsLocation();
-            w.setChunkForceLoaded((int) Math.floor(l.getX() /16), (int) Math.floor(l.getZ() /16), true);
-
+            forceload(w, l, true);
             new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -34,14 +33,13 @@ public class DeletePreviousIterations extends GameSequences {
 
     }
 
-    private void forceload(World world, Location loc) {
-//        World world = plugin.getWorld();
+    private void forceload(World world, Location loc, boolean forceload) {
         WorldBorder border = world.getWorldBorder();
 
         int x = loc.getBlockX();
         int z = loc.getBlockZ();
         border.setCenter(x, z);
-        world.setChunkForceLoaded((int) Math.floor((double) x /16), (int) Math.floor((double) z /16), true);
+        world.setChunkForceLoaded((int) Math.floor((double) x /16), (int) Math.floor((double) z /16), forceload);
 
     }
 }

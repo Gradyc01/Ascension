@@ -1,6 +1,6 @@
 package me.depickcator.ascension.MainMenuUI.BingoBoard;
 
-import me.depickcator.ascension.Player.Data.PlayerUnlocks;
+import me.depickcator.ascension.MainMenuUI.MainMenuGUI;
 import me.depickcator.ascension.Timeline.Events.Scavenger.Scavenger;
 import me.depickcator.ascension.Timeline.Events.Scavenger.ScavengerTrades;
 import me.depickcator.ascension.Utility.TextUtil;
@@ -28,7 +28,7 @@ public class BingoBoardGUI extends AscensionMenuGUI {
             29, 30 ,31, 32, 33,
             38, 39, 40, 41 ,42};
     private List<ItemStack> bingoItems;
-    private final int rightClickClaim = 250;
+    public static final int rightClickClaim = 250;
     public BingoBoardGUI(PlayerData playerData) {
         super(playerData, (char) 6, TextUtil.makeText("Game Board", TextUtil.AQUA), true);
         bingoItems = new ArrayList<>();
@@ -123,15 +123,11 @@ public class BingoBoardGUI extends AscensionMenuGUI {
     private ItemStack initExplainerItem() {
         Component title = TextUtil.makeText("Information", TextUtil.DARK_GREEN);
         List<Component> lore = new ArrayList<>(List.of(
-//                TextUtil.makeText("   Claim items by either using the", TextUtil.DARK_PURPLE),
-//                TextUtil.makeText("buttons on the bottom right or by ", TextUtil.DARK_PURPLE),
-//                TextUtil.makeText("clicking on the item directly. ", TextUtil.DARK_PURPLE),
-                TextUtil.makeText("   Claim items by clicking on", TextUtil.DARK_PURPLE),
-                TextUtil.makeText(" the item directly. ", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("[Left Click]", TextUtil.GOLD).append(TextUtil.makeText(" to Claim items by ", TextUtil.DARK_PURPLE)),
+                TextUtil.makeText("clicking on the item directly. ", TextUtil.DARK_PURPLE),
                 TextUtil.makeText(""),
-                TextUtil.makeText("    If using Right Click you can ", TextUtil.DARK_PURPLE),
-                TextUtil.makeText("Claim an Item without consuming it ", TextUtil.GOLD),
-                TextUtil.makeText("at the cost of " + rightClickClaim + " Souls", TextUtil.DARK_PURPLE),
+                TextUtil.makeText("[Right Click]", TextUtil.GOLD).append(TextUtil.makeText(" to view the item's ", TextUtil.DARK_PURPLE)),
+                TextUtil.makeText("recipes if there are any", TextUtil.DARK_PURPLE),
                 TextUtil.makeText("", TextUtil.AQUA),
                 TextUtil.makeText("   Warning: This will claim items", TextUtil.RED),
                 TextUtil.makeText("that are currently been worn too.", TextUtil.RED)
@@ -173,7 +169,7 @@ public class BingoBoardGUI extends AscensionMenuGUI {
         if (item.equals(initClaimItem())) {
             bingoData.claimItem(player);
         } else if (item.equals(goBackItem())) {
-            player.performCommand("open-main-menu");
+            new MainMenuGUI(playerData);
         } else if (item.equals(initScanItem()) && !ScanBoardCooldown.getInstance().isOnCooldown(player)) {
             if (!plugin.getGameState().inGame()) {
                 TextUtil.errorMessage(player, "This feature is currently not available");
@@ -183,18 +179,21 @@ public class BingoBoardGUI extends AscensionMenuGUI {
             player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_HURT, 10, 0);
             ScanBoardCooldown.getInstance().setCooldownTimer(player);
         } else if (bingoItems.contains(item)) {
-            if (event.isLeftClick()) {
-                bingoData.claimItem(player, item, true);
-            } else if (event.isRightClick()) {
-                PlayerUnlocks playerUnlocks = playerData.getPlayerUnlocks();
-                if (playerUnlocks.getUnlockTokens() > rightClickClaim) {
-                    if (bingoData.claimItem(player, item, true, false)) {
-                        playerUnlocks.addUnlockTokens(-rightClickClaim);
-                    }
-                    return;
+            switch (event.getClick()) {
+                case SHIFT_LEFT -> {
+                    bingoData.claimItem(player, item, true);
                 }
-                TextUtil.errorMessage(player, "You do not have enough Souls to do this!");
-            }
+                case LEFT -> {
+                    if (bingoData.canUnlockItem(player, item)) {
+                        new ClaimItemGUI(playerData, item);
+                    } else {
+                        TextUtil.errorMessage(player, "You don't have this item in your inventory!");
+                    }
+                }
+                case RIGHT -> {
+                    new OpenRecipe(playerData, item).open();
+                }
+            };
         }
     }
 }
