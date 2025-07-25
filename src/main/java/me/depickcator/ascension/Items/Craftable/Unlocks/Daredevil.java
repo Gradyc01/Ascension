@@ -1,5 +1,6 @@
 package me.depickcator.ascension.Items.Craftable.Unlocks;
 
+import me.depickcator.ascension.Interfaces.Summonable;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
@@ -7,6 +8,7 @@ import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.SkeletonHorse;
@@ -20,7 +22,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Daredevil extends Craft {
+public class Daredevil extends Craft implements Summonable {
     private static Daredevil instance;
     private Daredevil() {
         super(725, 1, "Daredevil" ,"daredevil");
@@ -62,26 +64,27 @@ public class Daredevil extends Craft {
 
     @Override
     public boolean uponCrafted(CraftItemEvent e, Player p) {
-        World world = p.getWorld();
-        Location loc = p.getLocation();
-        world.strikeLightningEffect(loc);
-        world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0F, 1.0F);
-        world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0F, 0.0F);
-        world.playSound(loc, Sound.ENTITY_HORSE_ANGRY, 5.0F, 0.0F);
-        world.playSound(loc, Sound.ENTITY_SKELETON_HORSE_DEATH, 5.0F, 0.0F);
         if (e.getCurrentItem() != null) e.getCurrentItem().setAmount(0);
         e.getInventory().setMatrix(new ItemStack[]{null, null, null, null, null, null, null, null, null});
-        makeSkeletonHorse(loc, p);
+        summonEffect(p);
+        initEntity(p);
         return true;
     }
 
-    private SkeletonHorse makeSkeletonHorse(Location loc, Player p) {
+    public static Daredevil getInstance() {
+        if (instance == null) instance = new Daredevil();
+        return instance;
+    }
+
+    @Override
+    public Entity initEntity(Player p) {
+        Location loc = p.getLocation();
         SkeletonHorse entity = (SkeletonHorse) loc.getWorld().spawnEntity(loc, EntityType.SKELETON_HORSE);
         entity.setTrapped(false);
         entity.addPassenger(p);
         entity.setTamed(true);
         entity.getInventory().setSaddle(new ItemStack(Material.SADDLE));
-        entity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.4);
+        entity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.3375);
         //Vanilla max speed 0.3375
         entity.setJumpStrength(0.8);
         entity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(50.0);
@@ -90,8 +93,14 @@ public class Daredevil extends Craft {
         return entity;
     }
 
-    public static Daredevil getInstance() {
-        if (instance == null) instance = new Daredevil();
-        return instance;
+    @Override
+    public void summonEffect(Player p) {
+        World world = p.getWorld();
+        Location loc = p.getLocation();
+        world.strikeLightningEffect(loc);
+        world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0F, 1.0F);
+        world.playSound(loc, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0F, 0.0F);
+        world.playSound(loc, Sound.ENTITY_HORSE_ANGRY, 5.0F, 0.0F);
+        world.playSound(loc, Sound.ENTITY_SKELETON_HORSE_DEATH, 5.0F, 0.0F);
     }
 }

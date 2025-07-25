@@ -43,9 +43,9 @@ public class GameStates {
         return previousState;
     }
 
-    public void setCurrentState(int currentState) {
+    public void setCurrentState(int newState) {
         previousState = this.currentState;
-        this.currentState = currentState;
+        this.currentState = newState;
         TextUtil.debugText("Current state: " + currentState + "             Previous State: " + previousState);
 
     }
@@ -54,7 +54,7 @@ public class GameStates {
     * Returns True if Players can't build
     * Returns False Otherwise*/
     public boolean canNotBuild() {
-        return checkState(LOBBY_NORMAL, GAME_LOADING, GAME_FEAST_LOADING, GAME_PAUSED);
+        return checkState(LOBBY_NORMAL, LOBBY_QUEUE, GAME_LOADING, GAME_FEAST_LOADING, GAME_PAUSED);
     }
 
     /*Checks if game is in a lobby state
@@ -68,7 +68,7 @@ public class GameStates {
      * Returns True if Yes
      * Returns False Otherwise*/
     public boolean canTeleport(Player p) {
-        if (checkState(GAME_FINAL_ASCENSION, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_PAUSED)) {
+        if (checkState(GAME_FINAL_ASCENSION, GAME_AFTER_GRACE, GAME_ASCENSION)) {
             return true;
         } else {
             TextUtil.errorMessage(p, "Teleporting is currently unavailable");

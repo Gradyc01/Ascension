@@ -1,7 +1,7 @@
 package me.depickcator.ascension.Player.Data;
 
 import me.depickcator.ascension.Ascension;
-import me.depickcator.ascension.Interfaces.BackpackGUI2;
+import me.depickcator.ascension.Interfaces.BackpackGUI;
 import me.depickcator.ascension.Player.Cooldowns.CombatTimer;
 import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.Sound;
@@ -11,14 +11,14 @@ public class PlayerBackpack implements PlayerDataObservers{
     private final PlayerData playerData;
     private Player player;
     private final Ascension plugin;
-    private BackpackGUI2 backpackGUI;
+    private BackpackGUI backpackGUI;
     private int backpackLevel;
     public PlayerBackpack(PlayerData playerData) {
         plugin = Ascension.getInstance();
         this.playerData = playerData;
         this.player = playerData.getPlayer();
         this.backpackLevel = 0;
-        this.backpackGUI = new BackpackGUI2(playerData, backpackLevel);
+        this.backpackGUI = new BackpackGUI(playerData, backpackLevel);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class PlayerBackpack implements PlayerDataObservers{
 
     public void upgradeBackpack() {
         backpackLevel++;
-        backpackGUI = new BackpackGUI2(playerData, backpackLevel, backpackGUI.getInventory());
+        backpackGUI = new BackpackGUI(playerData, backpackLevel, backpackGUI.getInventory());
     }
 
     private void errorMessage(String message) {

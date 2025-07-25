@@ -1,4 +1,4 @@
-package me.depickcator.ascension.General;
+package me.depickcator.ascension.Timeline.Events.Ascension;
 
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.Items.Uncraftable.NetherStar.NetherStar;

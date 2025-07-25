@@ -66,7 +66,7 @@ public class AscensionLocation extends EntityInteraction {
         plugin.getWorld().strikeLightningEffect(spawnLocation);
         plugin.getWorld().playSound(spawnLocation, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 3, 1);
         plugin.getWorld().playSound(spawnLocation, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 3, 0);
-        entity.teleport(new Location(spawnLocation.getWorld(), spawnLocation.getX(), spawnLocation.getY() + 10, spawnLocation.getZ()));
+        entity.teleport(spawnLocation.clone().add(0, 10, 0));
         entity.setVelocity(new Vector(0, 1, 0));
         // Wither w = (Wither) entity;
         startText();
@@ -120,11 +120,13 @@ public class AscensionLocation extends EntityInteraction {
     }
 
     private LivingEntity spawnEntity() {
-        Entity e = plugin.getWorld().spawnEntity(spawnLocation, EntityType.WITHER);
+//        Entity e = plugin.getWorld().spawnEntity(spawnLocation, EntityType.WITHER);
+        Entity e = new GatekeeperWither(spawnLocation).getBukkitEntity();
         LivingEntity livingEntity = (LivingEntity) e;
         livingEntity.setCustomNameVisible(true);
         livingEntity.customName(TextUtil.makeText("Gatekeeper", TextUtil.GRAY));
-        livingEntity.setAI(false);
+        livingEntity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0);
+//        livingEntity.setAI(false);
         livingEntity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(450);
         livingEntity.setHealth(450);
         livingEntity.setSilent(true);

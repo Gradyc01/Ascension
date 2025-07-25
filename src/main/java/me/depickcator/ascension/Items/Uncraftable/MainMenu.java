@@ -17,6 +17,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.List;
+
 public class MainMenu extends CustomItem implements ItemClick {
     private static MainMenu instance;
 
@@ -38,6 +40,9 @@ public class MainMenu extends CustomItem implements ItemClick {
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         itemMeta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.AQUA).append(TextUtil.rightClickText()));
+        itemMeta.lore(List.of(
+                TextUtil.makeText("Runs /open-main-menu", TextUtil.DARK_PURPLE)
+        ));
         itemMeta.setMaxStackSize(1);
         itemMeta.setEnchantmentGlintOverride(true);
         item.setItemMeta(itemMeta);

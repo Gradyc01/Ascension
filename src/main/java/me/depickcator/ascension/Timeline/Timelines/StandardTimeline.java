@@ -16,7 +16,7 @@ import java.util.List;
 public class StandardTimeline extends Timeline {
 
     public StandardTimeline() {
-        super(100);
+        super(90);
     }
 
     @Override
@@ -32,22 +32,21 @@ public class StandardTimeline extends Timeline {
             case 10 -> {
                 setAscensionEvent(new AscensionEvent(500));
             }
-            case 25, 50, 63, 90 -> {
+            case 23, 40, 53, 69 -> {
                 getSoulShops().generateShops();
             }
-            case 24, 41, 62, 78 -> {
-                vaporizationChecks.announceNewThreshold(15);
-            }
-            case 30, 51, 65, 80 -> {
+            case 21, 55 -> {vaporizationChecks.announceNewThreshold(15);}
+            case 39, 71 -> {vaporizationChecks.announceNewThreshold(10);}
+            case 25, 36, 57, 67 -> {
                 new CarePackage(500);
             }
-            case 40, 72 -> {
+            case 30, 63 -> {
                 getScavenger().announceSpawnLocation();
             }
-            case 45, 77 -> {
+            case 35, 68 -> {
                 getScavenger().spawnInScavenger();
             }
-            case 60 -> {
+            case 50 -> {
                 new Feast();
             }
 
@@ -58,7 +57,7 @@ public class StandardTimeline extends Timeline {
     protected List<Pair<String, Integer>> initNextBigEvents() {
         return new ArrayList<>(List.of(
                 new MutablePair<>("Grace Period Ends", 20),
-                new MutablePair<>("Feast", 60),
+                new MutablePair<>("Feast", 50),
                 new MutablePair<>("Final Ascension", getStartingMinutes())
         ));
     }

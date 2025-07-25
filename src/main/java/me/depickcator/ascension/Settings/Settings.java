@@ -58,7 +58,7 @@ public abstract class Settings {
         this.teamSize = teamSize;
         this.sequence = initSequence();
         this.countsTowardLeaderboards = countsTowardLeaderboards;
-        this.ascensionsBeforeFinal = 1;
+        this.ascensionsBeforeFinal = 4;
     }
 
     protected Settings(String name,
@@ -77,7 +77,7 @@ public abstract class Settings {
         this.ascensionGameScoreRequirement = ascensionGameScoreRequirement;
         this.teamSize = teamSize;
         this.countsTowardLeaderboards = countsTowardLeaderboards;
-        this.ascensionsBeforeFinal = 1;
+        this.ascensionsBeforeFinal = 4;
 
         this.sequence = initSequence();
     }

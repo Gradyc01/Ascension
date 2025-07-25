@@ -17,7 +17,7 @@ import java.util.List;
 public class QuickplayTimeline extends Timeline {
 
     public QuickplayTimeline() {
-        super(70);
+        super(60);
     }
 
     @Override
@@ -30,22 +30,24 @@ public class QuickplayTimeline extends Timeline {
             case 15 -> {
                 new GracePeriodEnds();
             }
+            case 17 -> {vaporizationChecks.announceNewThreshold(15);}
+            case 37, 49 -> {vaporizationChecks.announceNewThreshold(10);}
             case 11 -> {
                 setAscensionEvent(new AscensionEvent(200));
             }
-            case 20, 50 -> {
+            case 18, 38 -> {
                 getSoulShops().generateShops();
             }
-            case 16, 32, 45, 60  -> {
+            case 16, 29, 40, 50  -> {
                 new CarePackage(500);
             }
-            case 22, 52 -> {
+            case 19, 43 -> {
                 getScavenger().announceSpawnLocation();
             }
-            case 27, 57 -> {
+            case 24, 48 -> {
                 getScavenger().spawnInScavenger();
             }
-            case 40 -> {
+            case 35 -> {
                 new Feast();
 
             }
@@ -57,7 +59,7 @@ public class QuickplayTimeline extends Timeline {
     protected List<Pair<String, Integer>> initNextBigEvents() {
         return new ArrayList<>(List.of(
                 new MutablePair<>("Grace Period Ends", 15),
-                new MutablePair<>("Feast", 40),
+                new MutablePair<>("Feast", 35),
                 new MutablePair<>("Final Ascension", getStartingMinutes())
         ));
     }

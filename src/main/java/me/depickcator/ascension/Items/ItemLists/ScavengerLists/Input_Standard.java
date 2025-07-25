@@ -28,16 +28,16 @@ public class Input_Standard extends ItemLists {
         return getRandomItemInList(parseCustomItems(
                 PlayerHead.getInstance(),
                 MakeshiftSkull.getInstance(),
-                GoldenHead.getInstance(),
-                NetherStar.getInstance()
-        ), 2);
+                GoldenHead.getInstance()
+        ), 1);
     }
 
     private List<ItemStack> getPVEItems() {
         List<ItemStack> items = new ArrayList<>(getRandomItemInList(List.of(
                 ZombieHead.getInstance().getResult(),
                 SkeletonSkull.getInstance().getResult(),
-                CreeperHead.getInstance().getResult()), 1));
+                CreeperHead.getInstance().getResult(),
+                NetherStar.getInstance().getResult()), 1));
         items.addAll(getRandomItemInList(parseMaterials(
                 Material.NETHER_WART,
                 Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE,
@@ -57,7 +57,7 @@ public class Input_Standard extends ItemLists {
                 Material.TINTED_GLASS, Material.STICKY_PISTON, Material.BEEHIVE, Material.MAGMA_BLOCK, Material.GLOW_ITEM_FRAME,
                 Material.SPECTRAL_ARROW, Material.BLAZE_ROD, Material.OBSIDIAN, Material.RABBIT_FOOT, Material.CRAFTER));
         normalItems.add(HardenedSaddle.getInstance().getResult());
-        items.addAll(getRandomItemInList(normalItems, 4));
+        items.addAll(getRandomItemInList(normalItems, 2));
         return items;
     }
 

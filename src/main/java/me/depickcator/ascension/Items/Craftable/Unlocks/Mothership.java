@@ -2,6 +2,7 @@ package me.depickcator.ascension.Items.Craftable.Unlocks;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import me.depickcator.ascension.Interfaces.Summonable;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Mothership extends Craft {
+public class Mothership extends Craft implements Summonable {
     private static Mothership instance;
     private Mothership() {
         super(875, 1, "Mothership" ,"mothership");
@@ -60,12 +61,9 @@ public class Mothership extends Craft {
 
     @Override
     public boolean uponCrafted(CraftItemEvent e, Player p) {
-        World world = p.getWorld();
-        Location loc = p.getLocation();
-        world.playSound(loc, Sound.ENTITY_WITHER_SPAWN, 5.0F, 0.0F);
         if (e.getCurrentItem() != null) e.getCurrentItem().setAmount(0);
-//        e.getInventory().setMatrix(new ItemStack[]{null, null, null, null, null, null, null, null, null});
-        makeEntity(loc, p, clearMatrix(e.getInventory().getMatrix()));
+        initEntity(p, clearMatrix(e.getInventory().getMatrix()));
+        summonEffect(p);
         return true;
     }
 
@@ -82,20 +80,33 @@ public class Mothership extends Craft {
         return harness;
     }
 
-    private Entity makeEntity(Location loc, Player p, ItemStack harness) {
+    public static Mothership getInstance() {
+        if (instance == null) instance = new Mothership();
+        return instance;
+    }
+
+    @Override
+    public Entity initEntity(Player p) {
+        return initEntity(p, new ItemStack(Material.BLACK_HARNESS));
+    }
+
+    private Entity initEntity(Player p, ItemStack harness) {
+        Location loc = p.getLocation();
         HappyGhast entity = (HappyGhast) loc.getWorld().spawnEntity(loc, EntityType.HAPPY_GHAST);
         entity.addPassenger(p);
         entity.getEquipment().setItem(EquipmentSlot.BODY, harness);
-        entity.getAttribute(Attribute.FLYING_SPEED).setBaseValue(0.15);
-        entity.getAttribute(Attribute.ARMOR).setBaseValue(5.0);
+        entity.getAttribute(Attribute.FLYING_SPEED).setBaseValue(0.12);
+        entity.getAttribute(Attribute.ARMOR).setBaseValue(10.0);
         entity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(60.0);
         entity.setHealth(60.0);
         entity.customName(TextUtil.makeText(getDisplayName(), TextUtil.GOLD));
         return entity;
     }
 
-    public static Mothership getInstance() {
-        if (instance == null) instance = new Mothership();
-        return instance;
+    @Override
+    public void summonEffect(Player p) {
+        World world = p.getWorld();
+        Location loc = p.getLocation();
+        world.playSound(loc, Sound.ENTITY_WITHER_SPAWN, 5.0F, 0.0F);
     }
 }

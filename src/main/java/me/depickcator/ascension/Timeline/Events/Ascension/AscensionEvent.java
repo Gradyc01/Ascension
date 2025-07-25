@@ -3,8 +3,11 @@ package me.depickcator.ascension.Timeline.Events.Ascension;
 import me.depickcator.ascension.Ascension;
 import me.depickcator.ascension.General.Game.GameStates;
 import me.depickcator.ascension.Player.Cooldowns.EntityInteractionCooldown;
+import me.depickcator.ascension.Teams.Team;
 import me.depickcator.ascension.Teams.TeamAscension;
+import me.depickcator.ascension.Teams.TeamStats;
 import me.depickcator.ascension.Timeline.Timeline;
+import me.depickcator.ascension.Utility.ItemComparison;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import me.depickcator.ascension.Items.Craftable.Unlocks.AscensionKey;
@@ -59,7 +62,7 @@ public class AscensionEvent {
         ascensionLocation.getAscendingTeam().getTeamAscension().startAscension();
         plugin.getGameState().setCurrentState(GameStates.GAME_ASCENSION);
         loop(ascensionLocation);
-        timeline.pauseTimeline();
+//        timeline.pauseTimeline();
     }
 
     private void loop(AscensionLocation ascensionLocation) {
@@ -108,13 +111,14 @@ public class AscensionEvent {
 //        teamStats.setAscensionTimer(Integer.max((int) (teamStats.getAscensionTimer() * 1.3), 300));
         stop();
         checkForAscensionRemaining();
-        timeline.startTimeline();
+        timeline.updatePlayers();
+//        timeline.startTimeline();
         TextUtil.debugText("Ascension Failed");
     }
 
     private void checkForAscensionRemaining() {
         int numberOfAscensionsBeforeFinal = plugin.getSettingsUI().getSettings().getAscensionsBeforeFinal();
-        if (4 - locations.size() <= numberOfAscensionsBeforeFinal) {
+        if (4 - locations.size() >= numberOfAscensionsBeforeFinal) {
             timeline.setTime(5);
             for (AscensionLocation ascensionLocation : locations) {
                 ascensionLocation.closeLocation();
@@ -168,17 +172,22 @@ public class AscensionEvent {
     public boolean canStartEvent(PlayerData pD) {
         if (EntityInteractionCooldown.getInstance().isOnCooldown(pD.getPlayer())) return false;
         TextUtil.debugText("Ran Ascension Check");
-        boolean canBeginAscension = pD.getPlayerTeam().getTeam().getTeamStats().canBeginAscension();
+        Team team = pD.getPlayerTeam().getTeam();
+        boolean canBeginAscension = team.getTeamStats().canBeginAscension();
         boolean hasAscensionKey = pD.getPlayer().getInventory().getItemInMainHand().equals(AscensionKey.getInstance().getResult());
+        int ascTime = team.getTeamAscension().getAscensionTimer();
+        int minutes = ascTime % 60 == 0 ? ascTime / 60 : (ascTime / 60) + 1;
+        boolean hasEnoughTime = minutes <= timeline.getTimeTillNextBigEvent();
         Component text = TextUtil.topBorder(TextUtil.DARK_GRAY)
                 .append(TextUtil.makeText("            Failed to Start Ascension", TextUtil.WHITE, true, false))
                 .append(createRejectionText(!eventOngoing, "No Ascension Event Happening"))
                 .append(createRejectionText(canBeginAscension, "Is Ascension Ready"))
                 .append(createRejectionText(hasAscensionKey, "Has an Ascension Key"))
+                .append(createRejectionText(hasEnoughTime, "Enough time for Ascension"))
                 .append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
 //        if (eventOngoing) return false;
 //        int score = pD.getPlayerTeam().getTeam().getTeamStats().getGameScore();
-        if (!eventOngoing && hasAscensionKey && canBeginAscension) {
+        if (!eventOngoing && hasAscensionKey && canBeginAscension && hasEnoughTime) {
             return true;
         } else {
             pD.getPlayer().sendMessage(text);

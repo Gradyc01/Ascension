@@ -21,12 +21,9 @@ public class TeamStats {
     private int linesObtained;
     private int gameScore;
     private int finalAscensionTimer;
-//    private int ascensionTimer;
-//    private int ascensionAttempts;
     private boolean win;
 
     private int gameScoreRequirement;
-//    private final static int ascensionStartingTime = 900;
 
     //Scavenger
     private List<Boolean> scavengerScore;
@@ -36,9 +33,7 @@ public class TeamStats {
         itemsObtained = 0;
         linesObtained = 0;
         gameScore = 0;
-//        ascensionAttempts = 0;
         win = false;
-//        ascensionTimer = Ascension.getInstance().getSettingsUI().getSettings().getStartingAscensionTimer();
         scavengerScore = new ArrayList<>(List.of(
                 false, false, false, false, false
         ));
@@ -102,7 +97,7 @@ public class TeamStats {
 
     public int getGameScorePercentage() {
         // TextUtil.debugText(gameScore + " Game Score     ");
-        int round2Requirement = 2 * gameScoreRequirement / 3;
+        int round2Requirement = (int) (0.67 * gameScoreRequirement) ;
         double percentage;
         int ascensionAttempts = team.getTeamAscension().getAscensionAttempts();
         if (ascensionAttempts == 0) {
@@ -138,30 +133,6 @@ public class TeamStats {
         this.finalAscensionTimer = finalAscensionTimer;
     }
 
-
-//    //Ascension Timer
-//    public int getAscensionTimer() {
-//        return ascensionTimer;
-//    }
-//
-//    public void addAscensionTimer(int ascensionTimer) {
-//        this.ascensionTimer += ascensionTimer;
-//    }
-//
-//    public void setAscensionTimer(int ascensionTimer) {
-//        this.ascensionTimer = ascensionTimer;
-//    }
-//
-//    //Ascension Attempts
-//    public int getAscensionAttempts() {
-//        return ascensionAttempts;
-//    }
-//
-//    public void addAscensionAttempts() {
-//        this.ascensionAttempts++;
-//        team.updateTeamScoreboards();
-//    }
-
     public boolean isWin() {
         return win;
     }
@@ -169,8 +140,4 @@ public class TeamStats {
     public void setWin() {
         this.win = true;
     }
-
-//    public void setAscensionAttempts(int ascensionAttempts) {
-//        this.ascensionAttempts = ascensionAttempts;
-//    }
 }

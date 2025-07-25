@@ -1,6 +1,7 @@
 package me.depickcator.ascension.testingCommands;
 
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Interfaces.Summonable;
 import me.depickcator.ascension.Items.CustomItem;
 import me.depickcator.ascension.Items.Uncraftable.*;
 import me.depickcator.ascension.Items.Uncraftable.HadesBook.HadesBook;
@@ -58,11 +59,11 @@ public class giveCustomItem implements CommandExecutor, TabCompleter {
         for (CustomItem customItem : allItems) {
             if (customItem.getKey().equals(name)) {
                 ItemStack item = customItem.getResult();
-                int count;
-                if (strings.length == 2) {
-                    count = 1;
-                } else {
-                    count = Integer.parseInt(strings[2]);
+                int count = strings.length == 2 ? 1 : Integer.parseInt(strings[2]);
+                if (customItem instanceof Summonable summonable) {
+                    summonable.summonEffect(p);
+                    summonable.initEntity(p);
+                    return true;
                 }
                 for (int i = 0; i < count; i++) {
                     PlayerUtil.giveItem(p, item);
