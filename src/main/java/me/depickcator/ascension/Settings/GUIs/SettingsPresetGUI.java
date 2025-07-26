@@ -31,11 +31,11 @@ public class SettingsPresetGUI extends AscensionMenuGUI {
 
     private void initPresets() {
         addPreset(Material.GRASS_BLOCK,
-                "3 Hrs",
+                "1 Hr 30 Mins",
                 "A Standard Game of Ascension",
                 new Standard(), 13);
         addPreset(Material.SUGAR_CANE,
-                "1 Hr 30 Mins",
+                "1 Hr",
                 "Compact Version of the Standard Game",
                 new Quickplay(), 11);
         addPreset(Material.GOLDEN_SWORD,
@@ -43,7 +43,7 @@ public class SettingsPresetGUI extends AscensionMenuGUI {
                 "A Last Man Standing Scenario",
                 new Brawl(), 15);
         addPreset(Material.ENCHANTED_BOOK,
-                "2 Hrs",
+                "1 Hr 30 Mins",
                 "A No Ascension Game mode",
                 new InstantAscension(), 10);
     }

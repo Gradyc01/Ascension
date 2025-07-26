@@ -10,6 +10,10 @@ import me.depickcator.ascension.Utility.TextUtil;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Openable;
+import org.bukkit.block.data.type.Door;
+import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,9 +22,13 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.InventoryHolder;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class PlayerInteractListener implements Listener {
      private final Ascension plugin;
+     private final Set<Material> unRightClickables = Set.of(Material.CRAFTING_TABLE, Material.CARTOGRAPHY_TABLE);
 
     public PlayerInteractListener() {
          this.plugin = Ascension.getInstance();
@@ -42,6 +50,8 @@ public class PlayerInteractListener implements Listener {
     private boolean blockHasInventory(PlayerInteractEvent e) {
         if (e.getClickedBlock() == null || e.getClickedBlock().getType() == Material.AIR) return false;
         Block b = e.getClickedBlock();
+        if (b.getBlockData() instanceof Openable) return true;
+        if (unRightClickables.contains(b.getType())) return true;
         return b.getState() instanceof InventoryHolder;
     }
 
