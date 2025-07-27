@@ -23,7 +23,8 @@ public class Global extends SoulShopAlgorithm {
 //        collection.add(RepairKit.getInstance().getResult());
         buildSoulShopItemsFromItemStacks(collection, shops);
         for (Shop shop : shops) {
-            addItem(new SoulShopItem("Repair Kit", 500, r.nextInt(2, 6), RepairKit.getInstance().getResult(), shop));
+            addItem(new SoulShopItem("Repair Kit", 500, r.nextInt(2, 6),
+                    RepairKit.getInstance().getResult(), shop));
         }
     }
 
@@ -37,20 +38,6 @@ public class Global extends SoulShopAlgorithm {
                 new LootPoolItem(ToolVoucher.getInstance().getResult())
         );
     }
-
-//    private void getItemsFromTheBoard(List<Shop> shops) {
-//        List<ItemStack> bingoItems = plugin.getBingoData().getItems();
-//        List<ItemStack> items =  new ArrayList<>();
-//        for (ItemStack item : bingoItems) {
-//            for (Recipe recipe : plugin.getServer().getRecipesFor(item)) {
-//                if (recipe instanceof CraftingRecipe crafting) {
-//                    if (containsString(crafting.getKey().asString(), expensiveList)) continue;
-//                    items.addAll(getItemsFromRecipe(crafting));
-//                }
-//            }
-//        }
-//        buildSoulShopItemsFromItemStacks(pickItemsFromList(items, 7), shops);
-//    }
 
 
 

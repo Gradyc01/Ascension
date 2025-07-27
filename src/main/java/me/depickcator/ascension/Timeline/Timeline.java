@@ -203,13 +203,12 @@ public abstract class Timeline {
     }
 
     public Pair<Component, Integer> getProgress(Team team) {
-        int percentage = vaporizationChecks.getPercentage(team);
-        if (percentage != -1) {
-            return Pair.of(TextUtil.makeText("  Below Threshold: ", TextUtil.RED),
-                    percentage);
-        } else {
+        if (vaporizationChecks.isAboveThreshold(team)) {
             return Pair.of(TextUtil.makeText("  Enlightenment: ", TextUtil.WHITE),
                     team.getTeamStats().getGameScorePercentage());
+        } else {
+            return Pair.of(TextUtil.makeText("  Below Threshold: ", TextUtil.RED),
+                    vaporizationChecks.getPercentage(team));
         }
     }
     public AscensionEvent getAscensionEvent() {

@@ -33,7 +33,7 @@ public class OpenRecipe {
         }
     }
 
-    private List<Recipe> findRecipesForItem(ItemStack item) {
+    public List<Recipe> findRecipesForItem(ItemStack item) {
         List<Recipe> recipes = new ArrayList<>();
         for (Recipe recipe : plugin.getServer().getRecipesFor(item)) {
             if (recipe instanceof CraftingRecipe crafting) {

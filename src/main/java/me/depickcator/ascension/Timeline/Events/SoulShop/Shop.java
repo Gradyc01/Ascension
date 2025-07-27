@@ -2,11 +2,9 @@ package me.depickcator.ascension.Timeline.Events.SoulShop;
 
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Timeline.Events.SoulShop.Algorithms.Personal;
-import me.depickcator.ascension.Timeline.Events.SoulShop.Algorithms.SoulShopAlgorithm;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 

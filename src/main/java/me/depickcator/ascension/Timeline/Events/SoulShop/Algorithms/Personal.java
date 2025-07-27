@@ -3,6 +3,7 @@ package me.depickcator.ascension.Timeline.Events.SoulShop.Algorithms;
 import me.depickcator.ascension.Items.Craftable.Craft;
 import me.depickcator.ascension.Items.UnlockUtil;
 import me.depickcator.ascension.Items.UnlocksData;
+import me.depickcator.ascension.MainMenuUI.BingoBoard.OpenRecipe;
 import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUnlocks;
 import me.depickcator.ascension.Timeline.Events.SoulShop.Shop;
@@ -45,7 +46,7 @@ public class Personal extends SoulShopAlgorithm {
         for (int i = 0; i < bingoItems.size(); i++) {
             if (booleans.get(i)) continue;
             ItemStack item = bingoItems.get(i);
-            for (Recipe recipe : plugin.getServer().getRecipesFor(item)) {
+            for (Recipe recipe : new OpenRecipe(playerData, item).findRecipesForItem(item)) {
                 if (recipe instanceof CraftingRecipe crafting) {
                     if (containsString(crafting.getKey().asString(), expensiveList)) continue;
                     items.addAll(getItemsFromRecipe(crafting));

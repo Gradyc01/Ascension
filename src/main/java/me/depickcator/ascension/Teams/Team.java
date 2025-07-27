@@ -9,6 +9,7 @@ import me.depickcator.ascension.Player.Data.PlayerData;
 import me.depickcator.ascension.Player.Data.PlayerUtil;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -204,7 +205,14 @@ public class Team {
         Component description = TextUtil.makeText(
                 "      Your team has failed to ascend.      \n",TextUtil.AQUA);
         Component finalText = TextUtil.topBorder(TextUtil.YELLOW).append(lost).append(description).append(TextUtil.bottomBorder(TextUtil.YELLOW));
-        Audience.audience(getTeamMembers()).sendMessage(finalText);
+        Audience team = Audience.audience(getTeamMembers());
+        team.sendMessage(finalText);
+        Title title = TextUtil.makeTitle(TextUtil.makeText("GAME OVER!", TextUtil.RED, true, false)
+                , 0, 9, 1);
+        team.showTitle(title);
+
+//        team.showTitle(TextUtil.makeTitle());
         TextUtil.broadcastMessage(TextUtil.makeText(leader.getPlayer().getName() + "'s Team has failed to complete Ascension", TextUtil.DARK_RED));
+
     }
 }

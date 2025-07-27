@@ -79,9 +79,7 @@ public class TeamStats {
                     1, 5, 1);
             Audience.audience(team.getTeamMembers()).showTitle(title);
         }
-        if (num > 0) {
-            gameScoreChangeText("You feel a little more enlightened", Sound.BLOCK_ENCHANTMENT_TABLE_USE, 0);
-        }
+        if (num > 0) gameScoreChangeText("You feel a little more enlightened", Sound.BLOCK_ENCHANTMENT_TABLE_USE, 0);
         if (num < 0) gameScoreChangeText("You feel drained from your enlightenment", Sound.BLOCK_BEACON_DEACTIVATE, 1);
 
         team.attemptToRespawnTeamMembers();
