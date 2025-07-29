@@ -167,7 +167,7 @@ public class PlayerDeath {
         double worldBorderDiameter = border.getSize() - 100 < 100 ? border.getSize() : border.getSize() - 100;;
         if (plugin.getGameState().checkState(GameStates.GAME_ASCENSION)) {
             spawn = plugin.getSettingsUI().getSettings().getTimeline().getAscensionEvent().getAscendingLocation().getSpawnLocation();
-            worldBorderDiameter = 1250;
+            worldBorderDiameter = border.getSize() - 25 < 25 ? border.getSize() : border.getSize() - 25;
         }
         int bX = r.nextBoolean() ? 1 : - 1;
         int bZ = r.nextBoolean() ? 1 : - 1;

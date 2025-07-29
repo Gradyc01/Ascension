@@ -25,7 +25,7 @@ public class AscensionTravel implements Commands {
     private final Ascension plugin;
     private final int purchasePrice;
     public AscensionTravel() {
-        purchasePrice = 500;
+        purchasePrice = 150;
         item = makeButton();
         this.plugin = Ascension.getInstance();
     }
@@ -45,7 +45,7 @@ public class AscensionTravel implements Commands {
             int x = ascensionLocation.getBlockX() + rand.nextInt(125, spreadDistance) * xM;
             TeleportCooldown.getInstance().setCooldownTimer(playerData.getPlayer());
             Location newLoc = plugin.getWorld().getHighestBlockAt(x, z).getLocation();
-            new TeleportSequence(playerData, newLoc.add(0, 1, 0), 15);
+            new TeleportSequence(playerData, newLoc.add(0, 1, 0), 10);
         } else {
             TextUtil.errorMessage(p, "You do not have the souls to purchase this teleport!");
         }

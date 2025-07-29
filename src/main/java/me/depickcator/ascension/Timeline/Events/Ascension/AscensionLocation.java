@@ -13,11 +13,16 @@ import me.depickcator.ascension.Timeline.Events.Ascension.BuildLayers.AscensionB
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.WorldBorder;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.util.List;
+import java.util.Random;
 
 public class AscensionLocation extends EntityInteraction {
     private final Location spawnLocation;
@@ -29,6 +34,8 @@ public class AscensionLocation extends EntityInteraction {
     private MapItem mapItem;
     private final AscensionBuildLayers buildLayers;
     private final Timeline timeline;
+
+    private int timeTillSummon;
 
     public AscensionLocation(int x, int z, AscensionEvent event) {
         this.event = event;
@@ -43,6 +50,7 @@ public class AscensionLocation extends EntityInteraction {
         mapItem = new MapItem("Ascension", x, z, MapItem.ASCENSION);
         timeline.getMapItems().addMapItem(mapItem);
         addInteraction(entity, this);
+        timeTillSummon = 0;
     }
 
     @Override
@@ -75,6 +83,7 @@ public class AscensionLocation extends EntityInteraction {
     }
 
     public void closeLocation() {
+        resetBorder();
         timeline.getMapItems().removeMapItem(mapItem);
         entity.remove();
         buildLayers.destroyCrystals();
@@ -85,6 +94,78 @@ public class AscensionLocation extends EntityInteraction {
         Wither wither = (Wither) entity;
         BossBar bossBar = wither.getBossBar();
         bossBar.setProgress(wither.getHealth() / wither.getAttribute(Attribute.MAX_HEALTH).getBaseValue());
+    }
+
+    public void update() {
+        if (timeTillSummon < 30) {
+            if (timeTillSummon % 15 == 0 || timeTillSummon >= 25) {
+                TextUtil.broadcastMessage(
+                        TextUtil.makeText("All players will be summoned to Ascension in " + (30 - timeTillSummon) + " seconds",
+                                TextUtil.YELLOW));
+                if (timeTillSummon != 0) {
+                    SoundUtil.broadcastSound(Sound.UI_BUTTON_CLICK, 100, 1);
+                }
+            }
+            timeTillSummon++;
+        } else if (timeTillSummon == 30) {
+            closeBorderAroundLocation();
+            timeTillSummon++;
+        }
+
+    }
+
+    private void resetBorder() {
+        WorldBorder border = spawnLocation.getWorld().getWorldBorder();
+        TextUtil.debugText("Resetting Border");
+        double oldBorderSize = border.getSize();
+        int originalBorderRadius = plugin.getSettingsUI().getSettings().getWorldBorderSize();
+        border.setSize(originalBorderRadius * 2 + oldBorderSize);
+        border.setCenter(Ascension.getSpawn());
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                border.setSize(originalBorderRadius * 2, (long) oldBorderSize/3);
+            }
+        }.runTaskLater(plugin, 30);
+    }
+
+    private void closeBorderAroundLocation() {
+        TextUtil.debugText("Closing Border Around Location");
+        WorldBorder border = spawnLocation.getWorld().getWorldBorder();
+        List<PlayerData> players = PlayerUtil.getAllPlayingPlayers();
+        int newBorderRadius = Math.min(Math.max(250, players.size() * 50), 600);
+        teleportPlayers(players, newBorderRadius);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                border.setCenter(spawnLocation);
+                border.setSize(newBorderRadius * 2);
+            }
+        }.runTaskLater(plugin, 30);
+
+    }
+
+    private void teleportPlayers(List<PlayerData> players, int newBorderRadius) {
+        Location center = spawnLocation;
+        Random r = new Random();
+        for (PlayerData pD : players) {
+            Player p = pD.getPlayer();
+            if (Math.abs(p.getX() - center.getX()) >= newBorderRadius ||
+                    Math.abs(p.getZ() - center.getZ()) >= newBorderRadius) {
+                Location pLoc = p.getLocation().clone();
+                double newX = p.getX() < center.getX() ?
+                        Math.max(-newBorderRadius + center.getX() + r.nextInt(10, 100), p.getX()) :
+                        Math.min(newBorderRadius + center.getX() - r.nextInt(10, 100), p.getX());
+                double newZ = p.getZ() < center.getZ() ?
+                        Math.max(-newBorderRadius + center.getZ() + r.nextInt(10, 100), p.getZ()) :
+                        Math.min(newBorderRadius + center.getZ() - r.nextInt(10, 100), p.getZ());
+                pLoc.setY(center.getWorld().getHighestBlockYAt((int) newX,(int) newZ) + 1);
+                pLoc.setX(newX);
+                pLoc.setZ(newZ);
+                p.teleport(pLoc);
+                TextUtil.debugText("Teleporting " + p.getName() + " to (" + newX + ", " + newZ + ")");
+            }
+        }
     }
 
     private void changeToActiveAscension() {
@@ -127,8 +208,9 @@ public class AscensionLocation extends EntityInteraction {
         livingEntity.customName(TextUtil.makeText("Gatekeeper", TextUtil.GRAY));
         livingEntity.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0);
 //        livingEntity.setAI(false);
-        livingEntity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(450);
-        livingEntity.setHealth(450);
+        livingEntity.getAttribute(Attribute.MAX_HEALTH).setBaseValue(250);
+        livingEntity.getAttribute(Attribute.FOLLOW_RANGE).setBaseValue(20);
+        livingEntity.setHealth(250);
         livingEntity.setSilent(true);
         livingEntity.setPersistent(true);
         livingEntity.setInvulnerable(true);

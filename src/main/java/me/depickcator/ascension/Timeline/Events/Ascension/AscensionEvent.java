@@ -84,11 +84,11 @@ public class AscensionEvent {
                 }
                 if (timer % 60 == 2 && !e.isCharged()) {
                     e.getWorld().createExplosion(e, e.getLocation(), 4f, false, true, true);
-//                    e.getHealth()
                 }
                 timer--;
                 timeline.updatePlayers();
-                ascensionLocation.updateBossBarHealth();
+                ascensionLocation.update();
+//                ascensionLocation.updateBossBarHealth();
 //                team.addAscensionTimer(-1);
                 team.checkForRewards();
             }
@@ -106,9 +106,6 @@ public class AscensionEvent {
         plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
         failedText();
         ascendingLocation.getAscendingTeam().getTeamAscension().failedAscension();
-//        TeamAscension teamStats = ascendingLocation.getAscendingTeam().getTeamStats();
-//        teamStats.addAscensionTimer((int) (teamStats.getAscensionTimer() * 0.3));
-//        teamStats.setAscensionTimer(Integer.max((int) (teamStats.getAscensionTimer() * 1.3), 300));
         stop();
         checkForAscensionRemaining();
         timeline.updatePlayers();
@@ -187,7 +184,7 @@ public class AscensionEvent {
                 .append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
 //        if (eventOngoing) return false;
 //        int score = pD.getPlayerTeam().getTeam().getTeamStats().getGameScore();
-        if (!eventOngoing && hasAscensionKey && canBeginAscension && hasEnoughTime) {
+        if (!eventOngoing && hasAscensionKey && canBeginAscension && hasEnoughTime && !plugin.getGameState().checkState(GameStates.GAME_ENDING)) {
             return true;
         } else {
             pD.getPlayer().sendMessage(text);

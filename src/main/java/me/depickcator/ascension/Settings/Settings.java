@@ -39,7 +39,7 @@ public abstract class Settings {
                     int ascensionGameScoreRequirement,
                     Timeline timeline,
                     boolean countsTowardLeaderboards) {
-        this(name, worldBorderSize, ascensionGameScoreRequirement, timeline, 900, 3, countsTowardLeaderboards);
+        this(name, worldBorderSize, ascensionGameScoreRequirement, timeline, 420, 3, countsTowardLeaderboards);
     }
 
     public Settings(String name,

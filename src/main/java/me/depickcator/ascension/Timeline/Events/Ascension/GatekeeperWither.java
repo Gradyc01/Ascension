@@ -7,9 +7,12 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.Location;
@@ -99,6 +102,20 @@ public class GatekeeperWither extends WitherBoss {
         super.aiStep();
         this.setDeltaMovement(Vec3.ZERO);       // Reset velocity every tick
         this.setPos(x, y, z);
+    }
+
+    @Override
+    public boolean isPowered() {
+        return this.getHealth() <= this.getMaxHealth() * 0.5F;
+    }
+
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, (double)250.0F)
+                .add(Attributes.MOVEMENT_SPEED, (double)0F)
+                .add(Attributes.FLYING_SPEED, (double)0F)
+                .add(Attributes.FOLLOW_RANGE, (double)20.0F)
+                .add(Attributes.ARMOR, (double)4.0F);
     }
 
 //    // Convert the NMS WitherBoss (or any NMS Entity) to a Bukkit Entity
