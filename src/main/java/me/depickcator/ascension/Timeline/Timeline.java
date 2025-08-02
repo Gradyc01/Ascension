@@ -40,6 +40,7 @@ public abstract class Timeline {
     private MapItems mapItems;
     protected final VaporizationChecks vaporizationChecks;
     private List<Pair<String, Integer>> nextBigEvent;
+    private int gameScoreThreshold; // The bottom standard
     public Timeline(int startingMinutes) {
         this.plugin = Ascension.getInstance();
         STARTING_MINUTES = startingMinutes;
@@ -60,6 +61,7 @@ public abstract class Timeline {
         mapItems.addMapItem(new MapItem("Spawn", Ascension.getSpawn(), MapItem.SPAWN));
         periodicChecks.stop();
         vaporizationChecks.reset();
+        gameScoreThreshold = 0;
     }
 
     public void startTimeline() {
@@ -237,5 +239,17 @@ public abstract class Timeline {
     }
     public int getTimeTillNextBigEvent() {
         return MINUTES - (STARTING_MINUTES - getNextBigEvent().getRight());
+    }
+
+    public int getGameScoreThreshold() {
+        return gameScoreThreshold;
+    }
+
+    public void setGameScoreThreshold(int gameScoreThreshold) {
+        this.gameScoreThreshold = gameScoreThreshold;
+        if (gameScoreThreshold > 0) {
+            TextUtil.broadcastMessage(TextUtil.makeText("A new threshold has been solidified", TextUtil.GRAY, true, false));
+        }
+        TextUtil.debugText("New GameScore Threshold: " + gameScoreThreshold);
     }
 }

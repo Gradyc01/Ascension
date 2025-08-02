@@ -33,7 +33,7 @@ public class PlayerDeath {
         GameStates gameState = plugin.getGameState();
         if (gameState.inGame()) {
             Team team = playerData.getPlayerTeam().getTeam();
-            if (team.getTeamStats().getGameScore() <= 0 && !gameState.checkState(GameStates.GAME_BEFORE_GRACE)) {
+            if (!team.canRespawn() && !gameState.checkState(GameStates.GAME_BEFORE_GRACE)) {
                 setPlayerDead(playerData, PlayerData.STATE_DEAD);
                 Player p = playerData.getPlayer();
                 p.sendMessage(TextUtil.makeText("Your team is still alive! " +

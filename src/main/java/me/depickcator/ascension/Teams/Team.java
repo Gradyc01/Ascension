@@ -128,14 +128,18 @@ public class Team {
     }
 
     public void attemptToRespawnTeamMembers() {
-        if (getTeamStats().getGameScore() <= 0) return;
+        if (!canRespawn()) return;
         for (PlayerData pD : teamMembers) {
             if (pD.checkState(PlayerData.STATE_DEAD)) {
                 PlayerDeath.getInstance().playerDied(pD);
                 attemptToRespawnTeamMembers();
             }
         }
+    }
 
+    /*Returns true if this team still can respawn or false if they can't*/
+    public boolean canRespawn() {
+        return getTeamStats().getGameScore() > plugin.getSettingsUI().getSettings().getTimeline().getGameScoreThreshold();
     }
 
     /*Returns a list of teamMembers other than Player p*/
@@ -214,5 +218,19 @@ public class Team {
 //        team.showTitle(TextUtil.makeTitle());
         TextUtil.broadcastMessage(TextUtil.makeText(leader.getPlayer().getName() + "'s Team has failed to complete Ascension", TextUtil.DARK_RED));
 
+    }
+
+    /*Shows the team the no respawn left message*/
+    public void showNoRespawnLeftsMessage() {
+        Title title = TextUtil.makeTitle(TextUtil.makeText("No more Respawns", TextUtil.RED),
+                TextUtil.makeText("Be careful!", TextUtil.DARK_RED),
+                1, 5, 1);
+        Component text = TextUtil.topBorder(TextUtil.DARK_GRAY)
+                .append(TextUtil.makeText("            NO RESPAWNS REMAINING!", TextUtil.RED, true, false))
+                .append(TextUtil.makeText("\n\n Become more enlightened in order to respawn again"))
+                .append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
+        Audience teamMembers = Audience.audience(getTeamMembers());
+        teamMembers.sendMessage(text);
+        teamMembers.showTitle(title);
     }
 }

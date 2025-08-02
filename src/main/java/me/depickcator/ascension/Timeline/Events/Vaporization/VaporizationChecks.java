@@ -97,12 +97,16 @@ public class VaporizationChecks {
     /*Enforces and threshold*/
     private void enforceThreshold() {
 //        List<Team> teamList = TeamUtil.getEveryTeam(true);
-        for (Team team : teamsBelowThreshold) {
+        timeline.setGameScoreThreshold(threshold);
+        for (Team team : TeamUtil.getEveryTeam(true)) {
             if (!isAboveThreshold(team)) {
                 for (Player p : team.getTeamMembers()) {
                     PlayerData pD = PlayerUtil.getPlayerData(p);
                     PlayerDeath.getInstance().setPlayerVaporized(pD);
                 }
+            } else {
+                if (!team.canRespawn()) team.showNoRespawnLeftsMessage();
+                team.updateTeamScoreboards();
             }
         }
     }
@@ -150,7 +154,7 @@ public class VaporizationChecks {
                         SoundUtil.broadcastSound(Sound.BLOCK_NOTE_BLOCK_PLING, 10, 2.0, team.getTeamMembers());
                         times--;
                     }
-                }.runTaskTimer(plugin, 0, 8);
+                }.runTaskTimer(plugin, 20, 8);
             }
         }
     }

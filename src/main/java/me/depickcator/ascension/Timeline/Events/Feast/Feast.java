@@ -136,7 +136,7 @@ public class Feast {
                 if (time <= 0 || !plugin.getGameState().inGame()) {
                     TextUtil.debugText("Random Chests Stopped");
                     int worldBorderSize = plugin.getSettingsUI().getSettings().getWorldBorderSize();
-                    border.setSize(worldBorderSize * 2, (int) (worldBorderSize - (border.getSize()/2)));
+                    border.setSize(worldBorderSize * 2, (int) (worldBorderSize - (border.getSize()/2))/3);
                     cancel();
                     return;
                 }

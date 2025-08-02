@@ -3,6 +3,7 @@ package me.depickcator.ascension.Teams;
 
 import com.lunarclient.apollo.module.team.TeamMember;
 import me.depickcator.ascension.Ascension;
+import me.depickcator.ascension.Timeline.Timeline;
 import me.depickcator.ascension.Utility.SoundUtil;
 import me.depickcator.ascension.Utility.TextUtil;
 import net.kyori.adventure.audience.Audience;
@@ -70,14 +71,11 @@ public class TeamStats {
     public void addGameScore(int num) {
         TextUtil.debugText("Added " + num + " game score to " + team.getLeader().getName() + "'s Team");
         TextUtil.debugText(team.getLeader().getName() + "'s Team previous score : " + gameScore);
-
+//        int gameScoreThreshold = Ascension.getInstance().getSettingsUI().getSettings().getTimeline().getGameScoreThreshold();
         gameScore += num;
-        if (gameScore <= 0) {
-            gameScore = 0;
-            Title title = TextUtil.makeTitle(TextUtil.makeText("No more Respawns", TextUtil.RED),
-                    TextUtil.makeText("Become more enlightened in order to respawn again", TextUtil.YELLOW),
-                    1, 5, 1);
-            Audience.audience(team.getTeamMembers()).showTitle(title);
+        if (!team.canRespawn()) {
+//            gameScore = gameScoreThreshold;
+            team.showNoRespawnLeftsMessage();
         }
         if (num > 0) gameScoreChangeText("You feel a little more enlightened", Sound.BLOCK_ENCHANTMENT_TABLE_USE, 0);
         if (num < 0) gameScoreChangeText("You feel drained from your enlightenment", Sound.BLOCK_BEACON_DEACTIVATE, 1);
@@ -95,14 +93,17 @@ public class TeamStats {
 
     public int getGameScorePercentage() {
         // TextUtil.debugText(gameScore + " Game Score     ");
-        int round2Requirement = (int) (0.67 * gameScoreRequirement) ;
+        int gameScoreThreshold = Ascension.getInstance().getSettingsUI().getSettings().getTimeline().getGameScoreThreshold();
+        int score = gameScore - gameScoreThreshold;
+        int req = gameScoreRequirement - gameScoreThreshold;
+        int round2Requirement = (int) (0.67 * req) ;
         double percentage;
         int ascensionAttempts = team.getTeamAscension().getAscensionAttempts();
         if (ascensionAttempts == 0) {
-            percentage = (double) gameScore / gameScoreRequirement;
+            percentage = (double) score / req;
         } else {
             int attemptsRemaining = ascensionAttempts - 1;
-            percentage = (double) (gameScore - gameScoreRequirement - (round2Requirement * attemptsRemaining)) / round2Requirement;
+            percentage = (double) (score - req - (round2Requirement * attemptsRemaining)) / round2Requirement;
         }
         // TextUtil.debugText(Math.round(percentage * 100) + "%");
         return (int) Math.round(percentage * 100);

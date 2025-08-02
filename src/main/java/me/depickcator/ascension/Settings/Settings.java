@@ -112,12 +112,12 @@ public abstract class Settings {
         List<ItemStack> rewards = new ArrayList<>(List.of(
                 new ItemStack(Material.GOLD_NUGGET, 21)
         ));
-        ItemStack shards = ShardOfTheFallen.getInstance().getResult(2);
-        rewards.add(shards);
+        rewards.add(ShardOfTheFallen.getInstance().getResult(2));
         PlayerInventory inv = victim.getPlayer().getInventory();
+
         for (ItemStack item : inv.getContents().clone()) {
             if (item == null) continue;
-            if (item.getEnchantments().get(Enchantment.VANISHING_CURSE) != null) {
+            if (item.getEnchantments().get(Enchantment.VANISHING_CURSE) != null || victim.checkState(PlayerData.STATE_DEAD, PlayerData.STATE_SPECTATING)) {
                 inv.removeItem(item);
                 rewards.add(item);
             }
