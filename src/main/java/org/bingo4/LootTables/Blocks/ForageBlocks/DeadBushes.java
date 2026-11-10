@@ -1,0 +1,61 @@
+package org.bingo4.LootTables.Blocks.ForageBlocks;
+
+import org.bingo4.Bingo4;
+import org.bingo4.LootTables.Blocks.BlockLootTable;
+import org.bingo4.LootTables.LootTableChanger;
+//import org.bingo4.Player.Data.PlayerSkills;
+import org.bingo4.Player.Data.PlayerUtil;
+//import org.bingo4.Skills.SkillExpAmount;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
+
+import java.util.Objects;
+
+public class DeadBushes implements LootTableChanger, BlockLootTable, ForageBlocks {
+
+    private final Bingo4 plugin;
+    public DeadBushes() {
+        this.plugin = Bingo4.getInstance();
+        registerItem();
+    }
+    @Override
+    public ItemStack getItem() {
+        return null;
+    }
+
+    @Override
+    public boolean uponEvent(Event e, Player p) {
+        BlockBreakEvent event = (BlockBreakEvent) e;
+        ItemStack mainHandItem = p.getInventory().getItemInMainHand();
+        if (!event.getBlock().hasMetadata(PLACED_BY_PLAYER)
+                && mainHandItem.getType() != Material.SHEARS
+                && (mainHandItem.getType() == Material.AIR ||
+                !mainHandItem.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH))) {
+//            PlayerSkills playerSkills = Objects.requireNonNull(PlayerUtil.getPlayerData(p)).getPlayerSkills();
+//            playerSkills.getForaging().addExp(SkillExpAmount.FORAGING_COMMON.getExp());
+            Location loc = event.getBlock().getLocation();
+            loc.getWorld().dropItem(loc, new ItemStack(Material.OAK_PLANKS, 4));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void registerItem() {
+        addBlock(Material.DEAD_BUSH, this);
+        addBlock(Material.SHORT_DRY_GRASS, this);
+        addBlock(Material.TALL_DRY_GRASS, this);
+    }
+
+    @Override
+    public void onPlacedForagingBlock(BlockPlaceEvent event) {
+        event.getBlock().setMetadata(PLACED_BY_PLAYER, new FixedMetadataValue(plugin, true));
+    }
+}

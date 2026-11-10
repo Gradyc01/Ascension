@@ -1,0 +1,89 @@
+package org.bingo4.Items.Uncraftable;
+
+import org.bingo4.Bingo4;
+import org.bingo4.Interfaces.ItemClick;
+import org.bingo4.Items.CustomItem;
+import org.bingo4.Kits.KitBookGUI;
+import org.bingo4.Kits.Kits.*;
+import org.bingo4.Player.Data.PlayerData;
+import org.bingo4.Utility.TextUtil;
+import org.bukkit.Material;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class KitBook extends CustomItem implements ItemClick {
+    private static KitBook instance;
+    private final List<Kit> kits;
+    private KitBook() {
+        super("Kit Book", "kit_book");
+        registerItem();
+        kits = registerKits();
+    }
+
+    @Override
+    public ItemStack getItem() {
+        return getResult();
+    }
+
+    public static KitBook getInstance() {
+        if (instance == null) {
+            instance = new KitBook();
+        }
+        return instance;
+    }
+
+    @Override
+    public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
+        if (isMainHandRightClick(e)) {
+            new KitBookGUI(pD);
+        }
+        return false;
+    }
+
+    @Override
+    public void registerItem() {
+        addItem(getResult(), this);
+    }
+
+    private List<Kit> registerKits() {
+        return new ArrayList<>(List.of(
+                new Ecologist(),
+                new Hunter(),
+                new IronTools(),
+                new Scout(),
+                new Looter()
+        ));
+    }
+
+    public List<Kit> getKits() {
+        return kits;
+    }
+
+    public Kit getKit(ItemStack item) {
+        for (Kit k : kits) {
+            if (k.getMascot().equals(item)) {
+                return k;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    protected ItemStack initResult() {
+        ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(TextUtil.makeText(getDisplayName(), TextUtil.GOLD).append(TextUtil.rightClickText()));
+        meta.setMaxStackSize(1);
+        meta.setCustomModelData(Bingo4.getInstance().generateModelNumber());
+        meta.setEnchantmentGlintOverride(true);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        item.setItemMeta(meta);
+        return item;
+    }
+}

@@ -1,0 +1,39 @@
+package org.bingo4.Items.Craftable.Unlocks;
+
+import org.bingo4.Items.Craftable.Craft;
+import org.bingo4.Items.UnlockUtil;
+import org.bingo4.Items.UnlocksData;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapelessRecipe;
+
+public class EveTemptation extends Craft {
+    private static EveTemptation instance;
+    private EveTemptation() {
+        super(UnlocksData.COST_75, 4, "Eve's Temptation", "eve_temptation");
+    }
+
+
+    @Override
+    protected Recipe initRecipe() {
+        NamespacedKey key = new NamespacedKey(plugin, KEY);
+
+        ShapelessRecipe recipe = new ShapelessRecipe(key, result);
+        recipe.addIngredient(Material.APPLE);
+        recipe.addIngredient(Material.BONE_MEAL);
+        UnlockUtil.addUnlock(plugin, recipe, MAX_CRAFTS, DISPLAY_NAME);
+        return recipe;
+    }
+
+    @Override
+    protected ItemStack initResult() {
+        return new ItemStack(Material.APPLE, 2);
+    }
+
+    public static EveTemptation getInstance() {
+        if (instance == null) instance = new EveTemptation();
+        return instance;
+    }
+}

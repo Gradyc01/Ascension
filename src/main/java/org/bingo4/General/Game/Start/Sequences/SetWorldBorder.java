@@ -1,0 +1,27 @@
+package org.bingo4.General.Game.Start.Sequences;
+
+import org.bingo4.Bingo4;
+import org.bingo4.General.Game.GameLauncher;
+import org.bingo4.General.Game.GameSequences;
+import org.bukkit.Location;
+import org.bukkit.WorldBorder;
+
+
+public class SetWorldBorder extends GameSequences {
+    private final int radius;
+    public SetWorldBorder(int radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public void run(GameLauncher game) {
+        WorldBorder worldBorder = plugin.getWorld().getWorldBorder();
+        WorldBorder netherWorldBorder = plugin.getNether().getWorldBorder();
+        Location loc = Bingo4.getSpawn();
+        worldBorder.setCenter(loc.getX(), loc.getZ());
+        worldBorder.setSize(radius * 2, 0); // Ex 6k would be 3k x 3k
+        netherWorldBorder.setCenter(loc.getX()/8, loc.getZ()/8);
+        netherWorldBorder.setSize((double) (radius * 2) / 8, 0); // Ex 6k would be 3k x 3k
+        game.callback();
+    }
+}

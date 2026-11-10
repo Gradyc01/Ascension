@@ -1,0 +1,59 @@
+package org.bingo4.MainMenuUI.Command.Commands;
+
+import org.bingo4.Bingo4;
+import org.bingo4.Player.Data.PlayerData;
+import org.bingo4.Utility.SoundUtil;
+import org.bingo4.Utility.TextUtil;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SendCoords implements Commands {
+    public final static String NAME = "send_coords";
+    private final ItemStack item;
+    private final Bingo4 plugin;
+    public SendCoords() {
+        item = makeButton();
+        this.plugin = Bingo4.getInstance();
+    }
+    @Override
+    public boolean uponEvent(InventoryClickEvent event, PlayerData playerData) {
+        if (!plugin.getGameState().inGame()) {
+            TextUtil.errorMessage(playerData.getPlayer(), "You can't currently use this command");
+            return true;
+        }
+        Location loc = playerData.getPlayer().getLocation();
+        for (Player p : playerData.getPlayerTeam().getTeam().getTeamMembers()) {
+            Component prefix = TextUtil.makeText("[Team Coords] ", TextUtil.BLUE);
+            Component main = TextUtil.makeText(playerData.getPlayer().getName() + " is currently at ", TextUtil.AQUA);
+            Component coordsText = TextUtil.makeText("(" + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ() + ")", TextUtil.DARK_GREEN);
+            p.sendMessage(prefix.append(main).append(coordsText));
+            SoundUtil.playHighPitchPling(p);
+        }
+        return true;
+    }
+
+    @Override
+    public ItemStack getButton() {
+        return item;
+    }
+
+    private ItemStack makeButton() {
+        ItemStack item = new ItemStack(Material.COMPASS);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.displayName(TextUtil.makeText("Send Coordinates", TextUtil.AQUA));
+        List<Component> lore = new ArrayList<>(List.of(
+                TextUtil.makeText(" Sends your coordinates to teammates", TextUtil.DARK_PURPLE)
+        ));
+        itemMeta.lore(lore);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+}

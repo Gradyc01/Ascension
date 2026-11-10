@@ -1,0 +1,23 @@
+package org.bingo4.listeners.ChestGeneration.Tables;
+
+import org.bingo4.Player.Data.PlayerData;
+import org.bingo4.listeners.ChestGeneration.ChestLootTable;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
+import java.util.Random;
+
+public class CommonTrialsLoot extends ChestLootTable {
+    public CommonTrialsLoot() {
+        super("minecraft:chests/trial_chambers/reward");
+    }
+
+    @Override
+    public void addLootToTable(PlayerData pD, List<ItemStack> lootList) {
+        Random r = new Random();
+        if (r.nextInt(0, 5) == 0) lootList.add(new ItemStack(Material.OMINOUS_BOTTLE, 1));
+        lootList.add(new ItemStack(Material.BREEZE_ROD, 1));
+        addShardsOfTheFallen(3, lootList);
+    }
+}

@@ -1,0 +1,45 @@
+package org.bingo4.General.Game.Load.Sequences;
+
+import org.bingo4.General.Game.GameLauncher;
+import org.bingo4.General.Game.GameSequences;
+import org.bingo4.General.Game.Load.LoadGame;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.WorldBorder;
+import org.bukkit.scheduler.BukkitRunnable;
+
+public class DeletePreviousIterations extends GameSequences {
+    @Override
+    public void run(GameLauncher game) {
+        if (game instanceof LoadGame g) {
+            World w = plugin.getSpawnWorld();
+            Location l = g.getLobbyCoordsLocation();
+            forceload(w, l, true);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=minecraft:armor_stand, name=\"SpawnCoords\"]");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=minecraft:text_display]");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=minecraft:item_display]");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[tag=lobby]");
+//                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"forceload remove all");
+
+                    game.callback();
+                }
+            }.runTaskLater(plugin, 20L);
+
+        }
+
+    }
+
+    private void forceload(World world, Location loc, boolean forceload) {
+        WorldBorder border = world.getWorldBorder();
+
+        int x = loc.getBlockX();
+        int z = loc.getBlockZ();
+        border.setCenter(x, z);
+        world.setChunkForceLoaded((int) Math.floor((double) x /16), (int) Math.floor((double) z /16), forceload);
+
+    }
+}

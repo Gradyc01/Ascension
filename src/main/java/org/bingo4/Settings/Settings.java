@@ -1,0 +1,171 @@
+package org.bingo4.Settings;
+
+import org.bingo4.General.Game.GameSequences;
+import org.bingo4.General.Game.Start.Sequences.*;
+import org.bingo4.Items.Uncraftable.ShardOfTheFallen;
+import org.bingo4.Player.Data.PlayerData;
+import org.bingo4.Timeline.Timeline;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Settings {
+    private final int worldBorderSize;
+    private final Timeline timeline;
+    private final List<GameSequences> sequence;
+    private final List<Integer> itemDistribution; // Easy | Medium | Hard | Custom
+    private final String name;
+    private final int startingAscensionTimer;
+    private final int bingoLinesRequirement;
+    private final int teamSize;
+    private final boolean countsTowardLeaderboards;
+    private final int ascensionsBeforeFinal;
+    /*Settings controls the settings of the Game
+    * This includes:
+    *   World Border Size
+    *   The timeline
+    *   The Starting Sequence
+    *   The itemDistribution
+    *   The Name of this particular setting
+    *   How much the Bingo4 Requirement and Timer are
+    *   Team Size*/
+    public Settings(String name,
+                    int worldBorderSize,
+                    int bingoLinesRequirement,
+                    Timeline timeline,
+                    boolean countsTowardLeaderboards) {
+        this(name, worldBorderSize, bingoLinesRequirement, timeline, 420, 3, countsTowardLeaderboards);
+    }
+
+    public Settings(String name,
+                    int worldBorderSize,
+                    int bingoLinesRequirement,
+                    Timeline timeline,
+                    int startingAscensionTimer,
+                    int teamSize,
+                    boolean countsTowardLeaderboards) {
+        this.name = name;
+        this.worldBorderSize = worldBorderSize;
+        this.timeline = timeline;
+        this.itemDistribution = initItemDistribution();
+        this.bingoLinesRequirement = bingoLinesRequirement;
+        this.startingAscensionTimer = startingAscensionTimer;
+        this.teamSize = teamSize;
+        this.sequence = initSequence();
+        this.countsTowardLeaderboards = countsTowardLeaderboards;
+        this.ascensionsBeforeFinal = 4;
+    }
+
+    protected Settings(String name,
+                       int worldBorderSize,
+                       int bingoLinesRequirement,
+                       Timeline timeline,
+                       int startingAscensionTimer,
+                       List<Integer> itemDistribution,
+                       int teamSize,
+                       boolean countsTowardLeaderboards) {
+        this.name = name;
+        this.worldBorderSize = worldBorderSize;
+        this.timeline = timeline;
+        this.itemDistribution = itemDistribution;
+        this.startingAscensionTimer = startingAscensionTimer;
+        this.bingoLinesRequirement = bingoLinesRequirement;
+        this.teamSize = teamSize;
+        this.countsTowardLeaderboards = countsTowardLeaderboards;
+        this.ascensionsBeforeFinal = 4;
+
+        this.sequence = initSequence();
+    }
+
+    /*Returns the default initial starting sequence*/
+    protected List<GameSequences> initSequence() {
+        return new ArrayList<>(List.of(
+                new ResetPlayers(),
+                new SetWorldBorder(worldBorderSize),
+                new SpreadPlayers(worldBorderSize),
+                new InitBingoBoard(itemDistribution),
+                new TextSequence(),
+                new ResetWorld(),
+                new LaunchSequence()
+        ));
+    }
+
+    /*Returns the default item distribution
+    * List of Integers must be size of 4 and sums up to 25*/
+    protected List<Integer> initItemDistribution() {
+        return new ArrayList<>(List.of(
+                25,
+                25,
+                15,
+                0
+        ));
+    }
+
+    /*  What a player victim drops to the floor when killed
+     * Returns a list of ItemStacks*/
+    public List<ItemStack> getKillReward(PlayerDeathEvent e, PlayerData victim) {
+        List<ItemStack> rewards = new ArrayList<>(List.of(
+                new ItemStack(Material.GOLD_NUGGET, 21)
+        ));
+        rewards.add(ShardOfTheFallen.getInstance().getResult(2));
+        PlayerInventory inv = victim.getPlayer().getInventory();
+
+        for (ItemStack item : inv.getContents().clone()) {
+            if (item == null) continue;
+            if (item.getEnchantments().get(Enchantment.VANISHING_CURSE) != null || victim.checkState(PlayerData.STATE_DEAD, PlayerData.STATE_SPECTATING)) {
+                inv.removeItem(item);
+                rewards.add(item);
+            }
+        }
+        return rewards;
+    }
+
+    public boolean isCountTowardsLeaderboards() {
+        return countsTowardLeaderboards;
+    }
+
+    public int getWorldBorderSize() {
+        return worldBorderSize;
+    };
+
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
+    public int getStartingAscensionTimer() {
+        return startingAscensionTimer;
+    }
+
+    public List<GameSequences> getSequence() {
+        return sequence;
+    }
+
+    public List<Integer> getItemDistribution() {
+        return itemDistribution;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAscensionsBeforeFinal() {
+        return ascensionsBeforeFinal;
+    }
+
+    public int getBingoLinesRequirement() {
+        return bingoLinesRequirement;
+    }
+
+    public int getTeamSize() {
+        return teamSize;
+    }
+
+    public boolean isReseedAfterGame() {
+        return true;
+    }
+}

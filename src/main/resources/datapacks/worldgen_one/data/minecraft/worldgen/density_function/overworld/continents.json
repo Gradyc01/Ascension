@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:cache",
+  "input": {
+    "type": "minecraft:add",
+    "left": {
+      "type": "minecraft:max",
+      "left": "biome_remover:raw_continents",
+      "right": -0.05
+    },
+    "right": {
+      "type": "minecraft:mul",
+      "left": 2.0,
+      "right": {
+        "type": "minecraft:min",
+        "left": 0.0,
+        "right": {
+          "type": "minecraft:add",
+          "left": "biome_remover:raw_continents",
+          "right": 0.73
+        }
+      }
+    }
+  }
+}
