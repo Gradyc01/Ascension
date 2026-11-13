@@ -157,8 +157,8 @@ public class CampManager {
                 ^ ((long) center.getBlockZ() * 0xC2B2AE3D27D4EB4FL)
                 ^ ((long) radius << 32)
                 ^ amount;
-
-        SplittableRandom random = new SplittableRandom(seed);
+//TODO: Removed the seeding, add back maybe?
+        SplittableRandom random = new SplittableRandom();
 
         List<Location> found = new ArrayList<>(amount);
 

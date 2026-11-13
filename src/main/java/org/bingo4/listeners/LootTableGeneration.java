@@ -6,6 +6,7 @@ import org.bingo4.LootTables.Blocks.ForageBlocks.ForageBlocks;
 import org.bingo4.LootTables.LootTableChanger;
 import org.bingo4.Player.Data.PlayerData;
 import org.bingo4.Player.Data.PlayerUtil;
+import org.bingo4.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
@@ -21,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LootTableGeneration implements Listener {
@@ -73,11 +75,10 @@ public class LootTableGeneration implements Listener {
 
     @EventHandler
     public void onBlockExplode(EntityExplodeEvent event) {
-        List<Block> explodedBlocks = event.blockList();
-        for (Block b: explodedBlocks) {
-            if (b.hasMetadata("UNBREAKABLE")) {
-                event.setCancelled(true);
-            }
+        TextUtil.debugText(String.format("Entity %s exploded!", event.getEntity().getName()));
+        List<Block> blocks = event.blockList();
+        for (Block block : new ArrayList<>(blocks)) {
+            if (block.hasMetadata("UNBREAKABLE")) blocks.remove(block);
         }
     }
 

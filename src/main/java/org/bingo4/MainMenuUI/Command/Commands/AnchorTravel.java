@@ -1,7 +1,6 @@
 package org.bingo4.MainMenuUI.Command.Commands;
 
 import org.bingo4.Bingo4;
-import org.bingo4.MainMenuUI.Command.AnchorPoints.AnchorPointGUI;
 import org.bingo4.Player.Data.PlayerData;
 import org.bingo4.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
@@ -27,7 +26,7 @@ public class AnchorTravel implements Commands {
             TextUtil.errorMessage(playerData.getPlayer(), "You can't currently use this command");
             return false;
         }
-        new AnchorPointGUI(playerData);
+//        new AnchorPointGUI(playerData, event.);
         return false;
 
     }

@@ -3,7 +3,7 @@ package org.bingo4.testingCommands;
 import io.papermc.paper.command.brigadier.BasicCommand;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bingo4.Bingo4;
-import org.bingo4.Items.Uncraftable.Minimap.Minimap;
+import org.bingo4.Items.Uncraftable.Minimap;
 import org.bingo4.MainMenuUI.Map.MapItem;
 import org.bingo4.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;

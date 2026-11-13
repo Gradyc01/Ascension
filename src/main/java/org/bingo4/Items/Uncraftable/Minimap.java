@@ -1,5 +1,5 @@
 
-package org.bingo4.Items.Uncraftable.Minimap;
+package org.bingo4.Items.Uncraftable;
 
 import net.kyori.adventure.sound.Sound;
 import org.bingo4.Interfaces.ItemClick;
@@ -11,11 +11,9 @@ import org.bingo4.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.block.Action;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.MapMeta;
-import org.bukkit.map.MapView;
 
 import java.util.HashMap;
 import java.util.Map;

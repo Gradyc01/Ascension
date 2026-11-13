@@ -28,15 +28,15 @@ public class EntityInteractionCooldown extends Cooldowns {
 
     @Override
     public void setCooldownTimer(Player p) {
-        setCooldownTimer(p, cooldownTime);
+        setCooldownTimerTicks(p, cooldownTime);
     }
 
     @Override
     /*Checks if Player p is on Cooldown for EntityInteraction and also sets a new cooldown*/
     public boolean isOnCooldown(Player p) {
-        boolean isOnCooldown = super.isOnCooldown(p, true);
-        setCooldownTimer(p);
-        return isOnCooldown;
+        return super.isOnCooldown(p, true);
+//        setCooldownTimer(p);
+//         isOnCooldown;
     }
 
     public static EntityInteractionCooldown getInstance() {

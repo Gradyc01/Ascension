@@ -33,6 +33,7 @@ public class PeriodicChecks {
 
     private void startPeriodChecks() {
         if (periodicTasks != null) periodicTasks.cancel();
+        if (!plugin.getGameState().inGame()) return;
         int delay = switch (plugin.getGameState().getCurrentState()) {
             case GameStates.GAME_ASCENSION, GameStates.GAME_FINAL_ASCENSION -> 5;
             default -> 5;

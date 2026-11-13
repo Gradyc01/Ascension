@@ -25,6 +25,7 @@ public class Team {
     private final TeamStats teamStats;
 //    private final TeamBackpack teamBackpack;
     private final TeamBingoLockdown teamBingoLockdown;
+    private final TeamAnchors teamAnchors;
     private int STATE;
     /*Initializes a team with PlayerData playerData as the leader*/
     public Team(PlayerData playerData) {
@@ -38,7 +39,7 @@ public class Team {
         TeamUtil.joinTeam(p, p);
         STATE = STATE_ACTIVE;
         teamStats = new TeamStats(this);
-//        teamBackpack = new TeamBackpack(this);
+        teamAnchors = new TeamAnchors(this);
         teamBingoLockdown = new TeamBingoLockdown(this);
     }
 
@@ -161,9 +162,9 @@ public class Team {
         return teamStats;
     }
 
-//    public TeamBackpack getTeamBackpack() {
-//        return teamBackpack;
-//    }
+    public TeamAnchors getTeamAnchors() {
+        return teamAnchors;
+    }
 
     public TeamBingoLockdown getTeamBingoLockdown() {
         return teamBingoLockdown;

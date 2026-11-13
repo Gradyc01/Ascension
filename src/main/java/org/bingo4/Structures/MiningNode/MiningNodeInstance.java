@@ -15,6 +15,8 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -30,7 +32,7 @@ public class MiningNodeInstance extends CampInstance {
     // TODO Adjust these animation durations.
     private static final long MINING_ANIMATION_TICKS = 60L;
     private static final long BETWEEN_WAVES_TICKS = 30L;
-    private static final long REWARD_ANIMATION_TICKS = 80L;
+    private static final long REWARD_ANIMATION_TICKS = 120L;
 
     private static final int SPAWN_LOCATION_ATTEMPTS = 40;
 
@@ -205,6 +207,8 @@ public class MiningNodeInstance extends CampInstance {
 
                         if (mob != null) {
                             activeMobs.add(mob);
+                            mob.setCustomNameVisible(true);
+                            mob.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 30, 0, false, false, false));
                         }
                     }
                 }.runTaskLater(plugin, 7);
@@ -398,7 +402,7 @@ public class MiningNodeInstance extends CampInstance {
                     return;
                 }
 
-                int i = 10;
+                int i = 28;
                 for (Block b : new HashSet<>(blocks)) {
                     if (i-- <= 0) {
                         break;

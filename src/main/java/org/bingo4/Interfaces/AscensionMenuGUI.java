@@ -24,14 +24,20 @@ public abstract class AscensionMenuGUI extends AscensionGUI {
     protected final Player player;
     protected final PlayerData playerData;
     /* Creates a GUI for playerData that is GUI lines tall */
-    public AscensionMenuGUI(PlayerData playerData, int GUILines, Component name, boolean setBackground) {
+    public AscensionMenuGUI(PlayerData playerData, int GUILines, Component name, boolean setBackground, boolean open) {
         super(playerData.getPlayer(), GUILines, name);
         this.playerData = playerData;
         this.player = playerData.getPlayer();
         if (setBackground) {
             setBackground();
         }
-        open(player);
+        if (open) {
+            open(player);
+        }
+    }
+
+    public AscensionMenuGUI(PlayerData playerData, int GUILines, Component name, boolean setBackground) {
+        this(playerData, GUILines, name, setBackground, true);
     }
 
     /* Checks whether a player is holding item
@@ -43,7 +49,7 @@ public abstract class AscensionMenuGUI extends AscensionGUI {
         return isHolding(player, item);
     }
 
-    private void setBackground() {
+    protected void setBackground() {
         ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(Component.text(" ").color(TextColor.color(185, 185, 185)));

@@ -3,7 +3,7 @@ package org.bingo4.Player.Data;
 import org.bingo4.Bingo4;
 import org.bingo4.Items.Uncraftable.Default.*;
 import org.bingo4.Items.Uncraftable.MainMenu;
-import org.bingo4.Items.Uncraftable.Minimap.Minimap;
+import org.bingo4.Items.Uncraftable.Minimap;
 import org.bingo4.Player.Cooldowns.Death.PlayerDeath;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -35,7 +35,6 @@ public class PlayerData {
     private final PlayerTeam playerTeam;
     private final PlayerStats playerStats;
     private final PlayerInventoryTracker playerInventoryTracker;
-    private final PlayerAnchors playerAnchors;
     private final PlayerMapData playerMapData;
 
     private final List<PlayerDataObservers> observers;
@@ -50,7 +49,6 @@ public class PlayerData {
         playerStats = new PlayerStats(this);
         playerScoreboard = new PlayerScoreboard(this);
         playerInventoryTracker = new PlayerInventoryTracker(this);
-        playerAnchors = new PlayerAnchors();
         playerMapData = new PlayerMapData(this);
 
         initPlayerState();
@@ -190,10 +188,6 @@ public class PlayerData {
 
     public PlayerInventoryTracker getPlayerInventoryTracker() {
         return playerInventoryTracker;
-    }
-
-    public PlayerAnchors getPlayerAnchors() {
-        return playerAnchors;
     }
 
     public PlayerMapData getPlayerMapData() {

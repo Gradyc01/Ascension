@@ -104,6 +104,10 @@ public class BingoData {
 
     public void completeClaimItemRewards(ItemStack invItemStack, boolean removeItem, boolean openGui, PlayerData pD, BingoSlot bingoSlot) {
         BingoSlot slot = bingoSlot == null ? getBingoSlotByItem(invItemStack) : bingoSlot;
+        if (slot == null) {
+            TextUtil.broadcastMessage(TextUtil.makeText("[ERROR]  BINGO SLOT NULL'ED"));
+            return;
+        }
 
         if (removeItem) {
             invItemStack.setAmount(invItemStack.getAmount() - 1);
@@ -130,6 +134,10 @@ public class BingoData {
             }
         }
         return false;
+    }
+
+    public boolean itemOnBoard(ItemStack item) {
+        return getBingoSlotByItem(item) != null;
     }
 
     private void sendItemObtainedMessage(PlayerData pD, BingoSlot slot) {

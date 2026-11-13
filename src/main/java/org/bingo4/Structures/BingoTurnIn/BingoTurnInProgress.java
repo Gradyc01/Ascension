@@ -6,6 +6,7 @@ import org.bingo4.Player.Data.PlayerUtil;
 import org.bingo4.Player.Data.Scoreboards.GameBoard;
 import org.bingo4.Teams.Team;
 import org.bingo4.Teams.TeamUtil;
+import org.bingo4.Utility.SoundUtil;
 import org.bingo4.Utility.TextUtil;
 import org.bukkit.GameMode;
 import org.bukkit.World;
@@ -107,6 +108,13 @@ public class BingoTurnInProgress {
             @Override
             public void run() {
                 TextUtil.debugText("[Bingo Turn In] Progress is still running");
+
+                if (!plugin.getBingoData().itemOnBoard(item)) {
+                    failedToClaim(playerData, item);
+                    stop();
+                    cancel();
+                    return;
+                }
 
                 Set<Team> presentTeams = new HashSet<>();
                 Set<PlayerData> playerDataSet = new HashSet<>();
@@ -217,6 +225,14 @@ public class BingoTurnInProgress {
             }
             plugin.getBingoData().completeClaimItemRewards(item, true, false, PlayerUtil.getPlayerData(team.getLeader()), null);
         }
+    }
+
+    private void failedToClaim(PlayerData startingPlayer, ItemStack item) {
+        for (PlayerData playerData : bingoCaptureBoardPlayers) {
+            playerData.getPlayer().sendMessage(TextUtil.makeText("Capture Failed! Someone else has already captured this item", TextUtil.RED));
+            SoundUtil.playErrorSoundEffect(playerData.getPlayer());
+        }
+        PlayerUtil.giveItem(startingPlayer.getPlayer(), item);
     }
 
     private void updateScoreboard() {

@@ -42,9 +42,11 @@ public class PlayerInteractListener implements Listener {
         boolean blockHasInventory = blockHasInventory(e, pD);
         if (e.getItem() == null) return;
         ItemClick itemClick = ItemClick.findClickItem(e.getItem());
-        if (!blockHasInventory && itemClick != null && pD != null && !EntityInteractionCooldown.getInstance().isOnCooldown(p)) {
-            itemClick.uponClick(e, pD);
-            EntityInteractionCooldown.getInstance().setCooldownTimer(p);
+        if (itemClick != null && e.getItem().getType().isBlock()) e.setCancelled(true);
+        if (!blockHasInventory && (itemClick != null) && (pD != null) && !EntityInteractionCooldown.getInstance().isOnCooldown(p)) {
+            if (itemClick.uponClick(e, pD)) {
+                EntityInteractionCooldown.getInstance().setCooldownTimer(p);
+            };
         }
     }
 

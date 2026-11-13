@@ -8,6 +8,7 @@ import org.bingo4.General.LocationChecker.LocationCheck;
 import org.bingo4.General.Queue.QueueCommand;
 import org.bingo4.Interfaces.AscensionGUI;
 //import org.bingo4.Items.UnlocksData;
+import org.bingo4.Items.UnlocksData;
 import org.bingo4.Lobby.Lobby;
 import org.bingo4.LootTables.Blocks.BlockUtil;
 import org.bingo4.LootTables.Entities.EntityUtil;
@@ -47,7 +48,7 @@ public final class Bingo4 extends JavaPlugin {
     private static Location spawn;
     private GameStates gameState;
     private BingoData bingoData;
-//    private UnlocksData unlocksData;
+    private UnlocksData unlocksData;
     private BukkitScheduler scheduler;
     private SettingObserver settings;
     private LocationCheck locationCheck;
@@ -109,7 +110,7 @@ public final class Bingo4 extends JavaPlugin {
 ////        registerCommand(new setUnlockToken(), "setUnlockTokens");
 ////        registerCommand(new giveExp(), "givePlayerExp");
         registerCommand(new startEvents(), "startEvent");
-////        registerCommand(new giveCustomItem(), "giveCustomItem");
+        registerCommand(new giveCustomItem(), "giveCustomItem");
         registerCommand(new Shout(), "shout");
 //        this.registerCommand("queue", new QueueCommand());
         registerCommand(new QueueCommand(), "queue");
@@ -150,7 +151,7 @@ public final class Bingo4 extends JavaPlugin {
         manager.registerEvents(new DimensionalTravel(), this);
     }
     private void registerCrafts() {
-//        unlocksData = new UnlocksData();
+        unlocksData = new UnlocksData();
     }
     public BingoData getBingoData() {
         return bingoData;
@@ -182,9 +183,9 @@ public final class Bingo4 extends JavaPlugin {
     public static Location getSpawn() {
         return spawn.clone();
     }
-//    public UnlocksData getUnlocksData() {
-//        return unlocksData;
-//    }
+    public UnlocksData getUnlocksData() {
+        return unlocksData;
+    }
     public static void setSpawn(Location spawn) {
         Bingo4.spawn = spawn;
     }

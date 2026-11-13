@@ -24,6 +24,7 @@ public abstract class AscensionBlockGUI extends AscensionGUI implements BlockUI 
 
     public static void registerGUI(BlockUI gui) {
         GUIMAP.put(gui.getBlock(), gui);
+        TextUtil.debugText(String.format("Added GUI to block %s at location %s", gui.getBlock().getType().name(), TextUtil.formatLocation(gui.getBlock().getLocation())));
     }
 
     public static BlockUI findGUI(Block block) {
@@ -31,7 +32,7 @@ public abstract class AscensionBlockGUI extends AscensionGUI implements BlockUI 
     }
 
     public static void removeGUI(BlockUI gui) {
-        TextUtil.debugText("Removing GUI: " + gui.getBlock().getType().name());
+        TextUtil.debugText(String.format("Removing GUI on block %s at location %s", gui.getBlock().getType().name(), TextUtil.formatLocation(gui.getBlock().getLocation())));
         GUIMAP.remove(gui.getBlock());
     }
 

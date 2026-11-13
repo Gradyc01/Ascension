@@ -195,4 +195,18 @@ public class TextUtil {
         return "(" + location.getBlockX() + "," + location.getBlockY() + "," + location.getBlockZ() + ")";
     }
 
+    public static String formatTime(int totalSeconds) {
+        if (totalSeconds < 0) throw new IllegalArgumentException("Seconds cannot be negative.");
+
+        int hours = totalSeconds / 3600;
+        int minutes = (totalSeconds % 3600) / 60;
+        int seconds = totalSeconds % 60;
+
+        if (hours > 0) {
+            return String.format("%d:%02d:%02d", hours, minutes, seconds);
+        } else {
+            return String.format("%02d:%02d", minutes, seconds);
+        }
+    }
+
 }

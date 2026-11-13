@@ -34,10 +34,10 @@ public class MiningNodeCamp extends AbstractCampType {
     private final MiningNodeCampLoot loot;
 
     private static final List<BlockVector3> BASE_SUPPORT_POINTS = List.of(
-            BlockVector3.at(2, 0, 0),
-            BlockVector3.at(-2, 0, 0),
-            BlockVector3.at(0, 0, -2),
-            BlockVector3.at(0, 0, -2)
+            BlockVector3.at(2, 0, 2),
+            BlockVector3.at(-2, 0, 2),
+            BlockVector3.at(2, 0, -2),
+            BlockVector3.at(2, 0, -2)
     );
 
     public MiningNodeCamp(MiningNodeCampLoot loot) throws Exception {
@@ -80,7 +80,7 @@ public class MiningNodeCamp extends AbstractCampType {
                 baseWorldX,
                 baseWorldZ,
                 4,
-                Material.QUARTZ_PILLAR,
+                Material.COPPER_BLOCK,
                 "UNBREAKABLE"
         );
 

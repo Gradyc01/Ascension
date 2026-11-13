@@ -48,13 +48,13 @@ public class UnlocksData {
         unlocksMap = new HashMap<>();
         allUnlocks = new ArrayList<>();
 //
-//        Tier1Unlocks();
-//        Tier2Unlocks();
-//        Tier3Unlocks();
-//        Tier4Unlocks();
-//        Tier5Unlocks();
-//        Uncraftable();
-//        Vanilla();
+        Tier1Unlocks();
+        Tier2Unlocks();
+        Tier3Unlocks();
+        Tier4Unlocks();
+        Tier5Unlocks();
+        Uncraftable();
+        Vanilla();
 ////        new RecipeBookModifier(); //TODO: Is Null
 //        addToUnlockRecommender();
     }
