@@ -1,11 +1,14 @@
 package org.bingo4.General.Game.Reset.Sequences;
 
+import org.bingo4.Bingo4;
 import org.bingo4.General.Game.GameLauncher;
 import org.bingo4.General.Game.GameSequences;
 import org.bingo4.Utility.TextUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,15 +26,19 @@ public class DeleteUnusedWorlds extends GameSequences {
             @Override
             public void run() {
                 Set<String> worldNames = new HashSet<>();
-                worldNames.add(plugin.getWorld().getName());
-                worldNames.add(plugin.getNether().getName());
-//                TextUtil.debugText("added worldNames: " + plugin.getWorld().getName());
-//                TextUtil.debugText("added worldNames: " + plugin.getNether().getName());
-                File file = new File("./worlds");
+                worldNames.add(plugin.getWorld().getKey().getKey());
+                Path worldContainer = Bukkit.getServer()
+                        .getLevelDirectory()
+                        .resolve("dimensions")
+                        .resolve(Bingo4.getInstance().getName())
+                        .toAbsolutePath()
+                        .normalize();
+
+                File file = worldContainer.toFile();
                 if (file.exists() && file.isDirectory()) {
                     for (File f : file.listFiles()) {
-                        TextUtil.debugText("Attempting to delete world: " + f.getName());
-                        if (worldNames.contains("./worlds/" + f.getName())) continue;
+                        TextUtil.debugText("Attempting to delete world: " + f.getName() + " | " + plugin.getWorld().getKey().getKey());
+                        if (worldNames.contains(f.getName())) continue;
                         TextUtil.debugText("Deleting world: " + f.getName());
                         deleteDirectory(f);
                     }

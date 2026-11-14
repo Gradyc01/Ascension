@@ -1,6 +1,9 @@
 package org.bingo4.MainMenuUI.Map;
 
 import org.bingo4.Bingo4;
+import org.bingo4.Player.Data.PlayerData;
+import org.bingo4.Player.Data.PlayerUtil;
+import org.bingo4.Teams.Team;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.map.MapCanvas;
@@ -17,7 +20,6 @@ public class NeutralMapRenderer extends MapRenderer {
     private final Bingo4 plugin = Bingo4.getInstance();
 
     public NeutralMapRenderer() {
-        super(true);
     }
 
     @Override
@@ -33,15 +35,27 @@ public class NeutralMapRenderer extends MapRenderer {
 
         clearCursors(canvas);
 
+        MapItems neutralMapItems = plugin.getSettingsUI()
+                .getSettings()
+                .getTimeline()
+                .getMapItems();
+
+        renderMapItemSet(map, canvas, neutralMapItems);
+
+        PlayerData playerData = PlayerUtil.getPlayerData(player);
+        if (playerData != null) {
+            Team team = playerData.getPlayerTeam().getTeam();
+            if (team != null) {
+                renderMapItemSet(map, canvas, team.getTeamAnchors().getMapItems());
+            }
+        }
+    }
+
+    private void renderMapItemSet(MapView map, MapCanvas canvas, MapItems mapItems) {
         int blocksPerPixel = getBlocksPerPixel(map);
 
         int centerX = map.getCenterX();
         int centerZ = map.getCenterZ();
-
-        MapItems mapItems = plugin.getSettingsUI()
-                .getSettings()
-                .getTimeline()
-                .getMapItems();
 
         for (MapItem marker : getVisibleMarkers(map, mapItems, blocksPerPixel)) {
 

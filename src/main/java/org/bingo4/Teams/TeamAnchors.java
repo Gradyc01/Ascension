@@ -1,5 +1,7 @@
 package org.bingo4.Teams;
 
+import org.apache.commons.lang3.tuple.Pair;
+import org.bingo4.MainMenuUI.Map.MapItem;
 import org.bingo4.MainMenuUI.Map.MapItems;
 import org.bingo4.Structures.AnchorPoints.AnchorPoint;
 import org.bingo4.Player.Data.PlayerData;
@@ -10,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TeamAnchors {
-    private final List<AnchorPoint> anchorPoints;
+    private final List<Pair<AnchorPoint, MapItem>> anchorPoints;
     private final Team team;
     private final MapItems mapItems;
     public TeamAnchors(Team team) {
@@ -20,7 +22,9 @@ public class TeamAnchors {
     }
 
     public void addAnchorPoint(AnchorPoint anchorPoint) {
-        anchorPoints.add(anchorPoint);
+        MapItem mapItem = new MapItem("Void Box", anchorPoint.getLocation(), MapItem.ANCHOR_POINT);
+        anchorPoints.add(Pair.of(anchorPoint, mapItem));
+        mapItems.addMapItem(mapItem);
         TextUtil.debugText(String.format("Added anchor point at %s for team: %s", TextUtil.formatLocation(anchorPoint.getLocation()), team.getLeader()));
     }
 
@@ -28,15 +32,31 @@ public class TeamAnchors {
      * Returns true if successfully removed
      * False Otherwise*/
     public boolean removeAnchorPoint(AnchorPoint anchorPoint) {
-        if (anchorPoints.contains(anchorPoint)) {
-            anchorPoints.remove(anchorPoint);
-
-            return true;
+//        if (anchorPoints.contains(anchorPoint)) {
+//            anchorPoints.remove(anchorPoint);
+//            mapItems.removeMapItem();
+//            return true;
+//        }
+//        return false;
+        for (Pair<AnchorPoint, MapItem> point : new ArrayList<>(anchorPoints)) {
+            if (point.getLeft().equals(anchorPoint)) {
+                anchorPoints.remove(point);
+                mapItems.removeMapItem(point.getRight());
+                return true;
+            }
         }
         return false;
     }
 
     public List<AnchorPoint> getAnchorPoints() {
-        return Collections.unmodifiableList(anchorPoints);
+        List<AnchorPoint> points = new ArrayList<>();
+        for (Pair<AnchorPoint, MapItem> point : this.anchorPoints) {
+            points.add(point.getLeft());
+        }
+        return Collections.unmodifiableList(points);
+    }
+
+    public MapItems getMapItems() {
+        return mapItems;
     }
 }

@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPortalEvent;
+import org.bukkit.event.world.ChunkLoadEvent;
 
 public class DimensionalTravel implements Listener {
     @EventHandler
@@ -25,5 +26,12 @@ public class DimensionalTravel implements Listener {
         debugText+=" redirected to" + newLocation.getWorld().getName();
         TextUtil.debugText(debugText);
         event.setTo(newLocation);
+    }
+
+    @EventHandler
+    public void onChunkLoad(ChunkLoadEvent e) {
+        if (e.isNewChunk()) {
+            TextUtil.broadcastMessage(TextUtil.makeText("NEW CHUNK GENERATED"));
+        }
     }
 }

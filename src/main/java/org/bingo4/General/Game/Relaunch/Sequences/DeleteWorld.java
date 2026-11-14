@@ -22,7 +22,7 @@ public class DeleteWorld extends GameSequences {
     public void run(GameLauncher game) {
         for (World world : worlds) {
             deleteDirectory(world.getWorldFolder());
-            TextUtil.debugText("Deleting world: " + world.getName());
+            TextUtil.debugText("[World Deletion] Deleting world: " + world.getName() + " at: " + world.getWorldPath());
         }
 
         game.callback(10 * 20);

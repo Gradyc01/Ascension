@@ -49,7 +49,7 @@ public class ResetGame extends GameLauncher {
         if (!plugin.getWorld().getName().equals("world")) {
             worlds.add(plugin.getWorld());
             reLocationCheck = plugin.getWorld().getSeed() != seed;
-            worlds.add(plugin.getNether());
+//            worlds.add(plugin.getNether());
         }
 
         List<GameSequences> sequences = new ArrayList<>(List.of(

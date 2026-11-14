@@ -21,9 +21,9 @@ public class GameRelaunch extends GameLauncher {
     @Override
     protected List<GameSequences> initSequence() {
         List<World> worlds = new ArrayList<>(List.of(
-                        plugin.getWorld(),
-                        plugin.getNether(),
-                        Bukkit.getWorld("world_the_end")));
+                        plugin.getWorld()));
+//                        plugin.getNether(),
+//                        Bukkit.getWorld("world_the_end")));
         return List.of(
                 new KickPlayers(),
                 new UnloadWorld(worlds),

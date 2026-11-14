@@ -2,7 +2,6 @@ name: bingo4
 version: '1.0-SNAPSHOT'
 main: org.bingo4.Bingo4
 api-version: '26.3'
-bootstrapper: org.bingo4.Bingo4Bootstrap
 dependencies:
   server:
     Apollo-Bukkit:

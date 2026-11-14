@@ -1,5 +1,6 @@
 package org.bingo4;
 
+import io.papermc.paper.datapack.Datapack;
 import io.papermc.paper.datapack.DatapackRegistrar;
 import io.papermc.paper.plugin.bootstrap.BootstrapContext;
 import io.papermc.paper.plugin.bootstrap.PluginBootstrap;
@@ -15,28 +16,36 @@ public class Bingo4Bootstrap implements PluginBootstrap {
     @Override
     public void bootstrap(BootstrapContext context) {
 
-        context.getLifecycleManager().registerEventHandler(
-                LifecycleEvents.DATAPACK_DISCOVERY,
-                event -> {
-
-                    DatapackRegistrar registrar = event.registrar();
-
-                    registerDatapack(registrar,
-                            "/datapacks/worldgen_one",
-                            "worldgen_one");
-
-                    registerDatapack(registrar,
-                            "/datapacks/worldgen_two",
-                            "worldgen_two");
-
-                }
-        );
+//        context.getLifecycleManager().registerEventHandler(
+//                LifecycleEvents.DATAPACK_DISCOVERY,
+//                event -> {
+//
+//                    DatapackRegistrar registrar = event.registrar();
+//
+//                    registerDatapack(
+//                            registrar,
+//                            "/datapacks/worldgen_one",
+//                            "worldgen_one",
+//                            Datapack.Position.BOTTOM
+//                    );
+//
+//                    // Biome Remover
+//                    registerDatapack(
+//                            registrar,
+//                            "/datapacks/worldgen_two",
+//                            "worldgen_two",
+//                            Datapack.Position.TOP
+//                    );
+//
+//                }
+//        );
     }
 
     private void registerDatapack(
             DatapackRegistrar registrar,
             String resourcePath,
-            String packId
+            String packId,
+            Datapack.Position position
     ) {
 
         try {
@@ -48,7 +57,10 @@ public class Bingo4Bootstrap implements PluginBootstrap {
             var discovered = registrar.discoverPack(
                     uri,
                     packId,
-                    config -> config.autoEnableOnServerStart(true)
+                    config -> {
+                        config.autoEnableOnServerStart(true);
+                        config.position(true, position);
+                    }
             );
 
             if (discovered == null) {
