@@ -4,6 +4,7 @@ import org.bingo4.Bingo4;
 import org.bingo4.Items.Uncraftable.Default.*;
 import org.bingo4.Items.Uncraftable.MainMenu;
 import org.bingo4.Items.Uncraftable.Minimap;
+import org.bingo4.Items.Uncraftable.VoidBox.VoidBox;
 import org.bingo4.Player.Cooldowns.Death.PlayerDeath;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -77,12 +78,14 @@ public class PlayerData {
         for (PlayerDataObservers observer : observers) {
             observer.updatePlayer();
         }
+        configurePlayerUponJoiningServer(player);
         PlayerDeath.getInstance().playerDied(this);
     }
 
     /*Resets the Player back to its lobby state*/
     public void resetToLobby() {
         player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
+        player.getAttribute(Attribute.ARMOR).setBaseValue(0);
         freezePlayer(false);
         clearInventoryAndEffects();
         addLobbyPotionEffects();
@@ -102,19 +105,19 @@ public class PlayerData {
         inv.clear();
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, PotionEffect.INFINITE_DURATION, 0, false, false));
         getMainMenuItem();
-//        inv.setItem(6, TeammateTracker.getInstance().getResult());
-//        inv.setItem(7, KitBook.getInstance().getResult());
         PlayerUtil.giveItem(player,
                 DefaultSword.getInstance().getResult(),
                 DefaultBow.getInstance().getResult(),
                 DefaultHatchet.getInstance().getResult(),
                 DefaultPickaxe.getInstance().getResult(),
                 DefaultShovel.getInstance().getResult(),
-                new ItemStack(Material.ARROW));
+                new ItemStack(Material.ARROW),
+                VoidBox.getInstance().getResult());
         player.setExperienceLevelAndProgress(0);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "recipe give " + player.getName() + " *");
         giveStartingFood();
+        configurePlayerUponJoiningServer(player);
     }
 
     /*Gives the player the effects and movement it should have after the game countdown
@@ -128,7 +131,12 @@ public class PlayerData {
         addPlayerPotionEffect(PotionEffectType.RESISTANCE, Math.min(gracePeriodDuration + 0.25, 1), 4);
         addPlayerPotionEffect(PotionEffectType.REGENERATION, 0.05, 9);
         player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(32);
+        player.getAttribute(Attribute.ARMOR).setBaseValue(10);
 //        Objects.requireNonNull(player.getAttribute(Attribute.JUMP_STRENGTH)).setBaseValue(0.41999998688697815);
+    }
+
+    public void configurePlayerUponJoiningServer(Player player) {
+        player.setSaturatedRegenRate(80);
     }
 
     /*Freezes the player in place and doesn't allow them to move if 'freeze' is true else unfreezes them if 'freeze' is false*/
@@ -147,11 +155,12 @@ public class PlayerData {
         player.addPotionEffect(new PotionEffect(effect, (int) (minutes * 60 * 20), amplifier, false, false));
     }
     private void giveStartingFood() {
-        ItemStack food = new ItemStack(Material.COOKED_BEEF, 64);
-        ItemMeta meta = food.getItemMeta();
-        meta.addEnchant(Enchantment.INFINITY, 1, true);
-        food.setItemMeta(meta);
-        player.getInventory().addItem(food);
+//        ItemStack food = new ItemStack(Material.COOKED_BEEF, 64);
+//        ItemMeta meta = food.getItemMeta();
+//        meta.addEnchant(Enchantment.INFINITY, 1, true);
+//        food.setItemMeta(meta);
+//        player.getInventory().addItem(food);
+        player.getInventory().addItem(DefaultSteak.getInstance().getResult(64));
     }
     private void clearInventoryAndEffects() {
         player.getInventory().clear();

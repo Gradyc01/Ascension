@@ -30,6 +30,12 @@ public class StandardTimeline extends Timeline {
     }
 
     @Override
+    public void resetTimeline() {
+        super.resetTimeline();
+        campTimeCheckMap.clear();
+    }
+
+    @Override
     public void generateLocationsForCamps() {
         bingoTurnInLocations = getCampManager().generateLocations(
                 20,
@@ -67,20 +73,24 @@ public class StandardTimeline extends Timeline {
         switch (getTimePassed()) {
             case 1 -> {
                 new GracePeriodEnds();
-                campManager.generateCamps(bingoTurnInLocations, campManager.getCampType(BINGO_TURN_IN.getId()), 5);
+                campManager.generateCamps(bingoTurnInLocations, campManager.getCampType(BINGO_TURN_IN.getId()), 8);
+                getNetherManager().setNetherInstances(campManager.generateCamps(generateLocationsForCamp(NETHER_KOTH, 2), campManager.getCampType(NETHER_KOTH)));
             }
             case 2 -> {
-                campManager.generateCamps(bingoTurnInLocations, campManager.getCampType(BINGO_TURN_IN.getId()), 5);
+                campManager.generateCamps(bingoTurnInLocations, campManager.getCampType(BINGO_TURN_IN.getId()), 4);
                 campManager.generateCamps(generateLocationsForCamp(MINING_CAMP_1, 10), campManager.getCampType(MINING_CAMP_1));
             }
             case 3, 4 -> {
-                campManager.generateCamps(bingoTurnInLocations, campManager.getCampType(BINGO_TURN_IN.getId()), 5);
+                campManager.generateCamps(bingoTurnInLocations, campManager.getCampType(BINGO_TURN_IN.getId()), 4);
                 campManager.generateCamps(generateLocationsForCamp(MINING_CAMP_2, 5), campManager.getCampType(MINING_CAMP_2));
             }
             case 5, 6, 7 -> {
                 campManager.generateCamps(generateLocationsForCamp(MINING_CAMP_1, 3), campManager.getCampType(MINING_CAMP_1));
                 campManager.generateCamps(generateLocationsForCamp(MINING_CAMP_2, 2), campManager.getCampType(MINING_CAMP_2));
                 campManager.generateCamps(generateLocationsForCamp(MINING_CAMP_3, 4), campManager.getCampType(MINING_CAMP_3));
+            }
+            case 20 -> {
+                getNetherManager().start();
             }
         }
     }
@@ -89,6 +99,7 @@ public class StandardTimeline extends Timeline {
     protected List<Pair<String, Integer>> initNextBigEvents() {
         return new ArrayList<>(List.of(
                 new MutablePair<>("Grace Period Ends", 1),
+                new MutablePair<>("Nether Opens", 20),
                 new MutablePair<>("Final Bingo4", getStartingMinutes())
         ));
     }

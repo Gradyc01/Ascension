@@ -38,8 +38,9 @@ public class MiningNodeCampTier2 extends MiningNodeCampLoot {
     protected Collection<ItemStack> addRareLoot(Random random) {
         CustomChestLootPool pool = new CustomChestLootPool();
         pool.generateItems(Material.DIAMOND, 2, 2, 2, 4);
-        pool.addLootPoolItem(new LootPoolItem(Material.AIR, 30),
+        pool.addLootPoolItem(new LootPoolItem(Material.AIR, 20),
                 new LootPoolItem(Material.POINTED_DRIPSTONE, 10),
+                new LootPoolItem(Material.AMETHYST_SHARD, 10),
                 new LootPoolItem(Material.RAW_COPPER_BLOCK, 1),
                 new LootPoolItem(Material.RAW_IRON_BLOCK, 1));
         return pool.getRandomItemFromList(random, 1);

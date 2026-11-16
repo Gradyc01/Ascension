@@ -4,7 +4,8 @@ public enum Structures {
     BINGO_TURN_IN("bingo_turn_in"),
     MINING_CAMP_1("mining_camp_1"),
     MINING_CAMP_2("mining_camp_2"),
-    MINING_CAMP_3("mining_camp_3");
+    MINING_CAMP_3("mining_camp_3"),
+    NETHER_KOTH("nether_koth");
 
 
     private final String id;

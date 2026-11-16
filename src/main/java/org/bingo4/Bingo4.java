@@ -8,6 +8,7 @@ import org.bingo4.General.LocationChecker.LocationCheck;
 import org.bingo4.General.Queue.QueueCommand;
 import org.bingo4.Interfaces.AscensionGUI;
 //import org.bingo4.Items.UnlocksData;
+import org.bingo4.Items.ItemLists.BingoItemManager;
 import org.bingo4.Items.UnlocksData;
 import org.bingo4.Lobby.Lobby;
 import org.bingo4.LootTables.Blocks.BlockUtil;
@@ -52,6 +53,7 @@ public final class Bingo4 extends JavaPlugin {
     private BukkitScheduler scheduler;
     private SettingObserver settings;
     private LocationCheck locationCheck;
+    private BingoItemManager manager;
     private Lobby lobby;
     private World world;
     private World nether;
@@ -223,5 +225,13 @@ public final class Bingo4 extends JavaPlugin {
     }
     public void setLobby(Lobby lobby) {
         this.lobby = lobby;
+    }
+
+    public BingoItemManager getManager() {
+        return manager;
+    }
+
+    public void setManager(BingoItemManager manager) {
+        this.manager = manager;
     }
 }

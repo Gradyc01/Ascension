@@ -2,11 +2,9 @@ package org.bingo4.Player.Data;
 
 import io.papermc.paper.scoreboard.numbers.NumberFormat;
 import org.bingo4.Bingo4;
-import org.bingo4.Player.Data.Scoreboards.Boards;
-import org.bingo4.Player.Data.Scoreboards.GameBoard;
-import org.bingo4.Player.Data.Scoreboards.GameBoardBingoCapture;
-import org.bingo4.Player.Data.Scoreboards.LobbyBoard;
+import org.bingo4.Player.Data.Scoreboards.*;
 import org.bingo4.Structures.BingoTurnIn.BingoTurnInInstance;
+import org.bingo4.Timeline.Events.NetherManager.NetherManager;
 import org.bingo4.Utility.TextUtil;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
@@ -61,6 +59,12 @@ public class PlayerScoreboard implements PlayerDataObservers {
     /*Creates the GameBoard for this player*/
     public void makeBingoCaptureBoard(BingoTurnInInstance instance) {
         boards = new GameBoardBingoCapture(board, playerData, instance);
+        boards.makeBoard();
+    }
+
+    /*Creates the GameBoard for this player*/
+    public void makeNetherBoard(NetherManager manager) {
+        boards = new NetherBoard(board, playerData, manager);
         boards.makeBoard();
     }
 

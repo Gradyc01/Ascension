@@ -5,6 +5,7 @@ import org.bingo4.General.Game.GameLauncher;
 import org.bingo4.General.Game.GameSequences;
 import org.bingo4.General.Game.Start.StartGame;
 import org.bingo4.Items.ItemList;
+import org.bingo4.Items.ItemLists.BingoItemManager;
 import org.bingo4.MainMenuUI.BingoBoard.BingoData;
 import org.bingo4.MainMenuUI.BingoBoard.BingoSlot;
 import org.bingo4.Utility.DisplayUtil;
@@ -25,8 +26,16 @@ public class InitBingoBoard extends GameSequences {
 
     @Override
     public void run(GameLauncher game) {
+        List<ItemStack> items = new ArrayList<>();
+        BingoItemManager bingoItemManager = plugin.getManager();
+        items.addAll(bingoItemManager.getItems("Common", 10));
+        items.addAll(bingoItemManager.getItems("Uncommon", 15));
+        items.addAll(bingoItemManager.getItems("Rare", 25));
+        items.addAll(bingoItemManager.getItems("Very Rare", 8));
+        items.addAll(bingoItemManager.getItems("Legendary?", 2));
+
         BingoData bingoData = plugin.getBingoData();
-        bingoData.setItemList(new ItemList().getItemsForBoard(itemDistribution));
+        bingoData.setItemList(items);
         if (game instanceof StartGame) {
             StartGame startGame = (StartGame) game;
             startGame.setCageItemDisplay(displayBoardForEveryone(startGame.getSpawnCages(), Bingo4.getInstance().getWorld()));

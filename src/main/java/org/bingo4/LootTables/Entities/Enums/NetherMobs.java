@@ -35,6 +35,5 @@ public class NetherMobs implements LootTableChanger, EntityLootTable {
         addEntity(EntityType.ZOMBIFIED_PIGLIN.translationKey(),this);
         addEntity(EntityType.PIGLIN_BRUTE.translationKey(),this);
         addEntity(EntityType.HOGLIN.translationKey(),this);
-        addEntity(EntityType.GHAST.translationKey(),this);
     }
 }

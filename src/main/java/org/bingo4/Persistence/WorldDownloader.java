@@ -43,13 +43,22 @@ public class WorldDownloader {
      * Returns true when the world is ready.
      */
     public CompletableFuture<Boolean> downloadWorld(String seed, String uuid) {
+        return downloadWorld(seed, uuid, "worlds");
+    }
+
+    /**
+     * Downloads one selected seed asynchronously.
+     *
+     * Returns true when the world is ready.
+     */
+    public CompletableFuture<Boolean> downloadWorld(String seed, String uuid, String folderPath) {
 
         CompletableFuture<Boolean> future = new CompletableFuture<>();
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
 
             try {
-                downloadWorldInternal(seed, uuid);
+                downloadWorldInternal(seed, uuid, folderPath);
                 future.complete(true);
 
             } catch (Exception e) {
@@ -70,7 +79,7 @@ public class WorldDownloader {
     /**
      * Handles the actual GitHub download.
      */
-    private void downloadWorldInternal(String seed, String uuid) throws Exception {
+    private void downloadWorldInternal(String seed, String uuid, String folderPath) throws Exception {
 
         String seedName = String.valueOf(seed);
 
@@ -163,7 +172,7 @@ public class WorldDownloader {
 
             JsonArray tree = json.getAsJsonArray("tree");
 
-            String prefix = "worlds/" + seedName + "/";
+            String prefix = folderPath + "/" + seedName + "/";
 
             int downloaded = 0;
             long totalBytes = 0;

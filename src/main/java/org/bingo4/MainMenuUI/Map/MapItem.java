@@ -23,6 +23,7 @@ public class MapItem {
     public static final int MINING_CAMP_2 = 7;
     public static final int MINING_CAMP_3 = 8;
     public static final int ANCHOR_POINT = 9;
+    public static final int NETHER_PORTAL = 10;
 
     public MapItem(String name, int x, int z, int type) {
         this.name = name;
@@ -79,6 +80,7 @@ public class MapItem {
             case MINING_CAMP_2 -> MapCursor.Type.BANNER_ORANGE;
             case MINING_CAMP_3 -> MapCursor.Type.BANNER_YELLOW;
             case ANCHOR_POINT -> MapCursor.Type.TARGET_POINT;
+            case NETHER_PORTAL -> MapCursor.Type.ABANDONED_CAMP;
             default -> MapCursor.Type.RED_X;
         };
     }

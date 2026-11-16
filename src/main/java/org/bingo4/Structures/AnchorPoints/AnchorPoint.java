@@ -287,7 +287,7 @@ public class AnchorPoint {
                                 "s: " + selectedAnchor.getName()
                 );
 
-                TextUtil.sendActionBar(player, message, 10);
+                TextUtil.sendActionBar(player, message, 20);
             }
 
             // Play a ticking sound every half second.
@@ -351,6 +351,8 @@ public class AnchorPoint {
                     0.8f,
                     1.0f
             );
+            //Update Map Center
+            playerData.getPlayerMapData().updateMapCenter();
 
             Location blockLocations = destination.clone();
             blockLocations.getBlock().setType(Material.AIR);

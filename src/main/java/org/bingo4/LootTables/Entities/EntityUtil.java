@@ -32,5 +32,6 @@ public class EntityUtil {
         new Sheep();
         new Turtle();
         new Bee();
+        new Ghast();
     }
 }

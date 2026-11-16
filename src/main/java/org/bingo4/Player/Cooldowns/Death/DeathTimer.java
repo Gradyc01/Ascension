@@ -33,6 +33,6 @@ public class DeathTimer extends Cooldowns {
             setCooldownTimer(p, 10);
             return;
         }
-        setCooldownTimer(p, Integer.min(5 + 5 * pD.getPlayerStats().getItemsObtained(), 90));
+        setCooldownTimer(p, Integer.min(5 + 2 * pD.getPlayerStats().getItemsObtained(), 60));
     }
 }

@@ -44,5 +44,23 @@ public class SeedChooser extends Readers {
             return Pair.of(Bingo4.getSpawn(), Bingo4.getInstance().getWorld().getSeed());
         }
     }
+
+    public Long findNetherSeed() {
+        try {
+            String jsonData = readFile("./plugins/Ascension/ascension_seeds.json");
+            JsonObject jsonObject = JsonParser.parseString(jsonData).getAsJsonObject();
+            JsonArray seeds = jsonObject.get("Nether_Seeds").getAsJsonArray();
+            if (seeds.isEmpty())
+                throw new InvalidPropertiesFormatException("Seed list contains invalid number of seeds");
+            Random r = new Random();
+            TextUtil.debugText("Number of seeds: " + seeds.size());
+            int seedIndex = r.nextInt(seeds.size());
+            JsonObject newLocation = seeds.get(seedIndex).getAsJsonObject();
+            return newLocation.get("Seed").getAsLong();
+        } catch (IOException e) {
+            TextUtil.debugText("Could not find file, returning old pair");
+            return Bingo4.getInstance().getWorld().getSeed();
+        }
+    }
 }
 

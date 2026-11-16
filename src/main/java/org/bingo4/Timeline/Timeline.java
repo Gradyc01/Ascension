@@ -12,6 +12,7 @@ import org.bingo4.Structures.MiningNode.LootTables.MiningNodeCampTier1;
 import org.bingo4.Structures.MiningNode.LootTables.MiningNodeCampTier2;
 import org.bingo4.Structures.MiningNode.LootTables.MiningNodeCampTier3;
 import org.bingo4.Structures.MiningNode.MiningNodeCamp;
+import org.bingo4.Structures.NetherKoth.NetherKothCamp;
 import org.bingo4.Structures.Structures;
 import org.bingo4.Teams.Team;
 //import org.bingo4.Timeline.Events.Ascension.AscensionEvent;
@@ -20,6 +21,7 @@ import org.bingo4.Teams.Team;
 //import org.bingo4.Timeline.Events.SoulShop.SoulShops;
 //import org.bingo4.Timeline.Events.Vaporization.VaporizationChecks;
 import org.bingo4.Timeline.Events.BingoLockdown.BingoLockdown;
+import org.bingo4.Timeline.Events.NetherManager.NetherManager;
 import org.bingo4.Utility.SchematicPlacer;
 import org.bingo4.Utility.SoundUtil;
 import org.bingo4.Utility.TextUtil;
@@ -51,6 +53,7 @@ public abstract class Timeline {
     private MapItems mapItems;
 //    protected final VaporizationChecks vaporizationChecks;
     private CampManager campManager;
+    private final NetherManager netherManager;
     private List<Pair<String, Integer>> nextBigEvent;
     private int gameScoreThreshold; // The bottom standard
     public Timeline(int startingMinutes) {
@@ -59,6 +62,7 @@ public abstract class Timeline {
         this.MINUTES = STARTING_MINUTES;
         mapItems = new MapItems();
         periodicChecks = new PeriodicChecks();
+        netherManager = new NetherManager();
 //        vaporizationChecks = new VaporizationChecks(this);
 //        soulShops = new SoulShops();
         bingoLockdown = new BingoLockdown();
@@ -68,6 +72,7 @@ public abstract class Timeline {
             campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier1()));
             campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier2()));
             campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier3()));
+            campManager.registerCampType(new NetherKothCamp());
         } catch (Exception e) {
             TextUtil.debugText("SAKDLASKD");
         }
@@ -265,5 +270,9 @@ public abstract class Timeline {
 
     public CampManager getCampManager() {
         return campManager;
+    }
+
+    public NetherManager getNetherManager() {
+        return netherManager;
     }
 }

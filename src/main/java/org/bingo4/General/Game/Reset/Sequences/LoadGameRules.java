@@ -1,10 +1,13 @@
 package org.bingo4.General.Game.Reset.Sequences;
 
+import org.bingo4.Bingo4;
 import org.bingo4.General.Game.GameLauncher;
 import org.bingo4.General.Game.GameSequences;
 import org.bukkit.GameRule;
 import org.bukkit.GameRules;
 import org.bukkit.World;
+
+import static org.bingo4.General.Game.Reset.Sequences.LoadGameRules.loadGameRules;
 
 public class LoadGameRules extends GameSequences {
     @Override
@@ -19,11 +22,11 @@ public class LoadGameRules extends GameSequences {
         game.callback();
     }
 
-    private void loadGameRules(World world) {
+    public static void loadGameRules(World world) {
         world.setGameRule(GameRules.RESPAWN_RADIUS, 0);
         world.setGameRule(GameRules.KEEP_INVENTORY, true);
         world.setGameRule(GameRules.IMMEDIATE_RESPAWN, true);
-        world.setGameRule(GameRules.NATURAL_HEALTH_REGENERATION, false);
+//        world.setGameRule(GameRules.NATURAL_HEALTH_REGENERATION, false);
         // world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, true);
         world.setGameRule(GameRules.SPAWN_PHANTOMS, false);
         world.setGameRule(GameRules.LOCATOR_BAR,false); //TODO: False For Now

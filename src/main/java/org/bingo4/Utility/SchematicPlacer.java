@@ -478,12 +478,16 @@ public final class SchematicPlacer {
 
         if (spec.footprintOffsetX() < 0
                 || spec.footprintOffsetZ() < 0
-                || spec.footprintOffsetX() + spec.footprintWidthX()
-                        > bounds.width()
-                || spec.footprintOffsetZ() + spec.footprintDepthZ()
-                        > bounds.depth()) {
+                || spec.footprintOffsetX() + spec.footprintWidthX() > bounds.width()
+                || spec.footprintOffsetZ() + spec.footprintDepthZ() > bounds.depth()) {
             throw new IllegalArgumentException(
-                    "Footprint is outside the schematic bounds."
+                    "Footprint is outside schematic bounds: "
+                            + "offsetX=" + spec.footprintOffsetX()
+                            + ", offsetZ=" + spec.footprintOffsetZ()
+                            + ", widthX=" + spec.footprintWidthX()
+                            + ", depthZ=" + spec.footprintDepthZ()
+                            + ", boundsWidth=" + bounds.width()
+                            + ", boundsDepth=" + bounds.depth()
             );
         }
 

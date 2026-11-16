@@ -17,6 +17,7 @@ public class GameStates {
     public final static int GAME_PAUSED = 10;
 
     public final static int GAME_ASCENSION = 9;
+    public final static int GAME_NETHER_OPEN = 11;
 
     private int currentState;
     private int previousState;
@@ -68,7 +69,7 @@ public class GameStates {
      * Returns True if Yes
      * Returns False Otherwise*/
     public boolean canTeleport(Player p) {
-        if (checkState(GAME_FINAL_ASCENSION, GAME_AFTER_GRACE, GAME_ASCENSION)) {
+        if (checkState(GAME_FINAL_ASCENSION, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_NETHER_OPEN)) {
             return true;
         } else {
             TextUtil.errorMessage(p, "Teleporting is currently unavailable");
@@ -80,7 +81,7 @@ public class GameStates {
      * Returns True if Yes
      * Returns False Otherwise*/
     public boolean inGame() {
-        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_FINAL_ASCENSION, GAME_ENDING, GAME_PAUSED);
+        return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_AFTER_GRACE, GAME_ASCENSION, GAME_FINAL_ASCENSION, GAME_ENDING, GAME_PAUSED, GAME_NETHER_OPEN);
     }
 
     /*Check if Game is in a state where players can pvp
@@ -88,6 +89,15 @@ public class GameStates {
      * Returns False Otherwise*/
     public boolean canNotPVP() {
         return checkState(GAME_BEFORE_GRACE, GAME_LOADING, GAME_ENDING, GAME_FEAST_LOADING, GAME_PAUSED);
+    }
+
+    public boolean canDimensionalTravel(Player p) {
+        if (checkState(GAME_NETHER_OPEN)) {
+            return true;
+        } else {
+            TextUtil.errorMessage(p, "Dimensional travel is currently disabled");
+            return false;
+        }
     }
 
     /*Check if Game is in a state where players can not drop items

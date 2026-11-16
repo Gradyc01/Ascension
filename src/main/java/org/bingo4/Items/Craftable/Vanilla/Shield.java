@@ -43,7 +43,7 @@ public class Shield extends Craft implements Vanilla {
     protected ItemStack initResult() {
         ItemStack item = new ItemStack(Material.SHIELD);
         Damageable meta = (Damageable) item.getItemMeta();
-        meta.setMaxDamage(32);
+        meta.setMaxDamage(256);
         item.setItemMeta(meta);
         return item;
     }
