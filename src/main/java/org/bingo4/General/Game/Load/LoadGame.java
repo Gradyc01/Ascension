@@ -27,16 +27,12 @@ public class LoadGame extends GameLauncher {
     @Override
     protected List<GameSequences> initSequence() {
         return List.of(
-//                new BuildWorlds(spawnCoordsLocation, seed), //TODO: Move to ResetGame???
-//                new SetSpawn(spawnCoordsLocation), //TODO: Move to ResetGame???
+                new DownloadAscensionFolder(),
                 new ClearEntityInteractions(),
                 new SetBingoData(),
                 new DeletePreviousIterations(),
-//                new CenterSettingsConfigurations(), //TODO: Move to ResetGame???
-//                new BuildPlatform(), //TODO: Move to ResetGame???
                 new BuildLobby(lobbyCoordsLocation),
                 new CallResetGame()
-//                new CallLocationCheck() //TODO: Move to ResetGame???
         );
     }
 

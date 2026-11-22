@@ -1,6 +1,7 @@
 package org.bingo4.listeners;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bingo4.Bingo4;
 import org.bingo4.Player.Data.PlayerUtil;
 import org.bingo4.Utility.TextUtil;
@@ -18,9 +19,8 @@ public class PlayerChatting implements Listener {
     }
     @EventHandler
     public void onPlayerChat(AsyncChatEvent event) {
-//        TextUtil.debugText(event.getPlayer().getName() + "Send a chat message?");
         Player p = event.getPlayer();
-//        event.message();
+        TextUtil.debugText(String.format("[Original Chat Message %s] %s", p.getName(), PlainTextComponentSerializer.plainText().serialize(event.message())));
         event.setCancelled(true);
         Component playerName = TextUtil.makeText(p.getName() + ": ", TextUtil.DARK_GRAY);
         Component message = event.message().color(TextUtil.GRAY);

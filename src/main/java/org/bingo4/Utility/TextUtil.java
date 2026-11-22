@@ -14,10 +14,12 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.jline.utils.Log;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TextUtil {
@@ -159,11 +161,15 @@ public class TextUtil {
     }
 
     public static void debugText(String text) {
+        debugText(text, Level.INFO);
+    }
+
+    public static void debugText(String text, Level level) {
         if (Debugger.getDebugger()) {
             Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));
         } else {
             Logger logger = Bukkit.getLogger();
-            logger.info(text);
+            logger.log(level, text);
         }
     }
 

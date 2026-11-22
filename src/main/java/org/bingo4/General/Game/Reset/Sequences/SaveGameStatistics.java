@@ -14,17 +14,17 @@ import java.util.List;
 public class SaveGameStatistics extends GameSequences {
     @Override
     public void run(GameLauncher game) {
-        savePlayerStatistics();
-        game.callback();
+        savePlayerStatistics(game);
     }
 
-    private void savePlayerStatistics() {
+    private void savePlayerStatistics(GameLauncher game) {
         new BukkitRunnable() {
             List<Player> players = new ArrayList<>(plugin.getServer().getOnlinePlayers());
             @Override
             public void run() {
                 if (players.isEmpty()) {
                     cancel();
+                    game.callback(); // only continue once every file has been written
                     return;
                 }
                 Player p = players.getFirst();

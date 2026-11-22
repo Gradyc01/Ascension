@@ -28,7 +28,7 @@ public class ItemDisplay extends Display.ItemDisplay {
         ((CraftWorld) location.getWorld()).getHandle().addFreshEntity(this);
         setItemStack(CraftItemStack.asNMSCopy(itemStack));
         setCustomName(CraftItemStack.asNMSCopy(itemStack).getDisplayName().copy()
-                .append(Component.literal("x " + itemStack.getAmount())));
+                .append(Component.literal(" x" + itemStack.getAmount())));
         setCustomNameVisible(true);
         //TODO: switch this line out
 //        location.getWorld().getPlayers().forEach(player ->

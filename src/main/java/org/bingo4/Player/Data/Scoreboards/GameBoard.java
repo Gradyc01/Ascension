@@ -6,6 +6,7 @@ import org.bingo4.General.Game.GameStates;
 import org.bingo4.MainMenuUI.BingoBoard.BingoSlot;
 import org.bingo4.Player.Data.PlayerData;
 import org.bingo4.Teams.Team;
+import org.bingo4.Teams.TeamStats;
 import org.bingo4.Timeline.Timeline;
 import org.bingo4.Utility.TextUtil;
 import net.kyori.adventure.text.Component;
@@ -60,25 +61,29 @@ public class GameBoard extends Boards {
 
     public void updateScoreStatus() {
         if (timeline.getBingoLockdown().isEventOngoing()) {
-            updateAscensionTimer();
+            Team bingoLockdownTeam = timeline.getBingoLockdown().getTeam();
+            int time = bingoLockdownTeam.getTeamBingoLockdown().getAscensionTimer();
+
+            String teamText = bingoLockdownTeam.getTeamMembersData().contains(getPlayerData()) ? "You Win In" : "Enemy Wins In";
+            TextColor teamTextColor = bingoLockdownTeam.getTeamMembersData().contains(getPlayerData()) ? TextUtil.GREEN : TextUtil.RED;
+            editLine(board, 2, TextUtil.makeText("  " + teamText + ": ", teamTextColor).append(TextUtil.makeText(TextUtil.formatTime(time), TextUtil.GOLD)));
         } else {
-            int scoreDifferential = getPlayerData().getPlayerTeam().getTeam().getTeamStats().getGameScoreDifferential();
+            TeamStats teamStats = getPlayerData().getPlayerTeam().getTeam().getTeamStats();
+            int scoreDifferential = teamStats.getGameScoreDifferential();
             String sign = scoreDifferential > 0 ? "+" : "";
             TextColor differentialColor = scoreDifferential >= 0 ? TextUtil.GREEN : TextUtil.RED;
-            editLine(board, 2, TextUtil.makeText("  Score Status: ", TextUtil.WHITE).append(TextUtil.makeText(sign + scoreDifferential, differentialColor)));
+            editLine(board, 2, TextUtil.makeText("  Score Status: ", TextUtil.WHITE)
+                    .append(TextUtil.makeText(teamStats.getGameScore() + " ", TextUtil.GREEN))
+                    .append(TextUtil.makeText("(" + sign + scoreDifferential + ")", differentialColor)));
         }
 
     }
 
     public void updateTime() {
         PlayerData playerData = getPlayerData();
-        switch (plugin.getGameState().getCurrentState()) {
-            default -> {
-                Pair<String, Integer> event = timeline.getNextBigEvent(playerData);
-                editLine(board, 13, TextUtil.makeText("  " + event.getLeft() +" In:  ", TextUtil.GOLD));
-                editLine(board, 12, timeline.getTime(playerData) );
-            }
-        }
+        Pair<String, Integer> event = timeline.getNextBigEvent(playerData);
+        editLine(board, 13, TextUtil.makeText("  " + event.getLeft() + " In:  ", TextUtil.GOLD));
+        editLine(board, 12, timeline.getTime(playerData));
     }
 
     private List<Component> buildBingoBoard() {
@@ -103,16 +108,6 @@ public class GameBoard extends Boards {
             texts.add(text);
         }
         return texts;
-    }
-
-
-    private void updateAscensionTimer() {
-        Team team = timeline.getBingoLockdown().getTeam();
-        int time = team.getTeamBingoLockdown().getAscensionTimer();
-
-        String teamText = team.getTeamMembersData().contains(getPlayerData()) ? "You Win In" : "Enemy Wins In";
-        TextColor teamTextColor = team.getTeamMembersData().contains(getPlayerData()) ? TextUtil.GREEN : TextUtil.RED;
-        editLine(board, 2, TextUtil.makeText("  " + teamText + ": ", teamTextColor).append(TextUtil.makeText(TextUtil.formatTime(time), TextUtil.GOLD)));
     }
 
     private Component displayBar(double percentage) {

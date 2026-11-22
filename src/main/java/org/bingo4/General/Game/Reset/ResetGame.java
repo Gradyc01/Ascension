@@ -61,7 +61,10 @@ public class ResetGame extends GameLauncher {
                 new LoadGameRules()
         ));
         if (saveStats) {
+            //Order is reversed
+            sequences.addFirst(new UploadPlayerStats());
             sequences.addFirst(new SaveGameStatistics());
+            sequences.addFirst(new DownloadPlayerStats());
         }
         if (rebuild) {
             List<GameSequences> buildSequences = new ArrayList<>(List.of(
