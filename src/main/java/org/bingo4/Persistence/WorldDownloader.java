@@ -57,19 +57,43 @@ public class WorldDownloader {
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
 
-            try {
-                downloadWorldInternal(seed, uuid, folderPath);
-                future.complete(true);
+            int maxAttempts = 3;
 
-            } catch (Exception e) {
+            for (int attempt = 1; attempt <= maxAttempts; attempt++) {
 
-                plugin.getLogger().severe(
-                        "Failed to download world " + seed
-                );
+                try {
+                    downloadWorldInternal(seed, uuid, folderPath);
 
-                e.printStackTrace();
+                    plugin.getLogger().info(
+                            "Successfully downloaded world " + seed
+                    );
 
-                future.complete(false);
+                    future.complete(true);
+                    return;
+
+                } catch (Exception e) {
+
+                    plugin.getLogger().warning(
+                            "Failed to download world " + seed +
+                                    " (Attempt " + attempt + "/" + maxAttempts + ")"
+                    );
+
+                    if (attempt == maxAttempts) {
+                        plugin.getLogger().severe(String.format(
+                                "Failed to download world %s at %s after %s attempts. Error: %s",
+                                seed, folderPath, maxAttempts, e));
+                        future.complete(false);
+                        return;
+                    }
+
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException interruptedException) {
+                        Thread.currentThread().interrupt();
+                        future.complete(false);
+                        return;
+                    }
+                }
             }
         });
 

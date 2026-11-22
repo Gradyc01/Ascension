@@ -82,7 +82,7 @@ public class ResetGame extends GameLauncher {
 
     @Override
     protected boolean canStart() {
-        plugin.getGameState().setCurrentState(GameStates.LOBBY_NORMAL);
+        plugin.getGameState().setCurrentState(GameStates.LOBBY_LOADING);
 
 //        plugin.getSettingsUI().getSettings().getTimeline().resetTimeline();//TODO: Temporarily put this line in ResetBackpacks
         return true;

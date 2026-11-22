@@ -1,5 +1,6 @@
 package org.bingo4.Player.Data.Scoreboards;
 
+import net.kyori.adventure.text.format.TextColor;
 import org.bingo4.Bingo4;
 import org.bingo4.General.Game.GameStates;
 import org.bingo4.MainMenuUI.BingoBoard.BingoSlot;
@@ -54,17 +55,24 @@ public class GameBoard extends Boards {
         Component killText = TextUtil.makeText("  Kills: ", TextUtil.WHITE);
         Component killNum = TextUtil.makeText(playerData.getPlayerStats().getKills() + ",", TextUtil.GREEN);
         editLine(board, 3, killText.append(killNum).append(itemsText).append(itemsNum));
+        updateScoreStatus();
+    }
+
+    public void updateScoreStatus() {
+        if (timeline.getBingoLockdown().isEventOngoing()) {
+            updateAscensionTimer();
+        } else {
+            int scoreDifferential = getPlayerData().getPlayerTeam().getTeam().getTeamStats().getGameScoreDifferential();
+            String sign = scoreDifferential > 0 ? "+" : "";
+            TextColor differentialColor = scoreDifferential >= 0 ? TextUtil.GREEN : TextUtil.RED;
+            editLine(board, 2, TextUtil.makeText("  Score Status: ", TextUtil.WHITE).append(TextUtil.makeText(sign + scoreDifferential, differentialColor)));
+        }
+
     }
 
     public void updateTime() {
         PlayerData playerData = getPlayerData();
         switch (plugin.getGameState().getCurrentState()) {
-//            case GameStates.GAME_FINAL_ASCENSION -> {
-//                updateFinalAscensionTimer(playerData);
-//            }
-            case GameStates.GAME_ASCENSION -> {
-                updateAscensionTimer();
-            }
             default -> {
                 Pair<String, Integer> event = timeline.getNextBigEvent(playerData);
                 editLine(board, 13, TextUtil.makeText("  " + event.getLeft() +" In:  ", TextUtil.GOLD));
@@ -101,12 +109,10 @@ public class GameBoard extends Boards {
     private void updateAscensionTimer() {
         Team team = timeline.getBingoLockdown().getTeam();
         int time = team.getTeamBingoLockdown().getAscensionTimer();
-        String minutes = time/60 + "";
-        String seconds = time%60 <= 9 ? "0" + time%60 : time%60 + "";
 
-        String teamText = team.getTeamMembersData().contains(getPlayerData()) ? "Your" : "Enemy";
-        editLine(board, 13, TextUtil.makeText("  "  + teamText + " Team Wins In: ", TextUtil.GOLD));
-        editLine(board, 12, TextUtil.makeText("        " + minutes + ":" + seconds, TextUtil.WHITE));
+        String teamText = team.getTeamMembersData().contains(getPlayerData()) ? "You Win In" : "Enemy Wins In";
+        TextColor teamTextColor = team.getTeamMembersData().contains(getPlayerData()) ? TextUtil.GREEN : TextUtil.RED;
+        editLine(board, 2, TextUtil.makeText("  " + teamText + ": ", teamTextColor).append(TextUtil.makeText(TextUtil.formatTime(time), TextUtil.GOLD)));
     }
 
     private Component displayBar(double percentage) {

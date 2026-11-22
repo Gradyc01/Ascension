@@ -4,6 +4,7 @@ import io.papermc.paper.command.brigadier.BasicCommand;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bingo4.Bingo4;
 import org.bingo4.Structures.CampManager;
+import org.bingo4.Structures.Structures;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,13 +15,22 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static org.bingo4.Structures.Structures.*;
+
 public class placeCamp implements CommandExecutor, TabCompleter, BasicCommand {
 
     private final Bingo4 plugin = Bingo4.getInstance();
 
-    private static final List<String> CAMP_TYPES = List.of(
-            "bingo_turn_in",
-            "mining_camp"
+    private static final List<Structures> CAMP_TYPES = List.of(
+            BINGO_TURN_IN,
+            MINING_CAMP_1,
+            MINING_CAMP_2,
+            MINING_CAMP_2_GEODE_VARIANT,
+            MINING_CAMP_3,
+            MINING_CAMP_3_LUSH_VARIANT,
+            MINING_CAMP_3_SULFUR_VARIANT,
+            NETHER_KOTH,
+            MIDBOSS
     );
 
     @Override
@@ -78,7 +88,7 @@ public class placeCamp implements CommandExecutor, TabCompleter, BasicCommand {
             @NotNull String label,
             @NotNull String @NotNull [] args
     ) {
-        return CAMP_TYPES;
+        return CAMP_TYPES.stream().map(Structures::getId).toList();
     }
 
     // Paper tab completion
@@ -87,6 +97,6 @@ public class placeCamp implements CommandExecutor, TabCompleter, BasicCommand {
             @NotNull CommandSourceStack commandSourceStack,
             @NotNull String[] args
     ) {
-        return CAMP_TYPES;
+        return CAMP_TYPES.stream().map(Structures::getId).toList();
     }
 }

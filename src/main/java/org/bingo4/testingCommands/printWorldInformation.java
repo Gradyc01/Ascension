@@ -45,27 +45,27 @@ public class printWorldInformation implements CommandExecutor, BasicCommand {
             return false;
         }
 
-        int globalScore = plugin.getLocationCheck().getPercentageScore();
+//        int globalScore = plugin.getLocationCheck().getPercentageScore();
 
-        TextColor color = globalScore >= 50
-                ? globalScore >= 80
-                ? TextUtil.GREEN
-                : TextUtil.YELLOW
-                : TextUtil.RED;
-
-        Component text = TextUtil.topBorder(TextUtil.DARK_GRAY);
-
-        text = text.append(TextUtil.makeText(
-                "\n                World Score: " + globalScore + "%",
-                color,
-                true,
-                false
-        ));
-
-        text = text.append(plugin.getLocationCheck().printLocations());
-        text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
-
-        p.sendMessage(text);
+//        TextColor color = globalScore >= 50
+//                ? globalScore >= 80
+//                ? TextUtil.GREEN
+//                : TextUtil.YELLOW
+//                : TextUtil.RED;
+//
+//        Component text = TextUtil.topBorder(TextUtil.DARK_GRAY);
+//
+//        text = text.append(TextUtil.makeText(
+//                "\n                World Score: " + globalScore + "%",
+//                color,
+//                true,
+//                false
+//        ));
+//
+//        text = text.append(plugin.getLocationCheck().printLocations());
+//        text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
+//
+//        p.sendMessage(text);
 
         return true;
     }

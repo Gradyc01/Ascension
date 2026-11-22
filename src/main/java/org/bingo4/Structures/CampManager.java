@@ -17,8 +17,8 @@ public class CampManager {
 
 //    private final int structureHeight = 10000;
     private final int blendRadius = 10;
-    private final int minimumSpacing = 40;
-    private final int maxCandidateAttempts = 10000;
+    private final static int MINIMUM_SPACING = 60;
+    private final static int MAX_CANDIDATE_ATTEMPTS = 10000;
 
     public CampManager() {
         terrainAnalyzer = new TerrainAnalyzer(5, 2);
@@ -163,7 +163,7 @@ public class CampManager {
         List<Location> found = new ArrayList<>(amount);
 
         long desiredAttempts = Math.max(100L, (long) amount * 120L);
-        int attempts = (int) Math.min(maxCandidateAttempts, desiredAttempts);
+        int attempts = (int) Math.min(MAX_CANDIDATE_ATTEMPTS, desiredAttempts);
 
         for (int attempt = 0; attempt < attempts && found.size() < amount; attempt++) {
 
@@ -272,7 +272,7 @@ public class CampManager {
             List<Location> found
     ) {
         double minimumDistanceSquared =
-                (double) minimumSpacing * minimumSpacing;
+                (double) MINIMUM_SPACING * MINIMUM_SPACING;
 
         double candidateCenterX = x + halfWidth;
         double candidateCenterZ = z + halfDepth;

@@ -105,14 +105,14 @@ public class Info implements CommandExecutor, BasicCommand {
                 TextUtil.BLUE
         ));
 
-        LocationCheck locationCheck = Bingo4.getInstance().getLocationCheck();
-
-        if (locationCheck.isCheckCompleted()) {
-            text = text.append(TextUtil.makeText(
-                    "\n\n World Score: " + locationCheck.getPercentageScore() + "%",
-                    TextUtil.AQUA
-            ));
-        }
+//        LocationCheck locationCheck = Bingo4.getInstance().getLocationCheck();
+//
+//        if (locationCheck.isCheckCompleted()) {
+//            text = text.append(TextUtil.makeText(
+//                    "\n\n World Score: " + locationCheck.getPercentageScore() + "%",
+//                    TextUtil.AQUA
+//            ));
+//        }
 
         text = text.append(TextUtil.bottomBorder(TextUtil.YELLOW));
 

@@ -55,8 +55,11 @@ public class BingoBoardGUI extends AscensionMenuGUI {
             return;
         }
         for (int i = 0; i < 25; i++) {
-            ItemStack item = slots.get(i).getItem();
-            if (!hasItems.get(i)) {
+            BingoSlot slot = slots.get(i);
+            ItemStack item = slot.getItem();
+            if (slot.isLocked()) {
+                inventory.setItem(boardSlots[i], initUnsetItem("LOCKED"));
+            } else if (!hasItems.get(i)) {
                 inventory.setItem(boardSlots[i], item);
                 bingoItems.add(item);
             } else {

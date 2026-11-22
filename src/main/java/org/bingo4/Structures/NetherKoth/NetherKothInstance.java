@@ -15,6 +15,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Display;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.TextDisplay;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -31,7 +32,7 @@ public class NetherKothInstance extends CampInstance implements Floodable {
 //    private final BingoTurnInProgress bingoTurnInProgress;
     private Set<Block> blocks;
     private MapItem mapItem;
-    private List<TextDisplay> portalTimeDisplay;
+    private Set<UUID> portalTimeDisplay;
     private BukkitTask portalLoop;
     private final List<Block> portalBlocks;
 
@@ -62,7 +63,8 @@ public class NetherKothInstance extends CampInstance implements Floodable {
         checkAndBuildPortal();
         instanceLoc.getWorld().setChunkForceLoaded(instanceLoc.getBlockX(), instanceLoc.getBlockZ(), true);
         instanceLoc.getWorld().playSound(instanceLoc, Sound.BLOCK_END_PORTAL_SPAWN, 4F, 1.5F);
-        portalTimeDisplay = initTextDisplay();
+        portalTimeDisplay = new HashSet<>();
+//        portalTimeDisplay = initTextDisplay();
     }
 
     public void stop() {
@@ -70,9 +72,7 @@ public class NetherKothInstance extends CampInstance implements Floodable {
         destroyBuild();
         if (portalLoop != null) portalLoop.cancel();
         instanceLoc.getWorld().setChunkForceLoaded(instanceLoc.getBlockX(), instanceLoc.getBlockZ(), false);
-        MapItems mapItems = plugin.getSettingsUI().getSettings().getTimeline().getMapItems();
-        mapItems.removeMapItem(mapItem);
-        plugin.getSettingsUI().getSettings().getTimeline().getCampManager().removeCamp(this);
+        removePortalTextDisplays();
     }
 
     private void checkAndBuildPortal() {
@@ -92,28 +92,25 @@ public class NetherKothInstance extends CampInstance implements Floodable {
     }
 
     public void portalLoop(int timePassed, int seconds) {
-//        int seconds = 300;
-
-//        portalLoop = new BukkitRunnable() {
-//            int timePassed = 0;
-//            @Override
-//            public void run() {
-//
-//            }
-//        }.runTaskTimer(plugin, 0, 20);
-        for (TextDisplay textDisplay : portalTimeDisplay) {
+        removePortalTextDisplays();
+        for (TextDisplay textDisplay : initTextDisplay()) {
             textDisplay.text(
                     TextUtil.makeText("Portal closes in ", TextUtil.GOLD)
                             .append(TextUtil.makeText(TextUtil.formatTime(seconds - timePassed), TextUtil.AQUA)));
+            portalTimeDisplay.add(textDisplay.getUniqueId());
         }
+
         checkAndBuildPortal();
-//        if (timePassed++ >= seconds) {
-//            cancel();
-//            for (TextDisplay textDisplay : portalTimeDisplay) {
-//                textDisplay.remove();
-//            }
-//            stop();
-//        }
+    }
+
+    private void removePortalTextDisplays() {
+        for (UUID textDisplayUUID : new HashSet<>(portalTimeDisplay)) {
+            Entity textDisplay = getCenter().getWorld().getEntity(textDisplayUUID);
+            if (textDisplay != null) {
+                textDisplay.remove();
+                portalTimeDisplay.remove(textDisplayUUID);
+            }
+        }
     }
 
     private List<TextDisplay> initTextDisplay() {
@@ -135,20 +132,21 @@ public class NetherKothInstance extends CampInstance implements Floodable {
     }
 
     private void destroyBuild() {
+        Set<Block> portalBlocksSet = new HashSet<>(portalBlocks);
         new BukkitRunnable() {
             @Override
             public void run() {
                 TextUtil.debugText("[Bingo Turn In] Destroying Build at " + TextUtil.formatLocation(getOrigin()));
-                if (blocks.isEmpty()) {
+                if (portalBlocksSet.isEmpty()) {
                     cancel();
                 }
 
                 int i = 10;
-                for (Block b : new HashSet<>(blocks)) {
+                for (Block b : new HashSet<>(portalBlocksSet)) {
                     if (i-- <= 0) {
                         break;
                     }
-                    blocks.remove(b);
+                    portalBlocksSet.remove(b);
 
                     b.removeMetadata("UNBREAKABLE", Bingo4.getInstance());
                     b.setType(Material.AIR);

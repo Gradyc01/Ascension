@@ -18,7 +18,7 @@ import java.util.List;
 public class HadesBook extends CustomItem implements ItemClick {
     private static HadesBook instance;
     private HadesBook() {
-        super("Hades' Book", "hades_book");
+        super("Book of the Gatekeeper", "hades_book");
         registerItem();
     }
 

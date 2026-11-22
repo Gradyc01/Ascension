@@ -25,7 +25,11 @@ import static org.bingo4.MainMenuUI.Map.MapItem.MINING_CAMP_3;
 public class MiningNodeCampTier3 extends MiningNodeCampLoot {
 
     public MiningNodeCampTier3() {
-        super("3", MINING_CAMP_3);
+        this("3", MINING_CAMP_3);
+    }
+
+    public MiningNodeCampTier3(String id, int mapId) {
+        super(id, mapId);
     }
 
     @Override
@@ -41,7 +45,7 @@ public class MiningNodeCampTier3 extends MiningNodeCampLoot {
         CustomChestLootPool pool = new CustomChestLootPool();
         pool.generateItems(Material.OBSIDIAN, 2, 2, 2, 2);
         pool.generateItems(Material.DISC_FRAGMENT_5, 2, 2, 2, 5);
-        pool.addLootPoolItem(new LootPoolItem(Material.AIR, 25),
+        pool.addLootPoolItem(new LootPoolItem(Material.AIR, 10),
                 new LootPoolItem(Material.ECHO_SHARD, 10));
         return pool.getRandomItemFromList(random, 1);
     }
@@ -75,5 +79,9 @@ public class MiningNodeCampTier3 extends MiningNodeCampLoot {
         );
     }
 
+    @Override
+    public MiningNodeColorScheme getMaterialScheme() {
+        return new MiningNodeColorScheme(Material.BLUE_CONCRETE, Material.BLUE_CONCRETE_STAIRS, Material.SCULK, Material.GRAY_CONCRETE_STAIRS, Material.GOLD_BLOCK);
+    }
 
 }

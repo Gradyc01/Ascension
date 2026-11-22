@@ -33,12 +33,11 @@ public class PlayerJoinLeave implements Listener {
                 onPlayerJoinLobby(event);
                 Queue.getInstance().stopQueue();
             }
-            case GameStates.UNLOADED -> {
+            case GameStates.UNLOADED, GameStates.LOBBY_LOADING -> {
                 return;
             }
             default -> {
                 onPlayerJoinDuringGame(event);
-//                event.joinMessage(TextUtil.makeText(""));
                 event.joinMessage(null);
             }
         }
@@ -55,20 +54,10 @@ public class PlayerJoinLeave implements Listener {
                 onPlayerLeaveLobby(event);
                 Queue.getInstance().stopQueue();
             }
-            case GameStates.UNLOADED -> {
+            case GameStates.UNLOADED, GameStates.LOBBY_LOADING -> {
                 return;
             }
             default -> {
-//                Player player = event.getPlayer();
-//                PlayerData playerData = PlayerUtil.getPlayerData(player);
-//                if (playerData.checkState(PlayerData.STATE_SPECTATING)) {
-//                    event.quitMessage(TextUtil.makeText(""));
-//                    return; //TODO: Add this in later? and test obv
-//                }
-//                PlayerDeath.getInstance().setPlayerSpectating(playerData);
-//                playerData.getPlayerTeam().getTeam().updateState();
-//                event.quitMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
-//                        .append(TextUtil.makeText(" has disconnected and has been slain", TextUtil.RED)));
                 onPlayerLeaveDuringGame(event);
             }
         }

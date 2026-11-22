@@ -33,6 +33,7 @@ public class CreateAnchorPointAnimation implements Floodable {
     }
 
     private void start() {
+        anchorPoint.getCreator().getPlayer().sendMessage(TextUtil.makeText("Creating an anchor point: ", TextUtil.DARK_PURPLE).append(TextUtil.makeText(anchorPoint.getName(), TextUtil.AQUA)));
         anchorPoint.getLocation().getWorld().playSound(anchorPoint.getLocation(), Sound.AMBIENT_NETHER_WASTES_MOOD, 20, 1);
         int ticks = 10 * 20;
         Random random = new Random();

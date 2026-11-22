@@ -12,7 +12,7 @@ public class CallLocationCheck extends GameSequences {
 //        if (!(game instanceof LoadGame)) throw new IllegalArgumentException();
 //        LoadGame g = (LoadGame) game;
 //        plugin.setLocationCheck(new LocationCheck(g.getSpawnCoordsLocation()));
-        plugin.setLocationCheck(new LocationCheck(Bingo4.getSpawn()));
+//        plugin.setLocationCheck(new LocationCheck(Bingo4.getSpawn()));
         game.callback();
     }
 }

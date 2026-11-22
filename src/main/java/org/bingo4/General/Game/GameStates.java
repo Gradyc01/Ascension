@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 public class GameStates {
     public final static int UNLOADED = 0;
+    public final static int LOBBY_LOADING = 12;
     public final static int LOBBY_NORMAL = 1;
     public final static int LOBBY_QUEUE = 2;
     public final static int GAME_BEFORE_GRACE = 3;
@@ -55,14 +56,22 @@ public class GameStates {
     * Returns True if Players can't build
     * Returns False Otherwise*/
     public boolean canNotBuild() {
-        return checkState(LOBBY_NORMAL, LOBBY_QUEUE, GAME_LOADING, GAME_FEAST_LOADING, GAME_PAUSED);
+        return checkState(LOBBY_NORMAL, LOBBY_QUEUE, LOBBY_LOADING, GAME_LOADING, GAME_FEAST_LOADING, GAME_PAUSED);
+    }
+
+    /**
+     * Checks if game can be started
+     * @return true if game can be started
+     */
+    public boolean canStartGame() {
+        return checkState(LOBBY_NORMAL);
     }
 
     /*Checks if game is in a lobby state
      * Returns True if Yes
      * Returns False Otherwise*/
     public boolean inLobby() {
-        return checkState(LOBBY_NORMAL, LOBBY_QUEUE);
+        return checkState(LOBBY_NORMAL, LOBBY_QUEUE, LOBBY_LOADING);
     }
 
     /*Check if Game is in a state where players can teleport
@@ -104,6 +113,6 @@ public class GameStates {
      * Returns True if Yes
      * Returns False Otherwise*/
     public boolean canNotDropItems() {
-        return checkState(LOBBY_NORMAL, LOBBY_QUEUE);
+        return checkState(LOBBY_NORMAL, LOBBY_QUEUE, LOBBY_LOADING);
     }
 }

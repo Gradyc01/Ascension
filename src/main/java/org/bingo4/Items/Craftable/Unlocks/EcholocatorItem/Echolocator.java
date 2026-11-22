@@ -69,7 +69,7 @@ public class Echolocator extends Craft implements ItemClick {
     @Override
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         if (isMainHandRightClick(e)) {
-            new EcholocatorGUI(pD);
+//            new EcholocatorGUI(pD);
             return true;
         }
         return false;

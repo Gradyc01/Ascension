@@ -42,7 +42,6 @@ public class PlayerDeath {
             } else if (gameState.checkState(GameStates.GAME_FINAL_ASCENSION)) {
                 setPlayerSpectating(playerData);
             } else {
-                if (!gameState.checkState(GameStates.GAME_BEFORE_GRACE)) team.getTeamStats().addGameScore(-1);
                 setRespawningLater(playerData);
             }
         }

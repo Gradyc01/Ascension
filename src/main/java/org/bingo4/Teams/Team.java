@@ -148,7 +148,6 @@ public class Team {
     /*Returns a list of teamMembers other than Player p*/
     public void updateTeamScoreboards() {
         for (PlayerData pD : teamMembers) {
-//            PlayerData playerData = PlayerUtil.getPlayerData(p);
             if (pD == null) {
                 plugin.getServer().broadcast(TextUtil.makeText("ERROR updateTeamScoreboards", TextUtil.RED));
                 continue;

@@ -71,4 +71,8 @@ public abstract class MiningNodeCampLoot extends CustomChestLoot implements Floo
     public int getMapId() {
         return mapId;
     }
+
+    public MiningNodeColorScheme getMaterialScheme() {
+        return new MiningNodeColorScheme(Material.YELLOW_CONCRETE, Material.YELLOW_CONCRETE_STAIRS, Material.ORANGE_CONCRETE, Material.ORANGE_CONCRETE_STAIRS, Material.COPPER_BLOCK);
+    }
 }

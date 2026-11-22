@@ -3,6 +3,9 @@ package org.bingo4.Timeline.Events.BingoLockdown;
 import net.kyori.adventure.text.Component;
 import org.bingo4.Bingo4;
 import org.bingo4.General.Game.GameStates;
+import org.bingo4.Player.Data.PlayerData;
+import org.bingo4.Player.Data.PlayerUtil;
+import org.bingo4.Player.Data.Scoreboards.GameBoard;
 import org.bingo4.Teams.Team;
 import org.bingo4.Teams.TeamBingoLockdown;
 import org.bingo4.Timeline.Events.Winner.Winner;
@@ -39,9 +42,10 @@ public class BingoLockdown {
     public void start(Team team) {
         this.team = team;
         eventOngoing = true;
-        plugin.getGameState().setCurrentState(GameStates.GAME_ASCENSION);
+//        plugin.getGameState().setCurrentState(GameStates.GAME_ASCENSION);
         timeline = plugin.getSettingsUI().getSettings().getTimeline();
         team.getTeamBingoLockdown().startAscension();
+        team.getTeamStats().addGameScore(team.getTeamStats().getGameScore());
         startText(team);
         loop();
     }
@@ -49,6 +53,15 @@ public class BingoLockdown {
     private void stop() {
         eventOngoing = false;
         team = null;
+        updateScoreboards();
+    }
+
+    private void updateScoreboards() {
+        for (PlayerData pD : PlayerUtil.getAllPlayingPlayers()) {
+            if (pD.getPlayerScoreboard().getBoards() instanceof GameBoard gameBoard) {
+                gameBoard.updateScoreStatus();
+            }
+        }
     }
 
     private void loop() {
@@ -56,7 +69,7 @@ public class BingoLockdown {
             TeamBingoLockdown teamBL = team.getTeamBingoLockdown();
             @Override
             public void run() {
-                if (!eventOngoing || !team.getTeamStats().isBingoLockdown() || !plugin.getGameState().checkState(GameStates.GAME_ASCENSION)) {
+                if (!eventOngoing || !team.getTeamStats().isBingoLockdown() || !plugin.getGameState().inGame()) {
                     failed();
                     cancel();
                     return;
@@ -67,7 +80,7 @@ public class BingoLockdown {
                     return;
                 }
                 teamBL.addAscensionTimer(-1);
-                timeline.updatePlayers();
+                updateScoreboards();
             }
         }.runTaskTimer(Bingo4.getInstance(), 0, 20);
     }
@@ -80,7 +93,7 @@ public class BingoLockdown {
     }
 
     public void failed() {
-        plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
+//        plugin.getGameState().setCurrentState(GameStates.GAME_AFTER_GRACE);
         failedText();
         team.getTeamBingoLockdown().failedAscension();
         stop();
@@ -110,11 +123,15 @@ public class BingoLockdown {
         text = text.append(TextUtil.makeText("    " + team.getLeader().getName() + "'s Team has locked down the board", TextUtil.DARK_GRAY));
         text = text.append(TextUtil.bottomBorder(TextUtil.DARK_GRAY));
         plugin.getServer().broadcast(text);
-        TextUtil.broadcastTitle(TextUtil.makeTitle(TextUtil.makeText("BINGO LOCKDOWN", TextUtil.YELLOW), 3, 5, 2));
+        TextUtil.broadcastTitle(TextUtil.makeTitle(TextUtil.makeText("LOCKDOWN INITIATED", TextUtil.YELLOW), 3, 5, 2));
         SoundUtil.broadcastSound(Sound.ENTITY_WITHER_DEATH, 20f, 0.7);
     }
 
     public Team getTeam() {
         return team;
+    }
+
+    public boolean isEventOngoing() {
+        return eventOngoing;
     }
 }

@@ -80,7 +80,7 @@ public class MiningNodeCamp extends AbstractCampType {
                 baseWorldX,
                 baseWorldZ,
                 4,
-                Material.COPPER_BLOCK,
+                loot.getMaterialScheme().anchorMaterial(),
                 "UNBREAKABLE"
         );
 

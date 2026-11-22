@@ -213,13 +213,9 @@ public final class Bingo4 extends JavaPlugin {
     public void removeGUI(Player player) {
         guiMap.remove(player.getUniqueId());
     }
-    public LocationCheck getLocationCheck() {
-        return locationCheck;
-    }
-    public void setLocationCheck(LocationCheck locationCheck) {
-        if (this.locationCheck != null) this.locationCheck.cancelCheck();
-        this.locationCheck = locationCheck;
-    }
+//    public LocationCheck getLocationCheck() {
+//        return locationCheck;
+//    }
     public Lobby getLobby() {
         return lobby;
     }

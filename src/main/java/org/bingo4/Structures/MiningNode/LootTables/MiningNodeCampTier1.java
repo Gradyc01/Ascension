@@ -34,10 +34,10 @@ public class MiningNodeCampTier1 extends MiningNodeCampLoot {
     @Override
     protected Collection<ItemStack> addRareLoot(Random r) {
         CustomChestLootPool pool = new CustomChestLootPool();
-        pool.generateItems(Material.GOLD_INGOT, 2, 2, 2, 4);
-        pool.addLootPoolItem(new LootPoolItem(Material.AIR, 40),
-                new LootPoolItem(Material.NAME_TAG, 1),
-                new LootPoolItem(Material.SADDLE, 1));
+        pool.generateItems(Material.GOLD_INGOT, 2, 2, 2, 8);
+        pool.addLootPoolItem(new LootPoolItem(Material.AIR, 20),
+                new LootPoolItem(Material.NAME_TAG, 2),
+                new LootPoolItem(Material.SADDLE, 2));
         return pool.getRandomItemFromList(r, 1);
     }
 

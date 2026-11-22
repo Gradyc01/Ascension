@@ -13,7 +13,6 @@ public class SettingObserver {
 
     private void updateSettings() {
         new ResetGame();
-        Bingo4.getInstance().setLocationCheck(new LocationCheck(Bingo4.getSpawn()));
     }
 
     public Settings getSettings() {

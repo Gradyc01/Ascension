@@ -39,7 +39,7 @@ public abstract class Settings {
                     int bingoLinesRequirement,
                     Timeline timeline,
                     boolean countsTowardLeaderboards) {
-        this(name, worldBorderSize, bingoLinesRequirement, timeline, 420, 3, countsTowardLeaderboards);
+        this(name, worldBorderSize, bingoLinesRequirement, timeline, 300, 5, countsTowardLeaderboards);
     }
 
     public Settings(String name,

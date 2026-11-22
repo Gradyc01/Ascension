@@ -25,7 +25,7 @@ public class NetherManager {
     private final Set<PlayerData> playerDataSet;
     private BukkitTask netherLoop;
     private int timePassed;
-    private static final int TOTAL_SECONDS = 360;
+    private static final int TOTAL_SECONDS = 300;
 
     public NetherManager() {
         this.netherInstances = new ArrayList<>();

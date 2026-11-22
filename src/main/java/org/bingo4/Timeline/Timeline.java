@@ -7,10 +7,11 @@ import org.bingo4.Player.Data.PlayerData;
 import org.bingo4.Player.Data.PlayerUtil;
 import org.bingo4.Player.Data.Scoreboards.GameBoard;
 import org.bingo4.Structures.BingoTurnIn.BingoTurnInCamp;
+import org.bingo4.Structures.CampInstance;
 import org.bingo4.Structures.CampManager;
-import org.bingo4.Structures.MiningNode.LootTables.MiningNodeCampTier1;
-import org.bingo4.Structures.MiningNode.LootTables.MiningNodeCampTier2;
-import org.bingo4.Structures.MiningNode.LootTables.MiningNodeCampTier3;
+import org.bingo4.Structures.Midboss.MidbossCamp;
+import org.bingo4.Structures.Midboss.MidbossInstance;
+import org.bingo4.Structures.MiningNode.LootTables.*;
 import org.bingo4.Structures.MiningNode.MiningNodeCamp;
 import org.bingo4.Structures.NetherKoth.NetherKothCamp;
 import org.bingo4.Structures.Structures;
@@ -20,8 +21,10 @@ import org.bingo4.Teams.Team;
 //import org.bingo4.Timeline.Events.Scavenger.Scavenger;
 //import org.bingo4.Timeline.Events.SoulShop.SoulShops;
 //import org.bingo4.Timeline.Events.Vaporization.VaporizationChecks;
+import org.bingo4.Teams.TeamUtil;
 import org.bingo4.Timeline.Events.BingoLockdown.BingoLockdown;
 import org.bingo4.Timeline.Events.NetherManager.NetherManager;
+import org.bingo4.Timeline.Events.Winner.Winner;
 import org.bingo4.Utility.SchematicPlacer;
 import org.bingo4.Utility.SoundUtil;
 import org.bingo4.Utility.TextUtil;
@@ -35,7 +38,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.bingo4.Structures.Structures.MINING_CAMP_1;
 
@@ -51,11 +56,11 @@ public abstract class Timeline {
     private final PeriodicChecks periodicChecks;
     private final int STARTING_MINUTES;
     private MapItems mapItems;
-//    protected final VaporizationChecks vaporizationChecks;
     private CampManager campManager;
     private final NetherManager netherManager;
     private List<Pair<String, Integer>> nextBigEvent;
     private int gameScoreThreshold; // The bottom standard
+    private MidbossInstance midbossInstance;
     public Timeline(int startingMinutes) {
         this.plugin = Bingo4.getInstance();
         STARTING_MINUTES = startingMinutes;
@@ -72,7 +77,12 @@ public abstract class Timeline {
             campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier1()));
             campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier2()));
             campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier3()));
+            campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier2Geode()));
+            campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier2Trial()));
+            campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier3Lush()));
+            campManager.registerCampType(new MiningNodeCamp(new MiningNodeCampTier3Sulfur()));
             campManager.registerCampType(new NetherKothCamp());
+            campManager.registerCampType(new MidbossCamp());
         } catch (Exception e) {
             TextUtil.debugText("SAKDLASKD");
         }
@@ -85,10 +95,11 @@ public abstract class Timeline {
         nextBigEvent = initNextBigEvents();
 //        scavenger = null;
         mapItems = new MapItems();
-        mapItems.addMapItem(new MapItem("Spawn", Bingo4.getSpawn(), MapItem.SPAWN));
+//        mapItems.addMapItem(new MapItem("Spawn", Bingo4.getSpawn(), MapItem.SPAWN));
         periodicChecks.stop();
 //        vaporizationChecks.reset();
         gameScoreThreshold = 0;
+        getCampManager().clearCamps();
     }
 
     public void startTimeline() {
@@ -118,6 +129,14 @@ public abstract class Timeline {
                 amount,
                 Bingo4.getSpawn(),
                 plugin.getSettingsUI().getSettings().getWorldBorderSize(),
+                campManager.getCampType(camp.getId()));
+    }
+
+    protected List<Location> generateLocationsForCamp(Structures camp, int amount, int radius) {
+        return campManager.generateLocations(
+                amount,
+                Bingo4.getSpawn(),
+                radius,
                 campManager.getCampType(camp.getId()));
     }
 
@@ -156,6 +175,19 @@ public abstract class Timeline {
                 } else {
                     cancel();
                     TextUtil.debugText("Timeline Ended");
+                    List<Team> highestScoringTeam = new ArrayList<>();
+                    int highestScore = 0;
+                    for (Team team : TeamUtil.getEveryTeam()) {
+                        int teamGameScore = team.getTeamStats().getGameScore();
+                        if (teamGameScore >= highestScore) {
+                            if (teamGameScore > highestScore) {
+                                highestScoringTeam.clear();
+                            }
+                            highestScoringTeam.add(team);
+                            highestScore = teamGameScore;
+                        }
+                    }
+                    new Winner(highestScoringTeam);
 //                    new FinalAscension(getFinalAscensionBorderShrinkSize());
                     return;
                 }
@@ -218,8 +250,6 @@ public abstract class Timeline {
     public void updatePlayers() {
         for (PlayerData p: PlayerUtil.getAllPlayingPlayers()) {
             GameBoard b = (GameBoard) p.getPlayerScoreboard().getBoards();
-//            p.getPlayerScoreboard().update();
-//            b.update();
             b.updateTime();
         }
     }
@@ -274,5 +304,14 @@ public abstract class Timeline {
 
     public NetherManager getNetherManager() {
         return netherManager;
+    }
+
+    public MidbossInstance getMidbossInstance() {
+        return midbossInstance;
+    }
+
+    public void setMidbossInstance(List<CampInstance> midbossInstances) {
+        if (midbossInstances.isEmpty() || !(midbossInstances.getFirst() instanceof MidbossInstance)) throw new RuntimeException("No midboss instances");
+        this.midbossInstance = (MidbossInstance) midbossInstances.getFirst();
     }
 }

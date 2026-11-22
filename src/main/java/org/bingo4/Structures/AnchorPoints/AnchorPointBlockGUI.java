@@ -27,6 +27,7 @@ public class AnchorPointBlockGUI extends AscensionBlockMenuGUI {
     private final ItemStack openItem;
     private final ItemStack enterItem;
     private final ItemStack breakItem;
+    private final ItemStack specifcEntryItem;
     private PlayerData currentUser = null;
     public AnchorPointBlockGUI(PlayerData pD, Block block, AnchorPoint anchorPoint) {
         super(pD, block, 3, TextUtil.makeText(pD.getPlayer().getName() + "'s Void Box", TextUtil.DARK_PURPLE), true);
@@ -36,6 +37,7 @@ public class AnchorPointBlockGUI extends AscensionBlockMenuGUI {
         openItem = createOpenItem();
         enterItem = createEnterItem();
         breakItem = createBreakItem();
+        specifcEntryItem = createSpecificEntryItem();
         AscensionBlockGUI.registerGUI(this);
     }
 
@@ -50,6 +52,8 @@ public class AnchorPointBlockGUI extends AscensionBlockMenuGUI {
             AscensionBlockGUI.removeGUI(this);
         } else if (item.equals(enterItem)) {
             anchorPoint.enterPortal(currentUser);
+        } else if (item.equals(specifcEntryItem)) {
+            new AnchorPointSpecificEntryGUI(playerData, anchorPoint);
         }
     }
 
@@ -89,7 +93,8 @@ public class AnchorPointBlockGUI extends AscensionBlockMenuGUI {
         setBackground();
         if (opener.getPlayerTeam().getTeam().equals(team)) {
             if (anchorPoint.isState(AnchorPoint.OPEN)) {
-                inventory.setItem(13, enterItem);
+                inventory.setItem(12, enterItem);
+                inventory.setItem(14, specifcEntryItem);
                 inventory.setItem(26, breakItem);
             } else if (anchorPoint.isState(AnchorPoint.CLOSED)) {
                 inventory.setItem(11, openItem);
@@ -109,7 +114,13 @@ public class AnchorPointBlockGUI extends AscensionBlockMenuGUI {
     private ItemStack createEnterItem() {
         return initExplainerItem(Material.ENDER_PEARL,
                 List.of(),
-                TextUtil.makeText("Enter Void Box", TextUtil.DARK_PURPLE));
+                TextUtil.makeText("Cycle Through Rifts", TextUtil.DARK_PURPLE));
+    }
+
+    private ItemStack createSpecificEntryItem() {
+        return initExplainerItem(Material.ENDER_EYE,
+                List.of(),
+                TextUtil.makeText("Choose Specific Rift", TextUtil.DARK_PURPLE));
     }
 
     private ItemStack createBreakItem() {

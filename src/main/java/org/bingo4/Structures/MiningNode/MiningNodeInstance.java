@@ -9,10 +9,14 @@ import org.bingo4.Mobs.ItemDisplayDetection;
 import org.bingo4.Structures.CampInstance;
 import org.bingo4.Structures.Interfaces.AbstractCampType;
 import org.bingo4.Structures.MiningNode.LootTables.MiningNodeCampLoot;
+import org.bingo4.Structures.MiningNode.LootTables.MiningNodeColorScheme;
 import org.bingo4.Utility.FloodBuild.FloodBlocks;
 import org.bingo4.Utility.TextUtil;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Stairs;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -70,12 +74,44 @@ public class MiningNodeInstance extends CampInstance {
     public void buildFinished(Set<Block> blocks) {
 
         this.blocks = blocks;
+        MiningNodeColorScheme colorScheme = loot.getMaterialScheme();
 
         for (Block block : blocks) {
-            if (block.getBlockData().getMaterial().equals(Material.COMMAND_BLOCK)) {
-                TextUtil.debugText("[Mining Node] Found command block creating gui");
-                gui = new MiningNodeBlockGUI(block, this);
-                break;
+            BlockData blockData = block.getBlockData();
+            switch (blockData.getMaterial()) {
+                case Material.COMMAND_BLOCK -> {
+                    TextUtil.debugText("[Mining Node] Found command block creating gui");
+                    gui = new MiningNodeBlockGUI(block, this);
+                }
+                case Material.YELLOW_CONCRETE -> {
+                    block.setType(colorScheme.primaryColor());
+                }
+                case Material.YELLOW_CONCRETE_STAIRS -> {
+                    Stairs oldStairs = (Stairs) block.getBlockData().clone();
+                    block.setType(colorScheme.primaryColorStairs());
+
+                    Stairs newStairs = (Stairs) block.getBlockData();
+                    newStairs.setFacing(oldStairs.getFacing());
+                    newStairs.setShape(oldStairs.getShape());
+                    newStairs.setHalf(oldStairs.getHalf());
+                    block.setBlockData(newStairs);
+                }
+                case Material.ORANGE_CONCRETE -> {
+                    block.setType(colorScheme.secondaryColor());
+                }
+                case Material.ORANGE_CONCRETE_STAIRS -> {
+                    Stairs oldStairs = (Stairs) block.getBlockData().clone();
+                    block.setType(colorScheme.secondaryColorStairs());
+
+                    Stairs newStairs = (Stairs) block.getBlockData();
+                    newStairs.setFacing(oldStairs.getFacing());
+                    newStairs.setShape(oldStairs.getShape());
+                    newStairs.setHalf(oldStairs.getHalf());
+                    block.setBlockData(newStairs);
+                }
+                case Material.COPPER_BLOCK -> {
+                    block.setType(colorScheme.anchorMaterial());
+                }
             }
         }
 

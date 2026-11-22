@@ -1,7 +1,6 @@
 package org.bingo4.MainMenuUI.BingoBoard;
 
 import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import org.bingo4.Bingo4;
@@ -12,10 +11,8 @@ import org.bingo4.Utility.ItemComparison;
 import org.bingo4.Utility.SoundUtil;
 import org.bingo4.Utility.TextUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scoreboard.*;
 
 import java.util.*;
 
@@ -80,19 +77,6 @@ public class BingoData {
         for (ItemStack j : p.getInventory().getContents()) {
             if (bingoSlot == null) break;
             if (j != null && ItemComparison.equalItems(j, item) && !playerTeamHasSlot(bingoSlot, pD)) {
-//                if (removeItem) {
-//                    j.setAmount(j.getAmount() - 1);
-//                }
-//                pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
-//                pD.getPlayerTeam().getTeam().getTeamStats().addItemObtained();
-//                pD.getPlayerStats().addItemsObtained();
-//                sendItemObtainedMessage(pD, bingoSlot);
-//
-//                changeBoardItemAfterClaim(pD, bingoSlot);
-//                checkForLineCompletion(pD); //Also adds an item obtained (idk where else to put it)
-//                updateScoreboard();
-//                if (openGui) new BingoBoardGUI(pD);
-//                return true;
                 completeClaimItemRewards(j, removeItem, true, pD, bingoSlot);
             }
         }
@@ -112,15 +96,28 @@ public class BingoData {
         if (removeItem) {
             invItemStack.setAmount(invItemStack.getAmount() - 1);
         }
-        pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
-        pD.getPlayerTeam().getTeam().getTeamStats().addItemObtained();
-        pD.getPlayerStats().addItemsObtained();
-        sendItemObtainedMessage(pD, slot);
+//        pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(1);
+//        pD.getPlayerTeam().getTeam().getTeamStats().addItemObtained();
+//        pD.getPlayerStats().addItemsObtained();
+//        sendItemObtainedMessage(pD, slot);
+//
+//        changeBoardItemAfterClaim(pD, slot);
+//        checkForLineCompletion(pD); //Also adds an item obtained (idk where else to put it)
+//        updateScoreboard();
+        completeClaimItem(pD, slot, false);
+        if (openGui) new BingoBoardGUI(pD);
+    }
 
-        changeBoardItemAfterClaim(pD, slot);
+    public void completeClaimItem(PlayerData pD, BingoSlot bingoSlot, boolean forceLockSlot) {
+        pD.getPlayerTeam().getTeam().getTeamStats().addGameScore(3);
+        pD.getPlayerTeam().getTeam().getTeamStats().addItemObtained();
+        if (bingoSlot.getClaimer() != null) bingoSlot.getClaimer().getPlayerTeam().getTeam().getTeamStats().addGameScore(-2);
+        pD.getPlayerStats().addItemsObtained();
+        sendItemObtainedMessage(pD, bingoSlot);
+
+        changeBoardItemAfterClaim(pD, bingoSlot, forceLockSlot);
         checkForLineCompletion(pD); //Also adds an item obtained (idk where else to put it)
         updateScoreboard();
-        if (openGui) new BingoBoardGUI(pD);
     }
 
     public boolean canUnlockItem(PlayerData pD, ItemStack item) {
@@ -281,15 +278,18 @@ public class BingoData {
 
 
     private void changeBoardItemAfterClaim(PlayerData pD, BingoSlot slot) {
+        changeBoardItemAfterClaim(pD, slot, false);
+    }
+
+    private void changeBoardItemAfterClaim(PlayerData pD, BingoSlot slot, boolean forceLockSlot) {
         PlayerData oldClaimer = slot.getClaimer();
         slot.setClaimer(pD);
-        if (!itemList.isEmpty()) {
-            slot.setItem(itemList.removeFirst());
+        if (itemList.isEmpty() || forceLockSlot) {
+            slot.setLocked();
         } else {
-            slot.setItem(new ItemStack(Material.BEDROCK));
+            slot.setItem(itemList.removeFirst());
         }
         checkForLineCompletion(oldClaimer);
-
     }
 
     /*

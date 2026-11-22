@@ -26,6 +26,7 @@ import org.bingo4.Utility.NMSMobUtil;
 import org.bingo4.Utility.TextUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
@@ -35,10 +36,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class WitherRealmRangerSkeleton extends Stray implements RealmNMSMob {
     private final Component name;
-    public WitherRealmRangerSkeleton(Location location) {
-        super(EntityTypes.STRAY, ((CraftWorld) location.getWorld()).getHandle());
-        this.setPosRaw(location.getX(), location.getY(), location.getZ());
-        ((CraftWorld) location.getWorld()).getHandle().addFreshEntity(this);
+    public WitherRealmRangerSkeleton(World world) {
+        super(EntityTypes.STRAY, ((CraftWorld) world).getHandle());
         name = getMobName();
         giveAttributes();
     }
@@ -58,6 +57,7 @@ public class WitherRealmRangerSkeleton extends Stray implements RealmNMSMob {
         super.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Skeleton.class, Stray.class, Bogged.class, Drowned.class)));
         super.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.reassessWeaponGoal();
+        NMSMobUtil.removeAllEquipmentDropChance(this);
 //        this.equipment(EquipmentSlot.Mob.getEquipmentForSlot(EquipmentSlot.HEAD, random.nextInt(4));
     }
 
@@ -134,6 +134,8 @@ public class WitherRealmRangerSkeleton extends Stray implements RealmNMSMob {
 
     @Override
     public org.bukkit.entity.LivingEntity spawn(Location location) {
-        return null;
+        this.setPosRaw(location.getX(), location.getY(), location.getZ());
+        ((CraftWorld) location.getWorld()).getHandle().addFreshEntity(this);
+        return this.getBukkitEntity();
     }
 }

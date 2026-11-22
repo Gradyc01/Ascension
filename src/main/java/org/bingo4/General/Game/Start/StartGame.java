@@ -39,7 +39,7 @@ public class StartGame extends GameLauncher {
 
     @Override
     protected boolean canStart() {
-        if (plugin.getLocationCheck().isCheckCompleted()) {
+        if (plugin.getGameState().canStartGame()) {
             plugin.getGameState().setCurrentState(GameStates.GAME_LOADING);
             settings.getTimeline().getMapItems().reMapItemsForLunar(); // First Setting (Technically)
             return true;

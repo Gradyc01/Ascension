@@ -2,16 +2,12 @@ package org.bingo4.testingCommands;
 
 import io.papermc.paper.command.brigadier.BasicCommand;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
-import org.bingo4.Items.ItemList;
-import org.bingo4.Player.Data.PlayerUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class startEvents implements CommandExecutor, BasicCommand {
@@ -76,26 +72,26 @@ public class startEvents implements CommandExecutor, BasicCommand {
                 return false;
             }
 
-            ItemList itemList = new ItemList();
-            List<ItemStack> items = new ArrayList<>();
+//            ItemList itemList = new ItemList();
+//            List<ItemStack> items = new ArrayList<>();
+//
+//            String category = args[1];
+//
+//            if (category.equalsIgnoreCase("easy")) {
+//                items.addAll(itemList.getEasyItems().getItems());
+//            } else if (category.equalsIgnoreCase("medium")) {
+//                items.addAll(itemList.getMediumItems().getItems());
+//            } else if (category.equalsIgnoreCase("hard")) {
+//                items.addAll(itemList.getHardItems().getItems());
+//            } else if (category.equalsIgnoreCase("custom")) {
+//                items.addAll(itemList.getCustomItems().getItems());
+//            } else {
+//                return false;
+//            }
 
-            String category = args[1];
-
-            if (category.equalsIgnoreCase("easy")) {
-                items.addAll(itemList.getEasyItems().getItems());
-            } else if (category.equalsIgnoreCase("medium")) {
-                items.addAll(itemList.getMediumItems().getItems());
-            } else if (category.equalsIgnoreCase("hard")) {
-                items.addAll(itemList.getHardItems().getItems());
-            } else if (category.equalsIgnoreCase("custom")) {
-                items.addAll(itemList.getCustomItems().getItems());
-            } else {
-                return false;
-            }
-
-            for (ItemStack item : items) {
-                PlayerUtil.giveItem(p, item);
-            }
+//            for (ItemStack item : items) {
+//                PlayerUtil.giveItem(p, item);
+//            }
 
         } else {
             return false;

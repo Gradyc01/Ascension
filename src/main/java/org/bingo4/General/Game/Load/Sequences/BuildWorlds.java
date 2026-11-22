@@ -68,7 +68,8 @@ public class BuildWorlds extends GameSequences {
             plugin.getLogger().severe(
                     "World download error: " + error.getMessage()
             );
-            return null;
+            throw new RuntimeException(error);
+//            return null;
         });
     }
 

@@ -1,5 +1,6 @@
 package org.bingo4.Mobs;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Display;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityTypes;
@@ -26,7 +27,8 @@ public class ItemDisplay extends Display.ItemDisplay {
         this.setPosRaw(location.getX(), location.getY(), location.getZ());
         ((CraftWorld) location.getWorld()).getHandle().addFreshEntity(this);
         setItemStack(CraftItemStack.asNMSCopy(itemStack));
-        setCustomName(CraftItemStack.asNMSCopy(itemStack).getDisplayName());
+        setCustomName(CraftItemStack.asNMSCopy(itemStack).getDisplayName().copy()
+                .append(Component.literal("x " + itemStack.getAmount())));
         setCustomNameVisible(true);
         //TODO: switch this line out
 //        location.getWorld().getPlayers().forEach(player ->

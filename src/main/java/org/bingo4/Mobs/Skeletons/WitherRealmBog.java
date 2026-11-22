@@ -53,7 +53,7 @@ public class WitherRealmBog extends Bogged implements RealmNMSMob {
         this.equipment.set(EquipmentSlot.MAINHAND, CraftItemStack.asNMSCopy(initBow()));
         this.setDropChance(EquipmentSlot.MAINHAND, 0.0F);
         this.getAttribute(Attributes.ARMOR).setBaseValue(3.5F);
-        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30.0F);
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(25.0F);
         this.setHealth(this.getMaxHealth());
         this.setShouldBurnInDay(false);
         this.setPersistenceRequired();
@@ -61,6 +61,7 @@ public class WitherRealmBog extends Bogged implements RealmNMSMob {
         super.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Skeleton.class, Stray.class, Bogged.class, Drowned.class)));
         super.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.reassessWeaponGoal();
+        NMSMobUtil.removeAllEquipmentDropChance(this);
 //        this.equipment(EquipmentSlot.Mob.getEquipmentForSlot(EquipmentSlot.HEAD, random.nextInt(4));
     }
 

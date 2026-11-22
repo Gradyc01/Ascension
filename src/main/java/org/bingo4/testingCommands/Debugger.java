@@ -2,6 +2,7 @@ package org.bingo4.testingCommands;
 
 import io.papermc.paper.command.brigadier.BasicCommand;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
+import org.bingo4.Structures.Midboss.WitherBoss;
 import org.bingo4.Utility.TextUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

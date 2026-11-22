@@ -4,7 +4,6 @@ import org.bingo4.Bingo4;
 import org.bingo4.General.Game.GameLauncher;
 import org.bingo4.General.Game.GameSequences;
 import org.bingo4.General.Game.Start.StartGame;
-import org.bingo4.Items.ItemList;
 import org.bingo4.Items.ItemLists.BingoItemManager;
 import org.bingo4.MainMenuUI.BingoBoard.BingoData;
 import org.bingo4.MainMenuUI.BingoBoard.BingoSlot;
@@ -41,6 +40,7 @@ public class InitBingoBoard extends GameSequences {
             startGame.setCageItemDisplay(displayBoardForEveryone(startGame.getSpawnCages(), Bingo4.getInstance().getWorld()));
         }
         plugin.getSettingsUI().getSettings().getTimeline().generateLocationsForCamps();
+
         game.callback();
     }
 

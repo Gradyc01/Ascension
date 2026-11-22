@@ -26,6 +26,10 @@ public class MiningNodeCampTier2 extends MiningNodeCampLoot {
         super("2", MINING_CAMP_2);
     }
 
+    public MiningNodeCampTier2(String id, int mapId) {
+        super(id, mapId);
+    }
+
     @Override
     protected void addLoot(Random r) {
         loot.addAll(generateItems(r, Material.IRON_INGOT, 8, 4, 2));
@@ -38,12 +42,11 @@ public class MiningNodeCampTier2 extends MiningNodeCampLoot {
     protected Collection<ItemStack> addRareLoot(Random random) {
         CustomChestLootPool pool = new CustomChestLootPool();
         pool.generateItems(Material.DIAMOND, 2, 2, 2, 4);
+        pool.generateItems(Material.POINTED_DRIPSTONE, 1, 2, 1, 10);
         pool.addLootPoolItem(new LootPoolItem(Material.AIR, 20),
-                new LootPoolItem(Material.POINTED_DRIPSTONE, 10),
-                new LootPoolItem(Material.AMETHYST_SHARD, 10),
                 new LootPoolItem(Material.RAW_COPPER_BLOCK, 1),
                 new LootPoolItem(Material.RAW_IRON_BLOCK, 1));
-        return pool.getRandomItemFromList(random, 1);
+        return pool.getRandomItemFromList(random, 2);
     }
 
     @Override
@@ -79,5 +82,8 @@ public class MiningNodeCampTier2 extends MiningNodeCampLoot {
         );
     }
 
-
+    @Override
+    public MiningNodeColorScheme getMaterialScheme() {
+        return new MiningNodeColorScheme(Material.LIGHT_GRAY_CONCRETE, Material.LIGHT_GRAY_CONCRETE_STAIRS, Material.STONE, Material.STONE_STAIRS, Material.IRON_BLOCK);
+    }
 }

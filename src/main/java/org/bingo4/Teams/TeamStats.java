@@ -9,6 +9,7 @@ import org.bukkit.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TeamStats {
     private final Team team;
@@ -20,8 +21,10 @@ public class TeamStats {
     private int gameScore;
     private int finalAscensionTimer;
     private boolean win;
+    private int gameScoreDifferential;
 
     private int teamLineRequirement;
+
 
     //Scavenger
     private List<Boolean> scavengerScore;
@@ -72,19 +75,26 @@ public class TeamStats {
     public void addGameScore(int num) {
         TextUtil.debugText("Added " + num + " game score to " + team.getLeader().getName() + "'s Team");
         TextUtil.debugText(team.getLeader().getName() + "'s Team previous score : " + gameScore);
-//        int gameScoreThreshold = Bingo4.getInstance().getSettingsUI().getSettings().getTimeline().getGameScoreThreshold();
         gameScore += num;
         if (!team.canRespawn()) {
-//            gameScore = gameScoreThreshold;
             team.showNoRespawnLeftsMessage();
         }
-//        if (num > 0) gameScoreChangeText("You feel a little more enlightened", Sound.BLOCK_ENCHANTMENT_TABLE_USE, 0);
-//        if (num < 0) gameScoreChangeText("You feel drained from your enlightenment", Sound.BLOCK_BEACON_DEACTIVATE, 1);
-
         team.attemptToRespawnTeamMembers();
-        team.updateTeamScoreboards();
+        for (Team team : TeamUtil.getEveryTeam()) {
+            team.getTeamStats().recalculateScoreDifferential();
+        }
 
         TextUtil.debugText(team.getLeader().getName() + "'s Team current score : " + gameScore);
+    }
+
+    public void recalculateScoreDifferential() {
+        int highestScore = 0;
+        for (Team team : TeamUtil.getEveryTeam()) {
+            if (team.equals(this.team)) continue;
+            highestScore = Integer.max(team.getTeamStats().getGameScore(), highestScore);
+        }
+        gameScoreDifferential = getGameScore() - highestScore;
+        this.team.updateTeamScoreboards();
     }
 
     private void gameScoreChangeText(String text, Sound sound, float pitch) {
@@ -139,5 +149,9 @@ public class TeamStats {
 
     public void setWin() {
         this.win = true;
+    }
+
+    public int getGameScoreDifferential() {
+        return gameScoreDifferential;
     }
 }

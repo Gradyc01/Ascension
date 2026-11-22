@@ -82,8 +82,8 @@ public class TextSequence extends GameSequences {
         text = text.append(TextUtil.makeText("\n\n Preset: " + settings.getName(), TextUtil.GOLD));
         text = text.append(TextUtil.makeText("\n\n Score Requirement: " + settings.getBingoLinesRequirement(), TextUtil.AQUA));
         text = text.append(TextUtil.makeText("\n World Border: " + settings.getWorldBorderSize(), TextUtil.AQUA));
-        LocationCheck locationCheck = Bingo4.getInstance().getLocationCheck();
-        if (locationCheck.isCheckCompleted()) text = text.append(TextUtil.makeText("\n\n World Score: " + locationCheck.getPercentageScore() +  "%\n", TextUtil.AQUA));
+//        LocationCheck locationCheck = Bingo4.getInstance().getLocationCheck();
+//        if (locationCheck.isCheckCompleted()) text = text.append(TextUtil.makeText("\n\n World Score: " + locationCheck.getPercentageScore() +  "%\n", TextUtil.AQUA));
 
         text = text.append(TextUtil.bottomBorder(TextUtil.GOLD));
 

@@ -1,6 +1,8 @@
 package org.bingo4.Items.ItemLists;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import io.papermc.paper.registry.RegistryAccess;
@@ -21,6 +23,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Duration;
 import java.util.*;
 import java.util.logging.Logger;
@@ -34,10 +38,12 @@ public final class BingoItemManager {
 
     private final Map<String, ParsedCategory> categories;
 
-    private BingoItemManager(Map<String, ParsedCategory> categories) {
-        this.categories = Collections.unmodifiableMap(
-                new LinkedHashMap<>(categories)
-        );
+    /** null = no scan loaded, so nothing is filtered out. */
+    private volatile WorldScan scan;
+
+    private BingoItemManager(Map<String, ParsedCategory> categories, WorldScan scan) {
+        this.categories = Collections.unmodifiableMap(new LinkedHashMap<>(categories));
+        this.scan = scan;
     }
 
     // ------------------------------------------------------------
@@ -52,10 +58,17 @@ public final class BingoItemManager {
     public static final class Entry {
 
         @SerializedName("item_names")
-        public List<String> itemNames;
+        public List<ItemDef> itemNames;
 
         @SerializedName("choosing")
         public int choosing = 1;
+    }
+
+    /** One item. It has found_in_biomes OR found_in_structures. */
+    public static final class ItemDef {
+
+        @SerializedName("name")
+        public String name;
 
         @SerializedName("found_in_biomes")
         public List<String> foundInBiomes;
@@ -65,12 +78,106 @@ public final class BingoItemManager {
     }
 
     // ------------------------------------------------------------
+    // WORLD SCAN  (<world>/scan.json)
+    // ------------------------------------------------------------
+
+    /**
+     * The biomes and structures that exist in the overworld we are playing on.
+     * Holds plain strings ("minecraft:plains"), no registry access, so it is
+     * safe to load asynchronously.
+     *
+     * Nether / End biomes and structures are not in the scan. They are always
+     * treated as available for now.
+     */
+    public static final class WorldScan {
+
+        private static final Set<String> NON_OVERWORLD_BIOMES = Set.of(
+                "minecraft:nether_wastes", "minecraft:soul_sand_valley",
+                "minecraft:crimson_forest", "minecraft:warped_forest",
+                "minecraft:basalt_deltas", "minecraft:the_end",
+                "minecraft:end_highlands", "minecraft:end_midlands",
+                "minecraft:small_end_islands", "minecraft:end_barrens"
+        );
+
+        private static final Set<String> NON_OVERWORLD_STRUCTURES = Set.of(
+                "minecraft:fortress", "minecraft:bastion_remnant",
+                "minecraft:nether_fossil", "minecraft:ruined_portal_nether",
+                "minecraft:end_city"
+        );
+
+        private final Set<String> biomes;
+        private final Set<String> structures;
+        private final boolean complete;
+
+        private WorldScan(Set<String> biomes, Set<String> structures, boolean complete) {
+            this.biomes = biomes;
+            this.structures = structures;
+            this.complete = complete;
+        }
+
+        public boolean isComplete() { return complete; }
+
+        public boolean hasBiome(Biome biome) {
+            NamespacedKey key = RegistryAccess.registryAccess()
+                    .getRegistry(RegistryKey.BIOME)
+                    .getKey(biome);
+            if (key == null) return false; // biome without a registry key
+            String id = key.toString();
+            return NON_OVERWORLD_BIOMES.contains(id) || biomes.contains(id);
+        }
+
+        public boolean hasStructure(Structure structure) {
+            NamespacedKey key = RegistryAccess.registryAccess()
+                    .getRegistry(RegistryKey.STRUCTURE)
+                    .getKey(structure);
+            if (key == null) return false; // structures can exist without a key
+            String id = key.toString();
+            return NON_OVERWORLD_STRUCTURES.contains(id) || structures.contains(id);
+        }
+    }
+
+    /** Reads scan.json. Pass e.g. plugin.getWorld().getWorldPath() + "/scan.json". */
+    public static WorldScan loadScan(String scanFile, Logger log) {
+        return loadScan(Path.of(scanFile), log);
+    }
+
+    /** Returns null (and logs a warning) if the file is missing or unreadable. */
+    public static WorldScan loadScan(Path scanFile, Logger log) {
+        if (!Files.isRegularFile(scanFile)) {
+            log.warning("No world scan found at " + scanFile + " - items will not be filtered by world contents.");
+            return null;
+        }
+        try {
+            JsonObject root = JsonParser.parseString(Files.readString(scanFile)).getAsJsonObject();
+
+            Set<String> biomes = new HashSet<>();
+            if (root.has("biomes")) biomes.addAll(root.getAsJsonObject("biomes").keySet());
+
+            Set<String> structures = new HashSet<>();
+            if (root.has("structures")) structures.addAll(root.getAsJsonObject("structures").keySet());
+
+            boolean complete = root.has("complete") && root.get("complete").getAsBoolean();
+            if (!complete) log.warning("World scan is marked incomplete, some obtainable items may be filtered out.");
+
+            log.info("Loaded world scan: " + biomes.size() + " biomes, " + structures.size() + " structures.");
+            return new WorldScan(Set.copyOf(biomes), Set.copyOf(structures), complete);
+        } catch (IOException | RuntimeException ex) {
+            log.warning("Could not read world scan " + scanFile + ": " + ex.getMessage());
+            return null;
+        }
+    }
+
+    /** Swap in a scan after the manager has been created. */
+    public void setWorldScan(WorldScan scan) {
+        this.scan = scan;
+    }
+
+    // ------------------------------------------------------------
     // PARSED MODEL
     // ------------------------------------------------------------
 
-    public record ParsedEntry(
-            List<Material> materials,
-            int choosing,
+    public record ParsedItem(
+            Material material,
             Set<Biome> biomes,
             Set<Structure> structures
     ) {
@@ -83,13 +190,48 @@ public final class BingoItemManager {
             return !structures.isEmpty();
         }
 
-        public List<Material> rollMaterials(Random random) {
-            List<Material> copy = new ArrayList<>(materials);
+        /** True if this world has a biome or structure that can give this item. */
+        public boolean isObtainable(WorldScan scan) {
+            if (scan == null) return true;
+            for (Biome b : biomes) if (scan.hasBiome(b)) return true;
+            for (Structure s : structures) if (scan.hasStructure(s)) return true;
+            return false;
+        }
+
+        public boolean isAt(Location location) {
+            return isBiomeBased()
+                    ? isInBiome(location, biomes)
+                    : isInStructure(location, structures);
+        }
+    }
+
+    public record ParsedEntry(
+            List<ParsedItem> items,
+            int choosing
+    ) {
+
+        public List<Material> materials() {
+            return items.stream().map(ParsedItem::material).toList();
+        }
+
+        /** The items of this entry that this world can actually provide. */
+        public List<ParsedItem> obtainable(WorldScan scan) {
+            List<ParsedItem> result = new ArrayList<>();
+            for (ParsedItem item : items) {
+                if (item.isObtainable(scan)) result.add(item);
+            }
+            return result;
+        }
+
+        public List<Material> rollMaterials(Random random, WorldScan scan) {
+            List<ParsedItem> copy = obtainable(scan);
             Collections.shuffle(copy, random);
 
-            return new ArrayList<>(
-                    copy.subList(0, Math.min(choosing, copy.size()))
-            );
+            List<Material> rolled = new ArrayList<>();
+            for (ParsedItem item : copy.subList(0, Math.min(choosing, copy.size()))) {
+                rolled.add(item.material());
+            }
+            return rolled;
         }
     }
 
@@ -141,13 +283,20 @@ public final class BingoItemManager {
     // PARSING
     // ------------------------------------------------------------
 
+    /** Parses without a world scan (nothing is filtered). */
+    public static BingoItemManager parse(String json, Logger log) {
+        return parse(json, null, log);
+    }
+
     /**
      * Parses the downloaded JSON.
      *
      * IMPORTANT: Call this on the server's main thread because
      * it accesses Paper's registries.
+     *
+     * @param scan result of loadScan(...), or null to skip world filtering
      */
-    public static BingoItemManager parse(String json, Logger log) {
+    public static BingoItemManager parse(String json, WorldScan scan, Logger log) {
 
         Map<String, Category> raw = GSON.fromJson(
                 json,
@@ -155,9 +304,7 @@ public final class BingoItemManager {
         );
 
         if (raw == null || raw.isEmpty()) {
-            throw new IllegalArgumentException(
-                    "Bingo JSON contains no categories!"
-            );
+            throw new IllegalArgumentException("Bingo JSON contains no categories!");
         }
 
         Map<String, ParsedCategory> result = new LinkedHashMap<>();
@@ -170,20 +317,12 @@ public final class BingoItemManager {
             List<ParsedEntry> parsedEntries = new ArrayList<>();
 
             if (category.items == null) {
-                log.warning(
-                        "[" + categoryName + "] Category has no items."
-                );
+                log.warning("[" + categoryName + "] Category has no items.");
                 continue;
             }
 
             for (Entry entry : category.items) {
-
-                ParsedEntry parsed = parseEntry(
-                        entry,
-                        categoryName,
-                        log
-                );
-
+                ParsedEntry parsed = parseEntry(entry, categoryName, log);
                 if (parsed != null) {
                     parsedEntries.add(parsed);
                 }
@@ -191,100 +330,87 @@ public final class BingoItemManager {
 
             result.put(
                     categoryName,
-                    new ParsedCategory(
-                            categoryName,
-                            category.desc,
-                            List.copyOf(parsedEntries)
-                    )
+                    new ParsedCategory(categoryName, category.desc, List.copyOf(parsedEntries))
             );
 
-            log.info(
-                    "Loaded " + parsedEntries.size()
-                            + " entries from category " + categoryName
-            );
+            log.info("Loaded " + parsedEntries.size() + " entries from category " + categoryName);
         }
 
-        return new BingoItemManager(result);
+        BingoItemManager manager = new BingoItemManager(result, scan);
+
+        if (scan != null) {
+            for (ParsedCategory category : manager.categories.values()) {
+                for (ParsedEntry entry : category.entries()) {
+                    if (entry.obtainable(scan).isEmpty()) {
+                        log.warning("[" + category.name() + "] Nothing in this entry is obtainable in this world: "
+                                + entry.materials());
+                    }
+                }
+            }
+        }
+
+        return manager;
     }
 
-    private static ParsedEntry parseEntry(
-            Entry entry,
-            String category,
-            Logger log
-    ) {
+    private static ParsedEntry parseEntry(Entry entry, String category, Logger log) {
 
         if (entry.itemNames == null || entry.itemNames.isEmpty()) {
-            log.warning(
-                    "[" + category + "] Entry has no item_names."
-            );
+            log.warning("[" + category + "] Entry has no item_names.");
             return null;
         }
 
-        List<Material> materials = new ArrayList<>();
+        List<ParsedItem> items = new ArrayList<>();
 
-        for (String name : entry.itemNames) {
+        for (ItemDef def : entry.itemNames) {
 
-            Material material = parseMaterial(name);
-
-            if (material == null) {
-//                log.warning(
-//                        "[" + category + "] Unknown material: " + name
-//                );
-                throw new RuntimeException(String.format("[%s] Unknown material: %s", category, name));
+            if (def == null || def.name == null) {
+                throw new RuntimeException(String.format("[%s] Item without a name", category));
             }
 
-            materials.add(material);
-        }
+            Material material = parseMaterial(def.name);
 
-        if (materials.isEmpty()) {
-            log.warning(
-                    "[" + category + "] Entry has no valid materials."
-            );
-            return null;
-        }
+            if (material == null) {
+                throw new RuntimeException(String.format("[%s] Unknown material: %s", category, def.name));
+            }
 
-        Set<Biome> biomes = new LinkedHashSet<>();
+            Set<Biome> biomes = new LinkedHashSet<>();
 
-        if (entry.foundInBiomes != null) {
-            for (String id : entry.foundInBiomes) {
-
-                Biome biome = parseBiome(id);
-
-                if (biome == null) {
-                    throw new RuntimeException(String.format("[%s] Unknown biome: %s", category, id));
-                } else {
+            if (def.foundInBiomes != null) {
+                for (String id : def.foundInBiomes) {
+                    Biome biome = parseBiome(id);
+                    if (biome == null) {
+                        throw new RuntimeException(String.format("[%s] %s: unknown biome: %s", category, def.name, id));
+                    }
                     biomes.add(biome);
                 }
             }
-        }
 
-        Set<Structure> structures = new LinkedHashSet<>();
+            Set<Structure> structures = new LinkedHashSet<>();
 
-        if (entry.foundInStructures != null) {
-            for (String id : entry.foundInStructures) {
-
-                Structure structure = parseStructure(id);
-
-                if (structure == null) {
-                    throw new RuntimeException(String.format("[%s] Unknown structure: %s", category, id));
-
-                } else {
+            if (def.foundInStructures != null) {
+                for (String id : def.foundInStructures) {
+                    Structure structure = parseStructure(id);
+                    if (structure == null) {
+                        throw new RuntimeException(String.format("[%s] %s: unknown structure: %s", category, def.name, id));
+                    }
                     structures.add(structure);
                 }
             }
+
+            if (biomes.isEmpty() && structures.isEmpty()) {
+                throw new RuntimeException(String.format("[%s] %s has no biomes or structures", category, def.name));
+            }
+
+            items.add(new ParsedItem(
+                    material,
+                    Collections.unmodifiableSet(biomes),
+                    Collections.unmodifiableSet(structures)
+            ));
         }
 
-        int choosing = Math.max(
-                1,
-                Math.min(entry.choosing, materials.size())
-        );
+        int choosing = Math.max(1, Math.min(entry.choosing, items.size()));
 
-        return new ParsedEntry(
-                List.copyOf(materials),
-                choosing,
-                Collections.unmodifiableSet(biomes),
-                Collections.unmodifiableSet(structures)
-        );
+        return new ParsedEntry(List.copyOf(items), choosing);
     }
 
     // ------------------------------------------------------------
@@ -297,34 +423,28 @@ public final class BingoItemManager {
 
     public static Biome parseBiome(String id) {
 
-        NamespacedKey key = NamespacedKey.fromString(
-                id.toLowerCase(Locale.ROOT)
-        );
+        NamespacedKey key = NamespacedKey.fromString(id.toLowerCase(Locale.ROOT));
 
         if (key == null) {
             return null;
         }
 
         Registry<Biome> registry =
-                RegistryAccess.registryAccess()
-                        .getRegistry(RegistryKey.BIOME);
+                RegistryAccess.registryAccess().getRegistry(RegistryKey.BIOME);
 
         return registry.get(key);
     }
 
     public static Structure parseStructure(String id) {
 
-        NamespacedKey key = NamespacedKey.fromString(
-                id.toLowerCase(Locale.ROOT)
-        );
+        NamespacedKey key = NamespacedKey.fromString(id.toLowerCase(Locale.ROOT));
 
         if (key == null) {
             return null;
         }
 
         Registry<Structure> registry =
-                RegistryAccess.registryAccess()
-                        .getRegistry(RegistryKey.STRUCTURE);
+                RegistryAccess.registryAccess().getRegistry(RegistryKey.STRUCTURE);
 
         return registry.get(key);
     }
@@ -334,16 +454,15 @@ public final class BingoItemManager {
     // ------------------------------------------------------------
 
     /**
-     * Gets a specified number of unique random materials
-     * from a category.
+     * Gets a specified number of unique random materials from a category.
      *
-     * Each JSON entry is considered once. Its "choosing"
-     * property determines how many materials can be selected
-     * from that entry.
+     * Each JSON entry is considered once. Its "choosing" property
+     * determines how many materials can be selected from that entry.
+     * Only items that the scanned world can provide (a biome or structure
+     * from the scan, or any nether/end one) are ever picked.
      *
      * @param category Category name, e.g. "Common"
      * @param amount Number of materials to retrieve
-     * @return List of randomly selected materials
      */
     public List<Material> getMaterials(String category, int amount) {
 
@@ -354,37 +473,31 @@ public final class BingoItemManager {
         ParsedCategory parsedCategory = getCategory(category);
 
         if (parsedCategory == null) {
-            throw new IllegalArgumentException(
-                    "Unknown bingo category: " + category
-            );
+            throw new IllegalArgumentException("Unknown bingo category: " + category);
         }
 
-        List<ParsedEntry> entries = new ArrayList<>(
-                parsedCategory.entries()
-        );
+        WorldScan currentScan = this.scan;
 
+        List<ParsedEntry> entries = new ArrayList<>(parsedCategory.entries());
         Collections.shuffle(entries);
 
         Set<Material> selected = new LinkedHashSet<>();
 
         for (ParsedEntry entry : entries) {
 
-            List<Material> candidates = new ArrayList<>(
-                    entry.materials()
-            );
+            List<ParsedItem> candidates = entry.obtainable(currentScan);
+
+            if (candidates.isEmpty()) {
+                continue;
+            }
 
             Collections.shuffle(candidates);
 
-            int choosing = Math.min(
-                    entry.choosing(),
-                    candidates.size()
-            );
+            int choosing = Math.min(entry.choosing(), candidates.size());
 
             for (int i = 0; i < choosing; i++) {
 
-                Material material = candidates.get(i);
-
-                selected.add(material);
+                selected.add(candidates.get(i).material());
 
                 if (selected.size() >= amount) {
                     return new ArrayList<>(selected);
@@ -392,15 +505,11 @@ public final class BingoItemManager {
             }
         }
 
-        if (selected.size() < amount) {
-            throw new IllegalArgumentException(
-                    "Requested " + amount + " items from category "
-                            + category + ", but only "
-                            + selected.size() + " unique materials exist."
-            );
-        }
-
-        return new ArrayList<>(selected);
+        throw new IllegalArgumentException(
+                "Requested " + amount + " items from category " + category
+                        + ", but only " + selected.size()
+                        + " obtainable unique materials exist in this world."
+        );
     }
 
     public List<ItemStack> getItems(String category, int amount) {
@@ -431,10 +540,7 @@ public final class BingoItemManager {
     // LOCATION CHECKS
     // ------------------------------------------------------------
 
-    public static boolean isInBiome(
-            Location location,
-            Set<Biome> biomes
-    ) {
+    public static boolean isInBiome(Location location, Set<Biome> biomes) {
 
         Biome current = location.getWorld().getBiome(
                 location.getBlockX(),
@@ -445,21 +551,13 @@ public final class BingoItemManager {
         return biomes.contains(current);
     }
 
-    public static boolean isInStructure(
-            Location location,
-            Set<Structure> structures
-    ) {
+    public static boolean isInStructure(Location location, Set<Structure> structures) {
 
         Chunk chunk = location.getChunk();
 
         for (Structure structure : structures) {
-
-            for (GeneratedStructure generated :
-                    chunk.getStructures(structure)) {
-
-                if (generated.getBoundingBox().contains(
-                        location.toVector()
-                )) {
+            for (GeneratedStructure generated : chunk.getStructures(structure)) {
+                if (generated.getBoundingBox().contains(location.toVector())) {
                     return true;
                 }
             }

@@ -110,6 +110,10 @@ public class AnchorPoint {
     }
 
     public void enterPortal(PlayerData playerData) {
+        enterPortal(playerData, this);
+    }
+
+    public void enterPortal(PlayerData playerData, AnchorPoint anchorPoint) {
         Player player = playerData.getPlayer();
 
         if (player == null || !player.isOnline() || !isState(OPEN)) return;
@@ -122,7 +126,7 @@ public class AnchorPoint {
         ACTIVE_PORTAL_SESSIONS.put(player.getUniqueId(), session);
 
         // Initially stand above this anchor's Ender Chest.
-        session.teleportTo(this);
+        session.teleportTo(anchorPoint);
 
         // Check for sneaking every tick.
         session.runTaskTimer(plugin, 0L, 1L);
