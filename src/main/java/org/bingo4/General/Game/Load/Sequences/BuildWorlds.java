@@ -9,6 +9,7 @@ import org.bingo4.Utility.TextUtil;
 import org.bukkit.*;
 
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class BuildWorlds extends GameSequences {
 
@@ -34,9 +35,7 @@ public class BuildWorlds extends GameSequences {
             Bukkit.getScheduler().runTask(plugin, () -> {
 
                 if (!success) {
-                    plugin.getLogger().severe(
-                            "Failed to download world: " + seed
-                    );
+                    TextUtil.debugText("Failed to download world: " + seed, Level.SEVERE);
                     return;
                 }
 
@@ -57,19 +56,13 @@ public class BuildWorlds extends GameSequences {
                     game.callback();
 
                 } catch (Exception e) {
-                    plugin.getLogger().severe(
-                            "Failed to create world: " + seed
-                    );
-                    e.printStackTrace();
+                    TextUtil.debugText(String.format("Failed to create world: %s, Error Msg: %s", seed, e), Level.SEVERE);
                 }
             });
 
         }).exceptionally(error -> {
-            plugin.getLogger().severe(
-                    "World download error: " + error.getMessage()
-            );
+            TextUtil.debugText(String.format("World download error: %s ", error), Level.SEVERE);
             throw new RuntimeException(error);
-//            return null;
         });
     }
 

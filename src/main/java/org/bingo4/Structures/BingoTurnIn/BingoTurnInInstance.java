@@ -4,10 +4,12 @@ import net.kyori.adventure.audience.Audience;
 import org.bingo4.Bingo4;
 import org.bingo4.MainMenuUI.Map.MapItem;
 import org.bingo4.MainMenuUI.Map.MapItems;
+import org.bingo4.MainMenuUI.Map.MapTransmitRange;
 import org.bingo4.Player.Data.PlayerData;
 import org.bingo4.Structures.CampInstance;
 import org.bingo4.Structures.Interfaces.AbstractCampType;
 import org.bingo4.Utility.TextUtil;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -45,7 +47,7 @@ public class BingoTurnInInstance extends CampInstance {
             }
         }
         bingoTurnInNPC.spawn(getCenter().clone().add(0, 0, 0));
-        mapItem = new MapItem("Altar", getCenter(), BINGO_TURN_IN);
+        mapItem = new MapItem("Altar", getCenter(), BINGO_TURN_IN, MapTransmitRange.FAR, Color.AQUA);
 
         MapItems mapItems = plugin.getSettingsUI().getSettings().getTimeline().getMapItems();
         mapItems.addMapItem(mapItem);

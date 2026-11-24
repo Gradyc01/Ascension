@@ -11,6 +11,7 @@ import org.bingo4.Mobs.Spiders.WitherRealmCaveSpider;
 import org.bingo4.Mobs.Zombies.WitherRealmHusk;
 import org.bingo4.Mobs.Zombies.WitherRealmZombie;
 import org.bingo4.Mobs.Zombies.WitherRealmZombieKnight;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
@@ -71,7 +72,7 @@ public class MiningNodeCampTier3Lush extends MiningNodeCampTier3 {
 
     @Override
     public MiningNodeColorScheme getMaterialScheme() {
-        return new MiningNodeColorScheme(Material.GREEN_CONCRETE, Material.GREEN_CONCRETE_STAIRS, Material.LIME_CONCRETE, Material.LIME_CONCRETE_STAIRS, Material.GOLD_BLOCK);
+        return new MiningNodeColorScheme(Material.GREEN_CONCRETE, Material.GREEN_CONCRETE_STAIRS, Material.LIME_CONCRETE, Material.LIME_CONCRETE_STAIRS, Material.GOLD_BLOCK, Color.YELLOW);
     }
 
 }

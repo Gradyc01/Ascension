@@ -5,6 +5,7 @@ import org.bingo4.Items.Uncraftable.Default.*;
 import org.bingo4.Items.Uncraftable.MainMenu;
 import org.bingo4.Items.Uncraftable.Minimap;
 import org.bingo4.Items.Uncraftable.VoidBox.VoidBox;
+import org.bingo4.MainMenuUI.Map.MapTransmitRange;
 import org.bingo4.Player.Cooldowns.Death.PlayerDeath;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -86,6 +87,8 @@ public class PlayerData {
     public void resetToLobby() {
         player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
         player.getAttribute(Attribute.ARMOR).setBaseValue(0);
+        player.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE).setBaseValue(0);
+        player.getAttribute(Attribute.WAYPOINT_RECEIVE_RANGE).setBaseValue(MapTransmitRange.FARTHEST.getTransmitRange() * 2);
         freezePlayer(false);
         clearInventoryAndEffects();
         addLobbyPotionEffects();

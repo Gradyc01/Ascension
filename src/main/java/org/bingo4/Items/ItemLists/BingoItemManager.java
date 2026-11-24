@@ -27,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class BingoItemManager {
@@ -137,14 +138,14 @@ public final class BingoItemManager {
     }
 
     /** Reads scan.json. Pass e.g. plugin.getWorld().getWorldPath() + "/scan.json". */
-    public static WorldScan loadScan(String scanFile, Logger log) {
-        return loadScan(Path.of(scanFile), log);
+    public static WorldScan loadScan(String scanFile) {
+        return loadScan(Path.of(scanFile));
     }
 
     /** Returns null (and logs a warning) if the file is missing or unreadable. */
-    public static WorldScan loadScan(Path scanFile, Logger log) {
+    public static WorldScan loadScan(Path scanFile) {
         if (!Files.isRegularFile(scanFile)) {
-            log.warning("No world scan found at " + scanFile + " - items will not be filtered by world contents.");
+            TextUtil.debugText("No world scan found at " + scanFile + " - items will not be filtered by world contents.", Level.WARNING);
             return null;
         }
         try {
@@ -157,12 +158,12 @@ public final class BingoItemManager {
             if (root.has("structures")) structures.addAll(root.getAsJsonObject("structures").keySet());
 
             boolean complete = root.has("complete") && root.get("complete").getAsBoolean();
-            if (!complete) log.warning("World scan is marked incomplete, some obtainable items may be filtered out.");
+            if (!complete) TextUtil.debugText("World scan is marked incomplete, some obtainable items may be filtered out.", Level.WARNING);
 
-            log.info("Loaded world scan: " + biomes.size() + " biomes, " + structures.size() + " structures.");
+            TextUtil.debugText("Loaded world scan: " + biomes.size() + " biomes, " + structures.size() + " structures.", Level.INFO);
             return new WorldScan(Set.copyOf(biomes), Set.copyOf(structures), complete);
         } catch (IOException | RuntimeException ex) {
-            log.warning("Could not read world scan " + scanFile + ": " + ex.getMessage());
+            TextUtil.debugText(String.format("Could not read world scan %s: %s", scanFile, ex), Level.WARNING);
             return null;
         }
     }

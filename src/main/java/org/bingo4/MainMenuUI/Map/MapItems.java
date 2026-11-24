@@ -8,19 +8,30 @@ import com.lunarclient.apollo.recipients.Recipients;
 import org.bingo4.Bingo4;
 import org.bingo4.Utility.TextUtil;
 import org.bukkit.Location;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 
 public class MapItems {
     private final List<MapItem> mapItems;
     private final HashMap<MapItem, String> lunarNames;
+    private final Map<MapItem, UUID> locatorEntities;
     private final WaypointModule waypointModule;
+    private final Bingo4 plugin = Bingo4.getInstance();
+    private final List<MapItem> forceLoadSchedulerList;
+    private BukkitTask forceLoadScheduler;
     public MapItems() {
         mapItems = new ArrayList<>();
         lunarNames = new HashMap<>();
+        locatorEntities = new HashMap<>();
+        forceLoadSchedulerList = new ArrayList<>();
         waypointModule = Apollo.getModuleManager().getModule(WaypointModule.class);
     }
 
@@ -28,14 +39,35 @@ public class MapItems {
         return mapItems;
     }
 
-    public void addMapItem(MapItem mapItems) {
-        this.mapItems.add(mapItems);
-        displayLunarWaypoint(mapItems);
+    public void addMapItem(MapItem mapItem) {
+        this.mapItems.add(mapItem);
+        displayLunarWaypoint(mapItem);
+        addLocatorEntity(mapItem);
+        forceLoadMapItem(mapItem);
     }
 
-    public void removeMapItem(MapItem mapItems) {
-        this.mapItems.remove(mapItems);
-        removeLunarWaypoint(mapItems);
+    public void removeMapItem(MapItem mapItem) {
+        this.mapItems.remove(mapItem);
+        removeLunarWaypoint(mapItem);
+        removeLocatorEntity(mapItem);
+    }
+
+    private void addLocatorEntity(MapItem mapItem) {
+        ArmorStand entity = (ArmorStand) plugin.getWorld().spawnEntity(mapItem.getLocation(), EntityType.ARMOR_STAND);
+        entity.setVisible(false);
+        entity.setPersistent(true);
+        entity.setSmall(true);
+        entity.setInvulnerable(true);
+        entity.setSilent(true);
+        entity.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE).setBaseValue(mapItem.getTransmitRange());
+        entity.setWaypointColor(mapItem.getWaypointColor());
+
+        locatorEntities.put(mapItem, entity.getUniqueId());
+    }
+
+    private void removeLocatorEntity(MapItem mapItem) {
+        Entity entity = plugin.getWorld().getEntity(locatorEntities.get(mapItem));
+        if (entity != null) entity.remove();
     }
 
     public void reMapItemsForLunar() {
@@ -93,6 +125,45 @@ public class MapItems {
             default -> Color.WHITE;
         };
     }
+
+    private void forceLoadMapItem(MapItem mapItem) {
+        forceLoadSchedulerList.add(mapItem);
+        TextUtil.debugText(String.format("[Map Items] Added %s mapItem at %s to force loader", mapItem.getName(), mapItem.getLocation()));
+        if (forceLoadScheduler != null) return;
+        forceLoadScheduler = new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (forceLoadSchedulerList.isEmpty()) {
+                    forceLoadScheduler.cancel();
+                    forceLoadScheduler = null;
+                    TextUtil.debugText("[Map Items] Force loader finished and cancelled");
+                    return;
+                }
+
+                forceLoadItem(forceLoadSchedulerList.removeFirst());
+
+            }
+        }.runTaskTimer(plugin, 20L, 5 * 20L);
+    }
+
+    private void forceLoadItem(MapItem mapItem) {
+        Location loc = mapItem.getLocation();
+        int x = loc.getBlockX();
+        int z = loc.getBlockZ();
+        TextUtil.debugText(String.format("[Map Items] Force loading chunk %s", TextUtil.formatLocation(loc)));
+        loc.getWorld().setChunkForceLoaded(x, z, true);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (loc.getWorld().isChunkForceLoaded(x, z)) {
+                    TextUtil.debugText(String.format("[Map Items] Remove force loaded chunk %s", TextUtil.formatLocation(loc)));
+                    loc.getWorld().setChunkForceLoaded(x, z, false);
+                }
+            }
+        }.runTaskLater(plugin, 60L);
+    }
+
 
 
 

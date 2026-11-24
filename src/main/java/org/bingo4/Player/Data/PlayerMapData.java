@@ -2,6 +2,7 @@ package org.bingo4.Player.Data;
 
 import org.bingo4.Bingo4;
 import org.bingo4.MainMenuUI.Map.NeutralMapRenderer;
+import org.bingo4.MainMenuUI.Map.WorldMapRenderer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -33,6 +34,7 @@ public class PlayerMapData implements PlayerDataObservers {
 
     public void initializeMap(MapView.Scale scale) {
         MapView mapView = Bukkit.createMap(Bingo4.getInstance().getWorld());
+        WorldMapRenderer.install(mapView); // cached world terrain, must be added before the markers
         mapView.addRenderer(new NeutralMapRenderer());
 
         mapView.setScale(scale);

@@ -1,6 +1,7 @@
 package org.bingo4.camps.core;
 
 import org.bingo4.Structures.TerrainAnalyzer;
+import org.bingo4.Utility.TextUtil;
 import org.bingo4.camps.api.*;
 import org.bingo4.camps.storage.CampRegistry;
 import org.bingo4.camps.storage.CampStore;
@@ -144,13 +145,13 @@ public final class CampPlacementService {
             registry.register(camp);
             processedRegions.add(key);
             saveState();
-            plugin.getLogger().info("Placed " + template.id() + " at " + world.getName()
+            TextUtil.debugText("Placed " + template.id() + " at " + world.getName()
                     + " " + pasteX + "," + pasteY + "," + pasteZ);
         } catch (Exception exception) {
             // Avoid repeatedly flattening/pasting the same failed location on every chunk crossing.
             processedRegions.add(key);
             saveState();
-            plugin.getLogger().log(Level.SEVERE, "Failed to place camp for region " + key, exception);
+            TextUtil.debugText(String.format("Failed to place camp for region %s. Exception: %s", key, exception), Level.SEVERE);
         }
     }
 
@@ -234,7 +235,7 @@ public final class CampPlacementService {
         try {
             store.save(processedRegions, registry.all());
         } catch (IOException exception) {
-            plugin.getLogger().log(Level.SEVERE, "Could not persist camp state", exception);
+            TextUtil.debugText(String.format("Could not persist camp state %s", exception), Level.SEVERE);
         }
     }
 

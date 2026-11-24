@@ -18,6 +18,7 @@ import org.bukkit.block.CommandBlock;
 import org.bukkit.block.data.Directional;
 
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * Registers camp types, discovers suitable sites around a center, places camps,
@@ -218,9 +219,9 @@ public final class CampManager {
                     block.setType(Material.AIR, false);
                 }
             } catch (Exception exception) {
-                plugin.getLogger().severe("Could not place camp type " + type.getId()
-                        + " at " + locations.get(i) + ": " + exception.getMessage());
-                plugin.getLogger().log(java.util.logging.Level.FINE, "Camp placement exception", exception);
+                TextUtil.debugText("Could not place camp type " + type.getId()
+                        + " at " + locations.get(i) + ": " + exception.getMessage(), Level.SEVERE);
+                TextUtil.debugText(String.format("Camp placement exception %s", exception), Level.FINE);
             }
         }
         return List.copyOf(created);
@@ -267,10 +268,9 @@ public final class CampManager {
                     block.setType(Material.AIR, false);
                 }
             } catch (Exception exception) {
-                plugin.getLogger().severe("Could not place camp type " + type.getId()
-                        + " at " + location + ": " + exception.getMessage());
-                plugin.getLogger().log(java.util.logging.Level.FINE,
-                        "Camp placement exception", exception);
+                TextUtil.debugText("Could not place camp type " + type.getId()
+                        + " at " + location + ": " + exception.getMessage(), Level.SEVERE);
+                TextUtil.debugText(String.format("Camp placement exception %s", exception), Level.FINE);
             }
         }
         return List.copyOf(created);

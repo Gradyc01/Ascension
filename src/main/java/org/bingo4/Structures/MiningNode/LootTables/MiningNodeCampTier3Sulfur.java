@@ -6,6 +6,7 @@ import org.bingo4.Mobs.Skeletons.WitherRealmSkeleton;
 import org.bingo4.Mobs.Slimes.Bingo4Slime;
 import org.bingo4.Mobs.Slimes.Bingo4SulfurCube;
 import org.bingo4.Mobs.Zombies.*;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.World;
 
@@ -63,7 +64,7 @@ public class MiningNodeCampTier3Sulfur extends MiningNodeCampTier3 {
 
     @Override
     public MiningNodeColorScheme getMaterialScheme() {
-        return new MiningNodeColorScheme(Material.YELLOW_CONCRETE, Material.YELLOW_CONCRETE_STAIRS, Material.CINNABAR, Material.CINNABAR_STAIRS, Material.GOLD_BLOCK);
+        return new MiningNodeColorScheme(Material.YELLOW_CONCRETE, Material.YELLOW_CONCRETE_STAIRS, Material.CINNABAR, Material.CINNABAR_STAIRS, Material.GOLD_BLOCK, Color.YELLOW);
     }
 
 }

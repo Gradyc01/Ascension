@@ -5,6 +5,7 @@ import org.bingo4.Interfaces.CustomChestLootPool;
 import org.bingo4.Interfaces.RealmNMSMob;
 import org.bingo4.Utility.FloodBuild.FloodBlocks;
 import org.bingo4.Utility.FloodBuild.Floodable;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -73,6 +74,6 @@ public abstract class MiningNodeCampLoot extends CustomChestLoot implements Floo
     }
 
     public MiningNodeColorScheme getMaterialScheme() {
-        return new MiningNodeColorScheme(Material.YELLOW_CONCRETE, Material.YELLOW_CONCRETE_STAIRS, Material.ORANGE_CONCRETE, Material.ORANGE_CONCRETE_STAIRS, Material.COPPER_BLOCK);
+        return new MiningNodeColorScheme(Material.YELLOW_CONCRETE, Material.YELLOW_CONCRETE_STAIRS, Material.ORANGE_CONCRETE, Material.ORANGE_CONCRETE_STAIRS, Material.COPPER_BLOCK, Color.WHITE);
     }
 }

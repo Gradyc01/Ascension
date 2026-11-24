@@ -13,6 +13,8 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.PortalCreateEvent;
 
+import java.util.logging.Level;
+
 public class DimensionalTravel implements Listener {
     @EventHandler
     public void onPlayerTravel(PlayerPortalEvent event) {
@@ -53,7 +55,7 @@ public class DimensionalTravel implements Listener {
     @EventHandler
     public void onChunkLoad(ChunkLoadEvent e) {
         if (e.isNewChunk()) {
-            TextUtil.debugText(String.format("New chunk generated in world type %s", e.getWorld().getWorldPath()));
+            TextUtil.debugText(String.format("New chunk generated in world type %s", e.getWorld().getWorldPath()), Level.FINE);
         }
     }
 }

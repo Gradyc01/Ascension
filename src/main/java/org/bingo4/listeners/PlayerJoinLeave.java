@@ -24,7 +24,7 @@ public class PlayerJoinLeave implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         switch (plugin.getGameState().getCurrentState()) {
-            case GameStates.LOBBY_NORMAL -> {
+            case GameStates.LOBBY_NORMAL, GameStates.LOBBY_LOADING -> {
                 onPlayerJoinLobby(event);
                 event.joinMessage(TextUtil.makeText(event.getPlayer().getName(), TextUtil.DARK_GRAY)
                         .append(TextUtil.makeText( " has joined the lobby!", TextUtil.GOLD)));
@@ -33,7 +33,7 @@ public class PlayerJoinLeave implements Listener {
                 onPlayerJoinLobby(event);
                 Queue.getInstance().stopQueue();
             }
-            case GameStates.UNLOADED, GameStates.LOBBY_LOADING -> {
+            case GameStates.UNLOADED -> {
                 return;
             }
             default -> {
@@ -47,14 +47,14 @@ public class PlayerJoinLeave implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
         switch (plugin.getGameState().getCurrentState()) {
-            case GameStates.LOBBY_NORMAL -> {
+            case GameStates.LOBBY_NORMAL, GameStates.LOBBY_LOADING -> {
                 onPlayerLeaveLobby(event);
             }
             case GameStates.LOBBY_QUEUE -> {
                 onPlayerLeaveLobby(event);
                 Queue.getInstance().stopQueue();
             }
-            case GameStates.UNLOADED, GameStates.LOBBY_LOADING -> {
+            case GameStates.UNLOADED -> {
                 return;
             }
             default -> {

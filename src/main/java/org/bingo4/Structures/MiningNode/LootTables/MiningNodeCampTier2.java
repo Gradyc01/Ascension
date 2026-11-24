@@ -8,6 +8,7 @@ import org.bingo4.Mobs.Skeletons.WitherRealmSkeleton;
 import org.bingo4.Mobs.Spiders.WitherRealmSpider;
 import org.bingo4.Mobs.Zombies.WitherRealmHusk;
 import org.bingo4.Mobs.Zombies.WitherRealmZombie;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
@@ -84,6 +85,6 @@ public class MiningNodeCampTier2 extends MiningNodeCampLoot {
 
     @Override
     public MiningNodeColorScheme getMaterialScheme() {
-        return new MiningNodeColorScheme(Material.LIGHT_GRAY_CONCRETE, Material.LIGHT_GRAY_CONCRETE_STAIRS, Material.STONE, Material.STONE_STAIRS, Material.IRON_BLOCK);
+        return new MiningNodeColorScheme(Material.LIGHT_GRAY_CONCRETE, Material.LIGHT_GRAY_CONCRETE_STAIRS, Material.STONE, Material.STONE_STAIRS, Material.IRON_BLOCK, Color.ORANGE);
     }
 }

@@ -14,6 +14,7 @@ import org.bingo4.Mobs.Spiders.WitherRealmSpider;
 import org.bingo4.Mobs.Zombies.WitherRealmHusk;
 import org.bingo4.Mobs.Zombies.WitherRealmZombie;
 import org.bingo4.Mobs.Zombies.WitherRealmZombieKnight;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
@@ -76,7 +77,7 @@ public class MiningNodeCampTier2Trial extends MiningNodeCampTier2 {
 
     @Override
     public MiningNodeColorScheme getMaterialScheme() {
-        return new MiningNodeColorScheme(Material.CUT_COPPER, Material.CUT_COPPER_STAIRS, Material.OXIDIZED_COPPER, Material.OXIDIZED_CUT_COPPER_STAIRS, Material.IRON_BLOCK);
+        return new MiningNodeColorScheme(Material.CUT_COPPER, Material.CUT_COPPER_STAIRS, Material.OXIDIZED_COPPER, Material.OXIDIZED_CUT_COPPER_STAIRS, Material.IRON_BLOCK, Color.ORANGE);
     }
 
 

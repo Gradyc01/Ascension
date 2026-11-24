@@ -3,6 +3,7 @@ package org.bingo4.Structures.NetherKoth;
 import org.bingo4.Bingo4;
 import org.bingo4.MainMenuUI.Map.MapItem;
 import org.bingo4.MainMenuUI.Map.MapItems;
+import org.bingo4.MainMenuUI.Map.MapTransmitRange;
 import org.bingo4.Structures.CampInstance;
 import org.bingo4.Structures.Interfaces.AbstractCampType;
 import org.bingo4.Utility.DisplayUtil;
@@ -54,7 +55,7 @@ public class NetherKothInstance extends CampInstance implements Floodable {
             }
         }
         floodFloor(getCenter().add(0, -1, 0));
-        mapItem = new MapItem("Nether Portal", getCenter(), NETHER_PORTAL);
+        mapItem = new MapItem("Nether Portal", getCenter(), NETHER_PORTAL, MapTransmitRange.FAR, Color.RED);
         plugin.getSettingsUI().getSettings().getTimeline().getMapItems().addMapItem(mapItem);
     }
 

@@ -3,6 +3,7 @@ package org.bingo4.MainMenuUI.Map;
 import org.bingo4.Bingo4;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.map.MapCursor;
 import org.bukkit.map.MapView;
@@ -13,6 +14,8 @@ public class MapItem {
     private final int z;
     private final int y;
     private final int type;
+    private final MapTransmitRange transmitRange;
+    private final Color waypointColor;
     public static final int SPAWN = 0;
     public static final int CARE_PACKAGE = 1;
     public static final int SCAVENGER = 2;
@@ -26,19 +29,17 @@ public class MapItem {
     public static final int NETHER_PORTAL = 10;
 
     public MapItem(String name, int x, int z, int type) {
-        this.name = name;
-        this.x = x;
-        this.z = z;
-        this.y = Bingo4.getInstance().getWorld().getHighestBlockYAt(x, z);
-        this.type = type;
+        this(name, new Location(Bingo4.getInstance().getWorld(), x, Bingo4.getInstance().getWorld().getHighestBlockYAt(x, z), z), type, MapTransmitRange.FAR, Color.WHITE);
     }
 
-    public MapItem(String name, Location location, int type) {
+    public MapItem(String name, Location location, int type, MapTransmitRange transmitRange, Color waypointColor) {
         this.name = name;
         this.x = location.getBlockX();
         this.y = location.getBlockY();
         this.z = location.getBlockZ();
         this.type = type;
+        this.transmitRange = transmitRange;
+        this.waypointColor = waypointColor;
     }
 
 
@@ -83,5 +84,13 @@ public class MapItem {
             case NETHER_PORTAL -> MapCursor.Type.ABANDONED_CAMP;
             default -> MapCursor.Type.RED_X;
         };
+    }
+
+    public int getTransmitRange() {
+        return transmitRange.getTransmitRange();
+    }
+
+    public Color getWaypointColor() {
+        return waypointColor;
     }
 }

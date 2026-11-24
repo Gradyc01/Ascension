@@ -29,7 +29,7 @@ public class LoadGameRules extends GameSequences {
 //        world.setGameRule(GameRules.NATURAL_HEALTH_REGENERATION, false);
         // world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, true);
         world.setGameRule(GameRules.SPAWN_PHANTOMS, false);
-        world.setGameRule(GameRules.LOCATOR_BAR,false); //TODO: False For Now
+        world.setGameRule(GameRules.LOCATOR_BAR,true); //TODO: False For Now
         world.setGameRule(GameRules.ADVANCE_WEATHER, false);
     }
 }

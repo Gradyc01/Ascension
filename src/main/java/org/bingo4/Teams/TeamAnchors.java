@@ -3,9 +3,11 @@ package org.bingo4.Teams;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bingo4.MainMenuUI.Map.MapItem;
 import org.bingo4.MainMenuUI.Map.MapItems;
+import org.bingo4.MainMenuUI.Map.MapTransmitRange;
 import org.bingo4.Structures.AnchorPoints.AnchorPoint;
 import org.bingo4.Player.Data.PlayerData;
 import org.bingo4.Utility.TextUtil;
+import org.bukkit.Color;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +24,7 @@ public class TeamAnchors {
     }
 
     public void addAnchorPoint(AnchorPoint anchorPoint) {
-        MapItem mapItem = new MapItem("Void Box", anchorPoint.getLocation(), MapItem.ANCHOR_POINT);
+        MapItem mapItem = new MapItem("Void Box", anchorPoint.getLocation(), MapItem.ANCHOR_POINT, MapTransmitRange.MIDDLE, Color.PURPLE);
         anchorPoints.add(Pair.of(anchorPoint, mapItem));
         mapItems.addMapItem(mapItem);
         TextUtil.debugText(String.format("Added anchor point at %s for team: %s", TextUtil.formatLocation(anchorPoint.getLocation()), team.getLeader()));

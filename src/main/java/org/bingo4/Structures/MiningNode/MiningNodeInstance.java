@@ -5,6 +5,7 @@ import org.bingo4.Interfaces.AscensionBlockGUI;
 import org.bingo4.Interfaces.RealmNMSMob;
 import org.bingo4.MainMenuUI.Map.MapItem;
 import org.bingo4.MainMenuUI.Map.MapItems;
+import org.bingo4.MainMenuUI.Map.MapTransmitRange;
 import org.bingo4.Mobs.ItemDisplayDetection;
 import org.bingo4.Structures.CampInstance;
 import org.bingo4.Structures.Interfaces.AbstractCampType;
@@ -115,7 +116,7 @@ public class MiningNodeInstance extends CampInstance {
             }
         }
 
-        mapItem = new MapItem("Probe", getCenter(), loot.getMapId());
+        mapItem = new MapItem("Probe", getCenter(), loot.getMapId(), MapTransmitRange.CLOSE, colorScheme.transmitColor());
         floodBlocks = new FloodBlocks(getCenter().clone().add(0, -1, 0), 1.1, loot);
 
         MapItems mapItems = plugin.getSettingsUI()

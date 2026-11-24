@@ -17,6 +17,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Level;
 
 public class NetherManager {
 
@@ -69,9 +70,7 @@ public class NetherManager {
 
                 }, task -> Bukkit.getScheduler().runTask(plugin, task))
                 .exceptionally(ex -> {
-                    plugin.getLogger().severe(
-                            "Failed to initialize Nether world: " + ex.getMessage()
-                    );
+                    TextUtil.debugText(String.format("Failed to initialize Nether world: %s", ex), Level.SEVERE);
                     throw new RuntimeException(ex);
                 });
     }

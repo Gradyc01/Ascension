@@ -4,11 +4,13 @@ package org.bingo4.Structures.Midboss;
 import net.kyori.adventure.audience.Audience;
 import org.bingo4.Items.Uncraftable.HadesBook.HadesBook;
 import org.bingo4.MainMenuUI.Map.MapItem;
+import org.bingo4.MainMenuUI.Map.MapTransmitRange;
 import org.bingo4.Mobs.ItemDisplayDetection;
 import org.bingo4.Structures.CampInstance;
 import org.bingo4.Structures.Interfaces.AbstractCampType;
 import org.bingo4.Utility.SoundUtil;
 import org.bingo4.Utility.TextUtil;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -38,7 +40,7 @@ public class MidbossInstance extends CampInstance {
                 break;
             }
         }
-        mapItem = new MapItem("Gatekeeper", getCenter(), MapItem.SPAWN);
+        mapItem = new MapItem("Gatekeeper", getCenter(), MapItem.SPAWN, MapTransmitRange.FARTHEST, Color.BLACK);
         plugin.getSettingsUI().getSettings().getTimeline().getMapItems().addMapItem(mapItem);
     }
 

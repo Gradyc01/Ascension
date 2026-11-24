@@ -1,3 +1,4 @@
+
 package org.bingo4.Persistence;
 
 import org.bingo4.Bingo4;
@@ -20,6 +21,9 @@ import java.time.Duration;
 import java.util.Comparator;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
+import java.util.logging.Level;
+
+import static org.bingo4.Utility.TextUtil.debugText;
 
 public class WorldDownloader {
 
@@ -64,24 +68,25 @@ public class WorldDownloader {
                 try {
                     downloadWorldInternal(seed, uuid, folderPath);
 
-                    plugin.getLogger().info(
-                            "Successfully downloaded world " + seed
-                    );
+                    debugText("Successfully downloaded world " + seed);
 
                     future.complete(true);
                     return;
 
                 } catch (Exception e) {
 
-                    plugin.getLogger().warning(
+                    debugText(
                             "Failed to download world " + seed +
-                                    " (Attempt " + attempt + "/" + maxAttempts + ")"
+                                    " (Attempt " + attempt + "/" + maxAttempts + ")",
+                            Level.WARNING
                     );
 
                     if (attempt == maxAttempts) {
-                        plugin.getLogger().severe(String.format(
-                                "Failed to download world %s at %s after %s attempts. Error: %s",
-                                seed, folderPath, maxAttempts, e));
+                        debugText(String.format(
+                                        "Failed to download world %s at %s after %s attempts. Error: %s",
+                                        seed, folderPath, maxAttempts, e),
+                                Level.SEVERE
+                        );
                         future.complete(false);
                         return;
                     }
@@ -124,9 +129,7 @@ public class WorldDownloader {
         if (Files.exists(destination)) {
 
             if (Files.exists(destination.resolve("level.dat"))) {
-                plugin.getLogger().info(
-                        "World already exists. Skipping download: " + seed
-                );
+                debugText("World already exists. Skipping download: " + seed);
                 return;
             }
 
@@ -150,9 +153,7 @@ public class WorldDownloader {
 
         try {
 
-            plugin.getLogger().info(
-                    "Fetching GitHub world files for seed: " + seed
-            );
+            debugText("Fetching GitHub world files for seed: " + seed);
 
             // Retrieve the complete repository file tree.
             String treeUrl =
@@ -299,7 +300,7 @@ public class WorldDownloader {
                 downloaded++;
                 totalBytes += actualSize;
 
-                plugin.getLogger().info(
+                debugText(
                         "Downloaded: " + relativePath
                                 + " (" + actualSize + " bytes)"
                 );
@@ -319,40 +320,20 @@ public class WorldDownloader {
                         destination,
                         StandardCopyOption.ATOMIC_MOVE
                 );
-                plugin.getLogger().info(String.format("Destination: %s", destination));
+                debugText(String.format("Destination: %s", destination));
 
             } catch (AtomicMoveNotSupportedException e) {
 
                 Files.move(temporary, destination);
             }
 
-            plugin.getLogger().info(
-                    "===================================="
-            );
-
-            plugin.getLogger().info(
-                    "World download completed!"
-            );
-
-            plugin.getLogger().info(
-                    "Seed: " + seed
-            );
-
-            plugin.getLogger().info(
-                    "Files: " + downloaded
-            );
-
-            plugin.getLogger().info(
-                    "Total bytes: " + totalBytes
-            );
-
-            plugin.getLogger().info(
-                    "Destination: " + destination
-            );
-
-            plugin.getLogger().info(
-                    "===================================="
-            );
+            debugText("====================================");
+            debugText("World download completed!");
+            debugText("Seed: " + seed);
+            debugText("Files: " + downloaded);
+            debugText("Total bytes: " + totalBytes);
+            debugText("Destination: " + destination);
+            debugText("====================================");
 
         } catch (Exception e) {
 

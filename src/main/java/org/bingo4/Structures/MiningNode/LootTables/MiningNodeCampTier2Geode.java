@@ -11,6 +11,7 @@ import org.bingo4.Mobs.Spiders.WitherRealmSpider;
 import org.bingo4.Mobs.Skeletons.SkeletonSoldier;
 import org.bingo4.Mobs.Zombies.WitherRealmHusk;
 import org.bingo4.Mobs.Zombies.WitherRealmZombie;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
@@ -70,7 +71,7 @@ public class MiningNodeCampTier2Geode extends MiningNodeCampTier2 {
 
     @Override
     public MiningNodeColorScheme getMaterialScheme() {
-        return new MiningNodeColorScheme(Material.PURPLE_CONCRETE, Material.PURPLE_CONCRETE_STAIRS, Material.AMETHYST_BLOCK, Material.PINK_CONCRETE_STAIRS, Material.IRON_BLOCK);
+        return new MiningNodeColorScheme(Material.PURPLE_CONCRETE, Material.PURPLE_CONCRETE_STAIRS, Material.AMETHYST_BLOCK, Material.PINK_CONCRETE_STAIRS, Material.IRON_BLOCK, Color.ORANGE);
     }
 
 
