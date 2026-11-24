@@ -29,7 +29,7 @@ public class LoadGame extends GameLauncher {
         return List.of(
                 new DownloadAscensionFolder(),
                 new ClearEntityInteractions(),
-                new SetBingoData(),
+//                new SetBingoData(),
                 new DeletePreviousIterations(),
                 new BuildLobby(lobbyCoordsLocation),
                 new CallResetGame()

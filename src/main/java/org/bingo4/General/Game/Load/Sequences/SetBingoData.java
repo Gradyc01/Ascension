@@ -27,6 +27,7 @@ public class SetBingoData extends GameSequences {
             Bukkit.getScheduler().runTask(plugin, () -> {
                 plugin.setManager(BingoItemManager.parse(
                         json,
+                        BingoItemManager.loadScan(plugin.getWorld().getWorldPath().toAbsolutePath() + "/scan.json", plugin.getLogger()),
                         plugin.getLogger()
                 ));
                 game.callback();

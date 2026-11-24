@@ -29,8 +29,6 @@ public class NetherMobs implements LootTableChanger, EntityLootTable {
 
     @Override
     public void registerItem() {
-        addEntity(EntityType.BLAZE.translationKey(),this);
-        addEntity(EntityType.MAGMA_CUBE.translationKey(),this);
         addEntity(EntityType.PIGLIN.translationKey(),this);
         addEntity(EntityType.ZOMBIFIED_PIGLIN.translationKey(),this);
         addEntity(EntityType.PIGLIN_BRUTE.translationKey(),this);

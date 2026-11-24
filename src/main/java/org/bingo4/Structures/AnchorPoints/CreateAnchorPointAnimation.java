@@ -34,7 +34,7 @@ public class CreateAnchorPointAnimation implements Floodable {
 
     private void start() {
         anchorPoint.getCreator().getPlayer().sendMessage(TextUtil.makeText("Creating an anchor point: ", TextUtil.DARK_PURPLE).append(TextUtil.makeText(anchorPoint.getName(), TextUtil.AQUA)));
-        anchorPoint.getLocation().getWorld().playSound(anchorPoint.getLocation(), Sound.AMBIENT_NETHER_WASTES_MOOD, 20, 1);
+        anchorPoint.getLocation().getWorld().playSound(anchorPoint.getLocation(), Sound.AMBIENT_NETHER_WASTES_MOOD, 4F, 1);
         int ticks = 10 * 20;
         Random random = new Random();
         floodBlocks.start(random);
@@ -48,7 +48,7 @@ public class CreateAnchorPointAnimation implements Floodable {
                     spinParticle(Math.PI /4);spinParticle( 3 * Math.PI / 4);
                     spinParticle(5 * Math.PI / 4);spinParticle( 7 * Math.PI / 4);
                     floodBlocks.flood(random);
-                    anchorPoint.getLocation().getWorld().playSound(anchorPoint.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_CHARGE, 20, 1);
+                    anchorPoint.getLocation().getWorld().playSound(anchorPoint.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_CHARGE, 4F, 1);
                 }
 
                 if (timePassed % 20 == 0) {

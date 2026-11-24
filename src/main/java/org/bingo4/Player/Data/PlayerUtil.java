@@ -1,6 +1,7 @@
 package org.bingo4.Player.Data;
 
 import org.bingo4.Bingo4;
+import org.bingo4.Items.UnlockRecommender;
 import org.bingo4.Utility.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -71,7 +72,7 @@ public class PlayerUtil {
     public static void giveItem(Player p, List<ItemStack> items) {
         PlayerInventory inv = p.getInventory();
         PlayerData pD = getPlayerData(p);
-//        UnlockRecommender recommender = UnlockRecommender.getInstance();
+        UnlockRecommender recommender = UnlockRecommender.getInstance();
         PlayerInventoryTracker tracker = pD.getPlayerInventoryTracker();
         List<ItemStack> itemsLeft = new ArrayList<>(); // Items Left to give
         for (ItemStack item : items) {
@@ -94,14 +95,14 @@ public class PlayerUtil {
                             itemsLeft.remove(item);
                             //Adds to tracker and recommender
                             tracker.addItems(invItem, itemAmount);
-//                            recommender.checkMaterial(new ItemStack(invItem.getType(), itemAmount), p);
+                            recommender.checkMaterial(new ItemStack(invItem.getType(), itemAmount), p);
                         } else {
                             invItem.setAmount(maxSize);
                             item.setAmount(itemAmount - (maxSize - invItemAmount));
                             //Adds to tracker and recommender
                             if (maxSize - invItemAmount > 0) {
                                 tracker.addItems(invItem, (maxSize - invItemAmount));
-//                                recommender.checkMaterial(new ItemStack(invItem.getType(), (maxSize - invItemAmount)), p);
+                                recommender.checkMaterial(new ItemStack(invItem.getType(), (maxSize - invItemAmount)), p);
                             }
                         }
                     }

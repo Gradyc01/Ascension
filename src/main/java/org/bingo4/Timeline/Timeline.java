@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
 
 import static org.bingo4.Structures.Structures.MINING_CAMP_1;
 
@@ -84,7 +85,7 @@ public abstract class Timeline {
             campManager.registerCampType(new NetherKothCamp());
             campManager.registerCampType(new MidbossCamp());
         } catch (Exception e) {
-            TextUtil.debugText("SAKDLASKD");
+            TextUtil.debugText(String.format("Failed to register camp type: %s", e), Level.SEVERE);
         }
 
     }

@@ -33,5 +33,7 @@ public class EntityUtil {
         new Turtle();
         new Bee();
         new Ghast();
+        new Blaze();
+        new MagmaCube();
     }
 }

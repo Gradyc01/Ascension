@@ -2,6 +2,8 @@ package org.bingo4.commands;
 
 import io.papermc.paper.command.brigadier.BasicCommand;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
+import org.bingo4.Items.UnlockRecommender;
+import org.bingo4.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import java.util.UUID;
 
 public class CraftCommand implements CommandExecutor, BasicCommand {
 
@@ -36,16 +39,16 @@ public class CraftCommand implements CommandExecutor, BasicCommand {
     }
 
     private boolean executeCommand(CommandSender sender, String[] args) {
-//        if (args.length != 1 || !(sender instanceof Player)) return false;
-//        Player player = (Player) sender;
-////        UUID uuid = args[0]
-//        UUID uuid = UUID.fromString(args[0]);
-//        Craft c = UnlockRecommender.getInstance().getCraftFromCode(uuid);
-//        if (c == null) {
-//            TextUtil.errorMessage(player, "Something went wrong! Try crafting it in the crafting table");
-//            return false;
-//        }
-//        openCraftingInventory(player, c.getRecipe());
+        if (args.length != 1 || !(sender instanceof Player)) return false;
+        Player player = (Player) sender;
+//        UUID uuid = args[0]
+        UUID uuid = UUID.fromString(args[0]);
+        Recipe c = UnlockRecommender.getInstance().getRecipeFromCode(uuid);
+        if (c == null) {
+            TextUtil.errorMessage(player, "Something went wrong! Try crafting it in the crafting table");
+            return false;
+        }
+        openCraftingInventory(player, c);
         return true;
     }
 

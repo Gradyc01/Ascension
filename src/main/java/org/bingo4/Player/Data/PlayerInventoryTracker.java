@@ -2,6 +2,7 @@ package org.bingo4.Player.Data;
 
 import org.bingo4.Bingo4;
 //import org.bingo4.Items.UnlockRecommender;
+import org.bingo4.Items.UnlockRecommender;
 import org.bingo4.Utility.TextUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -37,7 +38,7 @@ public class PlayerInventoryTracker implements PlayerDataObservers{
                 }
                 inventoryMaterials = newInventoryMaterials;
                 for (Map.Entry<Material, Integer> pair : materialChecks.entrySet()) {
-//                    UnlockRecommender.getInstance().checkMaterial(new ItemStack(pair.getKey(), pair.getValue()), player);
+                    UnlockRecommender.getInstance().checkMaterial(new ItemStack(pair.getKey(), pair.getValue()), player);
                 }
                 needsUpdate = false;
                 playerData.getPlayerStats().addInventoryRefresh();
@@ -102,11 +103,12 @@ public class PlayerInventoryTracker implements PlayerDataObservers{
                 player.getName() + "    Material: " + material.name() + "   " + count + " ----> " + (count-amount));
     }
 
-    /*Checks to see if RecipeChoice choice is satisfied for this player*/
+    /* Checks to see if RecipeChoice choice is satisfied for this player */
     public boolean canSatisfyRecipeChoice(RecipeChoice choice, int amountRequired, ItemStack newItem) {
-//        int amountRequired = getChoiceCount(strings, character);
-        if (choice instanceof RecipeChoice.ExactChoice) {
-            RecipeChoice.ExactChoice exact = (RecipeChoice.ExactChoice) choice;
+        if (choice == null) {
+            return false;
+        }
+        if (choice instanceof RecipeChoice.ExactChoice exact) {
             for (ItemStack item : exact.getChoices()) {
                 if (item == null) continue;
                 if (checkForRequireAmount(item.getType(), exact, amountRequired, newItem)) {
@@ -114,8 +116,8 @@ public class PlayerInventoryTracker implements PlayerDataObservers{
                 }
             }
             return false;
-        } else {
-            RecipeChoice.MaterialChoice material = (RecipeChoice.MaterialChoice) choice;
+        }
+        if (choice instanceof RecipeChoice.MaterialChoice material) {
             for (Material mat : material.getChoices()) {
                 if (checkForRequireAmount(mat, material, amountRequired, newItem)) {
                     return true;
@@ -123,6 +125,7 @@ public class PlayerInventoryTracker implements PlayerDataObservers{
             }
             return false;
         }
+        return false;
     }
 
     /*Checks thats the RecipeChoice is satisfied properly for the material mat*/

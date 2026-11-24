@@ -1,5 +1,6 @@
 package org.bingo4.MainMenuUI.BingoBoard;
 
+import org.bingo4.Items.UnlockRecommender;
 import org.bingo4.Player.Data.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -13,6 +14,7 @@ public class BingoSlot {
         this.item = item;
         this.claimer = null;
         locked = false;
+        UnlockRecommender.getInstance().addRecipes(item);
     }
     
     public ItemStack getItem() {
@@ -28,7 +30,9 @@ public class BingoSlot {
     }
 
     public void setItem(ItemStack item) {
+        UnlockRecommender.getInstance().removeRecipes(this.item);
         this.item = item;
+        UnlockRecommender.getInstance().addRecipes(this.item);
     }
 
     public void setLocked() {

@@ -58,7 +58,7 @@ public class GameCommand implements CommandExecutor, TabCompleter, BasicCommand 
     }
 
     private boolean executeCommand(CommandSender commandSender, String[] strings) {
-        if (strings.length == 0 || strings.length == 2 || strings.length > 4) {
+        if (strings.length == 0 || strings.length == 2 || strings.length > 5) {
             sendMisuseMessage(commandSender);
             return false;
         }
@@ -83,12 +83,13 @@ public class GameCommand implements CommandExecutor, TabCompleter, BasicCommand 
             case "reseed" -> new ReSeed();
 
             case "load" -> {
-                if (strings.length == 4) {
+                if (strings.length == 5) {
                     try {
                         loadGame(
                                 Integer.parseInt(strings[1]),
                                 Integer.parseInt(strings[2]),
-                                Integer.parseInt(strings[3])
+                                Integer.parseInt(strings[3]),
+                                Long.parseLong(strings[4])
                         );
                     } catch (NumberFormatException e) {
                         sendMisuseMessage(commandSender);
@@ -103,7 +104,8 @@ public class GameCommand implements CommandExecutor, TabCompleter, BasicCommand 
                         loadGame(
                                 x,
                                 Bingo4.getInstance().getWorld().getHighestBlockYAt(x, z),
-                                z
+                                z,
+                                Bingo4.getSpawn().getWorld().getSeed()
                         );
                     } catch (NumberFormatException e) {
                         sendMisuseMessage(commandSender);
@@ -111,7 +113,7 @@ public class GameCommand implements CommandExecutor, TabCompleter, BasicCommand 
                     }
 
                 } else if (p != null) {
-                    loadGame(p.getLocation());
+                    loadGame(p.getLocation(), p.getLocation().getWorld().getSeed());
                 } else {
                     sendMisuseMessage(commandSender);
                     return false;
@@ -139,7 +141,7 @@ public class GameCommand implements CommandExecutor, TabCompleter, BasicCommand 
         new ResetGame(false);
     }
 
-    private void loadGame(int x, int y, int z) {
+    private void loadGame(int x, int y, int z, long seed) {
         Location loc = new Location(
                 Bingo4.getInstance().getWorld(),
                 x + 0.5,
@@ -147,11 +149,11 @@ public class GameCommand implements CommandExecutor, TabCompleter, BasicCommand 
                 z + 0.5
         );
 
-        loadGame(loc);
+        loadGame(loc, seed);
     }
 
-    private void loadGame(Location loc) {
-        new LoadGame(loc, loc, loc.getWorld().getSeed());
+    private void loadGame(Location loc, long seed) {
+        new LoadGame(loc, loc, seed);
 
         String text = "Successfully loaded game at ("
                 + loc.getBlockX() + ", "

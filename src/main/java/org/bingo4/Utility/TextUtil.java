@@ -165,12 +165,18 @@ public class TextUtil {
     }
 
     public static void debugText(String text, Level level) {
-        if (Debugger.getDebugger()) {
-            Bukkit.getServer().broadcast(TextUtil.makeText("[Debug] " + text, TextUtil.GRAY));
-        } else {
-            Logger logger = Bukkit.getLogger();
-            logger.log(level, text);
+        if (Debugger.getDebugger() || level.equals(Level.SEVERE)) {
+            TextColor color = switch (level.getName().toUpperCase()) {
+                case "FINEST", "FINE" -> TextUtil.DARK_GRAY;
+                case "INFO" -> TextUtil.GRAY;
+                case "WARNING" -> TextUtil.RED;
+                case "SEVERE" -> TextUtil.DARK_RED;
+                default -> TextUtil.WHITE;
+            };
+            Bukkit.getServer().broadcast(TextUtil.makeText(String.format("[Debug: %s] %s", level.getName(), text), color));
         }
+        Logger logger = Bingo4.getInstance().getLogger();
+        logger.log(level, text);
     }
 
     public static String getItemNameString(ItemStack item) {

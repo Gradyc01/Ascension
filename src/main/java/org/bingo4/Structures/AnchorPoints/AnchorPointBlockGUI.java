@@ -53,7 +53,7 @@ public class AnchorPointBlockGUI extends AscensionBlockMenuGUI {
         } else if (item.equals(enterItem)) {
             anchorPoint.enterPortal(currentUser);
         } else if (item.equals(specifcEntryItem)) {
-            new AnchorPointSpecificEntryGUI(playerData, anchorPoint);
+            new AnchorPointSpecificEntryGUI(currentUser, anchorPoint);
         }
     }
 

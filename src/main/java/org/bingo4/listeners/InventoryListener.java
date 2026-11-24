@@ -5,6 +5,7 @@ import org.bingo4.Bingo4;
 import org.bingo4.Interfaces.AscensionGUI;
 import org.bingo4.Interfaces.AscensionMenuGUI;
 import org.bingo4.Interfaces.ItemDrop;
+import org.bingo4.Items.UnlockRecommender;
 import org.bingo4.Player.Data.PlayerData;
 import org.bingo4.Player.Data.PlayerInventoryTracker;
 import org.bingo4.Player.Data.PlayerUtil;
@@ -77,7 +78,7 @@ public class InventoryListener implements Listener {
         PlayerData playerData = PlayerUtil.getPlayerData(player);
         if (playerData == null) return;
         playerData.getPlayerInventoryTracker().addItems(e.getItem().getItemStack());
-//        UnlockRecommender.getInstance().checkMaterial(e.getItem().getItemStack(), player);
+        UnlockRecommender.getInstance().checkMaterial(e.getItem().getItemStack(), player);
     }
 
     @EventHandler

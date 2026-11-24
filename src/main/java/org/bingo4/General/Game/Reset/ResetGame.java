@@ -71,7 +71,8 @@ public class ResetGame extends GameLauncher {
                     new BuildWorlds(spawnLocation, seed),
                     new SetSpawn(spawnLocation),
                     new CenterSettingsConfigurations(),
-                    new BuildPlatform()
+                    new BuildPlatform(),
+                    new SetBingoData()
             ));
             if (reLocationCheck) buildSequences.add(new CallLocationCheck());
             sequences.addAll(0, buildSequences);

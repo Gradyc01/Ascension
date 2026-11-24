@@ -9,18 +9,15 @@ import org.bingo4.Interfaces.ItemClick;
 import org.bingo4.Player.Cooldowns.EntityInteractionCooldown;
 import org.bingo4.Player.Data.PlayerData;
 import org.bingo4.Player.Data.PlayerUtil;
-import org.bingo4.Utility.TextUtil;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Openable;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.InventoryHolder;
 
 import java.util.Set;
@@ -49,18 +46,6 @@ public class PlayerInteractListener implements Listener {
             };
         }
     }
-
-
-
-//    /*Returns True if when the player interacts with a block with a Inventory
-//    * returns False otherwise*/
-//    private boolean blockHasInventory(PlayerInteractEvent e) {
-//        if (e.getClickedBlock() == null || e.getClickedBlock().getType() == Material.AIR) return false;
-//        Block b = e.getClickedBlock();
-//        if (b.getBlockData() instanceof Openable) return true;
-//        if (unRightClickables.contains(b.getType())) return true;
-//        return b.getState() instanceof InventoryHolder;
-//    }
 
     /*Returns True if when the player interacts with a block with a Inventory
      * returns False otherwise*/

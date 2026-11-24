@@ -37,6 +37,6 @@ public class BlockUtil {
         new EmeraldOre();
         new QuartzOre();
         new NetherGoldOre();
-        new Stones();
+//        new Stones();
     }
 }

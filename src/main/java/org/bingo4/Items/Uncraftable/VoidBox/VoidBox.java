@@ -44,8 +44,9 @@ public class VoidBox extends CustomItem implements ItemClick {
     @Override
     public boolean uponClick(PlayerInteractEvent e, PlayerData pD) {
         Block b = e.getClickedBlock();
+        if (!e.getAction().isRightClick()) return false;
         e.setCancelled(true);
-        if (b == null || !e.getAction().isRightClick()) return false;
+        if (b == null) return false;
         Block placedPosition = b.getRelative(e.getBlockFace());
 
         if (!placedPosition.getLocation().getWorld().getBlockAt(placedPosition.getLocation().add(0, -1, 0)).isSolid() || !placedPosition.getType().isAir()) return false;

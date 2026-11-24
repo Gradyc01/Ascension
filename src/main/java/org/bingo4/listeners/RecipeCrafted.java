@@ -45,11 +45,12 @@ public class RecipeCrafted implements EventListener, Listener {
 //        if (!isCraftingRecipe(recipe)) return;
 //        String recipeKey = getKey(recipe);
 //        craftingCustomItemEvent(event, recipeKey);
-//        if (!event.isCancelled() && event.getCurrentItem() != null) {
-//            Player p = (Player) event.getWhoClicked();
-//            PlayerData playerData = PlayerUtil.getPlayerData(p);
-//            playerData.getPlayerInventoryTracker().needsUpdate();
-//        }
+        if (!event.isCancelled() && event.getCurrentItem() != null) {
+            Player p = (Player) event.getWhoClicked();
+            PlayerData playerData = PlayerUtil.getPlayerData(p);
+            if (playerData == null) return;
+            playerData.getPlayerInventoryTracker().needsUpdate();
+        }
     }
 //
 //    /*Handles everything to do with crafting a custom item (Unlocks mostly)*/
