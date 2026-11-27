@@ -7,6 +7,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.breeze.Breeze;
 import org.bingo4.Interfaces.RealmNMSMob;
 import org.bingo4.Utility.NMSMobUtil;
@@ -29,6 +32,7 @@ public class Bingo4Breeze extends Breeze implements RealmNMSMob {
         super(EntityTypes.BREEZE, ((CraftWorld) world).getHandle());
         name = getMobName();
         this.random = random;
+        this.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier(Mob.RANDOM_SPAWN_BONUS_ID, 18, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
 
     @Override

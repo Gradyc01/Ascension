@@ -45,7 +45,7 @@ public class BingoLockdown {
 //        plugin.getGameState().setCurrentState(GameStates.GAME_ASCENSION);
         timeline = plugin.getSettingsUI().getSettings().getTimeline();
         team.getTeamBingoLockdown().startAscension();
-        team.getTeamStats().addGameScore(team.getTeamStats().getGameScore());
+        team.getTeamStats().addGameScore(team.getTeamComeback().calculateBingoLockdownGameScoreAmount());
         startText(team);
         loop();
     }

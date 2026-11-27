@@ -276,7 +276,6 @@ public final class BingoItemManager {
                     "GitHub returned HTTP " + response.statusCode()
             );
         }
-        TextUtil.debugText(response.body());
         return response.body();
     }
 

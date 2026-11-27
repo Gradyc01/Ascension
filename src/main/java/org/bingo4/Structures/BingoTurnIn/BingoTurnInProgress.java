@@ -24,6 +24,9 @@ import java.util.Set;
 
 public class BingoTurnInProgress {
     private static final int CAPTURE_TIME = 5;
+    private static final int STARTING_COMPLETION_TIME = 30;
+    private static final int BEGINNING_STARTING_COMPLETION_TIME = 10;
+
 
     private final BingoTurnInInstance instance;
     private final Bingo4 plugin = Bingo4.getInstance();
@@ -43,8 +46,8 @@ public class BingoTurnInProgress {
     public void start(PlayerData playerData, BoundingBox boundingBox, ItemStack item) {
         bingoCaptureBoardPlayers.clear();
         for (Team team : TeamUtil.getEveryTeam()) {
-            timeToCompletion.put(team, 30);
-            startingTime.put(team, 30);
+            timeToCompletion.put(team, team.getTeamComeback().calculateCaptureTime(getStartingCaptureTime()));
+            startingTime.put(team, team.getTeamComeback().calculateCaptureTime(getStartingCaptureTime()));
             captureProgress.put(team, 0);
         }
         captureProgress.put(playerData.getPlayerTeam().getTeam(), CAPTURE_TIME);
@@ -238,6 +241,14 @@ public class BingoTurnInProgress {
     private void updateScoreboard() {
         for (PlayerData pD : bingoCaptureBoardPlayers) {
             pD.getPlayerScoreboard().update();
+        }
+    }
+
+    private int getStartingCaptureTime() {
+        if (plugin.getSettingsUI().getSettings().getTimeline().getTimePassed() < 5) {
+            return BEGINNING_STARTING_COMPLETION_TIME;
+        } else {
+            return STARTING_COMPLETION_TIME;
         }
     }
 

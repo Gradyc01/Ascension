@@ -84,7 +84,7 @@ public class BingoTurnInInstance extends CampInstance {
                     return;
                 }
 
-                int i = 10;
+                int i = 20;
                 for (Block b : new HashSet<>(blocks)) {
                     if (i-- <= 0) {
                         break;

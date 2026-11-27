@@ -27,11 +27,16 @@ commands:
     description: reveals the info of the game settings
   who:
     description: reveals the players and their teams
+
   placeCamp:
     description: reveals the players and their teams
+    permission: ascension.settings
   addMapPoint:
     description: reveals the players and their teams
-
+    permission: ascension.settings
+  addComeback:
+    description: adds comeback
+    permission: ascension.settings
   settings:
     description: changes settings of the game
     permission: ascension.settings

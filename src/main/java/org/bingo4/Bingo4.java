@@ -123,6 +123,7 @@ public final class Bingo4 extends JavaPlugin {
         registerCommand(new TravelWorlds(), "travel");
         registerCommand(new placeCamp(), "placeCamp");
         registerCommand(new addMapPoint(), "addMapPoint");
+        registerCommand(new addComebackLevels(), "addComeback");
 
     }
 

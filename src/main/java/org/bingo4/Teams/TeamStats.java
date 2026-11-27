@@ -3,13 +3,10 @@ package org.bingo4.Teams;
 
 import org.bingo4.Bingo4;
 import org.bingo4.Timeline.Events.BingoLockdown.BingoLockdown;
-import org.bingo4.Utility.SoundUtil;
 import org.bingo4.Utility.TextUtil;
-import org.bukkit.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class TeamStats {
     private final Team team;
@@ -95,30 +92,7 @@ public class TeamStats {
         }
         gameScoreDifferential = getGameScore() - highestScore;
         this.team.updateTeamScoreboards();
-    }
-
-    private void gameScoreChangeText(String text, Sound sound, float pitch) {
-        TextUtil.broadcastMessage(TextUtil.makeText(text, TextUtil.GRAY), team.getTeamMembers());
-        SoundUtil.broadcastSound(sound, 100, pitch, team.getTeamMembers());
-    }
-
-    public int getGameScorePercentage() {
-        // TextUtil.debugText(gameScore + " Game Score     ");
-//        int gameScoreThreshold = Bingo4.getInstance().getSettingsUI().getSettings().getTimeline().getGameScoreThreshold();
-//        int score = gameScore - gameScoreThreshold;
-//        int req = gameScoreRequirement - gameScoreThreshold;
-//        int round2Requirement = (int) (0.67 * req) ;
-//        double percentage;
-//        int ascensionAttempts = team.getTeamAscension().getAscensionAttempts();
-//        if (ascensionAttempts == 0) {
-//            percentage = (double) score / req;
-//        } else {
-//            int attemptsRemaining = ascensionAttempts - 1;
-//            percentage = (double) (score - req - (round2Requirement * attemptsRemaining)) / round2Requirement;
-//        }
-        // TextUtil.debugText(Math.round(percentage * 100) + "%");
-        return 1;
-
+        this.team.getTeamComeback().recalculateComebackAdvantages(gameScoreDifferential);
     }
 
     public boolean isBingoLockdown() {

@@ -266,10 +266,6 @@ public abstract class Timeline {
         return getNextBigEvent();
     }
 
-    public Pair<Component, Integer> getProgress(Team team) {
-        return Pair.of(TextUtil.makeText("  Enlightenment: ", TextUtil.WHITE),
-                    team.getTeamStats().getGameScorePercentage());
-    }
     public int getStartingMinutes() {
         return STARTING_MINUTES;
     }

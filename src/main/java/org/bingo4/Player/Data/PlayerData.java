@@ -7,6 +7,7 @@ import org.bingo4.Items.Uncraftable.Minimap;
 import org.bingo4.Items.Uncraftable.VoidBox.VoidBox;
 import org.bingo4.MainMenuUI.Map.MapTransmitRange;
 import org.bingo4.Player.Cooldowns.Death.PlayerDeath;
+import org.bingo4.Player.Interfaces.WeaponInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -24,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static org.bingo4.Player.Interfaces.WeaponInfo.MELEE;
+import static org.bingo4.Player.Interfaces.WeaponInfo.PROJECTILE;
+
 public class PlayerData {
     private Player player;
     private final Bingo4 plugin;
@@ -38,6 +42,7 @@ public class PlayerData {
     private final PlayerStats playerStats;
     private final PlayerInventoryTracker playerInventoryTracker;
     private final PlayerMapData playerMapData;
+    private final PlayerItems playerItems;
 
     private final List<PlayerDataObservers> observers;
 
@@ -52,6 +57,7 @@ public class PlayerData {
         playerScoreboard = new PlayerScoreboard(this);
         playerInventoryTracker = new PlayerInventoryTracker(this);
         playerMapData = new PlayerMapData(this);
+        playerItems = new PlayerItems(this);
 
         initPlayerState();
 
@@ -109,8 +115,8 @@ public class PlayerData {
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, PotionEffect.INFINITE_DURATION, 0, false, false));
         getMainMenuItem();
         PlayerUtil.giveItem(player,
-                DefaultSword.getInstance().getResult(),
-                DefaultBow.getInstance().getResult(),
+                playerItems.registerPlayerWeapon(DefaultSword.getInstance().getResult(), MELEE),
+                playerItems.registerPlayerWeapon(DefaultBow.getInstance().getResult(), PROJECTILE),
                 DefaultHatchet.getInstance().getResult(),
                 DefaultPickaxe.getInstance().getResult(),
                 DefaultShovel.getInstance().getResult(),
@@ -206,6 +212,9 @@ public class PlayerData {
         return playerMapData;
     }
 
+    public PlayerItems getPlayerItems() {
+        return playerItems;
+    }
 
     public int getPlayerState() {
         return playerState;

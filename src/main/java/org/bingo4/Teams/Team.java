@@ -23,7 +23,7 @@ public class Team {
     private final PlayerData leader;
     private final Bingo4 plugin;
     private final TeamStats teamStats;
-//    private final TeamBackpack teamBackpack;
+    private final TeamComeback teamComeback;
     private final TeamBingoLockdown teamBingoLockdown;
     private final TeamAnchors teamAnchors;
     private int STATE;
@@ -41,6 +41,7 @@ public class Team {
         teamStats = new TeamStats(this);
         teamAnchors = new TeamAnchors(this);
         teamBingoLockdown = new TeamBingoLockdown(this);
+        teamComeback = new TeamComeback(this);
     }
 
     /*Adds PlayerData pD to this Team*/
@@ -167,6 +168,10 @@ public class Team {
 
     public TeamBingoLockdown getTeamBingoLockdown() {
         return teamBingoLockdown;
+    }
+
+    public TeamComeback getTeamComeback() {
+        return teamComeback;
     }
 
     public boolean checkSTATE(int state) {
